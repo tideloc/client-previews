@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Heaps Good Mowing Co | Preview C — Editorial, Cinematic</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Lora:ital@0;1&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #2D5A3D;
+      --primary-light: #E8F0EB;
+      --primary-dark: #1A3625;
+      --accent: #E8712B;
+      --text: #2C3E2D;
+      --text-light: #6B7D6E;
+      --bg: #FAFCFA;
+      --bg-alt: #F0F4F0;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: var(--text);
+      background-color: var(--bg);
+      line-height: 1.6;
+    }
+
+    /* ===== CONCEPT BANNER ===== */
+    .concept-banner {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      color: white;
+      padding: 1.2rem;
+      text-align: center;
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      border-bottom: 2px solid var(--accent);
+      z-index: 1000;
+      position: relative;
+    }
+
+    /* ===== NAVIGATION ===== */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 999;
+      padding: 1.5rem 2rem;
+      background: transparent;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: all 0.3s ease;
+    }
+
+    nav.scrolled {
+      background: rgba(255, 255, 255, 0.98);
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+      backdrop-filter: blur(10px);
+    }
+
+    .logo {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: white;
+      text-decoration: none;
+      letter-spacing: -0.02em;
+      transition: color 0.3s ease;
+    }
+
+    nav.scrolled .logo {
+      color: var(--primary);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 3rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: white;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: color 0.3s ease;
+      position: relative;
+    }
+
+    nav.scrolled .nav-links a {
+      color: var(--text);
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--accent);
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .hamburger {
+      display: none;
+    }
+
+    /* ===== HERO SECTION ===== */
+    .hero {
+      position: relative;
+      height: 100vh;
+      min-height: 600px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+      margin-top: 0;
+    }
+
+    .hero-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: url('https://images.unsplash.com/photo-1592150621744-aca64f48394a?w=1600&h=900&fit=crop&q=80');
+      background-position: center;
+      background-size: cover;
+      background-attachment: fixed;
+      filter: saturate(0.85) brightness(0.95);
+      z-index: 1;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(45, 90, 61, 0.45) 100%);
+      z-index: 2;
+    }
+
+    .hero-vignette {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(ellipse at center, transparent 0%, rgba(0, 0, 0, 0.3) 100%);
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 3;
+      max-width: 900px;
+      padding: 2rem;
+      animation: fadeInUp 1s ease 0.3s both;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hero h1 {
+      font-size: clamp(3rem, 8vw, 5.5rem);
+      font-weight: 600;
+      line-height: 1.1;
+      margin-bottom: 2rem;
+      letter-spacing: -0.02em;
+      text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
+      background: var(--accent);
+      color: white;
+      padding: 1rem 2rem;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      letter-spacing: 0.05em;
+    }
+
+    .hero-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(232, 113, 43, 0.4);
+    }
+
+    .image-watermark {
+      position: absolute;
+      bottom: 1rem;
+      right: 1rem;
+      font-size: 0.75rem;
+      color: rgba(255, 255, 255, 0.5);
+      z-index: 4;
+      pointer-events: none;
+    }
+
+    /* ===== SERVICES SECTION ===== */
+    .services {
+      padding: 6rem 2rem;
+      background: var(--bg);
+    }
+
+    .services-grid {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      align-items: start;
+    }
+
+    .service-block {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 3/4;
+      background: var(--bg-alt);
+      transition: transform 0.4s cubic-bezier(0.23, 1, 0.320, 1);
+    }
+
+    .service-block:nth-child(1) {
+      grid-column: 1;
+      margin-top: 0;
+    }
+
+    .service-block:nth-child(2) {
+      grid-column: 2;
+      margin-top: 2rem;
+    }
+
+    .service-block:nth-child(3) {
+      grid-column: 3;
+      margin-top: 0;
+    }
+
+    .service-block:nth-child(4) {
+      grid-column: 1 / span 2;
+      aspect-ratio: 16/6;
+      margin-top: 1rem;
+    }
+
+    .service-block:hover {
+      transform: scale(1.02);
+    }
+
+    .service-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+      filter: saturate(0.9) brightness(1.05);
+    }
+
+    .service-block:hover .service-image {
+      transform: scale(1.08);
+    }
+
+    .service-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.7) 100%);
+      padding: 2.5rem 1.5rem 1.5rem;
+      color: white;
+      min-height: 120px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      transition: all 0.3s ease;
+    }
+
+    .service-block:hover .service-overlay {
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.85) 100%);
+    }
+
+    .service-name {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.01em;
+    }
+
+    .service-desc {
+      font-size: 0.9rem;
+      opacity: 0.95;
+      line-height: 1.5;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+
+    .service-block:hover .service-desc {
+      max-height: 100px;
+    }
+
+    /* ===== ABOUT SECTION ===== */
+    .about {
+      padding: 6rem 2rem;
+      background: var(--primary-light);
+      position: relative;
+    }
+
+    .about-container {
+      max-width: 1300px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .about-image {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 4/2;
+    }
+
+    .about-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: saturate(0.85) brightness(1.02);
+    }
+
+    .about-content h2 {
+      font-family: 'Lora', serif;
+      font-size: 2.5rem;
+      font-weight: 400;
+      font-style: italic;
+      color: var(--primary);
+      margin-bottom: 1.5rem;
+      line-height: 1.3;
+    }
+
+    .about-content p {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: var(--text);
+      margin-bottom: 1.5rem;
+    }
+
+    .about-highlight {
+      padding: 2rem;
+      background: white;
+      border-left: 4px solid var(--accent);
+      margin: 2rem 0;
+      font-family: 'Lora', serif;
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--primary);
+      line-height: 1.6;
+    }
+
+    /* ===== CONTACT SECTION ===== */
+    .contact {
+      padding: 6rem 2rem;
+      background: var(--bg);
+      text-align: center;
+    }
+
+    .contact-container {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .contact h2 {
+      font-size: 2.5rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      letter-spacing: -0.02em;
+    }
+
+    .contact-tagline {
+      font-family: 'Lora', serif;
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--text-light);
+      margin-bottom: 3rem;
+    }
+
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .contact-cta {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .contact-label {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-light);
+      font-weight: 600;
+    }
+
+    .contact-link {
+      font-size: 2rem;
+      font-weight: 600;
+      color: var(--primary);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .contact-link:hover {
+      color: var(--accent);
+    }
+
+    .contact-button {
+      display: inline-block;
+      background: var(--primary);
+      color: white;
+      padding: 1.2rem 3rem;
+      text-decoration: none;
+      font-weight: 600;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      letter-spacing: 0.05em;
+      margin-top: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .contact-button:hover {
+      background: var(--accent);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(232, 113, 43, 0.2);
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      padding: 3rem 2rem;
+      background: var(--bg-alt);
+      border-top: 1px solid rgba(0, 0, 0, 0.05);
+      text-align: center;
+      font-size: 0.9rem;
+      color: var(--text-light);
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .footer-brand {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-note {
+      font-size: 0.8rem;
+      color: var(--text-light);
+      margin-top: 1rem;
+    }
+
+    /* ===== SECTION HEADINGS ===== */
+    section h2 {
+      font-size: 3rem;
+      font-weight: 600;
+      margin-bottom: 3rem;
+      letter-spacing: -0.02em;
+      text-align: center;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      .nav-links {
+        gap: 1.5rem;
+      }
+
+      .logo {
+        font-size: 1.1rem;
+      }
+
+      .hero h1 {
+        font-size: clamp(2rem, 6vw, 3.5rem);
+        margin-bottom: 1.5rem;
+      }
+
+      .services-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .service-block,
+      .service-block:nth-child(1),
+      .service-block:nth-child(2),
+      .service-block:nth-child(3),
+      .service-block:nth-child(4) {
+        grid-column: 1;
+        aspect-ratio: 3/4;
+        margin-top: 0 !important;
+      }
+
+      .about-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .about-content h2 {
+        font-size: 2rem;
+      }
+
+      section {
+        padding: 4rem 1rem !important;
+      }
+
+      section h2 {
+        font-size: 2rem;
+      }
+
+      .services {
+        padding: 4rem 1rem;
+      }
+
+      .contact {
+        padding: 4rem 1rem;
+      }
+
+      .about {
+        padding: 4rem 1rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .nav-links {
+        display: none;
+      }
+
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      .service-name {
+        font-size: 1.2rem;
+      }
+
+      .about-content h2 {
+        font-size: 1.5rem;
+      }
+
+      .contact h2 {
+        font-size: 1.8rem;
+      }
+
+      section h2 {
+        font-size: 1.5rem;
+        margin-bottom: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+    <!-- Concept Banner -->
+    <div class="concept-banner">
+        PREVIEW C — EDITORIAL, CINEMATIC. Most distinctive design. Image-forward, minimal text.
+    </div>
+
+    <!-- Navigation -->
+    <nav id="nav">
+        <a href="#" class="logo">Heaps Good</a>
+        <ul class="nav-links">
+            <li><a href="#services">Services</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-vignette"></div>
+        <div class="hero-content">
+            <h1>Your Lawn, Done Properly.</h1>
+            <a href="#contact" class="hero-cta">Get In Touch</a>
+        </div>
+        <div class="image-watermark">Sample imagery — your photos here</div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <h2>What We Do</h2>
+        <div class="services-grid">
+            <div class="service-block">
+                <img src="https://images.unsplash.com/photo-1590333748338-d629e4564ad9?w=800&h=1000&fit=crop&q=80" alt="Lawn Mowing" class="service-image">
+                <div class="service-overlay">
+                    <div class="service-name">Lawn Mowing</div>
+                    <div class="service-desc">Weekly maintenance to keep your grass healthy and looking sharp.</div>
+                </div>
+            </div>
+
+            <div class="service-block">
+                <img src="https://images.unsplash.com/photo-1557429287-b2e26467fc2b?w=1000&h=600&fit=crop&q=80" alt="Garden Care" class="service-image">
+                <div class="service-overlay">
+                    <div class="service-name">Garden Care</div>
+                    <div class="service-desc">Landscaping, trimming, and seasonal garden maintenance.</div>
+                </div>
+            </div>
+
+            <div class="service-block">
+                <img src="https://images.unsplash.com/photo-1459411552884-841db9b3cc2a?w=800&h=1000&fit=crop&q=80" alt="Hedge Trimming" class="service-image">
+                <div class="service-overlay">
+                    <div class="service-name">Hedge Trimming</div>
+                    <div class="service-desc">Professional trimming for clean, well-defined hedges.</div>
+                </div>
+            </div>
+
+            <div class="service-block">
+                <img src="https://images.unsplash.com/photo-1592150621744-aca64f48394a?w=1600&h=900&fit=crop&q=80" alt="Full Yard Services" class="service-image">
+                <div class="service-overlay">
+                    <div class="service-name">Full Yard Services</div>
+                    <div class="service-desc">Complete lawn and garden management tailored to your needs.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="about-container">
+            <div class="about-image">
+                <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1200&h=500&fit=crop&q=80" alt="Shellharbour neighbourhood">
+                <div class="image-watermark">Sample imagery — your photos here</div>
+            </div>
+            <div class="about-content">
+                <h2>Built for Your Neighbourhood</h2>
+                <p>Heaps Good Mowing Co serves Shellharbour, Barrack Heights, Warilla, Lake Illawarra, Shell Cove, and Oak Flats. We're a fresh, flexible service committed to helping locals keep their outdoor spaces looking sharp.</p>
+                <div class="about-highlight">
+                    "We admire the professional, authentic content style of the best mowing and garden channels out there—and we bring that same attention to detail to every job."
+                </div>
+                <p>Casual. Aussie. Friendly. That's how we do business. Whether you need regular maintenance or a one-off tidy-up, we're flexible and ready to help.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="contact-container">
+            <h2>Get In Touch</h2>
+            <p class="contact-tagline">Let's talk about your lawn.</p>
+            <div class="contact-info">
+                <div class="contact-cta">
+                    <span class="contact-label">Call or Text</span>
+                    <a href="tel:+61" class="contact-link">0XXX XXX XXX</a>
+                </div>
+                <div style="color: var(--text-light); font-size: 0.9rem;">or</div>
+                <div class="contact-cta">
+                    <span class="contact-label">Email</span>
+                    <a href="mailto:mitch.king29@gmail.com" class="contact-link" style="font-size: 1.2rem;">mitch.king29@gmail.com</a>
+                </div>
+                <a href="mailto:mitch.king29@gmail.com" class="contact-button">Send a Message</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">Heaps Good Mowing Co</div>
+            <p>Shellharbour • Barrack Heights • Warilla • Lake Illawarra • Shell Cove • Oak Flats</p>
+            <div class="footer-note">© 2026 Heaps Good Mowing Co. All rights reserved.</div>
+        </div>
+    </footer>
+
+    <script>
+        // Navigation scroll effect
+        const nav = document.getElementById('nav');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scroll for nav links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

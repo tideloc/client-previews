@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kings Eyewear PTY LTD — Website Previews</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+body {
+font-family: 'Plus Jakarta Sans', sans-serif;
+background-color: #F8FAFB;
+color: #333;
+line-height: 1.6;
+}
+header {
+padding: 2rem 1.5rem;
+border-bottom: 1px solid #E0E8F0;
+background: white;
+}
+.header-content {
+max-width: 1000px;
+margin: 0 auto;
+}
+.branding {
+font-size: 0.875rem;
+font-weight: 500;
+color: #999;
+letter-spacing: 0.05em;
+text-transform: uppercase;
+margin-bottom: 1.5rem;
+}
+h1 {
+font-size: 2.5rem;
+font-weight: 700;
+color: #072136;
+margin-bottom: 0.5rem;
+}
+.tagline {
+font-size: 1.1rem;
+color: #666;
+font-weight: 400;
+}
+main {
+max-width: 1000px;
+margin: 0 auto;
+padding: 3rem 1.5rem;
+}
+.intro {
+margin-bottom: 3rem;
+text-align: center;
+}
+.intro p {
+font-size: 1.1rem;
+color: #666;
+max-width: 600px;
+margin: 0 auto;
+}
+.previews-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+gap: 2rem;
+margin-bottom: 3rem;
+}
+.preview-card {
+background: white;
+border-radius: 12px;
+overflow: hidden;
+box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+transition: all 0.3s ease;
+text-decoration: none;
+color: inherit;
+border-left: 5px solid;
+display: flex;
+flex-direction: column;
+}
+.preview-card:hover {
+box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+transform: translateY(-2px);
+}
+.preview-card.style-a {
+border-left-color: #78C1FE;
+}
+.preview-card.style-b {
+border-left-color: #ED1E25;
+}
+.preview-card.style-c {
+border-left-color: #78C1FE;
+}
+.card-header {
+padding: 2rem;
+flex-grow: 1;
+display: flex;
+flex-direction: column;
+}
+.card-header.style-a {
+background: linear-gradient(135deg, #F8FAFB 0%, #F0F7FF 100%);
+}
+.card-header.style-b {
+background: linear-gradient(135deg, #072136 0%, #051C2A 100%);
+}
+.card-header.style-c {
+background: linear-gradient(135deg, #F8FAFB 0%, #F0F7FF 100%);
+}
+.style-b .card-title,
+.style-b .card-description {
+color: white;
+}
+.card-title {
+font-size: 1.5rem;
+font-weight: 700;
+margin-bottom: 0.5rem;
+color: #072136;
+}
+.card-description {
+font-size: 1rem;
+color: #666;
+margin-bottom: 0;
+}
+.card-cta {
+padding: 1rem 2rem;
+background: white;
+border-top: 1px solid #E0E8F0;
+text-align: center;
+font-weight: 600;
+font-size: 0.95rem;
+transition: all 0.3s ease;
+}
+.preview-card:hover .card-cta {
+background: #F8FAFB;
+}
+.card-cta span {
+margin-left: 0.5rem;
+}
+footer {
+background: white;
+border-top: 1px solid #E0E8F0;
+padding: 2rem 1.5rem;
+text-align: center;
+color: #999;
+font-size: 0.95rem;
+}
+@media (max-width: 768px) {
+h1 {
+font-size: 2rem;
+}
+main {
+padding: 2rem 1rem;
+}
+.previews-grid {
+gap: 1.5rem;
+}
+.card-header {
+padding: 1.5rem;
+}
+.card-title {
+font-size: 1.3rem;
+}
+}
+@media (max-width: 480px) {
+h1 {
+font-size: 1.5rem;
+}
+.previews-grid {
+grid-template-columns: 1fr;
+}
+}
+</style>
+</head>
+<body>
+<header>
+<div class="header-content">
+<div class="branding">Tideloc Web Design</div>
+<h1>Kings Eyewear PTY LTD</h1>
+<p class="tagline">Website Design Previews</p>
+</div>
+</header>
+<main>
+<div class="intro">
+<p>Explore three distinct design directions for Kings Eyewear PTY LTD. Each preview showcases a different approach to layout, colour, and brand storytelling.</p>
+</div>
+<div class="previews-grid">
+<a href="mockup-a-kings-eyewear.html" class="preview-card style-a">
+<div class="card-header style-a">
+<h2 class="card-title">Clean & Accessible</h2>
+<p class="card-description">Simple navigation, services lead. Clear and welcoming.</p>
+</div>
+<div class="card-cta">View Preview <span>→</span></div>
+</a>
+<a href="mockup-b-kings-eyewear.html" class="preview-card style-b">
+<div class="card-header style-b">
+<h2 class="card-title">Bold & Heritage</h2>
+<p class="card-description">Navy blocking, masonry gallery. Established authority.</p>
+</div>
+<div class="card-cta">View Preview <span>→</span></div>
+</a>
+<a href="mockup-c-kings-eyewear.html" class="preview-card style-c">
+<div class="card-header style-c">
+<h2 class="card-title">Premium Boutique</h2>
+<p class="card-description">Editorial, serif headings, lookbook. Refined elegance.</p>
+</div>
+<div class="card-cta">View Preview <span>→</span></div>
+</a>
+</div>
+</main>
+<footer>
+<p>Prepared by Tideloc Web Design</p>
+</footer>
+</body>
+</html>

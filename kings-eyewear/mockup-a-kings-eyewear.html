@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kings Eyewear PTY LTD – Independent Eye Care, Warrawong & Shellharbour</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+html {
+scroll-behavior: smooth;
+}
+body {
+font-family: 'Plus Jakarta Sans', sans-serif;
+font-size: 1.1rem;
+line-height: 1.7;
+color: #000000;
+background-color: #FFFFFF;
+}
+/* ===== CONCEPT BANNER ===== */
+.concept-banner {
+background: linear-gradient(135deg, #072136 0%, #052330 100%);
+color: #FFFFFF;
+padding: 1rem 2rem;
+text-align: center;
+font-size: 0.95rem;
+font-weight: 600;
+letter-spacing: 0.05em;
+}
+/* ===== HEADER & NAVIGATION ===== */
+header {
+background-color: #78C1FE;
+border-bottom: 3px solid #78C1FE;
+position: sticky;
+top: 0;
+z-index: 100;
+box-shadow: 0 2px 8px rgba(7, 33, 54, 0.15);
+}
+.header-container {
+max-width: 1200px;
+margin: 0 auto;
+padding: 1.5rem 2rem;
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+.logo {
+font-size: 1.5rem;
+font-weight: 700;
+color: #FFFFFF;
+text-decoration: none;
+letter-spacing: -0.02em;
+display: flex;
+align-items: center;
+gap: 0.4rem;
+}
+.logo span {
+color: #ED1E25;
+font-size: 1.3rem;
+}
+nav ul {
+display: flex;
+list-style: none;
+gap: 2rem;
+flex-wrap: wrap;
+}
+nav a {
+text-decoration: none;
+color: #FFFFFF;
+font-weight: 600;
+font-size: 1.05rem;
+transition: all 0.3s ease;
+display: inline-block;
+padding: 0.75rem 0.5rem;
+border-bottom: 3px solid transparent;
+min-height: 48px;
+display: inline-flex;
+align-items: center;
+}
+nav a:hover {
+color: #ED1E25;
+border-bottom-color: #ED1E25;
+}
+/* ===== HERO SECTION ===== */
+.hero {
+position: relative;
+height: 500px;
+background: linear-gradient(135deg, #072136 0%, #052330 100%);
+color: #FFFFFF;
+display: flex;
+align-items: center;
+justify-content: center;
+text-align: center;
+overflow: hidden;
+}
+.hero::before {
+content: '';
+position: absolute;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background-image: url('https://images.unsplash.com/photo-1574258495973-f010dfbb5371?w=1400&h=600&fit=crop&q=80');
+background-size: cover;
+background-position: center;
+opacity: 0.3;
+z-index: 1;
+}
+.hero-overlay {
+position: absolute;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background: linear-gradient(180deg, rgba(7, 33, 54, 0.5) 0%, rgba(7, 33, 54, 0.8) 100%);
+z-index: 2;
+}
+.hero-content {
+position: relative;
+z-index: 3;
+max-width: 700px;
+padding: 2rem;
+}
+.hero h1 {
+font-size: 3rem;
+font-weight: 700;
+margin-bottom: 1rem;
+line-height: 1.2;
+}
+.hero p {
+font-size: 1.3rem;
+margin-bottom: 2.5rem;
+line-height: 1.6;
+}
+.cta-button {
+display: inline-block;
+background-color: #ED1E25;
+color: white;
+padding: 1rem 2.5rem;
+text-decoration: none;
+border-radius: 8px;
+font-weight: 700;
+font-size: 1.1rem;
+transition: all 0.3s ease;
+border: none;
+cursor: pointer;
+min-height: 48px;
+min-width: 48px;
+display: inline-flex;
+align-items: center;
+justify-content: center;
+}
+.cta-button:hover {
+background-color: #C41620;
+transform: translateY(-2px);
+box-shadow: 0 8px 20px rgba(237, 30, 37, 0.4);
+}
+.cta-button:active {
+transform: translateY(0);
+}
+/* ===== GENERAL SECTION STYLES ===== */
+section {
+padding: 5rem 2rem;
+max-width: 1200px;
+margin: 0 auto;
+}
+section h2 {
+font-size: 2.2rem;
+font-weight: 700;
+margin-bottom: 0.5rem;
+color: #072136;
+}
+section > p:first-of-type {
+font-size: 1.15rem;
+color: #333333;
+margin-bottom: 3rem;
+max-width: 600px;
+}
+/* ===== SERVICES SECTION ===== */
+.services-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+gap: 2.5rem;
+margin-top: 3rem;
+}
+.service-card {
+background-color: white;
+padding: 3rem;
+border-radius: 8px;
+border-left: 6px solid #78C1FE;
+box-shadow: 0 2px 8px rgba(7, 33, 54, 0.1);
+transition: all 0.3s ease;
+}
+.service-card:hover {
+box-shadow: 0 8px 24px rgba(7, 33, 54, 0.15);
+transform: translateY(-4px);
+}
+.service-card img {
+width: 100%;
+height: 250px;
+object-fit: cover;
+border-radius: 8px;
+margin-bottom: 1.5rem;
+background-color: #F0F0F0;
+opacity: 0.9;
+}
+.service-card img::after {
+content: '';
+position: absolute;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background: rgba(120, 193, 254, 0.1);
+}
+.service-card h3 {
+font-size: 1.4rem;
+font-weight: 700;
+color: #072136;
+margin-bottom: 1rem;
+}
+.service-card p {
+color: #333333;
+font-size: 1rem;
+line-height: 1.8;
+}
+/* ===== SHOP SECTION ===== */
+.shop-section {
+background-color: #F0F0F0;
+}
+.shop-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+gap: 2rem;
+margin-top: 3rem;
+}
+.product-card {
+background-color: white;
+border-radius: 8px;
+overflow: hidden;
+box-shadow: 0 2px 8px rgba(7, 33, 54, 0.1);
+transition: all 0.3s ease;
+}
+.product-card:hover {
+box-shadow: 0 8px 24px rgba(7, 33, 54, 0.15);
+transform: translateY(-4px);
+}
+.product-image {
+width: 100%;
+height: 280px;
+background-color: #FFFFFF;
+object-fit: contain;
+padding: 1.5rem;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 0.85rem;
+color: #666666;
+position: relative;
+}
+.product-image img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+}
+.product-info {
+padding: 1.5rem;
+}
+.product-name {
+font-size: 1.15rem;
+font-weight: 700;
+color: #072136;
+margin-bottom: 0.5rem;
+}
+.product-price {
+font-size: 1.3rem;
+font-weight: 700;
+color: #ED1E25;
+margin-bottom: 1rem;
+}
+.product-button {
+width: 100%;
+padding: 0.8rem;
+background-color: #78C1FE;
+color: #FFFFFF;
+border: none;
+border-radius: 6px;
+font-weight: 600;
+cursor: pointer;
+min-height: 48px;
+font-size: 1rem;
+transition: all 0.3s ease;
+}
+.product-button:hover {
+background-color: #5BA8D9;
+}
+/* ===== ABOUT SECTION ===== */
+.about-section {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 3rem;
+align-items: center;
+margin-top: 3rem;
+}
+.about-image {
+width: 100%;
+height: 400px;
+background-color: #F0F0F0;
+border-radius: 8px;
+overflow: hidden;
+}
+.about-image img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+}
+.about-content h3 {
+font-size: 1.8rem;
+font-weight: 700;
+color: #072136;
+margin-bottom: 1.5rem;
+}
+.about-content p {
+margin-bottom: 1.5rem;
+color: #333333;
+line-height: 1.8;
+}
+.testimonial-pullquote {
+background-color: #F0F0F0;
+border-left: 6px solid #78C1FE;
+padding: 1.5rem;
+margin: 2rem 0;
+border-radius: 8px;
+font-style: italic;
+color: #000000;
+font-size: 1.15rem;
+}
+/* ===== GALLERY SECTION ===== */
+.gallery-section {
+background-color: #F0F0F0;
+}
+.gallery-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+gap: 1.5rem;
+margin-top: 3rem;
+}
+.gallery-item {
+position: relative;
+height: 280px;
+border-radius: 8px;
+overflow: hidden;
+background-color: #FFFFFF;
+box-shadow: 0 2px 8px rgba(7, 33, 54, 0.1);
+transition: all 0.3s ease;
+}
+.gallery-item:hover {
+box-shadow: 0 8px 24px rgba(7, 33, 54, 0.15);
+transform: scale(1.02);
+}
+.gallery-item img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+}
+/* ===== TESTIMONIAL SECTION ===== */
+.testimonial-section {
+background: linear-gradient(135deg, #072136 0%, #052330 100%);
+color: #FFFFFF;
+text-align: center;
+padding: 4rem 2rem;
+}
+.testimonial-section h2 {
+color: #FFFFFF;
+margin-bottom: 1.5rem;
+}
+.testimonial-quote {
+font-size: 1.3rem;
+font-style: italic;
+margin-bottom: 1rem;
+max-width: 700px;
+margin-left: auto;
+margin-right: auto;
+}
+.testimonial-author {
+font-size: 1.05rem;
+color: #78C1FE;
+font-weight: 600;
+}
+/* ===== FAQ SECTION ===== */
+.faq-section {
+max-width: 800px;
+margin-left: auto;
+margin-right: auto;
+}
+.faq-item {
+margin-bottom: 1.5rem;
+border: 2px solid #E0E0E0;
+border-radius: 8px;
+overflow: hidden;
+}
+.faq-question {
+background-color: white;
+padding: 1.5rem;
+cursor: pointer;
+font-weight: 700;
+font-size: 1.1rem;
+color: #072136;
+display: flex;
+justify-content: space-between;
+align-items: center;
+min-height: 48px;
+transition: all 0.3s ease;
+}
+.faq-question:hover {
+background-color: #F0F0F0;
+color: #ED1E25;
+}
+.faq-toggle {
+font-size: 1.5rem;
+transition: transform 0.3s ease;
+}
+.faq-item.active .faq-toggle {
+transform: rotate(180deg);
+}
+.faq-answer {
+background-color: #F0F0F0;
+padding: 0;
+max-height: 0;
+overflow: hidden;
+transition: all 0.3s ease;
+}
+.faq-item.active .faq-answer {
+padding: 1.5rem;
+max-height: 500px;
+}
+.faq-answer p {
+color: #333333;
+line-height: 1.8;
+}
+/* ===== CONTACT SECTION ===== */
+.contact-section {
+background-color: #F0F0F0;
+}
+.contact-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+gap: 3rem;
+margin-top: 3rem;
+}
+.location-card {
+background-color: white;
+padding: 2.5rem;
+border-radius: 8px;
+box-shadow: 0 2px 8px rgba(7, 33, 54, 0.1);
+}
+.location-card h3 {
+font-size: 1.5rem;
+font-weight: 700;
+color: #072136;
+margin-bottom: 1.5rem;
+border-bottom: 3px solid #78C1FE;
+padding-bottom: 0.5rem;
+}
+.location-info {
+margin-bottom: 1.5rem;
+}
+.location-info p {
+margin-bottom: 0.8rem;
+color: #333333;
+font-size: 1rem;
+}
+.hours-title {
+font-weight: 700;
+color: #072136;
+margin-top: 1.5rem;
+margin-bottom: 0.5rem;
+font-size: 1.05rem;
+}
+.hours-list {
+list-style: none;
+color: #333333;
+}
+.hours-list li {
+margin-bottom: 0.4rem;
+font-size: 1rem;
+}
+.location-button {
+width: 100%;
+padding: 0.8rem;
+background-color: #78C1FE;
+color: #FFFFFF;
+border: none;
+border-radius: 6px;
+font-weight: 600;
+cursor: pointer;
+font-size: 1rem;
+min-height: 48px;
+margin-top: 1.5rem;
+transition: all 0.3s ease;
+}
+.location-button:hover {
+background-color: #5BA8D9;
+}
+.map-placeholder {
+width: 100%;
+height: 300px;
+background-color: #F0F0F0;
+border-radius: 8px;
+display: flex;
+align-items: center;
+justify-content: center;
+color: #666666;
+font-size: 0.95rem;
+margin-top: 1rem;
+border: 2px dashed #072136;
+}
+/* ===== FORM STYLES ===== */
+.contact-form {
+background-color: white;
+padding: 2.5rem;
+border-radius: 8px;
+box-shadow: 0 2px 8px rgba(7, 33, 54, 0.1);
+margin-top: 3rem;
+max-width: 600px;
+margin-left: auto;
+margin-right: auto;
+}
+.contact-form h3 {
+font-size: 1.5rem;
+font-weight: 700;
+color: #072136;
+margin-bottom: 1.5rem;
+}
+.form-group {
+margin-bottom: 1.5rem;
+}
+.form-group label {
+display: block;
+margin-bottom: 0.5rem;
+font-weight: 600;
+color: #072136;
+font-size: 1.05rem;
+}
+.form-group input,
+.form-group select,
+.form-group textarea {
+width: 100%;
+padding: 0.8rem;
+border: 2px solid #E0E0E0;
+border-radius: 6px;
+font-family: 'Plus Jakarta Sans', sans-serif;
+font-size: 1rem;
+transition: border-color 0.3s ease;
+min-height: 44px;
+color: #000000;
+}
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+outline: none;
+border-color: #78C1FE;
+box-shadow: 0 0 0 3px rgba(120, 193, 254, 0.2);
+}
+.form-group textarea {
+resize: vertical;
+min-height: 120px;
+}
+.submit-button {
+width: 100%;
+padding: 1rem;
+background-color: #ED1E25;
+color: white;
+border: none;
+border-radius: 6px;
+font-weight: 700;
+cursor: pointer;
+font-size: 1.1rem;
+min-height: 48px;
+transition: all 0.3s ease;
+}
+.submit-button:hover {
+background-color: #C41620;
+}
+/* ===== FOOTER ===== */
+footer {
+background-color: #072136;
+color: #FFFFFF;
+padding: 3rem 2rem;
+text-align: center;
+}
+footer p {
+margin-bottom: 0.5rem;
+font-size: 0.95rem;
+}
+.footer-links {
+margin-top: 1.5rem;
+display: flex;
+justify-content: center;
+gap: 1.5rem;
+flex-wrap: wrap;
+}
+.footer-links a {
+color: #78C1FE;
+text-decoration: none;
+font-weight: 600;
+transition: color 0.3s ease;
+padding: 0.5rem 0;
+display: inline-block;
+min-height: 48px;
+display: inline-flex;
+align-items: center;
+}
+.footer-links a:hover {
+color: #FFFFFF;
+}
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+.header-container {
+flex-direction: column;
+gap: 1.5rem;
+}
+nav ul {
+gap: 1rem;
+}
+nav a {
+font-size: 0.95rem;
+}
+.hero h1 {
+font-size: 2rem;
+}
+.hero p {
+font-size: 1.1rem;
+}
+section {
+padding: 3rem 1.5rem;
+}
+section h2 {
+font-size: 1.8rem;
+}
+.about-section {
+grid-template-columns: 1fr;
+}
+.about-section .about-image {
+order: -1;
+}
+.contact-grid {
+grid-template-columns: 1fr;
+}
+}
+@media (max-width: 480px) {
+body {
+font-size: 1rem;
+}
+.hero h1 {
+font-size: 1.6rem;
+}
+section h2 {
+font-size: 1.5rem;
+}
+.service-card,
+.location-card {
+padding: 1.5rem;
+}
+}
+</style>
+</head>
+<body>
+<!-- CONCEPT BANNER -->
+<div class="concept-banner">
+Preview A — Layout Interpretation A | Kings Eyewear PTY LTD
+</div>
+<!-- HEADER & NAVIGATION -->
+<header>
+<div class="header-container">
+<a href="#" class="logo">Kings <span>👑</span> Eyewear</a>
+<nav>
+<ul>
+<li><a href="#home">Home</a></li>
+<li><a href="#about">About</a></li>
+<li><a href="#services">Services</a></li>
+<li><a href="#shop">Shop</a></li>
+<li><a href="#gallery">Gallery</a></li>
+<li><a href="#faq">FAQ</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+</nav>
+</div>
+</header>
+<!-- HERO SECTION -->
+<section id="home" class="hero">
+<div class="hero-overlay"></div>
+<div class="hero-content">
+<h1>37 Years of Independent Eye Care</h1>
+<p>Your local optometrist in Warrawong and Shellharbour — where you're a person, not a number.</p>
+<a href="#services" class="cta-button">Book an Eye Test</a>
+</div>
+</section>
+<!-- SERVICES SECTION -->
+<section id="services">
+<h2>Our Services</h2>
+<p>Expert optical care tailored to your needs. From comprehensive eye examinations to custom lens fitting.</p>
+<div class="services-grid">
+<div class="service-card">
+<img src="https://images.unsplash.com/photo-1516714435131-44d6b64dc6a2?w=600&h=400&fit=crop&q=80" alt="Eye Examination">
+<h3>Eye Examinations</h3>
+<p>Comprehensive eye health checks using the latest technology to detect vision problems and eye conditions early.</p>
+</div>
+<div class="service-card">
+<img src="https://images.unsplash.com/photo-1591076482161-42ce6da69f67?w=600&h=400&fit=crop&q=80" alt="Prescription Glasses">
+<h3>Prescription Glasses</h3>
+<p>Custom-fitted prescription eyewear selected from premium frames and precision-made lenses just for you.</p>
+</div>
+<div class="service-card">
+<img src="https://images.unsplash.com/photo-1577803645773-f96470509666?w=600&h=400&fit=crop&q=80" alt="Sunglasses">
+<h3>Sunglasses & Protection</h3>
+<p>Stylish sunglasses with UV protection and specialized lens options for your lifestyle and eye health.</p>
+</div>
+<div class="service-card">
+<img src="https://images.unsplash.com/photo-1516714435131-44d6b64dc6a2?w=600&h=400&fit=crop&q=80" alt="Contact Lenses">
+<h3>Contact Lenses</h3>
+<p>Professional fitting and supply of contact lenses with personalized care instructions and follow-up.</p>
+</div>
+<div class="service-card">
+<img src="https://images.unsplash.com/photo-1591076482161-42ce6da69f67?w=600&h=400&fit=crop&q=80" alt="Lens Fitting">
+<h3>Lens Fitting Services</h3>
+<p>Expert fitting to ensure your lenses are perfectly adjusted for comfort, clarity, and everyday wear.</p>
+</div>
+<div class="service-card">
+<img src="https://images.unsplash.com/photo-1577803645773-f96470509666?w=600&h=400&fit=crop&q=80" alt="Frame Repairs">
+<h3>Frame Repairs</h3>
+<p>Fast, professional repairs and adjustments to keep your favourite frames looking and feeling perfect.</p>
+</div>
+</div>
+</section>
+<!-- SHOP SECTION -->
+<section id="shop" class="shop-section">
+<h2>Browse Our Collection</h2>
+<p>Premium eyewear curated for style, comfort, and optical excellence.</p>
+<div class="shop-grid">
+<div class="product-card">
+<div class="product-image">
+<img src="https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=400&h=400&fit=crop&q=80" alt="Premium Sunglasses">
+</div>
+<div class="product-info">
+<div class="product-name">Premium Aviator Sunglasses</div>
+<div class="product-price">$189.00</div>
+<button class="product-button">Add to Cart</button>
+</div>
+</div>
+<div class="product-card">
+<div class="product-image">
+<img src="https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=400&h=400&fit=crop&q=80" alt="Prescription Glasses">
+</div>
+<div class="product-info">
+<div class="product-name">Classic Prescription Frame</div>
+<div class="product-price">$225.00</div>
+<button class="product-button">Add to Cart</button>
+</div>
+</div>
+<div class="product-card">
+<div class="product-image">
+<img src="https://images.unsplash.com/photo-1509695507497-903c140c43b0?w=400&h=400&fit=crop&q=80" alt="Stylish Frames">
+</div>
+<div class="product-info">
+<div class="product-name">Modern Titanium Frames</div>
+<div class="product-price">$295.00</div>
+<button class="product-button">Add to Cart</button>
+</div>
+</div>
+</div>
+</section>
+<!-- ABOUT SECTION -->
+<section id="about">
+<h2>Our Story – 37 Years of Trust</h2>
+<div class="about-section">
+<div class="about-image">
+<img src="https://images.unsplash.com/photo-1582142839970-2b9e04b60f65?w=800&h=500&fit=crop&q=80" alt="Kings Eyewear Store Interior">
+</div>
+<div class="about-content">
+<h3>Warrawong & Shellharbour</h3>
+<p>Since 1987, Kings Eyewear has been the trusted choice for independent, personal eye care across Warrawong and Shellharbour. We've built our reputation on honest advice, quality eyewear, and genuine relationships with our community.</p>
+<p>While big chains compete on price and mass marketing, we compete on knowledge, care, and legacy. Our customers return because they know we treat them as people, not transactions.</p>
+<div class="testimonial-pullquote">
+"They've been coming to us for years and wouldn't go anywhere else."
+</div>
+<p>Every pair of glasses we fit, every eye test we conduct, and every frame we repair is backed by 37 years of expertise and a genuine commitment to your vision health.</p>
+</div>
+</div>
+</section>
+<!-- GALLERY SECTION -->
+<section id="gallery" class="gallery-section">
+<h2>Gallery</h2>
+<p>A showcase of premium eyewear and optical craftsmanship.</p>
+<div class="gallery-grid">
+<div class="gallery-item">
+<img src="https://images.unsplash.com/photo-1574258495973-f010dfbb5371?w=600&h=400&fit=crop&q=80" alt="Eyewear Display">
+</div>
+<div class="gallery-item">
+<img src="https://images.unsplash.com/photo-1516714435131-44d6b64dc6a2?w=600&h=400&fit=crop&q=80" alt="Eye Care">
+</div>
+<div class="gallery-item">
+<img src="https://images.unsplash.com/photo-1591076482161-42ce6da69f67?w=600&h=400&fit=crop&q=80" alt="Frame Selection">
+</div>
+<div class="gallery-item">
+<img src="https://images.unsplash.com/photo-1577803645773-f96470509666?w=600&h=400&fit=crop&q=80" alt="Sunglasses">
+</div>
+<div class="gallery-item">
+<img src="https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=600&h=400&fit=crop&q=80" alt="Premium Eyewear">
+</div>
+<div class="gallery-item">
+<img src="https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=600&h=400&fit=crop&q=80" alt="Optical Frames">
+</div>
+</div>
+</section>
+<!-- TESTIMONIAL SECTION -->
+<section class="testimonial-section">
+<h2>Why Choose Kings Eyewear?</h2>
+<div class="testimonial-quote">
+"Great loyal local business. They've been coming to us for years and wouldn't go anywhere else."
+</div>
+<p class="testimonial-author">— A valued Kings Eyewear customer</p>
+</section>
+<!-- FAQ SECTION -->
+<section id="faq">
+<h2>Frequently Asked Questions</h2>
+<p>Quick answers to common questions about eye care and our services.</p>
+<div class="faq-item active">
+<div class="faq-question">
+<span>How often should I get my eyes tested?</span>
+<span class="faq-toggle">+</span>
+</div>
+<div class="faq-answer">
+<p>We recommend a comprehensive eye test every 1–2 years for most adults. If you have existing conditions or risk factors, more frequent visits may be beneficial. Our optometrists will advise you on the best schedule for your individual needs.</p>
+</div>
+</div>
+<div class="faq-item">
+<div class="faq-question">
+<span>Do you accept health fund rebates?</span>
+<span class="faq-toggle">+</span>
+</div>
+<div class="faq-answer">
+<p>Yes! We accept most major health funds and can process claims on the spot. Bring your health fund membership card to your appointment, and we'll handle the billing for you.</p>
+</div>
+</div>
+<div class="faq-item">
+<div class="faq-question">
+<span>Can I order glasses online?</span>
+<span class="faq-toggle">+</span>
+</div>
+<div class="faq-answer">
+<p>Yes, we offer an online shop where you can browse and purchase eyewear. For prescription glasses, we'll need your current prescription. We can ship to most locations or arrange in-store pickup at either our Warrawong or Shellharbour store.</p>
+</div>
+</div>
+<div class="faq-item">
+<div class="faq-question">
+<span>Do you offer contact lens fittings?</span>
+<span class="faq-toggle">+</span>
+</div>
+<div class="faq-answer">
+<p>Absolutely! We provide professional contact lens fittings with thorough instruction and aftercare support. Our optometrists will ensure your lenses are perfectly fitted for comfort and vision quality.</p>
+</div>
+</div>
+<div class="faq-item">
+<div class="faq-question">
+<span>What if I have a problem with my glasses?</span>
+<span class="faq-toggle">+</span>
+</div>
+<div class="faq-answer">
+<p>We offer comprehensive repair and adjustment services. Bring your glasses into either store, and our team will assess the issue. Most repairs are completed quickly, often while you wait.</p>
+</div>
+</div>
+</section>
+<!-- CONTACT SECTION -->
+<section id="contact" class="contact-section">
+<h2>Visit Us</h2>
+<p>Find us at either of our two convenient NSW locations, or get in touch online.</p>
+<div class="contact-grid">
+<div class="location-card">
+<h3>Warrawong</h3>
+<div class="location-info">
+<p><strong>Address:</strong> 72-74 King Street, Warrawong NSW 2502</p>
+<p><strong>Phone:</strong> <a href="tel:+61242752505" style="color: #ED1E25; text-decoration: none; font-weight: 600;">02 4275 2505</a></p>
+</div>
+<div class="hours-title">Opening Hours</div>
+<ul class="hours-list">
+<li>Monday – Friday: 9:00 AM – 5:00 PM</li>
+<li>Saturday: 8:30 AM – 12:30 PM</li>
+<li>Sunday: Closed</li>
+</ul>
+<div class="map-placeholder">Map Location — Warrawong Store</div>
+<button class="location-button">Get Directions</button>
+</div>
+<div class="location-card">
+<h3>Shellharbour</h3>
+<div class="location-info">
+<p><strong>Address:</strong> 1/1 Memorial Drive, Shellharbour City Centre NSW 2529</p>
+<p><strong>Phone:</strong> <a href="tel:+61242975077" style="color: #ED1E25; text-decoration: none; font-weight: 600;">02 4297 5077</a></p>
+</div>
+<div class="hours-title">Opening Hours</div>
+<ul class="hours-list">
+<li>Monday – Friday: 9:00 AM – 5:00 PM</li>
+<li>Saturday: 8:30 AM – 12:30 PM</li>
+<li>Sunday: Closed</li>
+</ul>
+<div class="map-placeholder">Map Location — Shellharbour Store</div>
+<button class="location-button">Get Directions</button>
+</div>
+</div>
+<form class="contact-form">
+<h3>Send a Message</h3>
+<div class="form-group">
+<label for="name">Full Name</label>
+<input type="text" id="name" name="name" required>
+</div>
+<div class="form-group">
+<label for="email">Email Address</label>
+<input type="email" id="email" name="email" required>
+</div>
+<div class="form-group">
+<label for="phone">Phone Number</label>
+<input type="tel" id="phone" name="phone">
+</div>
+<div class="form-group">
+<label for="store">Which Store Are You Interested In?</label>
+<select id="store" name="store" required>
+<option value="">— Select a location —</option>
+<option value="warrawong">Warrawong</option>
+<option value="shellharbour">Shellharbour</option>
+<option value="both">Both Locations</option>
+</select>
+</div>
+<div class="form-group">
+<label for="message">Message</label>
+<textarea id="message" name="message" required></textarea>
+</div>
+<button type="submit" class="submit-button">Send Message</button>
+</form>
+</section>
+<!-- FOOTER -->
+<footer>
+<p>&copy; 2026 Kings Eyewear PTY LTD. All rights reserved.</p>
+<p>Independent eye care since 1987 | Warrawong & Shellharbour, NSW</p>
+<p>Contact: <a href="mailto:mitch@kingseyewear.com.au" style="color: #78C1FE; text-decoration: none;">mitch@kingseyewear.com.au</a></p>
+<div class="footer-links">
+<a href="#about">About</a>
+<a href="#services">Services</a>
+<a href="#shop">Shop</a>
+<a href="#faq">FAQ</a>
+<a href="#contact">Contact</a>
+</div>
+</footer>
+<!-- FAQ INTERACTIVITY -->
+<script>
+document.querySelectorAll('.faq-question').forEach(question => {
+question.addEventListener('click', () => {
+const item = question.parentElement;
+item.classList.toggle('active');
+});
+});
+</script>
+</body>
+</html>
