@@ -7,23 +7,50 @@
 <style>
 body { font-family: 'Plus Jakarta Sans', sans-serif; background: #0D1B2A; color: #fff; margin: 0; padding: 40px 20px; text-align: center; }
 h1 { font-size: 2rem; margin-bottom: 10px; }
-p { color: #7A90A4; margin-bottom: 40px; }
-.cards { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; max-width: 900px; margin: 0 auto; }
-.card { background: #1A2E42; border-radius: 12px; padding: 32px; flex: 1; min-width: 250px; text-decoration: none; color: #fff; transition: transform 0.2s; }
-.card:hover { transform: translateY(-4px); }
-.card h2 { font-size: 1.2rem; margin: 0 0 8px; }
-.card .tier { color: #2EB88A; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; }
-.card p { color: #7A90A4; font-size: 0.9rem; }
+.subtitle { color: #7A90A4; margin-bottom: 40px; }
+.tier-section { max-width: 1000px; margin: 0 auto 40px; }
+.tier-label { color: #2EB88A; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 16px; border-bottom: 1px solid #1A2E42; padding-bottom: 8px; }
+.cards { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-bottom: 32px; }
+.card { background: #1A2E42; border-radius: 12px; padding: 28px; flex: 1; min-width: 240px; max-width: 300px; text-decoration: none; color: #fff; transition: transform 0.2s, box-shadow 0.2s; }
+.card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.3); }
+.card h2 { font-size: 1.1rem; margin: 0 0 8px; }
+.card p { color: #7A90A4; font-size: 0.85rem; margin: 0; }
+.footer { color: #3D5166; font-size: 0.75rem; margin-top: 40px; }
+.footer a { color: #1465A0; text-decoration: none; }
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
 <h1>Tideloc Example Sites</h1>
-<p>See what each package tier looks like in action.</p>
-<div class="cards">
-  <a class="card" href="starter-example.html"><span class="tier">Starter — $1,299</span><h2>Southside Barber Co</h2><p>Clean, simple single-page site for a barber shop.</p></a>
-  <a class="card" href="standard-example.html"><span class="tier">Standard — $1,599</span><h2>Coastal Blooms Florist</h2><p>Polished multi-section site with gallery and testimonials.</p></a>
-  <a class="card" href="premium-example.html"><span class="tier">Premium — $2,299</span><h2>Peak & Valley Outdoor Co</h2><p>Full premium experience with animations and advanced features.</p></a>
+<p class="subtitle">See what each package tier looks like in action — 3 examples per tier.</p>
+
+<div class="tier-section">
+  <div class="tier-label">Starter — $1,299</div>
+  <div class="cards">
+    <a class="card" href="starter-example.html"><h2>Southside Barber Co</h2><p>Classic barber shop — clean single-page layout with services and booking.</p></a>
+    <a class="card" href="starter-example-b.html"><h2>Paws & Suds Pet Spa</h2><p>Pet grooming salon — simple, warm design with services and contact.</p></a>
+    <a class="card" href="starter-example-c.html"><h2>Gleam Auto Detailing</h2><p>Mobile car detailing — sharp, professional single-page site.</p></a>
+  </div>
 </div>
+
+<div class="tier-section">
+  <div class="tier-label">Standard — $1,599</div>
+  <div class="cards">
+    <a class="card" href="standard-example.html"><h2>Coastal Blooms Florist</h2><p>Boutique florist — gallery, testimonials, and multi-section layout.</p></a>
+    <a class="card" href="standard-example-b.html"><h2>Ironside Fitness Co</h2><p>Local gym — class schedule, gallery, FAQ accordion, contact form.</p></a>
+    <a class="card" href="standard-example-c.html"><h2>Golden Crust Bakery</h2><p>Artisan bakery & cafe — product showcase, gallery, and ordering.</p></a>
+  </div>
+</div>
+
+<div class="tier-section">
+  <div class="tier-label">Premium — $2,299</div>
+  <div class="cards">
+    <a class="card" href="premium-example.html"><h2>Peak & Valley Outdoor Co</h2><p>Outdoor adventure brand — full e-commerce, animations, advanced UX.</p></a>
+    <a class="card" href="premium-example-b.html"><h2>Salt & Swell Surf School</h2><p>Surf school — lesson booking system, filtering, interactive gallery.</p></a>
+    <a class="card" href="premium-example-c.html"><h2>Cellar & Vine</h2><p>Wine bar & bottle shop — product filtering, events, premium design.</p></a>
+  </div>
+</div>
+
+<div class="footer">Built by <a href="https://tideloc.com.au">Tideloc Web Design</a> — Shellharbour, NSW</div>
 </body>
 </html>
