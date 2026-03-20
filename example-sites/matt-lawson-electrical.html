@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Matt Lawson Electrical — Licensed Electrician Newcastle</title>
+<meta name="description" content="Licensed electrician servicing Newcastle, Lake Macquarie and the Hunter Valley."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;500;600;700;800&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--black:#111;--charcoal:#222;--dark:#333;--mid:#666;--light:#999;--pale:#F5F5F3;--off:#FAFAF8;--white:#FFF;--blue:#2563EB;--blue-hover:#1D4ED8;--border:#E5E5E0;--green:#22C55E}
+html{scroll-behavior:smooth}
+body{font-family:'IBM Plex Sans',sans-serif;color:var(--mid);background:var(--white);-webkit-font-smoothing:antialiased}
+a{text-decoration:none;color:inherit}
+h1,h2,h3,h4,h5,h6{font-family:'Bricolage Grotesque',sans-serif;color:var(--black)}
+.page{display:none}
+.page.active{display:block}
+/* HEADER */
+header{padding:1.2rem 0;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:90;background:var(--white)}
+.header-inner{max-width:1200px;margin:0 auto;padding:0 2rem;display:flex;align-items:center;justify-content:space-between}
+.h-logo{font-family:'Bricolage Grotesque',sans-serif;font-size:1.1rem;font-weight:800;color:var(--black);display:flex;align-items:center;gap:0.5rem;cursor:pointer}
+.h-logo-bolt{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;background:var(--blue);border-radius:5px}
+.h-logo-bolt svg{width:14px;height:14px}
+.h-nav{display:flex;align-items:center;gap:2.5rem}
+.h-nav a{font-size:0.8rem;color:var(--mid);transition:color 0.15s;cursor:pointer}
+.h-nav a:hover,.h-nav a.active{color:var(--black)}
+.h-phone{font-family:'Bricolage Grotesque',sans-serif;font-size:1.05rem;font-weight:700;color:var(--blue);display:flex;align-items:center;gap:0.4rem}
+.hamburger{display:none;background:none;border:none;cursor:pointer;flex-direction:column;gap:5px;padding:4px}
+.hamburger span{width:22px;height:2px;background:var(--black);display:block}
+/* SHARED */
+.btn-blue{background:var(--blue);color:white;padding:0.8rem 1.8rem;border-radius:6px;font-family:'IBM Plex Sans',sans-serif;font-size:0.82rem;font-weight:500;transition:all 0.2s;display:inline-flex;align-items:center;gap:0.4rem;cursor:pointer}
+.btn-blue:hover{background:var(--blue-hover);transform:translateY(-1px)}
+/* ===== HOME ===== */
+.hero{position:relative;height:85vh;min-height:550px;max-height:800px;overflow:hidden;display:flex;align-items:flex-end}
+.hero-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=1400&h=900&fit=crop&q=80') center/cover no-repeat}
+.hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.82) 0%,rgba(0,0,0,0.3) 50%,rgba(0,0,0,0.15) 100%)}
+.hero-content{position:relative;z-index:2;max-width:1200px;margin:0 auto;padding:0 2rem 4rem;width:100%}
+.hero-licence{display:inline-flex;align-items:center;gap:0.5rem;font-size:0.68rem;font-weight:500;color:rgba(255,255,255,0.5);margin-bottom:1.2rem;letter-spacing:0.05em}
+.hero-licence::before{content:'';width:8px;height:8px;border-radius:50%;background:#22C55E;animation:blink 2.5s ease infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
+.hero h1{font-size:clamp(2.4rem,5.5vw,4.2rem);font-weight:800;color:white;line-height:1.05;margin-bottom:1.2rem;max-width:680px;letter-spacing:-0.03em}
+.hero-sub{font-size:1.05rem;color:rgba(255,255,255,0.55);line-height:1.7;max-width:480px;margin-bottom:2rem}
+.hero-cta{display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap}
+.hero-phone{font-family:'Bricolage Grotesque',sans-serif;font-size:clamp(1.4rem,3vw,2rem);font-weight:800;color:white;display:flex;align-items:center;gap:0.6rem;transition:color 0.2s}
+.hero-phone:hover{color:var(--blue)}
+.hero-phone svg{width:28px;height:28px;flex-shrink:0}
+.hero-or{font-size:0.75rem;color:rgba(255,255,255,0.3);text-transform:uppercase;letter-spacing:0.15em}
+.hero-form-btn{background:var(--blue);color:white;padding:0.85rem 2rem;border-radius:6px;font-family:'IBM Plex Sans',sans-serif;font-size:0.85rem;font-weight:500;transition:all 0.2s;display:inline-flex;align-items:center;gap:0.4rem;cursor:pointer}
+.hero-form-btn:hover{background:var(--blue-hover);transform:translateY(-1px)}
+.ticker{background:var(--black);padding:0.8rem 0;overflow:hidden;white-space:nowrap}
+.ticker-track{display:inline-flex;gap:3rem;animation:scroll 25s linear infinite}
+.ticker-track span{font-size:0.7rem;font-weight:500;color:rgba(255,255,255,0.4);letter-spacing:0.08em;text-transform:uppercase;display:flex;align-items:center;gap:0.5rem}
+.ticker-track span::before{content:'';width:4px;height:4px;background:var(--blue);border-radius:50%;flex-shrink:0}
+@keyframes scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.services{padding:5rem 0}
+.services-top{max-width:1200px;margin:0 auto;padding:0 2rem;display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:2.5rem}
+.services-top h2{font-size:clamp(1.5rem,3vw,2.2rem);font-weight:800;letter-spacing:-0.02em;line-height:1.1}
+.services-top p{font-size:0.85rem;color:var(--light);max-width:280px;text-align:right;line-height:1.6}
+.services-scroll{display:flex;gap:1.2rem;overflow-x:auto;padding:0 2rem 1.5rem;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.services-scroll::-webkit-scrollbar{display:none}
+.s-card{flex:0 0 320px;scroll-snap-align:start;border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:all 0.25s;background:var(--white)}
+.s-card:hover{border-color:var(--blue);box-shadow:0 8px 30px rgba(0,0,0,0.05)}
+.s-card-img{height:200px;background:var(--pale);overflow:hidden}
+.s-card-img img{width:100%;height:100%;object-fit:cover;transition:transform 0.4s}
+.s-card:hover .s-card-img img{transform:scale(1.04)}
+.s-card-body{padding:1.5rem}
+.s-card-body h3{font-size:1rem;font-weight:700;margin-bottom:0.5rem}
+.s-card-body p{font-size:0.82rem;color:var(--light);line-height:1.7}
+.s-card-link{display:block;padding:1rem 1.5rem;border-top:1px solid var(--border);font-size:0.75rem;font-weight:600;color:var(--blue);transition:all 0.15s;cursor:pointer}
+.s-card:hover .s-card-link{background:var(--blue);color:white}
+.why{background:var(--pale);padding:5rem 0}
+.why-inner{max-width:1200px;margin:0 auto;padding:0 2rem;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+.why-text h2{font-size:clamp(1.4rem,2.5vw,1.9rem);font-weight:800;letter-spacing:-0.02em;line-height:1.15;margin-bottom:1.2rem}
+.why-text p{font-size:0.88rem;color:var(--mid);line-height:1.85;margin-bottom:1rem}
+.why-list{list-style:none;margin-top:1.5rem;display:flex;flex-direction:column;gap:0.8rem}
+.why-list li{font-size:0.85rem;color:var(--dark);display:flex;align-items:flex-start;gap:0.6rem;line-height:1.6}
+.why-list li::before{content:'→';color:var(--blue);font-weight:700;flex-shrink:0;margin-top:1px}
+.why-photo{border-radius:12px;overflow:hidden;aspect-ratio:4/5}
+.why-photo img{width:100%;height:100%;object-fit:cover}
+.testi{padding:5rem 0;background:var(--charcoal)}
+.testi-inner{max-width:760px;margin:0 auto;padding:0 2rem}
+.testi-header{text-align:center;margin-bottom:3.5rem}
+.testi-header h2{font-size:clamp(1.4rem,3vw,2rem);font-weight:800;color:white}
+.testi-header p{font-size:0.85rem;color:rgba(255,255,255,0.3);margin-top:0.5rem}
+.testi-item{padding:2.5rem 0;border-top:1px solid rgba(255,255,255,0.06)}
+.testi-stars{color:#FACC15;font-size:0.85rem;letter-spacing:2px;margin-bottom:1rem}
+.testi-quote{font-family:'Bricolage Grotesque',sans-serif;font-size:clamp(1.1rem,2vw,1.35rem);font-weight:500;color:rgba(255,255,255,0.75);line-height:1.65;margin-bottom:1.2rem}
+.testi-who{font-size:0.78rem;color:rgba(255,255,255,0.3)}
+.area{padding:5rem 0}
+.area-inner{max-width:1200px;margin:0 auto;padding:0 2rem;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
+.area-text h2{font-size:clamp(1.4rem,2.5vw,1.9rem);font-weight:800;letter-spacing:-0.02em;margin-bottom:0.8rem;line-height:1.15}
+.area-text>p{font-size:0.88rem;color:var(--mid);line-height:1.8;margin-bottom:2rem}
+.suburbs{display:flex;flex-wrap:wrap;gap:0.5rem}
+.suburb{background:var(--pale);border:1px solid var(--border);border-radius:99px;padding:0.4rem 1rem;font-size:0.75rem;color:var(--dark);font-weight:500}
+.area-map{border-radius:12px;overflow:hidden;aspect-ratio:4/3;background:var(--pale);border:1px solid var(--border)}
+.area-map iframe{width:100%;height:100%;border:0}
+.bottom-cta{background:var(--blue);padding:4rem 0;text-align:center}
+.bottom-cta p{font-size:0.85rem;color:rgba(255,255,255,0.6);margin-bottom:0.8rem}
+.bottom-cta h2{font-family:'Bricolage Grotesque',sans-serif;font-size:clamp(2rem,5vw,3.5rem);font-weight:800;color:white;letter-spacing:-0.03em;margin-bottom:0.3rem}
+.bottom-cta .cta-sub{font-size:0.85rem;color:rgba(255,255,255,0.5);margin-top:0.5rem;margin-bottom:1.5rem}
+.bottom-cta .form-link{background:white;color:var(--blue);padding:0.85rem 2.2rem;border-radius:6px;font-family:'IBM Plex Sans',sans-serif;font-size:0.85rem;font-weight:600;display:inline-flex;align-items:center;gap:0.4rem;transition:all 0.2s;cursor:pointer}
+.bottom-cta .form-link:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,0.15)}
+/* ===== ABOUT ===== */
+.page-intro{position:relative;height:50vh;min-height:350px;max-height:500px;overflow:hidden;display:flex;align-items:flex-end}
+.page-intro-bg{position:absolute;inset:0;background-position:center;background-size:cover;background-repeat:no-repeat}
+.page-intro-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.8) 0%,rgba(0,0,0,0.2) 60%,rgba(0,0,0,0.1) 100%)}
+.page-intro-content{position:relative;z-index:2;max-width:1200px;margin:0 auto;padding:0 2rem 3rem;width:100%}
+.page-intro-content h1{font-size:clamp(2rem,4.5vw,3.2rem);font-weight:800;color:white;letter-spacing:-0.03em;margin-bottom:0.6rem}
+.page-intro-content p{font-size:1rem;color:rgba(255,255,255,0.5);max-width:500px;line-height:1.7}
+.story{max-width:1200px;margin:0 auto;padding:5rem 2rem}
+.story-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
+.story-text h2{font-size:clamp(1.4rem,2.5vw,1.8rem);font-weight:800;letter-spacing:-0.02em;line-height:1.15;margin-bottom:1.5rem}
+.story-text p{font-size:0.9rem;color:var(--mid);line-height:1.9;margin-bottom:1.2rem}
+.story-text p strong{color:var(--dark)}
+.story-photo{border-radius:12px;overflow:hidden;aspect-ratio:3/4}
+.story-photo img{width:100%;height:100%;object-fit:cover}
+.values{background:var(--pale);padding:5rem 0}
+.values-inner{max-width:1200px;margin:0 auto;padding:0 2rem}
+.values-inner h2{font-size:clamp(1.4rem,2.5vw,1.8rem);font-weight:800;letter-spacing:-0.02em;margin-bottom:2.5rem;text-align:center}
+.values-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}
+.v-item{text-align:center;padding:2rem 1.5rem}
+.v-icon{margin-bottom:1rem;display:flex;justify-content:center}
+.v-item h3{font-size:0.95rem;font-weight:700;margin-bottom:0.5rem}
+.v-item p{font-size:0.82rem;color:var(--light);line-height:1.7}
+.quals{max-width:1200px;margin:0 auto;padding:5rem 2rem}
+.quals h2{font-size:clamp(1.4rem,2.5vw,1.8rem);font-weight:800;letter-spacing:-0.02em;margin-bottom:2rem}
+.quals-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+.q-item{border:1px solid var(--border);border-radius:10px;padding:1.5rem 1.8rem;display:flex;align-items:flex-start;gap:1rem;transition:border-color 0.2s}
+.q-item:hover{border-color:var(--blue)}
+.q-icon{flex-shrink:0;margin-top:2px}
+.q-item h3{font-size:0.88rem;font-weight:700;color:var(--black);margin-bottom:0.25rem}
+.q-item p{font-size:0.8rem;color:var(--light);line-height:1.6}
+.area-dark{background:var(--charcoal);padding:4rem 0}
+.area-dark-inner{max-width:1200px;margin:0 auto;padding:0 2rem;text-align:center}
+.area-dark-inner h2{font-size:clamp(1.4rem,2.5vw,1.8rem);font-weight:800;color:white;margin-bottom:0.6rem}
+.area-dark-inner>p{font-size:0.88rem;color:rgba(255,255,255,0.35);margin-bottom:2rem}
+.area-tags{display:flex;flex-wrap:wrap;justify-content:center;gap:0.5rem}
+.area-tag{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.08);border-radius:99px;padding:0.45rem 1.1rem;font-size:0.75rem;color:rgba(255,255,255,0.5);font-weight:500}
+/* ===== SERVICES ===== */
+.page-intro-light{background:var(--pale);padding:6rem 0 4rem;border-bottom:1px solid var(--border)}
+.page-intro-light-inner{max-width:1200px;margin:0 auto;padding:0 2rem}
+.page-intro-light-inner h1{font-size:clamp(2rem,4.5vw,3.2rem);font-weight:800;letter-spacing:-0.03em;margin-bottom:0.6rem}
+.page-intro-light-inner p{font-size:1rem;color:var(--mid);max-width:500px;line-height:1.7}
+.svc-list{max-width:1200px;margin:0 auto;padding:2rem 2rem 0}
+.svc-block{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;padding:4rem 0;border-bottom:1px solid var(--border)}
+.svc-block:last-child{border-bottom:none}
+.svc-block:nth-child(even) .svc-photo{order:-1}
+.svc-photo{border-radius:12px;overflow:hidden;aspect-ratio:3/2}
+.svc-photo img{width:100%;height:100%;object-fit:cover}
+.svc-text .svc-tag{display:inline-block;font-size:0.6rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--blue);background:rgba(37,99,235,0.06);padding:0.35rem 0.8rem;border-radius:4px;margin-bottom:1rem}
+.svc-text h2{font-size:clamp(1.3rem,2vw,1.6rem);font-weight:800;letter-spacing:-0.02em;margin-bottom:0.8rem;line-height:1.2}
+.svc-text>p{font-size:0.88rem;color:var(--mid);line-height:1.85;margin-bottom:1.2rem}
+.svc-includes{list-style:none;display:flex;flex-direction:column;gap:0.45rem;margin-bottom:1.5rem}
+.svc-includes li{font-size:0.82rem;color:var(--dark);display:flex;align-items:center;gap:0.5rem}
+.svc-includes li::before{content:'✓';color:var(--green);font-weight:700;font-size:0.75rem}
+.emergency{background:var(--charcoal);padding:3rem 0}
+.emergency-inner{max-width:1200px;margin:0 auto;padding:0 2rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+.emergency-text h2{font-family:'Bricolage Grotesque',sans-serif;font-size:1.3rem;font-weight:800;color:white;margin-bottom:0.3rem;display:flex;align-items:center;gap:0.5rem}
+.emergency-text p{font-size:0.85rem;color:rgba(255,255,255,0.4)}
+.btn-white{background:white;color:var(--black);padding:0.8rem 1.8rem;border-radius:6px;font-family:'IBM Plex Sans',sans-serif;font-size:0.82rem;font-weight:600;transition:all 0.2s;display:inline-flex;align-items:center;gap:0.4rem}
+.btn-white:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(0,0,0,0.2)}
+/* ===== CONTACT ===== */
+.contact{max-width:1200px;margin:0 auto;padding:4rem 2rem 5rem}
+.contact-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:4rem;align-items:start}
+.c-info h2{font-size:1.3rem;font-weight:800;margin-bottom:1.2rem;letter-spacing:-0.02em}
+.c-info>p{font-size:0.88rem;color:var(--mid);line-height:1.8;margin-bottom:2rem}
+.c-detail{display:flex;align-items:flex-start;gap:0.8rem;margin-bottom:1.4rem}
+.c-detail-icon{flex-shrink:0;margin-top:2px}
+.c-detail h3{font-size:0.82rem;font-weight:700;color:var(--black);margin-bottom:0.1rem}
+.c-detail p,.c-detail a{font-size:0.82rem;color:var(--light);line-height:1.5}
+.c-detail a{color:var(--blue);font-weight:500;transition:color 0.15s}
+.c-detail a:hover{color:var(--blue-hover)}
+.c-hours{margin-top:2rem;background:var(--pale);border-radius:10px;padding:1.4rem;border:1px solid var(--border)}
+.c-hours h3{font-size:0.82rem;font-weight:700;color:var(--black);margin-bottom:0.8rem}
+.c-hours-row{display:flex;justify-content:space-between;font-size:0.78rem;color:var(--mid);padding:0.35rem 0;border-bottom:1px solid var(--border)}
+.c-hours-row:last-child{border-bottom:none}
+.c-hours-row strong{color:var(--dark);font-weight:600}
+.c-form{background:var(--pale);border-radius:14px;padding:2.5rem;border:1px solid var(--border)}
+.c-form h2{font-size:1.2rem;font-weight:800;color:var(--black);margin-bottom:0.4rem}
+.c-form>p{font-size:0.82rem;color:var(--light);margin-bottom:2rem}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem}
+.form-group{display:flex;flex-direction:column}
+.form-group.full{grid-column:1/-1}
+.form-group label{font-size:0.7rem;font-weight:600;color:var(--dark);margin-bottom:0.4rem}
+.form-group input,.form-group select,.form-group textarea{font-family:'IBM Plex Sans',sans-serif;font-size:0.85rem;padding:0.75rem 1rem;border:1.5px solid var(--border);border-radius:6px;background:var(--white);color:var(--black);transition:border-color 0.2s;outline:none}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(37,99,235,0.08)}
+.form-group textarea{resize:vertical;min-height:120px}
+.form-group select{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23999' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 1rem center}
+.btn-submit{background:var(--blue);color:white;padding:0.9rem 2rem;border-radius:6px;font-family:'IBM Plex Sans',sans-serif;font-size:0.85rem;font-weight:500;border:none;cursor:pointer;transition:all 0.2s;width:100%;margin-top:0.5rem}
+.btn-submit:hover{background:var(--blue-hover);transform:translateY(-1px)}
+.form-note{font-size:0.68rem;color:var(--light);margin-top:0.8rem;text-align:center}
+.form-success{display:none;text-align:center;padding:3rem 2rem}
+.form-success-icon{margin-bottom:1rem}
+.form-success h3{font-size:1.2rem;font-weight:800;color:var(--black);margin-bottom:0.5rem}
+.form-success p{font-size:0.88rem;color:var(--mid);line-height:1.7}
+.form-success a{color:var(--blue);font-weight:600}
+.map-section{border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.map-section iframe{width:100%;height:380px;border:0;display:block}
+/* FOOTER */
+.footer{border-top:1px solid var(--border);padding:3rem 0 2rem}
+.footer-inner{max-width:1200px;margin:0 auto;padding:0 2rem;display:flex;justify-content:space-between;align-items:start;flex-wrap:wrap;gap:2rem}
+.footer-left{max-width:360px}
+.footer-left .h-logo{margin-bottom:0.8rem}
+.footer-left p{font-size:0.78rem;color:var(--light);line-height:1.8}
+.footer-right{display:flex;gap:4rem}
+.footer-col h6{font-size:0.6rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--light);margin-bottom:0.8rem}
+.footer-col ul{list-style:none}
+.footer-col li{margin-bottom:0.4rem}
+.footer-col a{font-size:0.8rem;color:var(--mid);transition:color 0.15s;cursor:pointer}
+.footer-col a:hover{color:var(--black)}
+.footer-copy{max-width:1200px;margin:2rem auto 0;padding:1.5rem 2rem 0;border-top:1px solid var(--border);font-size:0.65rem;color:var(--light)}
+.sticky-call{display:none;position:fixed;bottom:0;left:0;right:0;z-index:100;background:var(--blue);padding:0.75rem}
+.sticky-call a{color:white;font-family:'Bricolage Grotesque',sans-serif;font-size:0.95rem;font-weight:700;display:flex;align-items:center;justify-content:center;gap:0.5rem}
+@media(max-width:900px){.why-inner,.area-inner,.story-grid,.contact-grid{grid-template-columns:1fr;gap:2.5rem}.svc-block{grid-template-columns:1fr;gap:2rem}.svc-block:nth-child(even) .svc-photo{order:0}.quals-grid{grid-template-columns:1fr}.values-grid{grid-template-columns:1fr}}
+@media(max-width:768px){.h-nav{display:none;position:absolute;top:100%;left:0;right:0;background:white;flex-direction:column;padding:1.5rem 2rem;border-bottom:1px solid var(--border);gap:1rem;z-index:50}.h-nav.open{display:flex}.h-phone{display:none}.hamburger{display:flex}.s-card{flex:0 0 280px}.services-top{flex-direction:column;align-items:flex-start;gap:0.8rem}.services-top p{text-align:left}.emergency-inner{flex-direction:column;text-align:center}.form-row{grid-template-columns:1fr}.footer-right{gap:2.5rem}.sticky-call{display:block}body{padding-bottom:52px}}
+@media(max-width:480px){.footer-inner{flex-direction:column}.hero{min-height:480px;height:75vh}}
+</style>
+</head>
+<body>
+<!-- HEADER -->
+<header>
+<div class="header-inner">
+<span class="h-logo" onclick="showPage('home')">
+<span class="h-logo-bolt"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></span>
+Matt Lawson Electrical
+</span>
+<button class="hamburger" onclick="document.querySelector('.h-nav').classList.toggle('open')" aria-label="Menu"><span></span><span></span><span></span></button>
+<nav class="h-nav">
+<a onclick="showPage('home')">Home</a>
+<a onclick="showPage('about')">About</a>
+<a onclick="showPage('services')">Services</a>
+<a onclick="showPage('contact')">Contact</a>
+</nav>
+<a href="tel:0412345678" class="h-phone">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+0412 345 678
+</a>
+</div>
+</header>
+
+<!-- ==================== HOME ==================== -->
+<div class="page active" id="page-home">
+
+<section class="hero"><div class="hero-bg"></div><div class="hero-content"><div class="hero-licence">Licensed &amp; Insured — NSW Electrical Contractor</div><h1>Your Newcastle electrician who actually shows up.</h1><p class="hero-sub">Residential and commercial electrical work across Newcastle, Lake Macquarie and the Hunter Valley. Upfront pricing, no hidden fees.</p><div class="hero-cta"><a href="tel:0412345678" class="hero-phone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>0412 345 678</a><span class="hero-or">or</span><a onclick="showPage('contact')" class="hero-form-btn">Request a Quote Online →</a></div></div></section>
+
+<div class="ticker"><div class="ticker-track"><span>Fully Licensed &amp; Insured</span><span>Upfront Pricing</span><span>Residential &amp; Commercial</span><span>Newcastle · Lake Macquarie · Hunter Valley</span><span>Emergency Callouts Available</span><span>Fully Licensed &amp; Insured</span><span>Upfront Pricing</span><span>Residential &amp; Commercial</span><span>Newcastle · Lake Macquarie · Hunter Valley</span><span>Emergency Callouts Available</span></div></div>
+
+<section class="services"><div class="services-top"><h2>What we do.</h2><p>Residential and commercial electrical services across the Hunter region.</p></div><div class="services-scroll"><div class="s-card"><div class="s-card-img"><img src="https://images.unsplash.com/photo-1555963966-b7ae5404b6ed?w=640&h=400&fit=crop&q=80" alt="Switchboard" loading="lazy"/></div><div class="s-card-body"><h3>Switchboard Upgrades</h3><p>Replace old fuse boxes with modern safety switches and circuit breakers that meet current Australian standards.</p></div><a onclick="showPage('services')" class="s-card-link">Learn more →</a></div><div class="s-card"><div class="s-card-img"><img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=640&h=400&fit=crop&q=80" alt="Wiring" loading="lazy"/></div><div class="s-card-body"><h3>Residential Rewiring</h3><p>Full and partial rewires for older homes. New cables through existing walls with minimal disruption.</p></div><a onclick="showPage('services')" class="s-card-link">Learn more →</a></div><div class="s-card"><div class="s-card-img"><img src="https://images.unsplash.com/photo-1524484485831-a92ffc0de03f?w=640&h=400&fit=crop&q=80" alt="Lighting" loading="lazy"/></div><div class="s-card-body"><h3>Lighting &amp; Ceiling Fans</h3><p>LED downlights, feature pendants, outdoor lighting and ceiling fan supply and installation.</p></div><a onclick="showPage('services')" class="s-card-link">Learn more →</a></div><div class="s-card"><div class="s-card-img"><img src="https://images.unsplash.com/photo-1558449028-b53a39d100fc?w=640&h=400&fit=crop&q=80" alt="Power outlet" loading="lazy"/></div><div class="s-card-body"><h3>Power Points &amp; Data</h3><p>Additional power points, USB charging outlets and Cat6 data cabling for home offices.</p></div><a onclick="showPage('services')" class="s-card-link">Learn more →</a></div><div class="s-card"><div class="s-card-img"><img src="https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=640&h=400&fit=crop&q=80" alt="Smoke alarm" loading="lazy"/></div><div class="s-card-body"><h3>Smoke Alarms &amp; Safety</h3><p>Compliant hardwired interconnected smoke alarms and safety switch testing to meet NSW requirements.</p></div><a onclick="showPage('services')" class="s-card-link">Learn more →</a></div><div class="s-card"><div class="s-card-img"><img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=640&h=400&fit=crop&q=80" alt="Electrician" loading="lazy"/></div><div class="s-card-body"><h3>Emergency Callouts</h3><p>Power out? Sparking outlet? Same-day emergency service available across Newcastle and Lake Macquarie.</p></div><a onclick="showPage('services')" class="s-card-link">Learn more →</a></div></div></section>
+
+<section class="why"><div class="why-inner"><div class="why-text"><h2>Honest electrical work from a local sparky who gives a damn.</h2><p>Matt Lawson Electrical was started because Newcastle homeowners deserved better — an electrician who answers the phone, charges what he quotes, and does the work properly.</p><p>Most work comes from word of mouth and repeat customers. When you do honest work, people talk.</p><ul class="why-list"><li>Upfront pricing before any work starts</li><li>We clean up after every job</li><li>We answer the phone — or call back promptly</li><li>Fully licensed and insured in NSW</li><li>Residential and commercial work</li></ul></div><div class="why-photo"><img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=700&h=875&fit=crop&q=80" alt="Matt Lawson" loading="lazy"/></div></div></section>
+
+<section class="testi"><div class="testi-inner"><div class="testi-header"><h2>What customers say.</h2><p>Reviews from homeowners across Newcastle</p></div><div class="testi-item"><div class="testi-stars">★★★★★</div><div class="testi-quote">"Matt rewired our older home in Merewether. Really clean work — he patched every wall and left the place spotless. Would absolutely use him again."</div><div class="testi-who">Sarah &amp; James T. — Merewether</div></div><div class="testi-item"><div class="testi-stars">★★★★★</div><div class="testi-quote">"Called on a Friday evening with no power. Matt came out the same night, found the fault quickly and charged exactly what he quoted on the phone. Really appreciated it."</div><div class="testi-who">David R. — Charlestown</div></div><div class="testi-item"><div class="testi-stars">★★★★★</div><div class="testi-quote">"We've used Matt for a few different jobs now — ceiling fans, downlights and a switchboard upgrade. He's our go-to sparky. Reliable and fair."</div><div class="testi-who">Karen M. — Wallsend</div></div></div></section>
+
+<section class="area"><div class="area-inner"><div class="area-text"><h2>Based in Newcastle.<br/>Servicing the Hunter.</h2><p>We cover Newcastle, Lake Macquarie and the wider Hunter Valley region.</p><div class="suburbs"><span class="suburb">Newcastle CBD</span><span class="suburb">Merewether</span><span class="suburb">Hamilton</span><span class="suburb">Wallsend</span><span class="suburb">Charlestown</span><span class="suburb">Belmont</span><span class="suburb">Warners Bay</span><span class="suburb">Lake Macquarie</span><span class="suburb">Maitland</span><span class="suburb">Raymond Terrace</span><span class="suburb">Cessnock</span><span class="suburb">Kurri Kurri</span></div></div><div class="area-map"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d217157.95816498!2d151.60368!3d-32.9283!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6b7315be8f4c1d1f%3A0x5017d681632b890!2sNewcastle%20NSW!5e0!3m2!1sen!2sau!4v1700000000000!5m2!1sen!2sau" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div></div></section>
+
+<section class="bottom-cta"><p>Need an electrician?</p><h2><a href="tel:0412345678" style="color:white">0412 345 678</a></h2><div class="cta-sub">Free quotes · Upfront pricing</div><a onclick="showPage('contact')" class="form-link">Or request a quote online →</a></section>
+
+</div>
+
+<!-- ==================== ABOUT ==================== -->
+<div class="page" id="page-about">
+
+<section class="page-intro"><div class="page-intro-bg" style="background-image:url('https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=1400&h=700&fit=crop&q=80')"></div><div class="page-intro-content"><h1>About Matt.</h1><p>A local Newcastle electrician who started his own business because he believed homeowners deserved better.</p></div></section>
+
+<section class="story"><div class="story-grid"><div class="story-text"><h2>Started because Newcastle deserved a sparky who gives a damn.</h2><p>Matt started his apprenticeship as a teenager and worked his way through the trade with commercial and residential outfits across the Hunter Valley.</p><p>After years of hearing the same complaints from friends and family — <strong>tradies not showing up, surprise invoices, sloppy work</strong> — he decided to go out on his own and do things differently.</p><p>The idea behind Matt Lawson Electrical is straightforward: <strong>answer the phone, show up when you say you will, charge what you quote, and do the work properly.</strong></p><p>Today, most of the work comes through word of mouth and repeat customers. That's the best kind of advertising — it means the work speaks for itself.</p></div><div class="story-photo"><img src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=600&h=800&fit=crop&q=80" alt="Electrician" loading="lazy"/></div></div></section>
+
+<section class="values"><div class="values-inner"><h2>How we work.</h2><div class="values-grid"><div class="v-item"><div class="v-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div><h3>We Answer the Phone</h3><p>Or we'll call you back. No automated menus, no being left on read.</p></div><div class="v-item"><div class="v-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div><h3>Upfront Pricing</h3><p>You'll know the cost before work starts. No hidden call-out fees or surprise line items.</p></div><div class="v-item"><div class="v-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9.937 15.5A2 2 0 008.5 14.063l-6.135-1.582a.5.5 0 010-.962L8.5 9.936A2 2 0 009.937 8.5l1.582-6.135a.5.5 0 01.962 0L14.063 8.5A2 2 0 0115.5 9.937l6.135 1.582a.5.5 0 010 .962L15.5 14.063a2 2 0 00-1.437 1.437l-1.582 6.135a.5.5 0 01-.962 0z"/></svg></div><h3>We Clean Up</h3><p>Drop sheets down, rubbish removed. Your place should look better than we found it.</p></div></div></div></section>
+
+<section class="quals"><h2>Licences &amp; qualifications.</h2><div class="quals-grid"><div class="q-item"><span class="q-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></span><div><h3>NSW Electrical Licence</h3><p>Fully licensed to perform residential and commercial electrical work across NSW.</p></div></div><div class="q-item"><span class="q-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span><div><h3>Fully Insured</h3><p>Public liability and professional indemnity insurance for your peace of mind.</p></div></div><div class="q-item"><span class="q-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></span><div><h3>Certificate III in Electrotechnology</h3><p>Qualified electrician — trade-certified through formal apprenticeship.</p></div></div><div class="q-item"><span class="q-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></span><div><h3>Authorised Service Provider</h3><p>Level 2 ASP for metering and point-of-supply work on the local network.</p></div></div></div></section>
+
+<section class="area-dark"><div class="area-dark-inner"><h2>Service area.</h2><p>Based in Newcastle, servicing the wider Hunter Valley region.</p><div class="area-tags"><span class="area-tag">Newcastle CBD</span><span class="area-tag">Merewether</span><span class="area-tag">Hamilton</span><span class="area-tag">Wallsend</span><span class="area-tag">Charlestown</span><span class="area-tag">Belmont</span><span class="area-tag">Warners Bay</span><span class="area-tag">Lake Macquarie</span><span class="area-tag">Maitland</span><span class="area-tag">Raymond Terrace</span><span class="area-tag">Cessnock</span><span class="area-tag">Kurri Kurri</span></div></div></section>
+
+<section class="bottom-cta"><p>Need an electrician?</p><h2><a href="tel:0412345678" style="color:white">0412 345 678</a></h2><div class="cta-sub">Free quotes · Upfront pricing</div><a onclick="showPage('contact')" class="form-link">Or request a quote online →</a></section>
+
+</div>
+
+<!-- ==================== SERVICES ==================== -->
+<div class="page" id="page-services">
+
+<section class="page-intro-light"><div class="page-intro-light-inner"><h1>Services.</h1><p>Residential and commercial electrical work across Newcastle, Lake Macquarie and the Hunter Valley. Every job comes with upfront pricing.</p></div></section>
+
+<section class="svc-list">
+
+<div class="svc-block"><div class="svc-text"><span class="svc-tag">Residential</span><h2>Switchboard Upgrades</h2><p>If your home still has ceramic fuses or an old metal switchboard, upgrading to a modern board with safety switches and circuit breakers will bring it up to current Australian standards.</p><ul class="svc-includes"><li>Safety switch installation</li><li>Circuit breaker upgrade</li><li>Compliance certificate issued</li><li>Old board safely removed</li><li>Surge protection available</li></ul><a onclick="showPage('contact')" class="btn-blue">Get a Quote →</a></div><div class="svc-photo"><img src="https://images.unsplash.com/photo-1555963966-b7ae5404b6ed?w=700&h=470&fit=crop&q=80" alt="Switchboard" loading="lazy"/></div></div>
+
+<div class="svc-block"><div class="svc-text"><span class="svc-tag">Specialist</span><h2>Residential Rewiring</h2><p>Older homes with degraded wiring can be a fire risk. We do full and partial rewires — running new cables through existing walls with minimal disruption.</p><ul class="svc-includes"><li>Full and partial house rewires</li><li>Pre-purchase electrical inspections</li><li>Minimal wall damage</li><li>Compliance certificate on completion</li><li>Suitable for renovations and extensions</li></ul><a onclick="showPage('contact')" class="btn-blue">Get a Quote →</a></div><div class="svc-photo"><img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=700&h=470&fit=crop&q=80" alt="Wiring" loading="lazy"/></div></div>
+
+<div class="svc-block"><div class="svc-text"><span class="svc-tag">Residential</span><h2>Lighting &amp; Ceiling Fans</h2><p>From LED downlights throughout the house to feature pendants and outdoor security lighting — we supply and install it all.</p><ul class="svc-includes"><li>LED downlight installation</li><li>Pendant and feature lighting</li><li>Outdoor and security lighting</li><li>Ceiling fan supply and install</li><li>Dimmer switches and smart controls</li></ul><a onclick="showPage('contact')" class="btn-blue">Get a Quote →</a></div><div class="svc-photo"><img src="https://images.unsplash.com/photo-1524484485831-a92ffc0de03f?w=700&h=470&fit=crop&q=80" alt="Lighting" loading="lazy"/></div></div>
+
+<div class="svc-block"><div class="svc-text"><span class="svc-tag">Essential</span><h2>Power Points &amp; Data</h2><p>Additional power points where you need them, USB charging outlets, and Cat6 data cabling.</p><ul class="svc-includes"><li>New power point installation</li><li>USB charging outlets</li><li>Cat6 data cabling</li><li>Home office setups</li><li>Outdoor weatherproof outlets</li></ul><a onclick="showPage('contact')" class="btn-blue">Get a Quote →</a></div><div class="svc-photo"><img src="https://images.unsplash.com/photo-1558449028-b53a39d100fc?w=700&h=470&fit=crop&q=80" alt="Power outlet" loading="lazy"/></div></div>
+
+<div class="svc-block"><div class="svc-text"><span class="svc-tag">Compliance</span><h2>Smoke Alarms &amp; Safety</h2><p>NSW requires interconnected smoke alarms in homes. We supply, install and test compliant alarm systems.</p><ul class="svc-includes"><li>Hardwired interconnected smoke alarms</li><li>NSW compliance</li><li>Testing and certification</li><li>Landlord compliance inspections</li><li>RCD safety switch testing</li></ul><a onclick="showPage('contact')" class="btn-blue">Get a Quote →</a></div><div class="svc-photo"><img src="https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=700&h=470&fit=crop&q=80" alt="Smoke alarm" loading="lazy"/></div></div>
+
+</section>
+
+<section class="emergency"><div class="emergency-inner"><div class="emergency-text"><h2><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" style="vertical-align:-3px;margin-right:6px"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>Emergency Callouts</h2><p>Power out? Sparking outlet? Tripped safety switch? Same-day emergency service available.</p></div><a href="tel:0412345678" class="btn-white"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="vertical-align:-2px;margin-right:4px"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+Call Now</a></div></section>
+
+<section class="bottom-cta"><p>Not sure what you need?</p><h2><a href="tel:0412345678" style="color:white">0412 345 678</a></h2><div class="cta-sub">Describe the problem and we'll figure it out. Free quotes.</div><a onclick="showPage('contact')" class="form-link">Or request a quote online →</a></section>
+
+</div>
+
+<!-- ==================== CONTACT ==================== -->
+<div class="page" id="page-contact">
+
+<section class="page-intro-light"><div class="page-intro-light-inner"><h1>Get in touch.</h1><p>Fill out the form and we'll come back to you. Or if it's urgent, just give us a call — we actually answer the phone.</p></div></section>
+
+<section class="contact"><div class="contact-grid"><div class="c-info"><h2>Contact details.</h2><p>Whether it's a quick question or a full job quote, we're easy to reach.</p><div class="c-detail"><span class="c-detail-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="1.8" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></span><div><h3>Phone</h3><p><a href="tel:0412345678">0412 345 678</a></p></div></div><div class="c-detail"><span class="c-detail-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></span><div><h3>Email</h3><p><a href="mailto:matt@mattlawsonelectrical.com.au">matt@mattlawsonelectrical.com.au</a></p></div></div><div class="c-detail"><span class="c-detail-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></span><div><h3>Service Area</h3><p>Newcastle, Lake Macquarie &amp; Hunter Valley</p></div></div><div class="c-hours"><h3>Business Hours</h3><div class="c-hours-row"><span>Monday – Friday</span><strong>7:00 AM – 5:00 PM</strong></div><div class="c-hours-row"><span>Saturday</span><strong>8:00 AM – 12:00 PM</strong></div><div class="c-hours-row"><span>Sunday</span><strong>Closed</strong></div><div class="c-hours-row"><span>Emergency callouts</span><strong>Available</strong></div></div></div><div class="c-form" id="ml-form-wrapper"><form id="ml-contact-form" onsubmit="handleMLSubmit(event)"><h2>Request a Free Quote</h2><p>Tell us what you need and we'll be in touch.</p><div class="form-row"><div class="form-group"><label for="ml-name">Full Name *</label><input type="text" id="ml-name" required placeholder="e.g. Sarah Thompson"/></div><div class="form-group"><label for="ml-phone">Phone *</label><input type="tel" id="ml-phone" required placeholder="e.g. 0412 345 678"/></div></div><div class="form-row"><div class="form-group"><label for="ml-email">Email</label><input type="email" id="ml-email" placeholder="e.g. sarah@email.com"/></div><div class="form-group"><label for="ml-suburb">Suburb *</label><input type="text" id="ml-suburb" required placeholder="e.g. Merewether"/></div></div><div class="form-group full" style="margin-bottom:1rem"><label for="ml-service">What do you need help with?</label><select id="ml-service"><option value="">Select a service...</option><option>Switchboard Upgrade</option><option>Residential Rewiring</option><option>Lighting &amp; Ceiling Fans</option><option>Power Points &amp; Data</option><option>Smoke Alarms &amp; Safety</option><option>Emergency Callout</option><option>Other / Not Sure</option></select></div><div class="form-group full" style="margin-bottom:1rem"><label for="ml-message">Tell us about the job *</label><textarea id="ml-message" required placeholder="Describe the job or problem — the more detail, the more accurate the quote."></textarea></div><button type="submit" class="btn-submit">Send Quote Request →</button><p class="form-note">We'll be in touch during business hours.</p></form><div class="form-success" id="ml-form-success"><div class="form-success-icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div><h3>Quote request sent!</h3><p>Thanks for reaching out. We'll be in touch during business hours. For urgent jobs, call <a href="tel:0412345678">0412 345 678</a> directly.</p></div></div></section>
+
+<section class="map-section"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d217157.95816498!2d151.60368!3d-32.9283!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6b7315be8f4c1d1f%3A0x5017d681632b890!2sNewcastle%20NSW!5e0!3m2!1sen!2sau!4v1700000000000!5m2!1sen!2sau" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></section>
+
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+<div class="footer-inner">
+<div class="footer-left">
+<div class="h-logo" onclick="showPage('home')" style="cursor:pointer"><span class="h-logo-bolt"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></span>
+Matt Lawson Electrical</div>
+<p>Licensed electrician servicing Newcastle, Lake Macquarie and the Hunter Valley. Residential and commercial.</p>
+</div>
+<div class="footer-right">
+<div class="footer-col"><h6>Services</h6><ul><li><a onclick="showPage('services')">Switchboard Upgrades</a></li><li><a onclick="showPage('services')">Rewiring</a></li><li><a onclick="showPage('services')">Lighting &amp; Fans</a></li><li><a onclick="showPage('services')">Power Points</a></li><li><a onclick="showPage('services')">Smoke Alarms</a></li><li><a onclick="showPage('services')">Emergency</a></li></ul></div>
+<div class="footer-col"><h6>Contact</h6><ul><li><a href="tel:0412345678">0412 345 678</a></li><li><a href="mailto:matt@mattlawsonelectrical.com.au">Email Matt</a></li><li><a onclick="showPage('about')">About</a></li><li><a onclick="showPage('contact')">Get a Quote</a></li></ul></div>
+</div>
+</div>
+<div class="footer-copy">© 2026 Matt Lawson Electrical. All rights reserved.</div>
+</footer>
+
+<div class="sticky-call"><a href="tel:0412345678"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="vertical-align:-2px;margin-right:4px"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+Call Matt — 0412 345 678</a></div>
+
+<script>
+function showPage(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('page-'+id).classList.add('active');
+  document.querySelectorAll('.h-nav a').forEach(a=>a.classList.remove('active'));
+  document.querySelectorAll('.h-nav a').forEach(a=>{if(a.textContent.toLowerCase()===id||(id==='home'&&a.textContent==='Home'))a.classList.add('active')});
+  document.querySelector('.h-nav')?.classList.remove('open');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function handleMLSubmit(e){e.preventDefault();document.getElementById('ml-contact-form').style.display='none';document.getElementById('ml-form-success').style.display='block'}
+</script>
+
+</body>
+</html>

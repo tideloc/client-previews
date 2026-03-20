@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Outback Pantry | Artisan Bush Food | Mudgee NSW</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,300;0,400;0,600;0,700;0,800;1,400;1,600&family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+<style>
+:root{--ochre:#C2703E;--ochre-d:#A85D2F;--sage:#7A8B6F;--eucalypt:#5B7A5E;--char:#2A2622;--bark:#3D352F;--clay:#8C7B6B;--sand:#E8DED0;--linen:#F4F0E8;--cream:#FAF8F3;--bone:#FDFCFA;--warm:#F8F4EC;--border:rgba(42,38,34,.06)}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{font-family:'Lato',sans-serif;color:var(--char);background:var(--warm);overflow-x:hidden;line-height:1.7}
+/* TOP BAR */
+.topstrip{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--warm);padding:14px 32px;display:flex;align-items:center;justify-content:space-between;transition:box-shadow .3s}
+.topstrip.scrolled{box-shadow:0 1px 8px rgba(0,0,0,.04)}
+.wordmark{font-family:'Bitter',serif;font-size:1.3rem;font-weight:700;color:var(--char);cursor:pointer;letter-spacing:-.5px}
+.wordmark em{font-weight:400;font-style:italic;color:var(--ochre)}
+.top-icons{display:flex;align-items:center;gap:14px}
+.icon-btn{background:none;border:none;cursor:pointer;padding:6px;position:relative}
+.icon-btn svg{width:22px;height:22px;color:var(--char)}.icon-btn:hover svg{color:var(--ochre)}
+.cart-dot{position:absolute;top:2px;right:2px;width:8px;height:8px;border-radius:50%;background:var(--ochre);display:none}.cart-dot.show{display:block}
+/* NAV DRAWER */
+.nav-shade{display:none;position:fixed;inset:0;background:rgba(42,38,34,.3);z-index:150}.nav-shade.open{display:block}
+.nav-drawer{position:fixed;top:0;left:-320px;width:300px;height:100vh;background:var(--char);z-index:160;padding:48px 36px;transition:left .35s ease;overflow-y:auto}.nav-drawer.open{left:0}
+.nav-drawer-brand{font-family:'Bitter',serif;font-size:1.5rem;color:var(--sand);margin-bottom:40px}.nav-drawer-brand em{color:var(--ochre);font-style:italic;font-weight:400}
+.nav-drawer a{display:block;font-family:'Bitter',serif;font-size:1.1rem;font-weight:600;color:var(--clay);text-decoration:none;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.05);cursor:pointer;transition:color .2s}.nav-drawer a:hover{color:var(--sand)}
+.nav-drawer-close{position:absolute;top:16px;right:16px;background:none;border:none;cursor:pointer}.nav-drawer-close svg{width:20px;height:20px;color:var(--clay)}
+.page{display:none}.page.active{display:block}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;font-weight:700;font-size:.88rem;border:none;cursor:pointer;font-family:'Lato',sans-serif;transition:all .25s;text-decoration:none;letter-spacing:.3px}
+.btn svg{width:18px;height:18px}
+.btn-ochre{background:var(--ochre);color:#fff}.btn-ochre:hover{background:var(--ochre-d);transform:translateY(-1px)}
+.btn-dark{background:var(--char);color:var(--sand)}.btn-dark:hover{background:var(--bark)}
+.btn-full{width:100%;justify-content:center}
+/* FEATURED PRODUCT */
+.featured{max-width:1200px;margin:0 auto;padding:68px 32px 0}
+.feat-grid{display:grid;grid-template-columns:1.2fr 1fr;min-height:460px;background:var(--char);overflow:hidden}
+.feat-img{width:100%;height:100%;object-fit:cover;display:block;min-height:460px}
+.feat-info{padding:48px;display:flex;flex-direction:column;justify-content:center}
+.feat-tag{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:3px;color:var(--ochre);margin-bottom:10px}
+.feat-info h1{font-family:'Bitter',serif;font-size:clamp(1.8rem,4vw,2.6rem);font-weight:300;color:var(--sand);line-height:1.15;margin-bottom:12px}
+.feat-info h1 em{font-weight:700;font-style:italic;color:var(--ochre)}
+.feat-info>p{color:var(--clay);font-size:1rem;margin-bottom:20px;line-height:1.7}
+.feat-price{font-family:'Bitter',serif;font-size:1.5rem;font-weight:700;color:var(--ochre);margin-bottom:20px}
+.feat-price small{font-weight:400;font-size:.85rem;color:var(--clay)}
+.feat-btns{display:flex;gap:12px;flex-wrap:wrap}
+/* PRODUCT GRID — compact, scannable */
+.shop-area{max-width:1200px;margin:0 auto;padding:40px 32px 0}
+.shop-filters{display:flex;gap:16px;align-items:center;margin-bottom:24px;flex-wrap:wrap}
+.shop-filters span{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--clay)}
+.filter-link{font-size:.85rem;font-weight:700;color:var(--clay);cursor:pointer;background:none;border:none;font-family:'Lato',sans-serif;padding:4px 0;border-bottom:2px solid transparent;transition:all .2s}
+.filter-link:hover{color:var(--char)}.filter-link.active{color:var(--ochre);border-bottom-color:var(--ochre)}
+.pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.pgrid-item{cursor:pointer;transition:transform .3s}
+.pgrid-item:hover{transform:translateY(-4px)}
+.pgrid-item-img{width:100%;aspect-ratio:1;object-fit:cover;display:block;background:var(--linen)}
+.pgrid-item-body{padding:12px 0}
+.pgrid-item-cat{font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--sage)}
+.pgrid-item-body h3{font-family:'Bitter',serif;font-size:.95rem;font-weight:600;color:var(--char);margin:3px 0;line-height:1.25}
+.pgrid-item-price{font-family:'Bitter',serif;font-weight:700;color:var(--ochre);font-size:.95rem}
+.pgrid-item-price small{font-family:'Lato',sans-serif;font-weight:400;font-size:.75rem;color:var(--clay)}
+/* PRODUCT DETAIL OVERLAY — slides from right */
+.pd-shade{display:none;position:fixed;inset:0;background:rgba(42,38,34,.35);z-index:200;backdrop-filter:blur(2px)}.pd-shade.open{display:block}
+.pd-panel{position:fixed;top:0;right:-520px;width:500px;max-width:100vw;height:100vh;background:var(--bone);z-index:210;overflow-y:auto;transition:right .4s ease;box-shadow:-8px 0 40px rgba(0,0,0,.08)}
+.pd-panel.open{right:0}
+.pd-panel-close{position:absolute;top:16px;right:16px;background:var(--linen);border:none;cursor:pointer;width:36px;height:36px;display:flex;align-items:center;justify-content:center;z-index:1}.pd-panel-close svg{width:16px;height:16px;color:var(--char)}
+.pd-panel-img{width:100%;height:320px;object-fit:cover;display:block}
+.pd-panel-body{padding:28px 32px 40px}
+.pd-panel-cat{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:2.5px;color:var(--sage);margin-bottom:4px}
+.pd-panel-title{font-family:'Bitter',serif;font-size:1.6rem;font-weight:700;color:var(--char);line-height:1.2;margin-bottom:6px}
+.pd-panel-price{font-family:'Bitter',serif;font-size:1.3rem;font-weight:700;color:var(--ochre);margin-bottom:14px}
+.pd-panel-desc{font-size:.92rem;color:var(--clay);line-height:1.7;margin-bottom:18px}
+.pd-label{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--char);margin-bottom:8px}
+.pd-sizes{display:flex;gap:8px;margin-bottom:18px;flex-wrap:wrap}
+.pd-sz{padding:8px 18px;border:1.5px solid var(--border);background:var(--warm);font-family:'Lato',sans-serif;font-size:.82rem;font-weight:700;color:var(--clay);cursor:pointer;transition:all .2s}
+.pd-sz:hover{border-color:var(--char)}.pd-sz.active{border-color:var(--ochre);color:var(--ochre);background:rgba(194,112,62,.04)}
+.pd-actions{display:flex;gap:12px;align-items:center;margin-bottom:18px}
+.qty-ctrl{display:flex;align-items:center;border:1.5px solid var(--border)}
+.qty-b{width:38px;height:42px;border:none;background:var(--linen);cursor:pointer;font-size:1rem;font-weight:700;color:var(--char)}.qty-b:hover{background:var(--sand)}
+.qty-v{width:44px;text-align:center;font-weight:700;font-size:.9rem;border:none;background:var(--bone);color:var(--char);font-family:'Bitter',serif;height:42px}
+.pd-detail-text{font-size:.85rem;color:var(--clay);line-height:1.7;border-top:1px solid var(--border);padding-top:14px}
+.pd-detail-text strong{color:var(--char);font-size:.72rem;text-transform:uppercase;letter-spacing:1px}
+/* FIXED BOTTOM CART BAR */
+.cart-bar{position:fixed;bottom:0;left:0;right:0;z-index:100;background:var(--char);padding:14px 32px;display:flex;align-items:center;justify-content:space-between;transform:translateY(100%);transition:transform .35s ease;box-shadow:0 -4px 24px rgba(0,0,0,.1)}
+.cart-bar.show{transform:translateY(0)}
+.cart-bar-left{display:flex;align-items:center;gap:16px}
+.cart-bar-count{font-family:'Bitter',serif;font-weight:700;color:var(--sand);font-size:.92rem}
+.cart-bar-total{font-family:'Bitter',serif;font-weight:700;color:var(--ochre);font-size:1.1rem}
+.cart-bar-thumbs{display:flex}.cart-bar-thumb{width:34px;height:34px;border-radius:50%;object-fit:cover;border:2px solid var(--char);margin-left:-8px}.cart-bar-thumb:first-child{margin-left:0}
+.cb-btns{display:flex;gap:8px;align-items:center}
+.cart-bar-btn{background:var(--ochre);color:#fff;border:none;padding:10px 24px;font-family:'Lato',sans-serif;font-weight:700;font-size:.85rem;cursor:pointer}.cart-bar-btn:hover{background:var(--ochre-d)}
+.cart-bar-view{background:transparent;color:var(--clay);border:none;padding:10px 16px;font-family:'Lato',sans-serif;font-weight:700;font-size:.82rem;cursor:pointer;text-decoration:underline}
+/* CART EXPAND */
+.cart-expand{position:fixed;bottom:58px;left:0;right:0;z-index:99;background:var(--bone);max-height:0;overflow:hidden;transition:max-height .4s ease;box-shadow:0 -8px 32px rgba(0,0,0,.08)}.cart-expand.open{max-height:60vh;overflow-y:auto}
+.cart-expand-inner{max-width:700px;margin:0 auto;padding:24px 32px 32px}
+.ce-item{display:flex;gap:14px;align-items:center;padding:12px 0;border-bottom:1px solid var(--border)}
+.ce-item-img{width:48px;height:48px;object-fit:cover;flex-shrink:0}
+.ce-item-info{flex:1}.ce-item-info h4{font-family:'Bitter',serif;font-size:.88rem;font-weight:600}.ce-item-info span{font-size:.78rem;color:var(--clay)}
+.ce-item-price{font-family:'Bitter',serif;font-weight:700;color:var(--ochre);font-size:.9rem;white-space:nowrap}
+.ce-item-rm{background:none;border:none;cursor:pointer;color:var(--clay);padding:4px 8px;font-size:.82rem;opacity:.4}.ce-item-rm:hover{opacity:1}
+.ce-footer{margin-top:16px;padding-top:12px;border-top:1px solid var(--border)}
+.ce-ship{font-size:.82rem;color:var(--sage);font-style:italic}
+.ship-row{display:flex;gap:8px;align-items:center;margin-top:8px}
+.ship-row input{padding:8px 12px;border:1px solid var(--border);background:var(--warm);font-family:'Lato',sans-serif;font-size:.85rem;width:120px;outline:none}.ship-row input:focus{border-color:var(--ochre)}
+.ship-row span{font-size:.82rem;font-weight:700;color:var(--sage)}
+/* SUBSCRIPTION SPREADS */
+.sub-intro{max-width:800px;margin:0 auto;padding:80px 32px 40px;text-align:center}
+.sub-intro h2{font-family:'Bitter',serif;font-size:2rem;font-weight:300;color:var(--char);margin-bottom:10px}.sub-intro h2 em{font-weight:700;font-style:italic;color:var(--ochre)}
+.sub-intro p{font-size:1rem;color:var(--clay);max-width:480px;margin:0 auto}
+.sub-spread{max-width:1000px;margin:0 auto;padding:0 32px 40px}
+.spread-row{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-bottom:2px;min-height:320px;background:var(--bone)}
+.spread-row:nth-child(even){direction:rtl}.spread-row:nth-child(even)>*{direction:ltr}
+.spread-img{width:100%;height:100%;min-height:320px;object-fit:cover;display:block}
+.spread-text{padding:36px 40px;display:flex;flex-direction:column;justify-content:center}
+.spread-tag{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:2.5px;color:var(--ochre);margin-bottom:8px}
+.spread-text h3{font-family:'Bitter',serif;font-size:1.4rem;font-weight:700;color:var(--char);margin-bottom:4px}
+.spread-price{font-family:'Bitter',serif;font-size:1.6rem;font-weight:800;color:var(--ochre);margin-bottom:8px}.spread-price small{font-weight:400;font-size:.85rem;color:var(--clay)}
+.spread-text>p{font-size:.9rem;color:var(--clay);margin-bottom:14px;line-height:1.7}
+.spread-features{list-style:none;margin-bottom:20px}
+.spread-features li{font-size:.82rem;color:var(--clay);padding:4px 0;display:flex;align-items:center;gap:8px}
+.spread-features li::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--ochre);flex-shrink:0}
+/* ABOUT */
+.about-page{max-width:720px;margin:0 auto;padding:80px 32px 60px}
+.about-page h2{font-family:'Bitter',serif;font-size:2rem;font-weight:300;color:var(--char);margin-bottom:24px;line-height:1.2}.about-page h2 em{font-weight:700;font-style:italic;color:var(--ochre)}
+.about-page p{font-size:1.05rem;color:var(--clay);margin-bottom:18px;line-height:1.85}
+.about-page p:first-of-type::first-letter{font-family:'Bitter',serif;font-size:3.5rem;float:left;line-height:.8;padding-right:8px;color:var(--ochre);font-weight:700}
+.about-img{width:100%;margin:32px 0;display:block}
+/* CONTACT */
+.contact-page{max-width:560px;margin:0 auto;padding:80px 32px 60px}
+.contact-page h2{font-family:'Bitter',serif;font-size:1.8rem;font-weight:300;color:var(--char);margin-bottom:8px}.contact-page h2 em{font-weight:700;font-style:italic;color:var(--ochre)}
+.contact-page>p{color:var(--clay);margin-bottom:28px}
+.contact-links{display:flex;gap:20px;margin-bottom:32px;flex-wrap:wrap}
+.contact-links a{font-size:.9rem;color:var(--ochre);text-decoration:none;font-weight:700;display:flex;align-items:center;gap:6px}.contact-links a svg{width:16px;height:16px}
+.cf{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.cf .full{grid-column:span 2}
+.cf label{display:block;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--char);margin-bottom:6px}
+.cf input,.cf textarea{width:100%;padding:12px 14px;border:1px solid var(--border);background:var(--bone);font-family:'Lato',sans-serif;font-size:.92rem;color:var(--char);outline:none;transition:border-color .2s}
+.cf input:focus,.cf textarea:focus{border-color:var(--ochre)}.cf textarea{resize:vertical;min-height:100px}
+.cf .err{border-color:#B4533E!important}.cf .err-msg{display:none;font-size:.78rem;color:#B4533E;margin-top:4px}
+.foot{background:var(--char);padding:32px;text-align:center;color:var(--clay);font-size:.82rem}
+.foot a{color:rgba(255,255,255,.3);text-decoration:none}
+.foot-brand{font-family:'Bitter',serif;font-weight:700;color:var(--sand);font-size:1rem;margin-bottom:6px}.foot-brand em{color:var(--ochre);font-style:italic;font-weight:400}
+.fade{opacity:0;transform:translateY(20px);transition:all .5s ease}.fade.vis{opacity:1;transform:translateY(0)}
+@media(max-width:900px){.feat-grid{grid-template-columns:1fr}.feat-img{min-height:260px}.pgrid{grid-template-columns:repeat(2,1fr)}.pd-panel{width:100%}.spread-row{grid-template-columns:1fr}.spread-row:nth-child(even){direction:ltr}.spread-img{min-height:220px}}
+@media(max-width:600px){.feat-info{padding:28px}.feat-info h1{font-size:1.7rem}.pgrid{grid-template-columns:repeat(2,1fr);gap:12px}.cf{grid-template-columns:1fr}.cf .full{grid-column:span 1}.pd-actions{flex-direction:column;align-items:stretch}.contact-links{flex-direction:column}.cart-bar{padding:10px 16px}.cb-btns{flex-wrap:wrap}}
+</style>
+</head>
+<body>
+
+<div class="topstrip" id="topstrip">
+<div class="wordmark" onclick="nav('home')">Outback <em>Pantry</em></div>
+<div class="top-icons">
+<button class="icon-btn" onclick="toggleNav()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg></button>
+<button class="icon-btn" onclick="toggleCartView()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 01-8 0"/></svg><span class="cart-dot" id="cartDot"></span></button>
+</div>
+</div>
+
+<div class="nav-shade" id="navShade" onclick="toggleNav()"></div>
+<div class="nav-drawer" id="navDrawer">
+<button class="nav-drawer-close" onclick="toggleNav()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+<div class="nav-drawer-brand">Outback <em>Pantry</em></div>
+<a onclick="nav('home')">Shop</a><a onclick="nav('subs')">Subscriptions</a><a onclick="nav('about')">About</a><a onclick="nav('contact')">Contact</a>
+</div>
+
+<!-- PRODUCT DETAIL PANEL (slides from right) -->
+<div class="pd-shade" id="pdShade" onclick="closePD()"></div>
+<div class="pd-panel" id="pdPanel">
+<button class="pd-panel-close" onclick="closePD()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+<img class="pd-panel-img" id="pdImg" src="" alt="">
+<div class="pd-panel-body">
+<div class="pd-panel-cat" id="pdCat"></div>
+<h2 class="pd-panel-title" id="pdTitle"></h2>
+<div class="pd-panel-price" id="pdPrice"></div>
+<p class="pd-panel-desc" id="pdDesc"></p>
+<div class="pd-label">Size</div>
+<div class="pd-sizes" id="pdSizes"></div>
+<div class="pd-actions">
+<div class="qty-ctrl"><button class="qty-b" onclick="pdQty(-1)">&#8722;</button><input class="qty-v" id="pdQty" value="1" readonly><button class="qty-b" onclick="pdQty(1)">+</button></div>
+<button class="btn btn-ochre" onclick="addToCart()" style="flex:1;justify-content:center"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><path d="M3 6h18"/></svg>
+Add to Cart</button>
+</div>
+<div class="pd-detail-text" id="pdDetails"></div>
+</div>
+</div>
+
+<!-- CART BAR + EXPAND -->
+<div class="cart-bar" id="cartBar">
+<div class="cart-bar-left"><div class="cart-bar-thumbs" id="cartThumbs"></div><span class="cart-bar-count" id="cbCount">0 items</span><span class="cart-bar-total" id="cbTotal">$0</span></div>
+<div class="cb-btns"><button class="cart-bar-view" onclick="toggleCartView()">View</button><button class="cart-bar-btn" onclick="alert('Portfolio demo - WooCommerce checkout.')">Checkout</button></div>
+</div>
+
+<div class="cart-expand" id="cartExpand"><div class="cart-expand-inner"><div id="ceItems"></div><div class="ce-footer"><div class="ce-ship" id="ceShipMsg">Free shipping over $100</div><div class="ship-row"><input type="text" id="cePost" placeholder="Postcode" maxlength="4" oninput="calcShip()"><span id="ceShipResult"></span></div></div></div></div>
+
+<!-- HOME -->
+<div id="page-home" class="page active">
+<div class="featured">
+<div class="feat-grid fade">
+<img class="feat-img" src="https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=900&q=80" alt="Bush Dukkah">
+<div class="feat-info"><div class="feat-tag">Best Seller</div><h1>Bush <em>Dukkah</em></h1><p>Wattleseed, macadamia, native spices, and sesame. Crunchy, earthy, and unmistakably Australian.</p><div class="feat-price">$16.00 <small>120g</small></div><div class="feat-btns"><button class="btn btn-ochre" onclick="openPD(4)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+Quick Add</button><button class="btn btn-dark" onclick="openPD(4)">View Details</button></div></div>
+</div>
+</div>
+
+<div class="shop-area">
+<div class="shop-filters fade" id="shopFilters"></div>
+<div class="pgrid" id="pgrid"></div>
+</div>
+
+<div style="max-width:1200px;margin:48px auto 0;padding:0 32px;">
+<div class="feat-grid fade" style="background:var(--eucalypt);">
+<img class="feat-img" src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=900&q=80" alt="Bush" style="min-height:320px">
+<div class="feat-info"><div class="feat-tag" style="color:var(--sand);">Monthly Boxes</div><h1 style="color:#fff;">A Box of the <em>Bush</em></h1><p>Curated subscription boxes of native pantry staples. Skip or cancel anytime.</p><div class="feat-price" style="color:var(--sand)">From $39 <small>/month</small></div><div class="feat-btns"><button class="btn btn-ochre" onclick="nav('subs')">View Subscriptions</button></div></div>
+</div>
+</div>
+
+<div style="height:80px"></div>
+</div>
+
+<!-- SUBS -->
+<div id="page-subs" class="page">
+<div class="sub-intro fade"><h2>A Box of the <em>Bush</em>, Delivered</h2><p>Curated monthly boxes. Free shipping. Skip or cancel anytime.</p></div>
+
+<div class="sub-spread">
+
+<div class="spread-row fade"><img class="spread-img" src="https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=700&q=80" alt="Taster"><div class="spread-text"><div class="spread-tag">Starter</div><h3>Taster Box</h3><div class="spread-price">$39 <small>/month</small></div><p>A curated intro to native flavours.</p><ul class="spread-features"><li>3-4 products</li><li>Seasonal selection</li><li>Recipe card</li><li>Free shipping</li></ul><button class="btn btn-ochre" onclick="alert('Portfolio demo.')">Subscribe</button></div></div>
+
+<div class="spread-row fade"><img class="spread-img" src="https://images.unsplash.com/photo-1532336414038-cf19250c5757?w=700&q=80" alt="Pantry"><div class="spread-text"><div class="spread-tag">Most Popular</div><h3>Pantry Box</h3><div class="spread-price">$69 <small>/month</small></div><p>A proper pantry restock with 6-8 native products.</p><ul class="spread-features"><li>6-8 products</li><li>Recipe cards</li><li>Free shipping</li><li>Early access</li></ul><button class="btn btn-ochre" onclick="alert('Portfolio demo.')">Subscribe</button></div></div>
+
+<div class="spread-row fade"><img class="spread-img" src="https://images.unsplash.com/photo-1587049352846-4a222e784d38?w=700&q=80" alt="Feast"><div class="spread-text"><div class="spread-tag">Premium</div><h3>Feast Box</h3><div class="spread-price">$99 <small>/month</small></div><p>The full experience. 10-12 products, exclusives, quarterly bonus.</p><ul class="spread-features"><li>10-12 products</li><li>Exclusive items</li><li>Free shipping</li><li>Quarterly bonus gift</li></ul><button class="btn btn-ochre" onclick="alert('Portfolio demo.')">Subscribe</button></div></div>
+
+</div><div style="height:80px"></div>
+</div>
+
+<!-- ABOUT -->
+<div id="page-about" class="page"><div class="about-page"><h2 class="fade">From the Bush <em>to Your Pantry</em></h2><img class="about-img fade" src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1000&q=80" alt="Bush"><p class="fade">Outback Pantry started in 2020 when Sarah and Tom began experimenting with native ingredients growing wild on their Mudgee property. Lemon myrtle, wattleseed, bush tomato &#8212; plants used for thousands of years by First Nations people.</p><p class="fade">What began as kitchen experiments became weekend markets, then online orders, then a commercial kitchen. Every product is still small-batch, with ingredients from ethical suppliers and Indigenous-owned businesses.</p><p class="fade">We make beautiful pantry staples that introduce people to the incredible flavours of the Australian bush &#8212; one jar at a time.</p></div><div style="height:80px"></div></div>
+
+<!-- CONTACT -->
+<div id="page-contact" class="page"><div class="contact-page"><h2 class="fade">Get in <em>Touch</em></h2><p class="fade">Questions, wholesale, or just want to say g'day.</p><div class="contact-links fade"><a href="mailto:hello@outbackpantry.com.au"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>hello@outbackpantry.com.au</a><a><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>Mudgee, NSW</a></div><div class="cf fade"><div><label>Name *</label><input type="text" id="cN"><div class="err-msg" id="cNErr">Required</div></div><div><label>Email *</label><input type="email" id="cE"><div class="err-msg" id="cEErr">Valid email</div></div><div class="full"><label>Message *</label><textarea id="cM"></textarea><div class="err-msg" id="cMErr">Required</div></div><div class="full"><button class="btn btn-ochre btn-full" onclick="submitCF()">Send Message</button></div></div></div><div style="height:80px"></div></div>
+
+<footer class="foot"><div class="foot-brand">Outback <em>Pantry</em></div><p>&#169; 2026 Outback Pantry, Mudgee NSW &#183; <a>Portfolio site by Tideloc Web Design</a></p></footer>
+
+<script>
+var products=[
+{id:0,cat:'Native Spices',name:'Lemon Myrtle',desc:'Bright, citrusy, intensely aromatic. Use in baking, seafood, dressings, or tea.',img:'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=600&q=80',sizes:[{l:'40g',p:14.50},{l:'100g',p:28},{l:'250g',p:58}],det:'Ground dried lemon myrtle leaf. Sourced from NSW North Coast growers. Intensely lemon-lime with eucalyptus finish.'},
+{id:1,cat:'Native Spices',name:'Wattleseed',desc:'Nutty, roasted, chocolate-coffee notes. Perfect in baking and smoothies.',img:'https://images.unsplash.com/photo-1532336414038-cf19250c5757?w=600&q=80',sizes:[{l:'60g',p:16},{l:'150g',p:32}],det:'Ground roasted wattleseed. Rich nutty flavour with chocolate undertones.'},
+{id:2,cat:'Native Spices',name:'Pepperberry',desc:'Tasmanian mountain pepper. Fruity, floral, with a lingering back-of-throat heat.',img:'https://images.unsplash.com/photo-1474440692706-2b98a6a4c3f1?w=600&q=80',sizes:[{l:'30g',p:16},{l:'80g',p:34}],det:'Whole dried Tasmanian mountain pepperberry. Grind fresh over finished dishes.'},
+{id:3,cat:'Preserves',name:'Bush Tomato Chutney',desc:'Tangy, smoky, with gentle heat. Perfect with cheese or cold meats.',img:'https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?w=600&q=80',sizes:[{l:'220g',p:14},{l:'400g',p:22}],det:'Small-batch chutney with bush tomato, onion, apple cider vinegar, and native spices.'},
+{id:4,cat:'Blends',name:'Bush Dukkah',desc:'Wattleseed, macadamia, native spices, sesame. Crunchy and earthy.',img:'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=600&q=80',sizes:[{l:'120g',p:16},{l:'250g',p:28}],det:'Roasted macadamia, wattleseed, sesame, lemon myrtle, bush tomato, sea salt.'},
+{id:5,cat:'Blends',name:'Native BBQ Rub',desc:'Smoky, earthy, citrus kick. Designed for Australian BBQ.',img:'https://images.unsplash.com/photo-1532336414038-cf19250c5757?w=600&q=80',sizes:[{l:'80g',p:14},{l:'200g',p:26}],det:'Smoked bush tomato, lemon myrtle, wattleseed, pepperberry, sea salt.'},
+{id:6,cat:'Pantry',name:'Raw Bush Honey',desc:'Unfiltered honey from our Mudgee hives. Rich, golden, slightly floral.',img:'https://images.unsplash.com/photo-1587049352846-4a222e784d38?w=600&q=80',sizes:[{l:'350g',p:18},{l:'700g',p:30}],det:'Raw, unfiltered, unpasteurised honey. Seasonal flavour varies with native blossom.'},
+{id:7,cat:'Pantry',name:'Macadamia Oil',desc:'Cold-pressed, first-harvest. High smoke point, nutty flavour.',img:'https://images.unsplash.com/photo-1474440692706-2b98a6a4c3f1?w=600&q=80',sizes:[{l:'250ml',p:16},{l:'500ml',p:26}],det:'Cold-pressed from NSW macadamias. Light, nutty, versatile.'},
+{id:8,cat:'Pantry',name:'Wattleseed Granola',desc:'Crunchy oats, wattleseed, macadamia, native currants, bush honey.',img:'https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?w=600&q=80',sizes:[{l:'400g',p:16},{l:'800g',p:26}],det:'Baked with rolled oats, wattleseed, macadamia, currants, and our own bush honey.'}
+];
+
+var curProd=null,curSize=0,cart=[],cartViewOpen=false;
+
+var cats=[];for(var ci=0;ci<products.length;ci++){if(cats.indexOf(products[ci].cat)<0)cats.push(products[ci].cat);}
+
+var activeCat='All';
+
+function renderFilters(){
+var html='<span>Filter:</span><button class="filter-link'+(activeCat==='All'?' active':'')+'" onclick="filterCat(\'All\')">All</button>';
+for(var c=0;c<cats.length;c++)html+='<button class="filter-link'+(activeCat===cats[c]?' active':'')+'" onclick="filterCat(\''+cats[c]+'\')">'+cats[c]+'</button>';
+document.getElementById('shopFilters').innerHTML=html;
+}
+
+function filterCat(c){activeCat=c;renderFilters();renderGrid();}
+
+function renderGrid(){
+var items=activeCat==='All'?products:[];
+if(activeCat!=='All')for(var i=0;i<products.length;i++){if(products[i].cat===activeCat)items.push(products[i]);}
+var html='';
+for(var j=0;j<items.length;j++){
+html+='<div class="pgrid-item fade" onclick="openPD('+items[j].id+')"><img class="pgrid-item-img" src="'+items[j].img+'" alt="'+items[j].name+'"><div class="pgrid-item-body"><div class="pgrid-item-cat">'+items[j].cat+'</div><h3>'+items[j].name+'</h3><div class="pgrid-item-price">$'+items[j].sizes[0].p.toFixed(2)+' <small>'+items[j].sizes[0].l+'</small></div></div></div>';
+}
+document.getElementById('pgrid').innerHTML=html;
+initObs();
+}
+
+renderFilters();renderGrid();
+
+function openPD(id){
+for(var i=0;i<products.length;i++){if(products[i].id===id)curProd=products[i];}
+curSize=0;
+document.getElementById('pdImg').src=curProd.img;
+document.getElementById('pdCat').textContent=curProd.cat;
+document.getElementById('pdTitle').textContent=curProd.name;
+document.getElementById('pdPrice').textContent='$'+curProd.sizes[0].p.toFixed(2);
+document.getElementById('pdDesc').textContent=curProd.desc;
+document.getElementById('pdQty').value=1;
+var szHtml='';for(var j=0;j<curProd.sizes.length;j++){szHtml+='<button class="pd-sz'+(j===0?' active':'')+'" onclick="pickSz('+j+')">'+curProd.sizes[j].l+' &#8212; $'+curProd.sizes[j].p.toFixed(2)+'</button>';}
+document.getElementById('pdSizes').innerHTML=szHtml;
+document.getElementById('pdDetails').innerHTML='<strong>Details</strong><br>'+curProd.det;
+document.getElementById('pdShade').classList.add('open');
+document.getElementById('pdPanel').classList.add('open');
+document.body.style.overflow='hidden';
+}
+
+function closePD(){document.getElementById('pdShade').classList.remove('open');document.getElementById('pdPanel').classList.remove('open');document.body.style.overflow='';}
+
+function pickSz(i){curSize=i;var btns=document.querySelectorAll('.pd-sz');for(var j=0;j<btns.length;j++)btns[j].classList.toggle('active',j===i);document.getElementById('pdPrice').textContent='$'+curProd.sizes[i].p.toFixed(2);}
+
+function pdQty(d){var el=document.getElementById('pdQty');var v=parseInt(el.value)+d;if(v<1)v=1;if(v>10)v=10;el.value=v;}
+
+function addToCart(){var s=curProd.sizes[curSize];var q=parseInt(document.getElementById('pdQty').value);cart.push({id:curProd.id,name:curProd.name,size:s.l,price:s.p,img:curProd.img,qty:q});updateCart();closePD();}
+
+function removeCI(i){cart.splice(i,1);updateCart();}
+
+function updateCart(){
+var cnt=0,sub=0;for(var i=0;i<cart.length;i++){cnt+=cart[i].qty;sub+=cart[i].price*cart[i].qty;}
+document.getElementById('cartDot').classList.toggle('show',cnt>0);
+document.getElementById('cartBar').classList.toggle('show',cnt>0);
+document.getElementById('cbCount').textContent=cnt+' item'+(cnt!==1?'s':'');
+document.getElementById('cbTotal').textContent='$'+sub.toFixed(2);
+var th='';for(var j=0;j<Math.min(cart.length,3);j++)th+='<img class="cart-bar-thumb" src="'+cart[j].img+'" alt="">';
+document.getElementById('cartThumbs').innerHTML=th;
+var ceHtml='';for(var k=0;k<cart.length;k++)ceHtml+='<div class="ce-item"><img class="ce-item-img" src="'+cart[k].img+'" alt=""><div class="ce-item-info"><h4>'+cart[k].name+'</h4><span>'+cart[k].size+' x '+cart[k].qty+'</span></div><span class="ce-item-price">$'+(cart[k].price*cart[k].qty).toFixed(2)+'</span><button class="ce-item-rm" onclick="removeCI('+k+')">&#10005;</button></div>';
+document.getElementById('ceItems').innerHTML=ceHtml;
+document.getElementById('ceShipMsg').textContent=sub>=100?'Free shipping!':'Free shipping over $100';
+}
+
+function toggleCartView(){cartViewOpen=!cartViewOpen;document.getElementById('cartExpand').classList.toggle('open',cartViewOpen);}
+
+function calcShip(){var pc=document.getElementById('cePost').value;if(pc.length<4)return;var sub=0;for(var i=0;i<cart.length;i++)sub+=cart[i].price*cart[i].qty;if(sub>=100){document.getElementById('ceShipResult').textContent='Free!';return;}var z={'2':8.50,'3':10.50,'4':12,'5':14,'6':16,'7':14};var r=z[pc[0]];document.getElementById('ceShipResult').textContent=r?'Est: $'+r.toFixed(2):'Invalid postcode';}
+
+function nav(p){var pages=document.querySelectorAll('.page');for(var i=0;i<pages.length;i++)pages[i].classList.remove('active');document.getElementById('page-'+p).classList.add('active');toggleNavClose();cartViewOpen=false;document.getElementById('cartExpand').classList.remove('open');window.scrollTo({top:0,behavior:'smooth'});setTimeout(initObs,150);setTimeout(initObs,400);}
+
+function toggleNav(){document.getElementById('navShade').classList.toggle('open');document.getElementById('navDrawer').classList.toggle('open');}
+
+function toggleNavClose(){document.getElementById('navShade').classList.remove('open');document.getElementById('navDrawer').classList.remove('open');}
+
+window.addEventListener('scroll',function(){document.getElementById('topstrip').classList.toggle('scrolled',window.scrollY>20);});
+
+function initObs(){var ap=document.querySelector('.page.active');if(ap){var els=ap.querySelectorAll('.fade:not(.vis)');for(var i=0;i<els.length;i++){var r=els[i].getBoundingClientRect();if(r.top<window.innerHeight+100)els[i].classList.add('vis');}}var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('vis');obs.unobserve(e.target);}});},{threshold:.05,rootMargin:'50px'});var all=document.querySelectorAll('.fade:not(.vis)');for(var j=0;j<all.length;j++)obs.observe(all[j]);}
+
+initObs();
+
+function submitCF(){var v=true,n=document.getElementById('cN'),e=document.getElementById('cE'),m=document.getElementById('cM');var f=[n,e,m];for(var i=0;i<f.length;i++){f[i].classList.remove('err');var err=document.getElementById(f[i].id+'Err');if(err)err.style.display='none';}if(!n.value.trim()){n.classList.add('err');document.getElementById('cNErr').style.display='block';v=false;}if(!e.value.trim()||e.value.indexOf('@')<0){e.classList.add('err');document.getElementById('cEErr').style.display='block';v=false;}if(!m.value.trim()){m.classList.add('err');document.getElementById('cMErr').style.display='block';v=false;}if(v){alert('Thanks! We will be in touch within 48 hours.');n.value='';e.value='';m.value='';}}
+</script>
+
+</body>
+</html>

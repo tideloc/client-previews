@@ -1,56 +1,237 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tideloc Portfolio — Example Sites</title>
-<style>
-body { font-family: 'Plus Jakarta Sans', sans-serif; background: #0D1B2A; color: #fff; margin: 0; padding: 40px 20px; text-align: center; }
-h1 { font-size: 2rem; margin-bottom: 10px; }
-.subtitle { color: #7A90A4; margin-bottom: 40px; }
-.tier-section { max-width: 1000px; margin: 0 auto 40px; }
-.tier-label { color: #2EB88A; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 16px; border-bottom: 1px solid #1A2E42; padding-bottom: 8px; }
-.cards { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-bottom: 32px; }
-.card { background: #1A2E42; border-radius: 12px; padding: 28px; flex: 1; min-width: 240px; max-width: 300px; text-decoration: none; color: #fff; transition: transform 0.2s, box-shadow 0.2s; }
-.card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.3); }
-.card h2 { font-size: 1.1rem; margin: 0 0 8px; }
-.card p { color: #7A90A4; font-size: 0.85rem; margin: 0; }
-.footer { color: #3D5166; font-size: 0.75rem; margin-top: 40px; }
-.footer a { color: #1465A0; text-decoration: none; }
-</style>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tideloc Web Design — Portfolio Examples</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #F0F6FA;
+            color: #0D1B2A;
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, #0D1B2A 0%, #1465A0 100%);
+            color: #FFFFFF;
+            padding: 60px 20px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(13, 27, 42, 0.1);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            letter-spacing: -0.5px;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.95;
+            font-weight: 400;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            margin-bottom: 60px;
+        }
+
+        .portfolio-card {
+            background: #FFFFFF;
+            border-radius: 12px;
+            padding: 32px 24px;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(13, 27, 42, 0.06);
+            border: 2px solid transparent;
+            cursor: pointer;
+        }
+
+        .portfolio-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(13, 27, 42, 0.12);
+            border-color: #2EB88A;
+        }
+
+        .portfolio-card a {
+            text-decoration: none;
+            color: #0D1B2A;
+            display: block;
+        }
+
+        .portfolio-card h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: #0D1B2A;
+        }
+
+        .portfolio-card:hover h2 {
+            color: #1465A0;
+        }
+
+        .view-site {
+            display: inline-block;
+            margin-top: 16px;
+            padding: 10px 24px;
+            background-color: #2EB88A;
+            color: #FFFFFF;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .portfolio-card:hover .view-site {
+            background-color: #1465A0;
+        }
+
+        footer {
+            background-color: #3D5166;
+            color: #FFFFFF;
+            text-align: center;
+            padding: 40px 20px;
+            font-size: 0.95rem;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        footer a {
+            color: #2EB88A;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8rem;
+            }
+
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .container {
+                padding: 40px 16px;
+            }
+        }
+    </style>
 </head>
 <body>
-<h1>Tideloc Example Sites</h1>
-<p class="subtitle">See what each package tier looks like in action — 3 examples per tier.</p>
+    <header>
+        <h1>Tideloc Web Design</h1>
+        <p>Portfolio Examples</p>
+    </header>
 
-<div class="tier-section">
-  <div class="tier-label">Starter — $1,299</div>
-  <div class="cards">
-    <a class="card" href="starter-example.html"><h2>Southside Barber Co</h2><p>Classic barber shop — clean single-page layout with services and booking.</p></a>
-    <a class="card" href="starter-example-b.html"><h2>Paws & Suds Pet Spa</h2><p>Pet grooming salon — simple, warm design with services and contact.</p></a>
-    <a class="card" href="starter-example-c.html"><h2>Gleam Auto Detailing</h2><p>Mobile car detailing — sharp, professional single-page site.</p></a>
-  </div>
-</div>
+    <div class="container">
+        <div class="portfolio-grid">
+            <div class="portfolio-card">
+                <a href="blaze-brothers.html">
+                    <h2>Blaze Brothers</h2>
+                    <span class="view-site">View Site</span>
+                </a>
+            </div>
 
-<div class="tier-section">
-  <div class="tier-label">Standard — $1,599</div>
-  <div class="cards">
-    <a class="card" href="standard-example.html"><h2>Coastal Blooms Florist</h2><p>Boutique florist — gallery, testimonials, and multi-section layout.</p></a>
-    <a class="card" href="standard-example-b.html"><h2>Ironside Fitness Co</h2><p>Local gym — class schedule, gallery, FAQ accordion, contact form.</p></a>
-    <a class="card" href="standard-example-c.html"><h2>Golden Crust Bakery</h2><p>Artisan bakery & cafe — product showcase, gallery, and ordering.</p></a>
-  </div>
-</div>
+            <div class="portfolio-card">
+                <a href="claire-montague-counselling.html">
+                    <h2>Claire Montague Counselling</h2>
+                    <span class="view-site">View Site</span>
+                </a>
+            </div>
 
-<div class="tier-section">
-  <div class="tier-label">Premium — $2,299</div>
-  <div class="cards">
-    <a class="card" href="premium-example.html"><h2>Peak & Valley Outdoor Co</h2><p>Outdoor adventure brand — full e-commerce, animations, advanced UX.</p></a>
-    <a class="card" href="premium-example-b.html"><h2>Salt & Swell Surf School</h2><p>Surf school — lesson booking system, filtering, interactive gallery.</p></a>
-    <a class="card" href="premium-example-c.html"><h2>Cellar & Vine</h2><p>Wine bar & bottle shop — product filtering, events, premium design.</p></a>
-  </div>
-</div>
+            <div class="portfolio-card">
+                <a href="ember-and-grain.html">
+                    <h2>Ember and Grain</h2>
+                    <span class="view-site">View Site</span>
+                </a>
+            </div>
 
-<div class="footer">Built by <a href="https://tideloc.com.au">Tideloc Web Design</a> — Shellharbour, NSW</div>
+            <div class="portfolio-card">
+                <a href="green-edge-lawns.html">
+                    <h2>Green Edge Lawns</h2>
+                    <span class="view-site">View Site</span>
+                </a>
+            </div>
+
+            <div class="portfolio-card">
+                <a href="koala-kids.html">
+                    <h2>Koala Kids</h2>
+                    <span class="view-site">View Site</span>
+                </a>
+            </div>
+
+            <div class="portfolio-card">
+                <a href="matt-lawson-electrical.html">
+                    <h2>Matt Lawson Electrical</h2>
+                    <span class="view-site">View Site</span>
+                </a>
+            </div>
+
+            <div class="portfolio-card">
+                <a href="outback-pantry.html">
+                    <h2>Outback Pantry</h2>
+                    <span class="view-site">View Site</span>
+                </a>
+            </div>
+
+            <div class="portfolio-card">
+                <a href="saltbrush-candles.html">
+                    <h2>Saltbrush Candles</h2>
+                    <span class="view-site">View Site</span>
+                </a>
+            </div>
+
+            <div class="portfolio-card">
+                <a href="stillwater-architecture.html">
+                    <h2>Stillwater Architecture</h2>
+                    <span class="view-site">View Site</span>
+                </a>
+            </div>
+
+            <div class="portfolio-card">
+                <a href="the-forge.html">
+                    <h2>The Forge</h2>
+                    <span class="view-site">View Site</span>
+                </a>
+            </div>
+
+            <div class="portfolio-card">
+                <a href="tidal-coffee-co.html">
+                    <h2>Tidal Coffee Co</h2>
+                    <span class="view-site">View Site</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Built by <a href="https://tideloc.com.au">Tideloc Web Design</a></p>
+    </footer>
 </body>
 </html>

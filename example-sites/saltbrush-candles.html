@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Saltbrush Candles — Handmade Soy Candles, Hunter Valley</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Karla:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--sand:#F7F3EE;--linen:#FFFDF8;--bark:#3B2F26;--branch:#6B5B4F;--dust:#A09080;--honey:#D4A853;--honey-glow:rgba(212,168,83,.12);--border:#E8E0D5;--white:#FFFEFA;--red:#C45B4A;--green:#5B8A5E}
+html{scroll-behavior:smooth}body{font-family:'Karla',sans-serif;color:var(--branch);background:var(--linen);-webkit-font-smoothing:antialiased}a{text-decoration:none;color:inherit}h1,h2,h3,h4{font-family:'Playfair Display',serif;color:var(--bark);font-weight:400}
+.page{display:none}.page.active{display:block}
+header{padding:1.2rem 0;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:90;background:var(--linen)}.header-inner{max-width:1140px;margin:0 auto;padding:0 2rem;display:flex;align-items:center;justify-content:space-between}
+.h-logo{font-family:'Playfair Display',serif;font-size:1.35rem;color:var(--bark);cursor:pointer}.h-logo em{font-style:italic;color:var(--honey)}
+.h-nav{display:flex;align-items:center;gap:2.2rem}.h-nav a{font-size:.78rem;font-weight:500;color:var(--dust);cursor:pointer;transition:color .15s}.h-nav a:hover{color:var(--bark)}
+.h-right{display:flex;align-items:center;gap:1rem}
+.h-cart-btn{position:relative;background:none;border:none;cursor:pointer;color:var(--bark);padding:4px}.h-cart-btn:hover{color:var(--honey)}
+.cart-count{position:absolute;top:-4px;right:-6px;background:var(--honey);color:var(--bark);font-size:.55rem;font-weight:700;width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Karla'}
+.hamburger{display:none;background:none;border:none;cursor:pointer;flex-direction:column;gap:4px;padding:4px}.hamburger span{width:20px;height:1.5px;background:var(--bark);display:block}
+.btn-dark{background:var(--bark);color:var(--linen);padding:.85rem 2.2rem;border-radius:4px;font-family:'Karla';font-size:.8rem;font-weight:500;cursor:pointer;transition:all .2s;display:inline-block;border:none}.btn-dark:hover{background:var(--branch);transform:translateY(-1px)}
+.btn-outline{color:var(--branch);padding:.85rem 2.2rem;border-radius:4px;font-size:.8rem;font-weight:500;border:1.5px solid var(--border);cursor:pointer;transition:all .2s;display:inline-block}.btn-outline:hover{border-color:var(--honey);color:var(--bark)}
+.breadcrumb{font-size:.7rem;color:var(--dust);margin-bottom:1.5rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap}.breadcrumb a{cursor:pointer}.breadcrumb a:hover{color:var(--bark)}.breadcrumb em{font-style:normal;color:var(--bark)}
+.cart-overlay{position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:200;opacity:0;pointer-events:none;transition:opacity .3s}.cart-overlay.open{opacity:1;pointer-events:auto}
+.cart-drawer{position:fixed;top:0;right:-420px;width:400px;max-width:90vw;height:100vh;background:var(--linen);z-index:201;transition:right .35s ease;box-shadow:-8px 0 30px rgba(0,0,0,.08);display:flex;flex-direction:column}.cart-drawer.open{right:0}
+.cd-header{padding:1.5rem 2rem;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}.cd-header h3{font-size:1rem}.cd-close{background:none;border:none;cursor:pointer;font-size:1.2rem;color:var(--dust);padding:4px}.cd-close:hover{color:var(--bark)}
+.cd-items{flex:1;overflow-y:auto;padding:1.5rem 2rem}
+.cd-item{display:flex;gap:1rem;padding:1rem 0;border-bottom:1px solid var(--border)}.cd-item:last-child{border-bottom:none}
+.cd-thumb{width:70px;height:70px;border-radius:6px;overflow:hidden;flex-shrink:0;background:var(--sand)}.cd-thumb img{width:100%;height:100%;object-fit:cover}
+.cd-detail{flex:1}.cd-detail h4{font-size:.88rem;margin-bottom:.15rem}.cd-variant{font-size:.7rem;color:var(--dust);margin-bottom:.4rem}
+.cd-qty-row{display:flex;align-items:center;justify-content:space-between}.cd-qty{display:flex;align-items:center;border:1px solid var(--border);border-radius:4px;overflow:hidden}.cd-qty button{width:28px;height:28px;border:none;background:var(--sand);cursor:pointer;font-size:.85rem;color:var(--bark)}.cd-qty button:hover{background:var(--border)}.cd-qty span{width:30px;text-align:center;font-size:.78rem;font-weight:600;color:var(--bark)}
+.cd-item-price{font-family:'Playfair Display',serif;font-size:.9rem;color:var(--bark)}
+.cd-remove{font-size:.65rem;color:var(--dust);cursor:pointer;margin-top:.3rem;display:inline-block}.cd-remove:hover{color:var(--red)}
+.cd-footer{padding:1.5rem 2rem;border-top:1px solid var(--border);background:var(--sand)}.cd-subtotal{display:flex;justify-content:space-between;margin-bottom:.3rem}.cd-subtotal span{font-size:.82rem;color:var(--dust)}.cd-subtotal strong{font-family:'Playfair Display',serif;font-size:1.05rem;color:var(--bark)}.cd-shipping{font-size:.7rem;color:var(--dust);margin-bottom:1.2rem}
+.cd-checkout{width:100%;padding:.9rem;background:var(--bark);color:var(--linen);border:none;border-radius:4px;font-family:'Karla';font-size:.82rem;font-weight:600;cursor:pointer;margin-bottom:.5rem}.cd-checkout:hover{background:var(--branch)}
+.cd-continue{width:100%;padding:.7rem;background:transparent;border:1.5px solid var(--border);border-radius:4px;font-family:'Karla';font-size:.78rem;color:var(--dust);cursor:pointer}.cd-continue:hover{border-color:var(--bark);color:var(--bark)}
+.cd-empty{text-align:center;padding:3rem 2rem}.cd-empty p{font-size:.88rem;color:var(--dust);margin-bottom:1.5rem}
+.hero{display:grid;grid-template-columns:1fr 1fr;min-height:85vh;align-items:stretch}.hero-text{display:flex;flex-direction:column;justify-content:center;padding:4rem 4rem 4rem 2rem;max-width:600px;margin-left:auto}.hero-tag{font-size:.6rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--honey);margin-bottom:1.5rem}.hero h1{font-size:clamp(2.2rem,4vw,3.2rem);line-height:1.15;margin-bottom:1rem}.hero h1 em{font-style:italic;color:var(--honey)}.hero-body{font-size:.92rem;line-height:1.85;font-weight:300;margin-bottom:2rem;max-width:400px;color:var(--dust)}.hero-btns{display:flex;gap:1rem;flex-wrap:wrap}.hero-img{background:url('https://images.unsplash.com/photo-1673822284360-a5b49882019f?w=800&h=1000&fit=crop&q=80') center/cover;min-height:500px}
+.marquee{background:var(--bark);padding:.7rem 0;overflow:hidden;white-space:nowrap}.marquee-track{display:inline-flex;gap:3rem;animation:mq 30s linear infinite}.marquee-track span{font-family:'Playfair Display',serif;font-size:.7rem;font-style:italic;color:rgba(255,255,255,.25)}@keyframes mq{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.featured{background:var(--sand)}.feat-inner{max-width:1140px;margin:0 auto;padding:5rem 2rem}.feat-hdr{text-align:center;margin-bottom:3.5rem}.feat-hdr h2{font-size:clamp(1.5rem,3vw,2.2rem);margin-bottom:.6rem}.feat-hdr p{font-size:.88rem;color:var(--dust);font-weight:300}.feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}
+.prod-card{background:var(--linen);border-radius:8px;overflow:hidden;transition:all .3s;border:1px solid var(--border);cursor:pointer}.prod-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(59,47,38,.06);border-color:var(--honey)}
+.prod-img{aspect-ratio:1;overflow:hidden;background:var(--sand);position:relative}.prod-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s}.prod-card:hover .prod-img img{transform:scale(1.05)}
+.prod-badge{position:absolute;top:12px;left:12px;font-size:.55rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.3rem .7rem;border-radius:3px;z-index:2}.badge-best{background:var(--honey);color:var(--bark)}.badge-new{background:var(--green);color:white}
+.prod-body{padding:1.4rem}.prod-tag{font-size:.58rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--dust);margin-bottom:.4rem}.prod-body h3{font-size:1.05rem;margin-bottom:.3rem}.prod-desc{font-size:.78rem;color:var(--dust);line-height:1.6;font-weight:300;margin-bottom:1rem}
+.prod-footer{display:flex;justify-content:space-between;align-items:center;padding-top:.8rem;border-top:1px solid var(--border)}.prod-price{font-family:'Playfair Display',serif;font-size:1rem;color:var(--bark)}.prod-add{font-size:.68rem;font-weight:600;color:var(--honey)}
+.story-band{display:grid;grid-template-columns:1fr 1fr;align-items:stretch;min-height:450px}.story-photo{background:url('https://images.unsplash.com/photo-1669151432266-cd991ea149ad?w=800&h=600&fit=crop&q=80') center/cover}.story-text{display:flex;flex-direction:column;justify-content:center;padding:4rem;background:var(--bark)}.story-text h2{font-size:clamp(1.4rem,2.5vw,1.9rem);color:var(--linen);margin-bottom:1rem;line-height:1.25}.story-text p{font-size:.88rem;color:rgba(255,255,255,.45);line-height:1.85;font-weight:300;margin-bottom:1.5rem}.story-link{font-size:.8rem;color:var(--honey);font-weight:500;cursor:pointer;display:inline-flex;align-items:center;gap:.3rem}.story-link:hover{gap:.6rem}
+.vals-inner{max-width:1140px;margin:0 auto;padding:5rem 2rem}.vals-hdr{text-align:center;margin-bottom:3rem}.vals-hdr h2{font-size:clamp(1.4rem,2.5vw,2rem);margin-bottom:.4rem}.vals-hdr p{font-size:.85rem;color:var(--dust);font-weight:300}.vals-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem}.val{text-align:center;padding:1.5rem 1rem}.val-icon{margin-bottom:.8rem;display:flex;justify-content:center}.val h3{font-size:.92rem;margin-bottom:.4rem}.val p{font-size:.78rem;color:var(--dust);line-height:1.65;font-weight:300}
+.newsletter{background:var(--honey-glow);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:4rem 2rem;text-align:center}.nl-inner{max-width:480px;margin:0 auto}.nl-inner h2{font-size:clamp(1.3rem,2.5vw,1.7rem);margin-bottom:.5rem}.nl-inner p{font-size:.85rem;color:var(--dust);font-weight:300;margin-bottom:2rem}.nl-form{display:flex;gap:.5rem;max-width:400px;margin:0 auto}.nl-form input{flex:1;font-family:'Karla';font-size:.85rem;padding:.75rem 1rem;border:1.5px solid var(--border);border-radius:4px;background:var(--linen);outline:none;color:var(--bark)}.nl-form input:focus{border-color:var(--honey)}.nl-form button{background:var(--bark);color:var(--linen);padding:.75rem 1.5rem;border:none;border-radius:4px;font-family:'Karla';font-size:.78rem;font-weight:600;cursor:pointer}.nl-form button:hover{background:var(--branch)}
+.pg-hero{display:grid;grid-template-columns:1fr 1fr;min-height:50vh;align-items:stretch}.pg-hero-img{background-size:cover;background-position:center;min-height:350px}.pg-hero-text{display:flex;flex-direction:column;justify-content:center;padding:4rem}.pg-hero-text h1{font-size:clamp(1.8rem,3.5vw,2.6rem);margin-bottom:1rem;line-height:1.15}.pg-hero-text p{font-size:.92rem;line-height:1.85;font-weight:300;color:var(--dust)}
+.story-sec{max-width:760px;margin:0 auto;padding:5rem 2rem}.story-sec h2{font-size:clamp(1.3rem,2.5vw,1.7rem);margin-bottom:1.2rem;text-align:center}.story-sec p{font-size:.9rem;line-height:1.9;font-weight:300;margin-bottom:1.2rem}.story-sec strong{color:var(--bark);font-weight:500}
+.process{background:var(--sand);padding:5rem 0}.proc-inner{max-width:1140px;margin:0 auto;padding:0 2rem}.proc-inner h2{font-size:clamp(1.3rem,2.5vw,1.7rem);margin-bottom:2.5rem;text-align:center}.proc-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;counter-reset:step}.proc-step{text-align:center;padding:2rem 1rem;background:var(--linen);border-radius:8px;border:1px solid var(--border)}.proc-step::before{counter-increment:step;content:counter(step);font-family:'Playfair Display',serif;font-size:2rem;color:var(--honey);display:block;margin-bottom:.6rem}.proc-step h3{font-size:.92rem;margin-bottom:.4rem}.proc-step p{font-size:.78rem;color:var(--dust);line-height:1.65;font-weight:300}
+.shop-hdr{padding:4rem 2rem 1.5rem;text-align:center;max-width:680px;margin:0 auto}.shop-hdr h1{font-size:clamp(1.8rem,3.5vw,2.6rem);margin-bottom:.6rem}.shop-hdr p{font-size:.92rem;color:var(--dust);font-weight:300}
+.shop-bar{max-width:1140px;margin:0 auto;padding:.5rem 2rem 1.5rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}.shop-count{font-size:.75rem;color:var(--dust)}.shop-sort{display:flex;align-items:center;gap:.5rem}.shop-sort label{font-size:.72rem;color:var(--dust);font-weight:500}.shop-sort select{font-family:'Karla';font-size:.75rem;padding:.4rem 1.8rem .4rem .8rem;border:1px solid var(--border);border-radius:4px;background:var(--linen);color:var(--bark);cursor:pointer;-webkit-appearance:none;appearance:none}
+.shop-filters{max-width:1140px;margin:0 auto;padding:0 2rem 2rem;display:flex;gap:.5rem;flex-wrap:wrap}.filter-btn{font-family:'Karla';font-size:.72rem;font-weight:600;padding:.5rem 1.2rem;border-radius:99px;border:1.5px solid var(--border);background:transparent;color:var(--dust);cursor:pointer;transition:all .15s}.filter-btn:hover,.filter-btn.active{border-color:var(--honey);color:var(--bark);background:var(--honey-glow)}
+.shop-grid{max-width:1140px;margin:0 auto;padding:0 2rem 4rem;display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem}
+.ship-note{max-width:1140px;margin:0 auto;padding:0 2rem 4rem;text-align:center}.ship-box{background:var(--sand);border:1px solid var(--border);border-radius:8px;padding:1.5rem;display:inline-block;max-width:560px}.ship-box p{font-size:.82rem;line-height:1.7;font-weight:300}.ship-box strong{color:var(--bark);font-weight:500}
+.pdp{max-width:1140px;margin:0 auto;padding:2rem 2rem 4rem}.pdp-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
+.pdp-gallery{display:grid;grid-template-columns:80px 1fr;gap:1rem}.pdp-thumbs{display:flex;flex-direction:column;gap:.5rem}.pdp-thumb{width:80px;height:80px;border-radius:6px;overflow:hidden;border:2px solid var(--border);cursor:pointer;transition:border-color .15s}.pdp-thumb:hover,.pdp-thumb.active{border-color:var(--honey)}.pdp-thumb img{width:100%;height:100%;object-fit:cover}.pdp-main-img{border-radius:10px;overflow:hidden;aspect-ratio:1;background:var(--sand)}.pdp-main-img img{width:100%;height:100%;object-fit:cover}
+.pdp-info .pdp-cat{font-size:.6rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--dust);margin-bottom:.5rem}
+.pdp-info h1{font-size:clamp(1.5rem,3vw,2rem);margin-bottom:.5rem}
+.pdp-price-row{font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--bark);margin-bottom:.3rem}
+.pdp-rating{display:flex;align-items:center;gap:.4rem;margin-bottom:1.5rem}.pdp-stars{color:var(--honey);font-size:.85rem}.pdp-reviews{font-size:.72rem;color:var(--dust)}
+.pdp-short{font-size:.88rem;line-height:1.85;font-weight:300;margin-bottom:2rem;padding-bottom:2rem;border-bottom:1px solid var(--border)}
+.pdp-stock{display:inline-flex;align-items:center;gap:.35rem;font-size:.72rem;font-weight:600;margin-bottom:1rem;color:var(--green)}.pdp-stock::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--green)}
+.pdp-variants{margin-bottom:1.5rem}.pdp-variants label{display:block;font-size:.7rem;font-weight:600;color:var(--bark);margin-bottom:.5rem}
+.var-options{display:flex;gap:.5rem}.var-opt{padding:.5rem 1.2rem;border:1.5px solid var(--border);border-radius:4px;font-family:'Karla';font-size:.78rem;font-weight:500;color:var(--dust);cursor:pointer;transition:all .15s;background:transparent}.var-opt:hover{border-color:var(--honey);color:var(--bark)}.var-opt.active{border-color:var(--honey);background:var(--honey-glow);color:var(--bark);font-weight:600}
+.pdp-qty-row{display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem}
+.qty-box{display:flex;align-items:center;border:1.5px solid var(--border);border-radius:4px;overflow:hidden}.qty-box button{width:38px;height:42px;border:none;background:var(--sand);cursor:pointer;font-size:1rem;color:var(--bark);font-weight:500}.qty-box button:hover{background:var(--border)}.qty-box input{width:46px;text-align:center;font-family:'Karla';font-size:.88rem;font-weight:600;border:none;border-left:1.5px solid var(--border);border-right:1.5px solid var(--border);color:var(--bark);outline:none;background:var(--linen)}
+.pdp-atc{flex:1;padding:.9rem 2rem;background:var(--bark);color:var(--linen);border:none;border-radius:4px;font-family:'Karla';font-size:.85rem;font-weight:600;cursor:pointer;transition:all .2s}.pdp-atc:hover{background:var(--branch);transform:translateY(-1px)}
+.pdp-meta{font-size:.72rem;color:var(--dust);line-height:1.8;font-weight:300;margin-bottom:2rem;padding-bottom:1.5rem;border-bottom:1px solid var(--border)}.pdp-meta span{display:block}
+.pdp-tabs{margin-top:2rem;grid-column:1/-1}.tab-nav{display:flex;border-bottom:1px solid var(--border);margin-bottom:1.5rem}.tab-btn{font-family:'Karla';font-size:.78rem;font-weight:600;color:var(--dust);background:none;border:none;padding:.8rem 1.5rem;cursor:pointer;border-bottom:2px solid transparent;transition:all .15s}.tab-btn:hover{color:var(--bark)}.tab-btn.active{color:var(--bark);border-bottom-color:var(--honey)}
+.tab-panel{display:none;font-size:.88rem;line-height:1.85;font-weight:300}.tab-panel.active{display:block}.tab-panel h4{font-size:1rem;margin-bottom:.6rem}.tab-panel ul{list-style:none;margin:1rem 0}.tab-panel li{padding:.25rem 0;display:flex;align-items:center;gap:.5rem}.tab-panel li::before{content:'\00B7';color:var(--honey);font-weight:700;font-size:1.2rem}
+.related{max-width:1140px;margin:0 auto;padding:0 2rem 5rem}.related h2{font-size:clamp(1.3rem,2.5vw,1.7rem);margin-bottom:2rem}.related-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem}
+.contact{max-width:1140px;margin:0 auto;padding:2rem 2rem 5rem}.contact-grid{display:grid;grid-template-columns:1fr 1.3fr;gap:4rem;align-items:start}
+.c-info h2{font-size:1.2rem;margin-bottom:1rem}.c-info>p{font-size:.88rem;line-height:1.8;font-weight:300;margin-bottom:2rem}
+.c-detail{display:flex;align-items:flex-start;gap:.7rem;margin-bottom:1.3rem}.c-detail-icon{flex-shrink:0;margin-top:2px}.c-detail h3{font-size:.82rem;font-weight:600;color:var(--bark);margin-bottom:.1rem}.c-detail p,.c-detail a{font-size:.82rem;color:var(--dust);line-height:1.5;font-weight:300}.c-detail a{color:var(--honey);font-weight:500}
+.markets-list{margin-top:2rem;background:var(--sand);border:1px solid var(--border);border-radius:8px;padding:1.4rem}.markets-list h3{font-size:.88rem;color:var(--bark);margin-bottom:.8rem}.mk-row{display:flex;justify-content:space-between;font-size:.78rem;padding:.35rem 0;border-bottom:1px solid var(--border);font-weight:300}.mk-row:last-child{border-bottom:none}.mk-row strong{color:var(--bark);font-weight:500}
+.c-form{background:var(--sand);border-radius:10px;padding:2.5rem;border:1px solid var(--border)}.c-form h2{font-size:1.15rem;margin-bottom:.4rem}.c-form>p{font-size:.82rem;color:var(--dust);margin-bottom:2rem;font-weight:300}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem}.form-group{display:flex;flex-direction:column}.form-group.full{grid-column:1/-1}.form-group label{font-size:.7rem;font-weight:600;color:var(--bark);margin-bottom:.4rem}.form-group input,.form-group select,.form-group textarea{font-family:'Karla';font-size:.85rem;padding:.75rem 1rem;border:1.5px solid var(--border);border-radius:4px;background:var(--linen);color:var(--bark);outline:none;transition:border-color .2s}.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--honey)}.form-group textarea{resize:vertical;min-height:100px}.form-group select{cursor:pointer}
+.btn-sub{background:var(--bark);color:var(--linen);padding:.85rem 2rem;border-radius:4px;font-family:'Karla';font-size:.8rem;font-weight:600;border:none;cursor:pointer;width:100%;margin-top:.5rem}.btn-sub:hover{background:var(--branch)}
+.form-note{font-size:.68rem;color:var(--dust);margin-top:.8rem;text-align:center}
+.form-success{display:none;text-align:center;padding:3rem 2rem}.form-success h3{font-size:1.1rem;color:var(--bark);margin-bottom:.5rem}.form-success p{font-size:.88rem;line-height:1.7;font-weight:300}.form-success a{color:var(--honey);font-weight:500}
+.footer{background:var(--bark);padding:4rem 0 2rem}.footer-inner{max-width:1140px;margin:0 auto;padding:0 2rem;display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:3rem}.footer-brand p{font-size:.75rem;color:rgba(255,255,255,.3);line-height:1.7;font-weight:300;margin-top:.8rem}.footer-col h6{font-size:.58rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:.8rem}.footer-col ul{list-style:none}.footer-col li{margin-bottom:.35rem}.footer-col a{font-size:.78rem;color:rgba(255,255,255,.35);cursor:pointer;font-weight:300}.footer-col a:hover{color:rgba(255,255,255,.7)}.footer-copy{max-width:1140px;margin:3rem auto 0;padding:1.5rem 2rem 0;border-top:1px solid rgba(255,255,255,.06);font-size:.62rem;color:rgba(255,255,255,.15);text-align:center}
+@media(max-width:900px){.hero,.story-band,.pg-hero{grid-template-columns:1fr}.hero-text,.story-text,.pg-hero-text{padding:3rem 2rem}.hero-img,.story-photo,.pg-hero-img{min-height:350px}.feat-grid,.related-grid,.shop-grid{grid-template-columns:repeat(2,1fr)}.vals-grid,.proc-steps{grid-template-columns:1fr 1fr}.contact-grid,.pdp-grid{grid-template-columns:1fr;gap:2.5rem}.footer-inner{grid-template-columns:1fr 1fr;gap:2rem}.pdp-gallery{grid-template-columns:1fr}.pdp-thumbs{flex-direction:row}}
+@media(max-width:768px){.h-nav{display:none;position:absolute;top:100%;left:0;right:0;background:var(--linen);flex-direction:column;padding:1.5rem 2rem;border-bottom:1px solid var(--border);gap:1rem;z-index:50}.h-nav.open{display:flex}.hamburger{display:flex}.form-row{grid-template-columns:1fr}.feat-grid,.related-grid,.shop-grid{grid-template-columns:1fr}.nl-form{flex-direction:column}}
+@media(max-width:480px){.vals-grid,.proc-steps{grid-template-columns:1fr}.hero-btns{flex-direction:column;align-items:stretch}.footer-inner{grid-template-columns:1fr}.pdp-qty-row{flex-direction:column;align-items:stretch}.pdp-atc{text-align:center}}
+</style>
+</head>
+<body>
+
+<div class="cart-overlay" id="cart-overlay" onclick="toggleCart()"></div>
+<div class="cart-drawer" id="cart-drawer"><div class="cd-header"><h3>Your Cart</h3><button class="cd-close" onclick="toggleCart()">&times;</button></div><div class="cd-items" id="cart-items"></div><div class="cd-footer" id="cart-footer"><div class="cd-subtotal"><span>Subtotal</span><strong id="cart-total">$0.00</strong></div><div class="cd-shipping">Shipping calculated at checkout. Flat rate $9.95. Free over $80.</div><button class="cd-checkout">Proceed to Checkout &rarr;</button><button class="cd-continue" onclick="toggleCart()">Continue Shopping</button></div></div>
+
+<header><div class="header-inner"><span class="h-logo" onclick="nav('home')">Saltbrush <em>Candles</em></span><button class="hamburger" onclick="document.querySelector('.h-nav').classList.toggle('open')"><span></span><span></span><span></span></button><nav class="h-nav"><a onclick="nav('home')">Home</a><a onclick="nav('about')">Our Story</a><a onclick="nav('shop')">Shop</a><a onclick="nav('contact')">Contact</a></nav><div class="h-right"><button class="h-cart-btn" onclick="toggleCart()"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg><span class="cart-count" id="cart-count">0</span></button></div></div></header>
+
+<div class="page active" id="p-home">
+
+<section class="hero"><div class="hero-text"><div class="hero-tag">Hand-poured &middot; Hunter Valley</div><h1>Candles made slowly, for <em>slower days.</em></h1><p class="hero-body">Small-batch soy candles and reed diffusers, hand-poured in the Hunter Valley using Australian botanicals and clean fragrances.</p><div class="hero-btns"><a onclick="nav('shop')" class="btn-dark">Shop the Collection</a><a onclick="nav('about')" class="btn-outline">Our Story</a></div></div><div class="hero-img"></div></section>
+
+<div class="marquee"><div class="marquee-track"><span>100% Natural Soy Wax</span><span>&middot;</span><span>Hand-Poured in the Hunter Valley</span><span>&middot;</span><span>Australian Botanicals</span><span>&middot;</span><span>Reusable Vessels</span><span>&middot;</span><span>Flat Rate Shipping $9.95</span><span>&middot;</span><span>100% Natural Soy Wax</span><span>&middot;</span><span>Hand-Poured in the Hunter Valley</span><span>&middot;</span><span>Australian Botanicals</span><span>&middot;</span><span>Reusable Vessels</span><span>&middot;</span><span>Flat Rate Shipping $9.95</span></div></div>
+
+<section class="featured"><div class="feat-inner"><div class="feat-hdr"><h2>Best sellers.</h2><p>The ones people come back for.</p></div><div class="feat-grid" id="feat-products"></div></div></section>
+
+<section class="story-band"><div class="story-photo"></div><div class="story-text"><h2>Hand-poured in small batches in the Hunter Valley.</h2><p>Every Saltbrush candle starts with 100% natural soy wax, clean fragrances, and cotton wicks &mdash; poured by hand in our studio just outside Cessnock.</p><a onclick="nav('about')" class="story-link">Read our story &rarr;</a></div></section>
+
+<div class="vals-inner"><div class="vals-hdr"><h2>What goes in. And what doesn&rsquo;t.</h2><p>Clean ingredients, no compromise.</p></div><div class="vals-grid"><div class="val"><div class="val-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--honey)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 019.8 6.9C15.5 4.9 20 2 20 2s-1.7 5.1-4 9.8A7 7 0 0111 20z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg></div><h3>100% Soy Wax</h3><p>Clean-burning, vegan, biodegradable.</p></div><div class="val"><div class="val-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--honey)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><h3>Clean Fragrance</h3><p>Phthalate-free fragrance oils.</p></div><div class="val"><div class="val-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--honey)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.42 4.58a5.4 5.4 0 00-7.65 0l-.77.78-.77-.78a5.4 5.4 0 00-7.65 0C1.46 6.7 1.33 10.28 4 13l8 8 8-8c2.67-2.72 2.54-6.3.42-8.42z"/></svg></div><h3>Hand-Poured</h3><p>Small batches, never mass-produced.</p></div><div class="val"><div class="val-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--honey)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg></div><h3>Reusable Vessels</h3><p>Clean and repurpose when done.</p></div></div></div>
+
+<section class="newsletter"><div class="nl-inner"><h2>Stay in the loop.</h2><p>New scents, market dates, and early access to limited releases.</p><div class="nl-form"><input type="email" placeholder="Your email address"/><button type="button">Subscribe</button></div></div></section>
+
+</div>
+
+<div class="page" id="p-about">
+
+<section class="pg-hero"><div class="pg-hero-img" style="background-image:url('https://images.unsplash.com/photo-1669151432266-cd991ea149ad?w=900&h=600&fit=crop&q=80')"></div><div class="pg-hero-text"><h1>The Saltbrush story.</h1><p>What started as a weekend project became a proper candle business &mdash; born in the Hunter Valley and still made here by hand.</p></div></section>
+
+<section class="story-sec"><h2>It started with one candle and a market stall.</h2><p>Saltbrush Candles began in 2020 when everyone was spending more time at home. We started experimenting &mdash; pouring candles at the kitchen table with soy wax, cotton wicks, and essential oils.</p><p>We booked a stall at the local farmers market and sold out before lunchtime. That was the moment we knew this could be something real.</p><p>Today, Saltbrush is still made in our studio just outside Cessnock. <strong>Every candle is hand-poured in small batches.</strong> We sell at markets across the Hunter Valley and ship Australia-wide.</p></section>
+
+<section class="process"><div class="proc-inner"><h2>How we make them.</h2><div class="proc-steps"><div class="proc-step"><h3>Source</h3><p>100% natural soy wax, phthalate-free fragrance, Australian botanicals.</p></div><div class="proc-step"><h3>Blend</h3><p>Each scent developed in-house until it smells right.</p></div><div class="proc-step"><h3>Pour</h3><p>Hand-poured in small batches. Never mass-produced.</p></div><div class="proc-step"><h3>Cure</h3><p>Minimum cure period for a clean, even burn.</p></div></div></div></section>
+
+<section class="newsletter"><div class="nl-inner"><h2>Find us at the markets.</h2><p>Follow us on Instagram for this week&rsquo;s schedule.</p><a onclick="nav('contact')" class="btn-dark">Get in Touch</a></div></section>
+
+</div>
+
+<div class="page" id="p-shop">
+
+<section class="shop-hdr"><h1>Shop.</h1><p>Hand-poured soy candles and reed diffusers. Flat rate shipping $9.95 Australia-wide.</p></section>
+
+<div class="shop-filters"><button class="filter-btn active" onclick="filterShop('all',this)">All</button><button class="filter-btn" onclick="filterShop('candle',this)">Candles</button><button class="filter-btn" onclick="filterShop('diffuser',this)">Diffusers</button><button class="filter-btn" onclick="filterShop('gift',this)">Gift Sets</button></div>
+
+<div class="shop-bar"><span class="shop-count" id="shop-count">Showing 8 products</span><div class="shop-sort"><label>Sort by:</label><select><option>Featured</option><option>Price: Low to High</option><option>Price: High to Low</option><option>Newest</option><option>Best Selling</option></select></div></div>
+
+<div class="shop-grid" id="shop-products"></div>
+
+<div class="ship-note"><div class="ship-box"><p><strong>Shipping:</strong> Flat rate $9.95 Australia-wide. Orders shipped within 3&ndash;5 business days. <strong>Free shipping</strong> on orders over $80. <strong>Free pickup</strong> at Hunter Valley markets.</p></div></div>
+
+</div>
+
+<div class="page" id="p-product">
+
+<section class="pdp"><div class="breadcrumb"><a onclick="nav('home')">Home</a><span>/</span><a onclick="nav('shop')">Shop</a><span>/</span><em id="pdp-crumb">Bushwalk</em></div>
+
+<div class="pdp-grid">
+
+<div class="pdp-gallery"><div class="pdp-thumbs" id="pdp-thumbs"></div><div class="pdp-main-img"><img id="pdp-main-photo" src="" alt=""/></div></div>
+
+<div class="pdp-info"><div class="pdp-cat" id="pdp-cat">CANDLE</div><h1 id="pdp-title">Bushwalk</h1><div class="pdp-price-row" id="pdp-price">$42.00</div><div class="pdp-rating"><span class="pdp-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="pdp-reviews" id="pdp-reviews">(12 reviews)</span></div><div class="pdp-stock" id="pdp-stock">In Stock</div><p class="pdp-short" id="pdp-desc"></p>
+
+<div class="pdp-variants"><label>Size</label><div class="var-options" id="pdp-sizes"></div></div>
+
+<div class="pdp-qty-row"><div class="qty-box"><button onclick="changeQty(-1)">&minus;</button><input type="text" id="pdp-qty" value="1" readonly/><button onclick="changeQty(1)">+</button></div><button class="pdp-atc" onclick="addToCart()">Add to Cart &mdash; <span id="pdp-atc-price">$42.00</span></button></div>
+
+<div class="pdp-meta" id="pdp-meta"><span>SKU: SB-BUSH-300</span><span>Category: Candles</span></div>
+
+</div></div>
+
+<div class="pdp-tabs"><div class="tab-nav"><button class="tab-btn active" onclick="showTab(0,this)">Description</button><button class="tab-btn" onclick="showTab(1,this)">Details</button><button class="tab-btn" onclick="showTab(2,this)">Shipping</button></div>
+
+<div class="tab-panel active" id="tab-0"></div>
+<div class="tab-panel" id="tab-1"></div>
+<div class="tab-panel" id="tab-2"><h4>Shipping &amp; Returns</h4><p>Flat rate $9.95 Australia-wide. Free shipping on orders over $80. Free pickup at Hunter Valley markets.</p><p style="margin-top:.8rem">Orders are poured fresh and shipped within 3&ndash;5 business days. Carefully packed to prevent damage.</p><p style="margin-top:.8rem">If your order arrives damaged, email hello@saltbrushcandles.com.au with photos and we will replace it.</p></div></div>
+
+</section>
+
+<section class="related"><h2>You may also like.</h2><div class="related-grid" id="related-products"></div></section>
+
+</div>
+
+<div class="page" id="p-contact">
+
+<section class="shop-hdr"><h1>Get in touch.</h1><p>Wholesale enquiry, market question, or just want to say hello.</p></section>
+
+<section class="contact"><div class="contact-grid"><div class="c-info"><h2>Say hello.</h2><p>Email is the best way to reach us.</p><div class="c-detail"><span class="c-detail-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--honey)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></span><div><h3>Email</h3><p><a href="mailto:hello@saltbrushcandles.com.au">hello@saltbrushcandles.com.au</a></p></div></div><div class="c-detail"><span class="c-detail-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--honey)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></span><div><h3>Based</h3><p>Cessnock, Hunter Valley NSW</p></div></div><div class="c-detail"><span class="c-detail-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--honey)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/><circle cx="12" cy="13" r="4"/></svg></span><div><h3>Instagram</h3><p><a href="#">@saltbrushcandles</a></p></div></div><div class="markets-list"><h3>Find us at markets</h3><div class="mk-row"><span>Cessnock Farmers Market</span><strong>Saturdays</strong></div><div class="mk-row"><span>Hunter Valley Gardens Market</span><strong>1st Sunday</strong></div><div class="mk-row"><span>Maitland Produce Market</span><strong>Fortnightly</strong></div><div class="mk-row"><span>Newcastle City Market</span><strong>Monthly</strong></div></div></div>
+
+<div class="c-form" id="sb-fw"><form id="sb-form" onsubmit="sbSubmit(event)"><h2>Send us a message.</h2><p>Got a question or wholesale enquiry?</p><div class="form-row"><div class="form-group"><label>Your Name *</label><input type="text" required placeholder="e.g. Sarah Thompson"/></div><div class="form-group"><label>Email *</label><input type="email" required placeholder="e.g. sarah@email.com"/></div></div><div class="form-group full" style="margin-bottom:1rem"><label>Enquiry Type</label><select><option value="">Select...</option><option>General question</option><option>Wholesale enquiry</option><option>Stockist enquiry</option><option>Custom / corporate gifts</option><option>Market dates</option></select></div><div class="form-group full" style="margin-bottom:1rem"><label>Your Message *</label><textarea required placeholder="Tell us what is on your mind..."></textarea></div><button type="submit" class="btn-sub">Send Message</button><p class="form-note">We will get back to you within a couple of business days.</p></form><div class="form-success" id="sb-success"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--honey)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:1rem"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><h3>Message sent!</h3><p>Thanks! Follow us <a href="#">@saltbrushcandles</a> for updates.</p></div></div></section>
+
+</div>
+
+<footer class="footer"><div class="footer-inner"><div class="footer-brand"><span class="h-logo" onclick="nav('home')" style="color:var(--linen);font-size:1.2rem;cursor:pointer">Saltbrush <em>Candles</em></span><p>Hand-poured soy candles and reed diffusers. Hunter Valley, shipped Australia-wide.</p></div><div class="footer-col"><h6>Shop</h6><ul><li><a onclick="nav('shop')">All Products</a></li><li><a onclick="nav('shop')">Candles</a></li><li><a onclick="nav('shop')">Diffusers</a></li><li><a onclick="nav('shop')">Gift Sets</a></li></ul></div><div class="footer-col"><h6>About</h6><ul><li><a onclick="nav('about')">Our Story</a></li><li><a onclick="nav('contact')">Contact</a></li><li><a href="#">Instagram</a></li></ul></div><div class="footer-col"><h6>Info</h6><ul><li><a>Shipping &amp; Returns</a></li><li><a>Wholesale</a></li><li><a>Privacy Policy</a></li></ul></div></div><div class="footer-copy">&copy; 2026 Saltbrush Candles. Cessnock, Hunter Valley NSW.</div></footer>
+
+<script>
+var products=[
+{id:1,name:"Bushwalk",cat:"candle",tag:"Candle",badge:"best",price:42,sizes:[{s:"100g",p:24},{s:"300g",p:42}],desc:"Eucalyptus, lemon myrtle & native mint. Like stepping into the bush after rain.",long:"Bushwalk is our signature scent — a grounding blend of eucalyptus, lemon myrtle and native mint.",img:"https://images.unsplash.com/photo-1712148272589-b1e99437a7a0",burn:"50 hours (300g) / 20 hours (100g)",sku:"SB-BUSH",reviews:12},
+{id:2,name:"Golden Hour",cat:"candle",tag:"Candle",badge:"best",price:42,sizes:[{s:"100g",p:24},{s:"300g",p:42}],desc:"Amber, sandalwood & vanilla. The one everyone asks about.",long:"Warm amber meets creamy sandalwood and a touch of vanilla. The scent that started it all.",img:"https://images.unsplash.com/photo-1603006905003-be475563bc59",burn:"50 hours (300g) / 20 hours (100g)",sku:"SB-GOLD",reviews:28},
+{id:3,name:"Vineyard Breeze",cat:"diffuser",tag:"Diffuser",badge:null,price:38,sizes:[{s:"100ml",p:28},{s:"200ml",p:38}],desc:"Fig leaf, grape & cedarwood. Inspired by Hunter Valley vineyards.",long:"A sophisticated blend of fig leaf, ripe grape and warm cedarwood.",img:"https://images.unsplash.com/photo-1572726729207-a78d6feb18d7",burn:"8–10 weeks (200ml)",sku:"SB-VINE",reviews:9},
+{id:4,name:"Coast",cat:"candle",tag:"Candle",badge:"new",price:42,sizes:[{s:"100g",p:24},{s:"300g",p:42}],desc:"Sea salt, driftwood & coconut.",long:"Fresh and clean — morning walk along the coastline captured in wax.",img:"https://images.unsplash.com/photo-1757688525739-8d1e13daf44f",burn:"50 hours (300g)",sku:"SB-COAST",reviews:6},
+{id:5,name:"Sunday Morning",cat:"candle",tag:"Candle",badge:null,price:42,sizes:[{s:"100g",p:24},{s:"300g",p:42}],desc:"Coffee, cinnamon & oat milk.",long:"That lazy Sunday feeling. Rich coffee, warm cinnamon and creamy oat milk.",img:"https://images.unsplash.com/photo-1638964052152-df22e7d6b53d",burn:"50 hours (300g)",sku:"SB-SUN",reviews:15},
+{id:6,name:"Orchard",cat:"candle",tag:"Candle",badge:null,price:42,sizes:[{s:"100g",p:24},{s:"300g",p:42}],desc:"Green apple, white tea & elderflower.",long:"Light and uplifting. A bright, fresh scent for bathrooms and bedrooms.",img:"https://images.unsplash.com/photo-1760290468671-a785bd9157ef",burn:"50 hours (300g)",sku:"SB-ORCH",reviews:8},
+{id:7,name:"Fireside",cat:"diffuser",tag:"Diffuser",badge:null,price:38,sizes:[{s:"100ml",p:28},{s:"200ml",p:38}],desc:"Cedarwood, tobacco leaf & black pepper.",long:"Moody and warm. Perfect for studies and evenings.",img:"https://images.unsplash.com/photo-1767824122829-c8e91ed1694e",burn:"8–10 weeks (200ml)",sku:"SB-FIRE",reviews:11},
+{id:8,name:"The Trio",cat:"gift",tag:"Gift Set",badge:"best",price:58,sizes:[{s:"3 × 100g",p:58}],desc:"Three travel candles in a linen gift box.",long:"Our three most-loved scents — Bushwalk, Golden Hour and Coast — in 100g travel sizes.",img:"https://images.unsplash.com/photo-1572726729207-a78d6feb18d7",burn:"15 hours each",sku:"SB-TRIO",reviews:19}
+];
+
+var cart=[];var currentProduct=null;var currentSizeIdx=1;var currentQty=1;var currentPrice=42;
+
+function nav(id){document.querySelectorAll(".page").forEach(function(p){p.classList.remove("active")});document.getElementById("p-"+id).classList.add("active");var mn=document.querySelector(".h-nav");if(mn)mn.classList.remove("open");window.scrollTo({top:0,behavior:"smooth"})}
+
+function renderCard(p){
+var badge=p.badge?'<span class="prod-badge '+(p.badge==="best"?"badge-best":"badge-new")+'">'+(p.badge==="best"?"Best Seller":"New")+"</span>":"";
+return '<div class="prod-card" data-cat="'+p.cat+'" onclick="openProduct('+p.id+')"><div class="prod-img">'+badge+'<img src="'+p.img+'?w=400&h=400&fit=crop&q=80" alt="'+p.name+'" loading="lazy"/></div><div class="prod-body"><div class="prod-tag">'+p.tag+" · "+p.sizes[p.sizes.length-1].s+'</div><h3>'+p.name+'</h3><p class="prod-desc">'+p.desc+'</p><div class="prod-footer"><span class="prod-price">$'+p.price.toFixed(2)+'</span><span class="prod-add">View →</span></div></div></div>';
+}
+
+function renderShop(filter){
+var f=filter==="all"?products:products.filter(function(p){return p.cat===filter});
+document.getElementById("shop-products").innerHTML=f.map(renderCard).join("");
+document.getElementById("shop-count").textContent="Showing "+f.length+" product"+(f.length!==1?"s":"");
+}
+
+function filterShop(c,btn){document.querySelectorAll(".filter-btn").forEach(function(b){b.classList.remove("active")});btn.classList.add("active");renderShop(c)}
+
+document.getElementById("feat-products").innerHTML=products.filter(function(p){return p.badge==="best"}).map(renderCard).join("");
+renderShop("all");
+
+function openProduct(id){
+var p=products.find(function(x){return x.id===id});if(!p)return;
+currentProduct=p;currentSizeIdx=p.sizes.length-1;currentQty=1;currentPrice=p.sizes[currentSizeIdx].p;
+document.getElementById("pdp-crumb").textContent=p.name;
+document.getElementById("pdp-cat").textContent=(p.tag+" · "+p.sizes[currentSizeIdx].s).toUpperCase();
+document.getElementById("pdp-title").textContent=p.name;
+document.getElementById("pdp-price").textContent="$"+currentPrice.toFixed(2);
+document.getElementById("pdp-reviews").textContent="("+p.reviews+" reviews)";
+document.getElementById("pdp-desc").textContent=p.desc;
+document.getElementById("pdp-main-photo").src=p.img+"?w=700&h=700&fit=crop&q=80";
+document.getElementById("pdp-qty").value=1;
+document.getElementById("pdp-atc-price").textContent="$"+currentPrice.toFixed(2);
+document.getElementById("pdp-sizes").innerHTML=p.sizes.map(function(s,i){return '<button class="var-opt'+(i===currentSizeIdx?" active":"")+'" onclick="selectSize(this,'+i+","+s.p+')">'+s.s+" — $"+s.p+"</button>"}).join("");
+document.getElementById("pdp-thumbs").innerHTML='<div class="pdp-thumb active"><img src="'+p.img+'?w=160&h=160&fit=crop&q=80"/></div><div class="pdp-thumb"><img src="'+p.img+'?w=160&h=160&fit=crop&q=80&bri=10"/></div>';
+document.getElementById("pdp-meta").innerHTML="<span>SKU: "+p.sku+"-"+p.sizes[currentSizeIdx].s.toUpperCase().replace(/\s/g,"")+"</span><span>Category: "+p.tag+"</span><span>Tags: Hand-poured, Soy, Australian</span>";
+document.getElementById("tab-0").innerHTML="<p>"+p.long+'</p><p style="margin-top:1rem">Hand-poured in our Hunter Valley studio using 100% natural soy wax and a cotton wick. Cured before shipping for the best burn.</p>';
+document.getElementById("tab-1").innerHTML='<h4>Product Details</h4><ul><li>100% natural soy wax</li><li>Phthalate-free fragrance</li><li>Cotton wick (lead-free)</li><li>Burn time: approx. '+p.burn+"</li><li>Hand-poured in Cessnock, NSW</li><li>Reusable vessel</li></ul>";
+document.getElementById("related-products").innerHTML=products.filter(function(x){return x.id!==id}).slice(0,4).map(renderCard).join("");
+nav("product");
+}
+
+function selectSize(btn,idx,price){document.querySelectorAll(".var-opt").forEach(function(b){b.classList.remove("active")});btn.classList.add("active");currentSizeIdx=idx;currentPrice=price;currentQty=parseInt(document.getElementById("pdp-qty").value);document.getElementById("pdp-price").textContent="$"+price.toFixed(2);document.getElementById("pdp-atc-price").textContent="$"+(price*currentQty).toFixed(2)}
+
+function changeQty(d){currentQty=Math.max(1,currentQty+d);document.getElementById("pdp-qty").value=currentQty;document.getElementById("pdp-atc-price").textContent="$"+(currentPrice*currentQty).toFixed(2)}
+
+function addToCart(){if(!currentProduct)return;var sl=document.querySelector(".var-opt.active");var sz=sl?sl.textContent.split("—")[0].trim():"";var ex=cart.find(function(c){return c.id===currentProduct.id&&c.size===sz});if(ex){ex.qty+=currentQty}else{cart.push({id:currentProduct.id,name:currentProduct.name,size:sz,price:currentPrice,qty:currentQty,img:currentProduct.img})}renderCart();toggleCart()}
+
+function toggleCart(){document.getElementById("cart-overlay").classList.toggle("open");document.getElementById("cart-drawer").classList.toggle("open")}
+
+function renderCart(){
+var el=document.getElementById("cart-items");var ft=document.getElementById("cart-footer");
+if(cart.length===0){el.innerHTML='<div class="cd-empty"><p>Your cart is empty.</p><button class="btn-dark" onclick="toggleCart();nav(\'shop\')">Browse Products</button></div>';ft.style.display="none";document.getElementById("cart-count").textContent="0";return}
+ft.style.display="block";var total=0;var count=0;
+el.innerHTML=cart.map(function(c,i){total+=c.price*c.qty;count+=c.qty;return '<div class="cd-item"><div class="cd-thumb"><img src="'+c.img+'?w=140&h=140&fit=crop&q=80"/></div><div class="cd-detail"><h4>'+c.name+'</h4><div class="cd-variant">'+c.size+'</div><div class="cd-qty-row"><div class="cd-qty"><button onclick="cartQty('+i+',-1)">−</button><span>'+c.qty+'</span><button onclick="cartQty('+i+',1)">+</button></div><span class="cd-item-price">$'+(c.price*c.qty).toFixed(2)+'</span></div><span class="cd-remove" onclick="removeCart('+i+')">Remove</span></div></div>'}).join("");
+document.getElementById("cart-total").textContent="$"+total.toFixed(2);
+document.getElementById("cart-count").textContent=count;
+}
+
+function cartQty(i,d){cart[i].qty=Math.max(1,cart[i].qty+d);renderCart()}
+
+function removeCart(i){cart.splice(i,1);renderCart()}
+
+function showTab(n,btn){document.querySelectorAll(".tab-btn").forEach(function(b){b.classList.remove("active")});document.querySelectorAll(".tab-panel").forEach(function(p){p.classList.remove("active")});btn.classList.add("active");document.getElementById("tab-"+n).classList.add("active")}
+
+function sbSubmit(e){e.preventDefault();document.getElementById("sb-form").style.display="none";document.getElementById("sb-success").style.display="block"}
+
+renderCart();
+</script>
+
+</body>
+</html>

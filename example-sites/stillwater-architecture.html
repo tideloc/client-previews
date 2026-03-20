@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Stillwater Architecture + Interiors | Noosa, QLD</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Outfit:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+--ink:#111;--dark:#1a1a1a;--mid:#444;--muted:#888;--light:#bbb;--pale:#e8e6e2;--off:#f4f3f0;--white:#fafaf9;--bone:#f7f6f3;
+--brass:#B8935A;--brass-d:#9A7A48;--brass-l:rgba(184,147,90,.08);
+--serif:'Cormorant Garamond',serif;--sans:'Outfit',sans-serif
+}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{font-family:var(--sans);color:var(--ink);background:var(--white);overflow-x:hidden;line-height:1.7;-webkit-font-smoothing:antialiased}
+/* MINIMAL TOP BAR */
+.topbar{position:fixed;top:0;left:0;right:0;z-index:50;padding:28px 40px;display:flex;align-items:center;justify-content:space-between;transition:all .4s;pointer-events:none}
+.topbar>*{pointer-events:auto}
+.topbar.scrolled{padding:18px 40px;background:rgba(250,250,249,.92);backdrop-filter:blur(12px)}
+.brand{font-family:var(--serif);font-size:1.15rem;font-weight:400;letter-spacing:.15em;text-transform:uppercase;color:var(--ink);cursor:pointer;transition:color .3s}
+.brand:hover{color:var(--brass)}
+.menu-trigger{font-family:var(--sans);font-size:.7rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);cursor:pointer;background:none;border:none;transition:color .3s;padding:8px 0;position:relative}
+.menu-trigger::after{content:'';position:absolute;bottom:6px;left:0;width:0;height:1px;background:var(--brass);transition:width .3s}
+.menu-trigger:hover{color:var(--ink)}.menu-trigger:hover::after{width:100%}
+/* FULL-SCREEN MENU */
+.menu-overlay{position:fixed;inset:0;background:var(--ink);z-index:200;display:flex;opacity:0;pointer-events:none;transition:opacity .5s ease}
+.menu-overlay.open{opacity:1;pointer-events:auto}
+.menu-left{flex:1;display:flex;flex-direction:column;justify-content:center;padding:0 8%}
+.menu-right{width:35%;background:var(--dark);display:flex;flex-direction:column;justify-content:flex-end;padding:40px}
+.menu-close{position:absolute;top:28px;right:40px;background:none;border:none;cursor:pointer;font-family:var(--sans);font-size:.7rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);transition:color .3s}.menu-close:hover{color:var(--white)}
+.menu-link{display:block;font-family:var(--serif);font-size:clamp(2.5rem,6vw,5rem);font-weight:300;color:var(--muted);text-decoration:none;cursor:pointer;line-height:1.15;padding:8px 0;transition:color .3s,padding-left .3s;border-bottom:1px solid rgba(255,255,255,.04)}
+.menu-link:hover{color:var(--white);padding-left:16px}
+.menu-link span{font-family:var(--sans);font-size:.65rem;font-weight:400;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.15);margin-left:12px;vertical-align:middle}
+.menu-contact-block{color:var(--muted);font-size:.78rem;line-height:2}
+.menu-contact-block strong{color:var(--light);font-family:var(--sans);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;display:block;margin-bottom:4px;margin-top:16px}
+.menu-contact-block a{color:var(--brass);text-decoration:none}
+.page{display:none}.page.active{display:block}
+/* HOME — hero */
+.home-hero{height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:0 40px 60px;position:relative;overflow:hidden}
+.home-hero-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1600&q=80') center/cover;filter:brightness(.4);transition:transform 8s ease}
+.home-hero:hover .home-hero-bg{transform:scale(1.03)}
+.home-hero-content{position:relative;z-index:1;max-width:800px}
+.home-hero-eyebrow{font-family:var(--sans);font-size:.65rem;font-weight:500;letter-spacing:.4em;text-transform:uppercase;color:var(--brass);margin-bottom:16px}
+.home-hero h1{font-family:var(--serif);font-size:clamp(2.8rem,7vw,5.5rem);font-weight:300;color:var(--white);line-height:1.05;margin-bottom:16px}
+.home-hero h1 em{font-style:italic;font-weight:400;color:var(--brass)}
+.home-hero-sub{font-size:.9rem;color:rgba(255,255,255,.5);max-width:440px;margin-bottom:32px;font-weight:300}
+.home-btns{display:flex;gap:16px}
+.btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--sans);font-weight:500;font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;padding:14px 32px;cursor:pointer;transition:all .3s;text-decoration:none;border:none}
+.btn-brass{background:var(--brass);color:var(--white)}.btn-brass:hover{background:var(--brass-d);transform:translateY(-1px)}
+.btn-white{background:transparent;border:1px solid rgba(255,255,255,.25);color:var(--white)}.btn-white:hover{border-color:var(--brass);color:var(--brass)}
+.btn-dark{background:var(--ink);color:var(--white)}.btn-dark:hover{background:var(--dark)}
+.btn-outline{background:transparent;border:1px solid var(--pale);color:var(--ink)}.btn-outline:hover{border-color:var(--brass);color:var(--brass)}
+/* AWARDS TICKER */
+.ticker-wrap{overflow:hidden;border-top:1px solid rgba(255,255,255,.08);border-bottom:1px solid rgba(255,255,255,.08);background:rgba(0,0,0,.3);backdrop-filter:blur(6px);position:relative;z-index:1}
+.ticker{display:flex;animation:scroll 30s linear infinite;white-space:nowrap;padding:14px 0}
+.ticker-item{font-family:var(--sans);font-size:.6rem;font-weight:400;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.3);padding:0 40px;flex-shrink:0}
+.ticker-item strong{color:var(--brass);font-weight:500}
+@keyframes scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+/* HORIZONTAL PROJECT GALLERY */
+.projects-intro{padding:100px 40px 40px;max-width:600px}
+.projects-intro h2{font-family:var(--serif);font-size:2.2rem;font-weight:300;color:var(--ink);margin-bottom:8px}.projects-intro h2 em{font-style:italic;color:var(--brass)}
+.projects-intro p{font-size:.88rem;color:var(--muted);font-weight:300}
+.hscroll-wrap{position:relative;padding:0 40px 80px}
+.hscroll{display:flex;gap:24px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:16px;scrollbar-width:thin;scrollbar-color:var(--pale) transparent}
+.hscroll::-webkit-scrollbar{height:3px}.hscroll::-webkit-scrollbar-thumb{background:var(--pale);border-radius:2px}
+.proj-card{min-width:380px;max-width:380px;flex-shrink:0;scroll-snap-align:start;cursor:pointer;position:relative;overflow:hidden;group:true}
+.proj-card img{width:100%;height:480px;object-fit:cover;display:block;transition:transform .6s ease,filter .4s}
+.proj-card:hover img{transform:scale(1.04);filter:brightness(.7)}
+.proj-card-overlay{position:absolute;bottom:0;left:0;right:0;padding:28px;background:linear-gradient(transparent,rgba(0,0,0,.7));opacity:0;transition:opacity .4s;display:flex;flex-direction:column;justify-content:flex-end}
+.proj-card:hover .proj-card-overlay{opacity:1}
+.proj-card-cat{font-family:var(--sans);font-size:.58rem;font-weight:500;letter-spacing:.25em;text-transform:uppercase;color:var(--brass)}
+.proj-card-name{font-family:var(--serif);font-size:1.5rem;font-weight:400;color:var(--white);margin-top:4px}
+.proj-card-loc{font-size:.72rem;color:rgba(255,255,255,.5);font-weight:300}
+.proj-card-static{padding:16px 0}
+.proj-card-static-name{font-family:var(--serif);font-size:1.1rem;font-weight:500;color:var(--ink)}
+.proj-card-static-cat{font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);font-weight:500}
+/* PROJECT DETAIL */
+.proj-detail-shade{display:none;position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:200;backdrop-filter:blur(4px)}.proj-detail-shade.open{display:block}
+.proj-detail{position:fixed;inset:0;z-index:210;background:var(--white);transform:translateY(100%);transition:transform .5s ease;overflow-y:auto}.proj-detail.open{transform:translateY(0)}
+.pd-close{position:fixed;top:28px;right:40px;z-index:220;background:var(--ink);color:var(--white);border:none;width:44px;height:44px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1rem;transition:background .3s}.pd-close:hover{background:var(--brass)}
+.pd-hero{width:100%;height:70vh;object-fit:cover;display:block}
+.pd-body{max-width:900px;margin:0 auto;padding:60px 40px 80px;display:grid;grid-template-columns:1fr 1fr;gap:60px}
+.pd-meta h2{font-family:var(--serif);font-size:2rem;font-weight:300;color:var(--ink);margin-bottom:6px}.pd-meta h2 em{font-style:italic;color:var(--brass)}
+.pd-cat{font-size:.6rem;letter-spacing:.25em;text-transform:uppercase;color:var(--brass);font-weight:500;margin-bottom:20px}
+.pd-specs{border-top:1px solid var(--pale);padding-top:20px}
+.pd-spec{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--pale)}
+.pd-spec-label{font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);font-weight:500}
+.pd-spec-val{font-family:var(--serif);font-size:.92rem;color:var(--ink);font-weight:500;text-align:right}
+.pd-text p{font-size:.92rem;color:var(--mid);line-height:1.85;margin-bottom:16px;font-weight:300}
+.pd-text p:first-child::first-letter{font-family:var(--serif);font-size:3rem;float:left;line-height:.8;padding-right:8px;color:var(--brass);font-weight:600}
+/* SERVICES */
+.services-sec{padding:80px 40px;max-width:1100px;margin:0 auto}
+.services-sec h2{font-family:var(--serif);font-size:2.2rem;font-weight:300;color:var(--ink);margin-bottom:8px;text-align:center}.services-sec h2 em{font-style:italic;color:var(--brass)}
+.services-sec>p{text-align:center;font-size:.88rem;color:var(--muted);font-weight:300;margin-bottom:48px;max-width:480px;margin-left:auto;margin-right:auto}
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--pale)}
+.svc-card{background:var(--white);padding:40px 32px;transition:background .3s}
+.svc-card:hover{background:var(--bone)}
+.svc-num{font-family:var(--serif);font-size:2.5rem;font-weight:300;color:var(--pale);line-height:1;margin-bottom:16px}
+.svc-name{font-family:var(--serif);font-size:1.2rem;font-weight:500;color:var(--ink);margin-bottom:8px}
+.svc-desc{font-size:.78rem;color:var(--muted);line-height:1.7;font-weight:300}
+/* ABOUT */
+.about-hero{display:grid;grid-template-columns:1fr 1fr;min-height:70vh}
+.about-hero-img{width:100%;height:100%;object-fit:cover;display:block;min-height:500px}
+.about-hero-text{padding:80px 60px;display:flex;flex-direction:column;justify-content:center;background:var(--bone)}
+.about-hero-text h2{font-family:var(--serif);font-size:2.4rem;font-weight:300;color:var(--ink);margin-bottom:20px;line-height:1.15}.about-hero-text h2 em{font-style:italic;color:var(--brass)}
+.about-hero-text p{font-size:.92rem;color:var(--mid);line-height:1.85;margin-bottom:16px;font-weight:300}
+.about-values{padding:80px 40px;max-width:1000px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:40px}
+.av{text-align:center}
+.av-num{font-family:var(--serif);font-size:3rem;font-weight:300;color:var(--brass);line-height:1}
+.av-label{font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);font-weight:500;margin-top:4px}
+.about-team{padding:0 40px 80px;max-width:900px;margin:0 auto}
+.about-team h3{font-family:var(--serif);font-size:1.6rem;font-weight:400;color:var(--ink);margin-bottom:20px;text-align:center}.about-team h3 em{color:var(--brass);font-style:italic}
+.team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--pale)}
+.team-card{background:var(--white);padding:32px;text-align:center}
+.team-card-init{width:64px;height:64px;border-radius:50%;background:var(--bone);display:flex;align-items:center;justify-content:center;margin:0 auto 12px;font-family:var(--serif);font-size:1.2rem;font-weight:500;color:var(--brass)}
+.team-card-name{font-family:var(--serif);font-size:1rem;font-weight:500;color:var(--ink)}
+.team-card-role{font-size:.68rem;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;font-weight:500}
+/* CONTACT — multi-step enquiry */
+.contact-sec{min-height:100vh;display:grid;grid-template-columns:1fr 1fr}
+.contact-left{background:var(--ink);color:var(--white);padding:80px 60px;display:flex;flex-direction:column;justify-content:center}
+.contact-left h2{font-family:var(--serif);font-size:2.4rem;font-weight:300;margin-bottom:20px;line-height:1.15}.contact-left h2 em{font-style:italic;color:var(--brass)}
+.contact-left p{font-size:.88rem;color:var(--muted);line-height:1.8;margin-bottom:24px;font-weight:300}
+.contact-detail{font-size:.82rem;color:var(--light);margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.contact-detail strong{color:var(--brass);font-family:var(--sans);font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;min-width:70px}
+.contact-right{background:var(--bone);padding:80px 60px;display:flex;flex-direction:column;justify-content:center}
+.step{display:none}.step.active{display:block}
+.step-indicator{display:flex;gap:8px;margin-bottom:32px}
+.step-dot{width:32px;height:3px;background:var(--pale);transition:background .3s}.step-dot.active{background:var(--brass)}
+.step-q{font-family:var(--serif);font-size:1.5rem;font-weight:400;color:var(--ink);margin-bottom:20px}
+.step-opts{display:flex;flex-direction:column;gap:8px;margin-bottom:24px}
+.step-opt{padding:14px 20px;border:1px solid var(--pale);background:var(--white);cursor:pointer;font-size:.82rem;color:var(--mid);transition:all .2s;font-family:var(--sans);font-weight:400}
+.step-opt:hover{border-color:var(--brass);color:var(--ink)}
+.step-opt.selected{border-color:var(--brass);background:var(--brass-l);color:var(--ink)}
+.cf label{display:block;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);font-weight:500;margin-bottom:6px}
+.cf input,.cf textarea{width:100%;padding:12px 0;border:none;border-bottom:1px solid var(--pale);background:transparent;font-family:var(--sans);font-size:.92rem;color:var(--ink);outline:none;transition:border-color .3s;font-weight:300}
+.cf input:focus,.cf textarea:focus{border-bottom-color:var(--brass)}
+.cf textarea{resize:vertical;min-height:80px}
+.cf-row{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:20px}
+.cf-row.full{grid-template-columns:1fr}
+.step-nav{display:flex;gap:12px;margin-top:8px}
+.step-back{background:none;border:none;cursor:pointer;font-family:var(--sans);font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);padding:12px 0}.step-back:hover{color:var(--ink)}
+.confirm-msg{text-align:center;padding:40px 0}
+.confirm-msg h3{font-family:var(--serif);font-size:1.8rem;font-weight:400;color:var(--ink);margin-bottom:8px}.confirm-msg h3 em{color:var(--brass);font-style:italic}
+.confirm-msg p{font-size:.88rem;color:var(--muted);font-weight:300}
+.foot{padding:40px;border-top:1px solid var(--pale);display:flex;align-items:center;justify-content:space-between;font-size:.68rem;color:var(--muted);font-weight:400}
+.foot a{color:var(--muted);text-decoration:none}.foot a:hover{color:var(--brass)}
+.foot-brand{font-family:var(--serif);font-size:.88rem;font-weight:400;letter-spacing:.1em;text-transform:uppercase;color:var(--ink)}
+.fade{opacity:0;transform:translateY(16px);transition:all .6s ease}.fade.vis{opacity:1;transform:translateY(0)}
+@media(max-width:900px){
+.topbar{padding:20px 24px}.topbar.scrolled{padding:14px 24px}
+.home-hero{padding:0 24px 40px}
+.menu-right{display:none}.menu-left{padding:0 6%}
+.hscroll-wrap{padding:0 24px 60px}.proj-card{min-width:300px;max-width:300px}.proj-card img{height:380px}
+.projects-intro{padding:60px 24px 24px}
+.svc-grid{grid-template-columns:1fr}
+.about-hero{grid-template-columns:1fr}.about-hero-text{padding:40px 24px}
+.about-values{grid-template-columns:1fr 1fr;padding:40px 24px}
+.team-grid{grid-template-columns:1fr}
+.contact-sec{grid-template-columns:1fr}.contact-left{padding:40px 24px}.contact-right{padding:40px 24px}
+.pd-body{grid-template-columns:1fr;gap:32px;padding:40px 24px 60px}
+.services-sec{padding:60px 24px}
+.cf-row{grid-template-columns:1fr}
+}
+@media(max-width:600px){.proj-card{min-width:260px;max-width:260px}.proj-card img{height:320px}.home-btns{flex-direction:column}}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar" id="topbar">
+<div class="brand" onclick="nav('home')">Stillwater</div>
+<button class="menu-trigger" onclick="openMenu()">Menu</button>
+</div>
+
+<!-- FULL-SCREEN MENU -->
+<div class="menu-overlay" id="menuOverlay">
+<button class="menu-close" onclick="closeMenu()">Close</button>
+<div class="menu-left">
+<a class="menu-link" onclick="nav('home')">Home <span>01</span></a>
+<a class="menu-link" onclick="nav('projects')">Projects <span>02</span></a>
+<a class="menu-link" onclick="nav('services')">Services <span>03</span></a>
+<a class="menu-link" onclick="nav('about')">Studio <span>04</span></a>
+<a class="menu-link" onclick="nav('contact')">Contact <span>05</span></a>
+</div>
+<div class="menu-right">
+<div class="menu-contact-block">
+<strong>Studio</strong>Stillwater Architecture + Interiors<br>14 Hastings Street, Noosa Heads<br>QLD 4567
+<strong>Get in Touch</strong><a>hello@stillwater-arch.com.au</a><br>07 5447 XXXX
+<strong>Follow</strong><a>Instagram</a> · <a>Pinterest</a> · <a>LinkedIn</a>
+</div>
+</div>
+</div>
+
+<!-- PROJECT DETAIL OVERLAY -->
+<div class="proj-detail" id="projDetail">
+<button class="pd-close" onclick="closePD()">✕</button>
+<img class="pd-hero" id="pdHero" src="" alt="">
+<div class="pd-body">
+<div class="pd-meta">
+<div class="pd-cat" id="pdCat"></div>
+<h2 id="pdTitle"></h2>
+<div class="pd-specs" id="pdSpecs"></div>
+</div>
+<div class="pd-text" id="pdText"></div>
+</div>
+</div>
+
+<!-- HOME -->
+<div id="page-home" class="page active">
+<section class="home-hero">
+<div class="home-hero-bg"></div>
+<div class="home-hero-content">
+<div class="home-hero-eyebrow">Architecture + Interiors · Noosa, QLD</div>
+<h1>Designing <em>quiet</em> spaces in loud landscapes</h1>
+<p class="home-hero-sub">Residential architecture that responds to climate, terrain, and the way you actually live. Based in Noosa since 2012.</p>
+<div class="home-btns"><button class="btn btn-brass" onclick="nav('projects')">View Projects</button><button class="btn btn-white" onclick="nav('contact')">Start a Conversation</button></div>
+</div>
+</section>
+<div class="ticker-wrap"><div class="ticker" id="ticker"></div></div>
+<div class="projects-intro fade"><h2>Selected <em>Work</em></h2><p>Residential projects across the Sunshine Coast, Noosa Hinterland, and South-East Queensland.</p></div>
+<div class="hscroll-wrap"><div class="hscroll" id="homeScroll"></div></div>
+<section class="services-sec fade">
+<h2>What We <em>Do</em></h2>
+<p>Full-service architecture and interiors for residential projects of all scales.</p>
+<div class="svc-grid">
+<div class="svc-card"><div class="svc-num">01</div><div class="svc-name">New Homes</div><div class="svc-desc">Complete architectural design for new builds. From concept sketches through to construction documentation and contract administration.</div></div>
+<div class="svc-card"><div class="svc-num">02</div><div class="svc-name">Renovations</div><div class="svc-desc">Sensitive additions and alterations that respect existing character while transforming how you use the space.</div></div>
+<div class="svc-card"><div class="svc-num">03</div><div class="svc-name">Interior Design</div><div class="svc-desc">Materials, finishes, fixtures, joinery, lighting, and furniture. Integrated interior design from day one, not an afterthought.</div></div>
+<div class="svc-card"><div class="svc-num">04</div><div class="svc-name">Feasibility</div><div class="svc-desc">Pre-purchase site analysis, planning assessment, and budget feasibility before you commit to a block.</div></div>
+<div class="svc-card"><div class="svc-num">05</div><div class="svc-name">Planning & Approvals</div><div class="svc-desc">Development applications, building approvals, and council liaison. We manage the process end to end.</div></div>
+<div class="svc-card"><div class="svc-num">06</div><div class="svc-name">Contract Admin</div><div class="svc-desc">On-site inspections, contractor coordination, and quality assurance throughout the build.</div></div>
+</div>
+</section>
+</div>
+
+<!-- PROJECTS -->
+<div id="page-projects" class="page">
+<div class="projects-intro fade" style="padding-top:120px"><h2>All <em>Projects</em></h2><p>A selection of completed residential work across the Sunshine Coast and hinterland.</p></div>
+<div class="hscroll-wrap"><div class="hscroll" id="allProjects"></div></div>
+</div>
+
+<!-- SERVICES -->
+<div id="page-services" class="page">
+<section class="services-sec fade" style="padding-top:120px">
+<h2>Our <em>Services</em></h2>
+<p>Full-service architecture and interiors for residential projects of all scales.</p>
+<div class="svc-grid">
+<div class="svc-card"><div class="svc-num">01</div><div class="svc-name">New Homes</div><div class="svc-desc">Complete architectural design for new builds. From concept sketches through to construction documentation and contract administration.</div></div>
+<div class="svc-card"><div class="svc-num">02</div><div class="svc-name">Renovations</div><div class="svc-desc">Sensitive additions and alterations that respect existing character while transforming how you use the space.</div></div>
+<div class="svc-card"><div class="svc-num">03</div><div class="svc-name">Interior Design</div><div class="svc-desc">Materials, finishes, fixtures, joinery, lighting, and furniture. Integrated interior design from day one.</div></div>
+<div class="svc-card"><div class="svc-num">04</div><div class="svc-name">Feasibility</div><div class="svc-desc">Pre-purchase site analysis, planning assessment, and budget feasibility before you commit to a block.</div></div>
+<div class="svc-card"><div class="svc-num">05</div><div class="svc-name">Planning & Approvals</div><div class="svc-desc">Development applications, building approvals, and council liaison. We manage the process.</div></div>
+<div class="svc-card"><div class="svc-num">06</div><div class="svc-name">Contract Admin</div><div class="svc-desc">On-site inspections, contractor coordination, and quality assurance throughout the build.</div></div>
+</div>
+</section>
+<div style="max-width:700px;margin:0 auto;padding:0 40px 80px;text-align:center" class="fade"><h3 style="font-family:var(--serif);font-size:1.4rem;font-weight:300;color:var(--ink);margin-bottom:8px">Ready to start a <em style="color:var(--brass);font-style:italic">project</em>?</h3><p style="font-size:.85rem;color:var(--muted);font-weight:300;margin-bottom:24px">Every project begins with a conversation. Tell us about your site, your brief, and your vision.</p><button class="btn btn-brass" onclick="nav('contact')">Get in Touch</button></div>
+</div>
+
+<!-- ABOUT -->
+<div id="page-about" class="page">
+<div class="about-hero fade">
+<img class="about-hero-img" src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=900&q=80" alt="Stillwater studio">
+<div class="about-hero-text"><h2>A Small Studio <em>by Design</em></h2><p>Stillwater was founded in 2012 by Kate and James Harrington — both registered architects with a shared conviction that residential design should be personal, site-responsive, and deeply considered.</p><p>We deliberately stay small. Three architects, one interior designer, and a studio manager. Every project gets direct principal involvement from concept to completion. No hand-offs, no junior-only teams, no assembly-line process.</p><p>Based in Noosa Heads, we work exclusively on residential projects across the Sunshine Coast, Hinterland, and wider South-East Queensland.</p></div>
+</div>
+<div class="about-values fade">
+<div class="av"><div class="av-num">52</div><div class="av-label">Completed Projects</div></div>
+<div class="av"><div class="av-num">12</div><div class="av-label">Years in Practice</div></div>
+<div class="av"><div class="av-num">5</div><div class="av-label">Studio Team</div></div>
+<div class="av"><div class="av-num">8</div><div class="av-label">Design Awards</div></div>
+</div>
+<div class="about-team fade">
+<h3>The <em>Team</em></h3>
+<div class="team-grid">
+<div class="team-card"><div class="team-card-init">KH</div><div class="team-card-name">Kate Harrington</div><div class="team-card-role">Principal / Director</div></div>
+<div class="team-card"><div class="team-card-init">JH</div><div class="team-card-name">James Harrington</div><div class="team-card-role">Principal / Director</div></div>
+<div class="team-card"><div class="team-card-init">SL</div><div class="team-card-name">Sophie Lam</div><div class="team-card-role">Senior Architect</div></div>
+<div class="team-card"><div class="team-card-init">TN</div><div class="team-card-name">Tom Neville</div><div class="team-card-role">Architect</div></div>
+<div class="team-card"><div class="team-card-init">ER</div><div class="team-card-name">Emma Russo</div><div class="team-card-role">Interior Designer</div></div>
+<div class="team-card"><div class="team-card-init">AP</div><div class="team-card-name">Anna Park</div><div class="team-card-role">Studio Manager</div></div>
+</div>
+</div>
+</div>
+
+<!-- CONTACT — multi-step enquiry -->
+<div id="page-contact" class="page">
+<div class="contact-sec">
+<div class="contact-left fade">
+<h2>Let's Start a <em>Conversation</em></h2>
+<p>Every project begins with understanding your site, your brief, and your vision. Tell us a little about what you're thinking and we'll be in touch within 48 hours.</p>
+<div class="contact-detail"><strong>Studio</strong>14 Hastings Street, Noosa Heads QLD</div>
+<div class="contact-detail"><strong>Email</strong>hello@stillwater-arch.com.au</div>
+<div class="contact-detail"><strong>Phone</strong>07 5447 XXXX</div>
+<div class="contact-detail"><strong>Hours</strong>Mon–Fri 8:30am–5pm</div>
+</div>
+<div class="contact-right">
+<div class="step-indicator"><div class="step-dot" id="sd0"></div><div class="step-dot" id="sd1"></div><div class="step-dot" id="sd2"></div><div class="step-dot" id="sd3"></div></div>
+<div class="step active" id="step0">
+<div class="step-q">What type of project?</div>
+<div class="step-opts" id="typeOpts"></div>
+<div class="step-nav"><button class="btn btn-brass" onclick="nextStep()">Continue</button></div>
+</div>
+<div class="step" id="step1">
+<div class="step-q">Approximate budget range?</div>
+<div class="step-opts" id="budgetOpts"></div>
+<div class="step-nav"><button class="step-back" onclick="prevStep()">← Back</button><button class="btn btn-brass" onclick="nextStep()">Continue</button></div>
+</div>
+<div class="step" id="step2">
+<div class="step-q">When are you looking to start?</div>
+<div class="step-opts" id="timeOpts"></div>
+<div class="step-nav"><button class="step-back" onclick="prevStep()">← Back</button><button class="btn btn-brass" onclick="nextStep()">Continue</button></div>
+</div>
+<div class="step cf" id="step3">
+<div class="step-q">Your details</div>
+<div class="cf-row"><div><label>Name *</label><input id="cN" type="text"></div><div><label>Email *</label><input id="cE" type="email"></div></div>
+<div class="cf-row"><div><label>Phone</label><input id="cP" type="tel"></div><div><label>Suburb / Location</label><input id="cL" type="text"></div></div>
+<div class="cf-row full"><div><label>Tell us about your project</label><textarea id="cM"></textarea></div></div>
+<div class="step-nav"><button class="step-back" onclick="prevStep()">← Back</button><button class="btn btn-brass" onclick="submitEnquiry()">Submit Enquiry</button></div>
+</div>
+<div class="step" id="step4">
+<div class="confirm-msg"><h3>Thank <em>you</em></h3><p>We've received your enquiry and will be in touch within 48 hours to arrange an initial conversation.</p></div>
+</div>
+</div>
+</div>
+</div>
+
+<footer class="foot"><div class="foot-brand">Stillwater</div><div><span>© 2026 Stillwater Architecture + Interiors · Noosa Heads, QLD · </span><a>Portfolio site by Tideloc Web Design</a></div></footer>
+
+<script>
+var projects=[
+{id:0,cat:'New Home',name:'Dune House',loc:'Peregian Beach',img:'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80',specs:[['Location','Peregian Beach, QLD'],['Type','New 4-bedroom home'],['Size','310 sqm'],['Year','2024'],['Budget','$1.8M build']],text:'<p>Tucked behind the dunes on a narrow coastal block, Dune House was designed to capture ocean breezes and filtered light without exposing the interior to the harsh western sun. The plan is organised around a central courtyard — a protected outdoor room that draws light deep into the floor plate.</p><p>Materials are deliberately restrained: off-form concrete, blackbutt timber cladding weathering to silver, and floor-to-ceiling glazing on the eastern facade. The house steps down the site in three levels, with living spaces elevated to catch glimpses of ocean through the she-oaks.</p>'},
+{id:1,cat:'Renovation',name:'Fig Tree Pavilion',loc:'Noosa Heads',img:'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80',specs:[['Location','Noosa Heads, QLD'],['Type','Addition + renovation'],['Size','180 sqm addition'],['Year','2023'],['Budget','$950K build']],text:'<p>A 1970s brick home on a generous block, overshadowed by a magnificent Moreton Bay fig. Rather than compete with the tree, we designed a timber-and-glass pavilion that extends from the rear of the existing home, wrapping around the fig\'s canopy and treating it as the centrepiece of the living space.</p><p>The original home was retained and refurbished as bedrooms and private spaces. The new pavilion houses kitchen, dining, and living — a single open volume with raked ceilings that frame the fig through full-height glazing. Operable louvres provide cross-ventilation in every room.</p>'},
+{id:2,cat:'New Home',name:'Hinterland Retreat',loc:'Montville',img:'https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=800&q=80',specs:[['Location','Montville, QLD'],['Type','New 3-bedroom home'],['Size','240 sqm'],['Year','2024'],['Budget','$1.4M build']],text:'<p>Perched on a steep escarpment site with long views west across the hinterland, this home is organised as two parallel pavilions connected by a glazed breezeway. The split form reduces the building\'s visual mass on the hillside and creates a sheltered outdoor room between the volumes.</p><p>Construction is steel frame on concrete piers, touching the land lightly. External cladding is sustainably sourced spotted gum, left unfinished to weather naturally. Inside, polished concrete floors provide thermal mass, while high-level operable windows create stack ventilation.</p>'},
+{id:3,cat:'Interior Design',name:'Hastings Apartment',loc:'Noosa Heads',img:'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=800&q=80',specs:[['Location','Hastings Street, Noosa'],['Type','Interior fitout'],['Size','120 sqm'],['Year','2023'],['Budget','$380K fitout']],text:'<p>A complete interior transformation of a dated two-bedroom apartment on Hastings Street. The brief was clear: a calm, sophisticated retreat for a couple who splits time between Sydney and Noosa. Every surface, fixture, and piece of furniture was specified to create a cohesive, hotel-quality space.</p><p>The palette is warm neutrals — travertine floors, lime-washed oak joinery, brushed brass hardware, and linen upholstery. A custom kitchen island in honed Elba marble anchors the open-plan living space. Lighting is entirely indirect and dimmable.</p>'},
+{id:4,cat:'New Home',name:'Ridgeline House',loc:'Eumundi',img:'https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=800&q=80',specs:[['Location','Eumundi, QLD'],['Type','New 5-bedroom home'],['Size','420 sqm'],['Year','2022'],['Budget','$2.2M build']],text:'<p>Set on 10 acres of cleared farmland with distant views to the Glass House Mountains, Ridgeline House is a long, low pavilion that follows the contour of the ridge. The roof is a single folded plane that extends well beyond the walls, creating deep verandahs on all sides.</p><p>The plan separates family sleeping from the parents\' wing with the living spaces in between. A 14-metre pool runs parallel to the northern facade, reflecting light into the interior. Materials are raw — rammed earth walls, blackbutt floors, exposed steel structure.</p>'},
+{id:5,cat:'Renovation',name:'Tewantin Cottage',loc:'Tewantin',img:'https://images.unsplash.com/photo-1600573472592-401b489a3cdc?w=800&q=80',specs:[['Location','Tewantin, QLD'],['Type','Heritage renovation'],['Size','160 sqm total'],['Year','2023'],['Budget','$620K build']],text:'<p>A careful renovation of a 1920s Queenslander that had been unsympathetically altered over the decades. The brief was to restore the front rooms to their original character while creating a contemporary rear addition for kitchen, dining, and living.</p><p>The addition is deliberately distinct — a flat-roofed timber box that steps down from the original roofline. The junction between old and new is marked by a glass link that preserves the original rear wall as an interior feature.</p>'}
+];
+
+var awards=[
+'AIA QLD — Houses Award 2024','Dune House','·',
+'Australian Interior Design — Shortlist 2024','Hastings Apartment','·',
+'AIA QLD — Residential Alteration 2023','Fig Tree Pavilion','·',
+'Houses Magazine — House of the Year Nominee 2022','Ridgeline House','·',
+'Sunshine Coast Design Awards 2023','Best Residential','·',
+'AIA QLD — Sustainability Commendation 2022','Hinterland Retreat','·',
+'Australian House & Garden — Top 50 Homes 2024','·',
+'IDEA Awards — Shortlist 2023','Hastings Apartment','·'
+];
+
+// TICKER
+(function(){
+var t=document.getElementById('ticker');
+var h='';for(var r=0;r<3;r++){for(var i=0;i<awards.length;i++){h+='<div class="ticker-item">'+(awards[i]==='·'?'·':'<strong>'+awards[i]+'</strong>')+'</div>';}}
+t.innerHTML=h;
+})();
+
+// PROJECTS
+function renderProjects(containerId,list){
+var h='';
+for(var i=0;i<list.length;i++){
+var p=list[i];
+h+='<div class="proj-card" onclick="openPD('+p.id+')"><img src="'+p.img+'" alt="'+p.name+'"><div class="proj-card-overlay"><div class="proj-card-cat">'+p.cat+'</div><div class="proj-card-name">'+p.name+'</div><div class="proj-card-loc">'+p.loc+'</div></div><div class="proj-card-static"><div class="proj-card-static-cat">'+p.cat+'</div><div class="proj-card-static-name">'+p.name+'</div></div></div>';
+}
+document.getElementById(containerId).innerHTML=h;
+}
+
+renderProjects('homeScroll',projects);
+renderProjects('allProjects',projects);
+
+function openPD(id){
+var p=projects.find(function(x){return x.id===id;});
+document.getElementById('pdHero').src=p.img;
+document.getElementById('pdCat').textContent=p.cat;
+document.getElementById('pdTitle').innerHTML=p.name.replace(/(\w+)$/,'<em>$1</em>');
+var sh='';for(var i=0;i<p.specs.length;i++){sh+='<div class="pd-spec"><span class="pd-spec-label">'+p.specs[i][0]+'</span><span class="pd-spec-val">'+p.specs[i][1]+'</span></div>';}
+document.getElementById('pdSpecs').innerHTML=sh;
+document.getElementById('pdText').innerHTML=p.text;
+document.getElementById('projDetail').classList.add('open');
+document.body.style.overflow='hidden';
+}
+
+function closePD(){document.getElementById('projDetail').classList.remove('open');document.body.style.overflow='';}
+
+// MENU
+function openMenu(){document.getElementById('menuOverlay').classList.add('open');document.body.style.overflow='hidden';}
+function closeMenu(){document.getElementById('menuOverlay').classList.remove('open');document.body.style.overflow='';}
+
+// NAV
+function nav(p){
+var pages=document.querySelectorAll('.page');for(var i=0;i<pages.length;i++)pages[i].classList.remove('active');
+document.getElementById('page-'+p).classList.add('active');
+closeMenu();closePD();
+window.scrollTo({top:0,behavior:'smooth'});
+setTimeout(initObs,150);setTimeout(initObs,400);
+}
+
+// MULTI-STEP ENQUIRY
+var curStep=0;
+var enquiry={type:'',budget:'',timeline:''};
+var typeOptions=['New Home','Renovation / Addition','Interior Design','Feasibility Study','Not sure yet'];
+var budgetOptions=['Under $500K','$500K – $1M','$1M – $2M','$2M+','Not sure yet'];
+var timeOptions=['Ready now','1-3 months','3-6 months','6-12 months','Just exploring'];
+
+function renderOpts(containerId,opts,field){
+var h='';
+for(var i=0;i<opts.length;i++){
+h+='<div class="step-opt'+(enquiry[field]===opts[i]?' selected':'')+'" onclick="selOpt(\''+field+'\',\''+opts[i]+'\',this)">'+opts[i]+'</div>';
+}
+document.getElementById(containerId).innerHTML=h;
+}
+
+renderOpts('typeOpts',typeOptions,'type');
+renderOpts('budgetOpts',budgetOptions,'budget');
+renderOpts('timeOpts',timeOptions,'timeline');
+
+function selOpt(field,val,el){
+enquiry[field]=val;
+var sibs=el.parentElement.querySelectorAll('.step-opt');
+for(var i=0;i<sibs.length;i++)sibs[i].classList.remove('selected');
+el.classList.add('selected');
+}
+
+function showStep(n){
+curStep=n;
+for(var i=0;i<=4;i++){var s=document.getElementById('step'+i);s.classList.toggle('active',i===n);}
+for(var j=0;j<4;j++){document.getElementById('sd'+j).classList.toggle('active',j<=n);}
+}
+
+function nextStep(){if(curStep<3)showStep(curStep+1);}
+function prevStep(){if(curStep>0)showStep(curStep-1);}
+
+function submitEnquiry(){
+var n=document.getElementById('cN'),e=document.getElementById('cE');
+if(!n.value.trim()||!e.value.trim()||e.value.indexOf('@')<0){alert('Please fill in your name and email.');return;}
+showStep(4);
+}
+
+// SCROLL EFFECTS
+window.addEventListener('scroll',function(){document.getElementById('topbar').classList.toggle('scrolled',window.scrollY>60);});
+
+function initObs(){
+var ap=document.querySelector('.page.active');
+if(ap){var els=ap.querySelectorAll('.fade:not(.vis)');for(var i=0;i<els.length;i++){var r=els[i].getBoundingClientRect();if(r.top<window.innerHeight+100)els[i].classList.add('vis');}}
+var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('vis');obs.unobserve(e.target);}});},{threshold:.05,rootMargin:'50px'});
+var all=document.querySelectorAll('.fade:not(.vis)');for(var j=0;j<all.length;j++)obs.observe(all[j]);
+}
+
+initObs();
+</script>
+
+</body>
+</html>
