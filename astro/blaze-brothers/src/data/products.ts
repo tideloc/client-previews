@@ -80,7 +80,7 @@ export const products: Product[] = [
       'Sea salt',
       'Native pepperberry',
     ],
-    image: U('1506905925346-21bda4d32df4'),
+    image: U('1571091718767-18b5b1457add'),
     badge: 'Limited',
   },
   {
@@ -160,7 +160,7 @@ export const products: Product[] = [
       'Four of our most-ordered sauces in 60ml share bottles. Bush Smoulder → Blackbird → Widowmaker → Sunset Reaper. Makes a mean gift for someone you like slightly less than you thought.',
     pairs: ['Dinner parties', 'Housewarmings', 'Father’s Day'],
     ingredients: ['See individual bottles'],
-    image: U('1472476443507-c7a5948772fc'),
+    image: U('1587241321921-91a834d6d191'),
     badge: 'Best seller',
   },
   {
@@ -175,7 +175,7 @@ export const products: Product[] = [
       "Everything you need for a 12-hour smoke. Brothers' rub to start, Widowmaker to finish, and our Tallowwood stirring spoon (carved by a mate in Maleny) so you never reach for a plastic one again.",
     pairs: ['Brisket', 'Lamb shoulder', 'Whole pork collar'],
     ingredients: ['Brothers\' Rub 180g', 'Widowmaker 150ml', 'Tallowwood spoon'],
-    image: U('1514986888952-8cd320577b68'),
+    image: U('1509440159596-0249088772ff'),
     badge: 'Gift',
   },
 ];

@@ -21,7 +21,7 @@ export const recipes: Recipe[] = [
     difficulty: 'Medium',
     sauce: 'Widowmaker',
     blurb: 'Dry-rubbed, smoked 90 min at 120°C, crisped over coals, drenched in Widowmaker. A Sunday ritual in our backyard since 2019.',
-    image: U('1608039829572-78524f79c4c7'),
+    image: U('1606755962773-d324e0a13086'),
   },
   {
     slug: 'blackbird-tacos',
@@ -61,7 +61,7 @@ export const recipes: Recipe[] = [
     difficulty: 'Easy',
     sauce: 'Ember Rub',
     blurb: 'Spatchcocked, rubbed all over with Ember, roasted at 200°C on the kettle. Crispy skin, no apologies.',
-    image: U('1567620832903-9fc6debc209f'),
+    image: U('1598103442097-8b74394b95c6'),
   },
   {
     slug: 'bush-smoulder-burger',
@@ -81,7 +81,7 @@ export const recipes: Recipe[] = [
     difficulty: 'Easy',
     sauce: 'Ember Rub',
     blurb: 'Thick-cut cauliflower, Ember rub, 40 minutes in the smoker, finished with tahini. The reason our vegetarian mate still comes to barbecues.',
-    image: U('1540189549336-e6e99c3679fe'),
+    image: U('1568584711075-3d021a7c3ca3'),
   },
   {
     slug: 'blackbird-eggs',
@@ -91,6 +91,6 @@ export const recipes: Recipe[] = [
     difficulty: 'Easy',
     sauce: 'Blackbird',
     blurb: 'Three eggs, sourdough, a quarter bottle of Blackbird. A hangover, cured. A Tuesday, elevated.',
-    image: U('1558030006-450675393462'),
+    image: U('1482049016688-2d3e1b311543'),
   },
 ];

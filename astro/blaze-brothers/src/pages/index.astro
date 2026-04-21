@@ -14,24 +14,54 @@ const marketImg = 'https://images.unsplash.com/photo-1488459716781-31db52582fe9?
 const brothersImg = 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1200&h=900&fit=crop&q=80&auto=format';
 ---
 <Base title="Blaze Brothers — Artisan Hot Sauce, BBQ Rubs & Spice | Brisbane">
-  {/* Hero */}
+  {/* Hero — 3-stack headline + heat scale */}
   <section class="relative overflow-hidden">
     <div class="absolute inset-0">
-      <img src={heroImg} alt="" class="w-full h-full object-cover opacity-50" />
-      <div class="absolute inset-0 bg-gradient-to-b from-ink/80 via-smoke/70 to-smoke"></div>
+      <img src={heroImg} alt="" class="w-full h-full object-cover opacity-45" />
+      <div class="absolute inset-0 bg-gradient-to-b from-ink/85 via-smoke/80 to-smoke"></div>
       <div class="absolute inset-0 bg-char-grain mix-blend-screen"></div>
     </div>
-    <div class="wrap relative py-28 md:py-44">
-      <p class="eyebrow">Brisbane · Small-batch · Stupid-hot</p>
-      <h1 class="text-[clamp(3rem,10vw,9rem)] leading-[0.9] mb-6 text-bone">
-        Not for the<br/><span class="text-ember">Mildhearted.</span>
+    <div class="wrap relative py-20 md:py-32">
+      <p class="font-mono text-ember text-xs md:text-sm uppercase tracking-shout mb-8">// Small batch · Brutally hot · Genuinely artisan</p>
+      <h1 class="font-display uppercase text-bone tracking-[0.02em] leading-[0.85] mb-0">
+        <span class="block text-[clamp(3rem,12vw,10rem)]">Not For</span>
+        <span class="block text-[clamp(3rem,12vw,10rem)]">The Mild</span>
+        <span class="block text-[clamp(3rem,12vw,10rem)] text-ember">Hearted.</span>
       </h1>
-      <p class="text-lg md:text-2xl text-bone/80 max-w-2xl leading-relaxed mb-10">
-        Hand-bottled artisan hot sauces, BBQ rubs and native spice blends. Cooked slow over ironbark. Shipped fast from South Brisbane.
-      </p>
-      <div class="flex flex-wrap gap-4">
-        <a href={`${base}/shop/`} class="btn-primary">Shop the Heat</a>
-        <a href={`${base}/about/`} class="btn-ghost">Our Story</a>
+
+      <div class="mt-14 grid md:grid-cols-5 gap-10 items-start">
+        <div class="md:col-span-3">
+          <p class="text-bone/85 text-lg md:text-xl leading-relaxed mb-8 max-w-xl">
+            Hand-crafted hot sauces and spice blends made in small batches from Australian-grown chillies. We don't do mild. We don't apologise for heat. We do do flavour — insane, complex, layered, built to be tasted, not just survived.
+          </p>
+          <div class="flex flex-wrap gap-4">
+            <a href={`${base}/shop/`} class="btn-primary">Shop the Heat</a>
+            <a href={`${base}/stockists/`} class="btn-ghost">Find our Stall</a>
+          </div>
+        </div>
+
+        <aside class="md:col-span-2 bg-ash/90 backdrop-blur border border-ember/30 rounded-sm p-6 md:p-8">
+          <p class="font-mono text-[10px] uppercase tracking-shout text-ember mb-5">// Current lineup heat</p>
+          <ul class="space-y-4">
+            {[
+              { label: 'Mild',    pct: 20 },
+              { label: 'Medium',  pct: 45 },
+              { label: 'Hot',     pct: 70 },
+              { label: 'Extreme', pct: 95 },
+            ].map(row => (
+              <li class="flex items-center gap-4">
+                <span class="font-mono text-[10px] uppercase tracking-shout text-dust w-16 shrink-0">{row.label}</span>
+                <div class="flex-1 h-2 bg-ink rounded-full overflow-hidden">
+                  <span class="block h-full bg-gradient-to-r from-flame to-ember" style={`width:${row.pct}%`}></span>
+                </div>
+                <span class="font-mono text-xs text-bone/60 w-8 text-right">{row.pct}%</span>
+              </li>
+            ))}
+          </ul>
+          <p class="font-mono text-[10px] uppercase tracking-shout text-dust/70 mt-6 pt-5 border-t border-bone/10">
+            8 products · 2 brothers · 1 very small smoker
+          </p>
+        </aside>
       </div>
     </div>
     <div class="absolute bottom-0 inset-x-0 h-1 bg-ember"></div>
