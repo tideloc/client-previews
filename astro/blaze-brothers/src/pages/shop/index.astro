@@ -1,0 +1,90 @@
+---
+import Base from '../../layouts/Base.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import { products } from '../../data/products';
+
+const sauces = products.filter(p => p.category === 'sauce');
+const rubs = products.filter(p => p.category === 'rub');
+const packs = products.filter(p => p.category === 'pack');
+const headerImg = 'https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?w=2000&h=900&fit=crop&q=80&auto=format';
+---
+<Base title="Shop — Blaze Brothers Hot Sauce & BBQ Rubs" description="Buy artisan hot sauces, BBQ rubs and gift packs online. Small-batch, hand-bottled in South Brisbane.">
+  <section class="relative overflow-hidden">
+    <div class="absolute inset-0">
+      <img src={headerImg} alt="" class="w-full h-full object-cover opacity-40" />
+      <div class="absolute inset-0 bg-gradient-to-b from-ink/70 to-smoke"></div>
+    </div>
+    <div class="wrap relative py-20 md:py-32">
+      <p class="eyebrow">The Shop</p>
+      <h1 class="text-5xl md:text-8xl text-bone leading-none">Pick your<br/><span class="text-ember">burn.</span></h1>
+      <p class="text-bone/80 text-lg md:text-xl max-w-2xl mt-8">Eight small-batch products, bottled and packed by the brothers themselves. Free shipping in Australia on orders over $60.</p>
+    </div>
+  </section>
+
+  {/* Filter strip */}
+  <nav class="border-y border-ember/20 bg-ink sticky top-[72px] z-30" aria-label="Product categories">
+    <div class="wrap flex flex-wrap gap-1 py-3">
+      <a href="#all" class="font-display uppercase tracking-shout text-xs px-4 py-2 rounded-sm bg-ember text-ink">All ({products.length})</a>
+      <a href="#sauces" class="font-display uppercase tracking-shout text-xs px-4 py-2 rounded-sm text-bone/70 hover:text-ember">Sauces ({sauces.length})</a>
+      <a href="#rubs" class="font-display uppercase tracking-shout text-xs px-4 py-2 rounded-sm text-bone/70 hover:text-ember">Rubs ({rubs.length})</a>
+      <a href="#packs" class="font-display uppercase tracking-shout text-xs px-4 py-2 rounded-sm text-bone/70 hover:text-ember">Gift packs ({packs.length})</a>
+    </div>
+  </nav>
+
+  {/* Sauces */}
+  <section id="sauces" class="py-20 scroll-mt-48">
+    <div class="wrap">
+      <div class="flex items-end justify-between flex-wrap gap-4 mb-10">
+        <h2 class="text-3xl md:text-5xl text-bone">Hot Sauces</h2>
+        <p class="text-dust font-mono text-xs uppercase tracking-wide">150ml · hand-bottled · best within 12 months</p>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {sauces.map(p => <ProductCard product={p} />)}
+      </div>
+    </div>
+  </section>
+
+  {/* Rubs */}
+  <section id="rubs" class="py-20 bg-ink scroll-mt-48">
+    <div class="wrap">
+      <div class="flex items-end justify-between flex-wrap gap-4 mb-10">
+        <h2 class="text-3xl md:text-5xl text-bone">BBQ Rubs</h2>
+        <p class="text-dust font-mono text-xs uppercase tracking-wide">180g · resealable jar · 6-month shelf life</p>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {rubs.map(p => <ProductCard product={p} />)}
+      </div>
+    </div>
+  </section>
+
+  {/* Packs */}
+  <section id="packs" class="py-20 scroll-mt-48">
+    <div class="wrap">
+      <div class="flex items-end justify-between flex-wrap gap-4 mb-10">
+        <h2 class="text-3xl md:text-5xl text-bone">Gift Packs</h2>
+        <p class="text-dust font-mono text-xs uppercase tracking-wide">Wrapped in butcher's paper · hand-signed card</p>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {packs.map(p => <ProductCard product={p} />)}
+      </div>
+    </div>
+  </section>
+
+  {/* Shipping FAQ */}
+  <section class="py-24">
+    <div class="wrap grid md:grid-cols-3 gap-10">
+      <div>
+        <div class="font-display uppercase tracking-shout text-ember text-sm mb-3">Shipping</div>
+        <p class="text-bone/80 leading-relaxed">Free Australia-wide on orders over $60. Flat $9 otherwise. Orders before 2pm ship same day from South Brisbane.</p>
+      </div>
+      <div>
+        <div class="font-display uppercase tracking-shout text-ember text-sm mb-3">Returns</div>
+        <p class="text-bone/80 leading-relaxed">Unopened bottles within 30 days for a full refund. Opened bottle too spicy? Email us — we'll swap you for something milder.</p>
+      </div>
+      <div>
+        <div class="font-display uppercase tracking-shout text-ember text-sm mb-3">Wholesale</div>
+        <p class="text-bone/80 leading-relaxed">We supply 45+ grocers, butchers and restaurants. Minimum order $250. <a class="text-ember underline-offset-4 hover:underline" href="stockists/#wholesale">Enquire →</a></p>
+      </div>
+    </div>
+  </section>
+</Base>

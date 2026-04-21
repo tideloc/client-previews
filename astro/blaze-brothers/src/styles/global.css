@@ -1,0 +1,69 @@
+/* Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Work+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-smoke text-bone font-body;
+    background-image:
+      radial-gradient(ellipse 80% 50% at 20% 0%, rgba(255, 59, 20, 0.08) 0%, transparent 55%),
+      radial-gradient(ellipse 60% 40% at 100% 100%, rgba(122, 14, 14, 0.15) 0%, transparent 60%);
+    background-attachment: fixed;
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-display uppercase tracking-shout;
+  }
+
+  ::selection {
+    @apply bg-ember text-ink;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 bg-ember text-ink px-6 py-3 font-display uppercase tracking-shout text-sm rounded-sm transition hover:bg-flame hover:-translate-y-0.5 active:translate-y-0;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 border-2 border-bone/40 text-bone px-6 py-3 font-display uppercase tracking-shout text-sm rounded-sm transition hover:border-ember hover:text-ember;
+  }
+
+  .wrap {
+    @apply max-w-6xl mx-auto px-6 sm:px-8;
+  }
+
+  .eyebrow {
+    @apply inline-block text-ember font-display uppercase tracking-shout text-xs mb-4;
+  }
+
+  .divider {
+    @apply w-16 h-[3px] bg-ember;
+  }
+
+  /* Ticker marquee */
+  .ticker-track {
+    animation: ticker 40s linear infinite;
+  }
+  @keyframes ticker {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* Heat-level bars */
+  .heat-bar {
+    @apply h-2 rounded-full bg-ash overflow-hidden;
+  }
+  .heat-bar > span {
+    @apply block h-full bg-gradient-to-r from-flame to-ember;
+  }
+}

@@ -1,0 +1,25 @@
+---
+import type { Product } from '../data/products';
+import HeatScale from './HeatScale.astro';
+interface Props { product: Product }
+const { product } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+<a href={`${base}/shop/${product.slug}/`} class="group block bg-ash rounded-sm overflow-hidden border border-bone/5 hover:border-ember/40 transition">
+  <div class="relative aspect-[4/5] overflow-hidden bg-ink">
+    <img src={product.image} alt={product.name} class="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition duration-500" loading="lazy" />
+    {product.badge && (
+      <span class="absolute top-4 left-4 bg-ember text-ink px-2 py-1 font-display uppercase tracking-shout text-[10px]">{product.badge}</span>
+    )}
+    <div class="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-ash to-transparent"></div>
+  </div>
+  <div class="p-5">
+    <div class="flex items-baseline justify-between gap-3 mb-1">
+      <h3 class="text-bone text-lg leading-tight group-hover:text-ember transition">{product.name}</h3>
+      <span class="font-mono text-sm text-ember whitespace-nowrap">${product.price}</span>
+    </div>
+    <p class="text-dust text-xs mb-3 uppercase tracking-wide font-mono">{product.size}</p>
+    <p class="text-bone/80 text-sm leading-relaxed mb-4">{product.tagline}</p>
+    <HeatScale level={product.heat} />
+  </div>
+</a>

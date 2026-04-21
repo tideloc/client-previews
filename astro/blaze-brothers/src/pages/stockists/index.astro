@@ -1,0 +1,162 @@
+---
+import Base from '../../layouts/Base.astro';
+import { stockists } from '../../data/stockists';
+
+const byCategory = {
+  market: stockists.filter(s => s.category === 'market'),
+  grocer: stockists.filter(s => s.category === 'grocer'),
+  butcher: stockists.filter(s => s.category === 'butcher'),
+  bottleshop: stockists.filter(s => s.category === 'bottleshop'),
+  restaurant: stockists.filter(s => s.category === 'restaurant'),
+};
+
+const catLabel: Record<string, string> = {
+  market: 'Farmers Markets',
+  grocer: 'Grocers & Delis',
+  butcher: 'Butchers',
+  bottleshop: 'Bottleshops',
+  restaurant: 'Restaurants on the Menu',
+};
+
+const heroImg = 'https://images.unsplash.com/photo-1488459716781-31db52582fe9?w=2000&h=900&fit=crop&q=80&auto=format';
+---
+<Base title="Stockists & Wholesale — Blaze Brothers" description="Find Blaze Brothers hot sauces and rubs at 45+ stockists across QLD and NSW, or enquire about wholesale.">
+  <section class="relative overflow-hidden">
+    <div class="absolute inset-0">
+      <img src={heroImg} alt="" class="w-full h-full object-cover opacity-45" />
+      <div class="absolute inset-0 bg-gradient-to-b from-ink/70 to-smoke"></div>
+    </div>
+    <div class="wrap relative py-20 md:py-32">
+      <p class="eyebrow">Where to find us</p>
+      <h1 class="text-5xl md:text-8xl text-bone leading-none">Stockists<br/><span class="text-ember">&amp; markets.</span></h1>
+      <p class="text-bone/80 text-lg md:text-xl max-w-2xl mt-8">
+        {stockists.length}+ places to pick up a bottle across QLD &amp; NSW. Want us on your shelf? <a class="text-ember hover:text-flame underline underline-offset-4" href="#wholesale">Wholesale enquiries →</a>
+      </p>
+    </div>
+  </section>
+
+  {/* Markets callout */}
+  <section class="py-16 bg-ink border-b border-ember/20">
+    <div class="wrap grid md:grid-cols-2 gap-10 items-center">
+      <div>
+        <p class="eyebrow">Every weekend</p>
+        <h2 class="text-3xl md:text-4xl text-bone mb-5">Come find us at the markets.</h2>
+        <p class="text-bone/80 text-lg leading-relaxed mb-4">
+          <strong class="text-bone">Saturdays 6am–noon</strong> — Jan Powers Farmers Market, Brisbane Powerhouse<br/>
+          <strong class="text-bone">Sundays 8am–3pm</strong> — West End Markets, Davies Park
+        </p>
+        <p class="text-bone/70 leading-relaxed">
+          Free samples across the full range. Bring mates. Bring water. Bring cash if you don't want to queue for the EFTPOS.
+        </p>
+      </div>
+      <ul class="grid grid-cols-2 gap-4 text-sm">
+        {byCategory.market.map(s => (
+          <li class="bg-ash border border-bone/5 rounded-sm p-4">
+            <div class="font-display uppercase tracking-shout text-bone text-sm">{s.name}</div>
+            <div class="text-dust text-xs mt-1">{s.address}</div>
+            <div class="text-ember text-[10px] font-mono uppercase tracking-shout mt-2">{s.city}, {s.state}</div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  {/* Stockist list */}
+  <section class="py-16">
+    <div class="wrap">
+      {(['grocer','butcher','bottleshop','restaurant'] as const).map(cat => (
+        <div class="mb-16">
+          <h2 class="text-2xl md:text-3xl text-bone mb-6 flex items-baseline gap-4">
+            <span>{catLabel[cat]}</span>
+            <span class="font-mono text-sm text-dust">({byCategory[cat].length})</span>
+          </h2>
+          <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {byCategory[cat].map(s => (
+              <div class="bg-ash border border-bone/5 rounded-sm p-5 hover:border-ember/40 transition">
+                <div class="font-display uppercase tracking-shout text-bone mb-1">{s.name}</div>
+                <div class="text-dust text-sm mb-3">{s.address}</div>
+                <div class="text-ember text-[10px] font-mono uppercase tracking-shout">{s.city}, {s.state}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  {/* Wholesale */}
+  <section id="wholesale" class="py-20 bg-ink border-t border-ember/20 scroll-mt-24">
+    <div class="wrap grid md:grid-cols-2 gap-14">
+      <div>
+        <p class="eyebrow">Wholesale</p>
+        <h2 class="text-4xl md:text-5xl text-bone mb-6">Put us on your shelf.</h2>
+        <p class="text-bone/80 text-lg leading-relaxed mb-5">
+          We supply independent grocers, butchers, bottleshops and restaurants Australia-wide. Minimum order $250. Net-30 terms for established accounts. Shipped weekly from South Brisbane.
+        </p>
+        <ul class="space-y-3 text-bone/80 mb-8">
+          <li class="flex gap-3"><span class="text-ember font-display">→</span> Full 8-product range available</li>
+          <li class="flex gap-3"><span class="text-ember font-display">→</span> POS kit including shelf-talkers &amp; heat scale cards</li>
+          <li class="flex gap-3"><span class="text-ember font-display">→</span> Sample pack on request, no obligation</li>
+          <li class="flex gap-3"><span class="text-ember font-display">→</span> Exclusive stockist-only releases twice a year</li>
+        </ul>
+      </div>
+
+      <form id="contact" class="bg-ash border border-bone/10 rounded-sm p-8 scroll-mt-24" aria-label="Wholesale enquiry form">
+        <h3 class="text-xl text-bone mb-6">Enquiry form</h3>
+        <div class="space-y-5">
+          <label class="block">
+            <span class="block font-mono text-[10px] uppercase tracking-shout text-dust mb-1">Business name</span>
+            <input type="text" class="w-full bg-ink border border-bone/10 text-bone px-3 py-3 rounded-sm focus:border-ember focus:outline-none" />
+          </label>
+          <label class="block">
+            <span class="block font-mono text-[10px] uppercase tracking-shout text-dust mb-1">Your name</span>
+            <input type="text" class="w-full bg-ink border border-bone/10 text-bone px-3 py-3 rounded-sm focus:border-ember focus:outline-none" />
+          </label>
+          <label class="block">
+            <span class="block font-mono text-[10px] uppercase tracking-shout text-dust mb-1">Email</span>
+            <input type="email" class="w-full bg-ink border border-bone/10 text-bone px-3 py-3 rounded-sm focus:border-ember focus:outline-none" />
+          </label>
+          <label class="block">
+            <span class="block font-mono text-[10px] uppercase tracking-shout text-dust mb-1">Suburb &amp; state</span>
+            <input type="text" class="w-full bg-ink border border-bone/10 text-bone px-3 py-3 rounded-sm focus:border-ember focus:outline-none" />
+          </label>
+          <label class="block">
+            <span class="block font-mono text-[10px] uppercase tracking-shout text-dust mb-1">Tell us about your shop</span>
+            <textarea rows="4" class="w-full bg-ink border border-bone/10 text-bone px-3 py-3 rounded-sm focus:border-ember focus:outline-none"></textarea>
+          </label>
+          <button type="submit" class="btn-primary w-full">Send enquiry</button>
+          <p class="text-xs text-dust text-center">We reply to every enquiry within 2 business days.</p>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  {/* Contact footer-ish */}
+  <section class="py-20">
+    <div class="wrap grid md:grid-cols-3 gap-10 text-center md:text-left">
+      <div>
+        <div class="font-display uppercase tracking-shout text-ember text-sm mb-3">Visit</div>
+        <address class="not-italic text-bone/80 leading-relaxed">
+          Blaze Bros. HQ<br/>
+          Unit 4 / 88 Montague Rd<br/>
+          South Brisbane QLD 4101<br/>
+          <span class="text-dust text-xs uppercase font-mono tracking-wide mt-2 block">Open for pickup Thursdays, 10–2</span>
+        </address>
+      </div>
+      <div>
+        <div class="font-display uppercase tracking-shout text-ember text-sm mb-3">Email</div>
+        <a href="mailto:fire@blazebros.com.au" class="text-bone/80 hover:text-ember block">fire@blazebros.com.au</a>
+        <p class="text-dust text-xs uppercase font-mono tracking-wide mt-2">General enquiries &amp; press</p>
+      </div>
+      <div>
+        <div class="font-display uppercase tracking-shout text-ember text-sm mb-3">Follow</div>
+        <div class="flex justify-center md:justify-start gap-4 text-bone/80">
+          <a href="#" class="hover:text-ember">Instagram</a>
+          <a href="#" class="hover:text-ember">TikTok</a>
+          <a href="#" class="hover:text-ember">Email list</a>
+        </div>
+        <p class="text-dust text-xs uppercase font-mono tracking-wide mt-3">@blazebroshotsauce</p>
+      </div>
+    </div>
+  </section>
+</Base>

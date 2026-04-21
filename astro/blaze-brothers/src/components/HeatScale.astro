@@ -1,0 +1,19 @@
+---
+interface Props {
+  level: 1 | 2 | 3 | 4 | 5;
+  label?: boolean;
+}
+const { level, label = true } = Astro.props;
+const labels = { 1: 'Mild', 2: 'Warming', 3: 'Medium Hot', 4: 'Hot', 5: 'Extreme' };
+---
+<div class="flex items-center gap-3">
+  <div class="flex gap-1">
+    {Array.from({ length: 5 }).map((_, i) => (
+      <span
+        class={`w-5 h-1.5 rounded-full ${i < level ? 'bg-ember' : 'bg-ash'}`}
+        aria-hidden="true"
+      ></span>
+    ))}
+  </div>
+  {label && <span class="font-mono text-[10px] uppercase tracking-shout text-dust">{labels[level]}</span>}
+</div>

@@ -1,0 +1,16 @@
+# Node
+node_modules/
+.DS_Store
+
+# Astro build artifacts within source (not the publish dir)
+astro/**/dist/
+astro/**/.astro/
+
+# Editor
+.vscode/
+.idea/
+*.swp
+
+# Env
+.env
+.env.local
