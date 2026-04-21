@@ -1,0 +1,99 @@
+---
+import Base from '../../layouts/Base.astro';
+import WorkshopCard from '../../components/WorkshopCard.astro';
+import { workshops } from '../../data/workshops';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const hero = 'https://images.unsplash.com/photo-1530968033775-2c92736b131e?w=2200&h=1000&fit=crop&q=80&auto=format';
+---
+<Base title="Workshops · Forging Classes in Braidwood NSW — The Forge Works">
+  <section class="relative overflow-hidden border-b border-bone/10">
+    <div class="absolute inset-0">
+      <img src={hero} alt="" class="w-full h-full object-cover opacity-35" />
+      <div class="absolute inset-0 bg-gradient-to-b from-soot/85 via-forge/85 to-forge"></div>
+    </div>
+    <div class="wrap relative py-20 md:py-28">
+      <p class="eyebrow">// Monthly forge classes · Braidwood</p>
+      <h1 class="text-5xl md:text-7xl text-bone leading-[0.9] mb-6 normal-case">Stand at<br/>the forge.</h1>
+      <p class="text-bone/80 text-lg max-w-2xl leading-relaxed mb-8">
+        Four or six people per class. A real coal fire. Tom or Sara on the other anvil. You leave with something you made, and usually a small burn.
+      </p>
+      <div class="grid md:grid-cols-4 gap-3 max-w-3xl">
+        <div class="spec-block">
+          <dt>Classes / year</dt><dd>12</dd>
+        </div>
+        <div class="spec-block">
+          <dt>Students / class</dt><dd>4–6</dd>
+        </div>
+        <div class="spec-block">
+          <dt>Since</dt><dd>2017</dd>
+        </div>
+        <div class="spec-block">
+          <dt>Alumni</dt><dd>340+</dd>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 md:py-24">
+    <div class="wrap">
+      <div class="flex items-end justify-between flex-wrap gap-4 mb-12">
+        <div>
+          <p class="eyebrow">// Upcoming</p>
+          <h2 class="text-4xl md:text-5xl text-bone normal-case">Next four workshops.</h2>
+        </div>
+        <span class="spec">{workshops.length} scheduled · May–Aug 2026</span>
+      </div>
+      <div class="grid md:grid-cols-2 gap-8">
+        {workshops.map((w, i) => (
+          <div id={w.slug}>
+            <WorkshopCard workshop={w} />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-soot border-y border-bone/10">
+    <div class="wrap grid md:grid-cols-12 gap-10">
+      <div class="md:col-span-4">
+        <p class="eyebrow">// What to expect</p>
+        <h2 class="text-3xl md:text-4xl text-bone mb-6 normal-case">Arrive at 9. Leave at 4.</h2>
+        <div class="divider"></div>
+      </div>
+      <div class="md:col-span-8 space-y-5 text-bone/80 text-base leading-relaxed">
+        <p><span class="font-mono uppercase tracking-stamp text-glow text-[11px]">0900</span> — Meet at the shed, tea &amp; a safety walk-through. Aprons on.</p>
+        <p><span class="font-mono uppercase tracking-stamp text-glow text-[11px]">0930</span> — First heat. You'll learn to light and tend the fire and to read steel colour. This is half the craft.</p>
+        <p><span class="font-mono uppercase tracking-stamp text-glow text-[11px]">1100</span> — Drawing out. Tapering, upsetting, the fundamentals. We hit 20-30 heats together.</p>
+        <p><span class="font-mono uppercase tracking-stamp text-glow text-[11px]">1230</span> — Lunch. Made by Sara, usually includes something from the oven. Tea strong.</p>
+        <p><span class="font-mono uppercase tracking-stamp text-glow text-[11px]">1330</span> — Your project. Close one-on-one.</p>
+        <p><span class="font-mono uppercase tracking-stamp text-glow text-[11px]">1600</span> — Cool your piece, wax it, walk out with it. Plus a workshop alumni discount on all orders for 12 months.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 md:py-24">
+    <div class="wrap grid md:grid-cols-2 gap-10 items-start">
+      <div>
+        <p class="eyebrow">// Things to know</p>
+        <h2 class="text-4xl md:text-5xl text-bone mb-6 normal-case">Boots, jeans,<br/>long sleeves.</h2>
+        <div class="divider"></div>
+      </div>
+      <ul class="space-y-4 text-bone/80 leading-relaxed">
+        <li class="flex gap-3"><span class="font-mono text-rust">01 /</span>Wear closed leather boots, long jeans, and a long-sleeve cotton shirt. No synthetics — they melt.</li>
+        <li class="flex gap-3"><span class="font-mono text-rust">02 /</span>Tie back long hair. Leather apron provided.</li>
+        <li class="flex gap-3"><span class="font-mono text-rust">03 /</span>Minimum age is 16. Under-18s need a parent or guardian signed consent.</li>
+        <li class="flex gap-3"><span class="font-mono text-rust">04 /</span>We recommend eating properly beforehand. It's a physical day.</li>
+        <li class="flex gap-3"><span class="font-mono text-rust">05 /</span>Reschedule up to 14 days out for a full refund. After that it's a store credit or a transfer.</li>
+        <li class="flex gap-3"><span class="font-mono text-rust">06 /</span>We can sign a tax-deductible receipt for professional development.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="bg-rust text-bone py-16 border-t border-rust">
+    <div class="wrap text-center">
+      <p class="font-display text-3xl md:text-5xl leading-tight tracking-chisel mb-4 normal-case">Want a private class?</p>
+      <p class="text-bone/85 text-lg mb-8 max-w-xl mx-auto">Groups of 3–6 for a bespoke day (corporate, wedding party, art-school cohort). Book a date: <a href="mailto:hello@theforgeworks.com.au" class="underline decoration-bone/40 hover:decoration-bone">hello@theforgeworks.com.au</a></p>
+    </div>
+  </section>
+</Base>

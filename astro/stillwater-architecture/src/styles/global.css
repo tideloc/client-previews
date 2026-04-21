@@ -1,0 +1,113 @@
+/* Fonts — editorial serif + crisp sans + mono */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-paper text-ink font-body font-light;
+    line-height: 1.55;
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-display text-ink;
+    font-weight: 300;
+    letter-spacing: -0.01em;
+    line-height: 1.05;
+  }
+
+  p { font-weight: 300; }
+
+  ::selection {
+    @apply bg-water text-paper;
+  }
+
+  a { @apply transition-colors; }
+}
+
+@layer components {
+  .wrap {
+    @apply max-w-[1240px] mx-auto px-6 md:px-10;
+  }
+
+  .wrap-narrow {
+    @apply max-w-[880px] mx-auto px-6 md:px-10;
+  }
+
+  .rule {
+    @apply w-full h-px bg-ink/15;
+  }
+
+  .rule-short {
+    @apply w-10 h-px bg-ink/50;
+  }
+
+  .eyebrow {
+    @apply font-mono text-[10px] md:text-[11px] uppercase tracking-caps text-stone;
+  }
+
+  .eyebrow-dark {
+    @apply font-mono text-[10px] md:text-[11px] uppercase tracking-caps text-paper/60;
+  }
+
+  .loc-tag {
+    @apply font-mono text-[10px] uppercase tracking-caps text-sand;
+  }
+
+  .page-num {
+    @apply font-mono text-[10px] uppercase tracking-caps text-stone;
+  }
+
+  .btn-ink {
+    @apply inline-flex items-center gap-3 text-ink border-b border-ink/60 pb-1 font-mono uppercase tracking-caps text-[11px] hover:border-water hover:text-water;
+  }
+
+  .btn-light {
+    @apply inline-flex items-center gap-3 text-paper border-b border-paper/50 pb-1 font-mono uppercase tracking-caps text-[11px] hover:border-sand hover:text-sand;
+  }
+
+  .btn-solid {
+    @apply inline-flex items-center gap-3 bg-ink text-paper px-6 py-3 font-mono uppercase tracking-caps text-[11px] hover:bg-water;
+  }
+
+  .display-xl {
+    @apply font-display text-[clamp(3rem,8vw,7rem)] leading-[0.95] tracking-[-0.015em];
+    font-weight: 300;
+  }
+
+  .display-lg {
+    @apply font-display text-[clamp(2.5rem,6vw,5rem)] leading-[1] tracking-[-0.01em];
+    font-weight: 300;
+  }
+
+  .display-md {
+    @apply font-display text-[clamp(1.875rem,3.5vw,3rem)] leading-[1.05];
+    font-weight: 300;
+  }
+
+  .lede {
+    @apply text-lg md:text-xl leading-relaxed text-lead;
+    font-weight: 300;
+  }
+
+  .pull {
+    @apply font-display italic text-2xl md:text-3xl leading-[1.3] text-ink;
+    font-weight: 300;
+  }
+
+  .material-pill {
+    @apply inline-block font-mono text-[10px] uppercase tracking-caps border border-ink/20 px-3 py-1.5 text-lead;
+  }
+
+  .col-rule {
+    @apply md:border-l md:border-ink/15 md:pl-8;
+  }
+}

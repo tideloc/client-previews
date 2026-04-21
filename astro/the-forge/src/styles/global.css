@@ -1,0 +1,123 @@
+/* Fonts: Rozha One (display serif), Poppins 900 (fallback display), Inter, JetBrains Mono */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Poppins:wght@800;900&family=Rozha+One&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-forge text-bone font-body;
+    background-image:
+      radial-gradient(ellipse 80% 50% at 15% 0%, rgba(216, 124, 42, 0.07) 0%, transparent 55%),
+      radial-gradient(ellipse 50% 40% at 100% 100%, rgba(160, 72, 38, 0.08) 0%, transparent 60%);
+    background-attachment: fixed;
+  }
+
+  h1, h2, h3 {
+    @apply font-display tracking-chisel;
+  }
+
+  h4, h5, h6 {
+    @apply font-display tracking-chisel;
+  }
+
+  ::selection {
+    @apply bg-rust text-bone;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 bg-rust text-bone px-7 py-3 font-mono uppercase tracking-stamp text-xs rounded-none transition border border-rust hover:bg-glow hover:border-glow hover:text-soot;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 border border-bone/40 text-bone px-7 py-3 font-mono uppercase tracking-stamp text-xs rounded-none transition hover:border-glow hover:text-glow;
+  }
+
+  .wrap {
+    @apply max-w-6xl mx-auto px-6 sm:px-8;
+  }
+
+  .eyebrow {
+    @apply inline-block text-glow font-mono uppercase tracking-stamp text-[11px] mb-4;
+  }
+
+  .divider {
+    @apply w-20 h-[2px] bg-rust;
+  }
+
+  .strike {
+    @apply relative;
+  }
+  .strike::before {
+    content: '';
+    @apply absolute left-0 -top-4 w-10 h-[2px] bg-rust;
+  }
+
+  /* Industrial spec chip */
+  .spec {
+    @apply font-mono uppercase tracking-stamp text-[10px] text-bone/60;
+  }
+
+  .spec-block {
+    @apply border border-bone/10 px-4 py-3 bg-anvil/60;
+  }
+
+  .spec-block dt {
+    @apply font-mono uppercase tracking-stamp text-[10px] text-bone/55 mb-1;
+  }
+
+  .spec-block dd {
+    @apply font-display text-bone text-lg leading-none;
+  }
+
+  .num-huge {
+    @apply font-display text-bone leading-[0.85] tracking-chisel;
+    font-size: clamp(3.5rem, 10vw, 8rem);
+  }
+
+  /* Dimension callout (architectural-drawing style) */
+  .dim {
+    @apply inline-flex items-center gap-2 font-mono uppercase tracking-stamp text-[10px] text-bone/55;
+  }
+  .dim::before, .dim::after {
+    content: '';
+    @apply inline-block h-[1px] w-6 bg-bone/30;
+  }
+
+  /* Chamfered / notched border box — approximated with overlapping corners */
+  .chamber {
+    @apply relative border border-bone/15;
+  }
+  .chamber::before, .chamber::after {
+    content: '';
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    border: 1px solid theme('colors.rust');
+  }
+  .chamber::before { top: -1px; left: -1px; border-right: 0; border-bottom: 0; }
+  .chamber::after  { bottom: -1px; right: -1px; border-left: 0; border-top: 0; }
+
+  /* Ticker marquee */
+  .ticker-track {
+    animation: ticker 50s linear infinite;
+  }
+  @keyframes ticker {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* Patina swatches */
+  .patina-swatch {
+    @apply block w-full aspect-square rounded-none border border-bone/15;
+  }
+}

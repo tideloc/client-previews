@@ -1,0 +1,65 @@
+---
+import Base from '../../layouts/Base.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import { products, categoryLabel, type ProductCategory } from '../../data/products';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const cats: ProductCategory[] = ['hook', 'handle', 'hinge', 'latch', 'bracket', 'other'];
+const hero = 'https://images.unsplash.com/photo-1504826260979-242151ee45b7?w=2200&h=1200&fit=crop&q=80&auto=format';
+---
+<Base title="Shop · Small-Run Ironmongery — The Forge Works">
+  <section class="relative overflow-hidden border-b border-bone/10">
+    <div class="absolute inset-0">
+      <img src={hero} alt="" class="w-full h-full object-cover opacity-35" />
+      <div class="absolute inset-0 bg-gradient-to-b from-soot/80 via-forge/80 to-forge"></div>
+    </div>
+    <div class="wrap relative py-20 md:py-28">
+      <p class="eyebrow">// Small-run ironmongery</p>
+      <h1 class="text-5xl md:text-7xl text-bone leading-[0.9] mb-6 normal-case">The catalogue.</h1>
+      <p class="text-bone/80 text-lg max-w-2xl leading-relaxed">
+        A rotating line of small-batch domestic ironwork — hooks, latches, hinges, handles and brackets, hand-forged in Braidwood. We make them in twos and threes, not hundreds. Custom variations on every piece — tell us what you want.
+      </p>
+      <div class="mt-8 flex flex-wrap gap-2">
+        {cats.map(c => (
+          <a href={`#${c}`} class="font-mono uppercase tracking-stamp text-[11px] text-bone/70 border border-bone/20 px-3 py-1.5 hover:border-glow hover:text-glow">{categoryLabel[c]}</a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {cats.map(c => {
+    const items = products.filter(p => p.category === c);
+    if (items.length === 0) return null;
+    return (
+      <section id={c} class="py-16 md:py-24 border-b border-bone/10 last:border-b-0">
+        <div class="wrap">
+          <div class="flex items-end justify-between flex-wrap gap-4 mb-10">
+            <div>
+              <p class="font-mono uppercase tracking-stamp text-[11px] text-glow mb-2">// 0{cats.indexOf(c) + 1}</p>
+              <h2 class="text-3xl md:text-5xl text-bone normal-case">{categoryLabel[c]}</h2>
+            </div>
+            <span class="spec">{items.length} item{items.length > 1 ? 's' : ''}</span>
+          </div>
+          <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
+            {items.map(p => <ProductCard product={p} />)}
+          </div>
+        </div>
+      </section>
+    );
+  })}
+
+  <section class="py-24 bg-soot">
+    <div class="wrap grid md:grid-cols-2 gap-10 items-start">
+      <div>
+        <p class="eyebrow">// Don't see it?</p>
+        <h2 class="text-4xl md:text-5xl text-bone mb-6 normal-case">Custom<br/>variations<br/>available.</h2>
+        <div class="divider mb-6"></div>
+      </div>
+      <div>
+        <p class="text-bone/80 text-lg leading-relaxed mb-5">Almost every piece in the catalogue started as a one-off commission. Email a rough sketch, a photo of an old piece, or a dimension — we'll come back with a drawing and a quote.</p>
+        <p class="text-bone/80 text-lg leading-relaxed mb-8">Typical lead time on a variation is 4 to 6 weeks.</p>
+        <a href={`${base}/projects/#commission`} class="btn-primary">Start a commission</a>
+      </div>
+    </div>
+  </section>
+</Base>

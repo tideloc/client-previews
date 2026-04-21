@@ -1,0 +1,50 @@
+---
+import type { Workshop } from '../data/workshops';
+interface Props { workshop: Workshop; featured?: boolean }
+const { workshop, featured = false } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const levelColor = {
+  beginner: 'text-patina',
+  intermediate: 'text-glow',
+  advanced: 'text-rust',
+}[workshop.skillLevel];
+---
+<article class={`bg-anvil border border-bone/10 ${featured ? 'md:col-span-2' : ''}`}>
+  <div class={`relative overflow-hidden bg-soot ${featured ? 'aspect-[21/9]' : 'aspect-[5/3]'}`}>
+    <img src={workshop.image} alt={workshop.name} class="w-full h-full object-cover opacity-85" />
+    <div class="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-anvil to-transparent"></div>
+    <span class="absolute top-4 left-4 bg-rust text-bone px-2.5 py-1 font-mono uppercase tracking-stamp text-[10px]">{workshop.dateLabel}</span>
+    <span class={`absolute top-4 right-4 font-mono uppercase tracking-stamp text-[10px] bg-soot/80 px-2 py-1 border border-bone/20 ${levelColor}`}>{workshop.skillLevel}</span>
+  </div>
+  <div class="p-6 md:p-8 border-t border-bone/5">
+    <div class="flex items-baseline justify-between gap-3 mb-3">
+      <h3 class="text-bone text-2xl md:text-3xl leading-tight normal-case">{workshop.name}</h3>
+      <span class="font-mono text-sm text-glow whitespace-nowrap">${workshop.price}</span>
+    </div>
+    <p class="text-bone/55 text-xs mb-4 uppercase tracking-stamp font-mono">{workshop.duration} · {workshop.instructor}</p>
+    <p class="text-bone/75 text-sm leading-relaxed mb-5">{workshop.blurb}</p>
+
+    <div class="grid grid-cols-3 gap-3 mb-6">
+      <div class="spec-block">
+        <dt>Level</dt>
+        <dd class="capitalize">{workshop.skillLevel}</dd>
+      </div>
+      <div class="spec-block">
+        <dt>Max</dt>
+        <dd>{workshop.maxStudents}</dd>
+      </div>
+      <div class="spec-block">
+        <dt>Cost</dt>
+        <dd>${workshop.price}</dd>
+      </div>
+    </div>
+
+    <ul class="text-sm text-bone/70 space-y-1 mb-6">
+      {workshop.included.slice(0, 4).map(i => (
+        <li class="flex gap-2"><span class="text-glow font-mono">+</span>{i}</li>
+      ))}
+    </ul>
+
+    <a href={`${base}/workshops/#${workshop.slug}`} class="btn-ghost !py-2 !px-5 !text-[11px]">Book your spot</a>
+  </div>
+</article>

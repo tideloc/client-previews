@@ -1,0 +1,234 @@
+---
+import Base from '../layouts/Base.astro';
+import ProductCard from '../components/ProductCard.astro';
+import { products } from '../data/products';
+import { projects } from '../data/projects';
+import { workshops } from '../data/workshops';
+import { team } from '../data/team';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const featuredProducts = products.filter(p =>
+  ['scroll-coat-hook', 'georgian-rim-latch', 'barn-door-handle'].includes(p.slug)
+);
+const featuredProject = projects.find(p => p.slug === 'berrima-homestead-gate')!;
+const nextWorkshop = workshops[0];
+
+const heroImg = 'https://images.unsplash.com/photo-1565034946487-077786996e27?w=2200&h=1400&fit=crop&q=80&auto=format';
+const makerTom = team[0];
+const makerSara = team[1];
+
+const categories = [
+  { key: 'Ironmongery', copy: 'Small-run hooks, handles, hinges, latches.', href: `${base}/shop/` },
+  { key: 'Heritage', copy: 'Georgian & Federation restoration. Pattern-accurate.', href: `${base}/projects/?t=heritage` },
+  { key: 'Architectural', copy: 'Balusters, screens, gates, balustrade.', href: `${base}/projects/?t=architectural` },
+  { key: 'Workshops', copy: 'Monthly forge classes. 4 to 6 students.', href: `${base}/workshops/` },
+];
+---
+<Base title="The Forge Works — Hand-Forged Ironmongery & Architectural Metalwork · Braidwood NSW">
+  {/* HERO */}
+  <section class="relative overflow-hidden">
+    <div class="absolute inset-0">
+      <img src={heroImg} alt="" class="w-full h-full object-cover opacity-45" />
+      <div class="absolute inset-0 bg-gradient-to-b from-soot/90 via-forge/85 to-forge"></div>
+      <div class="absolute inset-0 bg-forge-grain mix-blend-screen"></div>
+    </div>
+    <div class="wrap relative py-24 md:py-36">
+      <p class="font-mono text-glow text-xs md:text-sm uppercase tracking-stamp mb-10">// Coal forge · Hand tools · No shortcuts · Braidwood NSW</p>
+
+      <h1 class="font-display text-bone tracking-chisel leading-[0.88] mb-0">
+        <span class="block text-[clamp(3rem,12vw,10rem)]">Hand-forged.</span>
+        <span class="block text-[clamp(3rem,12vw,10rem)] text-glow">No shortcuts.</span>
+      </h1>
+
+      <div class="mt-14 grid md:grid-cols-5 gap-10 items-start">
+        <div class="md:col-span-3">
+          <p class="text-bone/85 text-lg md:text-xl leading-relaxed mb-8 max-w-xl">
+            Two makers in a tin shed in Braidwood. We forge heritage ironmongery, architectural metalwork, and the occasional sculpture. We don't CNC it. We don't dress it up. We make things that outlive us.
+          </p>
+          <div class="flex flex-wrap gap-4">
+            <a href={`${base}/projects/#commission`} class="btn-primary">Commission work</a>
+            <a href={`${base}/shop/`} class="btn-ghost">Browse ironmongery</a>
+          </div>
+        </div>
+
+        <aside class="md:col-span-2 chamber bg-anvil/80 backdrop-blur p-6 md:p-8">
+          <p class="font-mono text-[10px] uppercase tracking-stamp text-glow mb-5">// Shop spec sheet</p>
+          <dl class="grid grid-cols-2 gap-4 mb-6">
+            <div>
+              <dt class="spec mb-1">Founded</dt>
+              <dd class="font-display text-bone text-2xl leading-none">2014</dd>
+            </div>
+            <div>
+              <dt class="spec mb-1">Makers</dt>
+              <dd class="font-display text-bone text-2xl leading-none">02</dd>
+            </div>
+            <div>
+              <dt class="spec mb-1">Forges</dt>
+              <dd class="font-display text-bone text-2xl leading-none">02</dd>
+            </div>
+            <div>
+              <dt class="spec mb-1">Anvils</dt>
+              <dd class="font-display text-bone text-2xl leading-none">03</dd>
+            </div>
+          </dl>
+          <div class="space-y-2 pt-5 border-t border-bone/10">
+            <p class="dim text-bone/60">112 projects completed</p>
+            <p class="dim text-bone/60">48 architect collaborations</p>
+            <p class="dim text-bone/60">≈1,800°C working temperature</p>
+          </div>
+        </aside>
+      </div>
+    </div>
+    <div class="absolute bottom-0 inset-x-0 h-[2px] bg-rust"></div>
+  </section>
+
+  {/* WHAT WE MAKE — category band */}
+  <section class="border-b border-bone/10 bg-soot">
+    <div class="wrap py-8">
+      <p class="font-mono uppercase tracking-stamp text-[11px] text-bone/50 mb-6">// What we make</p>
+      <div class="grid md:grid-cols-4 gap-6">
+        {categories.map((c, i) => (
+          <a href={c.href} class="group flex gap-4 items-start py-4 md:py-0 border-t md:border-t-0 md:border-l border-bone/10 pl-0 md:pl-5 first:border-t-0 first:md:border-l-0 hover:text-glow transition">
+            <span class="font-mono text-[11px] text-glow tracking-stamp">0{i + 1}</span>
+            <div>
+              <h3 class="text-bone text-xl mb-1 group-hover:text-glow transition normal-case">{c.key}</h3>
+              <p class="text-bone/60 text-sm leading-relaxed">{c.copy}</p>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* FEATURED PROJECT — Berrima Gate */}
+  <section class="py-24 md:py-32">
+    <div class="wrap">
+      <div class="grid md:grid-cols-12 gap-10 items-start">
+        <div class="md:col-span-5">
+          <p class="eyebrow">// Featured project · 2024</p>
+          <h2 class="text-5xl md:text-6xl text-bone leading-none mb-8 normal-case">Berrima<br/>homestead<br/>gate.</h2>
+          <div class="divider mb-8"></div>
+          <p class="text-bone/80 text-lg leading-relaxed mb-5">{featuredProject.description}</p>
+          <dl class="grid grid-cols-3 gap-3 mt-10">
+            <div class="spec-block">
+              <dt>Hours</dt>
+              <dd>{featuredProject.hours}</dd>
+            </div>
+            <div class="spec-block">
+              <dt>Year</dt>
+              <dd>{featuredProject.year}</dd>
+            </div>
+            <div class="spec-block">
+              <dt>Type</dt>
+              <dd>Heritage</dd>
+            </div>
+          </dl>
+          <a href={`${base}/projects/${featuredProject.slug}/`} class="mt-10 inline-flex items-center gap-2 text-glow font-mono uppercase tracking-stamp text-xs hover:text-bone">Full case study →</a>
+        </div>
+        <div class="md:col-span-7 grid grid-cols-2 gap-3">
+          <img src={featuredProject.images[0]} alt={featuredProject.name} class="col-span-2 w-full aspect-[16/10] object-cover bg-soot" />
+          <img src={featuredProject.images[1]} alt={`${featuredProject.name} detail`} class="w-full aspect-[5/6] object-cover bg-soot" />
+          <img src={featuredProject.images[2]} alt={`${featuredProject.name} detail`} class="w-full aspect-[5/6] object-cover bg-soot" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* IRONMONGERY — featured products */}
+  <section class="py-24 bg-soot border-y border-bone/10">
+    <div class="wrap">
+      <div class="flex items-end justify-between flex-wrap gap-6 mb-14">
+        <div>
+          <p class="eyebrow">// Small-run ironmongery</p>
+          <h2 class="text-4xl md:text-5xl text-bone normal-case">Hooks, latches,<br/>hinges, handles.</h2>
+          <div class="divider mt-6"></div>
+        </div>
+        <a href={`${base}/shop/`} class="text-glow font-mono uppercase tracking-stamp text-xs hover:text-bone">Full catalogue →</a>
+      </div>
+      <div class="grid md:grid-cols-3 gap-6">
+        {featuredProducts.map(p => <ProductCard product={p} />)}
+      </div>
+    </div>
+  </section>
+
+  {/* MAKER BIOS */}
+  <section class="py-24 md:py-32">
+    <div class="wrap">
+      <p class="eyebrow">// The two of us</p>
+      <h2 class="text-4xl md:text-5xl text-bone mb-16 normal-case">Two makers.<br/>One shed.</h2>
+      <div class="grid md:grid-cols-2 gap-10">
+        {[makerTom, makerSara].map(m => (
+          <article class="chamber bg-anvil/60 p-6 md:p-8">
+            <div class="grid grid-cols-3 gap-6">
+              <div class="col-span-1">
+                <img src={m.image} alt={m.name} class="w-full aspect-[3/4] object-cover bg-soot" />
+              </div>
+              <div class="col-span-2">
+                <p class="eyebrow mb-2">{m.discipline}</p>
+                <h3 class="text-bone text-3xl mb-1 normal-case">{m.name}</h3>
+                <p class="text-bone/60 text-sm font-mono uppercase tracking-stamp mb-5">{m.role} · {m.years}y</p>
+                <p class="text-bone/80 text-sm leading-relaxed mb-5">{m.bio}</p>
+                <p class="text-glow font-mono uppercase tracking-stamp text-[10px]">{m.tagline}</p>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* NEXT WORKSHOP */}
+  <section class="relative py-24 md:py-28 bg-rust/5 border-y border-rust/20 overflow-hidden">
+    <div class="absolute inset-0 bg-forge-grain opacity-70"></div>
+    <div class="wrap relative">
+      <div class="grid md:grid-cols-5 gap-10 items-center">
+        <div class="md:col-span-3">
+          <p class="eyebrow">// Next workshop · {nextWorkshop.dateLabel}</p>
+          <h2 class="text-5xl md:text-6xl text-bone mb-6 leading-none normal-case">{nextWorkshop.name}.</h2>
+          <p class="text-bone/80 text-lg leading-relaxed mb-8 max-w-xl">{nextWorkshop.description}</p>
+          <div class="flex flex-wrap gap-4 items-center">
+            <a href={`${base}/workshops/#${nextWorkshop.slug}`} class="btn-primary">Book ${nextWorkshop.price}</a>
+            <a href={`${base}/workshops/`} class="btn-ghost">All workshops</a>
+            <span class="font-mono uppercase tracking-stamp text-[11px] text-bone/55">Max {nextWorkshop.maxStudents} · {nextWorkshop.skillLevel}</span>
+          </div>
+        </div>
+        <div class="md:col-span-2">
+          <img src={nextWorkshop.image} alt={nextWorkshop.name} class="w-full aspect-[4/5] object-cover" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* TESTIMONIAL — architect */}
+  <section class="py-24 md:py-32">
+    <div class="wrap">
+      <div class="grid md:grid-cols-12 gap-10 items-start">
+        <div class="md:col-span-3">
+          <p class="font-mono uppercase tracking-stamp text-[11px] text-glow">// From the architect</p>
+        </div>
+        <blockquote class="md:col-span-9">
+          <p class="font-display text-bone text-3xl md:text-5xl leading-[1.1] tracking-chisel mb-8 normal-case">
+            "Working with Tom and Sara is the opposite of procurement. You send them a drawing, they send you a better drawing back. The house on Cooma is photographed constantly — that stair is the reason."
+          </p>
+          <footer class="flex items-center gap-4">
+            <span class="w-10 h-[2px] bg-rust"></span>
+            <div>
+              <div class="font-display text-bone text-lg normal-case">Cath Laidlaw</div>
+              <div class="spec">Principal · Laidlaw + Co Architects</div>
+            </div>
+          </footer>
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
+  {/* CLOSING STRIP */}
+  <section class="bg-rust text-bone py-16 border-t border-rust">
+    <div class="wrap text-center">
+      <p class="font-display text-3xl md:text-5xl leading-tight tracking-chisel normal-case">
+        We make things that outlive us.
+      </p>
+      <p class="font-mono uppercase tracking-stamp text-[11px] mt-6 text-bone/80">— The Forge Works · Braidwood NSW 2622</p>
+    </div>
+  </section>
+</Base>

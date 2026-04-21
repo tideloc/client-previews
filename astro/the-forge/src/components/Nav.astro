@@ -1,0 +1,60 @@
+---
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const links = [
+  { href: `${base}/`, label: 'Home' },
+  { href: `${base}/shop/`, label: 'Shop' },
+  { href: `${base}/projects/`, label: 'Projects' },
+  { href: `${base}/workshops/`, label: 'Workshops' },
+  { href: `${base}/about/`, label: 'About' },
+];
+const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
+---
+<header class="sticky top-0 z-40 bg-soot/90 backdrop-blur-md border-b border-bone/10">
+  <div class="wrap flex items-center justify-between py-4">
+    <a href={`${base}/`} class="flex items-center gap-3 group">
+      <span class="relative w-11 h-11 flex items-center justify-center bg-rust text-bone font-display text-xl leading-none transition group-hover:bg-glow group-hover:text-soot">
+        <span class="absolute -top-1 -left-1 w-2 h-2 border-l border-t border-glow"></span>
+        <span class="absolute -bottom-1 -right-1 w-2 h-2 border-r border-b border-glow"></span>
+        FW
+      </span>
+      <div class="leading-tight">
+        <div class="font-display text-bone tracking-chisel text-base">The Forge Works</div>
+        <div class="font-mono text-[10px] text-glow uppercase tracking-stamp">Braidwood · Est. 2014</div>
+      </div>
+    </a>
+    <nav class="hidden md:flex items-center gap-1">
+      {links.map(l => {
+        const isActive = pathname === l.href.replace(/\/$/, '') || (l.href === `${base}/` && pathname === base);
+        return (
+          <a
+            href={l.href}
+            class={`font-mono uppercase tracking-stamp text-[11px] px-4 py-2 transition hover:text-glow ${isActive ? 'text-glow' : 'text-bone/75'}`}
+          >
+            {l.label}
+          </a>
+        );
+      })}
+      <a href={`${base}/projects/#commission`} class="btn-primary ml-3 !py-2 !px-5 !text-[11px]">Commission</a>
+    </nav>
+    <button id="menuToggle" class="md:hidden text-bone p-2" aria-label="Menu">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="4" y1="7" x2="20" y2="7" />
+        <line x1="4" y1="12" x2="20" y2="12" />
+        <line x1="4" y1="17" x2="20" y2="17" />
+      </svg>
+    </button>
+  </div>
+  <div id="mobileMenu" class="hidden md:hidden border-t border-bone/10 bg-soot">
+    <div class="wrap py-4 flex flex-col gap-1">
+      {links.map(l => (
+        <a href={l.href} class="font-mono uppercase tracking-stamp text-sm text-bone py-2 hover:text-glow">{l.label}</a>
+      ))}
+      <a href={`${base}/projects/#commission`} class="btn-primary mt-3 !py-2 !px-4 !text-xs">Commission work</a>
+    </div>
+  </div>
+</header>
+<script>
+  const btn = document.getElementById('menuToggle');
+  const menu = document.getElementById('mobileMenu');
+  btn?.addEventListener('click', () => menu?.classList.toggle('hidden'));
+</script>

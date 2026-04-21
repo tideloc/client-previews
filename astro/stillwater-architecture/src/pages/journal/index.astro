@@ -1,0 +1,110 @@
+---
+import Base from '../../layouts/Base.astro';
+import JournalCard from '../../components/JournalCard.astro';
+import { journal } from '../../data/journal';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const [lead, ...rest] = journal;
+const featureRow = rest.slice(0, 3);
+const restRow = rest.slice(3);
+---
+<Base
+  title="Journal — Stillwater Architecture"
+  description="Essays, site notes and material investigations from the Stillwater Architecture studio. Long-form writing on climate, craft and place."
+>
+  {/* ——————————————————————————— MASTHEAD ——————————————————————————— */}
+  <section class="pt-16 md:pt-28 pb-16 md:pb-24">
+    <div class="wrap grid md:grid-cols-12 gap-10 items-end">
+      <div class="md:col-span-7">
+        <p class="eyebrow mb-8">Field notes · quarterly-ish</p>
+        <h1 class="display-xl max-w-[12ch]">The <em class="italic">journal.</em></h1>
+      </div>
+      <div class="md:col-span-5 md:col-rule">
+        <p class="lede max-w-md">
+          Long-form writing from the studio: the thinking behind projects, the weathering of materials, and the small observations we think worth saving. Written between site visits, published when finished.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="rule"></div>
+
+  {/* ——————————————————————————— LEAD ENTRY ——————————————————————————— */}
+  <section class="py-16 md:py-24" id={lead.slug}>
+    <div class="wrap grid md:grid-cols-12 gap-10 md:gap-14 items-start">
+      <div class="md:col-span-7">
+        <img src={lead.image} alt={lead.title} class="w-full aspect-[5/3] object-cover bg-mist" />
+      </div>
+      <div class="md:col-span-5 md:pt-12">
+        <p class="eyebrow mb-6">Latest · {lead.date}</p>
+        <div class="flex items-center gap-4 mb-5">
+          <span class="font-mono text-[10px] uppercase tracking-caps text-water">{lead.tag}</span>
+          <span class="font-mono text-[10px] uppercase tracking-caps text-stone">{lead.readTime}</span>
+        </div>
+        <h2 class="display-md mb-5">{lead.title}</h2>
+        <p class="font-display italic text-xl md:text-2xl text-lead leading-snug mb-6">{lead.subtitle}</p>
+        <p class="text-lead text-base md:text-lg leading-relaxed mb-4">{lead.excerpt}</p>
+        <p class="text-lead text-base md:text-lg leading-relaxed mb-10">
+          The piece unpacks our current passive-shading logic and walks through four recent projects — Quiet Bay House, Foreshore Addition, Quarry House and Spring Bay Cabin — where eaves did the work of a mechanical system.
+        </p>
+        <p class="font-mono text-[10px] uppercase tracking-caps text-stone">By {lead.author}</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="rule"></div>
+
+  {/* ——————————————————————————— FEATURE ROW ——————————————————————————— */}
+  <section class="py-20 md:py-28">
+    <div class="wrap">
+      <header class="mb-14">
+        <p class="eyebrow mb-6">Recent reading</p>
+        <h2 class="display-md max-w-2xl">Three essays from the past season.</h2>
+      </header>
+      <div class="grid md:grid-cols-3 gap-10 md:gap-12">
+        {featureRow.map(e => <JournalCard entry={e} />)}
+      </div>
+    </div>
+  </section>
+
+  {/* ——————————————————————————— ARCHIVE ——————————————————————————— */}
+  <section class="py-20 md:py-28 bg-mist">
+    <div class="wrap">
+      <header class="mb-14">
+        <p class="eyebrow mb-6">Archive</p>
+        <h2 class="display-md">Earlier entries.</h2>
+      </header>
+
+      <ul class="divide-y divide-ink/10 max-w-5xl">
+        {restRow.map(e => (
+          <li id={e.slug} class="py-8 grid md:grid-cols-12 gap-6 items-start">
+            <span class="md:col-span-2 font-mono text-[10px] uppercase tracking-caps text-stone">{e.date}</span>
+            <div class="md:col-span-7">
+              <div class="flex items-center gap-4 mb-2">
+                <span class="font-mono text-[10px] uppercase tracking-caps text-water">{e.tag}</span>
+                <span class="font-mono text-[10px] uppercase tracking-caps text-stone">{e.readTime}</span>
+              </div>
+              <h3 class="font-display text-2xl md:text-3xl text-ink leading-tight mb-2">{e.title}</h3>
+              {e.subtitle && <p class="font-display italic text-lead text-lg leading-snug mb-3">{e.subtitle}</p>}
+              <p class="text-lead text-sm leading-relaxed">{e.excerpt}</p>
+            </div>
+            <span class="md:col-span-3 md:text-right font-mono text-[10px] uppercase tracking-caps text-lead">{e.author}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  {/* ——————————————————————————— CLOSING ——————————————————————————— */}
+  <section class="py-24 md:py-28">
+    <div class="wrap-narrow text-center">
+      <p class="eyebrow mb-6">On the writing</p>
+      <p class="pull mb-10">
+        The journal is written slowly, in pieces that are too long to be emails and too short to be books. We publish when something is worth saying, not on a schedule.
+      </p>
+      <p class="text-lead text-base leading-relaxed max-w-xl mx-auto">
+        To receive new entries by post (printed, no email list), write to <a href="mailto:journal@stillwater.archi" class="text-ink border-b border-ink/40 hover:border-water hover:text-water pb-0.5">journal@stillwater.archi</a>. We send three or four a year.
+      </p>
+    </div>
+  </section>
+</Base>

@@ -1,0 +1,56 @@
+---
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const year = new Date().getFullYear();
+---
+<footer class="mt-32 border-t border-stone/15 bg-bone">
+  <div class="deckle"></div>
+  <div class="wrap-wide pt-20 pb-10 grid md:grid-cols-5 gap-12">
+    <div class="md:col-span-2">
+      <div class="flex items-center gap-3 mb-5">
+        <span class="w-11 h-11 border border-stone/40 text-stone flex items-center justify-center font-display text-2xl italic rounded-sharp">S</span>
+        <div class="font-display text-stone text-2xl">Saltbrush <em class="italic">&amp; Co.</em></div>
+      </div>
+      <p class="text-stone/70 text-[15px] leading-relaxed max-w-md font-light">
+        Hand-poured soy candles, reed diffusers and native botanical scents. Made in small batches in Hahndorf, in the Adelaide Hills, and shipped carefully across Australia.
+      </p>
+      <p class="batch-label mt-6">Batch 047 · Autumn edition</p>
+    </div>
+    <div>
+      <h4 class="font-body uppercase tracking-wider text-[10px] text-stone/60 mb-4">Shop</h4>
+      <ul class="space-y-2 text-sm text-stone/80 font-light">
+        <li><a href={`${base}/shop/`} class="hover:text-clay">All products</a></li>
+        <li><a href={`${base}/shop/#candles`} class="hover:text-clay">Signature candles</a></li>
+        <li><a href={`${base}/shop/#diffusers`} class="hover:text-clay">Diffusers</a></li>
+        <li><a href={`${base}/shop/#melts`} class="hover:text-clay">Wax melts</a></li>
+        <li><a href={`${base}/shop/#body`} class="hover:text-clay">Body &amp; perfume</a></li>
+        <li><a href={`${base}/shop/#gifts`} class="hover:text-clay">Gift boxes</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 class="font-body uppercase tracking-wider text-[10px] text-stone/60 mb-4">House</h4>
+      <ul class="space-y-2 text-sm text-stone/80 font-light">
+        <li><a href={`${base}/scents/`} class="hover:text-clay">The scent library</a></li>
+        <li><a href={`${base}/about/`} class="hover:text-clay">About Saltbrush</a></li>
+        <li><a href={`${base}/about/#refill`} class="hover:text-clay">Refill program</a></li>
+        <li><a href={`${base}/stockists/`} class="hover:text-clay">Stockists</a></li>
+        <li><a href={`${base}/stockists/#wholesale`} class="hover:text-clay">Wholesale</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 class="font-body uppercase tracking-wider text-[10px] text-stone/60 mb-4">Studio</h4>
+      <address class="not-italic text-sm text-stone/80 leading-relaxed font-light">
+        Saltbrush &amp; Co. Studio<br/>
+        22a Main Street<br/>
+        Hahndorf SA 5245<br/>
+        <a href="mailto:hello@saltbrushandco.com.au" class="text-clay hover:text-ochre">hello@saltbrushandco.com.au</a>
+      </address>
+      <p class="text-xs text-stone/60 mt-3 font-light">Open Fri&ndash;Sun · 10 to 4</p>
+    </div>
+  </div>
+  <div class="border-t border-stone/15">
+    <div class="wrap-wide py-6 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-stone/60">
+      <span>© {year} Saltbrush &amp; Co. Made slowly in the Adelaide Hills.</span>
+      <span class="font-mono uppercase tracking-wider">Lit slow · Burned slowly · Smelled deeply</span>
+    </div>
+  </div>
+</footer>

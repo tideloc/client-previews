@@ -1,0 +1,197 @@
+---
+import Base from '../../layouts/Base.astro';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const stages = [
+  {
+    no: '01',
+    title: 'A first conversation',
+    text: 'A 45-minute call or studio visit, no charge. We listen, ask questions about your site and the life you want to lead in the building. You leave with a sense of whether we are the right practice for the project, and we with a sense of whether the project is right for us.',
+  },
+  {
+    no: '02',
+    title: 'A site walk',
+    text: 'One or both partners visit the site with you. Two to three hours, usually including a coffee afterward. No drawings are produced at this stage — we are only trying to understand the place and the people.',
+  },
+  {
+    no: '03',
+    title: 'An engagement letter',
+    text: 'A short written proposal: scope, stages, fees, timeline. No obligation to sign. Typically delivered within two weeks of the site walk.',
+  },
+  {
+    no: '04',
+    title: 'Design begins',
+    text: 'Once the engagement letter is signed and the first-stage deposit received, we begin the brief and preliminary design. From here the project follows our standard five-stage process.',
+  },
+  {
+    no: '05',
+    title: 'We build it',
+    text: 'A builder is selected, contract signed, and we spend the next 14–24 months on fortnightly site visits until the building is handed over. And then we come back to see it in its first winter.',
+  },
+];
+---
+<Base
+  title="Contact — Stillwater Architecture"
+  description="Begin a new project with Stillwater Architecture. Studio at Level 2, 48 Salamanca Place, Battery Point. Visit by appointment."
+>
+  {/* ——————————————————————————— MASTHEAD ——————————————————————————— */}
+  <section class="pt-16 md:pt-28 pb-12 md:pb-16">
+    <div class="wrap grid md:grid-cols-12 gap-10 items-end">
+      <div class="md:col-span-7">
+        <p class="eyebrow mb-8">Begin a project</p>
+        <h1 class="display-xl max-w-[14ch]"><em class="italic">Write</em> to us.</h1>
+      </div>
+      <div class="md:col-span-5 md:col-rule">
+        <p class="lede max-w-md">
+          We reply to every considered enquiry within two working days, usually personally from one of the partners. If the timing is not right for us, we will tell you plainly and suggest a studio whose might be.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  {/* ——————————————————————————— STUDIO DETAILS ——————————————————————————— */}
+  <section class="py-16 md:py-20 border-y border-ink/15 bg-paper" id="visit">
+    <div class="wrap grid md:grid-cols-12 gap-10 md:gap-14">
+      <div class="md:col-span-4">
+        <p class="eyebrow mb-5">The studio</p>
+        <address class="not-italic text-ink font-display text-2xl md:text-3xl leading-[1.15] mb-5">
+          Level 2<br/>
+          48 Salamanca Place<br/>
+          Battery Point<br/>
+          Tasmania 7004
+        </address>
+        <p class="font-mono text-[10px] uppercase tracking-caps text-stone">By appointment only — please write first.</p>
+      </div>
+
+      <div class="md:col-span-4">
+        <p class="eyebrow mb-5">Direct</p>
+        <ul class="space-y-3 text-base text-ink">
+          <li><span class="font-mono text-[10px] uppercase tracking-caps text-stone block mb-1">General</span><a href="mailto:studio@stillwater.archi" class="border-b border-ink/40 hover:border-water hover:text-water pb-0.5">studio@stillwater.archi</a></li>
+          <li><span class="font-mono text-[10px] uppercase tracking-caps text-stone block mb-1">New projects</span><a href="mailto:enquire@stillwater.archi" class="border-b border-ink/40 hover:border-water hover:text-water pb-0.5">enquire@stillwater.archi</a></li>
+          <li><span class="font-mono text-[10px] uppercase tracking-caps text-stone block mb-1">Press</span><a href="mailto:press@stillwater.archi" class="border-b border-ink/40 hover:border-water hover:text-water pb-0.5">press@stillwater.archi</a></li>
+          <li class="pt-3"><span class="font-mono text-[10px] uppercase tracking-caps text-stone block mb-1">Telephone</span><span class="font-mono">+61 3 6 231 0480</span></li>
+        </ul>
+      </div>
+
+      <div class="md:col-span-4">
+        <p class="eyebrow mb-5">Studio hours</p>
+        <ul class="space-y-2 text-ink font-mono text-sm">
+          <li class="flex justify-between border-b border-ink/10 pb-2"><span class="text-stone uppercase text-[10px] tracking-caps">Mon–Thu</span><span>9:00 – 17:30</span></li>
+          <li class="flex justify-between border-b border-ink/10 pb-2"><span class="text-stone uppercase text-[10px] tracking-caps">Fri</span><span>9:00 – 14:00</span></li>
+          <li class="flex justify-between border-b border-ink/10 pb-2"><span class="text-stone uppercase text-[10px] tracking-caps">Sat / Sun</span><span>On site</span></li>
+          <li class="flex justify-between pt-1"><span class="text-stone uppercase text-[10px] tracking-caps">Dec 20 – Jan 10</span><span>Studio closed</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  {/* ——————————————————————————— FORM ——————————————————————————— */}
+  <section class="py-24 md:py-32">
+    <div class="wrap grid md:grid-cols-12 gap-10 md:gap-16 items-start">
+      <div class="md:col-span-4">
+        <p class="eyebrow mb-6">New enquiry</p>
+        <h2 class="display-md mb-8">Tell us about the <em class="italic">project.</em></h2>
+        <p class="text-lead text-base leading-relaxed mb-6">
+          The more you tell us about the land, the budget and the time, the more useful our first reply can be. Anything you're unsure about — say so, we'll ask.
+        </p>
+        <p class="text-lead text-base leading-relaxed">
+          We read every enquiry personally. If we are not the right studio, we will say so, and where possible we will suggest one who is.
+        </p>
+      </div>
+
+      <form class="md:col-span-8 md:col-rule space-y-10" action="mailto:enquire@stillwater.archi" method="post" enctype="text/plain">
+        <div class="grid md:grid-cols-2 gap-8">
+          <label class="block">
+            <span class="font-mono text-[10px] uppercase tracking-caps text-stone">Name</span>
+            <input name="name" type="text" required class="w-full mt-2 py-3 bg-transparent border-b border-ink/30 focus:border-water focus:outline-none text-ink font-light" />
+          </label>
+          <label class="block">
+            <span class="font-mono text-[10px] uppercase tracking-caps text-stone">Email</span>
+            <input name="email" type="email" required class="w-full mt-2 py-3 bg-transparent border-b border-ink/30 focus:border-water focus:outline-none text-ink font-light" />
+          </label>
+        </div>
+
+        <label class="block">
+          <span class="font-mono text-[10px] uppercase tracking-caps text-stone">Project type</span>
+          <select name="type" class="w-full mt-2 py-3 bg-transparent border-b border-ink/30 focus:border-water focus:outline-none text-ink font-light">
+            <option>New home</option>
+            <option>Substantial renovation or addition</option>
+            <option>Rural masterplan</option>
+            <option>Pre-purchase feasibility report</option>
+            <option>Still deciding</option>
+          </select>
+        </label>
+
+        <div class="grid md:grid-cols-2 gap-8">
+          <label class="block">
+            <span class="font-mono text-[10px] uppercase tracking-caps text-stone">Location</span>
+            <input name="location" type="text" placeholder="Suburb, region" class="w-full mt-2 py-3 bg-transparent border-b border-ink/30 focus:border-water focus:outline-none text-ink font-light" />
+          </label>
+          <label class="block">
+            <span class="font-mono text-[10px] uppercase tracking-caps text-stone">Budget range</span>
+            <select name="budget" class="w-full mt-2 py-3 bg-transparent border-b border-ink/30 focus:border-water focus:outline-none text-ink font-light">
+              <option>$600K – $1.5M</option>
+              <option>$1.5M – $3M</option>
+              <option>$3M – $6M</option>
+              <option>$6M+</option>
+              <option>Feasibility only ($4,800)</option>
+              <option>Prefer not to say yet</option>
+            </select>
+          </label>
+        </div>
+
+        <label class="block">
+          <span class="font-mono text-[10px] uppercase tracking-caps text-stone">Timeline</span>
+          <select name="timeline" class="w-full mt-2 py-3 bg-transparent border-b border-ink/30 focus:border-water focus:outline-none text-ink font-light">
+            <option>No rush — happy to start in 2027</option>
+            <option>Looking to start design in the next 6 months</option>
+            <option>Already have the land, want to move faster</option>
+            <option>Feasibility report needed within the month</option>
+          </select>
+        </label>
+
+        <label class="block">
+          <span class="font-mono text-[10px] uppercase tracking-caps text-stone">Tell us about the project</span>
+          <textarea name="message" rows="6" class="w-full mt-2 py-3 bg-transparent border-b border-ink/30 focus:border-water focus:outline-none text-ink font-light resize-none" placeholder="The site, the household, the life you hope to lead there. As long or short as feels useful."></textarea>
+        </label>
+
+        <div class="flex items-center justify-between pt-4">
+          <p class="font-mono text-[10px] uppercase tracking-caps text-stone max-w-xs">We reply within two working days. Your message is read by one of the partners.</p>
+          <button type="submit" class="btn-solid">Send enquiry &nbsp;→</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  {/* ——————————————————————————— HOW WE START ——————————————————————————— */}
+  <section class="py-24 md:py-32 bg-mist" id="stages">
+    <div class="wrap">
+      <header class="mb-16">
+        <p class="eyebrow mb-6">The first five months</p>
+        <h2 class="display-lg max-w-2xl">How we start a project.</h2>
+      </header>
+
+      <ol class="space-y-0 divide-y divide-ink/15 max-w-4xl">
+        {stages.map(s => (
+          <li class="py-10 grid md:grid-cols-12 gap-6 items-start">
+            <span class="md:col-span-1 font-display italic text-4xl text-stone">{s.no}</span>
+            <div class="md:col-span-11">
+              <h3 class="font-display text-2xl md:text-3xl text-ink leading-tight mb-3">{s.title}</h3>
+              <p class="text-lead text-base md:text-lg leading-relaxed max-w-3xl">{s.text}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  {/* ——————————————————————————— CLOSING NOTE ——————————————————————————— */}
+  <section class="py-24 md:py-28 bg-ink text-paper">
+    <div class="wrap-narrow text-center">
+      <p class="eyebrow-dark mb-8">One last note</p>
+      <p class="font-display italic font-light text-3xl md:text-4xl leading-[1.22] max-w-3xl mx-auto">
+        We only take on projects where we think we can improve someone&rsquo;s life for the next thirty years. If that sounds like what you&rsquo;re looking for, we would like to hear from you.
+      </p>
+    </div>
+  </section>
+</Base>

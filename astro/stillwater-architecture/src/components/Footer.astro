@@ -1,0 +1,54 @@
+---
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const year = new Date().getFullYear();
+---
+<footer class="mt-32 border-t border-ink/15 bg-paper">
+  <div class="wrap py-20 grid md:grid-cols-12 gap-10">
+    <div class="md:col-span-5">
+      <div class="font-display text-3xl md:text-4xl text-ink leading-tight mb-5">
+        Stillwater Architecture
+      </div>
+      <p class="text-lead text-base leading-relaxed max-w-md mb-8">
+        A four-person residential studio working out of Hobart — homes that suit their landscape, their weather and the people who will live in them for thirty years.
+      </p>
+      <p class="font-mono text-[10px] uppercase tracking-caps text-stone">
+        Nipaluna / Hobart, Tasmania
+      </p>
+    </div>
+
+    <div class="md:col-span-2">
+      <h4 class="font-mono text-[10px] uppercase tracking-caps text-stone mb-5">Practice</h4>
+      <ul class="space-y-3 text-sm text-lead">
+        <li><a href={`${base}/projects/`} class="hover:text-ink">Projects</a></li>
+        <li><a href={`${base}/studio/`} class="hover:text-ink">Studio</a></li>
+        <li><a href={`${base}/services/`} class="hover:text-ink">Services</a></li>
+        <li><a href={`${base}/journal/`} class="hover:text-ink">Journal</a></li>
+      </ul>
+    </div>
+
+    <div class="md:col-span-2">
+      <h4 class="font-mono text-[10px] uppercase tracking-caps text-stone mb-5">Enquire</h4>
+      <ul class="space-y-3 text-sm text-lead">
+        <li><a href={`${base}/contact/`} class="hover:text-ink">New projects</a></li>
+        <li><a href={`${base}/services/#feasibility`} class="hover:text-ink">Feasibility</a></li>
+        <li><a href={`${base}/contact/#visit`} class="hover:text-ink">Visit the studio</a></li>
+      </ul>
+    </div>
+
+    <div class="md:col-span-3">
+      <h4 class="font-mono text-[10px] uppercase tracking-caps text-stone mb-5">Studio</h4>
+      <address class="not-italic text-sm text-lead leading-relaxed">
+        Level 2, 48 Salamanca Place<br/>
+        Battery Point TAS 7004<br/><br/>
+        <a href="mailto:studio@stillwater.archi" class="text-ink border-b border-ink/40 hover:border-water hover:text-water pb-0.5">studio@stillwater.archi</a><br/>
+        <span class="font-mono text-[11px] text-stone">+61 3 6 231 0480</span>
+      </address>
+    </div>
+  </div>
+  <div class="border-t border-ink/10">
+    <div class="wrap py-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-3 font-mono text-[10px] uppercase tracking-caps text-stone">
+      <span>© {year} Stillwater Architecture Pty Ltd · ABN 42 612 809 130</span>
+      <span>Reg. Architect TAS 4881 · NSW 11492 · Member AIA</span>
+    </div>
+  </div>
+</footer>

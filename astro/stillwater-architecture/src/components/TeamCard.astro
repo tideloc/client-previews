@@ -1,0 +1,18 @@
+---
+import type { Member } from '../data/team';
+interface Props { member: Member; }
+const { member } = Astro.props;
+---
+<article class="grid sm:grid-cols-5 gap-6 items-start">
+  <div class="sm:col-span-2">
+    <img src={member.photo} alt={member.name} class="w-full aspect-[4/5] object-cover bg-mist" />
+  </div>
+  <div class="sm:col-span-3">
+    <p class="loc-tag mb-2">{member.role}</p>
+    <h3 class="font-display text-3xl md:text-4xl text-ink leading-tight mb-2">{member.name}</h3>
+    <p class="font-mono text-[10px] uppercase tracking-caps text-stone mb-6">{member.credentials}</p>
+    <div class="space-y-4 text-lead text-sm md:text-base leading-relaxed">
+      {member.bio.map(p => <p>{p}</p>)}
+    </div>
+  </div>
+</article>

@@ -1,0 +1,166 @@
+---
+import Base from '../../layouts/Base.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import { projects } from '../../data/projects';
+
+export function getStaticPaths() {
+  return projects.map(p => ({ params: { slug: p.slug }, props: { project: p } }));
+}
+
+const { project } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const related = project.related
+  .map(s => projects.find(p => p.slug === s))
+  .filter((p): p is typeof project => Boolean(p))
+  .slice(0, 3);
+
+const statusLabel: Record<string, string> = {
+  complete: 'Complete',
+  'in-progress': 'Under construction',
+  'on-hold': 'On hold — 2026',
+};
+---
+<Base title={`${project.name} — ${project.location} — Stillwater Architecture`} description={project.brief}>
+  {/* ——————————————————————————— HERO ——————————————————————————— */}
+  <section class="relative">
+    <div class="relative overflow-hidden">
+      <img src={project.heroImage} alt={`${project.name}, ${project.location}`} class="w-full h-[78vh] min-h-[560px] max-h-[880px] object-cover" />
+      <div class="absolute inset-0 bg-gradient-to-b from-ink/20 via-transparent to-ink/60"></div>
+      <div class="absolute inset-0 wrap flex flex-col justify-between pt-10 md:pt-14 pb-16 md:pb-20">
+        <div class="flex items-center justify-between">
+          <a href={`${base}/projects/`} class="btn-light !text-paper/90">← Projects</a>
+          <span class="font-mono text-[10px] uppercase tracking-caps text-paper/70">Folio № {String(projects.indexOf(project) + 1).padStart(2, '0')}</span>
+        </div>
+        <div>
+          <p class="font-mono text-[10px] uppercase tracking-caps text-sand mb-5">{project.location} · {project.region} · {project.year}</p>
+          <h1 class="display-xl text-paper max-w-[18ch]">{project.name}</h1>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* ——————————————————————————— BRIEF / SPECS ——————————————————————————— */}
+  <section class="py-20 md:py-28">
+    <div class="wrap grid md:grid-cols-12 gap-10 md:gap-16 items-start">
+      <div class="md:col-span-3">
+        <dl class="space-y-6 font-mono text-[11px] uppercase tracking-caps">
+          <div>
+            <dt class="text-stone mb-1.5">Location</dt>
+            <dd class="text-ink">{project.location}, Tasmania</dd>
+          </div>
+          <div>
+            <dt class="text-stone mb-1.5">Year</dt>
+            <dd class="text-ink">{project.year}</dd>
+          </div>
+          <div>
+            <dt class="text-stone mb-1.5">Size</dt>
+            <dd class="text-ink">{project.size}</dd>
+          </div>
+          <div>
+            <dt class="text-stone mb-1.5">Type</dt>
+            <dd class="text-ink">{project.type}</dd>
+          </div>
+          <div>
+            <dt class="text-stone mb-1.5">Status</dt>
+            <dd class="text-ink">{statusLabel[project.status] || project.status}</dd>
+          </div>
+          <div>
+            <dt class="text-stone mb-1.5">Photography</dt>
+            <dd class="text-ink normal-case tracking-normal font-body text-sm">{project.photographer}</dd>
+          </div>
+        </dl>
+      </div>
+      <div class="md:col-span-9 md:col-rule">
+        <p class="eyebrow mb-6">The brief</p>
+        <p class="pull mb-10">{project.brief}</p>
+        <div class="space-y-6 text-lead text-lg leading-relaxed max-w-2xl">
+          {project.description.map(p => <p>{p}</p>)}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* ——————————————————————————— HERO PHOTO NO 1 ——————————————————————————— */}
+  <section class="py-10">
+    <div class="max-w-[1400px] mx-auto px-6 md:px-10">
+      <img src={project.gallery[0]} alt={`${project.name} — interior`} class="w-full aspect-[16/10] object-cover bg-mist" />
+      <p class="font-mono text-[10px] uppercase tracking-caps text-stone mt-4">Fig. 01 · {project.photographer}</p>
+    </div>
+  </section>
+
+  {/* ——————————————————————————— DESIGN NOTES ——————————————————————————— */}
+  <section class="py-20 md:py-28">
+    <div class="wrap-narrow">
+      <p class="eyebrow mb-8">Design notes</p>
+      <h2 class="display-md mb-14">What we paid attention to.</h2>
+      <div class="space-y-12">
+        {project.designNotes.map((n, i) => (
+          <div class="grid md:grid-cols-12 gap-6 items-start">
+            <div class="md:col-span-1">
+              <span class="font-display italic text-4xl text-stone">{String(i + 1).padStart(2, '0')}</span>
+            </div>
+            <p class="md:col-span-11 text-ink text-lg md:text-xl leading-relaxed">{n}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* ——————————————————————————— PAIR OF PHOTOS ——————————————————————————— */}
+  <section class="py-10">
+    <div class="max-w-[1400px] mx-auto px-6 md:px-10 grid md:grid-cols-2 gap-4 md:gap-6">
+      <img src={project.gallery[1]} alt={`${project.name} — detail`} class="w-full aspect-[4/5] object-cover bg-mist" />
+      <img src={project.gallery[2]} alt={`${project.name} — landscape`} class="w-full aspect-[4/5] object-cover bg-mist" />
+    </div>
+  </section>
+
+  {/* ——————————————————————————— CLIENT QUOTE ——————————————————————————— */}
+  {project.clientQuote && (
+    <section class="py-24 md:py-32 bg-mist">
+      <div class="wrap-narrow text-center">
+        <p class="eyebrow mb-8">Client voice</p>
+        <blockquote class="font-display italic font-light text-3xl md:text-5xl leading-[1.18] text-ink mb-8">
+          &ldquo;{project.clientQuote.text}&rdquo;
+        </blockquote>
+        <p class="font-mono text-[10px] uppercase tracking-caps text-stone">— {project.clientQuote.attribution}</p>
+      </div>
+    </section>
+  )}
+
+  {/* ——————————————————————————— FINAL PHOTO + MATERIALS ——————————————————————————— */}
+  <section class="py-20 md:py-28">
+    <div class="wrap grid md:grid-cols-12 gap-10 items-start">
+      <div class="md:col-span-8">
+        <img src={project.gallery[3]} alt={`${project.name} — exterior`} class="w-full aspect-[4/3] object-cover bg-mist" />
+      </div>
+      <div class="md:col-span-4 md:pl-6">
+        <p class="eyebrow mb-6">Material palette</p>
+        <h3 class="font-display text-2xl md:text-3xl text-ink mb-8 leading-tight">What the building is made of.</h3>
+        <div class="flex flex-wrap gap-2">
+          {project.materials.map(m => <span class="material-pill">{m}</span>)}
+        </div>
+        <p class="text-lead text-sm leading-relaxed mt-8">
+          Where a natural material is used, it is specified raw or with a single finish chosen for longevity and weathering. We generally do not paint timber or wrap steel — both age better when allowed to speak.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  {/* ——————————————————————————— RELATED ——————————————————————————— */}
+  {related.length > 0 && (
+    <section class="py-24 border-t border-ink/15">
+      <div class="wrap">
+        <header class="flex items-end justify-between flex-wrap gap-6 mb-14">
+          <div>
+            <p class="eyebrow mb-6">Related projects</p>
+            <h2 class="display-md">Nearby work.</h2>
+          </div>
+          <a href={`${base}/projects/`} class="btn-ink">Full portfolio &nbsp;→</a>
+        </header>
+        <div class="grid md:grid-cols-3 gap-10 md:gap-12">
+          {related.map(r => <ProjectCard project={r} />)}
+        </div>
+      </div>
+    </section>
+  )}
+</Base>

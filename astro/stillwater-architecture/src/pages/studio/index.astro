@@ -1,0 +1,145 @@
+---
+import Base from '../../layouts/Base.astro';
+import TeamCard from '../../components/TeamCard.astro';
+import { team } from '../../data/team';
+import { projects } from '../../data/projects';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const recognition = [
+  { year: '2025', award: 'Houses Awards — Australian House of the Year (shortlist)', project: 'Three-Hut Farm' },
+  { year: '2024', award: 'AIA Tasmania — Colorbond Award for Steel Architecture', project: 'Quarry House' },
+  { year: '2024', award: 'AIA Tasmania — Alterations & Additions (commendation)', project: 'Foreshore Addition' },
+  { year: '2023', award: 'Houses Awards — New House Under 200m² (shortlist)', project: 'Spring Bay Cabin' },
+  { year: '2023', award: 'AIA Tasmania — Sustainable Architecture (winner)', project: 'Quiet Bay House' },
+  { year: '2022', award: 'Dulux Study Tour — practice nomination', project: 'Stillwater Architecture' },
+  { year: '2021', award: 'Tasmanian Timber Awards — Residential (winner)', project: 'Stone Wall Farmhouse' },
+];
+---
+<Base
+  title="Studio — Stillwater Architecture, Hobart"
+  description="The studio, the partners and the people behind Stillwater Architecture — four architects working from Salamanca Place, Hobart, on residential projects across Tasmania."
+>
+  {/* ——————————————————————————— MASTHEAD ——————————————————————————— */}
+  <section class="pt-16 md:pt-28 pb-12 md:pb-20">
+    <div class="wrap grid md:grid-cols-12 gap-10 items-end">
+      <div class="md:col-span-7">
+        <p class="eyebrow mb-8">Est. 2014</p>
+        <h1 class="display-xl max-w-[14ch]">A small <em class="italic">studio</em>, very deliberately.</h1>
+      </div>
+      <div class="md:col-span-5 md:col-rule">
+        <p class="lede max-w-md">
+          Stillwater is a four-person residential practice working out of a single room above Salamanca Place. We take five new projects a year. That number has not changed since 2017 and will not.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  {/* ——————————————————————————— STUDIO IMAGE ——————————————————————————— */}
+  <section>
+    <div class="max-w-[1440px] mx-auto px-6 md:px-10">
+      <img src="https://images.unsplash.com/photo-1523217582562-09d0def993a6?w=2000&h=1100&fit=crop&q=80&auto=format" alt="The Stillwater studio, Salamanca Place, Hobart" class="w-full aspect-[16/9] object-cover bg-mist" />
+      <p class="font-mono text-[10px] uppercase tracking-caps text-stone mt-4">The studio, winter · Nipaluna / Hobart · Photo by Adam Gibson</p>
+    </div>
+  </section>
+
+  {/* ——————————————————————————— STATEMENT ——————————————————————————— */}
+  <section class="py-24 md:py-32">
+    <div class="wrap grid md:grid-cols-12 gap-10 md:gap-16">
+      <div class="md:col-span-4">
+        <p class="eyebrow mb-6">On the practice</p>
+        <div class="rule-short"></div>
+      </div>
+      <div class="md:col-span-8">
+        <p class="pull mb-10 max-w-3xl">
+          We wanted a studio small enough that the partners could run every project from first walk to last walk-through, and big enough to do careful work with good builders over long timelines. Four people, it turns out, is that number.
+        </p>
+        <div class="grid md:grid-cols-2 gap-10 text-lead text-base md:text-lg leading-relaxed">
+          <p>
+            Mei and Rory had each worked in large practices — in Sydney and Melbourne respectively — before founding Stillwater. What they wanted to build here was a working life that had the capacity for long design and short, direct conversations. No juniors running sites alone. No drawings reviewed by people who had not walked the land.
+          </p>
+          <p>
+            Today we work almost exclusively for direct private clients — returning Tasmanians, tree-changers, second-home buyers with long horizons. Our projects range from $1.5M custom homes to $6M rural masterplans. Most take between eighteen months and three years from first meeting to move-in.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* ——————————————————————————— THE TEAM ——————————————————————————— */}
+  <section class="py-24 md:py-32 bg-mist">
+    <div class="wrap">
+      <header class="mb-20">
+        <p class="eyebrow mb-6">The team</p>
+        <h2 class="display-lg max-w-2xl">Four people you will know by name.</h2>
+      </header>
+      <div class="space-y-20 md:space-y-28">
+        {team.map(m => <TeamCard member={m} />)}
+      </div>
+    </div>
+  </section>
+
+  {/* ——————————————————————————— APPROACH ——————————————————————————— */}
+  <section class="py-24 md:py-32">
+    <div class="wrap">
+      <div class="grid md:grid-cols-12 gap-10 mb-16 items-end">
+        <div class="md:col-span-7">
+          <p class="eyebrow mb-6">Our approach</p>
+          <h2 class="display-lg">How a project unfolds.</h2>
+        </div>
+        <div class="md:col-span-5 md:col-rule">
+          <p class="lede max-w-md">
+            We work in five loose stages, each measured in weeks rather than days. Every stage closes with a working session on site — we do not produce drawings we have not walked through in person.
+          </p>
+        </div>
+      </div>
+
+      <ol class="grid md:grid-cols-5 gap-10">
+        {[
+          { no: '01', title: 'Site', text: 'Four walks across a season. Photographs, levels, soil, wind, trees, neighbours, access. One afternoon with the client at the kitchen table listing what matters.' },
+          { no: '02', title: 'Brief', text: 'Drafted by the partners over two weeks. Budget, gross floor area, room count, material palette direction, lifecycle assumptions. Signed before any sketching.' },
+          { no: '03', title: 'Design', text: '8-14 weeks of concept through developed design. Monthly client meetings, fortnightly model updates, weekly internal reviews. Two major iterations, rarely three.' },
+          { no: '04', title: 'Documentation', text: '12-16 weeks to construction-tender documentation. Fully resolved — every junction, every material, every fixing, every tree retained.' },
+          { no: '05', title: 'Build', text: '14-24 months on site depending on scale. Fortnightly visits by the project partner. Snag walk at month 12, at lockup, at practical completion.' },
+        ].map(s => (
+          <li>
+            <div class="font-display italic text-4xl text-stone mb-4">{s.no}</div>
+            <h3 class="font-display text-xl text-ink mb-3">{s.title}</h3>
+            <p class="text-lead text-sm leading-relaxed">{s.text}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  {/* ——————————————————————————— RECOGNITION ——————————————————————————— */}
+  <section class="py-24 md:py-28 border-t border-ink/15">
+    <div class="wrap">
+      <header class="mb-16">
+        <p class="eyebrow mb-6">Awards &amp; recognition</p>
+        <h2 class="display-md max-w-2xl">Seven quiet notices over ten years.</h2>
+      </header>
+
+      <ul class="space-y-0">
+        {recognition.map((r, i) => (
+          <li class={`grid md:grid-cols-12 gap-6 py-6 items-center ${i < recognition.length - 1 ? 'border-b border-ink/10' : ''}`}>
+            <span class="md:col-span-1 font-mono text-[10px] uppercase tracking-caps text-stone">{r.year}</span>
+            <span class="md:col-span-8 font-display text-lg md:text-xl text-ink">{r.award}</span>
+            <span class="md:col-span-3 md:text-right font-mono text-[10px] uppercase tracking-caps text-lead">{r.project}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  {/* ——————————————————————————— CLOSING ——————————————————————————— */}
+  <section class="bg-ink text-paper py-24 md:py-28">
+    <div class="wrap-narrow text-center">
+      <p class="eyebrow-dark mb-8">Working with us</p>
+      <p class="font-display italic font-light text-3xl md:text-5xl leading-[1.18] max-w-3xl mx-auto mb-12">
+        We take on a new project roughly every ten weeks. If that rhythm doesn't match yours, we will say so early.
+      </p>
+      <a href={`${base}/contact/`} class="btn-light">Begin an enquiry &nbsp;→</a>
+    </div>
+  </section>
+</Base>

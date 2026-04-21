@@ -1,0 +1,56 @@
+---
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const links = [
+  { href: `${base}/`, label: 'Home' },
+  { href: `${base}/projects/`, label: 'Projects' },
+  { href: `${base}/studio/`, label: 'Studio' },
+  { href: `${base}/services/`, label: 'Services' },
+  { href: `${base}/journal/`, label: 'Journal' },
+  { href: `${base}/contact/`, label: 'Contact' },
+];
+const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
+---
+<header class="sticky top-0 z-40 bg-paper/92 backdrop-blur-md border-b border-ink/10">
+  <div class="wrap flex items-center justify-between py-5 md:py-6">
+    <a href={`${base}/`} class="flex items-baseline gap-3 group">
+      <span class="font-display text-2xl md:text-3xl text-ink tracking-tight leading-none">Stillwater</span>
+      <span class="hidden sm:inline font-mono text-[10px] uppercase tracking-caps text-stone">Architecture · Hobart</span>
+    </a>
+    <nav class="hidden md:flex items-center gap-7">
+      {links.map(l => {
+        const norm = l.href.replace(/\/$/, '') || '/';
+        const rootBase = base || '/';
+        const isHome = norm === rootBase;
+        const isActive = (isHome && (pathname === base || pathname === '/' || pathname === rootBase))
+          || (!isHome && pathname.startsWith(norm));
+        return (
+          <a
+            href={l.href}
+            class={`font-mono uppercase tracking-caps text-[11px] pb-1 border-b ${isActive ? 'text-ink border-ink' : 'text-lead border-transparent hover:text-ink hover:border-ink/30'}`}
+          >
+            {l.label}
+          </a>
+        );
+      })}
+    </nav>
+    <button id="menuToggle" class="md:hidden text-ink p-2" aria-label="Menu">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+        <line x1="3" y1="7" x2="21" y2="7" />
+        <line x1="3" y1="12" x2="21" y2="12" />
+        <line x1="3" y1="17" x2="21" y2="17" />
+      </svg>
+    </button>
+  </div>
+  <div id="mobileMenu" class="hidden md:hidden border-t border-ink/10 bg-paper">
+    <div class="wrap py-4 flex flex-col gap-1">
+      {links.map(l => (
+        <a href={l.href} class="font-mono uppercase tracking-caps text-xs text-lead py-3 border-b border-ink/5 hover:text-ink">{l.label}</a>
+      ))}
+    </div>
+  </div>
+</header>
+<script>
+  const btn = document.getElementById('menuToggle');
+  const menu = document.getElementById('mobileMenu');
+  btn?.addEventListener('click', () => menu?.classList.toggle('hidden'));
+</script>

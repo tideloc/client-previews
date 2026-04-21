@@ -1,0 +1,24 @@
+---
+import type { Project } from '../data/projects';
+import { projectTypeLabel } from '../data/projects';
+interface Props { project: Project }
+const { project } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+<a href={`${base}/projects/${project.slug}/`} class="group block bg-anvil border border-bone/10 hover:border-rust/60 transition">
+  <div class="relative aspect-[5/4] overflow-hidden bg-soot">
+    <img src={project.images[0]} alt={project.name} class="w-full h-full object-cover opacity-85 group-hover:opacity-100 group-hover:scale-[1.03] transition duration-500" />
+    <span class="absolute top-4 left-4 bg-soot/80 border border-rust/50 text-glow px-2.5 py-1 font-mono uppercase tracking-stamp text-[10px]">{projectTypeLabel[project.type]}</span>
+    <span class="absolute top-4 right-4 font-mono uppercase tracking-stamp text-[10px] text-bone/80 bg-soot/80 px-2 py-1">{project.year}</span>
+    <div class="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-anvil to-transparent"></div>
+  </div>
+  <div class="p-6 border-t border-bone/5">
+    <h3 class="text-bone text-2xl leading-tight mb-2 group-hover:text-glow transition normal-case">{project.name}</h3>
+    <p class="text-bone/55 text-xs mb-4 uppercase tracking-stamp font-mono">{project.client}</p>
+    <p class="text-bone/75 text-sm leading-relaxed mb-5">{project.blurb}</p>
+    <div class="flex items-center justify-between pt-4 border-t border-bone/10">
+      <span class="font-mono uppercase tracking-stamp text-[10px] text-bone/50">{project.hours}h</span>
+      <span class="font-mono uppercase tracking-stamp text-[10px] text-glow group-hover:text-bone">View project →</span>
+    </div>
+  </div>
+</a>

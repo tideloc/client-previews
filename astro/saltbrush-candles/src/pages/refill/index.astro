@@ -1,0 +1,78 @@
+---
+import Base from '../../layouts/Base.astro';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const pouchImg = 'https://images.unsplash.com/photo-1534889156217-d643df14f14a?w=1400&h=1600&fit=crop&q=80&auto=format';
+
+const steps = [
+  { n: '01', t: 'Finish the candle', c: 'Let the last of the wax pool fully. Remove the wick clip when it cools.' },
+  { n: '02', t: 'Return your vessel', c: 'Drop it at the Hahndorf studio, or mail it back via reply-paid. Free for orders over $80.' },
+  { n: '03', t: 'We clean and re-wick', c: 'Every vessel is hand-washed, dried overnight, re-wicked, and prepared for a fresh pour.' },
+  { n: '04', t: 'Pour, cure, return', c: 'We pour the scent you chose, cure it for five days and ship it back. 30% off a new candle.' },
+];
+---
+<Base title="Refill program — Saltbrush & Co." description="Saltbrush & Co.'s refill program: send us your empty vessel, we refill it in any signature scent for 30% less than a new candle.">
+  <section class="pt-20 pb-14 bg-linen">
+    <div class="wrap-wide grid md:grid-cols-[1fr_0.9fr] gap-14 items-center">
+      <div>
+        <p class="eyebrow">Refill program · 2,400+ vessels refilled</p>
+        <h1 class="text-stone mb-6">Keep the vessel.<br/><em class="italic">Refill slowly.</em></h1>
+        <p class="text-stone/75 max-w-xl text-lg leading-relaxed font-light mb-8">
+          Every Saltbrush candle is built to be refilled. Return your empty vessel and we’ll clean it, re-wick it, and hand-pour a fresh candle into it for 30% less than a new one — in any signature scent you like.
+        </p>
+        <div class="flex flex-wrap gap-3">
+          <a href={`${base}/shop/saltbrush-refill-pouch/`} class="btn-ochre">Order a refill pouch</a>
+          <a href={`${base}/scents/`} class="btn-ghost">Choose a scent</a>
+        </div>
+      </div>
+      <img src={pouchImg} alt="Saltbrush refill pouch wrapped in kraft paper" class="w-full aspect-[4/5] object-cover rounded-sharp" />
+    </div>
+  </section>
+
+  <div class="deckle"></div>
+
+  <section class="py-20 bg-bone">
+    <div class="wrap-wide">
+      <div class="text-center max-w-xl mx-auto mb-14">
+        <p class="eyebrow">How it works</p>
+        <h2 class="text-stone mb-4">Four steps, zero fuss.</h2>
+        <p class="text-stone/70 font-light">Send the vessel. Pick the scent. We’ll handle the rest.</p>
+      </div>
+      <div class="grid md:grid-cols-4 gap-5">
+        {steps.map(s => (
+          <div class="border border-stone/15 bg-linen p-7 rounded-sharp">
+            <div class="font-display text-6xl text-ochre leading-none mb-4">{s.n}</div>
+            <h3 class="text-stone text-xl mb-3">{s.t}</h3>
+            <p class="text-stone/70 text-sm font-light leading-relaxed">{s.c}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-linen">
+    <div class="wrap">
+      <div class="grid md:grid-cols-2 gap-10">
+        <div class="bg-bone border border-stone/15 p-8 rounded-sharp">
+          <div class="batch-label mb-3">Pricing</div>
+          <h3 class="text-stone text-2xl mb-4">30% less than a new candle.</h3>
+          <ul class="space-y-3 text-sm text-stone/80 font-light">
+            <li class="flex gap-3 border-t border-stone/10 pt-3"><span class="batch-label w-36 shrink-0">280g refill</span><span class="text-stone">$38 (vs $58 new)</span></li>
+            <li class="flex gap-3 border-t border-stone/10 pt-3"><span class="batch-label w-36 shrink-0">140g refill</span><span class="text-stone">$22 (vs $34 new)</span></li>
+            <li class="flex gap-3 border-t border-stone/10 pt-3"><span class="batch-label w-36 shrink-0">Return postage</span><span class="text-stone">$6 reply-paid, free over $80</span></li>
+            <li class="flex gap-3 border-t border-stone/10 pt-3"><span class="batch-label w-36 shrink-0">Turnaround</span><span class="text-stone">7–10 days from studio arrival</span></li>
+          </ul>
+        </div>
+        <div class="bg-bone border border-stone/15 p-8 rounded-sharp">
+          <div class="batch-label mb-3">A few notes</div>
+          <h3 class="text-stone text-2xl mb-4">The fine print.</h3>
+          <ul class="space-y-4 text-sm text-stone/80 font-light">
+            <li class="flex gap-3"><span class="text-ochre">·</span> Any Saltbrush scent fits any Saltbrush vessel — mix freely.</li>
+            <li class="flex gap-3"><span class="text-ochre">·</span> We refill each vessel up to three times. After that the ceramic tires and we retire it gracefully.</li>
+            <li class="flex gap-3"><span class="text-ochre">·</span> Non-Saltbrush vessels can’t be refilled — we only pour into ceramic we know the thermal profile of.</li>
+            <li class="flex gap-3"><span class="text-ochre">·</span> Cracked or chipped vessels aren’t refillable. If yours breaks in transit, we’ll replace it at half price.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>

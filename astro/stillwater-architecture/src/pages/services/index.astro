@@ -1,0 +1,186 @@
+---
+import Base from '../../layouts/Base.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const services = [
+  {
+    id: 'new-homes',
+    index: '01',
+    title: 'New homes',
+    tagline: 'Residential architecture from first line to first winter.',
+    description:
+      'A complete residential project — site analysis, concept design, documentation, tender, contract administration through to occupancy. We take between four and six new home projects a year, each led personally by Mei or Rory from first meeting to move-in.',
+    includes: [
+      'Season-long site analysis and client brief development',
+      'Concept through to developed design (approx. 12 weeks)',
+      'Full construction documentation (approx. 16 weeks)',
+      'Tender review and builder selection',
+      'Fortnightly site visits through construction',
+      'Post-occupancy winter review',
+    ],
+    timeframe: '24–36 months from first meeting to move-in',
+    fee: 'Stage-based, typically 10–12% of construction cost. Fixed-fee by agreement at sign-on.',
+    scale: 'Typical scope $1.5M – $6M construction budget',
+  },
+  {
+    id: 'renovations',
+    index: '02',
+    title: 'Substantial renovations',
+    tagline: 'Additions, alterations and adaptive reuse of loved houses.',
+    description:
+      'We take particular care with older buildings — heritage cottages, farmhouses, mid-century homes that are still working. Our interest is in adding precisely what is missing without disturbing what is already good. Most of our alterations projects result in the new and old each doing one thing very well.',
+    includes: [
+      'Heritage fabric survey and photographic record',
+      'Conservation management plan (where listed)',
+      'Minimal-intervention design strategy',
+      'Planning and heritage approval coordination',
+      'Documentation calibrated for small-builder delivery',
+      'Close cabinetmaker and stonemason liaison',
+    ],
+    timeframe: '18–28 months depending on approval complexity',
+    fee: 'Stage-based, typically 11–14% — heritage work requires more care than new build.',
+    scale: 'Typical scope $600K – $2.5M construction budget',
+  },
+  {
+    id: 'masterplanning',
+    index: '03',
+    title: 'Rural masterplanning',
+    tagline: 'Long-view plans for working farms and rural estates.',
+    description:
+      'A masterplan is not the drawing for a building. It is the slow, careful plan for how a piece of land will be built on across a generation. We work with rural clients on fifty-year documents that priority-order a new house, an adapted homestead, outbuildings, water, and the buildings that will not be built.',
+    includes: [
+      'Detailed property survey and historical title research',
+      'Landscape and regeneration strategy (with ecologist)',
+      'Building-by-building staging document',
+      'Heritage and conservation review where relevant',
+      'Budget profile across a 10/25/50-year horizon',
+      'Priority-one building schematic design included',
+    ],
+    timeframe: 'Masterplan: 6–9 months. Subsequent buildings: separate engagements.',
+    fee: 'Fixed-fee for the masterplan, typically $85K – $180K. Building work scoped separately.',
+    scale: 'Properties from 20ha to several thousand hectares',
+  },
+  {
+    id: 'feasibility',
+    index: '04',
+    title: 'Pre-purchase feasibility',
+    tagline: 'A short, written report before you buy the land.',
+    description:
+      'A deliberately scoped service for clients considering a site they do not yet own. One site visit by a principal, one written report, one follow-up conversation. Our aim is to help you buy — or not buy — with open eyes. We produce four to six of these reports a year.',
+    includes: [
+      'Half-day site visit by Mei or Rory',
+      'Topographical, aspect and micro-climate assessment',
+      'Planning overlay and setback summary',
+      'Indicative building envelope and budget estimate',
+      '10-page bound report within 14 days',
+      'One 60-minute follow-up conversation',
+    ],
+    timeframe: '3–4 weeks from engagement to delivered report',
+    fee: 'Fixed fee $4,800 + GST. Credited toward any subsequent design engagement on the site.',
+    scale: 'Any Tasmanian residential site',
+  },
+];
+---
+<Base
+  title="Services — Stillwater Architecture"
+  description="New homes, substantial renovations, rural masterplanning and pre-purchase feasibility reports from Stillwater Architecture, Hobart."
+>
+  {/* ——————————————————————————— MASTHEAD ——————————————————————————— */}
+  <section class="pt-16 md:pt-28 pb-12 md:pb-20">
+    <div class="wrap grid md:grid-cols-12 gap-10 items-end">
+      <div class="md:col-span-7">
+        <p class="eyebrow mb-8">Four services · one studio</p>
+        <h1 class="display-xl max-w-[14ch]">How we <em class="italic">work.</em></h1>
+      </div>
+      <div class="md:col-span-5 md:col-rule">
+        <p class="lede max-w-md">
+          We offer four services — new homes, renovations, masterplanning, and pre-purchase feasibility reports. Each is scoped to match the size of decision you are making, and paid for accordingly.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="rule"></div>
+
+  {/* ——————————————————————————— SERVICES ——————————————————————————— */}
+  {services.map((s, i) => (
+    <section id={s.id} class={`py-24 md:py-32 ${i % 2 === 1 ? 'bg-mist' : ''}`}>
+      <div class="wrap">
+        <div class="grid md:grid-cols-12 gap-10 md:gap-14">
+          <div class="md:col-span-4">
+            <div class="font-display italic text-[clamp(5rem,12vw,9rem)] leading-none text-stone/40 mb-4">{s.index}</div>
+            <p class="eyebrow mb-4">Service {s.index}</p>
+            <h2 class="display-md mb-5">{s.title}</h2>
+            <p class="font-display italic text-xl md:text-2xl text-water leading-snug">{s.tagline}</p>
+          </div>
+
+          <div class="md:col-span-5">
+            <p class="text-lead text-lg leading-relaxed mb-8">{s.description}</p>
+
+            <h3 class="font-mono text-[10px] uppercase tracking-caps text-stone mb-4">What is included</h3>
+            <ul class="space-y-2 mb-8">
+              {s.includes.map(item => (
+                <li class="flex items-baseline gap-3 text-ink text-base leading-relaxed">
+                  <span class="font-mono text-[9px] uppercase tracking-caps text-sand shrink-0 pt-0.5">✦</span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div class="md:col-span-3 md:col-rule space-y-8">
+            <div>
+              <h4 class="font-mono text-[10px] uppercase tracking-caps text-stone mb-3">Timeframe</h4>
+              <p class="text-ink text-base leading-relaxed">{s.timeframe}</p>
+            </div>
+            <div>
+              <h4 class="font-mono text-[10px] uppercase tracking-caps text-stone mb-3">Fee structure</h4>
+              <p class="text-ink text-base leading-relaxed">{s.fee}</p>
+            </div>
+            <div>
+              <h4 class="font-mono text-[10px] uppercase tracking-caps text-stone mb-3">Typical scale</h4>
+              <p class="text-ink text-base leading-relaxed">{s.scale}</p>
+            </div>
+            <a href={`${base}/contact/`} class="btn-ink">Enquire about this service &nbsp;→</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  ))}
+
+  <div class="rule"></div>
+
+  {/* ——————————————————————————— WHAT WE DO NOT DO ——————————————————————————— */}
+  <section class="py-24 md:py-32">
+    <div class="wrap grid md:grid-cols-12 gap-10 items-start">
+      <div class="md:col-span-5">
+        <p class="eyebrow mb-6">Honest footnote</p>
+        <h2 class="display-md max-w-lg">What we quietly don&rsquo;t take on.</h2>
+      </div>
+      <div class="md:col-span-7 md:col-rule space-y-5 text-lead text-base md:text-lg leading-relaxed">
+        <p>We do not design commercial, retail or hospitality interiors. We do not work on spec-build or volume housing. We rarely take on a project outside Tasmania.</p>
+        <p>We do not sub-let documentation to offshore drafting services — every line in our drawings is drawn by a person in this room.</p>
+        <p>We are not the right studio for a project that needs to be built in under twelve months, or for a client who expects their architect to be absent from site after handover.</p>
+      </div>
+    </div>
+  </section>
+
+  {/* ——————————————————————————— CLOSING CTA ——————————————————————————— */}
+  <section class="bg-ink text-paper py-24 md:py-32">
+    <div class="wrap grid md:grid-cols-12 gap-10 items-end">
+      <div class="md:col-span-8">
+        <p class="eyebrow-dark mb-8">Start here</p>
+        <h2 class="font-display font-light text-[clamp(2.5rem,5vw,4.5rem)] leading-[1.02] max-w-3xl">
+          We are currently booking new residential engagements for <em class="italic">early 2027.</em>
+        </h2>
+        <p class="text-paper/70 text-lg max-w-xl mt-8 leading-relaxed">
+          Feasibility reports have a shorter runway — we aim to deliver within 14 days of engagement and usually have one or two slots in any given month.
+        </p>
+      </div>
+      <div class="md:col-span-4">
+        <a href={`${base}/contact/`} class="btn-light">Begin an enquiry &nbsp;→</a>
+      </div>
+    </div>
+  </section>
+</Base>

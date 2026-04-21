@@ -1,0 +1,18 @@
+---
+import type { Scent } from '../data/scents';
+interface Props { scent: Scent; index?: number }
+const { scent, index = 0 } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const num = String(index + 1).padStart(2, '0');
+---
+<a href={`${base}/scents/#${scent.slug}`} class="group block bg-linen border border-stone/10 rounded-sharp overflow-hidden transition hover:border-sage">
+  <div class="relative aspect-[4/5] overflow-hidden bg-bone">
+    <img src={scent.image} alt={scent.name} class="w-full h-full object-cover transition duration-700 group-hover:scale-[1.03]" />
+    <span class="absolute top-4 left-4 font-mono uppercase tracking-wider text-[10px] text-stone bg-linen/90 px-2 py-1">№ {num}</span>
+    <span class="absolute top-4 right-4 font-mono uppercase tracking-wider text-[10px] text-linen bg-moss/90 px-2 py-1">{scent.family}</span>
+  </div>
+  <div class="p-6">
+    <h3 class="font-display text-stone text-2xl leading-tight mb-2 group-hover:text-moss transition">{scent.name}</h3>
+    <p class="text-stone/60 text-xs uppercase tracking-wider font-mono">{scent.mood}</p>
+  </div>
+</a>

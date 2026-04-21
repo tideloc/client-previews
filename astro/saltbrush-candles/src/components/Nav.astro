@@ -1,0 +1,64 @@
+---
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const links = [
+  { href: `${base}/`, label: 'Home' },
+  { href: `${base}/shop/`, label: 'Shop' },
+  { href: `${base}/scents/`, label: 'Scents' },
+  { href: `${base}/about/`, label: 'About' },
+  { href: `${base}/stockists/`, label: 'Stockists' },
+];
+const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
+---
+<header class="sticky top-0 z-40 bg-linen/95 backdrop-blur-sm border-b border-stone/10">
+  <div class="wrap-wide flex items-center justify-between py-5">
+    <a href={`${base}/`} class="flex items-center gap-3 group">
+      <span class="w-10 h-10 border border-stone/40 text-stone flex items-center justify-center font-display text-xl italic rounded-sharp">S</span>
+      <div class="leading-tight">
+        <div class="font-display text-stone text-xl tracking-tight">Saltbrush <em class="italic">&amp; Co.</em></div>
+        <div class="font-mono text-[9px] text-stone/60 uppercase tracking-wider">Adelaide Hills · Est. 2019</div>
+      </div>
+    </a>
+    <nav class="hidden md:flex items-center gap-1">
+      {links.map(l => {
+        const href = l.href.replace(/\/$/, '') || '/';
+        const isHome = l.href === `${base}/`;
+        const isActive = isHome
+          ? (pathname === base || pathname === '/' || pathname === `${base}/`)
+          : pathname.startsWith(href);
+        return (
+          <a
+            href={l.href}
+            class={`font-body uppercase tracking-quiet text-[11px] font-semibold px-4 py-2 rounded-sharp transition ${isActive ? 'text-clay' : 'text-stone/80 hover:text-clay'}`}
+          >
+            {l.label}
+          </a>
+        );
+      })}
+      <a href={`${base}/shop/`} class="ml-4 inline-flex items-center gap-2 border border-stone/30 text-stone px-4 py-2 rounded-sharp text-[11px] uppercase tracking-quiet font-semibold hover:border-stone hover:bg-stone hover:text-linen transition">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+        Cart
+        <span class="text-[10px] text-ochre">0</span>
+      </a>
+    </nav>
+    <button id="menuToggle" class="md:hidden text-stone p-2" aria-label="Menu">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <line x1="4" y1="7" x2="20" y2="7" />
+        <line x1="4" y1="12" x2="20" y2="12" />
+        <line x1="4" y1="17" x2="20" y2="17" />
+      </svg>
+    </button>
+  </div>
+  <div id="mobileMenu" class="hidden md:hidden border-t border-stone/10 bg-linen">
+    <div class="wrap py-4 flex flex-col gap-1">
+      {links.map(l => (
+        <a href={l.href} class="font-body uppercase tracking-quiet text-xs font-semibold text-stone py-2 hover:text-clay">{l.label}</a>
+      ))}
+      <a href={`${base}/shop/`} class="font-body uppercase tracking-quiet text-xs font-semibold text-ochre py-2">Cart (0)</a>
+    </div>
+  </div>
+</header>
+<script>
+  const btn = document.getElementById('menuToggle');
+  const menu = document.getElementById('mobileMenu');
+  btn?.addEventListener('click', () => menu?.classList.toggle('hidden'));
+</script>

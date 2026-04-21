@@ -1,0 +1,29 @@
+---
+import type { Product } from '../data/products';
+import { categoryLabel } from '../data/products';
+interface Props { product: Product }
+const { product } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+<a href={`${base}/shop/${product.slug}/`} class="group block bg-anvil border border-bone/10 hover:border-rust/60 transition">
+  <div class="relative aspect-[4/5] overflow-hidden bg-soot">
+    <img src={product.image} alt={product.name} class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-[1.03] transition duration-500" />
+    {product.badge && (
+      <span class="absolute top-4 left-4 bg-rust text-bone px-2 py-1 font-mono uppercase tracking-stamp text-[10px]">{product.badge}</span>
+    )}
+    <span class="absolute top-4 right-4 font-mono uppercase tracking-stamp text-[10px] text-bone/80 bg-soot/70 px-2 py-1">{categoryLabel[product.category]}</span>
+    <div class="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-anvil to-transparent"></div>
+  </div>
+  <div class="p-5 border-t border-bone/5">
+    <div class="flex items-baseline justify-between gap-3 mb-2">
+      <h3 class="text-bone text-xl leading-tight group-hover:text-glow transition normal-case">{product.name}</h3>
+      <span class="font-mono text-sm text-glow whitespace-nowrap">${product.price}</span>
+    </div>
+    <p class="text-bone/55 text-xs mb-4 uppercase tracking-stamp font-mono">{product.material}</p>
+    <p class="text-bone/75 text-sm leading-relaxed mb-4">{product.blurb}</p>
+    <div class="flex items-center justify-between pt-3 border-t border-bone/10">
+      <span class="font-mono uppercase tracking-stamp text-[10px] text-bone/50">{product.dimensions}</span>
+      <span class="font-mono uppercase tracking-stamp text-[10px] text-bone/50">Lead · {product.leadTime}</span>
+    </div>
+  </div>
+</a>

@@ -1,0 +1,143 @@
+---
+import Base from '../../layouts/Base.astro';
+import StockistCard from '../../components/StockistCard.astro';
+import { stockists } from '../../data/stockists';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const states = ['SA', 'VIC', 'NSW'] as const;
+const stateLabels = { SA: 'South Australia', VIC: 'Victoria', NSW: 'New South Wales' };
+const stateCounts = {
+  SA:  stockists.filter(s => s.state === 'SA').length,
+  VIC: stockists.filter(s => s.state === 'VIC').length,
+  NSW: stockists.filter(s => s.state === 'NSW').length,
+};
+---
+<Base title="Stockists — Saltbrush & Co." description="Saltbrush & Co. is stocked by 20 retailers, cafés, hotels and spas across South Australia, Victoria and New South Wales.">
+  <section class="pt-20 pb-14 bg-linen">
+    <div class="wrap-wide">
+      <p class="eyebrow">Stockists · {stockists.length} across Australia</p>
+      <h1 class="text-stone mb-6">Smell us<br/><em class="italic">in person.</em></h1>
+      <p class="text-stone/70 max-w-2xl text-lg leading-relaxed font-light">
+        Our candles are stocked by carefully-chosen retailers, cafés, hotels and spas across South Australia, Victoria and New South Wales. If you’d rather meet a candle before you commit — and we understand — these are the places to do it.
+      </p>
+      <div class="mt-10 flex flex-wrap gap-5">
+        {states.map(st => (
+          <a href={`#${st}`} class="inline-flex items-center gap-3 font-mono uppercase tracking-wider text-[10px] text-stone/80 border border-stone/20 px-4 py-2 hover:border-ochre hover:text-clay transition">
+            {stateLabels[st]}
+            <span class="text-ochre">{stateCounts[st]}</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <div class="deckle"></div>
+
+  {/* Map-style visual band */}
+  <section class="py-16 bg-bone">
+    <div class="wrap-wide">
+      <div class="relative border border-stone/20 rounded-sharp overflow-hidden bg-linen p-8 md:p-12">
+        <div class="grid md:grid-cols-3 gap-10">
+          {states.map(st => (
+            <div>
+              <div class="flex items-baseline justify-between mb-5">
+                <div>
+                  <div class="batch-label mb-1">Region</div>
+                  <h2 class="font-display text-stone text-3xl">{stateLabels[st]}</h2>
+                </div>
+                <div class="font-display text-5xl text-ochre/80 leading-none">{stateCounts[st]}</div>
+              </div>
+              <ul class="space-y-2 text-sm text-stone/80 font-light border-t border-stone/15 pt-4">
+                {stockists.filter(s => s.state === st).map(s => (
+                  <li class="flex items-center justify-between gap-3 py-1">
+                    <span>{s.name}</span>
+                    <span class="batch-label whitespace-nowrap">{s.suburb}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+        <div class="absolute top-4 right-4 batch-label">Map view · Coming soon</div>
+      </div>
+    </div>
+  </section>
+
+  {/* Full list by state */}
+  {states.map(st => (
+    <section id={st} class="py-20 even:bg-bone scroll-mt-24">
+      <div class="wrap-wide">
+        <div class="flex items-end justify-between flex-wrap gap-6 mb-10">
+          <div>
+            <p class="batch-label">/ {st}</p>
+            <h2 class="text-stone mt-2">{stateLabels[st]}.</h2>
+          </div>
+          <span class="font-mono uppercase tracking-wider text-[10px] text-stone/60 border border-stone/20 px-3 py-1.5">{stateCounts[st]} stockists</span>
+        </div>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {stockists.filter(s => s.state === st).map(s => <StockistCard stockist={s} />)}
+        </div>
+      </div>
+    </section>
+  ))}
+
+  {/* Wholesale form */}
+  <section id="wholesale" class="py-24 bg-linen scroll-mt-24">
+    <div class="wrap-wide grid md:grid-cols-[1fr_1.1fr] gap-14 items-start">
+      <div>
+        <p class="eyebrow">Become a stockist</p>
+        <h2 class="text-stone mb-6">Wholesale enquiries.</h2>
+        <p class="text-stone/75 text-lg leading-relaxed mb-6 font-light">
+          We work with a small, deliberate list of retailers, cafés, hotels and spas — most of whom have been with us for years. We open wholesale applications twice a year, in March and September, and review every application personally.
+        </p>
+        <p class="text-stone/75 text-lg leading-relaxed mb-10 font-light">
+          Minimum order is 12 units across the range, wholesale pricing at 55% of RRP, with standard 14-day payment terms. First orders ship with free POS and a hand-written introduction card.
+        </p>
+        <ul class="space-y-4 text-sm text-stone/80 font-light">
+          <li class="flex gap-4 border-t border-stone/10 pt-4"><span class="batch-label w-28 shrink-0">Minimum</span><span>12 units across the range</span></li>
+          <li class="flex gap-4 border-t border-stone/10 pt-4"><span class="batch-label w-28 shrink-0">Wholesale</span><span>55% of RRP</span></li>
+          <li class="flex gap-4 border-t border-stone/10 pt-4"><span class="batch-label w-28 shrink-0">Lead time</span><span>3–4 weeks from approval</span></li>
+          <li class="flex gap-4 border-t border-stone/10 pt-4"><span class="batch-label w-28 shrink-0">Next intake</span><span>March &amp; September</span></li>
+        </ul>
+      </div>
+      <form class="bg-bone border border-stone/15 p-8 md:p-10 rounded-sharp space-y-5" id="contact" onsubmit="event.preventDefault();this.innerHTML='<div class=&quot;text-center py-10&quot;><h3 class=&quot;text-stone mb-3&quot;>Thank you.</h3><p class=&quot;text-stone/70 font-light&quot;>We&rsquo;ll be in touch within a week.</p></div>'">
+        <div>
+          <label class="batch-label mb-2 block" for="w-biz">Business name</label>
+          <input id="w-biz" type="text" required class="field" placeholder="e.g. Roundhouse Provedore" />
+        </div>
+        <div class="grid md:grid-cols-2 gap-5">
+          <div>
+            <label class="batch-label mb-2 block" for="w-name">Your name</label>
+            <input id="w-name" type="text" required class="field" placeholder="First + last" />
+          </div>
+          <div>
+            <label class="batch-label mb-2 block" for="w-email">Email</label>
+            <input id="w-email" type="email" required class="field" placeholder="hello@yourbusiness.com.au" />
+          </div>
+        </div>
+        <div class="grid md:grid-cols-2 gap-5">
+          <div>
+            <label class="batch-label mb-2 block" for="w-suburb">Suburb &amp; state</label>
+            <input id="w-suburb" type="text" required class="field" placeholder="e.g. Stirling, SA" />
+          </div>
+          <div>
+            <label class="batch-label mb-2 block" for="w-type">Type of business</label>
+            <select id="w-type" class="field">
+              <option>Retail / gift store</option>
+              <option>Café / restaurant</option>
+              <option>Hotel / short-stay</option>
+              <option>Spa / beauty</option>
+              <option>Online / other</option>
+            </select>
+          </div>
+        </div>
+        <div>
+          <label class="batch-label mb-2 block" for="w-note">Tell us about your space</label>
+          <textarea id="w-note" rows="5" class="field" placeholder="What you stock, who your customers are, why you think Saltbrush belongs on your shelf."></textarea>
+        </div>
+        <button type="submit" class="btn-primary w-full">Send wholesale enquiry</button>
+        <p class="batch-label text-center">We reply to every enquiry personally. Please allow up to a week.</p>
+      </form>
+    </div>
+  </section>
+</Base>

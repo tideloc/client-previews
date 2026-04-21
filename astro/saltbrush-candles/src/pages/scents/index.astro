@@ -1,0 +1,96 @@
+---
+import Base from '../../layouts/Base.astro';
+import ScentCard from '../../components/ScentCard.astro';
+import { scents } from '../../data/scents';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const families = ['Native', 'Citrus', 'Floral', 'Woody'] as const;
+---
+<Base title="Scent library — Saltbrush & Co." description="The seven signature scents of Saltbrush & Co., with full fragrance profiles, moods and pairing tips.">
+  <section class="pt-20 pb-14 bg-linen">
+    <div class="wrap">
+      <p class="eyebrow">The scent library</p>
+      <h1 class="text-stone mb-6">Seven signatures.<br/><em class="italic">Nothing else.</em></h1>
+      <p class="text-stone/70 max-w-2xl text-lg leading-relaxed font-light">
+        We could have launched with twenty scents. We didn’t. Every Saltbrush fragrance is built from Australian-grown essential oils and natural absolutes, developed over months, and cured before it goes near a wick. Here’s each of them — with notes, mood and the rooms they were quietly designed for.
+      </p>
+    </div>
+  </section>
+
+  <section class="pb-20 bg-linen">
+    <div class="wrap-wide">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {scents.map((s, i) => <ScentCard scent={s} index={i} />)}
+      </div>
+    </div>
+  </section>
+
+  <div class="deckle"></div>
+
+  {/* Scent profiles in detail */}
+  <section class="py-20 bg-bone">
+    <div class="wrap space-y-20">
+      {scents.map((s, i) => (
+        <article id={s.slug} class="scroll-mt-24">
+          <div class="grid md:grid-cols-[0.9fr_1.1fr] gap-10 items-start">
+            <div class="relative">
+              <img src={s.image} alt={s.name} class="w-full aspect-[4/5] object-cover rounded-sharp" />
+              <span class="absolute top-4 left-4 font-mono uppercase tracking-wider text-[10px] text-stone bg-linen/90 px-2 py-1">№ {String(i + 1).padStart(2, '0')}</span>
+              <span class="absolute top-4 right-4 font-mono uppercase tracking-wider text-[10px] text-linen bg-moss/90 px-2 py-1">{s.family}</span>
+            </div>
+            <div>
+              <p class="eyebrow">{s.family} family</p>
+              <h2 class="text-stone mb-3">{s.name}</h2>
+              <p class="text-stone/60 font-mono uppercase tracking-wider text-xs mb-8">{s.mood}</p>
+
+              <div class="grid sm:grid-cols-3 gap-6 mb-8">
+                <div>
+                  <div class="batch-label mb-3">Top</div>
+                  <ul class="space-y-1 text-sm text-stone/80 font-light">
+                    {s.notes.top.map(n => <li>· {n}</li>)}
+                  </ul>
+                </div>
+                <div>
+                  <div class="batch-label mb-3">Heart</div>
+                  <ul class="space-y-1 text-sm text-stone/80 font-light">
+                    {s.notes.heart.map(n => <li>· {n}</li>)}
+                  </ul>
+                </div>
+                <div>
+                  <div class="batch-label mb-3">Base</div>
+                  <ul class="space-y-1 text-sm text-stone/80 font-light">
+                    {s.notes.base.map(n => <li>· {n}</li>)}
+                  </ul>
+                </div>
+              </div>
+
+              <p class="text-stone/80 text-base leading-relaxed mb-6 font-light">{s.story}</p>
+
+              <div class="pt-6 border-t border-stone/15">
+                <div class="batch-label mb-3">Best for</div>
+                <div class="flex flex-wrap gap-2">
+                  {s.bestFor.map(b => <span class="note">{b}</span>)}
+                </div>
+              </div>
+
+              <div class="mt-8">
+                <a href={`${base}/shop/${s.slug}/`} class="btn-ghost">Shop {s.name}</a>
+              </div>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="py-20 bg-linen">
+    <div class="wrap text-center">
+      <p class="eyebrow">Layering</p>
+      <h2 class="text-stone mb-5">Two scents, one house.</h2>
+      <p class="text-stone/70 max-w-xl mx-auto font-light leading-relaxed mb-8">
+        Most Saltbrush regulars run two scents at a time — one grounding, one bright. Try Saltbrush After Rain in the living room with Hahndorf Morning in the kitchen, or Ironbark &amp; Smoke up against Linen Line at the other end of the house. It’s quiet, domestic, and genuinely your own.
+      </p>
+      <a href={`${base}/shop/`} class="btn-primary">Browse the range</a>
+    </div>
+  </section>
+</Base>

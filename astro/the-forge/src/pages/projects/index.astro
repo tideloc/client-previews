@@ -1,0 +1,78 @@
+---
+import Base from '../../layouts/Base.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import { projects, projectTypeLabel, type ProjectType } from '../../data/projects';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const types: ProjectType[] = ['heritage', 'architectural', 'art'];
+const hero = 'https://images.unsplash.com/photo-1533090481720-856c6e3c1fdc?w=2200&h=1200&fit=crop&q=80&auto=format';
+---
+<Base title="Projects · Commissions & Case Studies — The Forge Works">
+  <section class="relative overflow-hidden border-b border-bone/10">
+    <div class="absolute inset-0">
+      <img src={hero} alt="" class="w-full h-full object-cover opacity-30" />
+      <div class="absolute inset-0 bg-gradient-to-b from-soot/85 via-forge/85 to-forge"></div>
+    </div>
+    <div class="wrap relative py-20 md:py-28">
+      <p class="eyebrow">// Projects &amp; commissions</p>
+      <h1 class="text-5xl md:text-7xl text-bone leading-[0.9] mb-6 normal-case">The work.</h1>
+      <p class="text-bone/80 text-lg max-w-2xl leading-relaxed mb-8">
+        Eight recent projects — heritage restorations, architect-led metalwork, sculpture. Every piece was drawn, forged, and installed by two of us.
+      </p>
+      <div class="flex flex-wrap gap-2">
+        <a href="#all" class="font-mono uppercase tracking-stamp text-[11px] bg-rust text-bone px-4 py-2 hover:bg-glow hover:text-soot">All {projects.length}</a>
+        {types.map(t => {
+          const n = projects.filter(p => p.type === t).length;
+          return (
+            <a href={`#${t}`} class="font-mono uppercase tracking-stamp text-[11px] text-bone/70 border border-bone/20 px-4 py-2 hover:border-glow hover:text-glow">
+              {projectTypeLabel[t]} · {n}
+            </a>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <section id="all" class="py-16 md:py-24">
+    <div class="wrap">
+      <div class="grid md:grid-cols-2 gap-8">
+        {projects.map(p => <ProjectCard project={p} />)}
+      </div>
+    </div>
+  </section>
+
+  {types.map(t => {
+    const items = projects.filter(p => p.type === t);
+    return (
+      <section id={t} class="py-16 border-t border-bone/10">
+        <div class="wrap">
+          <div class="flex items-end justify-between flex-wrap gap-4 mb-8">
+            <h2 class="text-3xl md:text-4xl text-bone normal-case">{projectTypeLabel[t]}</h2>
+            <span class="spec">{items.length} project{items.length > 1 ? 's' : ''}</span>
+          </div>
+          <div class="grid md:grid-cols-2 gap-8">
+            {items.map(p => <ProjectCard project={p} />)}
+          </div>
+        </div>
+      </section>
+    );
+  })}
+
+  {/* Commission CTA */}
+  <section id="commission" class="py-24 md:py-28 bg-rust text-bone">
+    <div class="wrap grid md:grid-cols-2 gap-10 items-start">
+      <div>
+        <p class="font-mono uppercase tracking-stamp text-[11px] text-bone/80 mb-4">// Commission</p>
+        <h2 class="text-5xl md:text-6xl leading-[0.95] mb-6 normal-case">Work with us.</h2>
+      </div>
+      <div>
+        <p class="text-bone/90 text-lg leading-relaxed mb-5">If you're an architect, a heritage owner, or someone with a brief and a real budget — send it. Most projects we take on run from $4,000 to $80,000. We turn away more than we take.</p>
+        <p class="text-bone/90 text-lg leading-relaxed mb-8">Lead times currently 4-6 months for new commissions. We respond to every enquiry, usually in three or four days.</p>
+        <div class="flex flex-wrap gap-4">
+          <a href="mailto:hello@theforgeworks.com.au" class="inline-flex items-center justify-center gap-2 bg-soot text-bone px-7 py-3 font-mono uppercase tracking-stamp text-xs hover:bg-forge">Email a brief</a>
+          <a href="tel:+61248420100" class="inline-flex items-center justify-center gap-2 border border-bone/40 text-bone px-7 py-3 font-mono uppercase tracking-stamp text-xs hover:border-bone">02 4842 0100</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>

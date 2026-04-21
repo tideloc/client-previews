@@ -1,0 +1,213 @@
+---
+import Base from '../layouts/Base.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import JournalCard from '../components/JournalCard.astro';
+import { projects } from '../data/projects';
+import { journal } from '../data/journal';
+import { press } from '../data/press';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const featured = projects.filter(p =>
+  ['quiet-bay-house', 'three-hut-farm', 'foreshore-addition'].includes(p.slug),
+);
+const latestJournal = journal[0];
+const secondaryJournal = journal.slice(1, 3);
+---
+<Base
+  title="Stillwater Architecture — Residential Architecture, Hobart"
+  description="Stillwater Architecture is a four-person residential studio in Hobart, Tasmania, designing climate-responsive homes for the coast and country since 2014."
+>
+  {/* ——————————————————————————— HERO ——————————————————————————— */}
+  <section class="relative">
+    <div class="relative overflow-hidden">
+      <img src={featured[0].heroImage} alt={`${featured[0].name}, ${featured[0].location}`} class="w-full h-[82vh] min-h-[620px] max-h-[900px] object-cover" />
+      <div class="absolute inset-0 bg-gradient-to-b from-ink/25 via-ink/10 to-ink/55"></div>
+
+      <div class="absolute inset-0 flex flex-col">
+        <div class="wrap pt-10 md:pt-14 flex items-center justify-between">
+          <span class="font-mono text-[10px] uppercase tracking-caps text-paper/70">Folio &nbsp;/&nbsp; 2026 · Autumn</span>
+          <span class="font-mono text-[10px] uppercase tracking-caps text-paper/70">Nipaluna · 42°52′S · 147°19′E</span>
+        </div>
+
+        <div class="flex-1 wrap flex flex-col justify-end pb-16 md:pb-24">
+          <p class="eyebrow-dark mb-8">Stillwater Architecture — since 2014</p>
+          <h1 class="display-xl text-paper max-w-[14ch]">
+            Homes made<br/>
+            <em class="italic font-light text-paper/95">for their place.</em>
+          </h1>
+          <p class="lede text-paper/80 max-w-xl mt-10 mb-12">
+            A small Hobart studio designing considered residential architecture for the Tasmanian coast, country and city. Climate-responsive. Locally made. Built slowly.
+          </p>
+          <div class="flex items-center gap-10">
+            <a href={`${base}/projects/`} class="btn-light">Selected projects &nbsp;→</a>
+            <a href={`${base}/contact/`} class="btn-light">Begin an enquiry &nbsp;→</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* ——————————————————————————— STATEMENT ——————————————————————————— */}
+  <section class="py-24 md:py-32">
+    <div class="wrap grid md:grid-cols-12 gap-10 md:gap-16 items-start">
+      <div class="md:col-span-3">
+        <p class="eyebrow mb-6">01 · Practice</p>
+        <div class="rule-short"></div>
+      </div>
+      <div class="md:col-span-9">
+        <p class="pull mb-10 max-w-3xl">
+          We design for the long weather. A house in Tasmania must hold warmth for eight months, hold wind for three, and hold a family for forty years. Anything else is just decoration.
+        </p>
+        <div class="grid md:grid-cols-2 gap-10 text-lead text-base md:text-lg leading-relaxed max-w-3xl">
+          <p>
+            Stillwater was founded by Mei Takashima and Rory Fitzwilliam in 2014, after each had spent a decade practising interstate. We design residential projects only — new homes on coastal and rural sites, additions to heritage fabric in Hobart, and long-view masterplans for working farms across the Midlands.
+          </p>
+          <p>
+            The four of us share a studio above Salamanca Place, a library of materials we have tested on our own buildings, and a belief that a good house should be easier to live in, not harder, than the one it replaced.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="rule"></div>
+
+  {/* ——————————————————————————— FEATURED PROJECTS ——————————————————————————— */}
+  <section class="py-24 md:py-32">
+    <div class="wrap">
+      <header class="flex items-end justify-between flex-wrap gap-6 mb-16">
+        <div>
+          <p class="eyebrow mb-6">02 · Selected projects</p>
+          <h2 class="display-lg max-w-3xl">Three recent houses.</h2>
+        </div>
+        <a href={`${base}/projects/`} class="btn-ink">View the full portfolio &nbsp;→</a>
+      </header>
+
+      <div class="grid md:grid-cols-12 gap-10 md:gap-12">
+        <div class="md:col-span-7 md:col-start-1">
+          <ProjectCard project={featured[0]} index={0} variant="feature" />
+        </div>
+        <div class="md:col-span-5 md:col-start-8 md:mt-32">
+          <ProjectCard project={featured[1]} index={1} />
+        </div>
+        <div class="md:col-span-6 md:col-start-4 md:mt-8">
+          <ProjectCard project={featured[2]} index={2} />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* ——————————————————————————— STUDIO BAND ——————————————————————————— */}
+  <section class="bg-mist py-24 md:py-32">
+    <div class="wrap grid md:grid-cols-12 gap-10 md:gap-16 items-center">
+      <div class="md:col-span-6">
+        <img src="https://images.unsplash.com/photo-1507089947368-19c1da9775ae?w=1400&h=1700&fit=crop&q=80&auto=format" alt="Stillwater studio above Salamanca Place" class="w-full aspect-[4/5] object-cover" />
+      </div>
+      <div class="md:col-span-6">
+        <p class="eyebrow mb-6">03 · Studio</p>
+        <h2 class="display-md max-w-xl mb-8">Four people. One room. No juniors running sites alone.</h2>
+        <div class="space-y-5 text-lead text-base md:text-lg leading-relaxed max-w-lg mb-10">
+          <p>
+            Mei Takashima and Rory Fitzwilliam founded the practice in 2014. They are joined by senior architect Lenny Osei and graduate architect Anya Redman. Every project is led by one of the partners, from the first walk on site to the final walk-through.
+          </p>
+          <p>
+            We take on five new residential projects a year. That number doesn't change.
+          </p>
+        </div>
+        <a href={`${base}/studio/`} class="btn-ink">About the practice &nbsp;→</a>
+      </div>
+    </div>
+  </section>
+
+  {/* ——————————————————————————— PHILOSOPHY — 3 COL ——————————————————————————— */}
+  <section class="py-24 md:py-32">
+    <div class="wrap">
+      <header class="mb-16">
+        <p class="eyebrow mb-6">04 · Approach</p>
+        <h2 class="display-lg max-w-2xl">Three things we measure every project against.</h2>
+      </header>
+
+      <div class="grid md:grid-cols-3 gap-10 md:gap-14">
+        <div class="md:pr-4">
+          <div class="font-mono text-[10px] uppercase tracking-caps text-stone mb-4">i · Climate</div>
+          <h3 class="font-display text-3xl text-ink mb-5 leading-tight">The building runs itself.</h3>
+          <p class="text-lead leading-relaxed">
+            Every plan is tested for passive solar gain and loss across the twelve months of the Hobart year. Eaves are set by simulation, not by eye. If a house needs a heater to be warm in July, we haven't finished drawing it.
+          </p>
+        </div>
+        <div class="md:px-4 md:border-l md:border-ink/15 md:pl-10">
+          <div class="font-mono text-[10px] uppercase tracking-caps text-stone mb-4">ii · Craft</div>
+          <h3 class="font-display text-3xl text-ink mb-5 leading-tight">Local hands, local timber.</h3>
+          <p class="text-lead leading-relaxed">
+            We specify Tasmanian-grown hardwoods for every project that can accept them, and work with a core group of Tasmanian builders whose sites we visit fortnightly. A good detail survives its builder's patience; we don't draw ones that won't.
+          </p>
+        </div>
+        <div class="md:pl-4 md:border-l md:border-ink/15 md:pl-10">
+          <div class="font-mono text-[10px] uppercase tracking-caps text-stone mb-4">iii · Context</div>
+          <h3 class="font-display text-3xl text-ink mb-5 leading-tight">The site was already working.</h3>
+          <p class="text-lead leading-relaxed">
+            Before we draw the house we walk the block for a season. Light, wind, drainage, neighbours, the single tree you shouldn't remove. A house that ignores its site ages badly. A house that listens — quietly, carefully — tends to improve with time.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* ——————————————————————————— PRESS STRIP ——————————————————————————— */}
+  <section class="py-20 border-y border-ink/15 bg-paper">
+    <div class="wrap">
+      <p class="eyebrow mb-10 text-center">05 · Recognition</p>
+      <ul class="grid grid-cols-2 md:grid-cols-5 gap-8 items-center">
+        {press.map(p => (
+          <li class="text-center">
+            <div class="font-display text-xl md:text-2xl text-ink leading-tight">{p.publication}</div>
+            <div class="font-mono text-[10px] uppercase tracking-caps text-stone mt-2">{p.issue}</div>
+            <div class="font-mono text-[10px] uppercase tracking-caps text-stone/70 mt-1">{p.project}</div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  {/* ——————————————————————————— JOURNAL TEASER ——————————————————————————— */}
+  <section class="py-24 md:py-32">
+    <div class="wrap">
+      <header class="flex items-end justify-between flex-wrap gap-6 mb-16">
+        <div>
+          <p class="eyebrow mb-6">06 · Journal</p>
+          <h2 class="display-lg max-w-3xl">Long-form notes from the studio.</h2>
+        </div>
+        <a href={`${base}/journal/`} class="btn-ink">All entries &nbsp;→</a>
+      </header>
+
+      <div class="grid md:grid-cols-12 gap-10 md:gap-14">
+        <div class="md:col-span-7">
+          <JournalCard entry={latestJournal} size="lg" />
+        </div>
+        <div class="md:col-span-5 space-y-10">
+          {secondaryJournal.map(e => <JournalCard entry={e} size="sm" />)}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* ——————————————————————————— CONTACT BAND ——————————————————————————— */}
+  <section class="bg-ink text-paper py-24 md:py-32">
+    <div class="wrap grid md:grid-cols-12 gap-10 items-end">
+      <div class="md:col-span-8">
+        <p class="eyebrow-dark mb-8">07 · Enquire</p>
+        <h2 class="font-display font-light text-[clamp(2.5rem,5vw,4.5rem)] leading-[1.02] max-w-3xl">
+          If you are thinking about a new house, a <em class="italic">careful</em> addition, or a long view across a rural site — we would like to talk.
+        </h2>
+      </div>
+      <div class="md:col-span-4">
+        <a href={`${base}/contact/`} class="btn-light">Begin an enquiry &nbsp;→</a>
+        <p class="font-mono text-[10px] uppercase tracking-caps text-paper/60 mt-8">
+          studio@stillwater.archi<br/>
+          +61 3 6 231 0480<br/>
+          Level 2, 48 Salamanca Place, Battery Point
+        </p>
+      </div>
+    </div>
+  </section>
+</Base>

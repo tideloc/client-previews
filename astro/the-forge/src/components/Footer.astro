@@ -1,0 +1,50 @@
+---
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const year = new Date().getFullYear();
+---
+<footer class="mt-24 border-t border-bone/10 bg-soot">
+  <div class="wrap py-16 grid md:grid-cols-4 gap-10">
+    <div>
+      <div class="flex items-center gap-3 mb-5">
+        <span class="w-11 h-11 bg-rust text-bone flex items-center justify-center font-display text-xl">FW</span>
+        <div class="font-display text-bone tracking-chisel text-base">The Forge Works</div>
+      </div>
+      <p class="text-bone/60 text-sm leading-relaxed">Heritage blacksmithing &amp; contemporary architectural metalwork. Hand-forged in a tin shed in Braidwood, NSW.</p>
+      <p class="font-mono uppercase tracking-stamp text-[10px] text-glow mt-6">We make things that outlive us.</p>
+    </div>
+    <div>
+      <h4 class="font-mono uppercase tracking-stamp text-bone text-[11px] mb-4">Work</h4>
+      <ul class="space-y-2 text-sm">
+        <li><a href={`${base}/shop/`} class="text-bone/60 hover:text-glow">Ironmongery</a></li>
+        <li><a href={`${base}/projects/?t=heritage`} class="text-bone/60 hover:text-glow">Heritage</a></li>
+        <li><a href={`${base}/projects/?t=architectural`} class="text-bone/60 hover:text-glow">Architectural</a></li>
+        <li><a href={`${base}/projects/?t=art`} class="text-bone/60 hover:text-glow">Sculpture</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 class="font-mono uppercase tracking-stamp text-bone text-[11px] mb-4">Studio</h4>
+      <ul class="space-y-2 text-sm">
+        <li><a href={`${base}/about/`} class="text-bone/60 hover:text-glow">Our Story</a></li>
+        <li><a href={`${base}/workshops/`} class="text-bone/60 hover:text-glow">Workshops</a></li>
+        <li><a href={`${base}/projects/#commission`} class="text-bone/60 hover:text-glow">Commissions</a></li>
+        <li><a href={`${base}/about/#visit`} class="text-bone/60 hover:text-glow">Visit us</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 class="font-mono uppercase tracking-stamp text-bone text-[11px] mb-4">Find Us</h4>
+      <address class="not-italic text-sm text-bone/60 leading-relaxed">
+        The Forge Works<br/>
+        42 Wilson St<br/>
+        Braidwood NSW 2622<br/>
+        <a href="mailto:hello@theforgeworks.com.au" class="text-glow hover:text-bone">hello@theforgeworks.com.au</a><br/>
+        <span class="font-mono tracking-stamp text-[11px] uppercase text-bone/60">02 4842 0100</span>
+      </address>
+    </div>
+  </div>
+  <div class="border-t border-bone/10">
+    <div class="wrap py-6 flex flex-col md:flex-row items-center justify-between gap-2 text-xs text-bone/50">
+      <span>&copy; {year} The Forge Works. All rights reserved.</span>
+      <span class="font-mono uppercase tracking-stamp">Forged in Braidwood · Shipped Australia-wide</span>
+    </div>
+  </div>
+</footer>

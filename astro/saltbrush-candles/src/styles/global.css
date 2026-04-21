@@ -1,0 +1,128 @@
+/* Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Nunito+Sans:wght@300;400;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-linen text-stone font-body font-light;
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-display text-stone font-normal;
+    font-feature-settings: 'liga' 1, 'kern' 1;
+    letter-spacing: -0.01em;
+  }
+
+  h1 { @apply text-5xl md:text-7xl leading-[1.02]; }
+  h2 { @apply text-4xl md:text-5xl leading-[1.08]; }
+  h3 { @apply text-2xl md:text-3xl leading-tight; }
+
+  em { @apply text-moss; font-style: italic; }
+
+  ::selection {
+    @apply bg-sage/30 text-stone;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 bg-stone text-linen px-7 py-3 font-body uppercase tracking-quiet text-xs font-semibold rounded-sharp transition hover:bg-coal;
+  }
+
+  .btn-ochre {
+    @apply inline-flex items-center justify-center gap-2 bg-ochre text-linen px-7 py-3 font-body uppercase tracking-quiet text-xs font-semibold rounded-sharp transition hover:bg-clay;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 border border-stone/40 text-stone px-7 py-3 font-body uppercase tracking-quiet text-xs font-semibold rounded-sharp transition hover:border-stone hover:bg-stone hover:text-linen;
+  }
+
+  .wrap {
+    @apply max-w-6xl mx-auto px-6 sm:px-10;
+  }
+
+  .wrap-wide {
+    @apply max-w-7xl mx-auto px-6 sm:px-10;
+  }
+
+  .eyebrow {
+    @apply inline-block font-mono uppercase tracking-wider text-[10px] text-clay mb-4;
+  }
+
+  .batch-label {
+    @apply font-mono uppercase tracking-wider text-[10px] text-stone/60;
+  }
+
+  .rule {
+    @apply block w-12 h-px bg-stone/30;
+  }
+
+  .rule-ochre {
+    @apply block w-12 h-px bg-ochre;
+  }
+
+  /* Deckle-edge SVG divider used on section boundaries */
+  .deckle {
+    display: block;
+    width: 100%;
+    height: 16px;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 16' preserveAspectRatio='none'><path d='M0 8 Q30 0 60 8 T120 8 T180 8 T240 8 T300 8 T360 8 T420 8 T480 8 T540 8 T600 8 T660 8 T720 8 T780 8 T840 8 T900 8 T960 8 T1020 8 T1080 8 T1140 8 T1200 8' stroke='%233d3530' stroke-width='0.75' fill='none' opacity='0.35'/></svg>");
+    background-repeat: repeat-x;
+    background-position: center;
+    background-size: 1200px 16px;
+  }
+
+  /* Ticker marquee */
+  .ticker-track {
+    animation: ticker 55s linear infinite;
+  }
+  @keyframes ticker {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* Scent note pill */
+  .note {
+    @apply inline-flex items-center px-3 py-1 border border-stone/20 rounded-sharp text-[11px] font-body text-stone/80 bg-linen;
+  }
+
+  /* Burn-time clock */
+  .clock-face {
+    @apply relative w-16 h-16 rounded-full border border-stone/40 flex items-center justify-center;
+  }
+  .clock-face::before,
+  .clock-face::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    background: currentColor;
+    transform-origin: bottom center;
+  }
+  .clock-face::before {
+    width: 1px;
+    height: 22px;
+    transform: translate(-50%, -100%) rotate(24deg);
+  }
+  .clock-face::after {
+    width: 1.5px;
+    height: 14px;
+    transform: translate(-50%, -100%) rotate(-60deg);
+  }
+
+  /* Field = input style */
+  .field {
+    @apply w-full bg-linen border border-stone/25 rounded-sharp px-4 py-3 text-sm text-stone placeholder:text-stone/40 focus:outline-none focus:border-ochre focus:ring-0;
+  }
+}

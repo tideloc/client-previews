@@ -1,0 +1,75 @@
+---
+import Base from '../../layouts/Base.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import { products } from '../../data/products';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const cats: { slug: string; label: string; copy: string }[] = [
+  { slug: 'candles',   label: 'Signature candles', copy: 'Seven signature scents, hand-poured in 280g ceramic vessels.' },
+  { slug: 'diffusers', label: 'Diffusers',          copy: 'Slow reed and quiet ultrasonic diffusers, sized to last months.' },
+  { slug: 'melts',     label: 'Wax melts',          copy: 'Flame-free cubes for warmers. Ideal for testing a scent before committing.' },
+  { slug: 'body',      label: 'Body & perfume',     copy: 'Hand creams and perfume oils in our most-loved scents.' },
+  { slug: 'gifts',     label: 'Gift boxes',         copy: 'Linen-wrapped, sage-ribbon-tied. Complimentary card on request.' },
+  { slug: 'refills',   label: 'Refills',            copy: 'Refill your empty Saltbrush vessels. 30% less than a new candle.' },
+];
+
+const byCat: Record<string, typeof products> = {
+  candles:   products.filter(p => p.category === 'candle'),
+  diffusers: products.filter(p => p.category === 'diffuser'),
+  melts:     products.filter(p => p.category === 'melt'),
+  body:      products.filter(p => p.category === 'body'),
+  gifts:     products.filter(p => p.category === 'gift'),
+  refills:   products.filter(p => p.category === 'refill'),
+};
+---
+<Base title="Shop — Saltbrush & Co." description="The full Saltbrush & Co. range: signature candles, reed and electric diffusers, wax melts, body products, gift boxes and refill pouches.">
+  <section class="pt-20 pb-14 bg-linen">
+    <div class="wrap-wide">
+      <p class="eyebrow">The whole range · Batch 047</p>
+      <h1 class="text-stone mb-6">Every product, in one place.</h1>
+      <p class="text-stone/70 max-w-2xl text-lg leading-relaxed font-light">
+        {products.length} hand-poured products across six categories. Everything is made to order in Hahndorf, with a 4–6 day lead time and flat-rate $10 shipping Australia-wide. Refills and wholesale orders are handled separately — see the relevant section below.
+      </p>
+      <div class="mt-10 flex flex-wrap gap-2">
+        {cats.map(c => (
+          <a href={`#${c.slug}`} class="font-body uppercase tracking-quiet text-[11px] font-semibold border border-stone/25 text-stone/80 px-4 py-2 rounded-sharp hover:border-ochre hover:text-clay transition">{c.label}</a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <div class="deckle"></div>
+
+  {cats.map(c => byCat[c.slug].length > 0 && (
+    <section id={c.slug} class="py-20 even:bg-bone">
+      <div class="wrap-wide">
+        <div class="flex items-end justify-between flex-wrap gap-6 mb-10">
+          <div class="max-w-xl">
+            <p class="batch-label">/ {c.slug}</p>
+            <h2 class="text-stone mt-2">{c.label}.</h2>
+            <p class="text-stone/70 mt-3 font-light leading-relaxed">{c.copy}</p>
+          </div>
+          <span class="font-mono uppercase tracking-wider text-[10px] text-stone/50 border border-stone/20 px-3 py-1.5">{byCat[c.slug].length} product{byCat[c.slug].length === 1 ? '' : 's'}</span>
+        </div>
+        <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
+          {byCat[c.slug].map(p => <ProductCard product={p} />)}
+        </div>
+      </div>
+    </section>
+  ))}
+
+  <section class="py-20 bg-linen">
+    <div class="wrap-wide">
+      <div class="border border-stone/15 rounded-sharp p-8 md:p-12 bg-bone grid md:grid-cols-[1fr_auto] gap-8 items-center">
+        <div>
+          <p class="eyebrow">A note on pace</p>
+          <h3 class="text-stone mb-4">We pour every order fresh.</h3>
+          <p class="text-stone/70 font-light leading-relaxed max-w-2xl">
+            Because we pour to order and cure each candle for a minimum of five days, most orders ship within 4–6 business days. If you need something urgently for a gift, drop us a line and we’ll do our best — most of the time we can.
+          </p>
+        </div>
+        <a href={`${base}/stockists/#wholesale`} class="btn-primary">Wholesale enquiries</a>
+      </div>
+    </div>
+  </section>
+</Base>
