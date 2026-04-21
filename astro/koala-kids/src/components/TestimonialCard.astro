@@ -1,0 +1,17 @@
+---
+import type { Testimonial } from '../data/testimonials';
+interface Props { testimonial: Testimonial; }
+const { testimonial } = Astro.props;
+---
+<figure class="soft-card h-full flex flex-col">
+  <svg width="28" height="20" viewBox="0 0 28 20" class="mb-5 text-eucalypt" fill="currentColor" aria-hidden="true">
+    <path d="M0 20V10C0 4.477 4.477 0 10 0v4c-3.314 0-6 2.686-6 6v2h6v8H0zm16 0V10C16 4.477 20.477 0 26 0v4c-3.314 0-6 2.686-6 6v2h6v8H16z"/>
+  </svg>
+  <blockquote class="font-display text-softcoal text-lg md:text-xl leading-snug mb-6 flex-1">
+    {testimonial.quote}
+  </blockquote>
+  <figcaption class="border-t border-earth/15 pt-4">
+    <div class="font-display text-earth text-base">{testimonial.parentName}</div>
+    <div class="font-mono text-[11px] uppercase tracking-soft text-earth/60 mt-1">{testimonial.childAgeContext}</div>
+  </figcaption>
+</figure>

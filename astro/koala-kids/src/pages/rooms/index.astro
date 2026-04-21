@@ -1,0 +1,50 @@
+---
+import Base from '../../layouts/Base.astro';
+import RoomCard from '../../components/RoomCard.astro';
+import { rooms } from '../../data/rooms';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+<Base title="Our Rooms — Koala Kids Early Learning" description="Five age-grouped rooms from 0–5 years, each with its own lead educator, daily rhythm and developmental focus.">
+  <section class="pt-16 pb-10">
+    <div class="wrap max-w-3xl">
+      <p class="eyebrow">Five rooms</p>
+      <h1 class="text-5xl md:text-6xl leading-[1.02] mb-6">From first steps to the year before school.</h1>
+      <p class="text-earth/80 text-lg leading-relaxed">
+        Our rooms are grouped by stage, not chronological age. Ratios are better than the national minimum. Each room has two primary educators who stay with the cohort all year.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-12">
+    <div class="wrap">
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-14">
+        {rooms.map(r => <RoomCard room={r} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-sandstone/50">
+    <div class="wrap">
+      <p class="eyebrow">How we compare</p>
+      <h2 class="text-3xl md:text-4xl mb-10">Our ratios vs the national minimum.</h2>
+      <div class="overflow-x-auto">
+        <table class="w-full text-left">
+          <thead>
+            <tr class="border-b-2 border-eucalypt/30">
+              <th class="py-4 font-display text-softcoal">Age group</th>
+              <th class="py-4 font-display text-softcoal">National minimum</th>
+              <th class="py-4 font-display text-softcoal">Koala Kids</th>
+            </tr>
+          </thead>
+          <tbody class="text-earth/85">
+            <tr class="border-b border-paperbark/60"><td class="py-4 font-display">0–24 months</td><td>1 : 4</td><td class="text-eucalypt font-display">1 : 4</td></tr>
+            <tr class="border-b border-paperbark/60"><td class="py-4 font-display">24–36 months</td><td>1 : 5</td><td class="text-eucalypt font-display">1 : 5</td></tr>
+            <tr class="border-b border-paperbark/60"><td class="py-4 font-display">2–3 years</td><td>1 : 8</td><td class="text-eucalypt font-display">1 : 8</td></tr>
+            <tr class="border-b border-paperbark/60"><td class="py-4 font-display">3–4 years</td><td>1 : 11</td><td class="text-eucalypt font-display">1 : 10</td></tr>
+            <tr><td class="py-4 font-display">4–5 years</td><td>1 : 11</td><td class="text-eucalypt font-display">1 : 11</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+</Base>

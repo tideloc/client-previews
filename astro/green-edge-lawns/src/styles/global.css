@@ -1,0 +1,68 @@
+/* Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-cream text-bark font-body;
+    background-image:
+      radial-gradient(ellipse 80% 50% at 20% 0%, rgba(127, 181, 105, 0.12) 0%, transparent 55%),
+      radial-gradient(ellipse 60% 40% at 100% 100%, rgba(45, 106, 58, 0.08) 0%, transparent 60%);
+    background-attachment: fixed;
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-display tracking-tight;
+  }
+
+  ::selection {
+    @apply bg-leaf text-bark;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 bg-turf text-cream px-6 py-3 font-display font-semibold text-sm rounded-2xl transition hover:bg-moss hover:-translate-y-0.5 active:translate-y-0 shadow-sm;
+  }
+
+  .btn-accent {
+    @apply inline-flex items-center justify-center gap-2 bg-sunshine text-bark px-6 py-3 font-display font-semibold text-sm rounded-2xl transition hover:bg-sunshine/90 hover:-translate-y-0.5 active:translate-y-0 shadow-sm;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 border-2 border-turf/40 text-turf px-6 py-3 font-display font-semibold text-sm rounded-2xl transition hover:border-turf hover:bg-dew;
+  }
+
+  .wrap {
+    @apply max-w-6xl mx-auto px-6 sm:px-8;
+  }
+
+  .eyebrow {
+    @apply inline-block text-turf font-display font-semibold uppercase tracking-widest text-xs mb-4;
+  }
+
+  .divider {
+    @apply w-16 h-[3px] bg-leaf rounded-full;
+  }
+
+  .card {
+    @apply bg-cream border border-bark/5 rounded-2xl shadow-sm;
+  }
+
+  .chip {
+    @apply inline-flex items-center gap-1.5 bg-dew text-turf px-3 py-1 rounded-full text-xs font-medium;
+  }
+
+  .badge-day {
+    @apply inline-flex items-center justify-center bg-leaf/20 text-turf font-mono text-[10px] uppercase tracking-widest px-2.5 py-1 rounded-full;
+  }
+}

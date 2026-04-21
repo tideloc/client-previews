@@ -1,0 +1,86 @@
+---
+import Base from '../../layouts/Base.astro';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+<Base title="Contact — Koala Kids Early Learning" description="37 Parry Street, Newcastle West NSW 2302. Open Mon–Fri 7:00am to 6:00pm.">
+  <section class="pt-16 pb-10">
+    <div class="wrap max-w-3xl">
+      <p class="eyebrow">Contact</p>
+      <h1 class="text-5xl md:text-6xl leading-[1.02] mb-6">Say hello.</h1>
+      <p class="text-earth/80 text-lg leading-relaxed">
+        Our director Harriet answers the phone herself when she can. If we\'re in rooms, leave a message and we\'ll call back the same day.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-12">
+    <div class="wrap grid md:grid-cols-2 gap-10">
+      <div class="soft-card">
+        <p class="font-mono uppercase text-[10px] tracking-soft text-terracotta mb-4">// Visit us</p>
+        <h2 class="text-2xl font-display text-softcoal mb-3">Our address</h2>
+        <address class="not-italic text-earth/85 text-lg leading-relaxed mb-6">
+          Koala Kids Early Learning<br/>
+          37 Parry Street<br/>
+          Newcastle West NSW 2302
+        </address>
+        <p class="text-earth/70 text-sm mb-6">Ten minutes\' walk from Newcastle Interchange. On-site parking for families.</p>
+        <a href="https://maps.google.com/?q=37+Parry+Street+Newcastle+West+NSW" class="btn-ghost">Get directions</a>
+      </div>
+
+      <div class="soft-card">
+        <p class="font-mono uppercase text-[10px] tracking-soft text-terracotta mb-4">// Reach us</p>
+        <h2 class="text-2xl font-display text-softcoal mb-3">By phone &amp; email</h2>
+        <dl class="space-y-5">
+          <div>
+            <dt class="font-mono text-[10px] uppercase tracking-soft text-earth/60 mb-1">Centre phone</dt>
+            <dd class="font-display text-xl"><a href="tel:0249291010" class="text-eucalypt hover:text-terracotta">(02) 4929 1010</a></dd>
+          </div>
+          <div>
+            <dt class="font-mono text-[10px] uppercase tracking-soft text-earth/60 mb-1">Email</dt>
+            <dd class="font-display text-xl"><a href="mailto:hello@koalakids.com.au" class="text-eucalypt hover:text-terracotta">hello@koalakids.com.au</a></dd>
+          </div>
+          <div>
+            <dt class="font-mono text-[10px] uppercase tracking-soft text-earth/60 mb-1">Director (Harriet)</dt>
+            <dd class="font-display text-xl"><a href="mailto:harriet@koalakids.com.au" class="text-eucalypt hover:text-terracotta">harriet@koalakids.com.au</a></dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12">
+    <div class="wrap">
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="card">
+          <p class="font-mono uppercase text-[10px] tracking-soft text-terracotta mb-3">// Opening hours</p>
+          <h3 class="font-display text-xl text-softcoal mb-3">Monday to Friday</h3>
+          <p class="font-display text-2xl text-eucalypt mb-1">7:00am – 6:00pm</p>
+          <p class="text-earth/70 text-sm">Closed weekends and public holidays. Fees apply for all booked days per CCS framework.</p>
+        </div>
+        <div class="card">
+          <p class="font-mono uppercase text-[10px] tracking-soft text-terracotta mb-3">// Families in care</p>
+          <h3 class="font-display text-xl text-softcoal mb-3">After-hours emergency</h3>
+          <p class="font-display text-2xl text-eucalypt mb-1">0499 110 010</p>
+          <p class="text-earth/70 text-sm">For current families only. Direct line to Harriet, 6pm to 9pm weekdays, for urgent next-day changes.</p>
+        </div>
+        <div class="card">
+          <p class="font-mono uppercase text-[10px] tracking-soft text-terracotta mb-3">// Enrolment</p>
+          <h3 class="font-display text-xl text-softcoal mb-3">Waitlist &amp; enrolment</h3>
+          <a href={`${base}/tours/`} class="font-display text-2xl text-eucalypt hover:text-terracotta">Book a tour →</a>
+          <p class="text-earth/70 text-sm mt-2">Enrolments follow a tour. Waitlist is by tour date.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-sandstone/50">
+    <div class="wrap text-center max-w-2xl mx-auto">
+      <h2 class="text-3xl md:text-4xl mb-5">Not quite ready to enrol?</h2>
+      <p class="text-earth/80 text-lg mb-8">That\'s fine. Sign up to our quarterly newsletter — a short, un-marketing-y email about what we\'re learning in the rooms.</p>
+      <form class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+        <input type="email" placeholder="you@email.com" class="flex-1 border border-paperbark rounded-card px-4 py-3 bg-cream focus:outline-none focus:border-eucalypt" />
+        <button type="submit" class="btn-primary">Subscribe</button>
+      </form>
+    </div>
+  </section>
+</Base>

@@ -1,0 +1,62 @@
+---
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const links = [
+  { href: `${base}/`, label: 'Home' },
+  { href: `${base}/rooms/`, label: 'Rooms' },
+  { href: `${base}/approach/`, label: 'Approach' },
+  { href: `${base}/team/`, label: 'Team' },
+  { href: `${base}/fees/`, label: 'Fees' },
+  { href: `${base}/tours/`, label: 'Tours' },
+];
+const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
+---
+<header class="sticky top-0 z-40 bg-cream/92 backdrop-blur-md border-b border-paperbark/60">
+  <div class="wrap flex items-center justify-between py-4">
+    <a href={`${base}/`} class="flex items-center gap-3 group">
+      <span class="w-11 h-11 bg-eucalypt text-cream flex items-center justify-center font-display text-lg rounded-card transition group-hover:-rotate-3 group-hover:bg-terracotta">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 3c3 2 5 5 5 9a5 5 0 0 1-10 0c0-4 2-7 5-9Z"/>
+          <path d="M12 12v9"/>
+        </svg>
+      </span>
+      <div class="leading-tight">
+        <div class="font-display text-softcoal text-base">Koala Kids</div>
+        <div class="font-mono text-[10px] text-earth/65 uppercase tracking-soft">Early Learning · Newcastle</div>
+      </div>
+    </a>
+    <nav class="hidden md:flex items-center gap-1">
+      {links.map(l => {
+        const isActive = pathname === l.href.replace(/\/$/, '') || (l.href === `${base}/` && pathname === base);
+        return (
+          <a
+            href={l.href}
+            class={`font-body font-medium text-sm px-4 py-2 rounded-card transition hover:text-eucalypt ${isActive ? 'text-eucalypt bg-paperbark/40' : 'text-earth/80'}`}
+          >
+            {l.label}
+          </a>
+        );
+      })}
+      <a href={`${base}/tours/`} class="btn-primary ml-3 !py-2 !px-4 !text-sm">Book a tour</a>
+    </nav>
+    <button id="menuToggle" class="md:hidden text-earth p-2" aria-label="Menu">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <line x1="4" y1="7" x2="20" y2="7" />
+        <line x1="4" y1="12" x2="20" y2="12" />
+        <line x1="4" y1="17" x2="20" y2="17" />
+      </svg>
+    </button>
+  </div>
+  <div id="mobileMenu" class="hidden md:hidden border-t border-paperbark/60 bg-cream">
+    <div class="wrap py-4 flex flex-col gap-1">
+      {links.map(l => (
+        <a href={l.href} class="font-body text-earth py-2 hover:text-eucalypt">{l.label}</a>
+      ))}
+      <a href={`${base}/tours/`} class="btn-primary mt-3 w-full">Book a tour</a>
+    </div>
+  </div>
+</header>
+<script>
+  const btn = document.getElementById('menuToggle');
+  const menu = document.getElementById('mobileMenu');
+  btn?.addEventListener('click', () => menu?.classList.toggle('hidden'));
+</script>

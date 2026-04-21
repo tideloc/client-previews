@@ -1,0 +1,113 @@
+---
+import Base from '../../layouts/Base.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const areaImg = 'https://images.unsplash.com/photo-1577401239170-897942555fb3?w=1400&h=900&fit=crop&q=80&auto=format';
+
+const suburbs = [
+  { name: 'Cronulla', day: 'Wed', note: 'Weekly route — usually mornings' },
+  { name: 'Woolooware', day: 'Wed', note: 'Pair with Cronulla' },
+  { name: 'Caringbah', day: 'Mon / Fri', note: 'Two rounds, often full' },
+  { name: 'Caringbah South', day: 'Mon', note: 'First-half mornings' },
+  { name: 'Miranda', day: 'Tue', note: 'Big round — book ahead' },
+  { name: 'Miranda Park', day: 'Tue', note: 'Bundled with Miranda' },
+  { name: 'Gymea', day: 'Thu', note: 'Where Jake grew up' },
+  { name: 'Gymea Bay', day: 'Thu', note: 'Bayside half of the round' },
+  { name: 'Kirrawee', day: 'Tue / Thu', note: 'Split route' },
+  { name: 'Sylvania', day: 'Fri', note: 'Pairs with Sylvania Waters' },
+  { name: 'Sylvania Waters', day: 'Fri', note: 'Larger blocks' },
+  { name: 'Jannali', day: 'Thu', note: 'Tight afternoons' },
+  { name: 'Oyster Bay', day: 'Fri', note: 'Family suburb route' },
+  { name: 'Como', day: 'Fri', note: 'Small but regular' },
+  { name: 'Engadine', day: 'Mon', note: 'Start of the week' },
+  { name: 'Menai', day: 'Mon', note: 'Southern edge of service area' },
+];
+---
+<Base title="Service Area — Green Edge Lawns &amp; Gardens" description="Green Edge services 16 suburbs across the Sutherland Shire, from Cronulla to Engadine. Same-day SMS for storm callouts.">
+
+  <section class="relative py-16 md:py-24 overflow-hidden">
+    <div class="absolute inset-0">
+      <img src={areaImg} alt="Sutherland Shire suburb" class="w-full h-full object-cover" />
+      <div class="absolute inset-0 bg-gradient-to-r from-turf/95 via-turf/80 to-turf/50"></div>
+    </div>
+    <div class="wrap relative text-cream">
+      <p class="text-leaf font-display font-semibold uppercase tracking-widest text-xs mb-4">Service area</p>
+      <h1 class="font-display font-extrabold text-5xl md:text-6xl leading-tight mb-6 max-w-3xl">Sixteen Shire suburbs. One weekly route.</h1>
+      <p class="text-cream/90 text-lg max-w-2xl leading-relaxed">
+        We deliberately stay inside the Shire so routes stay tight. It means next-day callouts after storms, quicker green-waste drop-offs, and a lower per-visit rate for you.
+      </p>
+    </div>
+  </section>
+
+  {/* Suburb grid */}
+  <section class="py-16">
+    <div class="wrap">
+      <div class="flex items-end justify-between flex-wrap gap-6 mb-10">
+        <div class="max-w-xl">
+          <p class="eyebrow">Weekly rotation</p>
+          <h2 class="font-display font-bold text-3xl md:text-4xl text-bark leading-tight">Find your suburb &amp; the day.</h2>
+        </div>
+        <p class="text-sm text-bark/70 max-w-sm">Days indicate Jake&rsquo;s current regular route. Get in touch for a specific preference — we&rsquo;ll do our best.</p>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {suburbs.map(s => (
+          <article class="card p-5 hover:-translate-y-1 transition">
+            <div class="flex items-start justify-between gap-3 mb-3">
+              <h3 class="font-display font-bold text-lg text-bark">{s.name}</h3>
+              <span class="badge-day">{s.day}</span>
+            </div>
+            <p class="text-bark/70 text-sm leading-relaxed">{s.note}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* Not sure */}
+  <section class="py-16 bg-dew/60">
+    <div class="wrap grid md:grid-cols-2 gap-12 items-center">
+      <div>
+        <p class="eyebrow">Nearby but not listed?</p>
+        <h2 class="font-display font-bold text-3xl md:text-4xl text-bark leading-tight mb-6">Drop us your postcode.</h2>
+        <p class="text-bark/75 text-lg leading-relaxed mb-4">
+          We sometimes take on a regular client in Bangor, Illawong, Heathcote, Bundeena or Kurnell — depending on our current round density. No guarantees, but we&rsquo;ll tell you straight.
+        </p>
+        <p class="text-bark/75 leading-relaxed">
+          One-off jobs anywhere in the Shire are always on the table if we have a free Saturday.
+        </p>
+      </div>
+      <form class="card p-8">
+        <p class="text-xs font-mono uppercase tracking-widest text-moss mb-5">Quick check</p>
+        <div class="space-y-4">
+          <label class="block">
+            <span class="block text-sm font-display font-medium text-bark mb-1.5">Your name</span>
+            <input type="text" name="name" class="w-full rounded-2xl border border-bark/15 bg-cream px-4 py-3 text-sm focus:border-turf focus:outline-none" placeholder="Chris" />
+          </label>
+          <label class="block">
+            <span class="block text-sm font-display font-medium text-bark mb-1.5">Suburb &amp; postcode</span>
+            <input type="text" name="suburb" class="w-full rounded-2xl border border-bark/15 bg-cream px-4 py-3 text-sm focus:border-turf focus:outline-none" placeholder="Bangor 2234" />
+          </label>
+          <label class="block">
+            <span class="block text-sm font-display font-medium text-bark mb-1.5">SMS or email</span>
+            <input type="text" name="contact" class="w-full rounded-2xl border border-bark/15 bg-cream px-4 py-3 text-sm focus:border-turf focus:outline-none" placeholder="0400 123 456" />
+          </label>
+          <button type="button" class="btn-primary w-full justify-center">Check my area</button>
+          <p class="text-xs text-bark/60 text-center">We reply inside 24 hours, weekdays.</p>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  {/* Notes */}
+  <section class="py-16">
+    <div class="wrap">
+      <div class="max-w-xl mx-auto text-center">
+        <h2 class="font-display font-bold text-2xl md:text-3xl text-bark mb-4">What we won&rsquo;t do</h2>
+        <p class="text-bark/75 leading-relaxed mb-8">
+          Travel beyond the Shire for ongoing work. We&rsquo;ll politely refer you to good operators we know in the Inner West or Eastern Suburbs — just ask.
+        </p>
+        <a href={`${base}/contact/`} class="btn-ghost">Get in touch anyway</a>
+      </div>
+    </div>
+  </section>
+</Base>

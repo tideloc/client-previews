@@ -1,0 +1,69 @@
+---
+import Base from '../../layouts/Base.astro';
+import { services } from '../../data/services';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+<Base title="Services — Green Edge Lawns &amp; Gardens | Sutherland Shire" description="Weekly mowing, edging, hedge trimming, garden cleanups, mulching, small landscaping and green-waste removal across the Sutherland Shire.">
+
+  {/* Page header */}
+  <section class="bg-dew/70 py-16 md:py-24">
+    <div class="wrap">
+      <p class="eyebrow">Services</p>
+      <h1 class="font-display font-extrabold text-bark text-5xl md:text-6xl leading-tight mb-6 max-w-3xl">Everything we&rsquo;ll do for your yard.</h1>
+      <p class="text-bark/75 text-lg max-w-2xl leading-relaxed">
+        Eight services that cover 95% of residential lawn care in the Shire. If you need something that&rsquo;s not on here, ask — if it&rsquo;s within our lane, we&rsquo;ll quote it fairly. If it&rsquo;s not, we&rsquo;ll recommend a local who does it for a living.
+      </p>
+    </div>
+  </section>
+
+  {/* Services list */}
+  <section class="py-16">
+    <div class="wrap space-y-14">
+      {services.map((s, i) => (
+        <article id={s.slug} class={`grid md:grid-cols-5 gap-10 items-center ${i % 2 === 1 ? 'md:[direction:rtl]' : ''}`}>
+          <div class="md:col-span-2 relative md:[direction:ltr]">
+            <div class="relative aspect-[4/5] rounded-2xl overflow-hidden bg-dew shadow-md">
+              <img src={s.image} alt={s.name} class="w-full h-full object-cover" />
+            </div>
+            <span class="absolute top-4 left-4 chip bg-cream/95 !text-xs">{s.frequency}</span>
+          </div>
+          <div class="md:col-span-3 md:[direction:ltr]">
+            <div class="flex items-center gap-3 mb-3">
+              <span class="font-mono text-xs uppercase tracking-widest text-moss">0{i + 1}</span>
+              <span class="w-10 h-[2px] bg-leaf rounded-full"></span>
+            </div>
+            <h2 class="font-display font-bold text-bark text-3xl md:text-4xl mb-4">{s.name}</h2>
+            <p class="text-turf font-display font-semibold text-lg mb-5">{s.blurb}</p>
+            <p class="text-bark/75 leading-relaxed mb-6">{s.description}</p>
+            <div class="grid sm:grid-cols-2 gap-x-6 gap-y-2 mb-6">
+              {s.scope.map(item => (
+                <div class="flex items-start gap-2 text-sm text-bark/80">
+                  <svg class="text-turf flex-shrink-0 mt-1" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span>{item}</span>
+                </div>
+              ))}
+            </div>
+            <div class="flex flex-wrap gap-3 items-center pt-5 border-t border-bark/10">
+              <span class="chip"><strong class="text-bark mr-1">Typical:</strong>{s.typicalPrice}</span>
+              <a href={`${base}/contact/`} class="btn-primary !py-2 !px-4 !text-xs ml-auto">Get a quote</a>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  {/* Bottom CTA */}
+  <section class="py-16">
+    <div class="wrap">
+      <div class="bg-sand rounded-2xl p-10 md:p-14 text-center border border-bark/5">
+        <h2 class="font-display font-bold text-3xl md:text-4xl text-bark mb-4">Something else?</h2>
+        <p class="text-bark/75 leading-relaxed max-w-xl mx-auto mb-8">
+          Brick laying, tree lopping over 3m, pools, structural retaining walls — not us. But we&rsquo;ve got trusted Shire locals for all of it, just ask.
+        </p>
+        <a href={`${base}/contact/`} class="btn-primary">Ask Jake</a>
+      </div>
+    </div>
+  </section>
+</Base>

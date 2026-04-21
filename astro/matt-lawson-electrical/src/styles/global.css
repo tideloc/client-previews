@@ -1,0 +1,96 @@
+/* Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-bone text-graphite font-body;
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-display text-graphite;
+    letter-spacing: -0.02em;
+  }
+
+  h1 { letter-spacing: -0.03em; }
+
+  ::selection {
+    @apply bg-volt text-graphite;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 bg-volt text-graphite px-6 py-3 font-display font-semibold text-sm rounded-sharp transition hover:bg-charge hover:-translate-y-0.5 active:translate-y-0;
+  }
+
+  .btn-dark {
+    @apply inline-flex items-center justify-center gap-2 bg-graphite text-bone px-6 py-3 font-display font-semibold text-sm rounded-sharp transition hover:bg-steel;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 border-2 border-graphite/20 text-graphite px-6 py-3 font-display font-semibold text-sm rounded-sharp transition hover:border-graphite hover:bg-graphite hover:text-bone;
+  }
+
+  .btn-ghost-light {
+    @apply inline-flex items-center justify-center gap-2 border-2 border-bone/30 text-bone px-6 py-3 font-display font-semibold text-sm rounded-sharp transition hover:border-volt hover:text-volt;
+  }
+
+  .wrap {
+    @apply max-w-6xl mx-auto px-6 sm:px-8;
+  }
+
+  .wrap-wide {
+    @apply max-w-7xl mx-auto px-6 sm:px-8;
+  }
+
+  .eyebrow {
+    @apply inline-block text-charge font-mono uppercase tracking-wide2 text-[11px] font-medium mb-3;
+  }
+
+  .eyebrow-light {
+    @apply inline-block text-volt font-mono uppercase tracking-wide2 text-[11px] font-medium mb-3;
+  }
+
+  .divider {
+    @apply w-12 h-[3px] bg-volt;
+  }
+
+  .card {
+    @apply bg-chalk border border-graphite/10 rounded-sharp overflow-hidden transition hover:border-volt hover:-translate-y-0.5 hover:shadow-lg;
+  }
+
+  .ticker-track {
+    animation: ticker 38s linear infinite;
+  }
+  @keyframes ticker {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  .chip {
+    @apply inline-flex items-center gap-1.5 bg-bone border border-graphite/10 rounded-full px-3 py-1 text-[12px] font-medium text-graphite;
+  }
+
+  .chip-dark {
+    @apply inline-flex items-center gap-1.5 bg-steel border border-bone/10 rounded-full px-3 py-1 text-[12px] font-medium text-bone/70;
+  }
+
+  .dot-live {
+    @apply inline-block w-2 h-2 rounded-full bg-mint;
+    animation: blink 2.4s ease infinite;
+  }
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.35; }
+  }
+}

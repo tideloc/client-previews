@@ -1,0 +1,136 @@
+---
+import Base from '../../layouts/Base.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const suburbs: { name: string; postcode: string; response: string; tier: 'core' | 'standard' | 'extended' }[] = [
+  { name: 'Wollongong', postcode: '2500', response: '30–60 min', tier: 'core' },
+  { name: 'Figtree', postcode: '2525', response: '30–60 min', tier: 'core' },
+  { name: 'Balgownie', postcode: '2519', response: '30–60 min', tier: 'core' },
+  { name: 'Fairy Meadow', postcode: '2519', response: '30–60 min', tier: 'core' },
+  { name: 'Keiraville', postcode: '2500', response: '30–60 min', tier: 'core' },
+  { name: 'Mangerton', postcode: '2500', response: '30–60 min', tier: 'core' },
+  { name: 'Corrimal', postcode: '2518', response: '45–75 min', tier: 'standard' },
+  { name: 'Bulli', postcode: '2516', response: '45–90 min', tier: 'standard' },
+  { name: 'Thirroul', postcode: '2515', response: '45–90 min', tier: 'standard' },
+  { name: 'Helensburgh', postcode: '2508', response: '60–90 min', tier: 'extended' },
+  { name: 'Port Kembla', postcode: '2505', response: '30–60 min', tier: 'core' },
+  { name: 'Warrawong', postcode: '2502', response: '30–60 min', tier: 'core' },
+  { name: 'Unanderra', postcode: '2526', response: '30–60 min', tier: 'core' },
+  { name: 'Dapto', postcode: '2530', response: '45–75 min', tier: 'standard' },
+  { name: 'Horsley', postcode: '2530', response: '45–75 min', tier: 'standard' },
+  { name: 'Shellharbour', postcode: '2529', response: '60–90 min', tier: 'standard' },
+  { name: 'Albion Park', postcode: '2527', response: '60–90 min', tier: 'standard' },
+  { name: 'Oak Flats', postcode: '2529', response: '60–90 min', tier: 'standard' },
+  { name: 'Kiama', postcode: '2533', response: '75–120 min', tier: 'extended' },
+  { name: 'Gerringong', postcode: '2534', response: '90–120 min', tier: 'extended' },
+];
+
+const tierLabel = {
+  core: 'Core zone',
+  standard: 'Standard zone',
+  extended: 'Extended zone',
+};
+
+const tierClass: Record<string, string> = {
+  core: 'bg-volt text-graphite',
+  standard: 'bg-graphite text-volt',
+  extended: 'bg-steel text-bone border border-bone/20',
+};
+---
+<Base title="Service Area — Matt Lawson Electrical | Illawarra NSW" description="From Helensburgh to Kiama. Response-time guide and a form for suburbs on the fringe.">
+
+  {/* Intro */}
+  <section class="bg-graphite text-bone">
+    <div class="wrap-wide py-20 grid md:grid-cols-12 gap-10 items-end">
+      <div class="md:col-span-7">
+        <p class="eyebrow-light">// Service area</p>
+        <h1 class="text-bone text-5xl md:text-6xl font-bold tracking-tight3">Helensburgh in the north.<br/>Kiama in the south.</h1>
+        <p class="text-bone/60 text-lg leading-relaxed mt-6 max-w-xl">We cover a 55km strip of the Illawarra coast. For emergencies, van is on the road within an hour for core suburbs. For booked work, you'll get a confirmed window the same day you call.</p>
+      </div>
+      <div class="md:col-span-5 bg-steel border border-bone/10 rounded-sharp p-6">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="dot-live"></span>
+          <span class="font-mono uppercase tracking-wide2 text-[11px] text-volt">Today's emergency callout status</span>
+        </div>
+        <div class="grid grid-cols-2 gap-3 text-sm">
+          <div><div class="font-mono text-[10px] uppercase tracking-wide2 text-bone/40">Core</div><div class="text-volt font-display font-bold text-lg">40 min</div></div>
+          <div><div class="font-mono text-[10px] uppercase tracking-wide2 text-bone/40">Standard</div><div class="text-bone font-display font-bold text-lg">65 min</div></div>
+          <div><div class="font-mono text-[10px] uppercase tracking-wide2 text-bone/40">Extended</div><div class="text-bone/80 font-display font-bold text-lg">95 min</div></div>
+          <div><div class="font-mono text-[10px] uppercase tracking-wide2 text-bone/40">After hours</div><div class="text-volt font-display font-bold text-lg">On call</div></div>
+        </div>
+        <a href="tel:0428999413" class="btn-primary w-full mt-5 !text-[13px]">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>
+          Emergency 0428 999 413
+        </a>
+      </div>
+    </div>
+  </section>
+
+  {/* Legend */}
+  <section class="py-10 border-b border-graphite/10 bg-chalk">
+    <div class="wrap-wide flex flex-wrap items-center gap-3">
+      <span class="font-mono uppercase tracking-wide2 text-[11px] text-dust mr-2">Zones:</span>
+      <span class="inline-flex items-center gap-2 font-display text-[13px] font-semibold text-graphite"><span class="w-3 h-3 rounded-sharp bg-volt"></span>Core · &lt; 60 min</span>
+      <span class="inline-flex items-center gap-2 font-display text-[13px] font-semibold text-graphite"><span class="w-3 h-3 rounded-sharp bg-graphite"></span>Standard · 60–90 min</span>
+      <span class="inline-flex items-center gap-2 font-display text-[13px] font-semibold text-graphite"><span class="w-3 h-3 rounded-sharp bg-steel border border-graphite/30"></span>Extended · up to 120 min</span>
+    </div>
+  </section>
+
+  {/* Suburb grid */}
+  <section class="py-20 bg-bone">
+    <div class="wrap-wide">
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-3">
+        {suburbs.map(s => (
+          <div class="bg-chalk border border-graphite/10 rounded-sharp p-5 hover:border-volt transition">
+            <div class="flex items-center justify-between mb-2">
+              <h3 class="font-display font-bold text-graphite text-[16px]">{s.name}</h3>
+              <span class={`text-[10px] font-mono uppercase tracking-wide2 px-2 py-0.5 rounded-sharp ${tierClass[s.tier]}`}>{tierLabel[s.tier]}</span>
+            </div>
+            <div class="flex items-center justify-between text-[12px] font-mono uppercase tracking-wide2 text-dust">
+              <span>NSW {s.postcode}</span>
+              <span>ETA {s.response}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* Not sure form */}
+  <section class="py-20 bg-graphite text-bone border-t border-bone/10">
+    <div class="wrap-wide grid md:grid-cols-12 gap-10">
+      <div class="md:col-span-5">
+        <p class="eyebrow-light">// Not sure if you're in?</p>
+        <h2 class="text-bone text-3xl md:text-4xl font-bold tracking-tight3">Tell us your postcode — we'll say yes or no straight up.</h2>
+        <p class="text-bone/60 leading-relaxed mt-5">If you're outside the 55km strip (Wollombi, Jervis Bay, Moss Vale) we'll happily refer you to a sparky we trust in that area. No ghosting.</p>
+      </div>
+      <form class="md:col-span-7 bg-steel border border-bone/10 rounded-sharp p-6 grid sm:grid-cols-2 gap-4" onsubmit="event.preventDefault(); this.innerHTML = '<div class=&quot;col-span-full text-center py-6&quot;><div class=&quot;font-display text-2xl text-volt font-bold&quot;>Got it — we\'ll be in touch.</div></div>';">
+        <label class="flex flex-col gap-1.5">
+          <span class="font-mono uppercase tracking-wide2 text-[11px] text-bone/50">Name</span>
+          <input type="text" required class="bg-graphite border border-bone/15 rounded-sharp px-4 py-3 text-bone placeholder:text-bone/30 font-body focus:border-volt outline-none" placeholder="Full name"/>
+        </label>
+        <label class="flex flex-col gap-1.5">
+          <span class="font-mono uppercase tracking-wide2 text-[11px] text-bone/50">Postcode</span>
+          <input type="text" required class="bg-graphite border border-bone/15 rounded-sharp px-4 py-3 text-bone placeholder:text-bone/30 font-mono focus:border-volt outline-none" placeholder="e.g. 2500"/>
+        </label>
+        <label class="flex flex-col gap-1.5">
+          <span class="font-mono uppercase tracking-wide2 text-[11px] text-bone/50">Phone</span>
+          <input type="tel" required class="bg-graphite border border-bone/15 rounded-sharp px-4 py-3 text-bone placeholder:text-bone/30 font-mono focus:border-volt outline-none" placeholder="04xx xxx xxx"/>
+        </label>
+        <label class="flex flex-col gap-1.5">
+          <span class="font-mono uppercase tracking-wide2 text-[11px] text-bone/50">What kind of job?</span>
+          <select class="bg-graphite border border-bone/15 rounded-sharp px-4 py-3 text-bone font-body focus:border-volt outline-none">
+            <option>Residential</option>
+            <option>Solar / EV</option>
+            <option>Smart home</option>
+            <option>Commercial</option>
+            <option>Emergency</option>
+          </select>
+        </label>
+        <button type="submit" class="btn-primary sm:col-span-2 mt-2">Tell me if you cover us</button>
+      </form>
+    </div>
+  </section>
+
+</Base>

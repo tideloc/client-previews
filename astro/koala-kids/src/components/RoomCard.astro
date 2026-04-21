@@ -1,0 +1,20 @@
+---
+import type { Room } from '../data/rooms';
+interface Props { room: Room; }
+const { room } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const accents = ['bg-eucalypt/15', 'bg-terracotta/15', 'bg-sky/20', 'bg-pollen/25', 'bg-paperbark/60'];
+const accent = accents[(room.idx ?? 0) % accents.length];
+---
+<a href={`${base}/rooms/${room.slug}/`} class="card group block hover:-translate-y-1 hover:border-eucalypt">
+  <div class={`relative ${accent} rounded-card overflow-hidden aspect-[4/3] mb-5`}>
+    <img src={room.photos[0]} alt={`${room.name} room`} class="w-full h-full object-cover mix-blend-multiply group-hover:scale-[1.02] transition duration-500" />
+    <span class="absolute top-3 left-3 pill bg-cream/90">{room.ageRange}</span>
+  </div>
+  <div class="flex items-baseline justify-between gap-3 mb-2">
+    <h3 class="text-2xl font-display text-softcoal">{room.name}</h3>
+    <span class="font-mono text-[11px] uppercase tracking-soft text-earth/60">Ratio {room.ratio}</span>
+  </div>
+  <p class="text-earth/75 text-sm leading-relaxed mb-4">{room.focus}</p>
+  <span class="font-display text-eucalypt text-sm group-hover:text-terracotta transition">Read more →</span>
+</a>

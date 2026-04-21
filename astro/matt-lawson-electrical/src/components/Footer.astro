@@ -1,0 +1,74 @@
+---
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const year = new Date().getFullYear();
+---
+<footer class="mt-24 bg-graphite text-bone">
+  <div class="wrap-wide py-16 grid md:grid-cols-12 gap-10">
+    <div class="md:col-span-4">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="w-10 h-10 bg-volt text-graphite flex items-center justify-center font-display font-bold rounded-sharp">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/></svg>
+        </span>
+        <div class="font-display font-bold text-[15px]">Matt Lawson Electrical</div>
+      </div>
+      <p class="text-bone/60 text-sm leading-relaxed max-w-sm">Licensed electricians servicing Wollongong and the Illawarra coast. Residential, commercial, solar, EV charging and smart home. Fixed first. Shows up when we say.</p>
+      <div class="mt-6 flex flex-wrap gap-2">
+        <span class="chip-dark"><span class="dot-live"></span>24/7 Emergency</span>
+        <span class="chip-dark">Fully insured</span>
+        <span class="chip-dark">Level 2 ASP</span>
+      </div>
+    </div>
+
+    <div class="md:col-span-2">
+      <h4 class="text-volt font-mono uppercase tracking-wide2 text-[11px] mb-4">Services</h4>
+      <ul class="space-y-2 text-sm">
+        <li><a href={`${base}/services/residential-wiring/`} class="text-bone/70 hover:text-volt">Residential</a></li>
+        <li><a href={`${base}/services/emergency-electrician/`} class="text-bone/70 hover:text-volt">Emergency 24/7</a></li>
+        <li><a href={`${base}/services/solar-installation/`} class="text-bone/70 hover:text-volt">Solar</a></li>
+        <li><a href={`${base}/services/ev-charger-installation/`} class="text-bone/70 hover:text-volt">EV Chargers</a></li>
+        <li><a href={`${base}/services/smart-home/`} class="text-bone/70 hover:text-volt">Smart Home</a></li>
+        <li><a href={`${base}/services/commercial-fitout/`} class="text-bone/70 hover:text-volt">Commercial</a></li>
+        <li><a href={`${base}/services/level-2-meter-work/`} class="text-bone/70 hover:text-volt">Level 2</a></li>
+      </ul>
+    </div>
+
+    <div class="md:col-span-2">
+      <h4 class="text-volt font-mono uppercase tracking-wide2 text-[11px] mb-4">Company</h4>
+      <ul class="space-y-2 text-sm">
+        <li><a href={`${base}/about/`} class="text-bone/70 hover:text-volt">About</a></li>
+        <li><a href={`${base}/projects/`} class="text-bone/70 hover:text-volt">Projects</a></li>
+        <li><a href={`${base}/service-area/`} class="text-bone/70 hover:text-volt">Service Area</a></li>
+        <li><a href={`${base}/contact/`} class="text-bone/70 hover:text-volt">Get a Quote</a></li>
+      </ul>
+    </div>
+
+    <div class="md:col-span-4">
+      <h4 class="text-volt font-mono uppercase tracking-wide2 text-[11px] mb-4">Contact</h4>
+      <div class="space-y-3 text-sm text-bone/70">
+        <div>
+          <div class="text-[11px] font-mono uppercase tracking-wide2 text-bone/40 mb-0.5">Phone</div>
+          <a href="tel:1300528976" class="font-mono text-volt text-lg hover:text-charge">1300 LAWSON</a>
+        </div>
+        <div>
+          <div class="text-[11px] font-mono uppercase tracking-wide2 text-bone/40 mb-0.5">After-hours emergency</div>
+          <a href="tel:0428999413" class="font-mono text-bone hover:text-volt">0428 999 413</a>
+        </div>
+        <address class="not-italic leading-relaxed pt-2">
+          Unit 3 / 142 Auburn St<br/>
+          Wollongong NSW 2500<br/>
+          <a href="mailto:matt@lawsonelectrical.com.au" class="text-volt hover:text-charge">matt@lawsonelectrical.com.au</a>
+        </address>
+      </div>
+    </div>
+  </div>
+  <div class="border-t border-bone/10">
+    <div class="wrap-wide py-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-3 text-[11px] text-bone/50">
+      <div class="flex flex-wrap items-center gap-x-4 gap-y-1">
+        <span>© {year} Matt Lawson Electrical Pty Ltd.</span>
+        <span class="font-mono uppercase tracking-wide2">ABN 48 612 009 887</span>
+        <span class="font-mono uppercase tracking-wide2 text-volt/80">NSW Elec. Lic. EC12345</span>
+      </div>
+      <span class="font-mono uppercase tracking-wide2">Wollongong · Shellharbour · Kiama · Helensburgh</span>
+    </div>
+  </div>
+</footer>

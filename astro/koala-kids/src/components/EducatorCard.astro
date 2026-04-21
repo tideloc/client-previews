@@ -1,0 +1,20 @@
+---
+import type { Educator } from '../data/team';
+interface Props { educator: Educator; }
+const { educator } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const frames = ['bg-eucalypt/20', 'bg-terracotta/20', 'bg-sky/25', 'bg-pollen/30'];
+const frame = frames[(educator.idx ?? 0) % frames.length];
+---
+<a href={`${base}/team/${educator.slug}/`} class="card block group hover:-translate-y-1 hover:border-eucalypt">
+  <div class={`relative ${frame} rounded-card overflow-hidden aspect-[4/5] mb-5`}>
+    <img src={educator.photo} alt={educator.name} class="w-full h-full object-cover mix-blend-multiply group-hover:scale-[1.02] transition duration-500" />
+  </div>
+  <div class="flex items-baseline justify-between gap-2 mb-1">
+    <h3 class="text-xl font-display text-softcoal">{educator.name}</h3>
+    <span class="font-mono text-[10px] uppercase tracking-soft text-earth/55">{educator.years} yrs</span>
+  </div>
+  <p class="text-terracotta font-display text-sm mb-3">{educator.role}</p>
+  <p class="text-xs font-mono uppercase tracking-soft text-earth/60 mb-4">{educator.qualification}</p>
+  <p class="text-earth/80 text-sm leading-relaxed">{educator.bio}</p>
+</a>

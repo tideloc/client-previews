@@ -1,0 +1,20 @@
+---
+import Base from '../layouts/Base.astro';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+<Base title="Page not found — Matt Lawson Electrical" description="That page doesn't exist — or it's been moved.">
+  <section class="bg-graphite text-bone">
+    <div class="wrap-wide py-24 md:py-32 text-center">
+      <p class="eyebrow-light">// 404</p>
+      <h1 class="text-bone text-6xl md:text-8xl font-bold tracking-tight3 leading-none">
+        Wires<br/><span class="text-volt">crossed.</span>
+      </h1>
+      <p class="text-bone/60 text-lg leading-relaxed mt-8 max-w-lg mx-auto">We can't find that page. It might have been renamed, moved, or was never there to start with. No fault in your wiring.</p>
+      <div class="mt-10 flex flex-wrap gap-3 justify-center">
+        <a href={`${base}/`} class="btn-primary">Back to home</a>
+        <a href={`${base}/services/`} class="btn-ghost-light">See services</a>
+        <a href="tel:1300528976" class="btn-ghost-light"><span class="font-mono">Call 1300 LAWSON</span></a>
+      </div>
+    </div>
+  </section>
+</Base>

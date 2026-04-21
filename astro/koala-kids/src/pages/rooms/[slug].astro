@@ -1,0 +1,132 @@
+---
+import Base from '../../layouts/Base.astro';
+import { rooms } from '../../data/rooms';
+
+export function getStaticPaths() {
+  return rooms.map(r => ({ params: { slug: r.slug }, props: { room: r } }));
+}
+
+const { room } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const others = rooms.filter(r => r.slug !== room.slug);
+const frames = ['bg-eucalypt/15', 'bg-terracotta/15', 'bg-sky/20', 'bg-pollen/25'];
+---
+<Base title={`${room.name} — Koala Kids Early Learning`} description={room.focus}>
+  <section class="pt-12 pb-8">
+    <div class="wrap">
+      <nav class="text-xs font-mono uppercase tracking-soft text-earth/60 mb-8">
+        <a href={`${base}/`} class="hover:text-eucalypt">Home</a>
+        <span class="mx-2 text-earth/30">/</span>
+        <a href={`${base}/rooms/`} class="hover:text-eucalypt">Rooms</a>
+        <span class="mx-2 text-earth/30">/</span>
+        <span class="text-eucalypt">{room.name}</span>
+      </nav>
+
+      <div class="grid md:grid-cols-5 gap-10 mb-12">
+        <div class="md:col-span-2">
+          <span class="pill mb-4">{room.ageRange}</span>
+          <h1 class="text-5xl md:text-6xl leading-[1.02] mb-5">{room.name}</h1>
+          <p class="text-earth/80 text-lg leading-relaxed">{room.focus}</p>
+        </div>
+        <div class="md:col-span-3 soft-card">
+          <dl class="grid grid-cols-2 gap-y-5 gap-x-8">
+            <div>
+              <dt class="font-mono uppercase text-[10px] tracking-soft text-earth/60 mb-1">Ratio</dt>
+              <dd class="font-display text-softcoal text-xl">{room.ratio}</dd>
+            </div>
+            <div>
+              <dt class="font-mono uppercase text-[10px] tracking-soft text-earth/60 mb-1">Places</dt>
+              <dd class="font-display text-softcoal text-xl">{Math.max(8, room.ageRange.includes('0–1') ? 8 : 12)} children</dd>
+            </div>
+            <div class="col-span-2">
+              <dt class="font-mono uppercase text-[10px] tracking-soft text-earth/60 mb-1">Lead educators</dt>
+              <dd class="font-display text-softcoal text-lg">{room.educators.join(' · ')}</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+
+      {/* Photo grid */}
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16">
+        {room.photos.map((p, i) => (
+          <div class={`${frames[i % frames.length]} rounded-card overflow-hidden aspect-[4/5]`}>
+            <img src={p} alt={`Inside the ${room.name}`} class="w-full h-full object-cover mix-blend-multiply" />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* Daily rhythm */}
+  <section class="py-20 bg-sandstone/55">
+    <div class="wrap">
+      <p class="eyebrow">Daily rhythm</p>
+      <h2 class="text-3xl md:text-4xl mb-10">A typical day in {room.name}.</h2>
+      <ol class="grid md:grid-cols-2 gap-3">
+        {room.dailyRhythm.map(d => (
+          <li class="flex items-start gap-5 card py-5">
+            <span class="font-mono text-sm text-terracotta w-14 shrink-0 pt-1">{d.time}</span>
+            <span class="font-display text-softcoal text-lg">{d.activity}</span>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  {/* Developmental focus */}
+  <section class="py-20">
+    <div class="wrap">
+      <p class="eyebrow">Developmental focus</p>
+      <h2 class="text-3xl md:text-4xl mb-10 max-w-2xl">Three things we watch for, document, and talk with you about.</h2>
+      <div class="grid md:grid-cols-3 gap-6">
+        {room.developmentalFocus.map((f, i) => (
+          <article class="card">
+            <div class="font-mono text-[10px] uppercase tracking-soft text-terracotta mb-3">Focus 0{i+1}</div>
+            <p class="font-display text-softcoal text-xl leading-snug">{f}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* Parent handover */}
+  <section class="py-20 bg-paperbark/40">
+    <div class="wrap grid md:grid-cols-2 gap-14 items-start">
+      <div>
+        <p class="eyebrow">Parent handover</p>
+        <h2 class="text-3xl md:text-4xl mb-5">You hear from us daily.</h2>
+        <p class="text-earth/80 text-lg leading-relaxed mb-5">Every afternoon, the lead educator in {room.name} gives each family a two-minute verbal handover at pickup — what your child ate, how they slept, what they played with, and one specific moment from their day. Written learning stories come home weekly through our parent portal.</p>
+        <p class="text-earth/80 text-lg leading-relaxed">For new families, Sarah and the team run a bespoke settling-in programme across the first two weeks. No one is dropped into a full day on day one.</p>
+      </div>
+      <div class="soft-card">
+        <p class="font-mono uppercase text-[10px] tracking-soft text-terracotta mb-4">// What you\'ll get</p>
+        <ul class="space-y-4 text-earth/85">
+          <li class="flex gap-3"><span class="text-eucalypt font-display">·</span> Verbal handover at pickup, every day</li>
+          <li class="flex gap-3"><span class="text-eucalypt font-display">·</span> Weekly written learning story</li>
+          <li class="flex gap-3"><span class="text-eucalypt font-display">·</span> Photo documentation via parent portal</li>
+          <li class="flex gap-3"><span class="text-eucalypt font-display">·</span> Two parent-teacher conferences per year</li>
+          <li class="flex gap-3"><span class="text-eucalypt font-display">·</span> Open-door policy — visit any time</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  {/* Other rooms */}
+  <section class="py-20">
+    <div class="wrap">
+      <div class="flex items-end justify-between mb-10">
+        <h2 class="text-2xl md:text-3xl">Explore other rooms</h2>
+        <a href={`${base}/rooms/`} class="font-display text-eucalypt hover:text-terracotta">All rooms →</a>
+      </div>
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+        {others.map(o => (
+          <a href={`${base}/rooms/${o.slug}/`} class="card hover:border-eucalypt group">
+            <span class="pill mb-3">{o.ageRange}</span>
+            <h3 class="font-display text-xl text-softcoal mb-2">{o.name}</h3>
+            <span class="font-display text-sm text-eucalypt group-hover:text-terracotta">Read more →</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</Base>

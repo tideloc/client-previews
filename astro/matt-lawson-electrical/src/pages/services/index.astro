@@ -1,0 +1,89 @@
+---
+import Base from '../../layouts/Base.astro';
+import ServiceCard from '../../components/ServiceCard.astro';
+import { services } from '../../data/services';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const categories: { key: string; title: string; sub: string }[] = [
+  { key: 'residential', title: 'Residential', sub: 'Homes, renos & extensions' },
+  { key: 'emergency', title: '24/7 Emergency', sub: 'Van on the road in 60 min' },
+  { key: 'solar', title: 'Solar & EV', sub: 'CEC-accredited installs' },
+  { key: 'smart', title: 'Smart Home', sub: 'Clipsal, C-Bus, Loxone' },
+  { key: 'commercial', title: 'Commercial', sub: 'Fitouts & office' },
+  { key: 'level2', title: 'Level 2 ASP', sub: 'Meter & service mains' },
+];
+---
+<Base title="Services — Matt Lawson Electrical | Wollongong & the Illawarra">
+
+  {/* PAGE INTRO */}
+  <section class="bg-graphite text-bone">
+    <div class="wrap-wide py-20 grid md:grid-cols-12 gap-10 items-end">
+      <div class="md:col-span-8">
+        <p class="eyebrow-light">// Services</p>
+        <h1 class="text-bone text-5xl md:text-6xl font-bold tracking-tight3">Ten services.<br/>One licensed team.</h1>
+        <p class="text-bone/60 text-lg leading-relaxed mt-6 max-w-2xl">Fixed-price quotes on every residential job. Every install comes with a Certificate of Compliance Electrical Work (CCEW), lodged with Essential Energy within five business days. Five-year workmanship warranty, always.</p>
+      </div>
+      <div class="md:col-span-4">
+        <div class="bg-steel border border-bone/10 rounded-sharp p-6">
+          <div class="font-mono uppercase tracking-wide2 text-[11px] text-volt mb-3">// Not sure which applies?</div>
+          <p class="text-bone/70 text-sm mb-4 leading-relaxed">Send us a photo and a sentence or two. We'll tell you what you need and what it will cost.</p>
+          <a href={`${base}/contact/`} class="btn-primary w-full !text-[13px]">Get a quote</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* CATEGORY NAV */}
+  <section class="border-y border-graphite/10 bg-chalk sticky top-[60px] z-30 hidden md:block">
+    <div class="wrap-wide flex flex-wrap gap-1 py-3">
+      {categories.map(cat => (
+        <a href={`#cat-${cat.key}`} class="font-display font-medium text-[13px] text-dust hover:text-graphite px-4 py-2 rounded-sharp hover:bg-bone transition">
+          {cat.title}
+        </a>
+      ))}
+    </div>
+  </section>
+
+  {/* SERVICES GROUPED */}
+  <section class="py-20 bg-bone">
+    <div class="wrap-wide space-y-20">
+      {categories.map(cat => {
+        const group = services.filter(s => s.category === cat.key);
+        if (group.length === 0) return null;
+        return (
+          <div id={`cat-${cat.key}`} class="scroll-mt-32">
+            <div class="flex items-end justify-between flex-wrap gap-4 mb-8">
+              <div>
+                <p class="font-mono uppercase tracking-wide2 text-[11px] text-charge mb-2">// {cat.sub}</p>
+                <h2 class="text-3xl md:text-4xl font-bold tracking-tight3">{cat.title}</h2>
+              </div>
+              <span class="font-mono uppercase tracking-wide2 text-[11px] text-dust">{group.length} services</span>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+              {group.map(s => <ServiceCard service={s} />)}
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  </section>
+
+  {/* Guarantee band */}
+  <section class="py-14 bg-graphite text-bone border-t border-bone/10">
+    <div class="wrap-wide grid md:grid-cols-4 gap-6 items-center">
+      {[
+        { k: 'Fixed price', v: 'Quoted after site visit. No hourly surprises.' },
+        { k: '5-year warranty', v: 'On every piece of workmanship we do.' },
+        { k: 'CCEW included', v: 'Lodged within five business days.' },
+        { k: 'Fully insured', v: 'Public liability $20M, professional indemnity.' },
+      ].map(x => (
+        <div>
+          <div class="text-volt font-display font-bold text-lg">{x.k}</div>
+          <div class="text-bone/60 text-sm mt-1 leading-relaxed">{x.v}</div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+</Base>

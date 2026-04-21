@@ -1,0 +1,116 @@
+---
+import Base from '../../layouts/Base.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+<Base title="Get a Free Quote — Green Edge Lawns &amp; Gardens" description="Send Jake a quick message or text 0412 987 654. Most quotes come back the same day. Sutherland Shire only.">
+
+  <section class="bg-dew/70 py-16 md:py-20">
+    <div class="wrap">
+      <p class="eyebrow">Contact</p>
+      <h1 class="font-display font-extrabold text-bark text-5xl md:text-6xl leading-tight mb-6 max-w-3xl">Get a free quote. No sales patter.</h1>
+      <p class="text-bark/75 text-lg max-w-2xl leading-relaxed">
+        Fill in the form, give us a bell, or send a text with a photo. Most quotes come back the same day — bigger jobs we visit on-site inside 48 hours.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-16">
+    <div class="wrap grid md:grid-cols-5 gap-10">
+      {/* Form */}
+      <form class="md:col-span-3 card p-8 md:p-10">
+        <p class="eyebrow mb-4">Send a quick quote request</p>
+        <div class="grid sm:grid-cols-2 gap-5">
+          <label class="block">
+            <span class="block text-sm font-display font-medium text-bark mb-1.5">First name</span>
+            <input type="text" name="firstName" required class="w-full rounded-2xl border border-bark/15 bg-cream px-4 py-3 text-sm focus:border-turf focus:outline-none" placeholder="Chris" />
+          </label>
+          <label class="block">
+            <span class="block text-sm font-display font-medium text-bark mb-1.5">Last name</span>
+            <input type="text" name="lastName" required class="w-full rounded-2xl border border-bark/15 bg-cream px-4 py-3 text-sm focus:border-turf focus:outline-none" placeholder="Harris" />
+          </label>
+          <label class="block">
+            <span class="block text-sm font-display font-medium text-bark mb-1.5">Mobile</span>
+            <input type="tel" name="mobile" required class="w-full rounded-2xl border border-bark/15 bg-cream px-4 py-3 text-sm focus:border-turf focus:outline-none" placeholder="0400 123 456" />
+          </label>
+          <label class="block">
+            <span class="block text-sm font-display font-medium text-bark mb-1.5">Email</span>
+            <input type="email" name="email" class="w-full rounded-2xl border border-bark/15 bg-cream px-4 py-3 text-sm focus:border-turf focus:outline-none" placeholder="chris@example.com" />
+          </label>
+          <label class="block sm:col-span-2">
+            <span class="block text-sm font-display font-medium text-bark mb-1.5">Address (or at least suburb)</span>
+            <input type="text" name="address" required class="w-full rounded-2xl border border-bark/15 bg-cream px-4 py-3 text-sm focus:border-turf focus:outline-none" placeholder="14 Ewos Parade, Cronulla" />
+          </label>
+          <fieldset class="sm:col-span-2">
+            <legend class="block text-sm font-display font-medium text-bark mb-2">What do you need?</legend>
+            <div class="grid sm:grid-cols-2 gap-2">
+              {['Weekly mowing','Fortnightly mowing','One-off tidy','Hedge trim','Garden cleanup','Mulching','Turf laying','Not sure — help'].map(opt => (
+                <label class="flex items-center gap-2 card px-4 py-2.5 cursor-pointer hover:border-turf/40">
+                  <input type="checkbox" name="needs" value={opt} class="accent-turf" />
+                  <span class="text-sm text-bark/85">{opt}</span>
+                </label>
+              ))}
+            </div>
+          </fieldset>
+          <fieldset class="sm:col-span-2">
+            <legend class="block text-sm font-display font-medium text-bark mb-2">Urgency</legend>
+            <div class="flex flex-wrap gap-2">
+              {['ASAP','Next 2 weeks','Next month','Just exploring'].map(opt => (
+                <label class="inline-flex items-center gap-2 card px-4 py-2 cursor-pointer hover:border-turf/40">
+                  <input type="radio" name="urgency" value={opt} class="accent-turf" />
+                  <span class="text-sm text-bark/85">{opt}</span>
+                </label>
+              ))}
+            </div>
+          </fieldset>
+          <label class="block sm:col-span-2">
+            <span class="block text-sm font-display font-medium text-bark mb-1.5">Anything else we should know?</span>
+            <textarea name="notes" rows="4" class="w-full rounded-2xl border border-bark/15 bg-cream px-4 py-3 text-sm focus:border-turf focus:outline-none" placeholder="E.g. a shy cattle dog called Milo, or a side gate with a dodgy latch."></textarea>
+          </label>
+        </div>
+        <div class="mt-6 flex flex-wrap items-center gap-4">
+          <button type="button" class="btn-primary">Send quote request</button>
+          <p class="text-xs text-bark/60">Reply usually the same day if sent before 4pm.</p>
+        </div>
+      </form>
+
+      {/* Sidebar */}
+      <aside class="md:col-span-2 space-y-6">
+        <div class="card p-6">
+          <p class="font-mono text-[10px] uppercase tracking-widest text-moss mb-4">Phone &amp; text</p>
+          <a href="tel:0412987654" class="font-display font-bold text-2xl text-turf block mb-1 hover:text-moss">0412 987 654</a>
+          <p class="text-sm text-bark/70">Text a photo of the lawn and we&rsquo;ll quote back quicker than a call.</p>
+        </div>
+        <div class="card p-6">
+          <p class="font-mono text-[10px] uppercase tracking-widest text-moss mb-4">Email</p>
+          <a href="mailto:jake@greenedgelawns.com.au" class="font-display font-semibold text-turf block mb-1 hover:text-moss break-words">jake@greenedgelawns.com.au</a>
+          <p class="text-sm text-bark/70">Better for invoicing and bigger landscaping jobs.</p>
+        </div>
+        <div class="card p-6">
+          <p class="font-mono text-[10px] uppercase tracking-widest text-moss mb-4">Hours</p>
+          <ul class="space-y-2 text-sm text-bark/80">
+            <li class="flex justify-between"><span>Mon &ndash; Fri</span><span class="font-medium">6:30am &ndash; 4:30pm</span></li>
+            <li class="flex justify-between"><span>Saturday</span><span class="font-medium">7:00am &ndash; 1:00pm</span></li>
+            <li class="flex justify-between"><span>Sunday</span><span class="text-bark/50">Off (emergencies only)</span></li>
+          </ul>
+          <p class="text-xs text-bark/60 mt-3">We do not mow on Sundays as a matter of policy — neighbours, right?</p>
+        </div>
+        <div class="card p-6 bg-sunshine/20 border-sunshine/30">
+          <p class="font-mono text-[10px] uppercase tracking-widest text-bark mb-3">Storm callouts</p>
+          <p class="text-sm text-bark/85 leading-relaxed">After a big southerly? Existing regulars get priority, but we usually squeeze in fresh urgent cleanups within 24-48 hours. SMS first.</p>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  {/* Closing */}
+  <section class="py-16 bg-dew/60">
+    <div class="wrap max-w-2xl text-center">
+      <h2 class="font-display font-bold text-2xl md:text-3xl text-bark mb-4">Not in the Shire?</h2>
+      <p class="text-bark/75 leading-relaxed mb-6">
+        We only take on regular clients between Cronulla and Engadine. If you&rsquo;re in the Inner West or Eastern Suburbs, we&rsquo;ll happily point you at a few good operators we know.
+      </p>
+      <a href={`${base}/service-area/`} class="btn-ghost">Check service area</a>
+    </div>
+  </section>
+</Base>

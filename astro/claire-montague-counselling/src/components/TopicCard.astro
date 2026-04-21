@@ -1,0 +1,22 @@
+---
+import type { Topic } from '../data/topics';
+interface Props {
+  topic: Topic;
+  href?: string;
+}
+const { topic, href } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const link = href ?? `${base}/what-i-help-with/#${topic.slug}`;
+---
+<a href={link} class="group card-soft overflow-hidden flex flex-col transition hover:border-sage/40">
+  <div class="aspect-[4/3] overflow-hidden">
+    <img src={topic.image} alt="" class="w-full h-full object-cover transition duration-700 group-hover:scale-[1.03]" />
+  </div>
+  <div class="p-7 flex-1 flex flex-col">
+    <h3 class="font-display text-2xl text-ink mb-3 group-hover:text-deepsage transition">{topic.name}</h3>
+    <p class="text-slate text-[15px] leading-loose mb-5 flex-1">{topic.shortBlurb}</p>
+    <span class="font-mono text-[11px] uppercase text-sage tracking-[0.18em] group-hover:text-deepsage">
+      Read more →
+    </span>
+  </div>
+</a>

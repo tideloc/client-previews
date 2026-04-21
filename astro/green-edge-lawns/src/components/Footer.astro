@@ -1,0 +1,55 @@
+---
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const year = new Date().getFullYear();
+---
+<footer class="mt-24 border-t border-turf/15 bg-dew/60">
+  <div class="wrap py-16 grid md:grid-cols-4 gap-10">
+    <div>
+      <div class="flex items-center gap-3 mb-4">
+        <span class="w-11 h-11 bg-turf text-cream flex items-center justify-center font-display font-bold text-lg rounded-2xl">GE</span>
+        <div>
+          <div class="font-display font-bold text-bark text-base">Green Edge</div>
+          <div class="font-mono text-[10px] text-moss uppercase tracking-widest">Lawns &amp; Gardens</div>
+        </div>
+      </div>
+      <p class="text-bark/70 text-sm leading-relaxed">Honest, on-time lawn care and small landscaping for homes across the Sutherland Shire. Run by locals, for locals, since 2018.</p>
+    </div>
+    <div>
+      <h4 class="text-bark text-xs font-display font-semibold uppercase tracking-widest mb-4">Services</h4>
+      <ul class="space-y-2 text-sm">
+        <li><a href={`${base}/services/#mowing`} class="text-bark/70 hover:text-turf">Weekly Mowing</a></li>
+        <li><a href={`${base}/services/#hedging`} class="text-bark/70 hover:text-turf">Hedging &amp; Trimming</a></li>
+        <li><a href={`${base}/services/#cleanups`} class="text-bark/70 hover:text-turf">Garden Cleanups</a></li>
+        <li><a href={`${base}/services/#landscaping`} class="text-bark/70 hover:text-turf">Small Landscaping</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 class="text-bark text-xs font-display font-semibold uppercase tracking-widest mb-4">Company</h4>
+      <ul class="space-y-2 text-sm">
+        <li><a href={`${base}/about/`} class="text-bark/70 hover:text-turf">About Jake</a></li>
+        <li><a href={`${base}/service-area/`} class="text-bark/70 hover:text-turf">Service Area</a></li>
+        <li><a href={`${base}/pricing/`} class="text-bark/70 hover:text-turf">Pricing</a></li>
+        <li><a href={`${base}/gallery/`} class="text-bark/70 hover:text-turf">Before &amp; After</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 class="text-bark text-xs font-display font-semibold uppercase tracking-widest mb-4">Get in touch</h4>
+      <address class="not-italic text-sm text-bark/70 leading-relaxed">
+        Based in Caringbah<br/>
+        Servicing Cronulla &rarr; Engadine<br/>
+        <a href="tel:0412987654" class="text-turf hover:text-moss font-medium">0412 987 654</a><br/>
+        <a href="mailto:jake@greenedgelawns.com.au" class="text-turf hover:text-moss font-medium">jake@greenedgelawns.com.au</a>
+      </address>
+      <div class="flex flex-wrap gap-2 mt-4">
+        <span class="chip">Fully insured</span>
+        <span class="chip">ABN 72 558 441 002</span>
+      </div>
+    </div>
+  </div>
+  <div class="border-t border-turf/10">
+    <div class="wrap py-6 flex flex-col md:flex-row items-center justify-between gap-2 text-xs text-bark/60">
+      <span>© {year} Green Edge Lawns &amp; Gardens. All rights reserved.</span>
+      <span class="font-mono uppercase tracking-widest">Sutherland Shire · Made local</span>
+    </div>
+  </div>
+</footer>

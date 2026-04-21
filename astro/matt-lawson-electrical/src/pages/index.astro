@@ -1,0 +1,303 @@
+---
+import Base from '../layouts/Base.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import TestimonialCard from '../components/TestimonialCard.astro';
+import { services } from '../data/services';
+import { testimonials } from '../data/testimonials';
+import { projects } from '../data/projects';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+// Pick one service per primary category for the 6-tile grid
+const homeServiceSlugs = [
+  'residential-wiring',
+  'emergency-electrician',
+  'solar-installation',
+  'smart-home',
+  'commercial-fitout',
+  'level-2-meter-work',
+];
+const homeServices = homeServiceSlugs
+  .map((slug) => services.find((s) => s.slug === slug))
+  .filter((s): s is NonNullable<typeof s> => Boolean(s));
+
+const heroImg = 'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=1800&h=1200&fit=crop&q=80&auto=format';
+
+const suburbs = [
+  'Wollongong', 'Figtree', 'Balgownie', 'Fairy Meadow',
+  'Corrimal', 'Thirroul', 'Helensburgh', 'Port Kembla',
+  'Warrawong', 'Shellharbour', 'Kiama', 'Albion Park',
+];
+
+const faqs = [
+  {
+    q: 'How quickly can you get to an emergency callout?',
+    a: 'Matt or one of the team is generally on the road within 60 minutes of your call for Wollongong, Port Kembla, Shellharbour and Figtree. After-hours callouts carry a fixed fee that\'s quoted upfront.',
+  },
+  {
+    q: 'Do you give fixed prices or run on hourly rates?',
+    a: 'For most small-to-medium residential jobs — switchboards, EV chargers, smoke alarms, lighting retrofits — we quote a fixed price after a site visit. Larger rewires and commercial fitouts are itemised line by line. You will never get a "number of hours" surprise.',
+  },
+  {
+    q: 'Are you actually authorised for Level 2 meter work?',
+    a: 'Yes. Matt holds Endeavour Energy Level 2 ASP authorisation, which means we can cut, upgrade and reconnect the service mains and meter board without waiting on a retailer. We handle all permit paperwork.',
+  },
+  {
+    q: 'Do you offer a warranty on your work?',
+    a: 'Five years on our workmanship, plus the manufacturer warranty on all hardware (panels, inverters, batteries, chargers, lighting). If anything goes wrong inside five years, we come back and fix it at no cost.',
+  },
+];
+---
+<Base title="Matt Lawson Electrical — Licensed Electrician Wollongong & the Illawarra">
+
+  {/* HERO */}
+  <section class="relative overflow-hidden bg-graphite">
+    <div class="absolute inset-0">
+      <img src={heroImg} alt="" class="w-full h-full object-cover opacity-30" />
+      <div class="absolute inset-0 bg-gradient-to-r from-graphite via-graphite/95 to-graphite/60"></div>
+    </div>
+    <div class="wrap-wide relative py-20 md:py-28 grid md:grid-cols-12 gap-10 items-center">
+      <div class="md:col-span-7">
+        <div class="flex items-center gap-3 mb-6">
+          <span class="dot-live"></span>
+          <span class="font-mono uppercase tracking-wide2 text-[11px] text-volt">On call now · Wollongong &amp; Illawarra</span>
+        </div>
+        <h1 class="font-display font-bold text-bone text-[clamp(2.8rem,7vw,5.5rem)] leading-[0.95]">
+          <span class="block">Licensed.</span>
+          <span class="block">On time.</span>
+          <span class="block text-volt">Fixed first.</span>
+        </h1>
+        <p class="text-bone/70 text-lg leading-relaxed mt-8 max-w-xl">
+          Residential, commercial, solar and smart-home electrical work across Wollongong and the Illawarra coast. Fixed pricing up front, text-message updates while we're on site, and a Certificate of Compliance in your inbox before we leave.
+        </p>
+        <div class="mt-10 flex flex-wrap gap-4 items-center">
+          <a href={`${base}/contact/`} class="btn-primary">Get a quote</a>
+          <a href="tel:1300528976" class="inline-flex items-center gap-3 font-display font-bold text-bone text-xl hover:text-volt transition">
+            <span class="w-11 h-11 rounded-sharp border-2 border-bone/30 flex items-center justify-center">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>
+            </span>
+            <span class="font-mono">1300 LAWSON</span>
+          </a>
+        </div>
+
+        <div class="mt-12 grid grid-cols-3 gap-6 max-w-xl">
+          <div>
+            <div class="font-display font-bold text-volt text-3xl">14 yrs</div>
+            <div class="font-mono uppercase tracking-wide2 text-[10px] text-bone/50 mt-1">Trading</div>
+          </div>
+          <div>
+            <div class="font-display font-bold text-volt text-3xl">2,400+</div>
+            <div class="font-mono uppercase tracking-wide2 text-[10px] text-bone/50 mt-1">Jobs completed</div>
+          </div>
+          <div>
+            <div class="font-display font-bold text-volt text-3xl">4.9</div>
+            <div class="font-mono uppercase tracking-wide2 text-[10px] text-bone/50 mt-1">Google rating</div>
+          </div>
+        </div>
+      </div>
+
+      <aside class="md:col-span-5 md:pl-8">
+        <div class="bg-steel/90 backdrop-blur border border-bone/10 rounded-sharp p-6 md:p-7">
+          <div class="flex items-center gap-2 mb-5">
+            <span class="font-mono uppercase tracking-wide2 text-[11px] text-volt">// This week's availability</span>
+          </div>
+          <ul class="divide-y divide-bone/8">
+            {[
+              { day: 'Tue 22 Apr', slots: '2 morning slots' },
+              { day: 'Wed 23 Apr', slots: 'Fully booked' },
+              { day: 'Thu 24 Apr', slots: '3 slots' },
+              { day: 'Fri 25 Apr', slots: 'Emergency only' },
+              { day: 'Mon 28 Apr', slots: 'Wide open' },
+            ].map((row, i) => (
+              <li class="flex items-center justify-between py-3">
+                <span class="font-display font-medium text-bone text-sm">{row.day}</span>
+                <span class={`font-mono text-[11px] uppercase tracking-wide2 ${row.slots.includes('Fully') ? 'text-dust' : 'text-volt'}`}>{row.slots}</span>
+              </li>
+            ))}
+          </ul>
+          <a href={`${base}/contact/`} class="btn-primary w-full mt-5 !text-[13px]">Book a visit</a>
+          <p class="font-mono uppercase tracking-wide2 text-[10px] text-bone/40 mt-4 text-center">Updated every morning · EC12345</p>
+        </div>
+      </aside>
+    </div>
+    <div class="absolute bottom-0 inset-x-0 h-1 bg-volt"></div>
+  </section>
+
+  {/* Ticker */}
+  <section class="bg-graphite py-3 overflow-hidden border-t border-bone/10">
+    <div class="flex whitespace-nowrap ticker-track">
+      {[...Array(2)].map(() => (
+        <div class="flex items-center gap-10 pr-10">
+          {['NSW Lic. EC12345', 'Clean Energy Council accredited', 'Level 2 ASP authorised', 'Clipsal C-Bus certified', 'Public liability $20M', 'Fixed-price quoting', '5-year workmanship warranty', 'Helensburgh to Kiama'].map(item => (
+            <span class="flex items-center gap-3 font-mono uppercase tracking-wide2 text-[11px] text-bone/50">
+              <span class="w-1.5 h-1.5 rounded-full bg-volt"></span>
+              {item}
+            </span>
+          ))}
+        </div>
+      ))}
+    </div>
+  </section>
+
+  {/* SERVICES grid */}
+  <section class="py-24 bg-bone">
+    <div class="wrap-wide">
+      <div class="flex items-end justify-between flex-wrap gap-6 mb-12">
+        <div class="max-w-xl">
+          <p class="eyebrow">// What we do</p>
+          <h2 class="text-4xl md:text-5xl font-bold tracking-tight3">Six jobs we do every week.</h2>
+          <div class="divider mt-5"></div>
+        </div>
+        <p class="text-dust text-sm leading-relaxed max-w-sm">From a single power point through to a 30kW commercial solar array. One licensed team, one invoice, one compliance certificate.</p>
+      </div>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+        {homeServices.map(s => <ServiceCard service={s} />)}
+      </div>
+      <div class="mt-10 text-center">
+        <a href={`${base}/services/`} class="btn-ghost">See every service →</a>
+      </div>
+    </div>
+  </section>
+
+  {/* WHY US — 4 cols */}
+  <section class="py-24 bg-graphite text-bone">
+    <div class="wrap-wide">
+      <div class="max-w-2xl mb-14">
+        <p class="eyebrow-light">// Why customers stay</p>
+        <h2 class="text-bone text-4xl md:text-5xl font-bold tracking-tight3">We show up when we say, and we clean up before we leave.</h2>
+      </div>
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+        {[
+          {
+            title: 'Actually licensed',
+            body: 'NSW Electrical Contractor Lic. EC12345. Every worker on site is either a full electrician or an apprentice under direct supervision.',
+            icon: '<rect x="4" y="4" width="16" height="16" rx="1"/><path d="M9 12l2 2 4-4"/>'
+          },
+          {
+            title: 'Upfront pricing',
+            body: 'Fixed quotes on 90% of residential work after a site visit. No "number of hours" invoices, no surprise call-out fees.',
+            icon: '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>'
+          },
+          {
+            title: '5-year warranty',
+            body: 'Our workmanship is guaranteed for five years. Hardware — panels, inverters, EV chargers — carries the full manufacturer warranty on top.',
+            icon: '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>'
+          },
+          {
+            title: 'Actually local',
+            body: 'Based on Auburn St, Wollongong. We live where we work. If there\'s a problem after a job, we\'re five minutes away — not a franchise call centre.',
+            icon: '<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>'
+          },
+        ].map(c => (
+          <div class="bg-steel border border-bone/10 rounded-sharp p-6 hover:border-volt transition">
+            <div class="w-11 h-11 bg-volt text-graphite rounded-sharp flex items-center justify-center mb-5">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" set:html={c.icon}/>
+            </div>
+            <h3 class="text-bone font-bold text-[17px] mb-3">{c.title}</h3>
+            <p class="text-bone/60 text-sm leading-relaxed">{c.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* TESTIMONIALS */}
+  <section class="py-24 bg-bone">
+    <div class="wrap-wide">
+      <div class="flex items-end justify-between flex-wrap gap-6 mb-12">
+        <div class="max-w-xl">
+          <p class="eyebrow">// Word of mouth</p>
+          <h2 class="text-4xl md:text-5xl font-bold tracking-tight3">Most of our work comes through existing customers.</h2>
+          <div class="divider mt-5"></div>
+        </div>
+        <p class="text-dust text-sm max-w-sm">A selection of Google & Facebook reviews from the last six months. Real names, real suburbs, real jobs.</p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-5">
+        {testimonials.slice(0, 3).map(t => <TestimonialCard testimonial={t} />)}
+      </div>
+    </div>
+  </section>
+
+  {/* RECENT WORK strip */}
+  <section class="py-24 bg-bone border-t border-graphite/8">
+    <div class="wrap-wide">
+      <div class="flex items-end justify-between flex-wrap gap-6 mb-12">
+        <div>
+          <p class="eyebrow">// Recent work</p>
+          <h2 class="text-3xl md:text-4xl font-bold tracking-tight3">This quarter's projects.</h2>
+        </div>
+        <a href={`${base}/projects/`} class="font-display font-semibold text-sm text-graphite hover:text-charge">Browse all projects →</a>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        {projects.slice(0, 4).map(p => (
+          <a href={`${base}/projects/`} class="group relative rounded-sharp overflow-hidden bg-graphite block">
+            <img src={p.image} alt={p.name} class="w-full aspect-[4/5] object-cover transition duration-500 group-hover:scale-[1.04]" />
+            <div class="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-graphite/95 to-transparent">
+              <div class="font-mono uppercase tracking-wide2 text-[10px] text-volt mb-1">{p.type}</div>
+              <div class="font-display font-semibold text-bone text-sm leading-tight">{p.name}</div>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* SERVICE AREA strip */}
+  <section class="py-20 bg-graphite text-bone border-t border-bone/10">
+    <div class="wrap-wide grid md:grid-cols-12 gap-10 items-start">
+      <div class="md:col-span-5">
+        <p class="eyebrow-light">// Service area</p>
+        <h2 class="text-bone text-3xl md:text-4xl font-bold tracking-tight3 mb-5">Helensburgh to Kiama. Everything in between.</h2>
+        <p class="text-bone/60 leading-relaxed mb-6">We live and work in the Illawarra, from the escarpment villages in the north through the Wollongong CBD, the southern suburbs down to Shellharbour and Kiama. Most jobs start with a same-day or next-day site visit.</p>
+        <a href={`${base}/service-area/`} class="btn-ghost-light">Check your suburb →</a>
+      </div>
+      <div class="md:col-span-7 grid grid-cols-2 sm:grid-cols-3 gap-2">
+        {suburbs.map(s => (
+          <div class="bg-steel border border-bone/10 rounded-sharp px-4 py-3 text-center">
+            <div class="font-display font-medium text-bone text-sm">{s}</div>
+            <div class="font-mono uppercase tracking-wide2 text-[10px] text-volt/70 mt-0.5">NSW 25##</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* FAQ preview */}
+  <section class="py-24 bg-bone">
+    <div class="wrap">
+      <div class="max-w-2xl mb-10">
+        <p class="eyebrow">// Quick answers</p>
+        <h2 class="text-3xl md:text-4xl font-bold tracking-tight3">Four questions we get every week.</h2>
+      </div>
+      <div class="space-y-3">
+        {faqs.map(f => (
+          <details class="group bg-chalk border border-graphite/10 rounded-sharp overflow-hidden">
+            <summary class="list-none cursor-pointer px-6 py-5 flex items-center justify-between gap-4 hover:bg-bone transition">
+              <h3 class="font-display font-semibold text-graphite text-[16px]">{f.q}</h3>
+              <span class="w-7 h-7 rounded-sharp bg-graphite text-volt flex items-center justify-center shrink-0 transition group-open:rotate-45">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg>
+              </span>
+            </summary>
+            <div class="px-6 pb-6 -mt-1 text-dust leading-relaxed text-[15px]">{f.a}</div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* Emergency band */}
+  <section class="bg-volt text-graphite">
+    <div class="wrap-wide py-14 flex flex-wrap items-center justify-between gap-6">
+      <div class="max-w-xl">
+        <p class="font-mono uppercase tracking-wide2 text-[11px] text-graphite/60 mb-2">// 24 / 7 emergency</p>
+        <h2 class="text-graphite text-3xl md:text-4xl font-bold tracking-tight3">Power out? Sparking outlet? Burning smell?</h2>
+        <p class="text-graphite/75 mt-3 leading-relaxed">Van on the road inside 60 minutes across Wollongong, Port Kembla, Shellharbour and Figtree. Fixed after-hours callout fee, told to you before we leave the depot.</p>
+      </div>
+      <a href="tel:0428999413" class="inline-flex items-center gap-3 bg-graphite text-volt px-6 py-4 rounded-sharp font-display font-bold text-xl hover:bg-steel transition">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>
+        <span class="font-mono">0428 999 413</span>
+      </a>
+    </div>
+  </section>
+
+</Base>

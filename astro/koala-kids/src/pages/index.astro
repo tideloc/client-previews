@@ -1,0 +1,199 @@
+---
+import Base from '../layouts/Base.astro';
+import RoomCard from '../components/RoomCard.astro';
+import TestimonialCard from '../components/TestimonialCard.astro';
+import { rooms } from '../data/rooms';
+import { testimonials } from '../data/testimonials';
+import { team } from '../data/team';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const heroImg = 'https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=2000&h=1400&fit=crop&q=80&auto=format';
+const approachImg = 'https://images.unsplash.com/photo-1572188863110-46d457c9234d?w=1400&h=1000&fit=crop&q=80&auto=format';
+const featuredTeam = team.slice(0, 5);
+
+const day = [
+  { time: '7:00', title: 'Slow arrivals', body: 'Parents settle in with us over coffee. No conveyor-belt drop-off.' },
+  { time: '8:30', title: 'Breakfast', body: 'Served family-style from Priya\'s kitchen — porridge, fruit, sourdough.' },
+  { time: '9:30', title: 'Outdoor play', body: 'Every room, every day. Mud kitchen, garden beds, climbing logs.' },
+  { time: '11:00', title: 'Project work', body: 'Children-led inquiries. Documented, revisited, taken seriously.' },
+  { time: '12:00', title: 'Lunch', body: 'One kitchen, one menu. Allergies catered, no microwaved pouches.' },
+  { time: '13:00', title: 'Rest & read', body: 'Real rest, quiet books, warm room. No pressure to sleep.' },
+];
+---
+<Base title="Koala Kids Early Learning — Boutique daycare & preschool, Newcastle NSW">
+  {/* Hero */}
+  <section class="relative overflow-hidden">
+    <div class="absolute inset-0">
+      <img src={heroImg} alt="" class="w-full h-full object-cover" />
+      <div class="absolute inset-0 bg-gradient-to-br from-cream/85 via-cream/70 to-sandstone/80"></div>
+    </div>
+    <div class="wrap relative py-24 md:py-32">
+      <p class="eyebrow">Boutique long daycare · Newcastle West NSW</p>
+      <h1 class="font-display text-softcoal leading-[0.95] text-[clamp(2.75rem,8vw,6rem)]">
+        Roomy days.<br/>
+        <span class="text-eucalypt">Rich learning.</span><br/>
+        Happy kids.
+      </h1>
+      <div class="mt-10 grid md:grid-cols-5 gap-10 items-start">
+        <div class="md:col-span-3">
+          <p class="text-earth/85 text-lg md:text-xl leading-relaxed mb-8 max-w-xl font-display">
+            A small, boutique early learning centre on the edge of Newcastle. Fifty-five places across five rooms, one cook in the kitchen, and a bush kinder session twice a week on Awabakal country.
+          </p>
+          <div class="flex flex-wrap gap-4">
+            <a href={`${base}/tours/`} class="btn-primary">Book a tour</a>
+            <a href={`${base}/rooms/`} class="btn-ghost">View rooms</a>
+          </div>
+        </div>
+        <aside class="md:col-span-2 bg-cream/90 backdrop-blur border border-paperbark rounded-card p-6 md:p-7 shadow-sm">
+          <p class="font-mono text-[10px] uppercase tracking-soft text-terracotta mb-5">// At a glance</p>
+          <dl class="space-y-3 text-sm">
+            <div class="flex justify-between gap-4 pb-3 border-b border-paperbark/70">
+              <dt class="text-earth/70">Places</dt><dd class="font-display text-softcoal">55 across 5 rooms</dd>
+            </div>
+            <div class="flex justify-between gap-4 pb-3 border-b border-paperbark/70">
+              <dt class="text-earth/70">Hours</dt><dd class="font-display text-softcoal">7:00am – 6:00pm</dd>
+            </div>
+            <div class="flex justify-between gap-4 pb-3 border-b border-paperbark/70">
+              <dt class="text-earth/70">Daily fee</dt><dd class="font-display text-softcoal">$135 (before CCS)</dd>
+            </div>
+            <div class="flex justify-between gap-4">
+              <dt class="text-earth/70">Bush kinder</dt><dd class="font-display text-softcoal">Tue &amp; Thu</dd>
+            </div>
+          </dl>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  {/* Rooms overview */}
+  <section class="py-24">
+    <div class="wrap">
+      <div class="flex items-end justify-between flex-wrap gap-6 mb-14">
+        <div>
+          <p class="eyebrow">Five rooms · Five stages</p>
+          <h2 class="text-4xl md:text-5xl"><span class="underline-leaf">One child, five times over.</span></h2>
+          <div class="divider mt-6"></div>
+        </div>
+        <a href={`${base}/rooms/`} class="font-display text-eucalypt hover:text-terracotta">Explore every room →</a>
+      </div>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {rooms.map(r => <RoomCard room={r} />)}
+      </div>
+    </div>
+  </section>
+
+  {/* A day in our life */}
+  <section class="py-24 bg-sandstone/50">
+    <div class="wrap">
+      <div class="mb-14 max-w-2xl">
+        <p class="eyebrow">A day in our life</p>
+        <h2 class="text-4xl md:text-5xl mb-5">Unhurried, by design.</h2>
+        <p class="text-earth/80 text-lg leading-relaxed">Children don\'t thrive on bells and blocks. Our days have a rhythm, not a timetable — long outdoor blocks, one cooked lunch, and rest for whoever needs it.</p>
+      </div>
+      <ol class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {day.map((d, i) => (
+          <li class="card relative">
+            <span class="absolute top-6 right-6 font-mono text-[10px] uppercase tracking-soft text-earth/40">0{i+1}</span>
+            <div class="font-mono text-terracotta text-sm mb-2">{d.time}</div>
+            <h3 class="font-display text-xl mb-2 text-softcoal">{d.title}</h3>
+            <p class="text-earth/75 text-sm leading-relaxed">{d.body}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  {/* Our approach band */}
+  <section class="py-28">
+    <div class="wrap grid md:grid-cols-2 gap-14 items-center">
+      <div class="relative">
+        <div class="bg-eucalypt/15 rounded-card overflow-hidden">
+          <img src={approachImg} alt="Children exploring native plants at bush kinder" class="w-full aspect-[4/5] object-cover mix-blend-multiply" />
+        </div>
+        <div class="absolute -bottom-6 -right-6 bg-terracotta text-cream p-6 max-w-[220px] hidden md:block rounded-card shadow-lg">
+          <div class="font-mono uppercase text-[10px] tracking-soft mb-1">// Bush kinder</div>
+          <div class="font-display text-3xl leading-tight">Twice a week</div>
+          <div class="text-xs mt-2 font-mono uppercase tracking-soft">Awabakal country</div>
+        </div>
+      </div>
+      <div>
+        <p class="eyebrow">Our approach</p>
+        <h2 class="text-4xl md:text-5xl mb-6">Outdoors, on Country, around a good table.</h2>
+        <p class="text-earth/85 text-lg leading-relaxed mb-5">
+          Three things shape every day at Koala Kids. We learn outdoors — in our garden, and on weekly walks to bush kinder with Liam. We weave Indigenous perspectives through our program, guided by Aunty Deanne, our Worimi consultant. And we feed children properly, from one kitchen, cooked by one person who knows every allergy in the building.
+        </p>
+        <ul class="space-y-3 mb-8 text-earth/85">
+          <li class="flex gap-3"><span class="text-eucalypt font-display">·</span> Outdoor-led pedagogy, all weather</li>
+          <li class="flex gap-3"><span class="text-eucalypt font-display">·</span> Worimi-consulted Indigenous perspectives program</li>
+          <li class="flex gap-3"><span class="text-eucalypt font-display">·</span> Vic Kids-aligned nutrition, nothing reheated</li>
+          <li class="flex gap-3"><span class="text-eucalypt font-display">·</span> Sustainable, zero-food-waste kitchen</li>
+        </ul>
+        <a href={`${base}/approach/`} class="btn-ghost">Read our full approach</a>
+      </div>
+    </div>
+  </section>
+
+  {/* Testimonials */}
+  <section class="py-24 bg-paperbark/40">
+    <div class="wrap">
+      <div class="mb-14 max-w-2xl">
+        <p class="eyebrow">What parents say</p>
+        <h2 class="text-4xl md:text-5xl">Serious about children. Honest with parents.</h2>
+      </div>
+      <div class="grid md:grid-cols-2 gap-6">
+        {testimonials.slice(0, 2).map(t => <TestimonialCard testimonial={t} />)}
+      </div>
+    </div>
+  </section>
+
+  {/* Educators strip */}
+  <section class="py-24">
+    <div class="wrap">
+      <div class="flex items-end justify-between flex-wrap gap-6 mb-12">
+        <div>
+          <p class="eyebrow">The educators</p>
+          <h2 class="text-4xl md:text-5xl">Small team. Long memories.</h2>
+        </div>
+        <a href={`${base}/team/`} class="font-display text-eucalypt hover:text-terracotta">Meet all 8 →</a>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-5 gap-5">
+        {featuredTeam.map((m, i) => {
+          const frames = ['bg-eucalypt/20', 'bg-terracotta/20', 'bg-sky/25', 'bg-pollen/30', 'bg-paperbark/60'];
+          return (
+            <a href={`${base}/team/`} class="group">
+              <div class={`${frames[i % frames.length]} rounded-card overflow-hidden aspect-[4/5] mb-3`}>
+                <img src={m.photo} alt={m.name} class="w-full h-full object-cover mix-blend-multiply group-hover:scale-[1.03] transition duration-500" />
+              </div>
+              <div class="font-display text-softcoal text-sm">{m.name}</div>
+              <div class="font-mono text-[10px] uppercase tracking-soft text-earth/60 mt-1">{m.role.split('·')[0].trim()}</div>
+            </a>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  {/* Fees strip */}
+  <section class="py-20 bg-eucalypt text-cream">
+    <div class="wrap grid md:grid-cols-3 gap-10 items-center">
+      <div class="md:col-span-2">
+        <p class="font-mono uppercase text-[10px] tracking-soft text-pollen mb-3">// Fees</p>
+        <h2 class="text-cream text-3xl md:text-4xl mb-4">$135 a day, before subsidy.</h2>
+        <p class="text-cream/85 text-lg leading-relaxed max-w-xl">We\'re CCS approved and a registered Service Approval holder. Many families pay under $60/day after subsidy. All meals, nappies and excursions are included — there are no extras.</p>
+      </div>
+      <div class="flex md:justify-end">
+        <a href={`${base}/fees/`} class="btn-accent">See fee schedule</a>
+      </div>
+    </div>
+  </section>
+
+  {/* Tour CTA */}
+  <section class="py-24">
+    <div class="wrap text-center max-w-3xl mx-auto">
+      <p class="eyebrow">Come in person</p>
+      <h2 class="text-4xl md:text-5xl mb-5">The best way to know us is to visit.</h2>
+      <p class="text-earth/80 text-lg leading-relaxed mb-8">Tours run Tuesdays and Thursdays at 10am, or Saturdays at 9am. Bring your child — we factor them in. Forty minutes, no sales pitch.</p>
+      <a href={`${base}/tours/`} class="btn-primary">Book your tour</a>
+    </div>
+  </section>
+</Base>

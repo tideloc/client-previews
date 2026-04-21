@@ -1,0 +1,22 @@
+---
+import type { Testimonial } from '../data/testimonials';
+interface Props { testimonial: Testimonial }
+const { testimonial } = Astro.props;
+---
+<figure class="card p-6 flex flex-col gap-4 h-full">
+  <div class="flex items-center gap-1 text-sunshine" aria-label={`${testimonial.stars} out of 5 stars`}>
+    {Array.from({ length: testimonial.stars }).map(() => (
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+    ))}
+  </div>
+  <blockquote class="text-bark/85 text-base leading-relaxed flex-1">
+    &ldquo;{testimonial.quote}&rdquo;
+  </blockquote>
+  <figcaption class="flex items-center justify-between border-t border-bark/10 pt-4">
+    <div>
+      <div class="font-display font-semibold text-bark text-sm">{testimonial.name}</div>
+      <div class="text-xs text-bark/60 font-mono uppercase tracking-widest">{testimonial.suburb}</div>
+    </div>
+    <span class="chip">{testimonial.service}</span>
+  </figcaption>
+</figure>

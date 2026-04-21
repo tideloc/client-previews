@@ -1,0 +1,122 @@
+---
+import Base from '../../layouts/Base.astro';
+import { team } from '../../data/team';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const accreditations = [
+  { label: 'NSW Electrical Contractor', id: 'EC12345', body: 'Full contractor licence. Valid until June 2028.' },
+  { label: 'Clean Energy Council', id: 'A5502284', body: 'Accredited solar designer & installer. Battery endorsement.' },
+  { label: 'Level 2 ASP (Endeavour Energy)', id: 'L2-00421', body: 'Authorised for service mains, meter panels and POA work.' },
+  { label: 'Clipsal C-Bus certified', id: 'CB-C-087', body: 'Programming and commissioning for C-Bus and Wiser systems.' },
+  { label: 'Public liability insurance', id: '$20M', body: 'Ansvar Insurance, policy renewed annually.' },
+  { label: 'Workers comp & professional indemnity', id: 'Current', body: 'Covering every tradie on our books.' },
+];
+
+const matt = team[0];
+const crew = team.slice(1);
+---
+<Base title="About Matt Lawson Electrical — Wollongong's local sparky" description="Matt Lawson started the business in 2012 after eight years at BHP. Today a three-person team serves Wollongong and the Illawarra.">
+
+  {/* INTRO */}
+  <section class="relative bg-graphite text-bone overflow-hidden">
+    <div class="absolute inset-0 opacity-30">
+      <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1800&h=1000&fit=crop&q=80&auto=format" alt="" class="w-full h-full object-cover" />
+      <div class="absolute inset-0 bg-gradient-to-r from-graphite via-graphite/90 to-graphite/60"></div>
+    </div>
+    <div class="wrap-wide relative py-20">
+      <p class="eyebrow-light">// About</p>
+      <h1 class="text-bone text-5xl md:text-6xl font-bold tracking-tight3 max-w-3xl">Started at BHP in 2005. Wollongong-based ever since.</h1>
+      <p class="text-bone/70 text-lg leading-relaxed mt-6 max-w-2xl">A three-person, licensed team that answers the phone, quotes in plain English, and leaves every job cleaner than we found it.</p>
+    </div>
+  </section>
+
+  {/* STORY */}
+  <section class="py-24 bg-bone">
+    <div class="wrap-wide grid md:grid-cols-12 gap-12 items-start">
+      <div class="md:col-span-5">
+        <div class="sticky top-32 rounded-sharp overflow-hidden">
+          <img src={matt.image} alt={matt.name} class="w-full aspect-[4/5] object-cover" />
+        </div>
+      </div>
+      <div class="md:col-span-7">
+        <p class="eyebrow">// Matt's story</p>
+        <h2 class="text-4xl md:text-5xl font-bold tracking-tight3 leading-tight">From Port Kembla apprentice to Wollongong's go-to sparky.</h2>
+        <div class="mt-8 space-y-5 text-graphite/80 text-[17px] leading-relaxed">
+          <p>Matt started his apprenticeship at BHP Port Kembla in January 2005 — coke ovens, blast furnace, hot strip mill. Eight years of shift work alongside mechanical fitters, instrument techs and project managers gave him a pretty unromantic view of "fast" electrical work: if you can't isolate, test and prove dead, you don't touch it.</p>
+          <p>He went out on his own in 2012 with a van, a drop saw and a willingness to do the jobs other sparkies wouldn't return calls for — Level 2 meter upgrades on 1960s fibros, switchboard swaps in leaking mid-rise car parks, commercial fitouts where the builder's program was already three weeks late.</p>
+          <p>By 2018 the business had two other full-time electricians and a reputation for the same things it's known for now: <strong class="font-semibold">honest fixed-price quotes, clean sites and phone calls returned inside the hour</strong>.</p>
+          <p>Today Matt still spends most weeks on the tools. Jake runs the commercial side. Sam is on his final apprentice year. Between them they cover Helensburgh down to Kiama, with the same van-livery, the same workshop on Auburn Street, and the same answer when something goes sideways mid-job: <em>"we'll sort it"</em>.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* TEAM */}
+  <section class="py-24 bg-graphite text-bone border-t border-bone/10">
+    <div class="wrap-wide">
+      <div class="max-w-xl mb-12">
+        <p class="eyebrow-light">// The team</p>
+        <h2 class="text-bone text-4xl md:text-5xl font-bold tracking-tight3">Three tradies. One van-livery. A combined 30 years on the tools.</h2>
+      </div>
+      <div class="grid md:grid-cols-3 gap-5">
+        {team.map(m => (
+          <article class="bg-steel border border-bone/10 rounded-sharp overflow-hidden">
+            <div class="aspect-[4/5] overflow-hidden bg-graphite">
+              <img src={m.image} alt={m.name} class="w-full h-full object-cover" />
+            </div>
+            <div class="p-6">
+              <h3 class="font-display font-bold text-bone text-xl tracking-tight2">{m.name}</h3>
+              <div class="font-mono uppercase tracking-wide2 text-[11px] text-volt mt-1">{m.role}</div>
+              {m.licence && (
+                <div class="font-mono text-[11px] text-bone/40 mt-1">{m.licence}</div>
+              )}
+              <p class="text-bone/65 text-[14px] leading-relaxed mt-4">{m.bio}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* ACCREDITATIONS */}
+  <section class="py-24 bg-bone">
+    <div class="wrap-wide">
+      <div class="max-w-xl mb-12">
+        <p class="eyebrow">// Licences & accreditations</p>
+        <h2 class="text-4xl md:text-5xl font-bold tracking-tight3">Everything in writing. Happy to show you the certificates.</h2>
+      </div>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+        {accreditations.map(a => (
+          <div class="bg-chalk border border-graphite/10 rounded-sharp p-6 hover:border-volt transition">
+            <div class="flex items-start justify-between gap-4 mb-3">
+              <div class="w-10 h-10 bg-graphite text-volt rounded-sharp flex items-center justify-center shrink-0">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+              </div>
+              <span class="font-mono text-[11px] text-dust">{a.id}</span>
+            </div>
+            <h3 class="font-display font-bold text-graphite text-[15px]">{a.label}</h3>
+            <p class="text-dust text-sm leading-relaxed mt-2">{a.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* CTA */}
+  <section class="bg-volt text-graphite">
+    <div class="wrap-wide py-14 flex flex-wrap items-center justify-between gap-6">
+      <div>
+        <p class="font-mono uppercase tracking-wide2 text-[11px] text-graphite/60">// Want to work with us?</p>
+        <h2 class="text-graphite text-3xl md:text-4xl font-bold tracking-tight3 mt-2">Start with a quote.</h2>
+      </div>
+      <div class="flex flex-wrap gap-3">
+        <a href={`${base}/contact/`} class="btn-dark">Get a quote</a>
+        <a href="tel:1300528976" class="inline-flex items-center gap-2 font-display font-bold text-graphite text-xl hover:underline">
+          <span class="font-mono">1300 LAWSON</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</Base>

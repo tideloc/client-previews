@@ -1,0 +1,74 @@
+---
+import Base from '../../layouts/Base.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const topImg = 'https://images.unsplash.com/photo-1471623320832-752e8bbf8413?w=1800&h=1100&fit=crop&q=80&auto=format';
+---
+<Base title="My approach — Claire Montague Counselling">
+  <section class="pt-16 md:pt-24 pb-12">
+    <div class="wrap-wide max-w-3xl">
+      <p class="eyebrow">Approach</p>
+      <h1 class="font-display text-ink text-[clamp(2.5rem,6vw,4.5rem)] mb-8">
+        Integrative, <em style="font-style:italic;font-weight:400;">not dogmatic.</em>
+      </h1>
+      <p class="text-slate text-[18px] leading-loose">
+        A long-form piece on how I actually work in the room. I wrote this because most therapist websites say very little about what therapy is like, and I think you deserve to know before you book.
+      </p>
+    </div>
+  </section>
+
+  <section class="pb-16">
+    <div class="wrap-wide">
+      <img src={topImg} alt="An empty armchair in soft window light, a small side table with a glass of water" class="w-full aspect-[21/9] object-cover rounded-sm" />
+    </div>
+  </section>
+
+  <section class="pb-24">
+    <div class="wrap-narrow prose-reading">
+      <h3>Where I come from, theoretically</h3>
+      <p>
+        My training is broadly humanistic and relational. If that sounds like jargon, the short version is: I was taught that the relationship between the two people in the room is the thing that does most of the healing, and that most approaches work when that relationship is strong and most fail when it isn't. I still believe this.
+      </p>
+      <p>
+        Over the years I have added to that base. I did a full Level 1 training in Internal Family Systems, which gave me a careful and non-pathologising way to work with the different "parts" people notice in themselves — the harsh inner critic, the scared young part, the one who manages, the one who numbs. I have done extensive continuing education in Somatic Experiencing, which shaped how I pay attention to the body. I am fluent enough in Acceptance and Commitment Therapy ideas to use them when they are useful. And my years in community work, before I ever sat in a counsellor's chair, taught me something that no single modality did: how to stay in the room when the room is difficult.
+      </p>
+
+      <h3>What a session usually looks like</h3>
+      <p>
+        Sessions are sixty minutes. There is no fixed structure. In a typical session we might begin with where you are arriving from — what the week has been like, what is on top. Often something in the first ten minutes points us toward where the session actually wants to go, and we follow that thread. Sometimes we stay in conversation the whole time. Sometimes I will gently invite you to slow down and notice what is happening in your body, or what a particular part of you might be feeling or trying to protect. Sometimes we sit in silence for a while, which is not a failure of the session but often the opposite.
+      </p>
+      <p>
+        I take notes sparingly. I am not a blank slate — I will react, laugh, be moved — but I try not to make the session about me. If I think something I am noticing might be useful to share, I will share it, carefully, and you are welcome to disagree with it. I do not hand out homework unless you ask, and then only the smallest possible thing. At the end of a session I often circle back to what felt most present, so you leave with a thread rather than a tangle.
+      </p>
+
+      <h3>What I think change looks like</h3>
+      <p>
+        Change, in this work, is almost always slower and stranger than either of us would like. It is very rarely an aha moment followed by a reorganised life. It is usually a gradual, accumulating shift in how you hold yourself — a little more kindness toward the part of you that used to get criticised, a little more willingness to feel a thing instead of outrunning it, a little more ability to stay with a difficult conversation without abandoning yourself.
+      </p>
+      <p>
+        Most people notice the change before they can name it. A friend will comment that you seem less coiled. You will realise, months in, that the argument you used to have with your partner every fortnight has quietly stopped happening. You will feel a wave of something hard come through and, somehow, it will not take you down this time. That is the grain of the work.
+      </p>
+
+      <h3>What I don't do</h3>
+      <p>
+        I do not offer a protocol that promises to cure anxiety in six sessions. I do not do couples work — though I work very well with individuals on the individual side of a relational system. I do not make clinical diagnoses (I'm not a psychologist, and I refer out for that when it matters). I do not work with active psychosis, severe untreated eating disorders, or current substance dependence without a recovery support team in place — not because those experiences are unwelcome, but because good care requires a broader clinical team than a solo counsellor can responsibly provide on their own. I am happy to help you find one.
+      </p>
+      <p>
+        I also do not sell myself as warm in the way some therapists do. I am friendly and I do care, but my primary posture is steady and attentive rather than effusive. Some people find this reassuring. Others do not. It is worth knowing before we start.
+      </p>
+
+      <h3>On neurodiversity</h3>
+      <p>
+        A substantial part of my practice is now adults with late-diagnosed autism, ADHD, or both. This is the fastest-growing group in my caseload, and I have chosen to build real depth here. I work from a neurodiversity-affirming frame, which means: I do not think you need fixing, I adapt the room and my pace to your nervous system (lower lights, longer pauses, written follow-ups if helpful), and I treat the diagnosis as information about how you work, not as a deficit to be corrected.
+      </p>
+
+      <h3>The short version</h3>
+      <p>
+        If you want a brisk, goal-oriented, homework-driven therapy with weekly metrics, I am not your person, and I can suggest colleagues who are. If you want a thoughtful, unhurried, relationally serious piece of work with someone who will neither rush you nor disappear on you — we might be a fit. An intro call is the friendliest place to find out.
+      </p>
+      <p>
+        <a href={`${base}/contact/`} class="text-deepsage underline decoration-sage/50 underline-offset-4 hover:decoration-sage">Book an intro call →</a>
+      </p>
+    </div>
+  </section>
+</Base>

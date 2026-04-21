@@ -1,0 +1,26 @@
+---
+import type { JournalEntry } from '../data/journal';
+interface Props {
+  entry: JournalEntry;
+  featured?: boolean;
+}
+const { entry, featured = false } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const date = new Date(entry.date).toLocaleDateString('en-AU', { day: 'numeric', month: 'long', year: 'numeric' });
+---
+<article class={`group flex flex-col ${featured ? 'md:col-span-2' : ''}`}>
+  <a href={`${base}/journal/#${entry.slug}`} class="block overflow-hidden rounded-sm mb-5">
+    <div class={`${featured ? 'aspect-[16/9]' : 'aspect-[4/3]'} overflow-hidden`}>
+      <img src={entry.image} alt="" class="w-full h-full object-cover transition duration-700 group-hover:scale-[1.02]" />
+    </div>
+  </a>
+  <div class="flex items-center gap-3 mb-3">
+    <span class="font-mono text-[11px] uppercase text-sage tracking-[0.18em]">{date}</span>
+    <span class="w-1 h-1 rounded-full bg-slate/40"></span>
+    <span class="font-mono text-[11px] uppercase text-slate/70 tracking-[0.18em]">{entry.readTime}</span>
+  </div>
+  <h3 class={`font-display text-ink mb-3 group-hover:text-deepsage transition ${featured ? 'text-3xl md:text-4xl' : 'text-2xl'}`}>
+    <a href={`${base}/journal/#${entry.slug}`}>{entry.title}</a>
+  </h3>
+  <p class="text-slate text-[15px] leading-loose">{entry.excerpt}</p>
+</article>

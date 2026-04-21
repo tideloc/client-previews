@@ -1,0 +1,27 @@
+---
+import type { Job } from '../data/jobs';
+interface Props { job: Job }
+const { job } = Astro.props;
+---
+<article class="card overflow-hidden">
+  <div class="grid grid-cols-2 gap-1">
+    <div class="relative aspect-[4/5] overflow-hidden bg-bark/10">
+      <img src={job.beforeImage} alt={`Before — ${job.type} in ${job.suburb}`} class="w-full h-full object-cover" />
+      <span class="absolute top-3 left-3 bg-bark/80 text-cream font-mono uppercase tracking-widest text-[10px] px-2 py-1 rounded-full">Before</span>
+    </div>
+    <div class="relative aspect-[4/5] overflow-hidden bg-dew">
+      <img src={job.afterImage} alt={`After — ${job.type} in ${job.suburb}`} class="w-full h-full object-cover" />
+      <span class="absolute top-3 left-3 bg-turf text-cream font-mono uppercase tracking-widest text-[10px] px-2 py-1 rounded-full">After</span>
+    </div>
+  </div>
+  <div class="p-5">
+    <div class="flex items-center justify-between mb-2 gap-3">
+      <div>
+        <h3 class="font-display font-semibold text-base text-bark">{job.type}</h3>
+        <p class="text-xs font-mono uppercase tracking-widest text-moss">{job.suburb}</p>
+      </div>
+      <span class="chip whitespace-nowrap">{job.time}</span>
+    </div>
+    <p class="text-bark/70 text-sm leading-relaxed">{job.description}</p>
+  </div>
+</article>

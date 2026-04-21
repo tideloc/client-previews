@@ -1,0 +1,106 @@
+---
+import Base from '../../layouts/Base.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const portrait = 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=1200&h=1500&fit=crop&q=80&auto=format';
+const practiceRoom = 'https://images.unsplash.com/photo-1454944338482-a69bb95894af?w=1600&h=1100&fit=crop&q=80&auto=format';
+---
+<Base title="About Claire — Counsellor in Northcote, Melbourne">
+  <section class="pt-16 md:pt-24 pb-16">
+    <div class="wrap-wide grid md:grid-cols-12 gap-10 md:gap-14 items-start">
+      <div class="md:col-span-7">
+        <p class="eyebrow">About</p>
+        <h1 class="font-display text-ink text-[clamp(2.5rem,6vw,4.5rem)] mb-8">
+          A considered, <em style="font-style:italic;font-weight:400;">unhurried</em> practitioner.
+        </h1>
+        <div class="prose-reading">
+          <p>
+            I am Claire Montague. I am a counsellor and psychotherapist based in Northcote, on the unceded lands of the Wurundjeri Woi-wurrung people of the Kulin Nation. I work primarily with adults — a wide range of ages, though most often between 25 and 55 — who are navigating something quietly difficult and looking for a thoughtful, steady companion through it.
+          </p>
+          <p>
+            I have been a counsellor since 2017. I came to this work the long way around. Before counselling, I spent a decade in community services in Melbourne's north, mostly in programs for women and families who were moving through homelessness, grief, domestic violence, and the long tails of complex trauma. That work taught me things that no training could — the difference between patience and passivity, the quiet dignity of people doing hard things, and the limits of any single framework in the face of a real life.
+          </p>
+          <p>
+            When I finally retrained formally, I chose counselling and psychotherapy rather than clinical psychology quite deliberately. I wanted a training that centred the relationship itself — the long, slow human work of being alongside someone — rather than one that treated the person across from me as a set of symptoms to be catalogued. I do not regret that decision.
+          </p>
+        </div>
+      </div>
+      <div class="md:col-span-5">
+        <img src={portrait} alt="A portrait of Claire in a quiet room, looking thoughtfully out of a window" class="w-full aspect-[4/5] object-cover rounded-sm" />
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-cream">
+    <div class="wrap-wide grid md:grid-cols-12 gap-10 md:gap-14">
+      <div class="md:col-span-5">
+        <p class="eyebrow">Training &amp; registration</p>
+        <h2 class="font-display text-ink text-3xl md:text-4xl mb-4">The credentials, briefly.</h2>
+      </div>
+      <div class="md:col-span-7 prose-reading">
+        <ul class="space-y-5 list-none p-0 m-0">
+          <li class="pb-5 border-b border-ink/10">
+            <div class="font-display text-xl text-ink mb-1">Master of Counselling &amp; Psychotherapy</div>
+            <div class="text-slate text-[15px]">University of Melbourne, 2016</div>
+          </li>
+          <li class="pb-5 border-b border-ink/10">
+            <div class="font-display text-xl text-ink mb-1">Bachelor of Social Work (Hons.)</div>
+            <div class="text-slate text-[15px]">RMIT, 2007</div>
+          </li>
+          <li class="pb-5 border-b border-ink/10">
+            <div class="font-display text-xl text-ink mb-1">PACFA Registered — Reg. 28640</div>
+            <div class="text-slate text-[15px]">Clinical-level membership. Bound by the PACFA Code of Ethics.</div>
+          </li>
+          <li class="pb-5 border-b border-ink/10">
+            <div class="font-display text-xl text-ink mb-1">Ongoing professional development</div>
+            <div class="text-slate text-[15px]">Internal Family Systems Level 1 (2022). Somatic Experiencing, beginner-intermediate modules (2023–present). Regular training in neurodiversity-affirming practice.</div>
+          </li>
+          <li>
+            <div class="font-display text-xl text-ink mb-1">Clinical supervision</div>
+            <div class="text-slate text-[15px]">Monthly individual supervision with a senior Melbourne-based psychotherapist, and a small peer-supervision group. I take this seriously. It is how I stay accountable to the work.</div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20">
+    <div class="wrap-wide grid md:grid-cols-12 gap-10 md:gap-14 items-center">
+      <div class="md:col-span-6 order-2 md:order-1">
+        <p class="eyebrow">Philosophy</p>
+        <h2 class="font-display text-ink text-3xl md:text-4xl mb-6">
+          I don't believe <em style="font-style:italic;font-weight:400;">you are broken.</em>
+        </h2>
+        <div class="prose-reading">
+          <p>
+            Most of what brings a person to counselling is not pathology. It is a life that has become, in some small or enormous way, harder than it should be to live. A nervous system that learned to brace for something that is no longer there. A grief that does not fit the timelines offered. A self that has been performing for so long it has forgotten there was ever anything underneath.
+          </p>
+          <p>
+            My job is not to diagnose you or rebuild you. It is to sit with you, carefully, while you come back into contact with the parts of yourself you have been carrying at arm's length. That is, in my experience, where the real change happens. Slowly. Quietly. Often without ceremony.
+          </p>
+        </div>
+      </div>
+      <div class="md:col-span-6 order-1 md:order-2">
+        <img src={practiceRoom} alt="Claire's practice room — a linen chair, a small table with tea, soft window light" class="w-full aspect-[5/4] object-cover rounded-sm" />
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-sand">
+    <div class="wrap-narrow">
+      <p class="eyebrow">A personal note</p>
+      <h2 class="font-display text-ink text-3xl md:text-4xl mb-6">Beyond the clinical bit.</h2>
+      <div class="prose-reading">
+        <p>
+          When I am not at the practice, I live in the inner north with my partner and a quiet greyhound. I read a lot — mostly fiction and non-fiction about bodies, grief, and the history of psychotherapy. I walk almost every morning in Merri Creek Park before the first session. I think about supervision a great deal. I try, not always successfully, to take the weekends off in the way I ask my clients to.
+        </p>
+        <p>
+          I am mentioning this not to share my life with you, exactly, but because I think it matters that the person you speak with is a whole person. The unhurriedness I offer in session is not a technique. It is a posture I have to practise outside the room in order to bring it into the room. That discipline, such as it is, is part of what you are paying for.
+        </p>
+      </div>
+      <div class="mt-10">
+        <a href={`${base}/contact/`} class="btn-primary">Book an intro call</a>
+      </div>
+    </div>
+  </section>
+</Base>

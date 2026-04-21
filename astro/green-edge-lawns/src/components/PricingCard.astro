@@ -1,0 +1,28 @@
+---
+import type { PricingPlan } from '../data/pricingPlans';
+interface Props { plan: PricingPlan; featured?: boolean }
+const { plan, featured = false } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+<article class={`rounded-2xl p-8 border shadow-sm transition hover:-translate-y-1 ${featured ? 'bg-turf text-cream border-turf' : 'bg-cream text-bark border-bark/10'}`}>
+  {featured && <span class="inline-block bg-sunshine text-bark font-display font-semibold text-[10px] uppercase tracking-widest px-3 py-1 rounded-full mb-4">Most popular</span>}
+  <h3 class={`font-display font-bold text-2xl mb-2 ${featured ? 'text-cream' : 'text-bark'}`}>{plan.name}</h3>
+  <p class={`text-sm mb-6 ${featured ? 'text-cream/75' : 'text-bark/60'}`}>{plan.idealFor}</p>
+  <div class="flex items-baseline gap-2 mb-6">
+    <span class={`font-display font-bold text-4xl ${featured ? 'text-cream' : 'text-turf'}`}>{plan.price}</span>
+    <span class={`text-sm ${featured ? 'text-cream/70' : 'text-bark/60'}`}>/ {plan.cycle}</span>
+  </div>
+  <ul class="space-y-3 mb-8 text-sm">
+    {plan.includes.map(item => (
+      <li class="flex items-start gap-3">
+        <svg class={`flex-shrink-0 mt-[3px] ${featured ? 'text-leaf' : 'text-turf'}`} width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="20 6 9 17 4 12"/>
+        </svg>
+        <span class={featured ? 'text-cream/90' : 'text-bark/80'}>{item}</span>
+      </li>
+    ))}
+  </ul>
+  <a href={`${base}/contact/`} class={`block text-center rounded-2xl px-6 py-3 font-display font-semibold text-sm transition ${featured ? 'bg-sunshine text-bark hover:bg-cream' : 'bg-turf text-cream hover:bg-moss'}`}>
+    Get a quote
+  </a>
+</article>

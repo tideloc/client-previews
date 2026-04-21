@@ -1,0 +1,190 @@
+---
+import Base from '../../layouts/Base.astro';
+import { team } from '../../data/team';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const aboutHero = 'https://images.unsplash.com/photo-1622383563227-04401ab4e5ea?w=1400&h=1100&fit=crop&q=80&auto=format';
+const shopImg = 'https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=1200&h=900&fit=crop&q=80&auto=format';
+
+const equipment = [
+  { name: 'Honda HRU216 mowers', note: 'Twin four-strokes, blades sharpened every Friday.' },
+  { name: 'Stihl HS 82 T trimmers', note: '75cm blade for lilly pilly and big hedges.' },
+  { name: 'Stihl BR 700 blowers', note: 'Commercial backpack — clears a driveway in ten seconds.' },
+  { name: 'Husqvarna 325LX edgers', note: 'Dedicated edger. Straight lines every time.' },
+  { name: '6×4 tipper trailer', note: 'Registered and tarped for clean runs to Kurnell.' },
+  { name: 'Stihl FS 131 whipper snippers', note: 'Fitted with Forester multi-line for thick couch.' },
+];
+
+const principles = [
+  {
+    title: 'We turn up.',
+    body: 'On the day we said, in the window we said. If we\'re going to be late, you get an SMS before we were due to arrive — not after.',
+  },
+  {
+    title: 'Sharp blades, short visits.',
+    body: 'A dull blade rips grass and stresses a lawn. Blades get sharpened every Friday night. Most front-and-back jobs take us 25-35 minutes.',
+  },
+  {
+    title: 'No blanket chemicals.',
+    body: 'Spot-spray for bindii, sure. Blanket-spraying a family\'s lawn with glyphosate? No. If a lawn is sick, we aerate, top-dress and overseed first.',
+  },
+  {
+    title: 'Every load of green waste goes to compost.',
+    body: 'Certified facility at Kurnell — never to landfill. You don\'t pay more for it, it\'s just how we operate.',
+  },
+];
+---
+<Base title="About Jake — Green Edge Lawns &amp; Gardens" description="Jake Thorne founded Green Edge in 2018 after apprenticing at Cronulla Golf. Meet the team, the equipment and the principles that run the business.">
+
+  {/* Hero */}
+  <section class="relative bg-dew/70 py-16 md:py-24 overflow-hidden">
+    <div class="wrap grid md:grid-cols-2 gap-12 items-center relative">
+      <div>
+        <p class="eyebrow">About the mob</p>
+        <h1 class="font-display font-extrabold text-bark text-5xl md:text-6xl leading-tight mb-6">Three Shire locals with a trailer, a sharp blade and a plan.</h1>
+        <p class="text-bark/75 text-lg leading-relaxed mb-6">
+          Green Edge started in 2018 with one Honda push-mower in the back of Jake&rsquo;s 1998 Hilux, and a list of seven regular clients his mum&rsquo;s book-club had rounded up. Seven years on we&rsquo;re still small on purpose — three of us, thirty kilometres of Shire, every week.
+        </p>
+        <p class="text-bark/75 text-lg leading-relaxed">
+          No franchises. No sub-contractors. If you booked Green Edge, it&rsquo;s Green Edge at your gate.
+        </p>
+      </div>
+      <div class="relative">
+        <div class="relative aspect-[4/5] rounded-2xl overflow-hidden shadow-xl">
+          <img src={aboutHero} alt="Jake Thorne, founder of Green Edge Lawns" class="w-full h-full object-cover" />
+        </div>
+        <div class="absolute -bottom-5 -left-5 bg-sunshine text-bark px-5 py-4 rounded-2xl shadow-lg">
+          <div class="font-mono text-[10px] uppercase tracking-widest">Est.</div>
+          <div class="font-display font-bold text-3xl leading-none mt-1">2018</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* Jake's story */}
+  <section class="py-16">
+    <div class="wrap grid md:grid-cols-3 gap-10">
+      <div class="md:col-span-2">
+        <p class="eyebrow">The story</p>
+        <h2 class="font-display font-bold text-3xl md:text-4xl text-bark mb-6 leading-tight">From the Cronulla Golf greens to Caringbah front yards.</h2>
+        <div class="space-y-5 text-bark/75 text-lg leading-relaxed">
+          <p>Jake grew up in Gymea, finished school at Port Hacking High in 2012, and went straight into a turf management apprenticeship at Cronulla Golf Club. Four years of 5am starts taught him what a healthy lawn actually looks like — and the ten or so mistakes most home-owners make that quietly kill them.</p>
+          <p>He went out on his own in 2018 after a mate asked him to mow his front yard for cash on a Saturday. That mate&rsquo;s neighbour asked next, then the neighbour&rsquo;s sister in Miranda. By Christmas he had 34 regulars and a second-hand trailer.</p>
+          <p>Mitch joined in late 2022 as a Tuesday-Thursday casual while he finished his Hort Cert at TAFE Loftus. Sam came on in 2023 to run the landscaping side after he quit carpentry. The three of them now cover about 90 regular clients plus one-offs, and still knock off in time for a surf most afternoons.</p>
+        </div>
+      </div>
+      <aside class="card p-6 h-fit">
+        <div class="font-mono text-[10px] uppercase tracking-widest text-moss mb-4">By the numbers</div>
+        <dl class="space-y-4">
+          {[
+            { k: 'Years in business', v: '7' },
+            { k: 'Regular clients', v: '~90' },
+            { k: 'Lawns per week', v: '45-60' },
+            { k: 'Blades sharpened / year', v: '100+' },
+            { k: 'Trailers to Kurnell', v: '~180 / yr' },
+            { k: 'Google rating', v: '4.9 / 5' },
+          ].map(row => (
+            <div class="flex items-baseline justify-between gap-4 pb-3 border-b border-bark/10 last:border-0 last:pb-0">
+              <dt class="text-sm text-bark/70">{row.k}</dt>
+              <dd class="font-display font-bold text-xl text-turf">{row.v}</dd>
+            </div>
+          ))}
+        </dl>
+      </aside>
+    </div>
+  </section>
+
+  {/* Team */}
+  <section class="py-16 bg-dew/60">
+    <div class="wrap">
+      <div class="text-center max-w-xl mx-auto mb-12">
+        <p class="eyebrow">The team</p>
+        <h2 class="font-display font-bold text-3xl md:text-4xl text-bark">Three blokes. No sub-contractors.</h2>
+      </div>
+      <div class="grid md:grid-cols-3 gap-6">
+        {team.map(m => (
+          <article class="card overflow-hidden">
+            <div class="relative aspect-[4/5] bg-bark/5 overflow-hidden">
+              <img src={m.image} alt={m.name} class="w-full h-full object-cover" />
+            </div>
+            <div class="p-6">
+              <div class="flex items-baseline justify-between gap-3 mb-1">
+                <h3 class="font-display font-bold text-xl text-bark">{m.name}</h3>
+                <span class="font-mono text-[10px] text-moss uppercase tracking-widest">Since {m.since}</span>
+              </div>
+              <p class="text-turf font-display font-medium text-sm mb-4">{m.role}</p>
+              <p class="text-bark/75 text-sm leading-relaxed mb-4">{m.bio}</p>
+              <div class="pt-4 border-t border-bark/10">
+                <div class="font-mono text-[10px] text-moss uppercase tracking-widest mb-1">Favourite part of the job</div>
+                <div class="text-bark/80 text-sm italic">&ldquo;{m.favourite}&rdquo;</div>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* Principles */}
+  <section class="py-16">
+    <div class="wrap grid md:grid-cols-2 gap-12">
+      <div class="relative">
+        <div class="aspect-[4/5] rounded-2xl overflow-hidden bg-dew">
+          <img src={shopImg} alt="Green Edge's Caringbah garage and trailer" class="w-full h-full object-cover" />
+        </div>
+      </div>
+      <div>
+        <p class="eyebrow">How we work</p>
+        <h2 class="font-display font-bold text-3xl md:text-4xl text-bark leading-tight mb-8">Four things we don&rsquo;t compromise on.</h2>
+        <div class="space-y-6">
+          {principles.map((p, i) => (
+            <div class="flex gap-5">
+              <div class="flex-shrink-0 w-12 h-12 rounded-2xl bg-turf text-cream font-display font-bold flex items-center justify-center">
+                {String(i + 1).padStart(2, '0')}
+              </div>
+              <div>
+                <h3 class="font-display font-semibold text-lg text-bark mb-1.5">{p.title}</h3>
+                <p class="text-bark/75 leading-relaxed">{p.body}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* Equipment */}
+  <section class="py-16 bg-sand">
+    <div class="wrap">
+      <div class="max-w-xl mb-12">
+        <p class="eyebrow">What&rsquo;s in the trailer</p>
+        <h2 class="font-display font-bold text-3xl md:text-4xl text-bark leading-tight">Commercial gear, maintained weekly.</h2>
+        <div class="divider mt-6"></div>
+      </div>
+      <div class="grid md:grid-cols-2 gap-4">
+        {equipment.map(e => (
+          <div class="card p-5 flex items-start gap-4">
+            <div class="flex-shrink-0 w-10 h-10 rounded-2xl bg-turf/10 flex items-center justify-center">
+              <svg class="text-turf" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+            </div>
+            <div>
+              <div class="font-display font-semibold text-bark">{e.name}</div>
+              <div class="text-sm text-bark/70 mt-1">{e.note}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* CTA */}
+  <section class="py-16">
+    <div class="wrap">
+      <div class="bg-turf text-cream rounded-2xl p-10 md:p-14 text-center">
+        <h2 class="font-display font-bold text-3xl md:text-4xl mb-4">Let&rsquo;s look after your yard.</h2>
+        <p class="text-cream/85 text-lg mb-8 max-w-xl mx-auto">We book one new regular client per week during autumn and winter. Usually one per fortnight in summer.</p>
+        <a href={`${base}/contact/`} class="btn-accent">Book a visit</a>
+      </div>
+    </div>
+  </section>
+</Base>

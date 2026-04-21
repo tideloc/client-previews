@@ -1,0 +1,57 @@
+---
+import Base from '../../layouts/Base.astro';
+import BeforeAfterCard from '../../components/BeforeAfterCard.astro';
+import TestimonialCard from '../../components/TestimonialCard.astro';
+import { jobs } from '../../data/jobs';
+import { testimonials } from '../../data/testimonials';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const selectedReviews = testimonials.slice(3, 6);
+---
+<Base title="Before &amp; After Gallery — Green Edge Lawns &amp; Gardens" description="Ten recent lawn care and landscaping jobs across the Sutherland Shire. Real photos, real addresses, real people.">
+
+  <section class="bg-dew/70 py-16 md:py-24">
+    <div class="wrap">
+      <p class="eyebrow">Gallery</p>
+      <h1 class="font-display font-extrabold text-bark text-5xl md:text-6xl leading-tight mb-6 max-w-3xl">Before &amp; after.<br/><span class="text-turf">No filters.</span></h1>
+      <p class="text-bark/75 text-lg max-w-2xl leading-relaxed">
+        Ten recent jobs across the Shire. Photos taken on-site, same day, same angle. Slide to see the difference a sharp blade and a bit of patience makes.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-16">
+    <div class="wrap">
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {jobs.map(j => <BeforeAfterCard job={j} />)}
+      </div>
+    </div>
+  </section>
+
+  {/* Reviews */}
+  <section class="py-16 bg-dew/60">
+    <div class="wrap">
+      <div class="max-w-xl mb-12">
+        <p class="eyebrow">The clients, on record</p>
+        <h2 class="font-display font-bold text-3xl md:text-4xl text-bark">What they said after.</h2>
+        <div class="divider mt-6"></div>
+      </div>
+      <div class="grid md:grid-cols-3 gap-6">
+        {selectedReviews.map(t => <TestimonialCard testimonial={t} />)}
+      </div>
+    </div>
+  </section>
+
+  {/* CTA */}
+  <section class="py-16">
+    <div class="wrap">
+      <div class="bg-sand rounded-2xl p-10 md:p-14 text-center border border-bark/5">
+        <h2 class="font-display font-bold text-3xl md:text-4xl text-bark mb-4">Want to be the next one?</h2>
+        <p class="text-bark/75 leading-relaxed max-w-xl mx-auto mb-8">
+          Send us a photo of the current state of play. We&rsquo;ll come back with a fixed quote and a start date.
+        </p>
+        <a href={`${base}/contact/`} class="btn-primary">Get a free quote</a>
+      </div>
+    </div>
+  </section>
+</Base>

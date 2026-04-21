@@ -1,0 +1,220 @@
+---
+import Base from '../layouts/Base.astro';
+import TopicCard from '../components/TopicCard.astro';
+import JournalCard from '../components/JournalCard.astro';
+import TestimonialCard from '../components/TestimonialCard.astro';
+import { topics } from '../data/topics';
+import { journal } from '../data/journal';
+import { testimonials } from '../data/testimonials';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const heroImg = 'https://images.unsplash.com/photo-1499728603263-13726abce5fd?w=1800&h=1400&fit=crop&q=80&auto=format';
+const clairePortrait = 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=1000&h=1250&fit=crop&q=80&auto=format';
+const latestJournal = journal.slice(0, 2);
+const featuredTestimonial = testimonials[0];
+---
+<Base title="Claire Montague — Counselling in Northcote, Melbourne">
+
+  {/* Hero */}
+  <section class="relative overflow-hidden">
+    <div class="wrap-wide pt-16 md:pt-24 pb-20 md:pb-28 grid md:grid-cols-12 gap-10 md:gap-14 items-center">
+      <div class="md:col-span-6">
+        <p class="eyebrow">Counselling · Northcote &amp; online</p>
+        <h1 class="font-display text-ink text-[clamp(2.5rem,6.5vw,5.25rem)]">
+          Gentle conversations,<br/>
+          <em class="text-deepsage not-italic" style="font-style:italic;font-weight:400;">thoughtful change.</em>
+        </h1>
+        <p class="mt-8 text-slate text-[18px] leading-loose max-w-xl">
+          A small counselling practice in Melbourne's inner north, for adults navigating anxiety, burnout, grief, relationships and late-diagnosis neurodivergence. Unhurried, considered, kind.
+        </p>
+        <div class="mt-10 flex flex-wrap gap-4">
+          <a href={`${base}/contact/`} class="btn-primary">Book an intro call</a>
+          <a href={`${base}/approach/`} class="btn-ghost">Read my approach</a>
+        </div>
+        <p class="mt-8 font-mono text-[11px] uppercase text-slate/70 tracking-[0.18em]">
+          PACFA registered · Master of Counselling &amp; Psychotherapy
+        </p>
+      </div>
+      <div class="md:col-span-6">
+        <div class="relative">
+          <img src={heroImg} alt="Soft window light falling on a linen curtain and a quiet reading chair" class="w-full aspect-[4/5] object-cover rounded-sm" />
+          <div class="absolute -bottom-6 left-6 md:left-auto md:-right-6 bg-cream border border-ink/10 p-5 md:p-6 max-w-[260px] shadow-sm">
+            <p class="font-mono text-[10px] uppercase text-sage tracking-[0.18em] mb-2">Practice</p>
+            <p class="font-display text-ink text-xl leading-tight mb-1">Northcote, Melbourne</p>
+            <p class="text-slate text-[13px]">In-person Tue–Sat · Online across VIC</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* What I help with */}
+  <section class="py-24 md:py-28">
+    <div class="wrap-wide">
+      <div class="max-w-2xl mb-14">
+        <p class="eyebrow">What I help with</p>
+        <h2 class="font-display text-ink text-4xl md:text-5xl">
+          Six territories <em style="font-style:italic;font-weight:400;">I know well.</em>
+        </h2>
+        <div class="divider mt-6"></div>
+        <p class="mt-8 text-slate text-[17px] leading-loose">
+          Most people arrive with some combination of these. Rarely a clean single thread. We take the knot as it is and begin where it feels right to begin.
+        </p>
+      </div>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {topics.map(t => <TopicCard topic={t} />)}
+      </div>
+    </div>
+  </section>
+
+  {/* Personal intro */}
+  <section class="py-24 md:py-28 bg-cream">
+    <div class="wrap-wide grid md:grid-cols-12 gap-10 md:gap-16 items-center">
+      <div class="md:col-span-5">
+        <img src={clairePortrait} alt="Claire at a quiet table near a window, in soft afternoon light" class="w-full aspect-[4/5] object-cover rounded-sm" />
+      </div>
+      <div class="md:col-span-7">
+        <p class="eyebrow">A short introduction</p>
+        <h2 class="font-display text-ink text-4xl md:text-5xl mb-6">
+          Hi, I'm Claire.
+        </h2>
+        <div class="prose-reading">
+          <p>
+            I'm a counsellor and psychotherapist in Northcote. I work with adults — most often between 25 and 55 — who are carrying something quietly difficult: a creeping exhaustion, a grief that won't lift on schedule, a relationship in transition, a late-arriving diagnosis, a question about what the rest of their life is actually for. My work is gentle, unhurried, and unapologetically slow. I do not have clever tricks or a script. I have my attention, a small room with good light, and the discipline of a long training.
+          </p>
+          <p>
+            Before counselling I spent a decade in community work, mostly alongside people whom the systems of our city had let down. That shaped how I practise. I take your life seriously. I do not flinch at the harder parts of it. And I try, very hard, not to hurry you through.
+          </p>
+        </div>
+        <div class="mt-8">
+          <a href={`${base}/about/`} class="btn-ghost">More about me</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* How sessions work */}
+  <section class="py-24 md:py-28">
+    <div class="wrap-wide">
+      <div class="max-w-2xl mb-14">
+        <p class="eyebrow">How it works</p>
+        <h2 class="font-display text-ink text-4xl md:text-5xl">
+          Three <em style="font-style:italic;font-weight:400;">unhurried</em> steps.
+        </h2>
+        <div class="divider mt-6"></div>
+      </div>
+      <div class="grid md:grid-cols-3 gap-8 md:gap-10">
+        {[
+          {
+            n: '01',
+            t: 'A free intro call',
+            d: "A twenty-minute phone call, free, no paperwork. You get a sense of my voice and my pace. You ask any questions. If I'm not the right fit I will often know someone who is.",
+          },
+          {
+            n: '02',
+            t: 'Your first session',
+            d: "Sixty minutes in my Northcote room or online. We don't try to finish anything. We start to map the landscape together — what's bringing you in, what you've already tried, what you need this to feel like.",
+          },
+          {
+            n: '03',
+            t: 'Ongoing work',
+            d: "Most people see me weekly or fortnightly, for as long as it's useful. There is no prescribed length. We review together, gently, and you decide when the work is complete.",
+          },
+        ].map(step => (
+          <div class="card-soft p-8 md:p-10">
+            <div class="font-mono text-[11px] uppercase text-sage tracking-[0.18em] mb-4">{step.n}</div>
+            <h3 class="font-display text-ink text-2xl md:text-3xl mb-4">{step.t}</h3>
+            <p class="text-slate text-[16px] leading-loose">{step.d}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* Pricing band */}
+  <section class="py-24 md:py-28 bg-sand">
+    <div class="wrap-wide grid md:grid-cols-12 gap-10 items-start">
+      <div class="md:col-span-5">
+        <p class="eyebrow">Sessions &amp; fees</p>
+        <h2 class="font-display text-ink text-4xl md:text-5xl mb-6">
+          Clear, <em style="font-style:italic;font-weight:400;">straightforward</em> pricing.
+        </h2>
+        <p class="text-slate text-[17px] leading-loose mb-8">
+          Sessions are 60 minutes, $180. In-person in Northcote or online across Victoria. Some rebates available through private health extras — Medicare MHCP does not apply to counsellors, but I am happy to explain why.
+        </p>
+        <a href={`${base}/sessions-and-fees/`} class="btn-ghost">Full session &amp; fee details</a>
+      </div>
+      <div class="md:col-span-7 grid sm:grid-cols-2 gap-5">
+        <div class="card-soft p-7">
+          <p class="font-mono text-[10px] uppercase text-sage tracking-[0.18em] mb-3">Standard session</p>
+          <p class="font-display text-ink text-5xl mb-1">$180</p>
+          <p class="text-slate text-[14px] leading-loose">60 minutes, in-person Northcote or online</p>
+        </div>
+        <div class="card-soft p-7">
+          <p class="font-mono text-[10px] uppercase text-sage tracking-[0.18em] mb-3">Intro call</p>
+          <p class="font-display text-ink text-5xl mb-1">Free</p>
+          <p class="text-slate text-[14px] leading-loose">20-minute phone call before booking</p>
+        </div>
+        <div class="card-soft p-7">
+          <p class="font-mono text-[10px] uppercase text-sage tracking-[0.18em] mb-3">Reduced fee</p>
+          <p class="font-display text-ink text-5xl mb-1">$120</p>
+          <p class="text-slate text-[14px] leading-loose">A small number of reduced-fee spaces held for people who need them</p>
+        </div>
+        <div class="card-soft p-7">
+          <p class="font-mono text-[10px] uppercase text-sage tracking-[0.18em] mb-3">Cancellation</p>
+          <p class="font-display text-ink text-2xl mb-2 leading-tight">More than 24 hrs: no charge</p>
+          <p class="text-slate text-[14px] leading-loose">Life happens. Same-day cancellations carry a partial fee.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* Testimonial */}
+  <section class="py-24 md:py-28">
+    <div class="wrap-narrow">
+      <p class="eyebrow text-center block">A note from someone I've worked with</p>
+      <TestimonialCard testimonial={featuredTestimonial} />
+      <p class="mt-5 text-center text-slate/70 text-[12px] font-mono uppercase tracking-[0.18em]">
+        Shared with permission. Names and identifying details changed.
+      </p>
+    </div>
+  </section>
+
+  {/* Journal teaser */}
+  <section class="py-24 md:py-28 bg-cream">
+    <div class="wrap-wide">
+      <div class="flex items-end justify-between flex-wrap gap-6 mb-14">
+        <div class="max-w-xl">
+          <p class="eyebrow">From the journal</p>
+          <h2 class="font-display text-ink text-4xl md:text-5xl">
+            Quiet <em style="font-style:italic;font-weight:400;">essays.</em>
+          </h2>
+          <div class="divider mt-6"></div>
+          <p class="mt-6 text-slate text-[16px] leading-loose">
+            Short pieces on the territories I sit with most often — burnout, grief, nervous systems, late diagnosis. Not advice, exactly. More like thinking alongside.
+          </p>
+        </div>
+        <a href={`${base}/journal/`} class="font-mono text-[11px] uppercase text-sage hover:text-deepsage tracking-[0.18em]">
+          All journal entries →
+        </a>
+      </div>
+      <div class="grid md:grid-cols-2 gap-10 md:gap-12">
+        {latestJournal.map(e => <JournalCard entry={e} />)}
+      </div>
+    </div>
+  </section>
+
+  {/* Final CTA */}
+  <section class="py-24 md:py-32">
+    <div class="wrap-narrow text-center">
+      <p class="eyebrow">Ready, or almost ready</p>
+      <h2 class="font-display text-ink text-4xl md:text-5xl mb-6">
+        A <em style="font-style:italic;font-weight:400;">twenty-minute</em> phone call is a good place to begin.
+      </h2>
+      <p class="text-slate text-[17px] leading-loose mb-10">
+        Free, unhurried, no paperwork. You get a sense of my voice and my pace. You decide what, if anything, comes next.
+      </p>
+      <a href={`${base}/contact/`} class="btn-primary">Book an intro call</a>
+    </div>
+  </section>
+</Base>

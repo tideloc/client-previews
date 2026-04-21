@@ -1,0 +1,56 @@
+---
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const links = [
+  { href: `${base}/`, label: 'Home' },
+  { href: `${base}/about/`, label: 'About' },
+  { href: `${base}/approach/`, label: 'Approach' },
+  { href: `${base}/what-i-help-with/`, label: 'What I Help With' },
+  { href: `${base}/sessions-and-fees/`, label: 'Fees' },
+  { href: `${base}/journal/`, label: 'Journal' },
+];
+const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
+---
+<header class="sticky top-0 z-40 bg-parchment/90 backdrop-blur-md border-b border-ink/10">
+  <div class="wrap-wide flex items-center justify-between py-5">
+    <a href={`${base}/`} class="flex items-center gap-3 group">
+      <div class="leading-tight">
+        <div class="font-display text-xl text-ink">Claire Montague</div>
+        <div class="font-mono text-[10px] uppercase text-sage tracking-[0.18em]">Counselling · Northcote</div>
+      </div>
+    </a>
+    <nav class="hidden lg:flex items-center gap-1">
+      {links.map(l => {
+        const isActive = pathname === l.href.replace(/\/$/, '') || (l.href === `${base}/` && pathname === base);
+        return (
+          <a
+            href={l.href}
+            class={`font-body text-[13px] px-3 py-2 transition hover:text-deepsage ${isActive ? 'text-deepsage' : 'text-slate'}`}
+          >
+            {l.label}
+          </a>
+        );
+      })}
+      <a href={`${base}/contact/`} class="btn-primary ml-4 !py-2 !px-5 !text-[13px]">Book an intro call</a>
+    </nav>
+    <button id="menuToggle" class="lg:hidden text-ink p-2" aria-label="Menu">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <line x1="4" y1="7" x2="20" y2="7" />
+        <line x1="4" y1="12" x2="20" y2="12" />
+        <line x1="4" y1="17" x2="20" y2="17" />
+      </svg>
+    </button>
+  </div>
+  <div id="mobileMenu" class="hidden lg:hidden border-t border-ink/10 bg-parchment">
+    <div class="wrap-wide py-6 flex flex-col gap-2">
+      {links.map(l => (
+        <a href={l.href} class="font-body text-base text-slate py-2 hover:text-deepsage">{l.label}</a>
+      ))}
+      <a href={`${base}/contact/`} class="btn-primary mt-4 self-start">Book an intro call</a>
+    </div>
+  </div>
+</header>
+<script>
+  const btn = document.getElementById('menuToggle');
+  const menu = document.getElementById('mobileMenu');
+  btn?.addEventListener('click', () => menu?.classList.toggle('hidden'));
+</script>

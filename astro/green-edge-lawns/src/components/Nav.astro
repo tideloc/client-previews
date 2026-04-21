@@ -1,0 +1,57 @@
+---
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const links = [
+  { href: `${base}/`, label: 'Home' },
+  { href: `${base}/services/`, label: 'Services' },
+  { href: `${base}/pricing/`, label: 'Pricing' },
+  { href: `${base}/gallery/`, label: 'Gallery' },
+  { href: `${base}/about/`, label: 'About' },
+  { href: `${base}/contact/`, label: 'Contact' },
+];
+const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
+---
+<header class="sticky top-0 z-40 bg-cream/90 backdrop-blur-md border-b border-turf/10">
+  <div class="wrap flex items-center justify-between py-4">
+    <a href={`${base}/`} class="flex items-center gap-3 group">
+      <span class="w-11 h-11 bg-turf text-cream flex items-center justify-center font-display font-bold text-lg rounded-2xl transition group-hover:bg-moss group-hover:-rotate-3">GE</span>
+      <div class="leading-tight">
+        <div class="font-display font-bold text-bark text-base">Green Edge</div>
+        <div class="font-mono text-[10px] text-moss uppercase tracking-widest">Lawns &amp; Gardens</div>
+      </div>
+    </a>
+    <nav class="hidden md:flex items-center gap-1">
+      {links.map(l => {
+        const isActive = pathname === l.href.replace(/\/$/, '') || (l.href === `${base}/` && pathname === base);
+        return (
+          <a
+            href={l.href}
+            class={`font-display font-medium text-sm px-4 py-2 rounded-2xl transition ${isActive ? 'text-turf bg-dew' : 'text-bark/75 hover:text-turf'}`}
+          >
+            {l.label}
+          </a>
+        );
+      })}
+      <a href={`${base}/contact/`} class="btn-primary ml-3 !py-2.5 !px-5 !text-xs">Get a quote</a>
+    </nav>
+    <button id="menuToggle" class="md:hidden text-bark p-2" aria-label="Menu">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="4" y1="7" x2="20" y2="7" />
+        <line x1="4" y1="12" x2="20" y2="12" />
+        <line x1="4" y1="17" x2="20" y2="17" />
+      </svg>
+    </button>
+  </div>
+  <div id="mobileMenu" class="hidden md:hidden border-t border-turf/10 bg-cream">
+    <div class="wrap py-4 flex flex-col gap-1">
+      {links.map(l => (
+        <a href={l.href} class="font-display font-medium text-sm text-bark py-2 hover:text-turf">{l.label}</a>
+      ))}
+      <a href={`${base}/contact/`} class="btn-primary mt-3 !text-xs">Get a quote</a>
+    </div>
+  </div>
+</header>
+<script>
+  const btn = document.getElementById('menuToggle');
+  const menu = document.getElementById('mobileMenu');
+  btn?.addEventListener('click', () => menu?.classList.toggle('hidden'));
+</script>

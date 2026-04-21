@@ -1,0 +1,180 @@
+---
+import Base from '../../layouts/Base.astro';
+import ServiceCard from '../../components/ServiceCard.astro';
+import { services } from '../../data/services';
+
+export function getStaticPaths() {
+  return services.map(s => ({ params: { slug: s.slug }, props: { service: s } }));
+}
+
+const { service } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const related = services
+  .filter(s => s.slug !== service.slug && (s.category === service.category || service.category === 'residential'))
+  .slice(0, 3);
+const fallback = services.filter(s => s.slug !== service.slug).slice(0, 3);
+const show = related.length >= 3 ? related : fallback;
+
+const process = [
+  {
+    n: '01',
+    title: 'Quick phone call',
+    body: 'Tell us what you need. Photos help. We\'ll give you a ballpark on the call — or book a site visit if the job calls for it.',
+  },
+  {
+    n: '02',
+    title: 'On-site scope & fixed quote',
+    body: 'Matt or Jake walks the site, notes the scope and emails a fixed-price quote inside 24 hours. No pressure tactics, no upsell.',
+  },
+  {
+    n: '03',
+    title: 'Booked-in install',
+    body: 'You\'ll get a confirmed date, a morning-of SMS with ETA, and photo updates if anything interesting comes up mid-job.',
+  },
+  {
+    n: '04',
+    title: 'Tested, cleaned, certified',
+    body: 'Every circuit tested to AS/NZS 3000. Work area swept and vacuumed. CCEW lodged with Essential Energy within five business days.',
+  },
+];
+---
+<Base title={`${service.name} — Matt Lawson Electrical Wollongong`} description={service.blurb}>
+  <section class="bg-graphite text-bone">
+    <div class="wrap-wide pt-10 pb-16">
+      <nav class="text-[11px] font-mono uppercase tracking-wide2 text-bone/50 mb-8">
+        <a href={`${base}/`} class="hover:text-volt">Home</a>
+        <span class="mx-2 text-bone/20">/</span>
+        <a href={`${base}/services/`} class="hover:text-volt">Services</a>
+        <span class="mx-2 text-bone/20">/</span>
+        <span class="text-volt">{service.name}</span>
+      </nav>
+
+      <div class="grid md:grid-cols-12 gap-10">
+        <div class="md:col-span-7">
+          <p class="eyebrow-light">// {service.category}</p>
+          <h1 class="text-bone text-4xl md:text-6xl font-bold tracking-tight3 leading-[1.02]">{service.name}</h1>
+          <p class="text-bone/70 text-lg leading-relaxed mt-6 max-w-2xl">{service.description}</p>
+          <div class="mt-10 flex flex-wrap gap-4">
+            <a href={`${base}/contact/`} class="btn-primary">Get a quote</a>
+            <a href="tel:1300528976" class="btn-ghost-light">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>
+              <span class="font-mono">1300 LAWSON</span>
+            </a>
+          </div>
+        </div>
+        <div class="md:col-span-5">
+          <div class="rounded-sharp overflow-hidden border border-bone/10">
+            <img src={service.image} alt={service.name} class="w-full aspect-[4/3] object-cover" />
+          </div>
+          <div class="mt-4 grid grid-cols-2 gap-4">
+            <div class="bg-steel border border-bone/10 rounded-sharp p-4">
+              <div class="font-mono uppercase tracking-wide2 text-[10px] text-bone/40 mb-1">Starting from</div>
+              <div class="font-display font-bold text-volt text-xl">{service.startingPrice}</div>
+            </div>
+            <div class="bg-steel border border-bone/10 rounded-sharp p-4">
+              <div class="font-mono uppercase tracking-wide2 text-[10px] text-bone/40 mb-1">Timeframe</div>
+              <div class="font-display font-bold text-bone text-xl">{service.timeframe}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* Scope */}
+  <section class="py-20 bg-bone">
+    <div class="wrap-wide grid md:grid-cols-12 gap-10">
+      <div class="md:col-span-5">
+        <p class="eyebrow">// What's included</p>
+        <h2 class="text-3xl md:text-4xl font-bold tracking-tight3">Every {service.name.toLowerCase()} job comes with.</h2>
+        <p class="text-dust leading-relaxed mt-5">No "starting from" traps. Everything listed here is in the fixed-price quote, before you approve the job.</p>
+      </div>
+      <ul class="md:col-span-7 space-y-3">
+        {service.scope.map(item => (
+          <li class="flex items-start gap-4 bg-chalk border border-graphite/10 rounded-sharp p-5">
+            <span class="w-8 h-8 bg-graphite text-volt rounded-sharp flex items-center justify-center shrink-0 mt-0.5">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </span>
+            <span class="font-display font-medium text-graphite">{item}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  {/* Pricing guide */}
+  <section class="py-20 bg-graphite text-bone">
+    <div class="wrap-wide grid md:grid-cols-12 gap-10 items-start">
+      <div class="md:col-span-5">
+        <p class="eyebrow-light">// Pricing guide</p>
+        <h2 class="text-bone text-3xl md:text-4xl font-bold tracking-tight3">{service.startingPrice}.<br/>All-inclusive.</h2>
+        <p class="text-bone/60 leading-relaxed mt-5">Prices include all labour, fittings, disposal and compliance paperwork. Larger scopes quoted after a site visit so you know the final number before we book.</p>
+      </div>
+      <div class="md:col-span-7 grid sm:grid-cols-3 gap-3">
+        {[
+          { label: 'Small', price: service.startingPrice, note: 'Single-item install / repair' },
+          { label: 'Typical', price: '+40 %', note: 'Most homes, 1 day on site' },
+          { label: 'Large', price: 'Quoted', note: 'Multi-circuit, multi-day' },
+        ].map(t => (
+          <div class="bg-steel border border-bone/10 rounded-sharp p-5">
+            <div class="font-mono uppercase tracking-wide2 text-[11px] text-volt mb-2">{t.label}</div>
+            <div class="font-display font-bold text-bone text-2xl">{t.price}</div>
+            <div class="text-bone/50 text-sm mt-2 leading-relaxed">{t.note}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* Process 4 steps */}
+  <section class="py-20 bg-bone">
+    <div class="wrap-wide">
+      <div class="max-w-xl mb-12">
+        <p class="eyebrow">// How we work</p>
+        <h2 class="text-3xl md:text-4xl font-bold tracking-tight3">Four steps. No mystery.</h2>
+      </div>
+      <ol class="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+        {process.map(step => (
+          <li class="bg-chalk border border-graphite/10 rounded-sharp p-6">
+            <div class="font-mono font-bold text-volt text-4xl">{step.n}</div>
+            <h3 class="font-display font-bold text-graphite text-lg mt-2">{step.title}</h3>
+            <p class="text-dust text-sm leading-relaxed mt-2">{step.body}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  {/* Related services */}
+  <section class="py-20 bg-bone border-t border-graphite/8">
+    <div class="wrap-wide">
+      <div class="flex items-end justify-between mb-10 flex-wrap gap-4">
+        <div>
+          <p class="eyebrow">// Related services</p>
+          <h2 class="text-3xl md:text-4xl font-bold tracking-tight3">Often booked at the same time.</h2>
+        </div>
+        <a href={`${base}/services/`} class="font-display font-semibold text-sm text-graphite hover:text-charge">All services →</a>
+      </div>
+      <div class="grid md:grid-cols-3 gap-5">
+        {show.map(s => <ServiceCard service={s} />)}
+      </div>
+    </div>
+  </section>
+
+  {/* CTA */}
+  <section class="bg-volt text-graphite">
+    <div class="wrap-wide py-14 flex flex-wrap items-center justify-between gap-6">
+      <div>
+        <p class="font-mono uppercase tracking-wide2 text-[11px] text-graphite/60">// Ready to book?</p>
+        <h2 class="text-graphite text-3xl md:text-4xl font-bold tracking-tight3 mt-2">Let's get you a fixed-price quote.</h2>
+      </div>
+      <div class="flex flex-wrap gap-3">
+        <a href={`${base}/contact/`} class="btn-dark">Get a quote</a>
+        <a href="tel:1300528976" class="inline-flex items-center gap-2 font-display font-bold text-graphite text-xl hover:underline">
+          <span class="font-mono">1300 LAWSON</span>
+        </a>
+      </div>
+    </div>
+  </section>
+</Base>

@@ -1,0 +1,65 @@
+---
+import Base from '../../layouts/Base.astro';
+import { team } from '../../data/team';
+
+export function getStaticPaths() {
+  return team.map(e => ({ params: { slug: e.slug }, props: { educator: e } }));
+}
+
+const { educator } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const others = team.filter(e => e.slug !== educator.slug).slice(0, 4);
+const frames = ['bg-eucalypt/20', 'bg-terracotta/20', 'bg-sky/25', 'bg-pollen/30'];
+const frame = frames[(educator.idx ?? 0) % frames.length];
+---
+<Base title={`${educator.name} — ${educator.role} · Koala Kids`} description={educator.bio.slice(0, 160)}>
+  <section class="pt-12 pb-20">
+    <div class="wrap">
+      <nav class="text-xs font-mono uppercase tracking-soft text-earth/60 mb-8">
+        <a href={`${base}/`} class="hover:text-eucalypt">Home</a>
+        <span class="mx-2 text-earth/30">/</span>
+        <a href={`${base}/team/`} class="hover:text-eucalypt">Team</a>
+        <span class="mx-2 text-earth/30">/</span>
+        <span class="text-eucalypt">{educator.name}</span>
+      </nav>
+
+      <div class="grid md:grid-cols-5 gap-10">
+        <div class="md:col-span-2">
+          <div class={`relative ${frame} rounded-card overflow-hidden aspect-[4/5]`}>
+            <img src={educator.photo} alt={educator.name} class="w-full h-full object-cover mix-blend-multiply" />
+          </div>
+        </div>
+        <div class="md:col-span-3">
+          <p class="font-mono uppercase text-[10px] tracking-soft text-terracotta mb-3">{educator.role}</p>
+          <h1 class="text-5xl md:text-6xl leading-[1.02] mb-5">{educator.name}</h1>
+          <div class="flex gap-4 mb-8 pb-8 border-b border-paperbark/70">
+            <span class="pill">{educator.qualification}</span>
+            <span class="pill">{educator.years} years</span>
+          </div>
+          <p class="text-earth/85 text-lg leading-relaxed mb-6">{educator.bio}</p>
+          <a href={`${base}/tours/`} class="btn-primary">Meet {educator.name.split(' ')[0]} on tour</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-sandstone/50">
+    <div class="wrap">
+      <div class="flex items-end justify-between mb-10">
+        <h2 class="text-2xl md:text-3xl">More of our team</h2>
+        <a href={`${base}/team/`} class="font-display text-eucalypt hover:text-terracotta">All educators →</a>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
+        {others.map((o, i) => (
+          <a href={`${base}/team/${o.slug}/`} class="group">
+            <div class={`${frames[i % frames.length]} rounded-card overflow-hidden aspect-[4/5] mb-3`}>
+              <img src={o.photo} alt={o.name} class="w-full h-full object-cover mix-blend-multiply group-hover:scale-[1.03] transition duration-500" />
+            </div>
+            <div class="font-display text-softcoal text-sm">{o.name}</div>
+            <div class="font-mono text-[10px] uppercase tracking-soft text-earth/60 mt-1">{o.role.split('·')[0].trim()}</div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</Base>

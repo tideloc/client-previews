@@ -1,0 +1,26 @@
+---
+import type { Project } from '../data/projects';
+
+interface Props {
+  project: Project;
+}
+const { project } = Astro.props;
+---
+<article class="group relative rounded-sharp overflow-hidden bg-graphite">
+  <div class="aspect-[4/3] overflow-hidden">
+    <img
+      src={project.image}
+      alt={project.name}
+      class="w-full h-full object-cover transition duration-500 group-hover:scale-[1.04]"
+    />
+  </div>
+  <div class="absolute inset-x-0 bottom-0 p-5 bg-gradient-to-t from-graphite via-graphite/85 to-transparent">
+    <div class="flex items-center gap-2 mb-2">
+      <span class="font-mono uppercase tracking-wide2 text-[10px] text-volt">{project.type}</span>
+      <span class="text-bone/30">·</span>
+      <span class="font-mono uppercase tracking-wide2 text-[10px] text-bone/60">{project.suburb}</span>
+    </div>
+    <h3 class="font-display font-bold text-bone text-[16px] leading-snug tracking-tight2">{project.name}</h3>
+    <p class="text-bone/50 text-[11px] font-mono uppercase tracking-wide1 mt-2">{project.monthYear}</p>
+  </div>
+</article>

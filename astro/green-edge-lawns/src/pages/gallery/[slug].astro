@@ -1,0 +1,72 @@
+---
+import Base from '../../layouts/Base.astro';
+import BeforeAfterCard from '../../components/BeforeAfterCard.astro';
+import { jobs } from '../../data/jobs';
+
+export function getStaticPaths() {
+  return jobs.map(j => ({ params: { slug: j.slug }, props: { job: j } }));
+}
+
+const { job } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const related = jobs.filter(j => j.slug !== job.slug).slice(0, 3);
+---
+<Base title={`${job.type} in ${job.suburb} — Green Edge Lawns & Gardens`} description={job.description}>
+
+  <section class="bg-dew/70 py-10 md:py-14">
+    <div class="wrap">
+      <nav class="text-xs font-mono uppercase tracking-widest text-bark/60 mb-4">
+        <a href={`${base}/gallery/`} class="hover:text-turf">Gallery</a>
+        <span class="mx-2 text-bark/30">/</span>
+        <span class="text-bark/60">{job.suburb}</span>
+        <span class="mx-2 text-bark/30">/</span>
+        <span class="text-turf">{job.type}</span>
+      </nav>
+      <h1 class="font-display font-extrabold text-bark text-4xl md:text-5xl leading-tight max-w-3xl mb-4">{job.type}<span class="text-turf"> in {job.suburb}.</span></h1>
+      <div class="flex flex-wrap gap-3">
+        <span class="chip">{job.time}</span>
+        <span class="chip">{job.suburb}</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12">
+    <div class="wrap">
+      <div class="grid md:grid-cols-2 gap-6 mb-10">
+        <figure class="card overflow-hidden">
+          <div class="relative aspect-[4/5] bg-bark/10">
+            <img src={job.beforeImage} alt={`Before: ${job.type} in ${job.suburb}`} class="w-full h-full object-cover" />
+            <span class="absolute top-4 left-4 bg-bark/80 text-cream font-mono uppercase tracking-widest text-[10px] px-3 py-1 rounded-full">Before</span>
+          </div>
+        </figure>
+        <figure class="card overflow-hidden">
+          <div class="relative aspect-[4/5] bg-dew">
+            <img src={job.afterImage} alt={`After: ${job.type} in ${job.suburb}`} class="w-full h-full object-cover" />
+            <span class="absolute top-4 left-4 bg-turf text-cream font-mono uppercase tracking-widest text-[10px] px-3 py-1 rounded-full">After</span>
+          </div>
+        </figure>
+      </div>
+      <div class="max-w-3xl">
+        <p class="text-bark/80 text-lg leading-relaxed">{job.description}</p>
+      </div>
+      <div class="mt-10 flex flex-wrap gap-3">
+        <a href={`${base}/contact/`} class="btn-primary">Book a similar job</a>
+        <a href={`${base}/gallery/`} class="btn-ghost">Back to gallery</a>
+      </div>
+    </div>
+  </section>
+
+  {related.length > 0 && (
+    <section class="py-16 bg-dew/60">
+      <div class="wrap">
+        <div class="flex items-end justify-between mb-10">
+          <h2 class="font-display font-bold text-2xl md:text-3xl text-bark">More recent jobs</h2>
+          <a href={`${base}/gallery/`} class="font-display font-medium text-sm text-turf hover:text-moss">All jobs &rarr;</a>
+        </div>
+        <div class="grid md:grid-cols-3 gap-6">
+          {related.map(j => <BeforeAfterCard job={j} />)}
+        </div>
+      </div>
+    </section>
+  )}
+</Base>

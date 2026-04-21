@@ -1,0 +1,32 @@
+---
+import type { Service } from '../data/services';
+interface Props { service: Service; compact?: boolean }
+const { service, compact = false } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+<article class={`card overflow-hidden group ${compact ? '' : 'hover:-translate-y-1 transition'}`}>
+  <div class="relative aspect-[5/4] overflow-hidden bg-dew">
+    <img src={service.image} alt={service.name} class="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
+    <span class="absolute top-4 left-4 badge-day bg-cream/90 !text-[10px]">{service.frequency}</span>
+  </div>
+  <div class="p-6">
+    <div class="flex items-start justify-between gap-4 mb-3">
+      <h3 class="text-xl font-display font-semibold text-bark">{service.name}</h3>
+      <span class="font-mono text-xs text-turf whitespace-nowrap bg-dew px-2.5 py-1 rounded-full">{service.typicalPrice}</span>
+    </div>
+    <p class="text-bark/70 text-sm leading-relaxed mb-4">{service.blurb}</p>
+    {!compact && service.scope && (
+      <ul class="space-y-1.5 text-sm text-bark/80 mb-5">
+        {service.scope.slice(0, 4).map(s => (
+          <li class="flex items-start gap-2">
+            <span class="text-leaf mt-[6px] flex-shrink-0 w-1.5 h-1.5 rounded-full bg-leaf"></span>
+            <span>{s}</span>
+          </li>
+        ))}
+      </ul>
+    )}
+    <a href={`${base}/services/#${service.slug}`} class="inline-flex items-center gap-1 text-turf font-display font-medium text-sm hover:text-moss">
+      Learn more <span aria-hidden="true">&rarr;</span>
+    </a>
+  </div>
+</article>
