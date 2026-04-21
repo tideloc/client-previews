@@ -1,0 +1,54 @@
+---
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const year = new Date().getFullYear();
+---
+<footer class="mt-24 bg-deep text-shell">
+  <div class="wrap py-16 grid md:grid-cols-4 gap-10">
+    <div>
+      <div class="flex items-center gap-3 mb-5">
+        <span class="relative w-11 h-11 flex items-center justify-center rounded-full border border-brass/60">
+          <span class="absolute inset-1 rounded-full border border-shell/15"></span>
+          <span class="font-display italic text-shell text-xl leading-none">Tc</span>
+        </span>
+        <div class="font-display italic text-shell text-lg">Tidal Coffee Co.</div>
+      </div>
+      <p class="text-shell/65 text-sm leading-relaxed">Specialty roaster + cafe on the NSW South Coast. Green beans sourced direct, roasted three times a week in our 12kg Probat.</p>
+      <p class="font-mono text-[10px] uppercase tracking-rule text-brass mt-5">Brewed slow. Tide in, tide out.</p>
+    </div>
+    <div>
+      <h4 class="font-mono text-[10px] uppercase tracking-rule text-brass mb-4">Coffee</h4>
+      <ul class="space-y-2 text-sm">
+        <li><a href={`${base}/coffee/`} class="text-shell/75 hover:text-brass">All beans</a></li>
+        <li><a href={`${base}/coffee/#single`} class="text-shell/75 hover:text-brass">Single origin</a></li>
+        <li><a href={`${base}/coffee/#blend`} class="text-shell/75 hover:text-brass">Blends</a></li>
+        <li><a href={`${base}/coffee/#limited`} class="text-shell/75 hover:text-brass">Limited microlots</a></li>
+        <li><a href={`${base}/subscribe/`} class="text-shell/75 hover:text-brass">Subscriptions</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 class="font-mono text-[10px] uppercase tracking-rule text-brass mb-4">Visit & Learn</h4>
+      <ul class="space-y-2 text-sm">
+        <li><a href={`${base}/cafe/`} class="text-shell/75 hover:text-brass">Thirroul cafe</a></li>
+        <li><a href={`${base}/brew-guides/`} class="text-shell/75 hover:text-brass">Brew guides</a></li>
+        <li><a href={`${base}/about/`} class="text-shell/75 hover:text-brass">Our story</a></li>
+        <li><a href={`${base}/about/#wholesale`} class="text-shell/75 hover:text-brass">Wholesale</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 class="font-mono text-[10px] uppercase tracking-rule text-brass mb-4">Find Us</h4>
+      <address class="not-italic text-sm text-shell/75 leading-relaxed">
+        Tidal Coffee Co.<br/>
+        247 Lawrence Hargrave Drive<br/>
+        Thirroul NSW 2515<br/>
+        <span class="font-mono text-[11px] text-shell/55">34°19′S 150°56′E</span><br/>
+        <a href="mailto:hello@tidalcoffee.co" class="text-brass hover:text-copper">hello@tidalcoffee.co</a>
+      </address>
+    </div>
+  </div>
+  <div class="border-t border-shell/10">
+    <div class="wrap py-6 flex flex-col md:flex-row items-center justify-between gap-2 text-xs text-shell/50">
+      <span>© {year} Tidal Coffee Co. Pty Ltd. All rights reserved.</span>
+      <span class="font-mono uppercase tracking-rule text-[10px]">Roasted Thirroul · Shipped nationally</span>
+    </div>
+  </div>
+</footer>

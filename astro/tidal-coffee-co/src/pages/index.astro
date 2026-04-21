@@ -1,0 +1,262 @@
+---
+import Base from '../layouts/Base.astro';
+import Ticker from '../components/Ticker.astro';
+import BeanCard from '../components/BeanCard.astro';
+import { coffees } from '../data/coffees';
+import { brewGuides } from '../data/brewGuides';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const featuredSlugs = ['headland-house-blend', 'ethiopia-guji-natural', 'colombia-el-paraiso', 'colombia-la-palma-geisha'];
+const featured = featuredSlugs.map(s => coffees.find(c => c.slug === s)!).filter(Boolean);
+
+const featuredGuide = brewGuides.find(g => g.slug === 'v60')!;
+
+const heroImg  = 'https://images.unsplash.com/photo-1521017432531-fbd92d768814?w=2200&h=1400&fit=crop&q=80&auto=format';
+const cafeImg  = 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=1400&h=1000&fit=crop&q=80&auto=format';
+const cupImg   = 'https://images.unsplash.com/photo-1610889556528-9a770e32642f?w=1400&h=1400&fit=crop&q=80&auto=format';
+const guideImg = 'https://images.unsplash.com/photo-1511537190424-bbbab87ac5eb?w=1400&h=1000&fit=crop&q=80&auto=format';
+---
+<Base title="Tidal Coffee Co. — Specialty Roaster & Cafe, Thirroul NSW">
+  {/* Hero */}
+  <section class="relative overflow-hidden">
+    <div class="absolute inset-0">
+      <img src={heroImg} alt="" class="w-full h-full object-cover" />
+      <div class="absolute inset-0 bg-gradient-to-br from-surf/90 via-surf/85 to-deep/95"></div>
+      <div class="absolute inset-0 bg-chart-lines opacity-20 mix-blend-overlay"></div>
+    </div>
+    <div class="wrap relative py-24 md:py-36 text-shell">
+      <div class="flex items-center gap-4 mb-10">
+        <span class="h-px w-12 bg-brass"></span>
+        <p class="font-mono text-[10px] md:text-xs uppercase tracking-rule text-brass">Est. 2016 · Thirroul, NSW · 34°19′S 150°56′E</p>
+      </div>
+
+      <h1 class="text-shell mb-0 leading-[0.95]">
+        <span class="block font-display italic font-bold text-[clamp(3rem,10vw,8rem)]">Brewed slow.</span>
+        <span class="block font-display italic font-bold text-[clamp(3rem,10vw,8rem)] text-brass">Tide in, tide out.</span>
+      </h1>
+
+      <div class="mt-14 grid md:grid-cols-12 gap-10 items-start">
+        <div class="md:col-span-7">
+          <p class="text-shell/85 text-lg md:text-xl leading-relaxed mb-9 max-w-xl font-body">
+            A small specialty roaster on the NSW South Coast. We cup every lot, roast three times a week in a 12kg Probat, and ship to your door in parchment-wrapped 250g bags still warm from rest. No silver lining, no dark chocolate guff — just the coffee that we, genuinely, want to drink this week.
+          </p>
+          <div class="flex flex-wrap gap-4">
+            <a href={`${base}/coffee/`} class="inline-flex items-center justify-center gap-2 bg-brass text-shell px-6 py-3 font-body font-medium tracking-chart uppercase text-xs rounded-[3px] transition hover:bg-copper">Shop beans</a>
+            <a href={`${base}/cafe/`} class="inline-flex items-center justify-center gap-2 border border-shell/40 text-shell px-6 py-3 font-body font-medium tracking-chart uppercase text-xs rounded-[3px] transition hover:border-brass hover:text-brass">Book a tasting</a>
+          </div>
+        </div>
+
+        <aside class="md:col-span-5 bg-shell/5 backdrop-blur-sm border border-shell/15 rounded-[3px] p-7 md:p-9">
+          <p class="font-mono text-[10px] uppercase tracking-rule text-brass mb-5">Current roast schedule</p>
+          <ul class="space-y-3 divide-y divide-shell/10">
+            {[
+              { day: 'Mon', note: 'House + Escarpment', time: '6am' },
+              { day: 'Wed', note: 'Single origins', time: '6am' },
+              { day: 'Fri', note: 'Microlots + samples', time: '7am' },
+            ].map(row => (
+              <li class="flex items-center justify-between py-3 first:pt-0">
+                <span class="font-display italic text-2xl text-shell">{row.day}</span>
+                <span class="font-body text-sm text-shell/75 flex-1 px-4">{row.note}</span>
+                <span class="font-mono text-xs text-brass">{row.time}</span>
+              </li>
+            ))}
+          </ul>
+          <p class="font-mono text-[10px] uppercase tracking-rule text-shell/50 mt-6 pt-5 border-t border-shell/10">
+            Orders placed by 2pm · shipped that roast day
+          </p>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <Ticker items={['Headland House Blend', 'Ethiopia Guji', 'El Paraíso', 'PNG Sigri', 'Rwanda Nyamasheke', 'Guatemala Pacamara', 'La Palma Geisha · microlot', 'Escarpment espresso']} />
+
+  {/* Current roasts */}
+  <section class="py-24 md:py-28">
+    <div class="wrap">
+      <div class="flex items-end justify-between flex-wrap gap-6 mb-14">
+        <div>
+          <p class="eyebrow">On the roster</p>
+          <h2 class="text-4xl md:text-6xl text-surf leading-tight">What we're<br/>roasting this week.</h2>
+          <div class="rule mt-8"></div>
+        </div>
+        <a href={`${base}/coffee/`} class="font-mono uppercase tracking-rule text-xs text-brass hover:text-copper">All beans →</a>
+      </div>
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {featured.map(c => <BeanCard coffee={c} />)}
+      </div>
+    </div>
+  </section>
+
+  {/* How we cup — 3 column */}
+  <section class="py-24 md:py-28 bg-shell">
+    <div class="wrap">
+      <div class="max-w-2xl mb-16">
+        <p class="eyebrow">Our roast philosophy</p>
+        <h2 class="text-4xl md:text-5xl text-surf leading-tight mb-6">Three things,<br/>done properly.</h2>
+        <p class="text-surf/75 text-lg leading-relaxed">Nothing here is proprietary. It's just care, attention, and a commitment not to cut corners when no one's watching.</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-10 md:gap-14">
+        {[
+          {
+            num: '01',
+            title: 'Roast',
+            body: "Three mornings a week on a 12kg Probat, drum temp 205-212°C, development ratio between 20 and 24%. Every batch cupped against the last before it ships. If a lot drops off, it comes off the menu that afternoon.",
+          },
+          {
+            num: '02',
+            title: 'Rest',
+            body: "Beans rest 7-10 days before we'll let them out. Espresso roasts 10-14. No, this isn't marketing — green coffee needs to off-gas or the first week of your bag will taste muddy. We put a roast-on date on every bag so you know.",
+          },
+          {
+            num: '03',
+            title: 'Brew',
+            body: "Fresh water, clean grinder, the right ratio. Our recipes are on the bag and on the website, dialled to our house grind. Halve your next brew water if you find the cup too strong — don't reach for more beans.",
+          },
+        ].map(step => (
+          <div>
+            <div class="num-step mb-6">{step.num}</div>
+            <h3 class="font-display italic text-3xl text-surf mb-4">{step.title}</h3>
+            <p class="text-surf/75 leading-relaxed">{step.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* Cafe band */}
+  <section class="py-24 md:py-28 bg-surf text-shell">
+    <div class="wrap grid md:grid-cols-2 gap-14 items-center">
+      <div class="order-2 md:order-1">
+        <p class="eyebrow">The cafe</p>
+        <h2 class="text-4xl md:text-5xl text-shell leading-tight mb-6">247 Lawrence Hargrave Dr.<br/>Open six days.</h2>
+        <dl class="grid grid-cols-2 gap-4 mb-8 font-mono text-sm">
+          <div class="border-t border-shell/15 pt-3">
+            <dt class="text-[10px] uppercase tracking-rule text-brass mb-1">Mon - Fri</dt>
+            <dd>6:30 am — 3:00 pm</dd>
+          </div>
+          <div class="border-t border-shell/15 pt-3">
+            <dt class="text-[10px] uppercase tracking-rule text-brass mb-1">Saturday</dt>
+            <dd>7:00 am — 3:00 pm</dd>
+          </div>
+          <div class="border-t border-shell/15 pt-3">
+            <dt class="text-[10px] uppercase tracking-rule text-brass mb-1">Sunday</dt>
+            <dd>7:00 am — 2:00 pm</dd>
+          </div>
+          <div class="border-t border-shell/15 pt-3">
+            <dt class="text-[10px] uppercase tracking-rule text-brass mb-1">Tuesday</dt>
+            <dd class="text-shell/55">Closed (roast day)</dd>
+          </div>
+        </dl>
+        <p class="text-shell/80 leading-relaxed mb-8 max-w-md">
+          Single group La Marzocco Linea Classic, EK43 for filter, a short menu of Greek yoghurt, pastries from Berry Sourdough, and a second grinder for whatever single origin we're excited about. Three tables, no wifi.
+        </p>
+        <div class="font-mono text-xs text-shell/60 tracking-wide border-t border-shell/15 pt-5">
+          <span class="text-brass">34°19′13″S</span> · <span class="text-brass">150°55′32″E</span> — corner of Lawrence Hargrave & Raymond Rd
+        </div>
+      </div>
+      <div class="order-1 md:order-2 relative">
+        <img src={cafeImg} alt="The Tidal Coffee Co. cafe in Thirroul" class="rounded-[3px] w-full aspect-[4/5] object-cover" />
+        <div class="absolute -bottom-6 -right-6 hidden md:block bg-brass text-shell p-6 max-w-[220px]">
+          <div class="font-mono text-[10px] uppercase tracking-rule mb-2">Established</div>
+          <div class="font-display italic text-5xl leading-none">2016</div>
+          <div class="font-mono text-[10px] mt-3 tracking-rule uppercase">Thirroul</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* Subscription CTA */}
+  <section class="py-24 md:py-28 relative overflow-hidden">
+    <div class="absolute inset-0">
+      <img src={cupImg} alt="" class="w-full h-full object-cover opacity-20" />
+      <div class="absolute inset-0 bg-gradient-to-r from-sand via-sand/90 to-sand/70"></div>
+    </div>
+    <div class="wrap relative grid md:grid-cols-12 gap-10 items-center">
+      <div class="md:col-span-7">
+        <p class="eyebrow">Beans at your door</p>
+        <h2 class="text-4xl md:text-6xl text-surf leading-tight mb-6">Fortnightly,<br/>monthly, yours.</h2>
+        <p class="text-surf/75 text-lg leading-relaxed mb-8 max-w-xl">
+          Pick a size and a cadence. We'll send your bag the day after roast. Pause, skip, swap origins, cancel — all from a dashboard. No lock-in, no fortnightly subscription-spam email. Just good coffee, on a schedule that works.
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <a href={`${base}/subscribe/`} class="btn-primary">Start a subscription</a>
+          <a href={`${base}/coffee/`} class="btn-ghost">Buy a single bag first</a>
+        </div>
+      </div>
+
+      <div class="md:col-span-5 chart-frame p-7">
+        <p class="font-mono text-[10px] uppercase tracking-rule text-brass mb-4">Subscription options</p>
+        <ul class="space-y-4 divide-y divide-surf/10">
+          <li class="flex items-baseline justify-between pt-0">
+            <div>
+              <p class="font-display italic text-2xl text-surf">250g</p>
+              <p class="font-mono text-[10px] uppercase tracking-rule text-tide">Monthly · 1 bag</p>
+            </div>
+            <p class="font-mono text-sm text-brass">$22 / mo</p>
+          </li>
+          <li class="flex items-baseline justify-between pt-4">
+            <div>
+              <p class="font-display italic text-2xl text-surf">500g</p>
+              <p class="font-mono text-[10px] uppercase tracking-rule text-tide">Monthly · 2 bags</p>
+            </div>
+            <p class="font-mono text-sm text-brass">$40 / mo</p>
+          </li>
+          <li class="flex items-baseline justify-between pt-4">
+            <div>
+              <p class="font-display italic text-2xl text-surf">1kg</p>
+              <p class="font-mono text-[10px] uppercase tracking-rule text-tide">Fortnightly · 4 bags</p>
+            </div>
+            <p class="font-mono text-sm text-brass">$78 / mo</p>
+          </li>
+        </ul>
+        <p class="font-mono text-[10px] uppercase tracking-rule text-tide/70 mt-6 pt-5 border-t border-surf/10">
+          Free shipping over $50 · rotate between 4 origins
+        </p>
+      </div>
+    </div>
+  </section>
+
+  {/* Brew guide teaser */}
+  <section class="py-24 md:py-28 bg-deep text-shell">
+    <div class="wrap grid md:grid-cols-2 gap-14 items-center">
+      <div>
+        <p class="font-mono text-[10px] uppercase tracking-rule text-brass mb-4">Latest brew guide</p>
+        <h2 class="text-4xl md:text-5xl text-shell leading-tight mb-6">V60 at 1:16<br/>with Ethiopia Guji.</h2>
+        <p class="text-shell/80 leading-relaxed mb-8 max-w-md">
+          {featuredGuide.description}
+        </p>
+        <dl class="grid grid-cols-3 gap-4 mb-8 text-center">
+          <div class="border-t border-b border-shell/15 py-3">
+            <dt class="font-mono text-[9px] uppercase tracking-rule text-brass mb-1">Ratio</dt>
+            <dd class="font-mono text-sm">{featuredGuide.ratio}</dd>
+          </div>
+          <div class="border-t border-b border-shell/15 py-3">
+            <dt class="font-mono text-[9px] uppercase tracking-rule text-brass mb-1">Grind</dt>
+            <dd class="font-mono text-sm">Fine</dd>
+          </div>
+          <div class="border-t border-b border-shell/15 py-3">
+            <dt class="font-mono text-[9px] uppercase tracking-rule text-brass mb-1">Time</dt>
+            <dd class="font-mono text-sm">3:00</dd>
+          </div>
+        </dl>
+        <a href={`${base}/brew-guides/`} class="btn-ghost-light">All six brew guides</a>
+      </div>
+      <div>
+        <img src={guideImg} alt="Pour over setup" class="rounded-[3px] w-full aspect-[4/5] object-cover" />
+      </div>
+    </div>
+  </section>
+
+  {/* Closing tagline */}
+  <section class="bg-brass text-shell py-16">
+    <div class="wrap text-center">
+      <p class="font-display italic text-3xl md:text-5xl leading-tight">
+        Brewed slow. Tide in, tide out.
+      </p>
+      <p class="font-mono uppercase tracking-rule text-xs mt-4 text-shell/80">Since 2016 · Thirroul · New South Wales</p>
+    </div>
+  </section>
+</Base>

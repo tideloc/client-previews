@@ -1,0 +1,80 @@
+---
+import Base from '../../layouts/Base.astro';
+import StoryCard from '../../components/StoryCard.astro';
+import { stories } from '../../data/stories';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const heroImg = 'https://images.unsplash.com/photo-1584473457406-6240486418e9?w=2000&h=1200&fit=crop&q=80&auto=format';
+const [featured, ...rest] = stories;
+---
+<Base title="Stories from the Bush — Outback Pantry" description="Longform essays, field notes and recipes from six years of harvest partnerships.">
+  {/* Hero */}
+  <section class="relative overflow-hidden">
+    <div class="absolute inset-0">
+      <img src={heroImg} alt="" class="w-full h-full object-cover" />
+      <div class="absolute inset-0 bg-gradient-to-b from-charcoal/80 to-charcoal/40"></div>
+    </div>
+    <div class="wrap relative py-24 md:py-36">
+      <p class="font-mono uppercase tracking-wide2 text-ochre text-[11px] mb-5">// Field notes</p>
+      <h1 class="text-5xl md:text-8xl text-chalk font-display leading-none">Stories from<br/><span class="text-ochre italic">the bush.</span></h1>
+      <p class="text-chalk/85 text-lg md:text-xl max-w-2xl mt-8 leading-relaxed">
+        Longform essays, harvest notes and the occasional argument. Written mostly on the road, mostly by Marni, occasionally by Aunty Linda or Tom.
+      </p>
+    </div>
+  </section>
+
+  {/* Grid — featured first, then six-up */}
+  <section class="py-20">
+    <div class="wrap">
+      <div class="grid md:grid-cols-2 gap-6">
+        <StoryCard story={featured} featured />
+        {rest.slice(0, 1).map((s) => <StoryCard story={s} />)}
+      </div>
+      <div class="grid md:grid-cols-3 gap-6 mt-6">
+        {rest.slice(1).map((s) => <StoryCard story={s} />)}
+      </div>
+    </div>
+  </section>
+
+  {/* Story detail (long-form, as anchored sections) */}
+  <section class="py-16 bg-sand/40 border-t border-charcoal/10">
+    <div class="wrap max-w-3xl">
+      <p class="eyebrow text-center block">Read deeper</p>
+      <h2 class="text-3xl md:text-4xl text-charcoal text-center mb-14">The full essays.</h2>
+
+      <div class="space-y-20">
+        {stories.map((s, i) => (
+          <article id={s.slug} class="scroll-mt-28">
+            <div class="fg-divider mb-6">
+              <span class="font-mono text-[10px] uppercase tracking-wide2">Story 0{i + 1}</span>
+            </div>
+            <div class="flex items-center gap-3 mb-3">
+              <span class="font-mono text-[10px] uppercase tracking-wide2 bg-charcoal text-chalk px-2 py-1">{s.category}</span>
+              <span class="coord">{s.readTime}</span>
+            </div>
+            <h3 class="font-display text-3xl md:text-4xl leading-tight text-charcoal mb-4">{s.title}</h3>
+            <p class="text-kangaroo italic text-sm mb-8">{s.author}</p>
+            <div class="aspect-[16/9] overflow-hidden mb-8 paper-card">
+              <img src={s.image} alt="" class="w-full h-full object-cover" />
+            </div>
+            <div class="space-y-5 text-charcoal/85 text-[17px] leading-[1.85]">
+              {s.body.map((para) => <p>{para}</p>)}
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-24">
+    <div class="wrap max-w-2xl text-center">
+      <p class="eyebrow">Subscribe</p>
+      <h2 class="text-3xl md:text-5xl text-charcoal mb-5">New essays every fortnight.</h2>
+      <p class="text-charcoal/70 leading-relaxed mb-8">One email every two weeks — a harvest update, a recipe, and a story. No cart-abandonment emails, no discount spam. Cancel in one click.</p>
+      <form class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+        <input type="email" placeholder="Email address" class="flex-1 bg-chalk border border-charcoal/20 px-4 py-3 focus:border-ochre focus:outline-none font-body" />
+        <button type="submit" class="btn-primary">Subscribe</button>
+      </form>
+    </div>
+  </section>
+</Base>

@@ -1,0 +1,38 @@
+---
+import type { Beer } from '../data/beers';
+interface Props { beer: Beer; size?: 'default' | 'wide' }
+const { beer, size = 'default' } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const catLabel = { core: 'Core', seasonal: 'Seasonal', oneoff: 'One-off', nonbeer: 'Non-beer' }[beer.category];
+---
+<a
+  href={`${base}/beers/${beer.slug}/`}
+  class="group block bg-cream rounded-enamel overflow-hidden transition hover:-translate-y-0.5"
+  style="box-shadow: inset 0 0 0 2px rgba(26,20,16,0.12);"
+>
+  <div class={`relative overflow-hidden ${size === 'wide' ? 'aspect-[16/11]' : 'aspect-[4/5]'} bg-stout`}>
+    <img
+      src={beer.image}
+      alt={beer.name}
+      class="w-full h-full object-cover opacity-95 group-hover:opacity-100 group-hover:scale-[1.03] transition duration-500"
+     
+    />
+    {beer.badge && (
+      <span class="absolute top-4 left-4 bg-ember text-cream px-2 py-1 font-mono uppercase tracking-wide2 text-[10px] rounded-enamel">{beer.badge}</span>
+    )}
+    <span class="absolute bottom-4 left-4 pill-dark">{catLabel}</span>
+  </div>
+  <div class="p-5">
+    <div class="flex items-baseline justify-between gap-3 mb-1">
+      <h3 class="text-stout text-2xl leading-tight group-hover:text-ember transition">{beer.name}</h3>
+      {beer.price && <span class="font-mono text-sm text-ember whitespace-nowrap">${beer.price.toFixed(2)}</span>}
+    </div>
+    <p class="text-shadow text-xs mb-3 uppercase tracking-wide2 font-mono">
+      {beer.style} &middot; {beer.abv.toFixed(1)}% ABV {beer.ibu ? `· ${beer.ibu} IBU` : ''}
+    </p>
+    <p class="text-stout/80 text-sm leading-relaxed mb-4 not-italic">{beer.blurb}</p>
+    <div class="flex flex-wrap gap-1.5">
+      {beer.available.map(a => <span class="pill">{a === 'cans' ? '4-pack cans' : a === 'tap' ? 'On tap' : 'Growler fill'}</span>)}
+    </div>
+  </div>
+</a>

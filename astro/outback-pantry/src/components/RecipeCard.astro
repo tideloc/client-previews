@@ -1,0 +1,20 @@
+---
+import type { Recipe } from '../data/recipes';
+interface Props { recipe: Recipe; featured?: boolean }
+const { recipe, featured = false } = Astro.props;
+---
+<article class={`group block paper-card overflow-hidden hover:border-ochre/40 transition ${featured ? 'md:col-span-2' : ''}`}>
+  <div class={`relative overflow-hidden ${featured ? 'aspect-[16/9]' : 'aspect-[4/3]'}`}>
+    <img src={recipe.image} alt={recipe.name} class="w-full h-full object-cover group-hover:scale-[1.04] transition duration-700" />
+    <div class="absolute inset-0 bg-gradient-to-t from-charcoal/55 to-transparent"></div>
+    <div class="absolute bottom-0 inset-x-0 p-5">
+      <span class="inline-block font-mono text-[10px] uppercase tracking-wide2 bg-chalk text-charcoal px-2 py-0.5 mb-2">{recipe.hero}</span>
+      <h3 class={`text-chalk leading-tight ${featured ? 'text-3xl' : 'text-xl'}`}>{recipe.name}</h3>
+    </div>
+  </div>
+  <div class="px-5 py-4 flex items-center justify-between text-[11px] font-mono uppercase tracking-wide2 text-kangaroo">
+    <span>{recipe.time}</span>
+    <span class="text-ochre">{recipe.difficulty}</span>
+    <span>Serves {recipe.serves}</span>
+  </div>
+</article>

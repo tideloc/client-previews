@@ -1,0 +1,197 @@
+---
+import Base from '../../layouts/Base.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const heroImg    = 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=2000&h=1400&fit=crop&q=80&auto=format';
+const baristaImg = 'https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=1400&h=1000&fit=crop&q=80&auto=format';
+const shotImg    = 'https://images.unsplash.com/photo-1572442388796-11668a67e53d?w=1400&h=1000&fit=crop&q=80&auto=format';
+const vibeImg    = 'https://images.unsplash.com/photo-1516600164266-f3b8166ae679?w=1400&h=1000&fit=crop&q=80&auto=format';
+
+const menu = {
+  espresso: [
+    { name: 'Long black',        price: '$4.80', note: '30g double over 120g hot water' },
+    { name: 'Flat white',        price: '$5.20', note: 'Whole milk, textured fine, 160ml' },
+    { name: 'Latte',             price: '$5.20', note: 'Whole milk, extra warm on request' },
+    { name: 'Piccolo',           price: '$4.80', note: '90ml glass, heavy milk' },
+    { name: 'Magic',             price: '$5.00', note: 'Ristretto + 60g milk, bowl' },
+    { name: 'Oat / almond / soy', price: '+ $0.80', note: 'Bonsoy, Milklab oat, Vitasoy almond' },
+  ],
+  filter: [
+    { name: 'Batch brew',        price: '$4.50', note: 'Rotating single origin, always black' },
+    { name: 'V60 (hand-poured)', price: '$7.00', note: 'Ask for today\'s bean — 1:16, 93°C' },
+    { name: 'Aeropress',         price: '$6.50', note: 'Inverted, 16g / 224g / 2:30' },
+    { name: 'Cold brew',         price: '$5.50', note: '18hr, Colombia base, on tap in summer' },
+    { name: 'Iced long black',   price: '$5.50', note: 'Double shot, ice, soda splash' },
+  ],
+  food: [
+    { name: 'Berry sourdough slice',  price: '$4.50', note: 'Butter & jam · kitchen closed 10:30' },
+    { name: 'Butter croissant',       price: '$5.50', note: 'Lune Croissanterie, Melbourne' },
+    { name: 'Almond croissant',       price: '$6.80', note: 'Whole almond filling, housemade' },
+    { name: 'Greek yogurt bowl',      price: '$12',   note: 'Granola, honey, stone fruit (seasonal)' },
+    { name: 'Smoked salmon toast',    price: '$16',   note: 'Cream cheese, dill, caper, lemon' },
+    { name: 'Banana bread, toasted',  price: '$7',    note: 'With salted butter' },
+  ],
+};
+---
+<Base title="Thirroul Cafe — Tidal Coffee Co.">
+  <section class="relative overflow-hidden">
+    <div class="absolute inset-0">
+      <img src={heroImg} alt="" class="w-full h-full object-cover" />
+      <div class="absolute inset-0 bg-gradient-to-br from-surf/85 via-surf/75 to-surf/60"></div>
+    </div>
+    <div class="wrap relative py-28 md:py-36 text-shell">
+      <p class="font-mono text-[10px] uppercase tracking-rule text-brass mb-6">247 Lawrence Hargrave Dr · Thirroul NSW 2515</p>
+      <h1 class="font-display italic text-shell text-5xl md:text-7xl leading-[0.95] mb-8">
+        Small room.<br/>Proper coffee.
+      </h1>
+      <p class="text-shell/85 text-lg md:text-xl leading-relaxed max-w-2xl">
+        Between the train line and the beach. Single-group Linea Classic, three tables inside, a bench seat on the footpath when the weather's good. Order at the counter, cash or card, kitchen's tight but the pastry game is serious.
+      </p>
+    </div>
+  </section>
+
+  {/* Hours + coordinates — typography-forward */}
+  <section class="py-20 border-b border-surf/10">
+    <div class="wrap grid md:grid-cols-2 gap-12">
+      <div>
+        <p class="eyebrow">Opening hours</p>
+        <ul class="font-body divide-y divide-surf/10 border-t border-b border-surf/10">
+          {[
+            { day: 'Monday',    t: '6:30am — 3:00pm' },
+            { day: 'Tuesday',   t: 'Closed · roast day', muted: true },
+            { day: 'Wednesday', t: '6:30am — 3:00pm' },
+            { day: 'Thursday',  t: '6:30am — 3:00pm' },
+            { day: 'Friday',    t: '6:30am — 3:00pm' },
+            { day: 'Saturday',  t: '7:00am — 3:00pm' },
+            { day: 'Sunday',    t: '7:00am — 2:00pm' },
+          ].map(row => (
+            <li class="flex items-baseline justify-between py-4">
+              <span class={`font-display italic text-2xl ${row.muted ? 'text-surf/40' : 'text-surf'}`}>{row.day}</span>
+              <span class={`font-mono text-sm ${row.muted ? 'text-surf/40' : 'text-tide'}`}>{row.t}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div>
+        <p class="eyebrow">How to find us</p>
+        <div class="chart-frame p-8">
+          <div class="font-mono text-xs uppercase tracking-rule text-tide mb-5">Location</div>
+          <p class="font-display italic text-3xl text-surf leading-snug mb-6">
+            247 Lawrence Hargrave Drive<br/>
+            Thirroul NSW 2515
+          </p>
+          <dl class="grid grid-cols-2 gap-4 text-sm mb-6">
+            <div>
+              <dt class="font-mono text-[10px] uppercase tracking-rule text-tide mb-1">Latitude</dt>
+              <dd class="font-mono text-surf">34°19′13″ S</dd>
+            </div>
+            <div>
+              <dt class="font-mono text-[10px] uppercase tracking-rule text-tide mb-1">Longitude</dt>
+              <dd class="font-mono text-surf">150°55′32″ E</dd>
+            </div>
+            <div>
+              <dt class="font-mono text-[10px] uppercase tracking-rule text-tide mb-1">Station</dt>
+              <dd class="text-surf">Thirroul (2 min walk)</dd>
+            </div>
+            <div>
+              <dt class="font-mono text-[10px] uppercase tracking-rule text-tide mb-1">Parking</dt>
+              <dd class="text-surf">Raymond Rd — 2hr free</dd>
+            </div>
+          </dl>
+          <p class="font-mono text-[10px] uppercase tracking-rule text-brass pt-4 border-t border-surf/10">
+            On the inland side, between the bakery and the bookshop.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* Photo strip */}
+  <section class="py-20 bg-shell">
+    <div class="wrap grid md:grid-cols-3 gap-6">
+      <img src={baristaImg} alt="Barista at the Linea" class="aspect-[4/5] w-full object-cover rounded-[3px] border border-surf/10" />
+      <img src={shotImg} alt="Espresso pour" class="aspect-[4/5] w-full object-cover rounded-[3px] border border-surf/10" />
+      <img src={vibeImg} alt="Interior of the cafe" class="aspect-[4/5] w-full object-cover rounded-[3px] border border-surf/10" />
+    </div>
+  </section>
+
+  {/* Menu */}
+  <section class="py-24">
+    <div class="wrap">
+      <div class="max-w-2xl mb-14">
+        <p class="eyebrow">Menu</p>
+        <h2 class="font-display italic text-4xl md:text-5xl text-surf leading-tight mb-4">Short, considered, on the board.</h2>
+        <p class="text-surf/75 leading-relaxed">Menus change when the beans change — roughly every quarter. Dairy alternatives carry a small up-charge because we think it matters to pay for good ones.</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-10">
+        <div>
+          <h3 class="font-display italic text-2xl text-surf mb-4 flex items-center gap-3">
+            <span class="h-px flex-1 bg-brass"></span>
+            <span class="px-2">Espresso</span>
+            <span class="h-px flex-1 bg-brass"></span>
+          </h3>
+          <ul class="divide-y divide-surf/10">
+            {menu.espresso.map(i => (
+              <li class="py-4">
+                <div class="flex items-baseline justify-between gap-3 mb-1">
+                  <span class="text-surf font-body">{i.name}</span>
+                  <span class="font-mono text-sm text-brass whitespace-nowrap">{i.price}</span>
+                </div>
+                <p class="font-mono text-[11px] text-tide leading-snug">{i.note}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="font-display italic text-2xl text-surf mb-4 flex items-center gap-3">
+            <span class="h-px flex-1 bg-brass"></span>
+            <span class="px-2">Filter</span>
+            <span class="h-px flex-1 bg-brass"></span>
+          </h3>
+          <ul class="divide-y divide-surf/10">
+            {menu.filter.map(i => (
+              <li class="py-4">
+                <div class="flex items-baseline justify-between gap-3 mb-1">
+                  <span class="text-surf font-body">{i.name}</span>
+                  <span class="font-mono text-sm text-brass whitespace-nowrap">{i.price}</span>
+                </div>
+                <p class="font-mono text-[11px] text-tide leading-snug">{i.note}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="font-display italic text-2xl text-surf mb-4 flex items-center gap-3">
+            <span class="h-px flex-1 bg-brass"></span>
+            <span class="px-2">Food</span>
+            <span class="h-px flex-1 bg-brass"></span>
+          </h3>
+          <ul class="divide-y divide-surf/10">
+            {menu.food.map(i => (
+              <li class="py-4">
+                <div class="flex items-baseline justify-between gap-3 mb-1">
+                  <span class="text-surf font-body">{i.name}</span>
+                  <span class="font-mono text-sm text-brass whitespace-nowrap">{i.price}</span>
+                </div>
+                <p class="font-mono text-[11px] text-tide leading-snug">{i.note}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-surf text-shell py-16">
+    <div class="wrap text-center max-w-3xl mx-auto">
+      <p class="font-mono text-[10px] uppercase tracking-rule text-brass mb-4">Book the room</p>
+      <h2 class="font-display italic text-3xl md:text-4xl mb-6">Private tastings, Monday evenings.</h2>
+      <p class="text-shell/80 leading-relaxed mb-8">Cup three to four coffees side-by-side with Marcus. 90 minutes, up to eight people, $35 a head. Includes a 250g bag of whichever origin you liked most to take home.</p>
+      <a href="mailto:hello@tidalcoffee.co?subject=Private+tasting+enquiry" class="inline-flex items-center justify-center gap-2 bg-brass text-shell px-6 py-3 font-body font-medium tracking-chart uppercase text-xs rounded-[3px] hover:bg-copper transition">Email to book</a>
+    </div>
+  </section>
+</Base>

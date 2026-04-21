@@ -1,0 +1,20 @@
+---
+interface Props {
+  tap: number;
+  name: string;
+  style: string;
+  abv: number;
+  note?: string;
+}
+const { tap, name, style, abv, note } = Astro.props;
+---
+<div class="flex items-center gap-5 pr-10 shrink-0">
+  <span class="font-mono text-[10px] uppercase tracking-wide2 text-ember w-8 text-right">Tap {String(tap).padStart(2, '0')}</span>
+  <span class="w-px h-8 bg-stout/25"></span>
+  <div class="leading-tight">
+    <div class="font-display italic text-stout text-lg whitespace-nowrap">{name}</div>
+    <div class="font-mono text-[11px] text-shadow uppercase tracking-wide2 whitespace-nowrap">
+      {style} &middot; {abv.toFixed(1)}% ABV{note ? ` · ${note}` : ''}
+    </div>
+  </div>
+</div>

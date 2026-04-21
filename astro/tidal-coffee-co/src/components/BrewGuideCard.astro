@@ -1,0 +1,33 @@
+---
+import type { BrewGuide } from '../data/brewGuides';
+interface Props { guide: BrewGuide; idx?: number }
+const { guide, idx } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+<a href={`${base}/brew-guides/#${guide.slug}`} class="group block bg-shell rounded-[3px] overflow-hidden border border-surf/10 hover:border-brass/50 transition">
+  <div class="relative aspect-[5/4] overflow-hidden bg-surf/10">
+    <img src={guide.image} alt={guide.name} class="w-full h-full object-cover group-hover:scale-105 transition duration-700" />
+    {idx !== undefined && (
+      <span class="absolute top-4 left-4 font-display italic text-shell text-3xl leading-none bg-surf/60 backdrop-blur-sm px-2">{String(idx + 1).padStart(2, '0')}</span>
+    )}
+  </div>
+  <div class="p-6">
+    <p class="font-mono text-[10px] uppercase tracking-rule text-tide mb-2">{guide.method}</p>
+    <h3 class="font-display italic text-2xl text-surf mb-4 group-hover:text-brass transition">{guide.name}</h3>
+    <dl class="grid grid-cols-3 gap-2 mb-4 text-center">
+      <div class="border-t border-b border-surf/10 py-2">
+        <dt class="font-mono text-[9px] uppercase tracking-rule text-tide">Ratio</dt>
+        <dd class="font-mono text-sm text-surf mt-1">{guide.ratio}</dd>
+      </div>
+      <div class="border-t border-b border-surf/10 py-2">
+        <dt class="font-mono text-[9px] uppercase tracking-rule text-tide">Grind</dt>
+        <dd class="font-mono text-sm text-surf mt-1">{guide.grind.split(' ')[0]}</dd>
+      </div>
+      <div class="border-t border-b border-surf/10 py-2">
+        <dt class="font-mono text-[9px] uppercase tracking-rule text-tide">Time</dt>
+        <dd class="font-mono text-sm text-surf mt-1">{guide.time.split(' ')[0]}</dd>
+      </div>
+    </dl>
+    <p class="text-surf/75 text-sm leading-relaxed line-clamp-3">{guide.description}</p>
+  </div>
+</a>

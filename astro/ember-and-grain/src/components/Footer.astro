@@ -1,0 +1,51 @@
+---
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const year = new Date().getFullYear();
+---
+<footer class="mt-24 bg-stout text-cream">
+  <div class="wrap py-16 grid md:grid-cols-4 gap-10">
+    <div>
+      <div class="flex items-center gap-3 mb-4">
+        <span class="w-10 h-10 bg-ember text-cream flex items-center justify-center font-display italic text-lg rounded-enamel"
+              style="box-shadow: inset 0 0 0 2px rgba(247,239,224,0.2);">E&amp;G</span>
+        <div class="font-display italic text-cream text-lg leading-tight">Ember &amp; Grain<br/><span class="font-mono not-italic text-[10px] text-grain uppercase tracking-wide2">Brewing &middot; Federal NSW</span></div>
+      </div>
+      <p class="text-cream/70 text-sm leading-relaxed">A 12-tap taproom &amp; small production brewery in the Byron hinterland. Made for drinking long and thinking slow.</p>
+    </div>
+    <div>
+      <h4 class="text-cream text-xs mb-4 not-italic font-body uppercase tracking-wide2 font-semibold">Shop</h4>
+      <ul class="space-y-2 text-sm">
+        <li><a href={`${base}/beers/?c=core`}     class="text-cream/70 hover:text-ember">Core range</a></li>
+        <li><a href={`${base}/beers/?c=seasonal`} class="text-cream/70 hover:text-ember">Seasonals</a></li>
+        <li><a href={`${base}/beers/?c=oneoff`}   class="text-cream/70 hover:text-ember">One-offs</a></li>
+        <li><a href={`${base}/beers/?c=nonbeer`}  class="text-cream/70 hover:text-ember">Ginger beer &amp; kombucha</a></li>
+        <li><a href={`${base}/club/`}             class="text-cream/70 hover:text-ember">Brewer's Club</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 class="text-cream text-xs mb-4 not-italic font-body uppercase tracking-wide2 font-semibold">Visit</h4>
+      <ul class="space-y-2 text-sm">
+        <li><a href={`${base}/taproom/`}          class="text-cream/70 hover:text-ember">Taproom hours</a></li>
+        <li><a href={`${base}/taproom/#events`}   class="text-cream/70 hover:text-ember">Events calendar</a></li>
+        <li><a href={`${base}/taproom/#food`}     class="text-cream/70 hover:text-ember">Food truck roster</a></li>
+        <li><a href={`${base}/about/`}            class="text-cream/70 hover:text-ember">Our story</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 class="text-cream text-xs mb-4 not-italic font-body uppercase tracking-wide2 font-semibold">Find us</h4>
+      <address class="not-italic text-sm text-cream/70 leading-relaxed">
+        Ember &amp; Grain Brewing<br/>
+        117 Federal Drive<br/>
+        Federal NSW 2480<br/>
+        <a href="tel:0266887012" class="text-grain hover:text-ember">(02) 6688 7012</a><br/>
+        <a href="mailto:hello@emberandgrain.beer" class="text-ember hover:text-cream">hello@emberandgrain.beer</a>
+      </address>
+    </div>
+  </div>
+  <div class="border-t border-cream/10">
+    <div class="wrap py-6 flex flex-col md:flex-row items-center justify-between gap-2 text-xs text-cream/60">
+      <span>&copy; {year} Ember &amp; Grain Pty Ltd. Liquor Licence LIQP770017291.</span>
+      <span class="font-mono uppercase tracking-wide2">Please drink responsibly &middot; Under 18s welcome until 7pm</span>
+    </div>
+  </div>
+</footer>

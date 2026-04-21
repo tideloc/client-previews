@@ -1,0 +1,247 @@
+---
+import Base from '../layouts/Base.astro';
+import Ticker from '../components/Ticker.astro';
+import BeerCard from '../components/BeerCard.astro';
+import TapHandle from '../components/TapHandle.astro';
+import { beers } from '../data/beers';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const core = beers.filter(b => ['slow-road-lager', 'field-pale', 'hinterland-ipa'].includes(b.slug));
+const brewDeck = beers.filter(b => ['brew-deck-no7', 'eight-hills-barleywine'].includes(b.slug));
+
+// Currently on tap — 8 items
+const onTap = [
+  { tap: 1, name: 'Slow Road',         style: 'Lager',          abv: 4.4, note: 'house pour' },
+  { tap: 2, name: 'Field Pale',        style: 'Aus Pale',       abv: 4.8 },
+  { tap: 3, name: 'Coast Road',        style: 'Hazy IPA',       abv: 6.2 },
+  { tap: 4, name: 'Hinterland',        style: 'West Coast IPA', abv: 6.6 },
+  { tap: 5, name: 'Federal Dark',      style: 'Dark Mild',      abv: 3.6 },
+  { tap: 6, name: 'Long Paddock',      style: 'Saison',         abv: 5.4, note: 'spring' },
+  { tap: 7, name: 'Brew Deck No. 7',   style: 'Grisette',       abv: 4.2, note: 'last 200L' },
+  { tap: 8, name: 'Mothertongue',      style: 'Ginger beer',    abv: 0.5 },
+];
+
+const heroImg      = 'https://images.unsplash.com/photo-1535958636474-b021ee887b13?w=2200&h=1400&fit=crop&q=80&auto=format';
+const recipeImg    = 'https://images.unsplash.com/photo-1608032077018-c9aad9565d29?w=1200&h=900&fit=crop&q=80&auto=format';
+const taproomImg   = 'https://images.unsplash.com/photo-1508253578933-20b529302151?w=1400&h=900&fit=crop&q=80&auto=format';
+const clubBgImg    = 'https://images.unsplash.com/photo-1558642452-9d2a7deb7f62?w=1600&h=1000&fit=crop&q=80&auto=format';
+---
+<Base title="Ember & Grain — Byron Hinterland Brewery | Taproom &amp; Small-batch Beer">
+  {/* HERO */}
+  <section class="relative overflow-hidden bg-stout">
+    <div class="absolute inset-0">
+      <img src={heroImg} alt="Ember &amp; Grain taproom" class="w-full h-full object-cover opacity-55" />
+      <div class="absolute inset-0 bg-gradient-to-b from-stout/70 via-stout/40 to-wheat"></div>
+    </div>
+    <div class="wrap relative py-24 md:py-36">
+      <p class="font-mono text-grain text-xs uppercase tracking-wide2 mb-6">// Est. 2017 &middot; Federal NSW &middot; 12 taps</p>
+      <h1 class="text-cream leading-[0.95] mb-0">
+        <span class="block text-[clamp(2.8rem,10vw,7.5rem)]">Beer worth</span>
+        <span class="block text-[clamp(2.8rem,10vw,7.5rem)] text-grain">driving for.</span>
+      </h1>
+      <div class="mt-10 grid md:grid-cols-5 gap-8 items-start">
+        <div class="md:col-span-3">
+          <p class="text-cream/90 text-lg md:text-xl leading-relaxed mb-8 max-w-xl">
+            A small independent brewery tucked under the camphor laurels in Federal, thirty minutes off the highway. Twelve taps, a twelve-metre bar, and a short-list of beers we're quietly obsessed with. Made for drinking long and thinking slow.
+          </p>
+          <div class="flex flex-wrap gap-4">
+            <a href={`${base}/beers/`} class="btn-primary">Browse the range</a>
+            <a href={`${base}/taproom/`} class="btn-cream">Visit the taproom</a>
+          </div>
+        </div>
+        <aside class="md:col-span-2 enamel-dark p-6 md:p-8">
+          <p class="font-mono text-[10px] uppercase tracking-wide2 text-grain mb-5">// Today's hours</p>
+          <ul class="space-y-2 text-sm not-italic">
+            <li class="flex justify-between"><span class="text-cream/70">Wed &ndash; Thu</span><span class="font-mono">3 &ndash; 9pm</span></li>
+            <li class="flex justify-between"><span class="text-cream/70">Fri</span>       <span class="font-mono">2 &ndash; 10pm</span></li>
+            <li class="flex justify-between"><span class="text-cream/70">Sat</span>       <span class="font-mono">12 &ndash; 10pm</span></li>
+            <li class="flex justify-between"><span class="text-cream/70">Sun</span>       <span class="font-mono">12 &ndash; 7pm</span></li>
+            <li class="flex justify-between"><span class="text-cream/70">Mon &ndash; Tue</span><span class="font-mono">Closed</span></li>
+          </ul>
+          <p class="font-mono text-[10px] uppercase tracking-wide2 text-grain/70 mt-6 pt-5 border-t border-cream/10">
+            117 Federal Drive &middot; Federal NSW &middot; (02) 6688 7012
+          </p>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  {/* TAP LIST STRIP */}
+  <section>
+    <div class="bg-grain/60 border-y border-stout/20 overflow-hidden">
+      <div class="wrap flex items-center gap-6 py-3 border-b border-stout/10">
+        <span class="font-mono text-[10px] uppercase tracking-wide2 text-ember">// Currently pouring</span>
+        <span class="font-mono text-[10px] uppercase tracking-wide2 text-shadow">Updated {new Date().toLocaleDateString('en-AU', { weekday: 'short', day: 'numeric', month: 'short' })}</span>
+      </div>
+      <div class="ticker-track flex items-center py-5 whitespace-nowrap">
+        {[...onTap, ...onTap].map(t => <TapHandle {...t} />)}
+      </div>
+    </div>
+  </section>
+
+  {/* CORE BEERS */}
+  <section class="py-24">
+    <div class="wrap">
+      <div class="flex items-end justify-between flex-wrap gap-6 mb-12">
+        <div>
+          <p class="eyebrow">The core four</p>
+          <h2 class="text-4xl md:text-6xl text-stout">Three beers<br/>we pour year round.</h2>
+          <div class="divider mt-6"></div>
+        </div>
+        <a href={`${base}/beers/`} class="font-body uppercase tracking-wide2 text-[11px] font-semibold text-ember hover:text-stout">See the full range &rarr;</a>
+      </div>
+      <div class="grid md:grid-cols-3 gap-6">
+        {core.map(b => <BeerCard beer={b} />)}
+      </div>
+    </div>
+  </section>
+
+  {/* ON THE BREW DECK */}
+  <section class="py-24 bg-grain/40">
+    <div class="wrap">
+      <div class="flex items-end justify-between flex-wrap gap-6 mb-12">
+        <div>
+          <p class="eyebrow">On the brew deck</p>
+          <h2 class="text-4xl md:text-5xl text-stout">Small batches.<br/>Properly experimental.</h2>
+          <div class="divider mt-6"></div>
+          <p class="text-stout/80 text-base max-w-lg mt-6 leading-relaxed not-italic">
+            We run a second 200L system up the back for things we'd be nervous to put on the main kit. Mixed culture, foeder aging, unusual grains, unusual sugars. Never more than 500L. Often sells out the weekend it's released.
+          </p>
+        </div>
+        <a href={`${base}/beers/?c=oneoff`} class="font-body uppercase tracking-wide2 text-[11px] font-semibold text-ember hover:text-stout">All one-offs &rarr;</a>
+      </div>
+      <div class="grid md:grid-cols-2 gap-6">
+        {brewDeck.map(b => <BeerCard beer={b} size="wide" />)}
+      </div>
+    </div>
+  </section>
+
+  {/* TAPROOM BAND */}
+  <section class="relative py-28 overflow-hidden bg-stout text-cream">
+    <div class="absolute inset-0">
+      <img src={taproomImg} alt="" class="w-full h-full object-cover opacity-30" />
+      <div class="absolute inset-0 bg-gradient-to-r from-stout via-stout/85 to-stout/40"></div>
+    </div>
+    <div class="wrap relative grid md:grid-cols-5 gap-10">
+      <div class="md:col-span-3">
+        <p class="eyebrow text-grain">The taproom</p>
+        <h2 class="text-4xl md:text-5xl text-cream mb-6">A twelve-metre bar<br/>under the camphor laurels.</h2>
+        <p class="text-cream/80 text-lg leading-relaxed mb-5 not-italic">
+          We built the taproom into the old truss shed on the corner of Federal Drive and Eltham Lane — high ceilings, enamel signs, cold concrete floor, one very good sound system. Twelve taps, a short wine list, a different food truck every night we're open.
+        </p>
+        <p class="text-cream/80 text-lg leading-relaxed mb-8 not-italic">
+          Kids welcome until 7pm, dogs welcome all the time, bookings not essential but recommended on Saturdays.
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <a href={`${base}/taproom/`} class="btn-primary">Full hours &amp; events</a>
+          <a href={`${base}/taproom/#food`} class="btn-cream">This week's food trucks</a>
+        </div>
+      </div>
+      <div class="md:col-span-2 grid grid-cols-2 gap-4">
+        <div class="enamel-dark p-5">
+          <div class="font-mono text-[10px] text-grain uppercase tracking-wide2 mb-2">Address</div>
+          <div class="text-cream text-lg leading-tight not-italic">117 Federal Drive<br/>Federal NSW 2480</div>
+        </div>
+        <div class="enamel-dark p-5">
+          <div class="font-mono text-[10px] text-grain uppercase tracking-wide2 mb-2">Phone</div>
+          <div class="text-cream text-lg not-italic">(02) 6688 7012</div>
+          <div class="font-mono text-[10px] text-cream/60 uppercase mt-3 tracking-wide2">No bookings Fri/Sun</div>
+        </div>
+        <div class="enamel-dark p-5 col-span-2">
+          <div class="font-mono text-[10px] text-grain uppercase tracking-wide2 mb-3">Opening hours</div>
+          <ul class="space-y-1 font-mono text-xs not-italic">
+            <li class="flex justify-between"><span>Wed &ndash; Thu</span><span>3 &ndash; 9pm</span></li>
+            <li class="flex justify-between"><span>Fri</span>       <span>2 &ndash; 10pm</span></li>
+            <li class="flex justify-between"><span>Sat</span>       <span>12 &ndash; 10pm</span></li>
+            <li class="flex justify-between"><span>Sun</span>       <span>12 &ndash; 7pm</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* TICKER */}
+  <Ticker items={["Twelve taps, one bar", "Made in Federal NSW", "Served cold, poured slow", "Drink local. Drive less.", "Small batches since 2017"]} />
+
+  {/* BREWER'S CLUB CTA */}
+  <section class="relative py-28 overflow-hidden">
+    <div class="absolute inset-0">
+      <img src={clubBgImg} alt="" class="w-full h-full object-cover opacity-40" />
+      <div class="absolute inset-0 bg-gradient-to-br from-wheat via-wheat/90 to-grain/70"></div>
+    </div>
+    <div class="wrap relative grid md:grid-cols-2 gap-10 items-center">
+      <div>
+        <p class="eyebrow">The Brewer's Club</p>
+        <h2 class="text-4xl md:text-5xl text-stout mb-6">A monthly delivery<br/>of whatever we're pouring.</h2>
+        <p class="text-stout/80 text-lg leading-relaxed mb-5 not-italic">
+          Six, twelve, or twenty-four beers a month, posted anywhere in Australia. Always one new release, always one brew-deck pour that doesn't leave the taproom otherwise. Members get first dibs on Brew Deck releases and a standing invite to our quarterly cellar tasting.
+        </p>
+        <p class="text-stout/80 text-lg leading-relaxed mb-8 not-italic">
+          Pause any time. Skip a month. Cancel whenever &mdash; no "we'll miss you" email, promise.
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <a href={`${base}/club/`} class="btn-primary">See the tiers</a>
+          <a href={`${base}/club/#faq`} class="btn-ghost">How it works</a>
+        </div>
+      </div>
+      <div class="grid grid-cols-3 gap-4">
+        {[
+          { label: 'Casual',  freq: '6 / month',  price: '$58' },
+          { label: 'Serious', freq: '12 / month', price: '$108' },
+          { label: 'Unhinged', freq: '24 / month', price: '$198' },
+        ].map((t, i) => (
+          <div class={`enamel p-5 ${i === 1 ? 'bg-ember text-cream' : ''}`}>
+            <div class={`font-mono text-[10px] uppercase tracking-wide2 mb-3 ${i === 1 ? 'text-cream/75' : 'text-ember'}`}>Tier 0{i + 1}</div>
+            <div class={`font-display italic text-2xl leading-none mb-2 ${i === 1 ? 'text-cream' : 'text-stout'}`}>{t.label}</div>
+            <div class={`font-mono text-[10px] uppercase tracking-wide2 ${i === 1 ? 'text-cream/70' : 'text-shadow'}`}>{t.freq}</div>
+            <div class={`font-mono text-lg mt-4 ${i === 1 ? 'text-cream' : 'text-ember'}`}>{t.price}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* RECIPE / PAIRING FEATURE */}
+  <section class="py-24">
+    <div class="wrap grid md:grid-cols-12 gap-10 items-center">
+      <div class="md:col-span-5 relative">
+        <img src={recipeImg} alt="Duck fat potatoes, roasted dark" class="rounded-enamel w-full aspect-[4/5] object-cover" />
+        <div class="absolute -bottom-6 -right-6 bg-stout text-cream p-5 md:p-6 max-w-[240px] hidden md:block rounded-enamel"
+             style="box-shadow: inset 0 0 0 2px rgba(247,239,224,0.2);">
+          <div class="font-mono text-[10px] uppercase tracking-wide2 text-grain">Drink with</div>
+          <div class="font-display italic text-2xl leading-tight mt-1">Federal Dark<br/>or Field Pale</div>
+        </div>
+      </div>
+      <div class="md:col-span-7 md:pl-6 md:col-rule">
+        <p class="eyebrow">From the pairing pad</p>
+        <h2 class="text-4xl md:text-5xl text-stout mb-6 leading-tight">What to drink with<br/>duck fat potatoes.</h2>
+        <p class="text-stout/85 text-lg leading-relaxed mb-5 not-italic">
+          The answer is not wine. Duck fat potatoes — properly done, parboiled, shaken, then roasted at 220&deg;C until the edges go dark — want a beer with enough malt depth to meet the fat and enough carbonation to scrub the palate. We pour two things with them.
+        </p>
+        <div class="grid sm:grid-cols-2 gap-5 my-8">
+          <div class="enamel p-5">
+            <div class="note-num mb-2">01 &middot; The obvious</div>
+            <h3 class="text-stout text-xl mb-2 leading-tight not-italic font-semibold font-body">Federal Dark</h3>
+            <p class="text-stout/75 text-sm leading-relaxed">The cold-toast-and-cocoa of the mild picks up the roasty edge of the potato crust without fighting with rosemary or garlic.</p>
+          </div>
+          <div class="enamel p-5">
+            <div class="note-num mb-2">02 &middot; The better answer</div>
+            <h3 class="text-stout text-xl mb-2 leading-tight not-italic font-semibold font-body">Field Pale</h3>
+            <p class="text-stout/75 text-sm leading-relaxed">Passionfruit-pith carbonation + crisp malt spine cuts the duck fat clean, doesn't over-talk the herbs.</p>
+          </div>
+        </div>
+        <a href={`${base}/beers/`} class="btn-ghost">Find these beers</a>
+      </div>
+    </div>
+  </section>
+
+  {/* TAGLINE STRIP */}
+  <section class="bg-ember text-cream py-14">
+    <div class="wrap text-center">
+      <p class="font-display italic text-2xl md:text-4xl leading-tight">
+        Made for drinking long<br class="hidden md:inline"/> and thinking slow.
+      </p>
+    </div>
+  </section>
+</Base>

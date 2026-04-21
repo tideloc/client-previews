@@ -1,0 +1,21 @@
+---
+import type { Story } from '../data/stories';
+interface Props { story: Story; featured?: boolean }
+const { story, featured = false } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+<a href={`${base}/stories/#${story.slug}`} class={`group block paper-card overflow-hidden hover:border-ochre/40 transition ${featured ? 'md:col-span-2' : ''}`}>
+  <div class={`relative overflow-hidden ${featured ? 'aspect-[16/9]' : 'aspect-[4/3]'}`}>
+    <img src={story.image} alt={story.title} class="w-full h-full object-cover group-hover:scale-[1.04] transition duration-700" />
+    <div class="absolute inset-0 bg-gradient-to-t from-charcoal/60 to-transparent"></div>
+    <div class="absolute top-4 left-4 font-mono text-[10px] uppercase tracking-wide2 text-chalk bg-charcoal/75 px-2 py-1">{story.category}</div>
+  </div>
+  <div class="p-6">
+    <h3 class={`text-charcoal leading-snug mb-2 group-hover:text-ochre transition ${featured ? 'text-3xl' : 'text-xl'}`}>{story.title}</h3>
+    <p class="text-charcoal/70 text-[14px] leading-relaxed mb-4">{story.excerpt}</p>
+    <div class="flex items-center justify-between text-[11px] font-mono uppercase tracking-wide2 text-kangaroo">
+      <span>{story.readTime}</span>
+      <span class="text-ochre">Read story →</span>
+    </div>
+  </div>
+</a>

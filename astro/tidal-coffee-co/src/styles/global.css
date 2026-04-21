@@ -1,0 +1,97 @@
+/* Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Manrope:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-sand text-surf font-body;
+    background-image:
+      linear-gradient(180deg, rgba(168,197,196,0.18) 0%, rgba(244,237,226,0) 38%),
+      radial-gradient(ellipse 60% 30% at 0% 100%, rgba(166,124,58,0.10) 0%, transparent 60%),
+      radial-gradient(ellipse 70% 40% at 100% 0%, rgba(15,43,53,0.06) 0%, transparent 60%),
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.06  0 0 0 0 0.17  0 0 0 0 0.21  0 0 0 0.04 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+    background-attachment: fixed;
+    background-size: auto, auto, auto, 160px 160px;
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-display;
+    font-style: italic;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+
+  ::selection {
+    @apply bg-brass text-shell;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 bg-brass text-shell px-6 py-3 font-body font-medium tracking-chart uppercase text-xs rounded-[3px] transition hover:bg-copper hover:-translate-y-0.5 active:translate-y-0;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 border border-surf/40 text-surf px-6 py-3 font-body font-medium tracking-chart uppercase text-xs rounded-[3px] transition hover:border-brass hover:text-brass;
+  }
+
+  .btn-ghost-light {
+    @apply inline-flex items-center justify-center gap-2 border border-shell/40 text-shell px-6 py-3 font-body font-medium tracking-chart uppercase text-xs rounded-[3px] transition hover:border-brass hover:text-brass;
+  }
+
+  .wrap {
+    @apply max-w-6xl mx-auto px-6 sm:px-8;
+  }
+
+  .eyebrow {
+    @apply inline-block text-brass font-mono uppercase tracking-rule text-[10px] mb-4;
+  }
+
+  .rule {
+    @apply w-16 h-px bg-brass;
+  }
+
+  .rule-double {
+    @apply w-16 border-t border-b border-brass/70 h-[5px];
+  }
+
+  .display-serif {
+    @apply font-display italic;
+  }
+
+  /* Ticker marquee */
+  .ticker-track {
+    animation: ticker 60s linear infinite;
+  }
+  @keyframes ticker {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* Cupping score bars */
+  .score-bar {
+    @apply h-[3px] bg-surf/10 overflow-hidden;
+  }
+  .score-bar > span {
+    @apply block h-full bg-brass;
+  }
+
+  /* Thin nautical-chart frame */
+  .chart-frame {
+    @apply border border-surf/15 bg-shell rounded-[3px];
+  }
+
+  /* Numbered steps */
+  .num-step {
+    @apply font-display italic text-brass text-5xl leading-none;
+  }
+}

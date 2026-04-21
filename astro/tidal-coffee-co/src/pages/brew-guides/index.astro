@@ -1,0 +1,71 @@
+---
+import Base from '../../layouts/Base.astro';
+import BrewGuideCard from '../../components/BrewGuideCard.astro';
+import { brewGuides } from '../../data/brewGuides';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+<Base title="Brew Guides — Tidal Coffee Co.">
+  <section class="border-b border-surf/10">
+    <div class="wrap py-20 md:py-28">
+      <p class="eyebrow">Six ways to brew</p>
+      <h1 class="font-display italic text-5xl md:text-7xl text-surf leading-[0.95] mb-6">Make it well<br/>at home.</h1>
+      <p class="text-surf/75 text-lg leading-relaxed max-w-2xl">
+        The recipes we teach in the cafe, with enough detail to dial in your own kit. Each one assumes fresh beans, clean gear, and filtered water. Grind size is the lever — time and ratio are the reference points.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-20">
+    <div class="wrap">
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+        {brewGuides.map((g, i) => <BrewGuideCard guide={g} idx={i} />)}
+      </div>
+
+      <div class="border-t border-surf/10 pt-16">
+        {brewGuides.map((g, i) => (
+          <article id={g.slug} class="grid md:grid-cols-12 gap-10 py-14 border-b border-surf/10 scroll-mt-28">
+            <div class="md:col-span-5">
+              <img src={g.image} alt={g.name} class="w-full aspect-[5/4] object-cover rounded-[3px] border border-surf/10" />
+            </div>
+            <div class="md:col-span-7">
+              <p class="font-mono text-[10px] uppercase tracking-rule text-brass mb-3">Guide {String(i + 1).padStart(2, '0')} · {g.method}</p>
+              <h2 class="font-display italic text-4xl text-surf mb-4">{g.name}</h2>
+              <p class="text-surf/80 leading-relaxed mb-6 text-lg">{g.description}</p>
+
+              <div class="grid grid-cols-3 gap-4 mb-6">
+                <div class="border-t border-b border-surf/10 py-3 text-center">
+                  <p class="font-mono text-[9px] uppercase tracking-rule text-tide mb-1">Ratio</p>
+                  <p class="font-mono text-sm text-surf">{g.ratio}</p>
+                </div>
+                <div class="border-t border-b border-surf/10 py-3 text-center">
+                  <p class="font-mono text-[9px] uppercase tracking-rule text-tide mb-1">Grind</p>
+                  <p class="font-mono text-sm text-surf">{g.grind}</p>
+                </div>
+                <div class="border-t border-b border-surf/10 py-3 text-center">
+                  <p class="font-mono text-[9px] uppercase tracking-rule text-tide mb-1">Time</p>
+                  <p class="font-mono text-sm text-surf">{g.time}</p>
+                </div>
+              </div>
+
+              <p class="font-mono text-[10px] uppercase tracking-rule text-tide mb-2">What you'll need</p>
+              <div class="flex flex-wrap gap-2">
+                {g.gear.map(gear => (
+                  <span class="font-mono text-[11px] uppercase tracking-chart text-surf border border-surf/20 bg-shell px-3 py-1">{gear}</span>
+                ))}
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-surf text-shell py-20">
+    <div class="wrap text-center max-w-2xl mx-auto">
+      <p class="font-mono text-[10px] uppercase tracking-rule text-brass mb-4">Next step</p>
+      <h2 class="font-display italic text-3xl md:text-4xl mb-6">Now you need something to brew.</h2>
+      <a href={`${base}/coffee/`} class="inline-flex items-center justify-center gap-2 bg-brass text-shell px-6 py-3 font-body font-medium tracking-chart uppercase text-xs rounded-[3px] hover:bg-copper transition">Shop the bean list</a>
+    </div>
+  </section>
+</Base>

@@ -1,0 +1,15 @@
+---
+interface Props { items: string[] }
+const { items } = Astro.props;
+const loop = [...items, ...items]; // duplicate for seamless marquee
+---
+<div class="border-y border-stout/20 bg-grain/50 overflow-hidden">
+  <div class="ticker-track flex items-center gap-12 py-3 whitespace-nowrap">
+    {loop.map(t => (
+      <span class="font-mono uppercase tracking-wide2 text-[11px] text-stout flex items-center gap-10">
+        {t}
+        <span class="text-ember">&#10070;</span>
+      </span>
+    ))}
+  </div>
+</div>

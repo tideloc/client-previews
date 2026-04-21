@@ -1,0 +1,189 @@
+---
+import Base from '../../layouts/Base.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import { products } from '../../data/products';
+import { cooperatives } from '../../data/cooperatives';
+import { recipes } from '../../data/recipes';
+
+export function getStaticPaths() {
+  return products.map((p) => ({ params: { slug: p.slug }, props: { product: p } }));
+}
+
+const { product } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const related = products
+  .filter((p) => p.slug !== product.slug && p.category === product.category)
+  .slice(0, 3);
+const backup = products.filter((p) => p.slug !== product.slug).slice(0, 3);
+const show = related.length >= 2 ? related : backup;
+
+const coop = cooperatives.find((c) => c.name === product.cooperative);
+
+// recipes that plausibly use this product — naive hero-name match, fall back to first 2
+const relatedRecipes = recipes.filter((r) =>
+  r.hero.toLowerCase().includes(product.name.split(' ')[0].toLowerCase()) ||
+  product.name.toLowerCase().includes(r.hero.toLowerCase())
+).slice(0, 2);
+const recipeShow = relatedRecipes.length > 0 ? relatedRecipes : recipes.slice(0, 2);
+
+const catLabel: Record<string, string> = {
+  spice: 'Native Spice',
+  fruit: 'Bush Fruit',
+  seed: 'Seed & Grain',
+  protein: 'Nut & Protein',
+  sauce: 'Sauce / Condiment',
+  hamper: 'Gift Hamper',
+};
+---
+<Base title={`${product.name} — Outback Pantry`} description={product.blurb}>
+  <section class="pt-10 pb-16">
+    <div class="wrap">
+      {/* Breadcrumbs */}
+      <nav class="text-[11px] font-mono uppercase tracking-wide2 text-kangaroo/80 mb-10">
+        <a href={`${base}/pantry/`} class="hover:text-ochre">Pantry</a>
+        <span class="mx-2 text-charcoal/25">/</span>
+        <span class="text-charcoal/50">{catLabel[product.category]}</span>
+        <span class="mx-2 text-charcoal/25">/</span>
+        <span class="text-ochre">{product.name}</span>
+      </nav>
+
+      <div class="grid md:grid-cols-12 gap-12">
+        {/* Image + field-guide annotations */}
+        <div class="md:col-span-6">
+          <div class="relative paper-card overflow-hidden">
+            <img src={product.image} alt={product.name} class="w-full aspect-[4/5] object-cover" />
+            {product.badge && (
+              <span class="absolute top-4 left-4 bg-charcoal text-chalk px-3 py-1 font-mono uppercase tracking-wide2 text-[10px]">{product.badge}</span>
+            )}
+            {/* Cartographic annotation */}
+            <div class="absolute bottom-3 left-3 right-3 bg-chalk/92 border border-charcoal/15 px-4 py-3 flex items-center justify-between text-[11px] font-mono uppercase tracking-wide2">
+              <span class="text-kangaroo">{product.coords[0].toFixed(3)}° S</span>
+              <span class="text-charcoal/70">Harvest site</span>
+              <span class="text-kangaroo">{product.coords[1].toFixed(3)}° E</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Details */}
+        <div class="md:col-span-6">
+          <p class="eyebrow">{catLabel[product.category]}</p>
+          <h1 class="text-5xl md:text-6xl text-charcoal leading-[0.95] mb-3">{product.name}</h1>
+          <p class="font-display italic text-kangaroo text-xl mb-6">{product.botanicalName}</p>
+
+          <div class="grid grid-cols-3 gap-4 py-5 border-y border-charcoal/15 mb-8">
+            <div>
+              <div class="field-label">Price</div>
+              <div class="font-display text-3xl text-charcoal">${product.price}</div>
+            </div>
+            <div>
+              <div class="field-label">Size</div>
+              <div class="font-display text-lg text-charcoal mt-1">{product.size}</div>
+            </div>
+            <div>
+              <div class="field-label">Harvest</div>
+              <div class="font-display text-lg text-charcoal mt-1">{product.harvestSeason}</div>
+            </div>
+          </div>
+
+          <p class="text-charcoal/80 text-lg leading-relaxed mb-8">{product.description}</p>
+
+          <div class="flex items-center gap-4 mb-12">
+            <div class="flex items-center border border-charcoal/20">
+              <button class="w-10 h-12 text-charcoal hover:text-ochre" aria-label="Decrease quantity">−</button>
+              <span class="w-12 text-center font-display text-lg text-charcoal">1</span>
+              <button class="w-10 h-12 text-charcoal hover:text-ochre" aria-label="Increase quantity">+</button>
+            </div>
+            <button class="btn-primary flex-1">Add to cart · ${product.price}</button>
+          </div>
+
+          {/* Grown on Country */}
+          <div class="bg-sand/70 border-l-2 border-ochre p-5 mb-8">
+            <div class="field-label mb-2">Grown on Country</div>
+            <p class="text-charcoal leading-relaxed">
+              This {product.name} was harvested on <strong>{product.country}</strong>, and brought to us by <strong>{product.cooperative}</strong>. We pay our harvest partners a published per-kilo rate above market floor and work on three-year contracts.
+            </p>
+            {coop && (
+              <a href={`${base}/harvest/#${coop.slug}`} class="inline-block mt-3 font-mono uppercase tracking-wide2 text-[11px] text-ochre hover:text-bloodwood">Meet the cooperative →</a>
+            )}
+          </div>
+
+          {/* Flavour / uses */}
+          <dl class="grid sm:grid-cols-2 gap-8 mb-10">
+            <div>
+              <dt class="field-label mb-3">Flavour profile</dt>
+              <dd>
+                <ul class="space-y-2">
+                  {product.flavorNotes.map((n) => (
+                    <li class="flex gap-3 text-charcoal">
+                      <span class="text-ochre font-mono mt-1">—</span>
+                      <span>{n}</span>
+                    </li>
+                  ))}
+                </ul>
+              </dd>
+            </div>
+            <div>
+              <dt class="field-label mb-3">Use it for</dt>
+              <dd>
+                <ul class="space-y-2">
+                  {product.uses.map((n) => (
+                    <li class="flex gap-3 text-charcoal">
+                      <span class="text-ochre font-mono mt-1">—</span>
+                      <span>{n}</span>
+                    </li>
+                  ))}
+                </ul>
+              </dd>
+            </div>
+          </dl>
+
+          <div class="pt-6 border-t border-charcoal/15">
+            <div class="field-label mb-2">Sustainability</div>
+            <p class="text-charcoal/70 leading-relaxed text-[14px]">
+              Wild-harvested under the guidance of the cooperative Elders on a two- or three-year rotation. We buy a minimum floor volume each year regardless of demand so the harvesters can plan. Glass jars are locally sourced; labels are unbleached recycled stock.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* Recipes using this ingredient */}
+  <section class="py-16 bg-sand/40 border-y border-charcoal/10">
+    <div class="wrap">
+      <div class="flex items-end justify-between flex-wrap gap-4 mb-10">
+        <h2 class="text-3xl md:text-4xl text-charcoal">Cook with it</h2>
+        <a href={`${base}/recipes/`} class="font-mono uppercase tracking-wide2 text-[11px] text-ochre hover:text-bloodwood">All recipes →</a>
+      </div>
+      <div class="grid md:grid-cols-2 gap-6">
+        {recipeShow.map((r) => (
+          <article class="paper-card overflow-hidden flex flex-col sm:flex-row">
+            <img src={r.image} alt={r.name} class="sm:w-48 h-48 object-cover" />
+            <div class="p-5">
+              <div class="field-label mb-1">{r.hero}</div>
+              <h3 class="text-xl text-charcoal mb-2">{r.name}</h3>
+              <p class="text-charcoal/70 text-[14px] leading-relaxed mb-3">{r.blurb}</p>
+              <div class="font-mono uppercase tracking-wide2 text-[10px] text-kangaroo">{r.time} · {r.difficulty} · Serves {r.serves}</div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* Related products */}
+  {show.length > 0 && (
+    <section class="py-20">
+      <div class="wrap">
+        <div class="flex items-end justify-between mb-10">
+          <h2 class="text-3xl md:text-4xl text-charcoal">Others in this category</h2>
+          <a href={`${base}/pantry/`} class="font-mono uppercase tracking-wide2 text-[11px] text-ochre hover:text-bloodwood">Back to pantry →</a>
+        </div>
+        <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
+          {show.map((p) => <ProductCard product={p} />)}
+        </div>
+      </div>
+    </section>
+  )}
+</Base>

@@ -1,0 +1,57 @@
+---
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const links = [
+  { href: `${base}/`,         label: 'Home' },
+  { href: `${base}/beers/`,   label: 'Beers' },
+  { href: `${base}/taproom/`, label: 'Taproom' },
+  { href: `${base}/club/`,    label: "Brewer's Club" },
+  { href: `${base}/about/`,   label: 'About' },
+];
+const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
+---
+<header class="sticky top-0 z-40 bg-wheat/92 backdrop-blur-md border-b border-stout/15">
+  <div class="wrap flex items-center justify-between py-4">
+    <a href={`${base}/`} class="flex items-center gap-3 group">
+      <span class="w-10 h-10 bg-stout text-wheat flex items-center justify-center font-display italic text-lg rounded-enamel transition group-hover:bg-ember"
+            style="box-shadow: inset 0 0 0 2px rgba(247,239,224,0.22);">E&amp;G</span>
+      <div class="leading-tight">
+        <div class="font-display italic text-stout text-lg">Ember &amp; Grain</div>
+        <div class="font-mono text-[10px] text-shadow uppercase tracking-wide2">Federal &middot; NSW &middot; Est 2017</div>
+      </div>
+    </a>
+    <nav class="hidden md:flex items-center gap-1">
+      {links.map(l => {
+        const isActive = pathname === l.href.replace(/\/$/, '') || (l.href === `${base}/` && pathname === base);
+        return (
+          <a
+            href={l.href}
+            class={`font-body uppercase tracking-wide2 text-[11px] font-semibold px-3 py-2 rounded-enamel transition hover:text-ember ${isActive ? 'text-ember' : 'text-stout/75'}`}
+          >
+            {l.label}
+          </a>
+        );
+      })}
+      <a href={`${base}/beers/`} class="btn-primary ml-3 !py-2 !px-4 !text-[11px]">Order pickup</a>
+    </nav>
+    <button id="menuToggle" class="md:hidden text-stout p-2" aria-label="Menu">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="4" y1="7" x2="20" y2="7" />
+        <line x1="4" y1="12" x2="20" y2="12" />
+        <line x1="4" y1="17" x2="20" y2="17" />
+      </svg>
+    </button>
+  </div>
+  <div id="mobileMenu" class="hidden md:hidden border-t border-stout/15 bg-wheat">
+    <div class="wrap py-4 flex flex-col gap-1">
+      {links.map(l => (
+        <a href={l.href} class="font-body uppercase tracking-wide2 text-sm font-semibold text-stout py-2 hover:text-ember">{l.label}</a>
+      ))}
+      <a href={`${base}/beers/`} class="btn-primary mt-3 !text-xs">Order pickup</a>
+    </div>
+  </div>
+</header>
+<script>
+  const btn = document.getElementById('menuToggle');
+  const menu = document.getElementById('mobileMenu');
+  btn?.addEventListener('click', () => menu?.classList.toggle('hidden'));
+</script>

@@ -1,0 +1,185 @@
+---
+import Base from '../../layouts/Base.astro';
+import EventCard from '../../components/EventCard.astro';
+import TapHandle from '../../components/TapHandle.astro';
+import { events } from '../../data/events';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const hours = [
+  { day: 'Mon',       hours: 'Closed'      },
+  { day: 'Tue',       hours: 'Closed'      },
+  { day: 'Wed',       hours: '3 – 9pm'     },
+  { day: 'Thu',       hours: '3 – 9pm'     },
+  { day: 'Fri',       hours: '2 – 10pm'    },
+  { day: 'Sat',       hours: '12 – 10pm'   },
+  { day: 'Sun',       hours: '12 – 7pm'    },
+];
+
+const foodTrucks = [
+  { day: 'Wed', name: 'Poco Pizza Co.',   cuisine: 'Wood-fired sourdough pizza' },
+  { day: 'Thu', name: 'Banh Mi Billie',   cuisine: 'Slow-cooked pork + chicken banh mi' },
+  { day: 'Fri', name: 'Smoke Line BBQ',   cuisine: 'Texas-style brisket, pulled pork, sides' },
+  { day: 'Sat', name: 'Two Greek Girls',  cuisine: 'Souvlaki, spanakopita, loaded chips' },
+  { day: 'Sun', name: 'Curry Cart Kumar', cuisine: 'South Indian dosa + kati rolls' },
+];
+
+const onTap = [
+  { tap: 1, name: 'Slow Road',      style: 'Lager',          abv: 4.4, note: 'house pour' },
+  { tap: 2, name: 'Field Pale',     style: 'Aus Pale',       abv: 4.8 },
+  { tap: 3, name: 'Coast Road',     style: 'Hazy IPA',       abv: 6.2 },
+  { tap: 4, name: 'Hinterland',     style: 'West Coast IPA', abv: 6.6 },
+  { tap: 5, name: 'Federal Dark',   style: 'Dark Mild',      abv: 3.6 },
+  { tap: 6, name: 'Long Paddock',   style: 'Saison',         abv: 5.4, note: 'spring' },
+  { tap: 7, name: 'Shoulder Season',style: 'Red Rye',        abv: 5.6 },
+  { tap: 8, name: 'Brew Deck No. 7',style: 'Oak Grisette',   abv: 4.2, note: 'last 200L' },
+  { tap: 9, name: 'Low Fog',        style: 'Oat Stout',      abv: 5.8 },
+  { tap:10, name: 'Mothertongue',   style: 'Ginger beer',    abv: 0.5 },
+  { tap:11, name: 'Dusk Kombucha',  style: 'Kombucha',       abv: 0.8 },
+  { tap:12, name: "Guest — Stone & Wood", style: 'Pacific Ale', abv: 4.4, note: 'Byron' },
+];
+---
+<Base title="The taproom — 117 Federal Drive | Ember &amp; Grain">
+  {/* HERO */}
+  <section class="relative bg-stout">
+    <div class="absolute inset-0">
+      <img src="https://images.unsplash.com/photo-1508253578933-20b529302151?w=2200&h=1200&fit=crop&q=80&auto=format" alt="" class="w-full h-full object-cover opacity-55" />
+      <div class="absolute inset-0 bg-gradient-to-b from-stout/60 via-stout/30 to-wheat"></div>
+    </div>
+    <div class="wrap relative py-20 md:py-28">
+      <p class="eyebrow text-grain">The taproom</p>
+      <h1 class="text-cream text-5xl md:text-7xl leading-[0.95]">Come drink<br/>where we make it.</h1>
+      <p class="text-cream/85 text-lg md:text-xl leading-relaxed max-w-2xl mt-6 not-italic">
+        Twelve taps, a twelve-metre bar, and whichever food truck is out the front tonight. No pokies, no TVs, no bookings for groups under six. Kids welcome until 7pm, dogs welcome whenever.
+      </p>
+    </div>
+  </section>
+
+  {/* HOURS + ADDRESS + MAP */}
+  <section class="py-16">
+    <div class="wrap grid md:grid-cols-12 gap-8">
+      <div class="md:col-span-4 enamel p-6">
+        <p class="eyebrow">Hours</p>
+        <ul class="space-y-2 font-mono text-sm not-italic">
+          {hours.map(h => (
+            <li class="flex justify-between py-1 border-b border-stout/10 last:border-0">
+              <span class="text-stout/75">{h.day}</span>
+              <span class={h.hours === 'Closed' ? 'text-shadow/60' : 'text-stout'}>{h.hours}</span>
+            </li>
+          ))}
+        </ul>
+        <p class="text-stout/70 text-xs leading-relaxed mt-5">Last pour 30 min before close. Kitchen (food trucks) closes 30 min earlier again.</p>
+      </div>
+      <div class="md:col-span-4 enamel p-6">
+        <p class="eyebrow">Find us</p>
+        <address class="not-italic text-stout leading-relaxed">
+          <strong class="font-semibold">Ember &amp; Grain Brewing</strong><br/>
+          117 Federal Drive<br/>
+          Federal NSW 2480<br/>
+          <a href="tel:0266887012" class="text-ember hover:underline font-mono text-sm">(02) 6688 7012</a>
+        </address>
+        <div class="mt-5 pt-5 border-t border-stout/10 text-sm text-stout/75 leading-relaxed">
+          30 min from Byron Bay, 15 min from Bangalow. Parking in the paddock out the back — follow the hand-painted signs.
+        </div>
+      </div>
+      {/* Styled map placeholder, not an iframe */}
+      <div class="md:col-span-4 enamel-dark p-0 overflow-hidden relative">
+        <div class="aspect-[4/5] md:aspect-auto md:h-full relative" style="background:
+          radial-gradient(ellipse 50% 30% at 30% 60%, rgba(212,184,122,0.15) 0%, transparent 60%),
+          radial-gradient(ellipse 40% 25% at 70% 30%, rgba(109,140,90,0.18) 0%, transparent 60%),
+          repeating-linear-gradient(45deg, rgba(247,239,224,0.02) 0, rgba(247,239,224,0.02) 1px, transparent 1px, transparent 24px),
+          repeating-linear-gradient(-45deg, rgba(247,239,224,0.02) 0, rgba(247,239,224,0.02) 1px, transparent 1px, transparent 24px);
+          background-color: #1a1410;">
+          {/* Styled road lines */}
+          <svg class="absolute inset-0 w-full h-full" viewBox="0 0 400 500" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M -20 420 Q 120 380 200 340 T 430 180" fill="none" stroke="#d4b87a" stroke-width="3" stroke-linecap="round" opacity="0.7"/>
+            <path d="M 60 -20 Q 150 120 220 240 T 340 520" fill="none" stroke="#6d8c5a" stroke-width="2" stroke-dasharray="6 4" opacity="0.5"/>
+            <path d="M -20 260 Q 100 240 190 260 T 430 290" fill="none" stroke="#a46628" stroke-width="2" opacity="0.4"/>
+          </svg>
+          {/* Pin */}
+          <div class="absolute" style="left: 50%; top: 52%; transform: translate(-50%, -50%);">
+            <div class="w-4 h-4 bg-ember rounded-full" style="box-shadow: 0 0 0 4px rgba(201,72,31,0.3), 0 0 0 10px rgba(201,72,31,0.15);"></div>
+          </div>
+          <div class="absolute inset-x-0 bottom-0 p-5 bg-gradient-to-t from-stout via-stout/80 to-transparent">
+            <div class="font-mono text-[10px] uppercase tracking-wide2 text-grain mb-1">117 Federal Drive</div>
+            <div class="font-display italic text-cream text-lg leading-tight">Federal, NSW</div>
+          </div>
+          {/* Legend */}
+          <div class="absolute top-4 left-4 space-y-1.5">
+            <div class="flex items-center gap-2 font-mono text-[9px] uppercase tracking-wide2 text-grain"><span class="w-5 h-0.5 bg-grain"></span> Federal Dr</div>
+            <div class="flex items-center gap-2 font-mono text-[9px] uppercase tracking-wide2 text-grain"><span class="w-5 h-0.5 bg-hops" style="border-top: 1px dashed #6d8c5a;"></span> Walking trail</div>
+            <div class="flex items-center gap-2 font-mono text-[9px] uppercase tracking-wide2 text-grain"><span class="w-5 h-0.5 bg-ale"></span> Eltham Ln</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* CURRENTLY POURING */}
+  <section class="py-16 bg-grain/40">
+    <div class="wrap">
+      <p class="eyebrow">Currently pouring</p>
+      <h2 class="text-4xl md:text-5xl text-stout mb-8">Twelve on, one rotating.</h2>
+      <div class="enamel p-0 overflow-hidden">
+        <ul class="divide-y divide-stout/10">
+          {onTap.map(t => (
+            <li class="flex items-center gap-6 px-5 py-4">
+              <span class="font-mono text-[10px] uppercase tracking-wide2 text-ember w-10 text-right shrink-0">Tap {String(t.tap).padStart(2, '0')}</span>
+              <span class="w-px h-6 bg-stout/15"></span>
+              <div class="flex-1 min-w-0">
+                <div class="font-display italic text-xl text-stout leading-tight">{t.name}</div>
+                <div class="font-mono text-[11px] text-shadow uppercase tracking-wide2 truncate">{t.style}{t.note ? ` · ${t.note}` : ''}</div>
+              </div>
+              <span class="font-mono text-sm text-stout whitespace-nowrap">{t.abv.toFixed(1)}%</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  {/* FOOD TRUCK SCHEDULE */}
+  <section id="food" class="py-16">
+    <div class="wrap">
+      <p class="eyebrow">Food trucks — this week</p>
+      <h2 class="text-4xl md:text-5xl text-stout mb-8">A different kitchen every night.</h2>
+      <div class="grid sm:grid-cols-2 md:grid-cols-5 gap-4">
+        {foodTrucks.map(f => (
+          <div class="enamel p-5">
+            <div class="font-mono text-[10px] uppercase tracking-wide2 text-ember mb-3">{f.day}</div>
+            <h3 class="font-display italic text-xl text-stout mb-2 leading-tight">{f.name}</h3>
+            <p class="text-stout/70 text-sm leading-relaxed">{f.cuisine}</p>
+          </div>
+        ))}
+      </div>
+      <p class="text-stout/70 text-sm mt-6 max-w-xl leading-relaxed">
+        Schedule rotates every 8 weeks &mdash; follow us on the socials for one-offs, or ask at the bar for any dietary heads-up. Vegan options every night.
+      </p>
+    </div>
+  </section>
+
+  {/* UPCOMING EVENTS */}
+  <section id="events" class="py-16 bg-grain/40">
+    <div class="wrap">
+      <div class="flex items-end justify-between flex-wrap gap-6 mb-10">
+        <div>
+          <p class="eyebrow">Upcoming events</p>
+          <h2 class="text-4xl md:text-5xl text-stout">Four things coming up.</h2>
+        </div>
+        <a href="mailto:hello@emberandgrain.beer" class="font-body uppercase tracking-wide2 text-[11px] font-semibold text-ember hover:text-stout">Book private events &rarr;</a>
+      </div>
+      <div class="grid md:grid-cols-2 gap-6">
+        {events.map(e => <EventCard event={e} />)}
+      </div>
+    </div>
+  </section>
+
+  {/* CTA */}
+  <section class="bg-ember text-cream py-14">
+    <div class="wrap text-center">
+      <p class="font-display italic text-2xl md:text-4xl leading-tight">
+        See you under the camphor laurels.
+      </p>
+    </div>
+  </section>
+</Base>

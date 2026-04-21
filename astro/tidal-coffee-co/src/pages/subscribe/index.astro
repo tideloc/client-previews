@@ -1,0 +1,166 @@
+---
+import Base from '../../layouts/Base.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const plans = [
+  {
+    size: '250g',
+    cadence: 'Monthly · 1 bag',
+    price: 22,
+    per: '$22 / month',
+    note: 'Right for a solo drinker doing one pour-over a day. Bag usually lasts 3 weeks.',
+    tag: 'Starter',
+  },
+  {
+    size: '500g',
+    cadence: 'Monthly · 2 × 250g',
+    price: 40,
+    per: '$40 / month',
+    note: 'Our most popular plan. Two bags means you can sample two origins side-by-side.',
+    tag: 'Most popular',
+    feature: true,
+  },
+  {
+    size: '1kg',
+    cadence: 'Fortnightly · 2 × 500g',
+    price: 78,
+    per: '$78 / month',
+    note: 'For households of 2+ drinkers, or people running the Linea at home. Espresso grind option.',
+    tag: 'Heavy pour',
+  },
+];
+
+const origins = [
+  { q: 'Q1 · Jan-Mar',  regions: 'Colombia · Ethiopia · Guatemala' },
+  { q: 'Q2 · Apr-Jun',  regions: 'Ethiopia · Rwanda · Brazil' },
+  { q: 'Q3 · Jul-Sep',  regions: 'Papua New Guinea · Guatemala · Kenya' },
+  { q: 'Q4 · Oct-Dec',  regions: 'Brazil · Colombia · Indonesia' },
+];
+
+const faqs = [
+  { q: 'Do I need to commit?',           a: "No. Skip, pause, or cancel any time from your account — no emails, no retention calls. Changes before Monday 9am apply to that week's roast." },
+  { q: 'Can I choose the coffee?',       a: "You pick a stream: Espresso-leaning, Filter-leaning, or Roaster's Choice. Within that we rotate single origins quarterly — each bag ships with a tasting note so you know what's arrived." },
+  { q: 'When do bags ship?',             a: "We roast Mon / Wed / Fri. Your bag ships the day after its roast date — so your coffee has rested on the shelf before it's in the post." },
+  { q: 'Where do you ship?',             a: "Australia-wide. 1-4 business days via Australia Post Express. Free shipping on all subscription orders." },
+  { q: 'Whole bean or ground?',          a: "Default is whole bean. You can switch to a specific grind (espresso, moka, filter, plunger) per delivery — change it in your dashboard." },
+  { q: 'What if I go on holiday?',       a: "Log in and pause. Resume any time. We don't auto-charge a paused account." },
+];
+---
+<Base title="Subscribe — Tidal Coffee Co.">
+  <section class="relative overflow-hidden bg-surf text-shell">
+    <div class="absolute inset-0 bg-chart-lines opacity-10"></div>
+    <div class="wrap relative py-24 md:py-32">
+      <p class="font-mono text-[10px] uppercase tracking-rule text-brass mb-6">Beans at your door</p>
+      <h1 class="font-display italic text-5xl md:text-7xl text-shell leading-[0.95] mb-6">Fortnightly<br/>or monthly.<br/>Always fresh.</h1>
+      <p class="text-shell/85 text-lg md:text-xl leading-relaxed max-w-xl">
+        A rotating selection of our single origins, matched to your brew style. Roasted to order. Shipped next day. Easy to pause.
+      </p>
+    </div>
+  </section>
+
+  {/* Plans */}
+  <section class="py-24">
+    <div class="wrap">
+      <div class="max-w-2xl mb-14">
+        <p class="eyebrow">Pick a plan</p>
+        <h2 class="font-display italic text-4xl md:text-5xl text-surf leading-tight">Three sizes. No lock-in.</h2>
+      </div>
+      <div class="grid md:grid-cols-3 gap-6">
+        {plans.map(p => (
+          <div class={`chart-frame p-8 md:p-10 flex flex-col ${p.feature ? 'border-brass bg-shell relative' : ''}`}>
+            {p.feature && <span class="absolute -top-3 left-6 bg-brass text-shell px-2 py-1 font-mono text-[9px] uppercase tracking-rule">{p.tag}</span>}
+            {!p.feature && <span class="font-mono text-[9px] uppercase tracking-rule text-tide mb-4">{p.tag}</span>}
+            <p class="font-mono text-[10px] uppercase tracking-rule text-tide mb-2">{p.cadence}</p>
+            <p class="font-display italic text-6xl text-surf leading-none mb-2">{p.size}</p>
+            <p class="font-mono text-brass text-sm mb-5">{p.per}</p>
+            <p class="text-surf/75 text-sm leading-relaxed mb-8 flex-1">{p.note}</p>
+            <button class={p.feature ? 'btn-primary' : 'btn-ghost'}>Choose {p.size}</button>
+          </div>
+        ))}
+      </div>
+      <p class="font-mono text-[10px] uppercase tracking-rule text-tide/70 mt-8 text-center">Free shipping Australia-wide · cancel any time · no minimum deliveries</p>
+    </div>
+  </section>
+
+  {/* Origins rotation */}
+  <section class="py-24 bg-shell">
+    <div class="wrap">
+      <div class="max-w-2xl mb-12">
+        <p class="eyebrow">Origins rotation</p>
+        <h2 class="font-display italic text-4xl md:text-5xl text-surf leading-tight mb-4">What's landing, and when.</h2>
+        <p class="text-surf/70 leading-relaxed">We buy directly from producers and importer partners we've worked with for years. Green coffee arrives seasonally — your subscription follows that calendar.</p>
+      </div>
+      <div class="chart-frame overflow-hidden">
+        <table class="w-full">
+          <thead>
+            <tr class="bg-surf/5 border-b border-surf/10">
+              <th class="text-left font-mono text-[10px] uppercase tracking-rule text-tide py-4 px-6">Quarter</th>
+              <th class="text-left font-mono text-[10px] uppercase tracking-rule text-tide py-4 px-6">Origins in rotation</th>
+            </tr>
+          </thead>
+          <tbody>
+            {origins.map(o => (
+              <tr class="border-b border-surf/10 last:border-b-0">
+                <td class="py-5 px-6 font-display italic text-xl text-brass">{o.q}</td>
+                <td class="py-5 px-6 text-surf">{o.regions}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  {/* How it works */}
+  <section class="py-24">
+    <div class="wrap">
+      <div class="max-w-xl mb-12">
+        <p class="eyebrow">How it works</p>
+        <h2 class="font-display italic text-4xl md:text-5xl text-surf leading-tight">Four steps. That's the whole thing.</h2>
+      </div>
+      <div class="grid md:grid-cols-4 gap-10">
+        {[
+          { n: '01', t: 'Pick a plan',   b: 'Size and cadence. Change any time.' },
+          { n: '02', t: 'Pick a stream', b: "Espresso, filter, or roaster's choice." },
+          { n: '03', t: 'We roast',      b: 'Mon, Wed, or Fri — freshest on bag.' },
+          { n: '04', t: 'You brew',      b: 'Delivered next day. Rinse, repeat.' },
+        ].map(s => (
+          <div>
+            <div class="num-step mb-5">{s.n}</div>
+            <h3 class="font-display italic text-2xl text-surf mb-3">{s.t}</h3>
+            <p class="text-surf/70 text-sm leading-relaxed">{s.b}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* FAQ */}
+  <section class="py-24 bg-shell">
+    <div class="wrap max-w-3xl">
+      <p class="eyebrow">Questions we get asked</p>
+      <h2 class="font-display italic text-4xl md:text-5xl text-surf leading-tight mb-10">FAQ.</h2>
+      <div class="divide-y divide-surf/10 border-t border-b border-surf/10">
+        {faqs.map(f => (
+          <details class="group py-5">
+            <summary class="flex items-center justify-between cursor-pointer list-none">
+              <span class="font-display italic text-xl text-surf pr-6">{f.q}</span>
+              <span class="font-mono text-brass text-xl transition group-open:rotate-45">+</span>
+            </summary>
+            <p class="text-surf/75 leading-relaxed mt-4">{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-surf text-shell py-20">
+    <div class="wrap text-center max-w-2xl mx-auto">
+      <p class="font-mono text-[10px] uppercase tracking-rule text-brass mb-4">Not ready?</p>
+      <h2 class="font-display italic text-3xl md:text-4xl mb-6">Buy one bag first.</h2>
+      <p class="text-shell/80 leading-relaxed mb-8">If you haven't tasted us, try a single bag. If it's your thing, the subscription's here when you're ready.</p>
+      <a href={`${base}/coffee/`} class="inline-flex items-center justify-center gap-2 bg-brass text-shell px-6 py-3 font-body font-medium tracking-chart uppercase text-xs rounded-[3px] hover:bg-copper transition">Browse beans</a>
+    </div>
+  </section>
+</Base>

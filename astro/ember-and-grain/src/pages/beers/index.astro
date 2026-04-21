@@ -1,0 +1,102 @@
+---
+import Base from '../../layouts/Base.astro';
+import BeerCard from '../../components/BeerCard.astro';
+import { beers } from '../../data/beers';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const cats = [
+  { id: 'all',       label: 'The whole lot',       count: beers.length },
+  { id: 'core',      label: 'Core range',          count: beers.filter(b => b.category === 'core').length },
+  { id: 'seasonal',  label: 'Seasonals',           count: beers.filter(b => b.category === 'seasonal').length },
+  { id: 'oneoff',    label: 'One-offs',            count: beers.filter(b => b.category === 'oneoff').length },
+  { id: 'nonbeer',   label: 'Ginger beer & kombucha', count: beers.filter(b => b.category === 'nonbeer').length },
+];
+---
+<Base title="The full range — Ember &amp; Grain beers, ginger beer &amp; kombucha">
+  {/* HEADER */}
+  <section class="bg-stout text-cream py-20 md:py-28 relative overflow-hidden">
+    <div class="absolute inset-0 opacity-25">
+      <img src="https://images.unsplash.com/photo-1571513722275-4b41940f54b8?w=2000&h=800&fit=crop&q=80&auto=format" alt="" class="w-full h-full object-cover"/>
+      <div class="absolute inset-0 bg-gradient-to-r from-stout via-stout/70 to-transparent"></div>
+    </div>
+    <div class="wrap relative">
+      <p class="eyebrow text-grain">The range</p>
+      <h1 class="text-5xl md:text-7xl text-cream leading-[0.95]">Twelve taps.<br/>Twelve beers we'd pour our mum.</h1>
+      <p class="text-cream/80 text-lg md:text-xl leading-relaxed max-w-2xl mt-6 not-italic">
+        A year-round core, a rotating seasonal, a weekly one-off from the brew deck, and our two non-beer bottles. Available on tap, in 4-packs of 375ml cans, and in 1.89L growler refills from the taproom counter.
+      </p>
+    </div>
+  </section>
+
+  {/* FILTER BAR */}
+  <section class="sticky top-[65px] z-30 bg-wheat/95 backdrop-blur-md border-b border-stout/15">
+    <div class="wrap py-4 flex items-center gap-2 overflow-x-auto">
+      {cats.map(c => (
+        <button
+          data-cat={c.id}
+          class="cat-btn shrink-0 font-mono text-[10px] uppercase tracking-wide2 px-3 py-2 rounded-enamel text-stout/70 border border-stout/15 hover:text-ember hover:border-ember/50 transition data-[active=true]:bg-stout data-[active=true]:text-cream data-[active=true]:border-stout"
+          data-active={c.id === 'all'}
+        >
+          {c.label} <span class="ml-1 opacity-60">({c.count})</span>
+        </button>
+      ))}
+    </div>
+  </section>
+
+  {/* GRID */}
+  <section class="py-16">
+    <div class="wrap">
+      <div id="beerGrid" class="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
+        {beers.map(b => (
+          <div class="beer-item" data-cat={b.category}>
+            <BeerCard beer={b} />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* INFO BAND */}
+  <section class="py-16 bg-grain/40">
+    <div class="wrap grid md:grid-cols-3 gap-8">
+      <div class="enamel p-6">
+        <div class="note-num mb-3">01 &middot; Where to buy</div>
+        <h3 class="font-display italic text-2xl mb-2 text-stout">From the taproom counter</h3>
+        <p class="text-stout/75 text-sm leading-relaxed">4-packs, growler refills and the occasional 750ml bottle of whatever's on the brew deck. Open Wed–Sun. Takeaway until close.</p>
+      </div>
+      <div class="enamel p-6">
+        <div class="note-num mb-3">02 &middot; Local stockists</div>
+        <h3 class="font-display italic text-2xl mb-2 text-stout">45 indie shops, Byron to Lismore</h3>
+        <p class="text-stout/75 text-sm leading-relaxed">We distribute directly, within a 60km radius, once a week in the Troopcarrier. If you stock us and we're low — call us, don't email.</p>
+      </div>
+      <div class="enamel p-6">
+        <div class="note-num mb-3">03 &middot; Brewer's Club</div>
+        <h3 class="font-display italic text-2xl mb-2 text-stout">Posted anywhere in Australia</h3>
+        <p class="text-stout/75 text-sm leading-relaxed">Monthly subscription, you pick the tier. Always includes one small-batch bottle that doesn't leave the taproom otherwise. <a href={`${base}/club/`} class="text-ember hover:underline">See the tiers.</a></p>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const buttons = document.querySelectorAll<HTMLButtonElement>('.cat-btn');
+    const items   = document.querySelectorAll<HTMLDivElement>('.beer-item');
+
+    function setCat(cat: string) {
+      buttons.forEach(b => b.dataset.active = String(b.dataset.cat === cat));
+      items.forEach(el => {
+        el.style.display = (cat === 'all' || el.dataset.cat === cat) ? '' : 'none';
+      });
+      if (cat !== 'all') {
+        history.replaceState(null, '', `?c=${cat}`);
+      } else {
+        history.replaceState(null, '', location.pathname);
+      }
+    }
+    buttons.forEach(b => b.addEventListener('click', () => setCat(b.dataset.cat!)));
+
+    // initial from query string
+    const q = new URLSearchParams(location.search).get('c');
+    if (q && ['core','seasonal','oneoff','nonbeer'].includes(q)) setCat(q);
+  </script>
+</Base>

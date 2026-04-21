@@ -1,0 +1,148 @@
+---
+import Base from '../../layouts/Base.astro';
+import RecipeCard from '../../components/RecipeCard.astro';
+import { recipes } from '../../data/recipes';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const heroImg = 'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=2000&h=1100&fit=crop&q=80&auto=format';
+
+const byCat: Record<string, typeof recipes> = {
+  bake: recipes.filter((r) => r.category === 'bake'),
+  grill: recipes.filter((r) => r.category === 'grill'),
+  share: recipes.filter((r) => r.category === 'share'),
+  brunch: recipes.filter((r) => r.category === 'brunch'),
+  dessert: recipes.filter((r) => r.category === 'dessert'),
+  preserve: recipes.filter((r) => r.category === 'preserve'),
+};
+
+const featured = recipes[0];
+---
+<Base title="Recipes — Outback Pantry" description="Native-ingredient recipes tested in our Alice Springs kitchen. Wattleseed damper, Kakadu-cured trout, pepperberry lamb rack and more.">
+  <section class="relative overflow-hidden">
+    <div class="absolute inset-0">
+      <img src={heroImg} alt="" class="w-full h-full object-cover" />
+      <div class="absolute inset-0 bg-gradient-to-b from-charcoal/78 to-charcoal/40"></div>
+    </div>
+    <div class="wrap relative py-24 md:py-36">
+      <p class="font-mono uppercase tracking-wide2 text-ochre text-[11px] mb-5">// Recipes · From Aunty Linda's kitchen</p>
+      <h1 class="text-5xl md:text-8xl text-chalk font-display leading-none">Cook with<br/><span class="text-ochre italic">Country.</span></h1>
+      <p class="text-chalk/85 text-lg md:text-xl max-w-2xl mt-8 leading-relaxed">
+        Six recipes. Each one tested in our Alice Springs kitchen, each one using three or fewer native ingredients. Start with wattleseed damper — it is forgiving, fast, and makes the rest feel possible.
+      </p>
+    </div>
+  </section>
+
+  {/* Filters */}
+  <nav class="border-y border-charcoal/10 bg-chalk sticky top-[72px] z-30" aria-label="Recipe categories">
+    <div class="wrap flex flex-wrap gap-1 py-3">
+      <a href="#all" class="font-mono uppercase tracking-wide2 text-[11px] px-4 py-2 bg-charcoal text-chalk">All · {recipes.length}</a>
+      {Object.entries(byCat).filter(([_, list]) => list.length > 0).map(([cat, list]) => (
+        <a href={`#${cat}`} class="font-mono uppercase tracking-wide2 text-[11px] px-4 py-2 text-charcoal/70 hover:text-ochre">
+          {cat} · {list.length}
+        </a>
+      ))}
+    </div>
+  </nav>
+
+  {/* Featured */}
+  <section class="py-20">
+    <div class="wrap grid md:grid-cols-12 gap-10 items-center">
+      <div class="md:col-span-6">
+        <p class="eyebrow">Recipe of the week</p>
+        <h2 class="text-4xl md:text-5xl text-charcoal leading-tight mb-4">{featured.name}.</h2>
+        <p class="font-display italic text-kangaroo text-lg mb-6">Hero ingredient: {featured.hero}</p>
+        <p class="text-charcoal/80 text-lg leading-relaxed mb-8">{featured.blurb}</p>
+        <div class="flex items-center gap-8 mb-10 py-5 border-y border-charcoal/15">
+          <div>
+            <div class="field-label">Time</div>
+            <div class="font-display text-xl text-charcoal mt-1">{featured.time}</div>
+          </div>
+          <div>
+            <div class="field-label">Serves</div>
+            <div class="font-display text-xl text-charcoal mt-1">{featured.serves}</div>
+          </div>
+          <div>
+            <div class="field-label">Difficulty</div>
+            <div class="font-display text-xl text-charcoal mt-1">{featured.difficulty}</div>
+          </div>
+        </div>
+        <a href="#method" class="btn-primary">Read method</a>
+      </div>
+      <div class="md:col-span-6">
+        <div class="paper-card overflow-hidden">
+          <img src={featured.image} alt={featured.name} class="w-full aspect-[4/5] object-cover" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* Method block for featured */}
+  <section id="method" class="py-12 bg-sand/40 border-y border-charcoal/10 scroll-mt-28">
+    <div class="wrap max-w-3xl">
+      <div class="fg-divider mb-6">
+        <span class="font-mono text-[10px] uppercase tracking-wide2 text-ochre">Method · Wattleseed damper</span>
+      </div>
+      <h3 class="text-2xl md:text-3xl text-charcoal mb-8">Wattleseed damper with saltbush butter.</h3>
+
+      <div class="grid sm:grid-cols-2 gap-10 mb-12">
+        <div>
+          <div class="field-label mb-3">Damper</div>
+          <ul class="space-y-2 text-charcoal/85 leading-relaxed">
+            <li>500g plain flour</li>
+            <li>2 tsp baking powder</li>
+            <li>1 tsp saltbush salt</li>
+            <li>3 tbsp dark-roasted wattleseed</li>
+            <li>100g cold butter, cubed</li>
+            <li>350ml buttermilk</li>
+            <li>Extra wattleseed + salt for topping</li>
+          </ul>
+        </div>
+        <div>
+          <div class="field-label mb-3">Saltbush butter</div>
+          <ul class="space-y-2 text-charcoal/85 leading-relaxed">
+            <li>250g good cultured butter, softened</li>
+            <li>1.5 tbsp dried saltbush leaf, crushed</li>
+            <li>½ tsp saltbush salt</li>
+            <li>Zest of 1 lemon</li>
+          </ul>
+        </div>
+      </div>
+
+      <ol class="space-y-5 text-charcoal/85 leading-[1.85] list-none">
+        {[
+          'Bloom the wattleseed in 60g of the butter (melted) over low heat for 90 seconds. The oils release into the fat and carry right through the crumb.',
+          'Rub the remaining cold butter into the sifted flour, baking powder and salt until it looks like wet sand. Fold through the wattleseed-butter mix.',
+          'Pour in the buttermilk, bring together lightly — do not knead — and shape into a rough round. Score a cross with a floured knife.',
+          'Top with more wattleseed and a pinch of flaky salt. Bake at 220°C for 25 minutes, then drop to 190°C for another 15. It should sound hollow.',
+          'For the butter: fold saltbush, salt and zest through the softened butter. Roll in baking paper into a log. Chill until firm. Slice cold over hot damper.',
+        ].map((step, i) => (
+          <li class="grid grid-cols-[40px_1fr] gap-4">
+            <span class="font-display text-2xl text-ochre leading-none">{String(i + 1).padStart(2, '0')}</span>
+            <span>{step}</span>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  {/* All recipes */}
+  <section id="all" class="py-20">
+    <div class="wrap">
+      <h2 class="text-3xl md:text-4xl text-charcoal mb-10">More from the kitchen</h2>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {recipes.map((r) => <RecipeCard recipe={r} />)}
+      </div>
+    </div>
+  </section>
+
+  {/* Tip band */}
+  <section class="py-20 bg-ironbark text-chalk">
+    <div class="wrap max-w-3xl">
+      <p class="font-mono uppercase tracking-wide2 text-ochre text-[11px] mb-4">// House rule</p>
+      <h2 class="text-3xl md:text-5xl leading-tight mb-5">Start with one native ingredient per dish, not three.</h2>
+      <p class="text-chalk/80 text-lg leading-relaxed">
+        Native Australian flavours are concentrated — a teaspoon of wattleseed can read like two tablespoons of cinnamon. The quickest way to disappointment is stacking them. Pick the one flavour you want to hear clearly, and let it lead.
+      </p>
+    </div>
+  </section>
+</Base>

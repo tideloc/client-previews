@@ -1,0 +1,209 @@
+---
+import Base from '../../layouts/Base.astro';
+import { team } from '../../data/team';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const heroImg = 'https://images.unsplash.com/photo-1523626752472-b55a628f1acc?w=2000&h=1200&fit=crop&q=80&auto=format';
+const kitchenImg = 'https://images.unsplash.com/photo-1595351298020-038700609878?w=1600&h=1100&fit=crop&q=80&auto=format';
+const shopImg = 'https://images.unsplash.com/photo-1528498033373-3c6c08e93d79?w=1600&h=1100&fit=crop&q=80&auto=format';
+
+const timeline = [
+  { year: '2015', body: 'Marni Patterson moves to Mparntwe (Alice Springs) from Hobart, cooks at a bush foods restaurant.' },
+  { year: '2017', body: 'Outback Pantry opens as a single-product stall at Todd Mall Markets. Wattleseed only. Twenty jars a week.' },
+  { year: '2018', body: 'First three-year contract signed with Utopia Bush Foods Cooperative. Second product added: pepperberry.' },
+  { year: '2020', body: 'Warehouse leased on Stott Terrace. Aunty Linda joins as cultural advisor and head of recipe development.' },
+  { year: '2022', body: 'Five cooperatives on the network. Published payment rates adopted as a public standard.' },
+  { year: '2026', body: 'Catalogue at 12 products. 40+ restaurant trade accounts. One crop-failure buffer paid out, and we do not regret it.' },
+];
+---
+<Base title="About — Outback Pantry" description="The story of a settler-founded native-food grocer working with Indigenous harvest cooperatives.">
+  {/* Hero */}
+  <section class="relative overflow-hidden">
+    <div class="absolute inset-0">
+      <img src={heroImg} alt="" class="w-full h-full object-cover" />
+      <div class="absolute inset-0 bg-gradient-to-b from-charcoal/75 to-charcoal/40"></div>
+    </div>
+    <div class="wrap relative py-24 md:py-36">
+      <p class="font-mono uppercase tracking-wide2 text-ochre text-[11px] mb-5">// About · Mparntwe (Alice Springs)</p>
+      <h1 class="text-5xl md:text-8xl text-chalk font-display leading-none">A pantry, honestly<br/><span class="text-ochre italic">sourced.</span></h1>
+    </div>
+  </section>
+
+  {/* Founder letter */}
+  <section class="py-24">
+    <div class="wrap grid md:grid-cols-12 gap-12">
+      <div class="md:col-span-7">
+        <p class="eyebrow">How we started</p>
+        <h2 class="text-4xl md:text-5xl text-charcoal mb-8 leading-tight">Twenty jars of wattleseed and a fold-up table at Todd Mall.</h2>
+        <div class="space-y-5 text-charcoal/85 text-[17px] leading-[1.85]">
+          <p>
+            Outback Pantry started in autumn 2017 with twenty jars of dark-roasted wattleseed at Todd Mall Markets in Mparntwe. Marni Patterson was the founder, the roaster, the labeller and the stallholder. The first week she sold out by 11am. The second week she sold out by 10. By week four she was driving up to Utopia to meet Eileen Kngwarreye and ask if she could work with the cooperative directly.
+          </p>
+          <p>
+            Ten years on, we are a team of three in Mparntwe with a leased warehouse, a dedicated roaster, and five partner cooperatives across the Territory, the Kimberley, Tasmania, South Australia and Western NSW. We supply 40+ restaurants, a few thousand home cooks, and a steady trickle of corporate gift orders.
+          </p>
+          <p>
+            We are not Indigenous-owned. We never claim to be, and we never will. We are settlers who think that the most respectful thing a settler business can do with this knowledge is to share the margin honestly, publish the numbers, and be the kind of customer a cooperative would actually choose to work with.
+          </p>
+          <p class="font-display italic text-xl text-ochre pt-3">— Marni Patterson, founder</p>
+        </div>
+      </div>
+      <div class="md:col-span-5 space-y-4">
+        <div class="paper-card overflow-hidden">
+          <img src={kitchenImg} alt="Marni in the Alice Springs kitchen" class="w-full aspect-[4/5] object-cover" />
+        </div>
+        <div class="coord text-right">// Mparntwe · Oct 2024</div>
+      </div>
+    </div>
+  </section>
+
+  {/* Ethical framework — the published commitments */}
+  <section class="py-20 bg-sand/50 border-y border-charcoal/10">
+    <div class="wrap">
+      <p class="eyebrow">Our framework</p>
+      <h2 class="text-3xl md:text-5xl text-charcoal mb-12 leading-tight max-w-3xl">The six things we commit to. In writing.</h2>
+
+      <ol class="grid md:grid-cols-2 gap-8">
+        {[
+          { n: '01', name: 'Published payment floor', body: 'Every cooperative is paid a per-kilo rate we publish on the harvest page. Indexed annually to average weekly earnings.' },
+          { n: '02', name: 'Three-year contracts', body: 'No spot buying. Cooperatives know what we will buy for the next three years before they plan the harvest.' },
+          { n: '03', name: 'Crop-failure buffer', body: 'If a season fails, we still pay 60% of the contracted volume. Paid out once in 2022. Worth every dollar.' },
+          { n: '04', name: 'On-Country meetings', body: 'First meetings happen on the cooperative\'s Country, with an Elder-approved cultural advisor present.' },
+          { n: '05', name: 'Protocol authority', body: 'The cooperative sets the harvest protocol. We do not negotiate volumes up past what the Elders set.' },
+          { n: '06', name: 'Transparent margins', body: 'Our margin on each product is published in our annual report. We have refused wholesale orders that would have required us to hide it.' },
+        ].map((c) => (
+          <li class="paper-card p-8">
+            <div class="flex items-baseline gap-4 mb-3">
+              <span class="font-display text-3xl text-ochre">{c.n}</span>
+              <h3 class="text-xl text-charcoal">{c.name}</h3>
+            </div>
+            <p class="text-charcoal/75 leading-relaxed">{c.body}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  {/* Timeline */}
+  <section class="py-24">
+    <div class="wrap">
+      <p class="eyebrow">The timeline</p>
+      <h2 class="text-4xl md:text-5xl text-charcoal mb-14">From one stall to twelve products.</h2>
+      <ol class="relative border-l border-ochre/30 pl-8 space-y-12">
+        {timeline.map((t) => (
+          <li class="relative">
+            <span class="absolute -left-[37px] top-1 w-4 h-4 rounded-full bg-ochre ring-4 ring-chalk"></span>
+            <div class="font-display text-ochre text-3xl leading-none mb-2">{t.year}</div>
+            <p class="text-charcoal/85 text-[17px] leading-relaxed max-w-2xl">{t.body}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  {/* Team */}
+  <section class="py-24 bg-sand/40 border-y border-charcoal/10">
+    <div class="wrap">
+      <div class="flex items-end justify-between flex-wrap gap-4 mb-14">
+        <div>
+          <p class="eyebrow">The team</p>
+          <h2 class="text-4xl md:text-5xl text-charcoal">Three people in Mparntwe.</h2>
+        </div>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        {team.map((m, i) => (
+          <article class="paper-card overflow-hidden">
+            <div class="aspect-[4/5] overflow-hidden">
+              <img src={m.image} alt={m.name} class="w-full h-full object-cover" />
+            </div>
+            <div class="p-6">
+              <div class="field-label mb-1">Team · 0{i + 1}</div>
+              <h3 class="text-2xl text-charcoal mb-1">{m.name}</h3>
+              <p class="font-display italic text-kangaroo text-sm mb-4">{m.role}</p>
+              <p class="text-charcoal/80 text-[14px] leading-relaxed">{m.bio}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* Trade / restaurant enquiry */}
+  <section id="trade" class="py-20 scroll-mt-24 relative overflow-hidden">
+    <div class="absolute inset-0 opacity-15">
+      <img src={shopImg} alt="" class="w-full h-full object-cover" />
+    </div>
+    <div class="wrap relative grid md:grid-cols-12 gap-10">
+      <div class="md:col-span-5">
+        <p class="eyebrow">Restaurants &amp; trade</p>
+        <h2 class="text-4xl md:text-5xl text-charcoal leading-tight mb-6">Put native flavours on your menu.</h2>
+        <p class="text-charcoal/80 text-lg leading-relaxed mb-5">
+          We supply 40+ restaurants, caterers and cooking schools Australia-wide. Bulk sizes from 1kg upwards, net-30 terms for established accounts, dedicated chef-liaison (that is Aunty Linda), and fully-documented origin for your menu.
+        </p>
+        <ul class="space-y-2 text-charcoal/80 mb-8">
+          <li class="flex gap-3"><span class="text-ochre">→</span> Bulk 1kg / 5kg / 10kg sizing</li>
+          <li class="flex gap-3"><span class="text-ochre">→</span> Menu copy + origin documentation</li>
+          <li class="flex gap-3"><span class="text-ochre">→</span> Free delivery in Mparntwe, flat $45 nationally</li>
+          <li class="flex gap-3"><span class="text-ochre">→</span> Staff training session at your venue</li>
+        </ul>
+      </div>
+
+      <form class="md:col-span-7 paper-card p-8">
+        <h3 class="text-xl text-charcoal mb-6">Open a trade account</h3>
+        <div class="grid sm:grid-cols-2 gap-5">
+          <label class="block">
+            <span class="field-label block mb-1">Venue / business</span>
+            <input type="text" class="w-full bg-chalk border border-charcoal/20 text-charcoal px-3 py-3 focus:border-ochre focus:outline-none" />
+          </label>
+          <label class="block">
+            <span class="field-label block mb-1">Contact name</span>
+            <input type="text" class="w-full bg-chalk border border-charcoal/20 text-charcoal px-3 py-3 focus:border-ochre focus:outline-none" />
+          </label>
+          <label class="block">
+            <span class="field-label block mb-1">Email</span>
+            <input type="email" class="w-full bg-chalk border border-charcoal/20 text-charcoal px-3 py-3 focus:border-ochre focus:outline-none" />
+          </label>
+          <label class="block">
+            <span class="field-label block mb-1">City / state</span>
+            <input type="text" class="w-full bg-chalk border border-charcoal/20 text-charcoal px-3 py-3 focus:border-ochre focus:outline-none" />
+          </label>
+          <label class="block sm:col-span-2">
+            <span class="field-label block mb-1">Tell us about your menu</span>
+            <textarea rows="4" class="w-full bg-chalk border border-charcoal/20 text-charcoal px-3 py-3 focus:border-ochre focus:outline-none"></textarea>
+          </label>
+        </div>
+        <button type="submit" class="btn-primary w-full mt-5">Send trade enquiry</button>
+        <p class="text-xs text-charcoal/55 text-center mt-3">We reply to trade enquiries within one business day.</p>
+      </form>
+    </div>
+  </section>
+
+  {/* Contact footer */}
+  <section class="py-16">
+    <div class="wrap grid md:grid-cols-3 gap-10 text-center md:text-left">
+      <div>
+        <div class="field-label mb-2">Visit</div>
+        <address class="not-italic text-charcoal leading-relaxed">
+          Outback Pantry HQ<br/>
+          14 Stott Terrace<br/>
+          Mparntwe / Alice Springs NT 0870
+        </address>
+        <div class="coord mt-2">-23.698° / 133.881°</div>
+      </div>
+      <div>
+        <div class="field-label mb-2">Email</div>
+        <a href="mailto:hello@outbackpantry.com.au" class="text-charcoal hover:text-ochre block">hello@outbackpantry.com.au</a>
+        <a href="mailto:trade@outbackpantry.com.au" class="text-charcoal/70 hover:text-ochre block mt-1 text-sm">trade@outbackpantry.com.au</a>
+      </div>
+      <div>
+        <div class="field-label mb-2">Follow</div>
+        <div class="flex md:flex-col gap-4 md:gap-1 justify-center md:justify-start">
+          <a href="#" class="text-charcoal hover:text-ochre">Instagram · @outbackpantry</a>
+          <a href="#" class="text-charcoal hover:text-ochre">Substack · outbackpantry</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>

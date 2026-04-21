@@ -1,0 +1,28 @@
+---
+import type { Coffee } from '../data/coffees';
+interface Props { coffee: Coffee }
+const { coffee } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+<a href={`${base}/coffee/${coffee.slug}/`} class="group block bg-shell rounded-[3px] overflow-hidden border border-surf/10 hover:border-brass/50 transition">
+  <div class="relative aspect-[4/5] overflow-hidden bg-surf/10">
+    <img src={coffee.image} alt={coffee.name} class="w-full h-full object-cover group-hover:scale-105 transition duration-700" />
+    {coffee.badge && (
+      <span class="absolute top-4 left-4 bg-surf text-shell px-2 py-1 font-mono uppercase tracking-rule text-[9px]">{coffee.badge}</span>
+    )}
+    <div class="absolute top-4 right-4 font-mono uppercase tracking-rule text-[9px] text-shell/90 bg-surf/60 backdrop-blur-sm px-2 py-1">{coffee.roastDate}</div>
+  </div>
+  <div class="p-5">
+    <div class="flex items-baseline justify-between gap-3 mb-1">
+      <h3 class="font-display italic text-2xl text-surf leading-tight group-hover:text-brass transition">{coffee.name}</h3>
+      <span class="font-mono text-sm text-brass whitespace-nowrap">${coffee.price}</span>
+    </div>
+    <p class="font-mono text-[10px] uppercase tracking-rule text-tide mb-3">{coffee.origin} · {coffee.size}</p>
+    <p class="text-surf/75 text-sm leading-relaxed mb-4">{coffee.blurb}</p>
+    <div class="flex items-center gap-2 flex-wrap">
+      {coffee.flavorNotes.map(n => (
+        <span class="font-mono text-[10px] uppercase tracking-chart text-surf/65 border border-surf/15 px-2 py-0.5">{n}</span>
+      ))}
+    </div>
+  </div>
+</a>

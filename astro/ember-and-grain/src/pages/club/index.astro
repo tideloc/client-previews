@@ -1,0 +1,226 @@
+---
+import Base from '../../layouts/Base.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const tiers = [
+  {
+    id: 'casual',
+    label: 'Casual',
+    price: '$58',
+    cadence: '/ month',
+    desc: 'Six beers, one month. A good week on the deck.',
+    includes: [
+      'Six 375ml cans per month',
+      'Always 1 new release',
+      'Taproom pickup or $8 postage',
+      'Pause or skip any month',
+    ],
+    featured: false,
+  },
+  {
+    id: 'serious',
+    label: 'Serious',
+    price: '$108',
+    cadence: '/ month',
+    desc: 'Twelve beers, a brew-deck bottle, a pairing note.',
+    includes: [
+      'Twelve 375ml cans per month',
+      'One brew-deck 750ml bottle',
+      'Printed pairing note from the brewers',
+      'Priority booking on event nights',
+    ],
+    featured: true,
+  },
+  {
+    id: 'unhinged',
+    label: 'Unhinged',
+    price: '$198',
+    cadence: '/ month',
+    desc: 'Twenty-four cans, two brew-deck bottles, a standing booth.',
+    includes: [
+      'Twenty-four 375ml cans per month',
+      'Two brew-deck bottles (one back-vintage)',
+      'A booth reserved in your name every Friday',
+      'Name on the wall of the cellar bar',
+    ],
+    featured: false,
+  },
+];
+
+const testimonials = [
+  {
+    quote: "The brew-deck bottle each month is the single best piece of post I get. I've started planning Saturday lunch around the delivery date.",
+    who: 'Lachie R.',
+    where: 'Bangalow',
+  },
+  {
+    quote: "I joined on Casual. Lasted three months, 'upgraded' to Serious, now I'm on Unhinged. The slope was slippery and I regret nothing.",
+    who: 'Mae F.',
+    where: 'Lennox Head',
+  },
+  {
+    quote: "Pausing was dead easy when I went overseas. Unpaused when I got back, no drama, no guilt-trip email. That matters.",
+    who: 'Dave O.',
+    where: 'Byron Bay',
+  },
+];
+
+const faqs = [
+  {
+    q: 'When does my box arrive?',
+    a: "We pack the first Tuesday of every month. Local pickup (Federal NSW) from the Wednesday. Postage goes out Thursday — most of NSW gets it by the weekend, most of Australia inside a week.",
+  },
+  {
+    q: 'Can I pause or skip a month?',
+    a: "Yes. You can pause indefinitely, skip a single month, or change your address or tier any time up to 3 days before pack day. Everything lives in your members area — one email to reset your password and you're in.",
+  },
+  {
+    q: "What's 'brew deck' and why do I care?",
+    a: "The brew deck is our 200L second system. We use it for mixed-culture, barrel-aged and one-off beers that never go near the main kit. Members on Serious + Unhinged get a bottle in every box; those bottles don't leave the taproom otherwise.",
+  },
+  {
+    q: 'Do you ship beer interstate?',
+    a: "Yes, across Australia. We don't ship to WA in January/February (heat spoils the beer in transit) — we'll pause those members' boxes and resume in March without any lost months.",
+  },
+  {
+    q: 'Can I gift a membership?',
+    a: "Yes. Three, six, or twelve month gift runs. It comes with a hand-stamped letter from the brewers and a taproom tasting voucher. The recipient can swap tiers after the gift period ends.",
+  },
+  {
+    q: 'Is there a commitment period?',
+    a: "No. Month-to-month, cancel any time, no term. If you cancel after less than three months we will ask (quickly and politely) why, because it helps us do the club better. That's it.",
+  },
+];
+---
+<Base title="The Brewer's Club — monthly beer subscription | Ember &amp; Grain">
+  {/* HERO */}
+  <section class="relative bg-stout">
+    <div class="absolute inset-0">
+      <img src="https://images.unsplash.com/photo-1558642452-9d2a7deb7f62?w=2200&h=1200&fit=crop&q=80&auto=format" alt="" class="w-full h-full object-cover opacity-45" />
+      <div class="absolute inset-0 bg-gradient-to-b from-stout/55 via-stout/35 to-wheat"></div>
+    </div>
+    <div class="wrap relative py-20 md:py-28">
+      <p class="eyebrow text-grain">The Brewer's Club</p>
+      <h1 class="text-cream text-5xl md:text-7xl leading-[0.95]">Beer, posted<br/>once a month.</h1>
+      <p class="text-cream/85 text-lg md:text-xl leading-relaxed max-w-2xl mt-6 not-italic">
+        A monthly run of whatever we're pouring, posted anywhere in Australia. Always one new release, always one brew-deck bottle you won't find anywhere else. Pause or cancel when you like. No term. No fuss.
+      </p>
+    </div>
+  </section>
+
+  {/* TIERS */}
+  <section class="py-20">
+    <div class="wrap">
+      <div class="flex items-end justify-between flex-wrap gap-6 mb-10">
+        <div>
+          <p class="eyebrow">Pick your tier</p>
+          <h2 class="text-4xl md:text-5xl text-stout">Three sizes. Pick one.<br/>Or switch any time.</h2>
+        </div>
+      </div>
+      <div class="grid md:grid-cols-3 gap-6">
+        {tiers.map(t => (
+          <article class={`p-7 rounded-enamel flex flex-col ${t.featured ? 'bg-ember text-cream' : 'bg-cream text-stout'}`}
+                   style={`box-shadow: inset 0 0 0 2px ${t.featured ? 'rgba(247,239,224,0.22)' : 'rgba(26,20,16,0.12)'};`}>
+            <div class={`font-mono text-[10px] uppercase tracking-wide2 mb-4 ${t.featured ? 'text-cream/80' : 'text-ember'}`}>
+              Tier {t.id === 'casual' ? '01' : t.id === 'serious' ? '02' : '03'}
+              {t.featured && <span class="ml-2 pill-dark">Most chosen</span>}
+            </div>
+            <h3 class={`font-display italic text-4xl mb-2 leading-none ${t.featured ? 'text-cream' : 'text-stout'}`}>{t.label}</h3>
+            <p class={`text-sm leading-relaxed not-italic mb-6 ${t.featured ? 'text-cream/85' : 'text-stout/75'}`}>{t.desc}</p>
+            <div class="mb-6">
+              <span class={`font-display italic text-5xl ${t.featured ? 'text-cream' : 'text-ember'}`}>{t.price}</span>
+              <span class={`font-mono text-xs uppercase tracking-wide2 ml-2 ${t.featured ? 'text-cream/75' : 'text-shadow'}`}>{t.cadence}</span>
+            </div>
+            <ul class="space-y-2.5 text-sm mb-8 flex-1 not-italic">
+              {t.includes.map(inc => (
+                <li class={`flex items-start gap-3 ${t.featured ? 'text-cream/90' : 'text-stout/85'}`}>
+                  <span class={`font-mono text-xs mt-0.5 ${t.featured ? 'text-grain' : 'text-ember'}`}>+</span>
+                  <span>{inc}</span>
+                </li>
+              ))}
+            </ul>
+            <a href="#signup" class={t.featured ? 'btn-cream w-full' : 'btn-primary w-full'}>Pick {t.label}</a>
+          </article>
+        ))}
+      </div>
+      <p class="text-center text-stout/65 text-xs mt-8 font-mono uppercase tracking-wide2">
+        Over 18s only &middot; Photo ID on pickup &middot; Please drink responsibly
+      </p>
+    </div>
+  </section>
+
+  {/* HOW IT WORKS */}
+  <section class="py-16 bg-grain/40">
+    <div class="wrap">
+      <p class="eyebrow">How it works</p>
+      <h2 class="text-4xl md:text-5xl text-stout mb-10">Four steps, one box a month.</h2>
+      <div class="grid md:grid-cols-4 gap-6">
+        {[
+          { num: '01', title: 'Pick a tier',      body: 'Casual, Serious, or Unhinged. Change or pause any time in the members area.' },
+          { num: '02', title: 'We pack Tuesday',  body: 'First Tuesday of the month. Every box is packed by hand at the brewery.' },
+          { num: '03', title: 'Wednesday pickup', body: 'Pick up from the taproom counter any time Wed–Sun. Or we post Thursday.' },
+          { num: '04', title: 'Drink, repeat',    body: 'Sit down. Open one. Read the pairing note. Repeat next month.' },
+        ].map(s => (
+          <div class="enamel p-6">
+            <div class="font-mono text-ember text-sm mb-3 tracking-wide2">{s.num}</div>
+            <h3 class="font-display italic text-2xl text-stout mb-2 leading-tight">{s.title}</h3>
+            <p class="text-stout/75 text-sm leading-relaxed">{s.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* TESTIMONIALS */}
+  <section class="py-20">
+    <div class="wrap">
+      <p class="eyebrow">Current members say</p>
+      <h2 class="text-4xl md:text-5xl text-stout mb-10">Real people. Real receipts.</h2>
+      <div class="grid md:grid-cols-3 gap-6">
+        {testimonials.map(t => (
+          <blockquote class="enamel p-7 flex flex-col">
+            <p class="text-stout text-lg leading-relaxed mb-6 not-italic">&ldquo;{t.quote}&rdquo;</p>
+            <footer class="mt-auto">
+              <div class="font-body font-semibold text-stout not-italic">{t.who}</div>
+              <div class="font-mono text-[10px] uppercase tracking-wide2 text-shadow">{t.where} &middot; Member since 2023</div>
+            </footer>
+          </blockquote>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* FAQ */}
+  <section id="faq" class="py-20 bg-grain/40">
+    <div class="wrap max-w-3xl">
+      <p class="eyebrow">Frequently asked</p>
+      <h2 class="text-4xl md:text-5xl text-stout mb-10">Small print, plain language.</h2>
+      <div class="space-y-3">
+        {faqs.map(f => (
+          <details class="enamel p-5 group">
+            <summary class="flex items-center justify-between gap-4 cursor-pointer list-none">
+              <span class="font-body font-semibold text-stout text-base md:text-lg not-italic">{f.q}</span>
+              <span class="font-mono text-ember text-xl leading-none group-open:rotate-45 transition">+</span>
+            </summary>
+            <p class="text-stout/85 leading-relaxed mt-4 not-italic">{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* SIGNUP CTA */}
+  <section id="signup" class="bg-ember text-cream py-20">
+    <div class="wrap text-center max-w-2xl">
+      <h2 class="font-display italic text-4xl md:text-5xl leading-tight mb-5 text-cream">Ready to join?</h2>
+      <p class="text-cream/90 text-lg leading-relaxed mb-8 not-italic">
+        Sign up before the 25th to make the next month's box. Pay monthly, cancel whenever, no term. We'll be glad to have you.
+      </p>
+      <div class="flex flex-wrap gap-4 justify-center">
+        <a href="mailto:hello@emberandgrain.beer?subject=Brewer's%20Club%20signup" class="btn-cream">Start membership</a>
+        <a href={`${base}/taproom/`} class="btn-ghost" style="box-shadow: inset 0 0 0 2px #f7efe0;">Visit the taproom first</a>
+      </div>
+    </div>
+  </section>
+</Base>

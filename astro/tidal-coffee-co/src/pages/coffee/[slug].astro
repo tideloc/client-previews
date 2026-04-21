@@ -1,0 +1,132 @@
+---
+import Base from '../../layouts/Base.astro';
+import BeanCard from '../../components/BeanCard.astro';
+import CuppingCard from '../../components/CuppingCard.astro';
+import { coffees } from '../../data/coffees';
+
+export async function getStaticPaths() {
+  return coffees.map(c => ({ params: { slug: c.slug }, props: { coffee: c } }));
+}
+
+const { coffee } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const related = coffees.filter(c => c.slug !== coffee.slug && c.category === coffee.category).slice(0, 3);
+const fallback = coffees.filter(c => c.slug !== coffee.slug).slice(0, 3);
+const relatedList = related.length >= 3 ? related : [...related, ...fallback.filter(f => !related.some(r => r.slug === f.slug))].slice(0, 3);
+
+const grindGuide = [
+  { method: 'Espresso',      size: 'Very fine', note: 'Table salt — adjust by second' },
+  { method: 'Aeropress',     size: 'Medium-fine', note: 'Between espresso and filter' },
+  { method: 'V60 / Chemex',  size: 'Medium-fine to medium', note: 'Rough sand' },
+  { method: 'Moka pot',      size: 'Fine', note: 'Finer than filter, coarser than espresso' },
+  { method: 'French Press',  size: 'Coarse', note: 'Raw sugar, uneven is fine' },
+];
+---
+<Base title={`${coffee.name} — Tidal Coffee Co.`}>
+  <section class="border-b border-surf/10">
+    <div class="wrap py-14 md:py-20 grid md:grid-cols-2 gap-12 items-start">
+      <div class="md:sticky md:top-28">
+        <img src={coffee.image} alt={coffee.name} class="w-full aspect-[4/5] object-cover rounded-[3px] border border-surf/10" />
+      </div>
+      <div>
+        <p class="font-mono text-[10px] uppercase tracking-rule text-brass mb-3">{coffee.category} · {coffee.origin}</p>
+        <h1 class="font-display italic text-5xl md:text-6xl text-surf leading-[1] mb-4">{coffee.name}</h1>
+        <p class="text-surf/75 text-lg leading-relaxed mb-7">{coffee.blurb}</p>
+
+        <div class="flex items-baseline gap-6 mb-8 border-t border-b border-surf/10 py-5">
+          <span class="font-display italic text-4xl text-brass">${coffee.price}</span>
+          <span class="font-mono text-xs uppercase tracking-rule text-tide">{coffee.size}</span>
+          <span class="font-mono text-xs uppercase tracking-rule text-tide">{coffee.roastDate}</span>
+        </div>
+
+        <div class="flex flex-wrap gap-3 mb-8">
+          <button class="btn-primary">Add to cart — ${coffee.price}</button>
+          <a href={`${base}/subscribe/`} class="btn-ghost">Subscribe & save</a>
+        </div>
+
+        <div>
+          <p class="font-mono text-[10px] uppercase tracking-rule text-tide mb-3">Best brewed with</p>
+          <div class="flex flex-wrap gap-2">
+            {coffee.brewMethods.map(m => (
+              <span class="font-mono text-[11px] uppercase tracking-chart text-surf border border-surf/20 bg-shell px-3 py-1">{m}</span>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* Origin story */}
+  <section class="py-20 md:py-24">
+    <div class="wrap grid md:grid-cols-12 gap-12">
+      <div class="md:col-span-4">
+        <p class="eyebrow">Origin story</p>
+        <h2 class="font-display italic text-4xl text-surf leading-tight mb-4">From {coffee.origin.split(',')[0]}.</h2>
+        <div class="rule mt-4"></div>
+      </div>
+      <div class="md:col-span-8">
+        <p class="text-surf/85 text-lg leading-relaxed">{coffee.description}</p>
+      </div>
+    </div>
+  </section>
+
+  {/* Cupping card */}
+  <section class="py-20 md:py-24 bg-shell">
+    <div class="wrap">
+      <div class="max-w-xl mb-10">
+        <p class="eyebrow">How it tastes</p>
+        <h2 class="font-display italic text-4xl text-surf leading-tight">The cupping card.</h2>
+      </div>
+      <CuppingCard coffee={coffee} />
+    </div>
+  </section>
+
+  {/* Grind guide */}
+  <section class="py-20 md:py-24">
+    <div class="wrap grid md:grid-cols-12 gap-12">
+      <div class="md:col-span-4">
+        <p class="eyebrow">Grind guide</p>
+        <h2 class="font-display italic text-4xl text-surf leading-tight mb-4">Grind to your gear.</h2>
+        <p class="text-surf/70 leading-relaxed mb-4">Buying whole bean? Every home grinder is different. These are our starting points — if your cup is weak, go one finer; if it's bitter, go one coarser.</p>
+        <p class="font-mono text-xs text-tide uppercase tracking-rule">If we grind for you, tell us your method.</p>
+      </div>
+      <div class="md:col-span-8">
+        <table class="w-full font-body text-sm">
+          <thead>
+            <tr class="border-b border-surf/15">
+              <th class="text-left font-mono text-[10px] uppercase tracking-rule text-tide py-3">Method</th>
+              <th class="text-left font-mono text-[10px] uppercase tracking-rule text-tide py-3">Grind</th>
+              <th class="text-left font-mono text-[10px] uppercase tracking-rule text-tide py-3">Feels like</th>
+            </tr>
+          </thead>
+          <tbody>
+            {grindGuide.map(g => (
+              <tr class="border-b border-surf/10">
+                <td class="py-4 font-display italic text-xl text-surf">{g.method}</td>
+                <td class="py-4 text-surf">{g.size}</td>
+                <td class="py-4 text-tide">{g.note}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  {/* Related */}
+  <section class="py-20 md:py-24 bg-shell">
+    <div class="wrap">
+      <div class="flex items-end justify-between mb-10 flex-wrap gap-6">
+        <div>
+          <p class="eyebrow">Also worth trying</p>
+          <h2 class="font-display italic text-4xl text-surf">Related beans.</h2>
+        </div>
+        <a href={`${base}/coffee/`} class="font-mono uppercase tracking-rule text-xs text-brass hover:text-copper">All beans →</a>
+      </div>
+      <div class="grid md:grid-cols-3 gap-6">
+        {relatedList.map(c => <BeanCard coffee={c} />)}
+      </div>
+    </div>
+  </section>
+</Base>

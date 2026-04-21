@@ -1,0 +1,60 @@
+---
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const links = [
+  { href: `${base}/`, label: 'Home' },
+  { href: `${base}/coffee/`, label: 'Coffee' },
+  { href: `${base}/cafe/`, label: 'Cafe' },
+  { href: `${base}/brew-guides/`, label: 'Brew Guides' },
+  { href: `${base}/subscribe/`, label: 'Subscribe' },
+  { href: `${base}/about/`, label: 'About' },
+];
+const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
+---
+<header class="sticky top-0 z-40 bg-sand/92 backdrop-blur-md border-b border-surf/10">
+  <div class="wrap flex items-center justify-between py-4">
+    <a href={`${base}/`} class="flex items-center gap-3 group">
+      <span class="relative w-11 h-11 flex items-center justify-center rounded-full border border-surf/30 group-hover:border-brass transition">
+        <span class="absolute inset-1 rounded-full border border-surf/15"></span>
+        <span class="font-display italic text-surf text-xl leading-none group-hover:text-brass transition">Tc</span>
+      </span>
+      <div class="leading-tight">
+        <div class="font-display italic text-surf text-lg leading-tight">Tidal Coffee Co.</div>
+        <div class="font-mono text-[9px] text-tide uppercase tracking-rule">Thirroul · NSW</div>
+      </div>
+    </a>
+    <nav class="hidden md:flex items-center gap-1">
+      {links.map(l => {
+        const isActive = pathname === l.href.replace(/\/$/, '') || (l.href === `${base}/` && pathname === base);
+        return (
+          <a
+            href={l.href}
+            class={`font-body uppercase tracking-chart text-[11px] px-3 py-2 transition hover:text-brass ${isActive ? 'text-brass' : 'text-surf/75'}`}
+          >
+            {l.label}
+          </a>
+        );
+      })}
+      <a href={`${base}/subscribe/`} class="btn-ghost ml-3 !py-2 !px-4">Sign in</a>
+    </nav>
+    <button id="menuToggle" class="md:hidden text-surf p-2" aria-label="Menu">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <line x1="4" y1="7" x2="20" y2="7" />
+        <line x1="4" y1="12" x2="20" y2="12" />
+        <line x1="4" y1="17" x2="20" y2="17" />
+      </svg>
+    </button>
+  </div>
+  <div id="mobileMenu" class="hidden md:hidden border-t border-surf/10 bg-sand">
+    <div class="wrap py-4 flex flex-col gap-1">
+      {links.map(l => (
+        <a href={l.href} class="font-body uppercase tracking-chart text-xs text-surf py-2 hover:text-brass">{l.label}</a>
+      ))}
+      <a href={`${base}/subscribe/`} class="font-body uppercase tracking-chart text-xs text-brass py-2">Sign in →</a>
+    </div>
+  </div>
+</header>
+<script>
+  const btn = document.getElementById('menuToggle');
+  const menu = document.getElementById('mobileMenu');
+  btn?.addEventListener('click', () => menu?.classList.toggle('hidden'));
+</script>

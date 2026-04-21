@@ -1,0 +1,111 @@
+/* Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,600;1,9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-wheat text-stout font-body;
+    background-image:
+      radial-gradient(ellipse 70% 45% at 20% 0%, rgba(201, 72, 31, 0.10) 0%, transparent 55%),
+      radial-gradient(ellipse 55% 40% at 100% 100%, rgba(164, 102, 40, 0.12) 0%, transparent 60%),
+      radial-gradient(circle at 50% 50%, rgba(212,184,122,0.00) 0%, rgba(212,184,122,0.10) 100%);
+    background-attachment: fixed;
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-display tracking-narrow;
+    font-style: italic;
+    font-weight: 600;
+  }
+
+  a { @apply text-ember; }
+
+  ::selection {
+    @apply bg-ember text-cream;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 bg-ember text-cream px-6 py-3 font-body uppercase tracking-wide2 text-xs font-semibold rounded-enamel transition hover:bg-stout hover:-translate-y-0.5 active:translate-y-0;
+    box-shadow: inset 0 0 0 2px rgba(26,20,16,0.12);
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 bg-transparent text-stout px-6 py-3 font-body uppercase tracking-wide2 text-xs font-semibold rounded-enamel transition hover:bg-stout hover:text-cream;
+    box-shadow: inset 0 0 0 2px #1a1410;
+  }
+
+  .btn-cream {
+    @apply inline-flex items-center justify-center gap-2 bg-cream text-stout px-6 py-3 font-body uppercase tracking-wide2 text-xs font-semibold rounded-enamel transition hover:bg-ember hover:text-cream;
+    box-shadow: inset 0 0 0 2px rgba(26,20,16,0.15);
+  }
+
+  .wrap {
+    @apply max-w-6xl mx-auto px-6 sm:px-8;
+  }
+
+  .eyebrow {
+    @apply inline-block text-ember font-mono uppercase tracking-wide2 text-[10px] mb-4;
+  }
+
+  .divider {
+    @apply w-16 h-[2px] bg-ember;
+  }
+
+  /* Enamel-sign card: flat colour block + 2px inset border */
+  .enamel {
+    @apply bg-cream rounded-enamel;
+    box-shadow: inset 0 0 0 2px rgba(26,20,16,0.12);
+  }
+
+  .enamel-dark {
+    @apply bg-stout text-cream rounded-enamel;
+    box-shadow: inset 0 0 0 2px rgba(247,239,224,0.15);
+  }
+
+  /* Letterpress column rule */
+  .col-rule {
+    border-left: 1px solid rgba(26,20,16,0.18);
+  }
+
+  /* Numbered tasting block */
+  .note-num {
+    @apply font-mono text-ember text-xs tracking-wide2;
+  }
+
+  /* Ticker / tap strip marquee */
+  .ticker-track {
+    animation: ticker 42s linear infinite;
+  }
+  @keyframes ticker {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* Pill tag — hops-green */
+  .pill {
+    @apply inline-flex items-center gap-1 font-mono text-[10px] uppercase tracking-wide2 px-2 py-0.5 rounded-enamel;
+    background: rgba(109,140,90,0.18);
+    color: #3d2b1f;
+    box-shadow: inset 0 0 0 1px rgba(109,140,90,0.45);
+  }
+  .pill-ember {
+    @apply inline-flex items-center gap-1 font-mono text-[10px] uppercase tracking-wide2 px-2 py-0.5 rounded-enamel;
+    background: rgba(201,72,31,0.14);
+    color: #c9481f;
+    box-shadow: inset 0 0 0 1px rgba(201,72,31,0.45);
+  }
+  .pill-dark {
+    @apply inline-flex items-center gap-1 font-mono text-[10px] uppercase tracking-wide2 px-2 py-0.5 rounded-enamel bg-stout text-cream;
+  }
+}

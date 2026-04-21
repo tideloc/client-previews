@@ -1,0 +1,57 @@
+---
+import Base from '../../layouts/Base.astro';
+import BeanCard from '../../components/BeanCard.astro';
+import { coffees } from '../../data/coffees';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const categories = [
+  { slug: 'all',     label: 'All beans',         filter: () => true },
+  { slug: 'single',  label: 'Single origin',     filter: (c: any) => c.category === 'single' },
+  { slug: 'blend',   label: 'Blends',            filter: (c: any) => c.category === 'blend' },
+  { slug: 'limited', label: 'Limited microlots', filter: (c: any) => c.category === 'limited' },
+  { slug: 'decaf',   label: 'Decaf',             filter: (c: any) => c.category === 'decaf' },
+];
+---
+<Base title="Coffee — Tidal Coffee Co.">
+  <section class="border-b border-surf/10">
+    <div class="wrap py-20 md:py-28">
+      <p class="eyebrow">The catalogue</p>
+      <h1 class="font-display italic text-5xl md:text-7xl text-surf leading-[0.95] mb-6">Ten beans.<br/>One small roastery.</h1>
+      <p class="text-surf/75 text-lg leading-relaxed max-w-2xl">
+        House blend and espresso always on. Three to five rotating single origins depending on the season. A competition microlot when we find one worth the freight. Filter menus listed on each card include our recommended ratio.
+      </p>
+    </div>
+  </section>
+
+  {categories.slice(1).map(cat => {
+    const list = coffees.filter(cat.filter);
+    if (list.length === 0) return null;
+    return (
+      <section id={cat.slug} class="py-20 border-t border-surf/10 first:border-t-0">
+        <div class="wrap">
+          <div class="flex items-end justify-between mb-10 flex-wrap gap-6">
+            <div>
+              <p class="font-mono text-[10px] uppercase tracking-rule text-brass mb-2">{String(list.length).padStart(2, '0')} on the menu</p>
+              <h2 class="font-display italic text-4xl md:text-5xl text-surf">{cat.label}</h2>
+              <div class="rule mt-5"></div>
+            </div>
+          </div>
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {list.map(c => <BeanCard coffee={c} />)}
+          </div>
+        </div>
+      </section>
+    );
+  })}
+
+  <section class="py-24 bg-surf text-shell">
+    <div class="wrap text-center max-w-3xl mx-auto">
+      <p class="font-mono text-[10px] uppercase tracking-rule text-brass mb-6">Can't decide?</p>
+      <h2 class="font-display italic text-4xl md:text-5xl mb-6">Try the house blend first.</h2>
+      <p class="text-shell/80 leading-relaxed mb-8">
+        It's the bean we return to when we've tasted everything else. If you've never ordered from us, start there — then next month swap to whichever single origin we're raving about.
+      </p>
+      <a href={`${base}/coffee/headland-house-blend/`} class="inline-flex items-center justify-center gap-2 bg-brass text-shell px-6 py-3 font-body font-medium tracking-chart uppercase text-xs rounded-[3px] transition hover:bg-copper">Headland House Blend →</a>
+    </div>
+  </section>
+</Base>

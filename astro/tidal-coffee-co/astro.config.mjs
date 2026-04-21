@@ -1,0 +1,15 @@
+import { defineConfig } from 'astro/config';
+import tailwind from '@astrojs/tailwind';
+
+// Built output lives at ../../example-sites/tidal-coffee-co/ so GH Pages
+// serves it at https://tideloc.github.io/client-previews/example-sites/tidal-coffee-co/
+export default defineConfig({
+  site: 'https://tideloc.github.io',
+  base: '/client-previews/example-sites/tidal-coffee-co',
+  outDir: '../../example-sites/tidal-coffee-co',
+  trailingSlash: 'ignore',
+  build: {
+    assets: '_assets',
+  },
+  integrations: [tailwind({ applyBaseStyles: false })],
+});

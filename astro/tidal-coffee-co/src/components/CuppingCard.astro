@@ -1,0 +1,67 @@
+---
+import type { Coffee } from '../data/coffees';
+interface Props { coffee: Coffee }
+const { coffee } = Astro.props;
+
+const rows = [
+  { label: 'Acidity',  val: coffee.acidity },
+  { label: 'Body',     val: coffee.body },
+  { label: 'Sweetness', val: coffee.sweetness },
+];
+---
+<div class="chart-frame p-8 md:p-10">
+  <div class="flex items-center justify-between mb-8 pb-4 border-b border-surf/10">
+    <p class="font-mono text-[10px] uppercase tracking-rule text-tide">Cupping card · {coffee.slug.slice(0, 6).toUpperCase()}</p>
+    <p class="font-mono text-[10px] uppercase tracking-rule text-brass">{coffee.roastLevel} roast</p>
+  </div>
+
+  <div class="grid md:grid-cols-2 gap-10">
+    <div>
+      <p class="font-mono text-[10px] uppercase tracking-rule text-tide mb-4">Tasting notes</p>
+      <ul class="space-y-3">
+        {coffee.flavorNotes.map((n, i) => (
+          <li class="flex items-baseline gap-4 pb-3 border-b border-surf/5">
+            <span class="font-mono text-[10px] text-brass">0{i + 1}</span>
+            <span class="font-display italic text-2xl text-surf">{n}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <div>
+      <p class="font-mono text-[10px] uppercase tracking-rule text-tide mb-4">Sensory score</p>
+      <ul class="space-y-5">
+        {rows.map(r => (
+          <li>
+            <div class="flex items-center justify-between mb-2">
+              <span class="font-body text-sm text-surf">{r.label}</span>
+              <span class="font-mono text-xs text-tide">{r.val}/5</span>
+            </div>
+            <div class="score-bar">
+              <span style={`width:${(r.val / 5) * 100}%`}></span>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-10 pt-8 border-t border-surf/10">
+    <div>
+      <p class="font-mono text-[9px] uppercase tracking-rule text-tide mb-1">Process</p>
+      <p class="font-body text-sm text-surf">{coffee.process}</p>
+    </div>
+    <div>
+      <p class="font-mono text-[9px] uppercase tracking-rule text-tide mb-1">Altitude</p>
+      <p class="font-body text-sm text-surf">{coffee.altitude}</p>
+    </div>
+    <div>
+      <p class="font-mono text-[9px] uppercase tracking-rule text-tide mb-1">Variety</p>
+      <p class="font-body text-sm text-surf">{coffee.variety}</p>
+    </div>
+    <div>
+      <p class="font-mono text-[9px] uppercase tracking-rule text-tide mb-1">Origin</p>
+      <p class="font-body text-sm text-surf">{coffee.origin}</p>
+    </div>
+  </div>
+</div>

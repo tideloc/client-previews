@@ -1,0 +1,15 @@
+---
+interface Props { items: string[] }
+const { items } = Astro.props;
+const loop = [...items, ...items];
+---
+<div class="border-y border-surf/15 bg-shell overflow-hidden">
+  <div class="ticker-track flex items-center gap-10 py-4 whitespace-nowrap">
+    {loop.map(t => (
+      <span class="font-mono uppercase tracking-rule text-[11px] text-surf flex items-center gap-10">
+        {t}
+        <span class="text-brass">◆</span>
+      </span>
+    ))}
+  </div>
+</div>

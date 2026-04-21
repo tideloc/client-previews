@@ -1,0 +1,149 @@
+---
+import Base from '../../layouts/Base.astro';
+import BeerCard from '../../components/BeerCard.astro';
+import { beers, type Beer } from '../../data/beers';
+
+export function getStaticPaths() {
+  return beers.map((b) => ({ params: { slug: b.slug }, props: { beer: b } }));
+}
+
+interface Props { beer: Beer }
+const { beer } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const related = beers.filter(b => b.slug !== beer.slug && b.category === beer.category).slice(0, 3);
+const availLabel = { cans: '4-pack cans', tap: 'On tap', growler: 'Growler fill' };
+const catLabel = { core: 'Core range', seasonal: 'Seasonal', oneoff: 'One-off', nonbeer: 'Non-beer' }[beer.category];
+---
+<Base title={`${beer.name} — ${beer.style} | Ember & Grain`} description={beer.blurb}>
+  {/* HERO */}
+  <section class="relative bg-stout">
+    <div class="absolute inset-0">
+      <img src={beer.image} alt={beer.name} class="w-full h-full object-cover opacity-55" />
+      <div class="absolute inset-0 bg-gradient-to-b from-stout/60 via-stout/50 to-wheat"></div>
+    </div>
+    <div class="wrap relative py-20 md:py-28">
+      <div class="max-w-3xl">
+        <p class="eyebrow text-grain"><a href={`${base}/beers/`} class="hover:text-cream">&larr; All beers</a> &middot; {catLabel}</p>
+        <h1 class="text-cream text-5xl md:text-7xl leading-[0.95]">{beer.name}</h1>
+        <p class="font-mono text-xs uppercase tracking-wide2 text-grain mt-6">{beer.style}</p>
+        <p class="text-cream/90 text-lg md:text-xl leading-relaxed mt-4 not-italic max-w-2xl">{beer.blurb}</p>
+      </div>
+    </div>
+  </section>
+
+  {/* STAT BAR */}
+  <section class="bg-grain/60 border-b border-stout/15">
+    <div class="wrap py-6 grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div>
+        <div class="font-mono text-[10px] uppercase tracking-wide2 text-ember">ABV</div>
+        <div class="font-display italic text-3xl text-stout leading-none mt-1">{beer.abv.toFixed(1)}%</div>
+      </div>
+      <div>
+        <div class="font-mono text-[10px] uppercase tracking-wide2 text-ember">IBU</div>
+        <div class="font-display italic text-3xl text-stout leading-none mt-1">{beer.ibu ?? '—'}</div>
+      </div>
+      <div>
+        <div class="font-mono text-[10px] uppercase tracking-wide2 text-ember">SRM</div>
+        <div class="font-display italic text-3xl text-stout leading-none mt-1">{beer.srm ?? '—'}</div>
+      </div>
+      <div>
+        <div class="font-mono text-[10px] uppercase tracking-wide2 text-ember">Size</div>
+        <div class="font-display italic text-3xl text-stout leading-none mt-1">{beer.size ?? 'Draft'}</div>
+      </div>
+    </div>
+  </section>
+
+  {/* MAIN */}
+  <section class="py-16 md:py-20">
+    <div class="wrap grid md:grid-cols-12 gap-10">
+      {/* LEFT — story + notes + pairings */}
+      <div class="md:col-span-8 space-y-12">
+        <div>
+          <p class="eyebrow">The full brief</p>
+          <div class="prose prose-stout max-w-none">
+            <p class="text-stout/85 text-lg leading-relaxed not-italic">{beer.description}</p>
+          </div>
+        </div>
+
+        <div>
+          <p class="eyebrow">Tasting notes</p>
+          <h2 class="text-3xl md:text-4xl text-stout mb-6">What it does.</h2>
+          <ol class="space-y-5">
+            {beer.tastingNotes.map((note, i) => (
+              <li class="enamel p-5 md:p-6 flex gap-5">
+                <span class="font-mono text-ember text-lg shrink-0">{String(i + 1).padStart(2, '0')}</span>
+                <p class="text-stout/85 leading-relaxed not-italic">{note}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
+
+        <div>
+          <p class="eyebrow">Pair with</p>
+          <h2 class="text-3xl md:text-4xl text-stout mb-6">What to eat alongside.</h2>
+          <div class="grid sm:grid-cols-3 gap-4">
+            {beer.pairs.map(p => (
+              <div class="enamel p-5">
+                <p class="text-stout text-base leading-tight not-italic">{p}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* RIGHT — specs + buy */}
+      <aside class="md:col-span-4 space-y-6">
+        <div class="enamel-dark p-6">
+          <div class="font-mono text-[10px] uppercase tracking-wide2 text-grain mb-4">Availability</div>
+          <ul class="space-y-3">
+            {beer.available.map(a => (
+              <li class="flex items-center justify-between gap-3 text-cream not-italic">
+                <span class="font-body">{availLabel[a]}</span>
+                <span class="pill-ember">In stock</span>
+              </li>
+            ))}
+          </ul>
+          {beer.price && (
+            <div class="mt-6 pt-5 border-t border-cream/10">
+              <div class="font-mono text-[10px] uppercase tracking-wide2 text-grain mb-1">From</div>
+              <div class="font-display italic text-4xl text-cream leading-none">${beer.price.toFixed(2)}</div>
+              <div class="font-mono text-[10px] uppercase tracking-wide2 text-cream/60 mt-2">{beer.size}</div>
+            </div>
+          )}
+          <a href={`${base}/taproom/`} class="btn-primary w-full mt-6">Order pickup</a>
+        </div>
+
+        <div class="enamel p-6">
+          <div class="font-mono text-[10px] uppercase tracking-wide2 text-ember mb-4">Ingredients</div>
+          <ul class="space-y-1.5 text-sm text-stout/85 font-mono">
+            {beer.ingredients.map(i => <li>&middot; {i}</li>)}
+          </ul>
+        </div>
+
+        <div class="enamel p-6">
+          <div class="font-mono text-[10px] uppercase tracking-wide2 text-ember mb-3">Brewed at</div>
+          <p class="text-stout/85 text-sm leading-relaxed not-italic">Ember &amp; Grain, 117 Federal Drive, Federal NSW. 1,200L brewhouse, single-vessel. Water from Repton Spring, 22km west.</p>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  {/* RELATED */}
+  {related.length > 0 && (
+    <section class="py-16 bg-grain/40">
+      <div class="wrap">
+        <div class="flex items-end justify-between flex-wrap gap-6 mb-10">
+          <div>
+            <p class="eyebrow">Try next</p>
+            <h2 class="text-3xl md:text-4xl text-stout">Other {catLabel.toLowerCase()} pours.</h2>
+          </div>
+          <a href={`${base}/beers/?c=${beer.category}`} class="font-body uppercase tracking-wide2 text-[11px] font-semibold text-ember hover:text-stout">All {catLabel.toLowerCase()} &rarr;</a>
+        </div>
+        <div class="grid md:grid-cols-3 gap-6">
+          {related.map(r => <BeerCard beer={r} />)}
+        </div>
+      </div>
+    </section>
+  )}
+</Base>

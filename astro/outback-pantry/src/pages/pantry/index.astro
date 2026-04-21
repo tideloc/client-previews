@@ -1,0 +1,78 @@
+---
+import Base from '../../layouts/Base.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import { products, categories } from '../../data/products';
+
+const headerImg = 'https://images.unsplash.com/photo-1516738901171-8eb4fc13bd20?w=2000&h=1100&fit=crop&q=80&auto=format';
+const byCat = categories.map((c) => ({
+  ...c,
+  items: products.filter((p) => p.category === c.key),
+}));
+---
+<Base title="The Pantry — Outback Pantry" description="Browse native Australian spices, bush fruits, seeds, sauces and gift hampers.">
+  <section class="relative overflow-hidden">
+    <div class="absolute inset-0">
+      <img src={headerImg} alt="" class="w-full h-full object-cover" />
+      <div class="absolute inset-0 bg-gradient-to-b from-charcoal/75 via-charcoal/55 to-chalk"></div>
+    </div>
+    <div class="wrap relative py-24 md:py-32">
+      <p class="font-mono uppercase tracking-wide2 text-ochre text-[11px] mb-5">// The full catalogue</p>
+      <h1 class="text-5xl md:text-8xl text-chalk font-display leading-none">The pantry<span class="text-ochre italic">.</span></h1>
+      <p class="text-chalk/85 text-lg md:text-xl max-w-2xl mt-8 leading-relaxed">
+        {products.length} small-batch products across six categories. Every jar notes the Country it was harvested on and the cooperative that picked it.
+      </p>
+    </div>
+  </section>
+
+  {/* Filter strip */}
+  <nav class="border-y border-charcoal/10 bg-chalk sticky top-[72px] z-30" aria-label="Product categories">
+    <div class="wrap flex flex-wrap gap-1 py-3">
+      <a href="#all" class="font-mono uppercase tracking-wide2 text-[11px] px-4 py-2 bg-charcoal text-chalk">All · {products.length}</a>
+      {byCat.map((c) => (
+        <a href={`#${c.key}`} class="font-mono uppercase tracking-wide2 text-[11px] px-4 py-2 text-charcoal/70 hover:text-ochre">
+          {c.short} · {c.items.length}
+        </a>
+      ))}
+    </div>
+  </nav>
+
+  {/* Category blocks */}
+  <div id="all">
+    {byCat.map((c, i) => (
+      <section id={c.key} class={`py-20 scroll-mt-40 ${i % 2 === 1 ? 'bg-sand/40 border-y border-charcoal/10' : ''}`}>
+        <div class="wrap">
+          <div class="flex items-end justify-between flex-wrap gap-4 mb-10">
+            <div>
+              <div class="fg-divider mb-4 max-w-[200px]">
+                <span class="font-mono text-[10px] uppercase tracking-wide2">0{i + 1}</span>
+              </div>
+              <h2 class="text-3xl md:text-4xl text-charcoal">{c.label}</h2>
+            </div>
+            <div class="coord">{c.items.length} product{c.items.length === 1 ? '' : 's'} · updated monthly</div>
+          </div>
+          <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {c.items.map((p) => <ProductCard product={p} />)}
+          </div>
+        </div>
+      </section>
+    ))}
+  </div>
+
+  {/* Shipping / FAQ band */}
+  <section class="py-20 bg-chalk">
+    <div class="wrap grid md:grid-cols-3 gap-10">
+      <div>
+        <div class="field-label mb-2">Shipping</div>
+        <p class="text-charcoal/80 leading-relaxed">Flat $12 Australia-wide. Free over $90. Shipped from our Alice Springs warehouse within two business days of order.</p>
+      </div>
+      <div>
+        <div class="field-label mb-2">Provenance</div>
+        <p class="text-charcoal/80 leading-relaxed">Every product page lists the cooperative, the Country and the coordinates. Ask us for the supplier agreement if you are a restaurant; we will send it.</p>
+      </div>
+      <div>
+        <div class="field-label mb-2">Trade</div>
+        <p class="text-charcoal/80 leading-relaxed">Restaurants, caterers, cooking schools: 1kg and 5kg bulk pricing available. <a href="../about/#trade" class="text-ochre underline-offset-4 hover:underline">Enquire →</a></p>
+      </div>
+    </div>
+  </section>
+</Base>

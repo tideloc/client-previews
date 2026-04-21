@@ -1,0 +1,144 @@
+---
+import Base from '../../layouts/Base.astro';
+import { team } from '../../data/team';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const chapters = [
+  {
+    num: '01',
+    year: '2014',
+    title: 'A shed in Paddington.',
+    body:
+      "Tom brewed his first batch in the garage of a share house in Paddington, Brisbane, on a 20L stove-top kit a housemate had found at the side of the road. The lager was terrible. The second one was less terrible. The third he entered into the Queensland Amateur Brewing Championships and took third in his category. By the time the certificate arrived in the post he'd bought a 50L system and quit his day job's overtime.",
+    image: 'https://images.unsplash.com/photo-1533777857889-4be7c70b33f7?w=1400&h=900&fit=crop&q=80&auto=format',
+  },
+  {
+    num: '02',
+    year: '2016',
+    title: 'The move north.',
+    body:
+      "Harriet finished her microbiology honours at Sydney Uni and moved up to Mullumbimby with a shared car, a Kombi starter culture, and a certainty that she'd either open a sourdough bakery or do something with mixed-culture fermentation. She and Tom met on a Saturday market day at Mullum Showgrounds; by Wednesday they'd agreed to go in on a brewhouse together. Neither of them had any money. Tom rang his dad.",
+    image: 'https://images.unsplash.com/photo-1577906096429-f73c2c312435?w=1400&h=900&fit=crop&q=80&auto=format',
+  },
+  {
+    num: '03',
+    year: '2017',
+    title: 'The old truss shed.',
+    body:
+      "The shed on Federal Drive was built in 1957 as a shadehouse for an orchid nursery, then spent thirty years as a truss manufacturer, then five years empty. It had the concrete slab we needed, three-phase power, an artesian bore, and a roof that leaked in four spots. We signed the lease on a Friday in August and brewed the first batch of Slow Road on the Sunday of the following weekend. The taproom opened eight weeks later, when we put out a chalkboard on the verge and sold out by 2pm.",
+    image: 'https://images.unsplash.com/photo-1498579397066-22750a3cb424?w=1400&h=900&fit=crop&q=80&auto=format',
+  },
+  {
+    num: '04',
+    year: '2022',
+    title: 'Twelve taps, same shed.',
+    body:
+      "We've grown from 4 taps to 12, from one brewhouse to two (a 200L brew deck out the back for small experimental stuff), and from two people to seven. We still brew every beer ourselves, still pour them across the same twelve-metre bar, and still do the accounts on Sundays over a pot of Federal Dark. We made 140,000 litres last year. We'd like to keep it roughly that size forever.",
+    image: 'https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?w=1400&h=900&fit=crop&q=80&auto=format',
+  },
+];
+---
+<Base title="Our story — Ember &amp; Grain Brewing | Federal, NSW">
+  {/* HERO */}
+  <section class="relative bg-stout">
+    <div class="absolute inset-0">
+      <img src="https://images.unsplash.com/photo-1571513722275-4b41940f54b8?w=2200&h=1200&fit=crop&q=80&auto=format" alt="" class="w-full h-full object-cover opacity-45" />
+      <div class="absolute inset-0 bg-gradient-to-b from-stout/60 via-stout/40 to-wheat"></div>
+    </div>
+    <div class="wrap relative py-20 md:py-28">
+      <p class="eyebrow text-grain">The story</p>
+      <h1 class="text-cream text-5xl md:text-7xl leading-[0.95]">Two homebrewers.<br/>One leaky truss shed.</h1>
+      <p class="text-cream/85 text-lg md:text-xl leading-relaxed max-w-2xl mt-6 not-italic">
+        Ember &amp; Grain started in 2017 in a 1957-built shadehouse on Federal Drive in the Byron hinterland. It's still there. We're still here. So are four out of five of the original beers.
+      </p>
+    </div>
+  </section>
+
+  {/* 4 CHAPTERS */}
+  <section class="py-16 md:py-20">
+    <div class="wrap space-y-24">
+      {chapters.map((c, i) => (
+        <div class={`grid md:grid-cols-12 gap-10 items-center ${i % 2 === 1 ? 'md:[direction:rtl]' : ''}`}>
+          <div class="md:col-span-5 [direction:ltr]">
+            <img src={c.image} alt={c.title} class="rounded-enamel w-full aspect-[4/5] object-cover"
+                 style="box-shadow: inset 0 0 0 2px rgba(26,20,16,0.12);" />
+          </div>
+          <div class="md:col-span-7 [direction:ltr]">
+            <div class="flex items-baseline gap-5 mb-4">
+              <span class="font-mono text-ember text-sm tracking-wide2">Chapter {c.num}</span>
+              <span class="font-mono text-shadow text-xs">&middot;</span>
+              <span class="font-mono text-shadow text-sm">{c.year}</span>
+            </div>
+            <h2 class="text-3xl md:text-5xl text-stout mb-5 leading-tight">{c.title}</h2>
+            <p class="text-stout/85 text-lg leading-relaxed not-italic">{c.body}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  {/* BREWER BIOS */}
+  <section class="py-20 bg-grain/40">
+    <div class="wrap">
+      <p class="eyebrow">The brewers</p>
+      <h2 class="text-4xl md:text-5xl text-stout mb-10">Two people who still do all the brewing.</h2>
+      <div class="grid md:grid-cols-2 gap-8">
+        {team.map(m => (
+          <article class="enamel overflow-hidden">
+            <div class="aspect-[5/4] overflow-hidden bg-stout">
+              <img src={m.image} alt={m.name} class="w-full h-full object-cover" />
+            </div>
+            <div class="p-6 md:p-7">
+              <h3 class="font-display italic text-3xl text-stout leading-tight mb-2">{m.name}</h3>
+              <p class="font-mono text-[10px] uppercase tracking-wide2 text-ember mb-4" set:html={m.role}></p>
+              <p class="text-stout/85 leading-relaxed not-italic">{m.bio}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* SUSTAINABILITY */}
+  <section class="py-20">
+    <div class="wrap grid md:grid-cols-2 gap-10 items-start">
+      <div>
+        <p class="eyebrow">How we try to do less harm</p>
+        <h2 class="text-4xl md:text-5xl text-stout mb-6 leading-tight">Doing small, carefully.</h2>
+        <p class="text-stout/85 text-lg leading-relaxed mb-5 not-italic">
+          We'll never be a huge brewery and we don't want to be. Staying small lets us make choices a bigger outfit can't — re-using spent grain on the farm next door, distributing ourselves in one truck, and brewing seven days a fortnight instead of twenty-one.
+        </p>
+        <p class="text-stout/85 text-lg leading-relaxed not-italic">
+          None of this is a marketing programme, it's just how we do it. But since you asked, here's what that looks like:
+        </p>
+      </div>
+      <ul class="space-y-5">
+        {[
+          { num: '01', heading: '100% spent grain returned to land', body: 'Every kilo of spent grain goes to a single dairy herd 4km up the road. In return we get milk in the coffee and a signed grazier\'s receipt.' },
+          { num: '02', heading: 'Single-truck distribution',          body: 'We stock 45 indie shops inside a 60km radius. One Troopcarrier, one day a week. No interstate freight, no fridged pallets in Queensland.' },
+          { num: '03', heading: 'Glass over aluminium where we can',  body: 'Growler program runs six days a week. $5 refills, no minimum. We sell more draft than packaged beer every year and we think that\'s the right way around.' },
+          { num: '04', heading: '100% renewable electricity',          body: '32kW of solar on the truss roof, backed by a 60kWh battery that we top up off-peak from Enova Community Energy.' },
+        ].map(item => (
+          <li class="enamel p-5 flex gap-5">
+            <span class="font-mono text-ember text-sm shrink-0">{item.num}</span>
+            <div>
+              <h3 class="font-body font-semibold text-stout text-base mb-1 not-italic">{item.heading}</h3>
+              <p class="text-stout/75 text-sm leading-relaxed">{item.body}</p>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  {/* CTA */}
+  <section class="bg-ember text-cream py-14">
+    <div class="wrap text-center">
+      <p class="font-display italic text-2xl md:text-4xl leading-tight mb-6">
+        Come drink where we make it.
+      </p>
+      <a href={`${base}/taproom/`} class="btn-cream">Plan a visit</a>
+    </div>
+  </section>
+</Base>
