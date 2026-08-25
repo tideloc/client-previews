@@ -1,0 +1,11 @@
+---
+/** Put once in your base layout <head>. Loads tl-live.js which fetches the
+ *  live content JSON and patches [data-tl] slots when the portal copy is
+ *  newer than the one baked into this build. */
+import { siteContent, LIVE_URL } from "../../lib/site";
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+---
+<script is:inline define:vars={{ url: LIVE_URL, version: siteContent.version }}>
+  window.__TL = { url, version };
+</script>
+<script is:inline src={`${base}/tl-live.js`} defer></script>

@@ -1,0 +1,21 @@
+{
+  "slug": "example-business",
+  "version": 1,
+  "updatedAt": "2026-08-25T00:00:00.000Z",
+  "businessName": "Example Business",
+  "hours": [
+    { "day": "mon", "closed": false, "open": "09:00", "close": "17:00", "label": "Monday", "display": "9am - 5pm" },
+    { "day": "tue", "closed": false, "open": "09:00", "close": "17:00", "label": "Tuesday", "display": "9am - 5pm" },
+    { "day": "wed", "closed": false, "open": "09:00", "close": "17:00", "label": "Wednesday", "display": "9am - 5pm" },
+    { "day": "thu", "closed": false, "open": "09:00", "close": "17:00", "label": "Thursday", "display": "9am - 5pm" },
+    { "day": "fri", "closed": false, "open": "09:00", "close": "17:00", "label": "Friday", "display": "9am - 5pm" },
+    { "day": "sat", "closed": false, "open": "09:00", "close": "13:00", "label": "Saturday", "display": "9am - 1pm" },
+    { "day": "sun", "closed": true, "open": "09:00", "close": "17:00", "label": "Sunday", "display": "Closed" }
+  ],
+  "holidays": [],
+  "announcement": { "enabled": false, "text": "" },
+  "contact": { "phone": "", "email": "", "address": "", "suburb": "", "state": "NSW", "postcode": "" },
+  "priceList": [],
+  "social": {},
+  "openingHoursSpecification": []
+}

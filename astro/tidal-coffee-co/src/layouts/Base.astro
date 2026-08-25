@@ -2,6 +2,9 @@
 import '../styles/global.css';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+import LiveContent from '../components/tl/LiveContent.astro';
+import LocalBusinessJsonLd from '../components/tl/LocalBusinessJsonLd.astro';
+import Announcement from '../components/tl/Announcement.astro';
 
 interface Props {
   title: string;
@@ -22,8 +25,11 @@ const { title, description = 'Specialty coffee roaster in Thirroul, NSW. Roasted
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     {og && <meta property="og:image" content={og} />}
+    <LiveContent />
+    <LocalBusinessJsonLd type="CafeOrCoffeeShop" url={Astro.site?.toString()} />
   </head>
   <body class="min-h-screen flex flex-col">
+    <Announcement class="bg-brass text-deep text-sm text-center px-4 py-2 font-mono uppercase tracking-rule" />
     <Nav />
     <main class="flex-1">
       <slot />

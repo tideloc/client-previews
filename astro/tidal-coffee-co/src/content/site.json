@@ -1,0 +1,118 @@
+{
+  "slug": "tidal-coffee-co",
+  "version": 1,
+  "updatedAt": "2026-08-25T00:00:00.000Z",
+  "businessName": "Tidal Coffee Co.",
+  "hours": [
+    {
+      "day": "mon",
+      "closed": false,
+      "open": "06:30",
+      "close": "15:00",
+      "label": "Monday",
+      "display": "6:30am - 3pm"
+    },
+    {
+      "day": "tue",
+      "closed": true,
+      "open": "09:00",
+      "close": "17:00",
+      "label": "Tuesday",
+      "display": "Closed",
+      "note": "roast day"
+    },
+    {
+      "day": "wed",
+      "closed": false,
+      "open": "06:30",
+      "close": "15:00",
+      "label": "Wednesday",
+      "display": "6:30am - 3pm"
+    },
+    {
+      "day": "thu",
+      "closed": false,
+      "open": "06:30",
+      "close": "15:00",
+      "label": "Thursday",
+      "display": "6:30am - 3pm"
+    },
+    {
+      "day": "fri",
+      "closed": false,
+      "open": "06:30",
+      "close": "15:00",
+      "label": "Friday",
+      "display": "6:30am - 3pm"
+    },
+    {
+      "day": "sat",
+      "closed": false,
+      "open": "07:00",
+      "close": "15:00",
+      "label": "Saturday",
+      "display": "7am - 3pm"
+    },
+    {
+      "day": "sun",
+      "closed": false,
+      "open": "07:00",
+      "close": "14:00",
+      "label": "Sunday",
+      "display": "7am - 2pm"
+    }
+  ],
+  "holidays": [],
+  "announcement": {
+    "enabled": false,
+    "text": ""
+  },
+  "contact": {
+    "phone": "",
+    "email": "hello@tidalcoffee.co",
+    "address": "247 Lawrence Hargrave Drive",
+    "suburb": "Thirroul",
+    "state": "NSW",
+    "postcode": "2515"
+  },
+  "priceList": [],
+  "social": {},
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Monday",
+      "opens": "06:30",
+      "closes": "15:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Wednesday",
+      "opens": "06:30",
+      "closes": "15:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Thursday",
+      "opens": "06:30",
+      "closes": "15:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Friday",
+      "opens": "06:30",
+      "closes": "15:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Saturday",
+      "opens": "07:00",
+      "closes": "15:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Sunday",
+      "opens": "07:00",
+      "closes": "14:00"
+    }
+  ]
+}
