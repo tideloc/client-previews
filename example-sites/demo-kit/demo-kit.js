@@ -84,17 +84,21 @@
     q(".tl-count", fab).textContent = String(cartCount());
     fab.classList.toggle("tl-show", cartCount() > 0);
   }
-  function checkout() {
+  // `lines` lets a site with its own cart UI (e.g. Blaze Brothers) reuse the checkout logic.
+  function checkout(lines) {
+    var c = Array.isArray(lines) ? lines : cart;
+    var total = c.reduce(function (n, l) { return n + l.qty * l.price; }, 0);
     var domain = document.body.getAttribute("data-shopify-domain");
     var token = document.body.getAttribute("data-shopify-token");
-    if (domain && token && cart.every(function (l) { return l.shopifyVariantId; })) {
+    if (domain && token && c.length && c.every(function (l) { return l.shopifyVariantId; })) {
       // Real checkout: Shopify's Storefront cart permalink (variantId:qty pairs).
-      var pairs = cart.map(function (l) { return l.shopifyVariantId + ":" + l.qty; }).join(",");
+      var pairs = c.map(function (l) { return l.shopifyVariantId + ":" + l.qty; }).join(",");
       location.href = "https://" + domain + "/cart/" + pairs;
       return;
     }
-    modal("Checkout runs on Shopify", "<p>On the live version of this site, this button opens Shopify's secure checkout with your cart already loaded. Card payments, shipping and receipts are handled there, and the shop owner manages products in their Shopify admin.</p><p>This portfolio copy isn't connected to a store yet, so the cart stops here.</p><p style=\"margin:0\"><strong>Cart total: " + money(cartTotal()) + "</strong></p>");
+    modal("Checkout runs on Shopify", "<p>On the live version of this site, this button opens Shopify's secure checkout with your cart already loaded. Card payments, shipping and receipts are handled there, and the shop owner manages products in their Shopify admin.</p><p>This portfolio copy isn't connected to a store yet, so the cart stops here.</p><p style=\"margin:0\"><strong>Cart total: " + money(total) + "</strong></p>");
   }
+  window.TLKit = { checkout: checkout, modal: modal };
   function shop() {
     qa(".tl-shop").forEach(function (root) {
       var products = [];
