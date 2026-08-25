@@ -146,7 +146,7 @@ body{font-family:'Lato',sans-serif;color:var(--char);background:var(--warm);over
 @media(max-width:600px){.feat-info{padding:28px}.feat-info h1{font-size:1.7rem}.pgrid{grid-template-columns:repeat(2,1fr);gap:12px}.cf{grid-template-columns:1fr}.cf .full{grid-column:span 1}.pd-actions{flex-direction:column;align-items:stretch}.contact-links{flex-direction:column}.cart-bar{padding:10px 16px}.cb-btns{flex-wrap:wrap}}
 </style>
 </head>
-<body data-tl-plan="site_shop" data-tl-label="bush food producer" style="--tl-kit-accent:#C2703E;--tl-kit-ink:#2A2622">
+<body data-shopify-domain="tideloc-demo.myshopify.com" data-shopify-token="18e6cfbf81888fe1660ad14353960173" data-shopify-password="newlyo" data-tl-plan="site_shop" data-tl-label="bush food producer" style="--tl-kit-accent:#C2703E;--tl-kit-ink:#2A2622">
 
 <div class="topstrip" id="topstrip">
 <div class="wordmark" onclick="nav('home')">Outback <em>Pantry</em></div>
@@ -241,6 +241,8 @@ Quick Add</button><button class="btn btn-dark" onclick="openPD(4)">View Details<
 <footer class="foot"><div class="foot-brand">Outback <em>Pantry</em></div><p>&#169; 2026 Outback Pantry, Mudgee NSW &#183; <a>Portfolio site by Tideloc Web Design</a></p></footer>
 
 <script>
+/* Shopify variant ids on the tideloc-demo store: shopifyVariants[productId][sizeLabel]; subscription boxes keyed by name. */
+var shopifyVariants={"0":{"40g":"44510665965667","100g":"44510665998435","250g":"44510666031203"},"1":{"60g":"44510666063971","150g":"44510666096739"},"2":{"30g":"44510666129507","80g":"44510666162275"},"3":{"220g":"44510666195043","400g":"44510666227811"},"4":{"120g":"44510666293347","250g":"44510666326115"},"5":{"80g":"44510666358883","200g":"44510666391651"},"6":{"350g":"44510666457187","700g":"44510666489955"},"7":{"250ml":"44510667505763","500ml":"44510667538531"},"8":{"400g":"44510667636835","800g":"44510667669603"},"Taster Box":"44510668750947","Pantry Box":"44510668783715","Feast Box":"44510668849251"};
 var products=[
 {id:0,cat:'Native Spices',name:'Lemon Myrtle',desc:'Bright, citrusy, intensely aromatic. Use in baking, seafood, dressings, or tea.',img:'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=600&q=80',sizes:[{l:'40g',p:14.50},{l:'100g',p:28},{l:'250g',p:58}],det:'Ground dried lemon myrtle leaf. Sourced from NSW North Coast growers. Intensely lemon-lime with eucalyptus finish.'},
 {id:1,cat:'Native Spices',name:'Wattleseed',desc:'Nutty, roasted, chocolate-coffee notes. Perfect in baking and smoothies.',img:'https://images.pexels.com/photos/3735147/pexels-photo-3735147.jpeg?auto=compress&cs=tinysrgb&w=600',sizes:[{l:'60g',p:16},{l:'150g',p:32}],det:'Ground roasted wattleseed. Rich nutty flavour with chocolate undertones.'},
@@ -303,7 +305,7 @@ function pickSz(i){curSize=i;var btns=document.querySelectorAll('.pd-sz');for(va
 
 function pdQty(d){var el=document.getElementById('pdQty');var v=parseInt(el.value)+d;if(v<1)v=1;if(v>10)v=10;el.value=v;}
 
-function addToCart(){var s=curProd.sizes[curSize];var q=parseInt(document.getElementById('pdQty').value);cart.push({id:curProd.id,name:curProd.name,size:s.l,price:s.p,img:curProd.img,qty:q});updateCart();closePD();}
+function addToCart(){var s=curProd.sizes[curSize];var q=parseInt(document.getElementById('pdQty').value);cart.push({id:curProd.id,name:curProd.name,size:s.l,price:s.p,img:curProd.img,qty:q,shopifyVariantId:(shopifyVariants[curProd.id]||{})[s.l]});updateCart();closePD();}
 
 function removeCI(i){cart.splice(i,1);updateCart();}
 
@@ -336,9 +338,9 @@ function initObs(){var ap=document.querySelector('.page.active');if(ap){var els=
 
 initObs();
 
-function checkoutCart(){if(!cart.length)return;var lines=[];for(var i=0;i<cart.length;i++)lines.push({name:cart[i].name+' '+cart[i].size,price:cart[i].price,qty:cart[i].qty});window.TLKit&&TLKit.checkout(lines);}
+function checkoutCart(){if(!cart.length)return;var lines=[];for(var i=0;i<cart.length;i++)lines.push({name:cart[i].name+' '+cart[i].size,price:cart[i].price,qty:cart[i].qty,shopifyVariantId:cart[i].shopifyVariantId||(shopifyVariants[cart[i].id]||{})[cart[i].size]});window.TLKit&&TLKit.checkout(lines);}
 
-function subscribeBox(name,price){window.TLKit&&TLKit.checkout([{name:name+' (monthly)',price:price,qty:1}]);}
+function subscribeBox(name,price){window.TLKit&&TLKit.checkout([{name:name+' (monthly)',price:price,qty:1,shopifyVariantId:shopifyVariants[name]}]);}
 </script>
 <script src="demo-kit/demo-kit.js" defer></script>
 
