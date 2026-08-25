@@ -1,0 +1,63 @@
+/* Tideloc portfolio demo kit: shop cart, booking embed, request form, plan strip.
+   Deliberately neutral (inherits each site's fonts/colours via CSS vars with fallbacks). */
+:root, body { --tl-accent: var(--tl-kit-accent, #1465A0); --tl-ink: var(--tl-kit-ink, #0D1B2A); --tl-bg: var(--tl-kit-bg, #ffffff); --tl-muted: #6b7280; --tl-radius: 12px; }
+
+/* ── Plan strip (fixed, bottom) ─────────────────────────────────────── */
+.tl-plan-strip { position: fixed; left: 0; right: 0; bottom: 0; z-index: 9990; background: #0D1B2A; color: #fff; font: 500 13px/1.4 -apple-system, "Plus Jakarta Sans", "Helvetica Neue", Arial, sans-serif; padding: 10px 16px; display: flex; gap: 14px; align-items: center; justify-content: center; flex-wrap: wrap; box-shadow: 0 -6px 24px rgba(0,0,0,.18); }
+.tl-plan-strip strong { color: #2EB88A; font-weight: 700; }
+.tl-plan-strip a { color: #fff; text-decoration: underline; text-underline-offset: 3px; }
+.tl-plan-strip .tl-close { margin-left: 8px; background: transparent; border: 1px solid rgba(255,255,255,.35); color: #fff; border-radius: 6px; padding: 3px 8px; cursor: pointer; font-size: 12px; }
+body.tl-has-strip { padding-bottom: 56px; }
+
+/* ── Shop ───────────────────────────────────────────────────────────── */
+.tl-shop { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 22px; }
+.tl-product { background: var(--tl-bg); border: 1px solid rgba(0,0,0,.08); border-radius: var(--tl-radius); overflow: hidden; display: flex; flex-direction: column; transition: transform .2s, box-shadow .2s; }
+.tl-product:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(0,0,0,.1); }
+.tl-product img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; display: block; background: #f3f3f3; }
+.tl-product-body { padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
+.tl-product-name { font-weight: 700; color: var(--tl-ink); }
+.tl-product-desc { font-size: 13px; color: var(--tl-muted); flex: 1; }
+.tl-product-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: 6px; }
+.tl-price { font-weight: 800; color: var(--tl-ink); }
+.tl-variant { font-size: 13px; padding: 6px 8px; border: 1px solid rgba(0,0,0,.15); border-radius: 8px; background: #fff; }
+.tl-btn { background: var(--tl-accent); color: #fff; border: 0; border-radius: 8px; padding: 9px 14px; font-weight: 700; cursor: pointer; font-size: 14px; }
+.tl-btn:hover { filter: brightness(.92); }
+.tl-btn-ghost { background: transparent; color: var(--tl-ink); border: 1.5px solid rgba(0,0,0,.2); }
+.tl-cart-fab { position: fixed; right: 18px; bottom: 72px; z-index: 9991; background: var(--tl-accent); color: #fff; border: 0; border-radius: 999px; padding: 12px 18px; font-weight: 700; box-shadow: 0 10px 30px rgba(0,0,0,.25); cursor: pointer; display: none; align-items: center; gap: 8px; font-size: 14px; }
+.tl-cart-fab.tl-show { display: inline-flex; }
+.tl-cart-fab .tl-count { background: #fff; color: var(--tl-accent); border-radius: 999px; padding: 2px 8px; font-size: 12px; }
+.tl-drawer { position: fixed; top: 0; right: 0; height: 100%; width: min(420px, 100%); background: #fff; z-index: 9995; box-shadow: -12px 0 40px rgba(0,0,0,.2); transform: translateX(100%); transition: transform .25s; display: flex; flex-direction: column; font-family: inherit; }
+.tl-drawer.tl-open { transform: translateX(0); }
+.tl-drawer-head { display: flex; justify-content: space-between; align-items: center; padding: 18px 20px; border-bottom: 1px solid rgba(0,0,0,.08); font-weight: 800; color: var(--tl-ink); }
+.tl-drawer-body { padding: 14px 20px; overflow: auto; flex: 1; }
+.tl-line { display: grid; grid-template-columns: 56px 1fr auto; gap: 12px; align-items: center; padding: 10px 0; border-bottom: 1px solid rgba(0,0,0,.06); font-size: 14px; }
+.tl-line img { width: 56px; height: 56px; object-fit: cover; border-radius: 8px; background: #f3f3f3; }
+.tl-line-name { font-weight: 700; color: var(--tl-ink); }
+.tl-line-meta { font-size: 12px; color: var(--tl-muted); }
+.tl-qty { display: inline-flex; align-items: center; gap: 6px; margin-top: 4px; }
+.tl-qty button { width: 24px; height: 24px; border-radius: 6px; border: 1px solid rgba(0,0,0,.15); background: #fff; cursor: pointer; }
+.tl-drawer-foot { padding: 16px 20px 20px; border-top: 1px solid rgba(0,0,0,.08); }
+.tl-total { display: flex; justify-content: space-between; font-weight: 800; color: var(--tl-ink); margin-bottom: 10px; }
+.tl-note { font-size: 12px; color: var(--tl-muted); margin-top: 8px; }
+.tl-backdrop { position: fixed; inset: 0; background: rgba(0,0,0,.35); z-index: 9994; display: none; }
+.tl-backdrop.tl-show { display: block; }
+.tl-modal { position: fixed; inset: 0; z-index: 9996; display: none; align-items: center; justify-content: center; padding: 20px; }
+.tl-modal.tl-show { display: flex; }
+.tl-modal-card { background: #fff; border-radius: 16px; max-width: 460px; width: 100%; padding: 26px; color: var(--tl-ink); box-shadow: 0 20px 60px rgba(0,0,0,.3); }
+.tl-modal-card h3 { margin: 0 0 8px; font-size: 20px; }
+.tl-modal-card p { margin: 0 0 12px; font-size: 14px; color: #374151; line-height: 1.5; }
+
+/* ── Booking embed ──────────────────────────────────────────────────── */
+.tl-booking { border: 1px solid rgba(0,0,0,.08); border-radius: var(--tl-radius); overflow: hidden; background: #fff; min-height: 620px; }
+.tl-booking-note { font-size: 13px; color: var(--tl-muted); margin-top: 10px; }
+
+/* ── Request form ───────────────────────────────────────────────────── */
+.tl-form { display: grid; gap: 12px; grid-template-columns: 1fr 1fr; }
+.tl-form .tl-full { grid-column: 1 / -1; }
+.tl-form label { display: block; font-size: 12px; font-weight: 700; color: var(--tl-ink); margin-bottom: 4px; }
+.tl-form input, .tl-form select, .tl-form textarea { width: 100%; padding: 10px 12px; border: 1px solid rgba(0,0,0,.18); border-radius: 8px; font: inherit; font-size: 14px; background: #fff; color: var(--tl-ink); }
+.tl-form textarea { min-height: 96px; resize: vertical; }
+.tl-form-status { grid-column: 1 / -1; font-size: 14px; color: var(--tl-ink); }
+.tl-form-status.tl-ok { color: #1a7f5a; font-weight: 700; }
+.tl-form-status.tl-err { color: #b42318; }
+@media (max-width: 640px) { .tl-form { grid-template-columns: 1fr; } }
