@@ -91,9 +91,26 @@
     var domain = document.body.getAttribute("data-shopify-domain");
     var token = document.body.getAttribute("data-shopify-token");
     if (domain && token && c.length && c.every(function (l) { return l.shopifyVariantId; })) {
-      // Real checkout: Shopify's Storefront cart permalink (variantId:qty pairs).
+      // Real checkout: create a cart through Shopify's Storefront API and hand off to its checkoutUrl.
+      // (Works even while a dev store's password page is on; the permalink form below does not.)
+      var lines = c.map(function (l) { return { merchandiseId: "gid://shopify/ProductVariant/" + l.shopifyVariantId, quantity: l.qty }; });
       var pairs = c.map(function (l) { return l.shopifyVariantId + ":" + l.qty; }).join(",");
-      location.href = "https://" + domain + "/cart/" + pairs;
+      var fallback = function () { location.href = "https://" + domain + "/cart/" + pairs; };
+      fetch("https://" + domain + "/api/2025-07/graphql.json", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "X-Shopify-Storefront-Access-Token": token },
+        body: JSON.stringify({ query: "mutation($lines:[CartLineInput!]!){ cartCreate(input:{lines:$lines}){ cart{ checkoutUrl } userErrors{ message } } }", variables: { lines: lines } })
+      }).then(function (r) { return r.json(); })
+        .then(function (j) {
+          var u = j && j.data && j.data.cartCreate && j.data.cartCreate.cart && j.data.cartCreate.cart.checkoutUrl;
+          if (!u) return fallback();
+          var pw = document.body.getAttribute("data-shopify-password");
+          if (!pw) { location.href = u; return; }
+          // Shopify development stores keep a storefront password until they're on a paid plan.
+          // Real client stores don't have this step; for the demo we show the password once.
+          modal("One step before checkout", "<p>This demo shop runs on a Shopify development store, which Shopify keeps behind a password until it's on a paid plan. A real client store has no password page.</p><p><strong>Step 1:</strong> <a href=\"https://" + esc(domain) + "/password\" target=\"_blank\" rel=\"noopener\" style=\"color:var(--tl-accent);font-weight:700\">open the demo store</a> and enter the password <strong style=\"font-size:18px;letter-spacing:.04em\">" + esc(pw) + "</strong> (once per browser).</p><p><strong>Step 2:</strong> come back here and continue. Your cart (" + money(total) + ") opens in Shopify's checkout.</p>", { label: "Continue to checkout", href: u });
+        })
+        .catch(fallback);
       return;
     }
     modal("Checkout runs on Shopify", "<p>On the live version of this site, this button opens Shopify's secure checkout with your cart already loaded. Card payments, shipping and receipts are handled there, and the shop owner manages products in their Shopify admin.</p><p>This portfolio copy isn't connected to a store yet, so the cart stops here.</p><p style=\"margin:0\"><strong>Cart total: " + money(total) + "</strong></p>");
@@ -158,9 +175,13 @@
     });
   }
 
-  function modal(title, html) {
-    var m = q(".tl-modal") || (function () { var d = document.createElement("div"); d.className = "tl-modal"; d.innerHTML = "<div class=\"tl-modal-card\"><h3></h3><div data-body></div><button class=\"tl-btn\" data-ok style=\"margin-top:10px\">Got it</button></div>"; document.body.appendChild(d); q("[data-ok]", d).onclick = function () { d.classList.remove("tl-show"); }; d.onclick = function (e) { if (e.target === d) d.classList.remove("tl-show"); }; return d; })();
+  // action: optional {label, href} turns the button into a link-out (used for the dev-store password step).
+  function modal(title, html, action) {
+    var m = q(".tl-modal") || (function () { var d = document.createElement("div"); d.className = "tl-modal"; d.innerHTML = "<div class=\"tl-modal-card\"><h3></h3><div data-body></div><button class=\"tl-btn\" data-ok style=\"margin-top:10px\">Got it</button></div>"; document.body.appendChild(d); d.onclick = function (e) { if (e.target === d) d.classList.remove("tl-show"); }; return d; })();
     q("h3", m).textContent = title; q("[data-body]", m).innerHTML = html; m.classList.add("tl-show");
+    var ok = q("[data-ok]", m);
+    ok.textContent = action && action.label ? action.label : "Got it";
+    ok.onclick = function () { m.classList.remove("tl-show"); if (action && action.href) location.href = action.href; };
   }
   function esc(s) { return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;", "'": "&#39;" }[c]; }); }
 
