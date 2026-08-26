@@ -6,21 +6,14 @@ import Footer from '../components/Footer.astro';
 import SeasonCalendar from '../components/SeasonCalendar.astro';
 import BunchRequest from '../components/BunchRequest.astro';
 import VergeBand from '../components/VergeBand.astro';
-import { seasons, seasonFor, nextSeason } from '../data/seasons';
+import HeroVerge from '../components/HeroVerge.astro';
+import BrandBand from '../components/BrandBand.astro';
 import WeddingsGifts from '../components/WeddingsGifts.astro';
 import hero from '../assets/verge-dahlias-house.jpg';
 
 const site = Astro.site?.toString().replace(/\/$/, '') ?? '';
 const og = await getImage({ src: hero, width: 1200, height: 630, format: 'jpg' });
 const ogUrl = `${site}${og.src}`;
-const today = new Date();
-const dateLine = today.toLocaleDateString('en-AU', { day: 'numeric', month: 'long', timeZone: 'Australia/Sydney' });
-const now = seasonFor(today);
-const cur = seasons.find((s) => s.key === now)!;
-const nxt = seasons.find((s) => s.key === nextSeason(now))!;
-const weekLine = cur.stems.length
-  ? `Week of ${dateLine}. In season: ${cur.stems.slice(0, 4).join(', ').toLowerCase()} and more. Call to find out what is in bloom this week.`
-  : `Week of ${dateLine}. Closed for winter, see you in spring.`;
 ---
 <Base
   title="Seasonal flowers grown in Moss Vale | Tiny Flower House"
@@ -29,12 +22,11 @@ const weekLine = cur.stems.length
 >
   <Header slot="header" />
 
-  <section data-section="hero" class="mx-auto max-w-6xl px-5 pt-10 md:pt-14">
-    <p class="text-ink/70">{weekLine}</p>
-    <h1 class="font-display text-2xl md:text-[2.6vw] leading-[1.25] mt-3">What is in the beds at the corner of North and East Street, Moss Vale.</h1>
-  </section>
-  <VergeBand />
+  <HeroVerge />
+  <BrandBand />
+  <div id="beds" class="mx-auto max-w-6xl px-5 mt-20 md:mt-24"><h2 class="font-display text-2xl md:text-3xl">In the beds, by season</h2><p class="mt-3 max-w-xl text-ink/80">Grown on the nature strip at the corner of North and East Street and sourced within 50 km of Moss Vale. What is in bloom changes week to week.</p></div>
   <SeasonCalendar compact bare />
+  <VergeBand />
   <BunchRequest />
   <WeddingsGifts />
 

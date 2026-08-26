@@ -1,0 +1,20 @@
+---
+/** The saturated brand move: her sage at full strength, her occasions copy, the formats seen in her photos. */
+import { formats } from '../data/seasons';
+---
+<section data-section="occasions" class="bg-primary text-ground">
+  <div class="mx-auto max-w-6xl px-5 py-14 md:py-20 grid gap-10 md:grid-cols-12 md:items-center">
+    <div class="md:col-span-6">
+      <h2 class="font-display text-2xl md:text-[2.4vw] leading-tight">Flowers for love, laughter and loss.</h2>
+      <p class="mt-5 text-lg text-ground/90 max-w-lg">Whether to mark a special birthday or anniversary, as a gift of encouragement or to offer sympathy over a loss, flowers say it all.</p>
+    </div>
+    <dl class="md:col-span-5 md:col-start-8 divide-y divide-ground/25 border-t border-b border-ground/25">
+      {formats.map((f) => (
+        <div class="py-4 flex items-baseline justify-between gap-6">
+          <dt class="font-display text-sm tracking-[0.18em]">{f.name}</dt>
+          <dd class="text-ground/85 text-right">{f.line}</dd>
+        </div>
+      ))}
+    </dl>
+  </div>
+</section>

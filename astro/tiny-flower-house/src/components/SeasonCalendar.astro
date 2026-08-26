@@ -8,7 +8,7 @@ const now = seasonFor(new Date());
 const open = seasons.find((s) => s.key === now)!.stems.length ? now : nextSeason(now);
 const dot: Record<string, string> = { cutting: 'bg-primary', budding: 'bg-secondary', resting: 'bg-ink/25' };
 ---
-<section data-section="calendar" aria-label="In the beds" class={`mx-auto max-w-6xl px-5 ${bare ? "mt-10" : "mt-20 md:mt-28"}`}>
+<section data-section="calendar" aria-label="In the beds" class={`mx-auto max-w-6xl px-5 ${bare ? "mt-8" : "mt-20 md:mt-28"}`}>
   {!bare && <div class="md:flex md:items-end md:justify-between gap-8">
     <h2 id="beds-h" class="font-display text-xl md:text-2xl">In the beds</h2>
     <p class="mt-3 md:mt-0 max-w-md text-ink/80">Grown on the nature strip at the corner of North and East Street and sourced within 50 km of Moss Vale. What is cut depends on the week.</p>
