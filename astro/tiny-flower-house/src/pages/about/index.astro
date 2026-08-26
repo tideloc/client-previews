@@ -3,35 +3,49 @@ import { Picture } from 'astro:assets';
 import Base from '../../layouts/Base.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
+import PageHero from '../../components/PageHero.astro';
+import CallBand from '../../components/CallBand.astro';
 import lisa from '../../assets/lisa-portrait.jpg';
 import shopfront from '../../assets/shopfront.jpg';
 import interior from '../../assets/shop-interior.jpg';
-import cosmos from '../../assets/verge-cosmos.jpg';
+import dahlias from '../../assets/verge-dahlias.jpg';
+import foxgloves from '../../assets/verge-foxgloves.jpg';
+import dried from '../../assets/dried-hanging.jpg';
 ---
 <Base
   title="About | Tiny Flower House, Moss Vale"
   description="Tiny Flower House is a Moss Vale florist growing its own flowers on the nature strip at the corner of North and East Street. Irregular, venturesome, local."
 >
   <Header slot="header" />
-  <section data-section="manifesto" class="mx-auto max-w-6xl px-5 min-h-[70vh] flex items-center">
-    <h1 class="font-display text-[8vw] md:text-[4.6vw] leading-[1.2]">Not your typical florist. We are guerrilla gardeners.</h1>
-  </section>
+  <PageHero image={shopfront} alt="The black cottage workshop with white French doors and the round logo on the glass" eyebrow="Guerrilla gardening in Moss Vale, NSW" title="The corner of North and East Street." line="A little black cottage workshop, and flower beds on the nature strip outside it." position="50% 40%" />
 
-  <section data-section="story" class="mx-auto max-w-6xl px-5 grid gap-10 md:grid-cols-12">
+  <section data-section="story" class="mx-auto max-w-6xl px-5 mt-16 md:mt-20 grid gap-10 md:grid-cols-12 md:items-center">
     <div class="md:col-span-5">
-      <Picture src={lisa} widths={[480, 800, 1200]} sizes="(min-width: 768px) 40vw, 100vw" formats={['avif', 'webp']} alt="Lisa holding a large bunch of flowers in front of her face in the workshop" class="w-full aspect-[4/5] object-cover object-top" loading="eager" fetchpriority="high" />
+      <Picture src={lisa} widths={[480, 800, 1200]} sizes="(min-width: 768px) 40vw, 100vw" formats={['avif', 'webp']} alt="Lisa holding a large bunch of flowers in front of her face in the workshop" class="w-full aspect-[4/5] object-cover object-top" loading="lazy" />
     </div>
     <div class="md:col-span-6 md:col-start-7 text-lg leading-relaxed">
-      <p>All of our flowers are grown here on our premises in Moss Vale, sourced from within the Southern Highlands or within 50 kilometres of Moss Vale. We use what is currently in season, so our bouquets are made up of the best seasonal flowers the Southern Highlands has to offer.</p>
-      <p class="mt-6">The beds are on the public nature strip outside the house at the corner of North and East Street. We harvest early in the morning and in the evening. The workshop is the little black cottage on North Street. We're irregular, venturesome, and we love it.</p>
-      <p class="mt-6">Flowers for love, laughter and loss. Whether to mark a special birthday or anniversary, as a gift of encouragement or to offer sympathy over a loss, flowers say it all.</p>
+      <h2 class="font-display text-2xl md:text-3xl">Not your typical florist.</h2>
+      <p class="mt-5">All of our flowers are grown here on our premises in Moss Vale, sourced from within the Southern Highlands or within 50 kilometres of Moss Vale. We use what is currently in season, so our bouquets are made up of the best seasonal flowers the Southern Highlands has to offer.</p>
+      <p class="mt-5">The beds are on the public nature strip outside the house at the corner of North and East Street. We harvest early in the morning and in the evening.</p>
+      <p class="mt-5">Flowers for love, laughter and loss. Whether to mark a special birthday or anniversary, as a gift of encouragement or to offer sympathy over a loss, flowers say it all.</p>
     </div>
   </section>
 
-  <section data-section="place" aria-label="The corner" class="mx-auto max-w-6xl px-5 mt-16 grid gap-4 md:grid-cols-3">
-    <Picture src={shopfront} widths={[480, 800]} sizes="(min-width: 768px) 33vw, 100vw" formats={['avif', 'webp']} alt="The black cottage workshop with white French doors and round logo on the glass" class="w-full aspect-[4/3] object-cover" loading="lazy" />
-    <Picture src={interior} widths={[480, 800]} sizes="(min-width: 768px) 33vw, 100vw" formats={['avif', 'webp']} alt="Pink stocks in a vase beside a blue and white plate inside the workshop" class="w-full aspect-[4/3] object-cover" loading="lazy" />
-    <Picture src={cosmos} widths={[480, 800]} sizes="(min-width: 768px) 33vw, 100vw" formats={['avif', 'webp']} alt="Cosmos flowering on the nature strip with the street behind" class="w-full aspect-[4/3] object-cover" loading="lazy" />
+  <section data-section="manifesto" class="bg-ink text-ground mt-16 md:mt-20">
+    <div class="mx-auto max-w-6xl px-5 py-16 md:py-24">
+      <p class="font-display text-[9vw] md:text-[4.4vw] leading-[1.05]">We're irregular, <span class="text-secondary">venturesome,</span> and we love it.</p>
+    </div>
   </section>
+
+  <section data-section="place" aria-label="The corner and the workshop" class="mx-auto max-w-6xl px-5 mt-16 md:mt-20 grid gap-3 grid-cols-2 md:grid-cols-12">
+    <Picture src={dahlias} widths={[640, 1024, 1400]} sizes="(min-width: 768px) 58vw, 100vw" formats={['avif', 'webp']} alt="Dahlias flowering on the verge in front of the house" pictureAttributes={{ class: 'col-span-2 md:col-span-7 block' }} class="w-full aspect-[4/3] object-cover" loading="lazy" />
+    <div class="col-span-2 md:col-span-5 grid grid-cols-2 gap-3">
+      <Picture src={interior} widths={[480, 800]} sizes="25vw" formats={['avif', 'webp']} alt="Pink stocks in a vase beside a blue and white plate inside the workshop" class="w-full aspect-square object-cover" loading="lazy" />
+      <Picture src={foxgloves} widths={[480, 800]} sizes="25vw" formats={['avif', 'webp']} alt="Pink foxglove spikes growing in the verge bed" class="w-full aspect-square object-cover" loading="lazy" />
+      <Picture src={dried} widths={[640, 1000]} sizes="(min-width: 768px) 40vw, 100vw" formats={['avif', 'webp']} alt="Dried flower bunches hanging upside down in the workshop" pictureAttributes={{ class: 'col-span-2 block' }} class="w-full aspect-[2/1] object-cover" loading="lazy" />
+    </div>
+  </section>
+
+  <CallBand tone="sage" />
   <Footer slot="footer" />
 </Base>

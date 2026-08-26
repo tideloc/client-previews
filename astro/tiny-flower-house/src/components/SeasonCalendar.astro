@@ -29,7 +29,7 @@ const dot: Record<string, string> = { cutting: 'bg-primary', budding: 'bg-second
       <div role="tabpanel" id={`panel-${s.key}`} aria-labelledby={`tab-${s.key}`} hidden={s.key !== open} class="pt-6">
         <p class="text-ink/70">{s.months}. {s.note}{s.stems.length ? ` Everything listed is ${stateLabel[state]}.` : ''}</p>
         {s.stems.length > 0 && (
-          <ul class={`mt-5 grid gap-x-8 gap-y-2 ${compact ? 'sm:grid-cols-2 md:grid-cols-4' : 'sm:grid-cols-2 md:grid-cols-3'}`}>
+          <ul class={`mt-5 grid gap-x-6 gap-y-2 grid-cols-2 ${compact ? 'md:grid-cols-4' : 'md:grid-cols-3'}`}>
             {s.stems.map((stem) => (
               <li class="border-b border-ink/10 py-1.5">{stem}</li>
             ))}
