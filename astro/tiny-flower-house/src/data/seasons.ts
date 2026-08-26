@@ -63,7 +63,7 @@ export const stateLabel: Record<StemState, string> = {
 
 /** Formats she sells, as seen in her own photographs. No prices exist on her site. */
 export const formats = [
-  { name: 'Wrapped bunch', line: 'Seasonal stems, hand tied in paper.' },
-  { name: 'Posy in a box', line: 'A smaller bunch in a box with ribbon.' },
+  { name: 'Wrapped bunch', line: 'Seasonal stems, wrapped in paper.' },
+  { name: 'Posy in a box', line: 'A posy in a box with ribbon.' },
   { name: 'Arrangement in a jug', line: 'Arranged in a vessel, ready to stand.' },
 ];
