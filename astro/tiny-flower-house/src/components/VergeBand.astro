@@ -1,0 +1,27 @@
+---
+/** Full-width band of her verge and workshop photos. Opens the home page under the h1. */
+import { Picture } from 'astro:assets';
+import dahlias from '../assets/verge-dahlias-house.jpg';
+import cosmos from '../assets/verge-cosmos.jpg';
+import foxgloves from '../assets/verge-foxgloves.jpg';
+import strawflowers from '../assets/verge-strawflowers.jpg';
+import shopfront from '../assets/shopfront.jpg';
+import lace from '../assets/lace-dried.jpg';
+const photos = [
+  { src: dahlias, alt: 'Peach dahlias flowering on the nature strip outside the house', cap: 'Dahlias on the verge', w: 'w-[88vw] md:w-[38rem]', eager: true },
+  { src: cosmos, alt: 'Cosmos flowering on the nature strip with the road behind', cap: 'Cosmos, summer', w: 'w-[70vw] md:w-[28rem]', eager: true },
+  { src: shopfront, alt: 'The black cottage workshop with white French doors on North Street', cap: 'The workshop, North Street', w: 'w-[70vw] md:w-[28rem]', eager: false },
+  { src: foxgloves, alt: 'Pink foxglove spikes growing in the verge bed', cap: 'Foxgloves, spring', w: 'w-[52vw] md:w-[18rem]', eager: false },
+  { src: strawflowers, alt: 'Pale pink strawflowers and asters in the verge bed in sunlight', cap: 'Strawflowers and asters', w: 'w-[70vw] md:w-[28rem]', eager: false },
+  { src: lace, alt: "Queen Ann's lace and dried flower heads in soft light", cap: "Queen Ann's lace", w: 'w-[70vw] md:w-[28rem]', eager: false },
+];
+---
+<ul data-section="band" aria-label="The verge" class="mt-8 flex gap-3 overflow-x-auto snap-x snap-mandatory px-5 pb-3 md:px-[max(1.25rem,calc((100vw-72rem)/2+1.25rem))]">
+  {photos.map((p) => (
+    <li class={`snap-start shrink-0 ${p.w}`}>
+      <Picture src={p.src} widths={[480, 800, 1200]} sizes="(min-width: 768px) 38rem, 88vw" formats={['avif', 'webp']} alt={p.alt}
+        class="w-full h-56 md:h-80 object-cover" loading={p.eager ? 'eager' : 'lazy'} fetchpriority={p.eager ? 'high' : undefined} />
+      <p class="mt-1.5 text-sm text-accent">{p.cap}</p>
+    </li>
+  ))}
+</ul>

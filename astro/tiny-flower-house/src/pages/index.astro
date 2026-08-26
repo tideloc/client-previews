@@ -5,13 +5,22 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import SeasonCalendar from '../components/SeasonCalendar.astro';
 import BunchRequest from '../components/BunchRequest.astro';
-import PhotoStrip from '../components/PhotoStrip.astro';
+import VergeBand from '../components/VergeBand.astro';
+import { seasons, seasonFor, nextSeason } from '../data/seasons';
 import WeddingsGifts from '../components/WeddingsGifts.astro';
 import hero from '../assets/verge-dahlias-house.jpg';
 
 const site = Astro.site?.toString().replace(/\/$/, '') ?? '';
 const og = await getImage({ src: hero, width: 1200, height: 630, format: 'jpg' });
 const ogUrl = `${site}${og.src}`;
+const today = new Date();
+const dateLine = today.toLocaleDateString('en-AU', { day: 'numeric', month: 'long', timeZone: 'Australia/Sydney' });
+const now = seasonFor(today);
+const cur = seasons.find((s) => s.key === now)!;
+const nxt = seasons.find((s) => s.key === nextSeason(now))!;
+const weekLine = cur.stems.length
+  ? `Week of ${dateLine}. Cutting now: ${cur.stems.slice(0, 4).join(', ').toLowerCase()} and more. Priced when we cut them.`
+  : `Week of ${dateLine}. The beds are resting until ${nxt.from.replace('from ', '')}. Dried bunches and gifts all year.`;
 ---
 <Base
   title="Seasonal flowers grown in Moss Vale | Tiny Flower House"
@@ -20,26 +29,13 @@ const ogUrl = `${site}${og.src}`;
 >
   <Header slot="header" />
 
-  <section data-section="hero" class="grid md:grid-cols-12 items-center md:pl-[max(1.25rem,calc((100vw-72rem)/2+1.25rem))]">
-    <div class="order-2 md:order-1 md:col-span-5 px-5 md:px-0 pt-6 pb-10 md:py-24 md:pr-12">
-      <p class="text-sm tracking-wide uppercase text-accent">Guerrilla gardening in Moss Vale, NSW</p>
-      <h1 class="font-display font-light text-5xl md:text-6xl leading-[1.05] mt-4">Seasonal flowers, grown on the verge and cut this week.</h1>
-      <p class="mt-6 max-w-md text-lg text-ink/80">Fresh, local, seasonal. Not your typical florist.</p>
-      <div class="mt-8 flex flex-wrap items-center gap-5">
-        <a href="#request" class="bg-primary text-ground px-6 py-3 font-semibold">Request a bunch</a>
-        <a href="#beds-h" class="underline underline-offset-4">See what is in the beds</a>
-      </div>
-    </div>
-    <div class="order-1 md:order-2 md:col-span-7">
-      <Picture src={hero} widths={[640, 1024, 1600]} sizes="(min-width: 768px) 58vw, 100vw" formats={['avif', 'webp']}
-        alt="Peach dahlias flowering on the nature strip outside the house, Moss Vale"
-        class="w-full aspect-square md:aspect-auto md:h-[min(82vh,44rem)] object-cover object-[70%_50%]" loading="eager" fetchpriority="high" />
-    </div>
+  <section data-section="hero" class="mx-auto max-w-6xl px-5 pt-10 md:pt-14">
+    <p class="text-ink/70">{weekLine}</p>
+    <h1 class="font-display font-light text-4xl md:text-[3.6vw] leading-[1.08] mt-3">What is in the beds at the corner of North and East Street, Moss Vale.</h1>
   </section>
-
-  <SeasonCalendar compact />
+  <VergeBand />
+  <SeasonCalendar compact bare />
   <BunchRequest />
-  <PhotoStrip />
   <WeddingsGifts />
 
   <Footer slot="footer" />
