@@ -4,16 +4,68 @@
   "updatedAt": "2026-08-26T00:00:00.000Z",
   "businessName": "Tiny Flower House",
   "hours": [
-    { "day": "mon", "closed": true, "open": "09:00", "close": "17:00", "label": "Monday", "display": "Closed" },
-    { "day": "tue", "closed": true, "open": "09:00", "close": "17:00", "label": "Tuesday", "display": "Closed" },
-    { "day": "wed", "closed": false, "open": "09:00", "close": "17:00", "label": "Wednesday", "display": "9am - 5pm" },
-    { "day": "thu", "closed": false, "open": "09:00", "close": "17:00", "label": "Thursday", "display": "9am - 5pm" },
-    { "day": "fri", "closed": false, "open": "09:00", "close": "17:00", "label": "Friday", "display": "9am - 5pm" },
-    { "day": "sat", "closed": false, "open": "09:00", "close": "12:00", "label": "Saturday", "display": "9am - 12pm" },
-    { "day": "sun", "closed": true, "open": "09:00", "close": "17:00", "label": "Sunday", "display": "Closed" }
+    {
+      "day": "mon",
+      "closed": true,
+      "open": "09:00",
+      "close": "17:00",
+      "label": "Monday",
+      "display": "Closed"
+    },
+    {
+      "day": "tue",
+      "closed": true,
+      "open": "09:00",
+      "close": "17:00",
+      "label": "Tuesday",
+      "display": "Closed"
+    },
+    {
+      "day": "wed",
+      "closed": false,
+      "open": "09:00",
+      "close": "17:00",
+      "label": "Wednesday",
+      "display": "9am - 5pm"
+    },
+    {
+      "day": "thu",
+      "closed": false,
+      "open": "09:00",
+      "close": "17:00",
+      "label": "Thursday",
+      "display": "9am - 5pm"
+    },
+    {
+      "day": "fri",
+      "closed": false,
+      "open": "09:00",
+      "close": "17:00",
+      "label": "Friday",
+      "display": "9am - 5pm"
+    },
+    {
+      "day": "sat",
+      "closed": false,
+      "open": "09:00",
+      "close": "12:00",
+      "label": "Saturday",
+      "display": "9am - 12pm"
+    },
+    {
+      "day": "sun",
+      "closed": true,
+      "open": "09:00",
+      "close": "17:00",
+      "label": "Sunday",
+      "display": "Closed"
+    }
   ],
   "holidays": [],
-  "announcement": { "enabled": true, "text": "Tiny Flower House is now closed for winter. See you in Spring 26. Thank you for supporting a local business this season." },
+  "announcement": {
+    "enabled": true,
+    "text": "Tiny Flower House is now closed for winter. See you in Spring 26. Thank you for supporting a local business this season."
+  },
   "contact": {
     "phone": "0417 000 547",
     "email": "tinyflowerhouse@protonmail.com",
@@ -23,12 +75,118 @@
     "postcode": "2579",
     "mapUrl": "https://www.google.com/maps/dir/?api=1&destination=Corner%20North%20Street%20and%20East%20Street%2C%20Moss%20Vale%20NSW%202579"
   },
-  "priceList": [],
+  "priceList": [
+    {
+      "title": "In the beds this week",
+      "items": [
+        {
+          "name": "Daffodils",
+          "price": "",
+          "note": "coming into season"
+        },
+        {
+          "name": "Snowball Viburnum",
+          "price": "",
+          "note": "coming into season"
+        },
+        {
+          "name": "Ranunculus",
+          "price": "",
+          "note": "coming into season"
+        },
+        {
+          "name": "Lilac",
+          "price": "",
+          "note": "coming into season"
+        },
+        {
+          "name": "Dianthus",
+          "price": "",
+          "note": "coming into season"
+        },
+        {
+          "name": "Hellebores",
+          "price": "",
+          "note": "coming into season"
+        },
+        {
+          "name": "Foxgloves",
+          "price": "",
+          "note": "coming into season"
+        },
+        {
+          "name": "Peonies",
+          "price": "",
+          "note": "coming into season"
+        },
+        {
+          "name": "Arum Lilies",
+          "price": "",
+          "note": "coming into season"
+        },
+        {
+          "name": "Stock",
+          "price": "",
+          "note": "coming into season"
+        },
+        {
+          "name": "Violas",
+          "price": "",
+          "note": "coming into season"
+        },
+        {
+          "name": "Blossoms",
+          "price": "",
+          "note": "coming into season"
+        },
+        {
+          "name": "Roses",
+          "price": "",
+          "note": "coming into season"
+        },
+        {
+          "name": "Larkspur",
+          "price": "",
+          "note": "coming into season"
+        },
+        {
+          "name": "False Dill",
+          "price": "",
+          "note": "coming into season"
+        },
+        {
+          "name": "Queen Ann's Lace",
+          "price": "",
+          "note": "coming into season"
+        }
+      ]
+    }
+  ],
   "social": {},
   "openingHoursSpecification": [
-    { "@type": "OpeningHoursSpecification", "dayOfWeek": "Wednesday", "opens": "09:00", "closes": "17:00" },
-    { "@type": "OpeningHoursSpecification", "dayOfWeek": "Thursday", "opens": "09:00", "closes": "17:00" },
-    { "@type": "OpeningHoursSpecification", "dayOfWeek": "Friday", "opens": "09:00", "closes": "17:00" },
-    { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "09:00", "closes": "12:00" }
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Wednesday",
+      "opens": "09:00",
+      "closes": "17:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Thursday",
+      "opens": "09:00",
+      "closes": "17:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Friday",
+      "opens": "09:00",
+      "closes": "17:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Saturday",
+      "opens": "09:00",
+      "closes": "12:00"
+    }
   ]
 }

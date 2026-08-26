@@ -40,7 +40,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
       <Picture src={zinnias} widths={[400, 800]} sizes="25vw" formats={['avif', 'webp']} alt="Bright zinnias in red, pink and gold" class="w-full aspect-square object-cover" loading="lazy" />
       <Picture src={snaps} widths={[400, 800]} sizes="25vw" formats={['avif', 'webp']} alt="Peach and yellow snapdragons close up" class="w-full aspect-square object-cover" loading="lazy" />
     </div>
-    <p class="mt-6 text-lg">Request a bunch from the <a href={`${base}/#request`} class="underline underline-offset-4 font-semibold">home page</a>, or ring.</p>
+    <div class="mt-8 flex flex-wrap items-center gap-4"><a href={`${base}/#request`} class="bg-primary text-ground px-7 py-3.5 font-semibold">Request a bunch</a><a href="tel:+61417000547" class="font-semibold underline underline-offset-4 tabular-nums">0417 000 547</a></div>
   </section>
   <Footer slot="footer" />
 </Base>

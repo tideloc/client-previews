@@ -2,26 +2,19 @@
 /** Portfolio-grade hero: full-bleed verge photo, her manifesto at scale, the live beds card. */
 import { Picture } from 'astro:assets';
 import verge from '../assets/verge-cosmos.jpg';
-import { seasons, seasonFor, nextSeason, stateFor, stateLabel } from '../data/seasons';
+import BedsCard from './BedsCard.astro';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-const today = new Date();
-const dateLine = today.toLocaleDateString('en-AU', { day: 'numeric', month: 'long', timeZone: 'Australia/Sydney' });
-const now = seasonFor(today);
-const cur = seasons.find((s) => s.key === now)!;
-const showKey = cur.stems.length ? now : nextSeason(now);
-const show = seasons.find((s) => s.key === showKey)!;
-const state = stateFor(showKey, now);
 ---
 <section data-section="hero" class="relative min-h-[88vh] md:min-h-[86vh] flex items-end overflow-hidden bg-ink">
   <Picture src={verge} widths={[768, 1280, 1920]} sizes="100vw" formats={['avif', 'webp']}
     alt="Cosmos flowering on the nature strip at the corner of North and East Street, the road behind"
     class="absolute inset-0 w-full h-full object-cover object-[60%_45%]" pictureAttributes={{ class: 'absolute inset-0' }} loading="eager" fetchpriority="high" />
-  <div class="absolute inset-0 bg-gradient-to-r from-ink/85 via-ink/55 to-ink/20"></div>
+  <div class="absolute inset-0 bg-gradient-to-r from-ink/90 via-ink/60 to-ink/25"></div>
   <div class="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-ink/70 to-transparent"></div>
 
   <div class="relative mx-auto max-w-6xl w-full px-5 pb-12 pt-28 md:pb-14 grid gap-10 md:grid-cols-12 md:items-end">
     <div class="md:col-span-7 text-ground">
-      <p class="font-display text-sm md:text-base tracking-[0.35em] text-secondary">Fresh &nbsp;Local &nbsp;Seasonal</p>
+      <p class="font-display text-sm md:text-base tracking-[0.3em] text-ground flex items-center gap-3"><span class="inline-block w-8 h-[3px] bg-secondary"></span>Fresh &nbsp;Local &nbsp;Seasonal</p>
       <h1 class="font-display mt-5 text-[10vw] md:text-[4.4vw] leading-[1.04]">Not your typical florist.<br /><span class="text-secondary">We are guerrilla gardeners.</span></h1>
       <p class="mt-6 max-w-xl text-lg md:text-xl text-ground/90">Flowers grown on the nature strip at the corner of North and East Street, Moss Vale, and sourced from within 50 km.</p>
       <div class="mt-8 flex flex-wrap gap-4">
@@ -30,18 +23,6 @@ const state = stateFor(showKey, now);
       </div>
     </div>
 
-    <aside data-section="beds-card" class="md:col-span-5 md:col-start-8 bg-ground text-ink p-6 md:p-7 shadow-2xl shadow-ink/40 max-w-md md:justify-self-end">
-      <p class="font-display text-xs tracking-[0.25em] text-primary">In the beds this week</p>
-      <p class="mt-2 text-sm text-ink/70">Week of {dateLine}. {cur.stems.length ? `${cur.label}, in season now.` : `Closed for winter, see you in spring.`}</p>
-      <ul class="mt-4 grid grid-cols-2 gap-x-6 gap-y-1.5">
-        {show.stems.slice(0, 8).map((stem) => (
-          <li class="flex items-center gap-2 border-b border-ink/10 pb-1.5"><span class={`inline-block w-2 h-2 rounded-full ${state === 'cutting' ? 'bg-primary' : 'bg-secondary'}`}></span>{stem}</li>
-        ))}
-      </ul>
-      <p class="mt-4 flex items-baseline justify-between text-sm">
-        <span class="text-ink/70">{show.label}: {stateLabel[state]}</span>
-        <a href="#beds" class="underline underline-offset-4 font-semibold">All {show.stems.length} stems</a>
-      </p>
-    </aside>
+    <BedsCard class="md:col-span-5 md:col-start-8 max-w-md md:justify-self-end" />
   </div>
 </section>

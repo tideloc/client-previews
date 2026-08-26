@@ -14,7 +14,7 @@ const dot: Record<string, string> = { cutting: 'bg-primary', budding: 'bg-second
     <p class="mt-3 md:mt-0 max-w-md text-ink/80">Grown on the nature strip at the corner of North and East Street and sourced within 50 km of Moss Vale. What is cut depends on the week.</p>
   </div>}
 
-  <div role="tablist" aria-label="Season" class={`${bare ? "" : "mt-8"} flex gap-6 overflow-x-auto border-b border-ink/15 text-lg`}>
+  <div role="tablist" aria-label="Season" class={`${bare ? "" : "mt-8"} flex flex-wrap gap-x-6 gap-y-2 border-b border-ink/15 text-lg`}>
     {seasons.map((s) => (
       <button role="tab" type="button" id={`tab-${s.key}`} aria-selected={s.key === open} aria-controls={`panel-${s.key}`}
         class="pb-3 -mb-px border-b-2 border-transparent aria-selected:border-primary whitespace-nowrap font-display text-sm">
