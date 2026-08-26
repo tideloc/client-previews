@@ -1,0 +1,41 @@
+---
+import { siteContent } from '../lib/site';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const links = [
+  { href: `${base}/flowers/`, label: 'In the beds' },
+  { href: `${base}/weddings/`, label: 'Weddings' },
+  { href: `${base}/about/`, label: 'About' },
+  { href: `${base}/contact/`, label: 'Contact' },
+];
+const phone = siteContent.contact.phone;
+const tel = 'tel:+61' + phone.replace(/\D/g, '').replace(/^0/, '');
+const here = Astro.url.pathname.replace(/\/$/, '');
+---
+<header class="sticky top-0 z-30 bg-ground/95 backdrop-blur border-b border-ink/15">
+  <div class="mx-auto max-w-6xl px-5 h-16 flex items-center gap-6">
+    <a href={`${base}/`} class="font-display text-2xl leading-none tracking-tight">Tiny Flower House</a>
+    <nav aria-label="Main" class="hidden md:flex items-center gap-6 ml-auto text-sm">
+      {links.map((l) => (
+        <a href={l.href} aria-current={here === l.href.replace(/\/$/, '') ? 'page' : undefined}
+           class="hover:underline underline-offset-4 aria-[current]:underline">{l.label}</a>
+      ))}
+      <a href={tel} class="tabular-nums">{phone}</a>
+      <a href={`${base}/flowers/#request`} class="bg-primary text-ground px-4 py-2 font-semibold">Request a bunch</a>
+    </nav>
+    <button type="button" class="md:hidden ml-auto p-2 -mr-2" aria-expanded="false" aria-controls="mobile-nav" data-nav-toggle aria-label="Menu">
+      <span class="block w-6 h-px bg-ink mb-1.5"></span><span class="block w-6 h-px bg-ink mb-1.5"></span><span class="block w-6 h-px bg-ink"></span>
+    </button>
+  </div>
+  <nav id="mobile-nav" aria-label="Main" hidden class="md:hidden border-t border-ink/15 bg-ground">
+    <ul class="px-5 py-4 grid gap-3 text-lg">
+      {links.map((l) => <li><a href={l.href} class="block py-1">{l.label}</a></li>)}
+      <li><a href={tel} class="block py-1">{phone}</a></li>
+      <li class="pt-2"><a href={`${base}/flowers/#request`} class="inline-block bg-primary text-ground px-4 py-2 font-semibold">Request a bunch</a></li>
+    </ul>
+  </nav>
+</header>
+<script is:inline>
+  const t = document.querySelector('[data-nav-toggle]');
+  const n = document.getElementById('mobile-nav');
+  if (t && n) t.addEventListener('click', () => { const open = n.hidden; n.hidden = !open; t.setAttribute('aria-expanded', String(open)); });
+</script>

@@ -1,0 +1,28 @@
+---
+import { Picture } from 'astro:assets';
+import cosmos from '../assets/verge-cosmos.jpg';
+import foxgloves from '../assets/verge-foxgloves.jpg';
+import lace from '../assets/lace-dried.jpg';
+import zinnias from '../assets/close-cream-zinnias.jpg';
+import shopfront from '../assets/shopfront.jpg';
+const photos = [
+  { src: cosmos, alt: 'Cosmos flowering on the nature strip with the road behind', cap: 'Cosmos on the verge, summer' },
+  { src: foxgloves, alt: 'Pink foxglove spikes growing in the verge bed', cap: 'Foxgloves, spring' },
+  { src: lace, alt: "Queen Ann's lace and dried flower heads in soft light", cap: "Queen Ann's lace" },
+  { src: zinnias, alt: 'Cream zinnias and everlastings gathered close', cap: 'Cream zinnias, autumn' },
+  { src: shopfront, alt: 'The black cottage workshop with white French doors on North Street', cap: 'The workshop, North Street' },
+];
+---
+<section data-section="gallery" aria-label="From the corner" class="mt-20 md:mt-28">
+  <div class="mx-auto max-w-6xl px-5">
+    <h2 class="font-display text-4xl md:text-5xl font-light">From the corner</h2>
+  </div>
+  <ul class="mt-8 flex gap-4 overflow-x-auto snap-x snap-mandatory px-5 pb-4 md:px-[max(1.25rem,calc((100vw-72rem)/2+1.25rem))]">
+    {photos.map((p, i) => (
+      <li class={`snap-start shrink-0 ${i % 2 === 0 ? 'w-[78vw] md:w-[36rem]' : 'w-[62vw] md:w-[26rem]'}`}>
+        <Picture src={p.src} widths={[480, 800, 1200]} sizes="(min-width: 768px) 36rem, 78vw" formats={['avif', 'webp']} alt={p.alt} class="w-full aspect-[4/3] object-cover" loading="lazy" />
+        <p class="mt-2 text-sm text-accent">{p.cap}</p>
+      </li>
+    ))}
+  </ul>
+</section>

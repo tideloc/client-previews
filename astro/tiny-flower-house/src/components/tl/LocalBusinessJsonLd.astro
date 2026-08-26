@@ -1,0 +1,20 @@
+---
+/** schema.org LocalBusiness with openingHoursSpecification from site.json.
+ *  Pass `type` (Cafe, HairSalon, Plumber…) and `url`; image optional. */
+import { siteContent, fullAddress } from "../../lib/site";
+const { type = "LocalBusiness", url = Astro.site?.toString() ?? "", image = "" } = Astro.props;
+const c = siteContent.contact;
+const ld = {
+  "@context": "https://schema.org",
+  "@type": type,
+  name: siteContent.businessName,
+  url,
+  ...(image ? { image } : {}),
+  ...(c.phone ? { telephone: c.phone } : {}),
+  ...(c.email ? { email: c.email } : {}),
+  ...(fullAddress() ? { address: { "@type": "PostalAddress", streetAddress: c.address, addressLocality: c.suburb, addressRegion: c.state, postalCode: c.postcode, addressCountry: "AU" } } : {}),
+  ...(siteContent.openingHoursSpecification.length ? { openingHoursSpecification: siteContent.openingHoursSpecification } : {}),
+  ...(Object.values(siteContent.social).some(Boolean) ? { sameAs: Object.values(siteContent.social).filter(Boolean) } : {}),
+};
+---
+<script type="application/ld+json" set:html={JSON.stringify(ld)} />

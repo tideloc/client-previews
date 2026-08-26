@@ -1,0 +1,38 @@
+---
+import { Picture } from 'astro:assets';
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import SeasonCalendar from '../../components/SeasonCalendar.astro';
+import BunchRequest from '../../components/BunchRequest.astro';
+import strawflowers from '../../assets/verge-strawflowers.jpg';
+import jug from '../../assets/bunch-jug.jpg';
+import posy from '../../assets/bunch-posy.jpg';
+import spring from '../../assets/bunch-spring.jpg';
+---
+<Base
+  title="What is in the beds this week | Tiny Flower House, Moss Vale"
+  description="The growing calendar for Tiny Flower House in Moss Vale: spring, summer and autumn stems grown on the verge, what is cutting now, and how to request a bunch."
+>
+  <Header slot="header" />
+  <section data-section="page-hero" class="mx-auto max-w-6xl px-5 pt-12 md:pt-20 grid md:grid-cols-12 gap-8 items-end">
+    <div class="md:col-span-7">
+      <h1 class="font-display font-light text-5xl md:text-6xl leading-[1.05]">What is in the beds</h1>
+      <p class="mt-5 max-w-lg text-lg text-ink/80">Every stem we grow, by season. When a season ends nothing comes off this page, it rests until next year.</p>
+    </div>
+    <div class="md:col-span-5">
+      <Picture src={strawflowers} widths={[640, 1024]} sizes="(min-width: 768px) 40vw, 100vw" formats={['avif', 'webp']} alt="Pale pink strawflowers and asters in the verge bed in sunlight" class="w-full aspect-[3/2] object-cover" loading="eager" fetchpriority="high" />
+    </div>
+  </section>
+
+  <SeasonCalendar />
+
+  <section data-section="formats" aria-label="Bunches" class="mx-auto max-w-6xl px-5 mt-20 grid gap-4 grid-cols-2 md:grid-cols-3">
+    <Picture src={spring} widths={[400, 800]} sizes="(min-width: 768px) 66vw, 100vw" formats={['avif', 'webp']} alt="Mixed spring bunch of daffodils, stock and lilac in a tin on a timber table" pictureAttributes={{ class: "col-span-2 md:row-span-2 block" }} class="w-full h-full aspect-[4/3] md:aspect-auto object-cover" loading="lazy" />
+    <Picture src={posy} widths={[400, 800]} sizes="33vw" formats={['avif', 'webp']} alt="Posy of poppies and ranunculus in a white box tied with sage ribbon" class="w-full aspect-square object-cover" loading="lazy" />
+    <Picture src={jug} widths={[400, 800]} sizes="33vw" formats={['avif', 'webp']} alt="Garden bunch of roses and foliage arranged in a stoneware jug" class="w-full aspect-square object-cover" loading="lazy" />
+  </section>
+
+  <BunchRequest heading="Request a bunch" />
+  <Footer slot="footer" />
+</Base>

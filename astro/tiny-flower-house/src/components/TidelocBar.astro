@@ -1,0 +1,12 @@
+---
+/** Fixed strip shown on concept previews only. Remove when the site goes live for the client.
+ *  This is the only place the plan price line is allowed. */
+const bookUrl = 'https://cal.com/blake-tideloc/discovery';
+const quoteUrl = 'https://tideloc.com.au/questionnaire';
+---
+<div data-tideloc-bar class="fixed bottom-0 inset-x-0 z-40 bg-ink text-ground text-sm flex items-center justify-center gap-4 px-4 py-2 print:hidden">
+  <span>Free mock-up by Tideloc. Like the direction?</span>
+  <a href={quoteUrl} class="underline underline-offset-2">Get a real quote</a>
+  <a href={bookUrl} class="font-semibold underline underline-offset-2">Book a 15-min call</a>
+  <span class="hidden sm:inline opacity-70">Sites from $59 a month</span>
+</div>

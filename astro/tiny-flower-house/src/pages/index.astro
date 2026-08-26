@@ -1,0 +1,46 @@
+---
+import { Picture, getImage } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import SeasonCalendar from '../components/SeasonCalendar.astro';
+import BunchRequest from '../components/BunchRequest.astro';
+import PhotoStrip from '../components/PhotoStrip.astro';
+import WeddingsGifts from '../components/WeddingsGifts.astro';
+import hero from '../assets/verge-dahlias-house.jpg';
+
+const site = Astro.site?.toString().replace(/\/$/, '') ?? '';
+const og = await getImage({ src: hero, width: 1200, height: 630, format: 'jpg' });
+const ogUrl = `${site}${og.src}`;
+---
+<Base
+  title="Seasonal flowers grown in Moss Vale | Tiny Flower House"
+  description="Tiny Flower House grows seasonal flowers on a Moss Vale nature strip and cuts bunches to order. See what is in the beds this week and request a bunch."
+  ogImage={ogUrl}
+>
+  <Header slot="header" />
+
+  <section data-section="hero" class="grid md:grid-cols-12 items-center md:pl-[max(1.25rem,calc((100vw-72rem)/2+1.25rem))]">
+    <div class="order-2 md:order-1 md:col-span-5 px-5 md:px-0 pt-6 pb-10 md:py-24 md:pr-12">
+      <p class="text-sm tracking-wide uppercase text-accent">Guerrilla gardening in Moss Vale, NSW</p>
+      <h1 class="font-display font-light text-5xl md:text-6xl leading-[1.05] mt-4">Seasonal flowers, grown on the verge and cut this week.</h1>
+      <p class="mt-6 max-w-md text-lg text-ink/80">Fresh, local, seasonal. Not your typical florist.</p>
+      <div class="mt-8 flex flex-wrap items-center gap-5">
+        <a href="#request" class="bg-primary text-ground px-6 py-3 font-semibold">Request a bunch</a>
+        <a href="#beds-h" class="underline underline-offset-4">See what is in the beds</a>
+      </div>
+    </div>
+    <div class="order-1 md:order-2 md:col-span-7">
+      <Picture src={hero} widths={[640, 1024, 1600]} sizes="(min-width: 768px) 58vw, 100vw" formats={['avif', 'webp']}
+        alt="Peach dahlias flowering on the nature strip outside the house, Moss Vale"
+        class="w-full aspect-square md:aspect-auto md:h-[min(82vh,44rem)] object-cover object-[70%_50%]" loading="eager" fetchpriority="high" />
+    </div>
+  </section>
+
+  <SeasonCalendar compact />
+  <BunchRequest />
+  <PhotoStrip />
+  <WeddingsGifts />
+
+  <Footer slot="footer" />
+</Base>

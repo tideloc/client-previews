@@ -1,0 +1,38 @@
+---
+/** The decision point. No prices exist; she prices when she cuts. */
+import EnquiryForm from './EnquiryForm.astro';
+import { formats } from '../data/seasons';
+interface Props { kind?: string; heading?: string; intro?: string }
+const { kind = 'bunch-request', heading = 'How a bunch happens', intro = 'Tell us the occasion and roughly what you want to spend. Lisa cuts what is best that morning and prices it when she cuts it, never before. She rings or emails you back with what is ready.' } = Astro.props;
+---
+<section id="request" data-section="request" aria-labelledby="request-h" class="mx-auto max-w-6xl px-5 mt-20 md:mt-28 grid gap-10 md:grid-cols-5">
+  <div class="md:col-span-2">
+    <h2 id="request-h" class="font-display text-4xl md:text-5xl font-light">{heading}</h2>
+    <p class="mt-5 text-ink/80">{intro}</p>
+    <dl class="mt-8 divide-y divide-ink/10">
+      {formats.map((f) => (
+        <div class="py-3">
+          <dt class="font-semibold">{f.name}</dt>
+          <dd class="text-ink/75">{f.line}</dd>
+        </div>
+      ))}
+    </dl>
+  </div>
+  <div class="md:col-span-3 md:pl-10 md:border-l md:border-ink/10">
+    <EnquiryForm
+      kind={kind}
+      site="Tiny Flower House"
+      submitLabel="Request a bunch"
+      successText="Thanks. Lisa will ring or email you back with what is ready this week."
+      fields={[
+        { name: 'name', label: 'Your name', required: true },
+        { name: 'phone', label: 'Phone', type: 'tel', required: true },
+        { name: 'email', label: 'Email', type: 'email' },
+        { name: 'occasion', label: 'What is it for', placeholder: 'A birthday, a hospital visit, the kitchen table' },
+        { name: 'budget', label: 'Roughly what you want to spend' },
+        { name: 'when', label: 'When you need it', placeholder: 'Saturday morning, pick up' },
+        { name: 'notes', label: 'Anything else', type: 'textarea', placeholder: 'Colours you love or hate, delivery address, a message for the card' },
+      ]}
+    />
+  </div>
+</section>
