@@ -12,7 +12,7 @@ export default {
         accent:    '#806C57',
       },
       fontFamily: {
-        display: ['"Newsreader"', 'Georgia', 'serif'],
+        display: ['"Jost"', 'Futura', 'system-ui', 'sans-serif'],
         body:    ['"Lato"', 'system-ui', 'sans-serif'],
       },
     },

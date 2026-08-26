@@ -13,7 +13,7 @@ const here = Astro.url.pathname.replace(/\/$/, '');
 ---
 <header class="sticky top-0 z-30 bg-ground/95 backdrop-blur border-b border-ink/15">
   <div class="mx-auto max-w-6xl px-5 h-16 flex items-center gap-6">
-    <a href={`${base}/`} class="font-display text-2xl leading-none tracking-tight">Tiny Flower House</a>
+    <a href={`${base}/`} class="font-display text-base md:text-lg leading-none">Tiny Flower House</a>
     <nav aria-label="Main" class="hidden md:flex items-center gap-6 ml-auto text-sm">
       {links.map((l) => (
         <a href={l.href} aria-current={here === l.href.replace(/\/$/, '') ? 'page' : undefined}

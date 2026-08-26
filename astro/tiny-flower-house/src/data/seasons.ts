@@ -31,7 +31,7 @@ export const seasons: Season[] = [
   {
     key: 'winter', label: 'Winter', months: 'June to August', from: 'from June',
     stems: [],
-    note: 'The beds rest. Dried bunches, Australian made gifts and hampers run all year, and wedding bookings for spring are open.',
+    note: 'The beds rest until spring.',
   },
 ];
 

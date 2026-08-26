@@ -8,4 +8,7 @@
   body { font-feature-settings: "kern", "liga"; }
   :focus-visible { outline: 2px solid theme('colors.primary'); outline-offset: 2px; }
   img { max-width: 100%; height: auto; }
+  /* Her site sets every heading in Futura Book caps, wide tracked. Jost stands in for Futura. */
+  h1, h2, h3, .font-display { font-family: theme('fontFamily.display'); text-transform: uppercase; letter-spacing: 0.08em; font-weight: 400; }
+  h1 { font-weight: 300; letter-spacing: 0.06em; }
 }

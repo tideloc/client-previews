@@ -4,11 +4,12 @@ import { siteContent, fullAddress } from '../lib/site';
 const c = siteContent.contact;
 const tel = 'tel:+61' + c.phone.replace(/\D/g, '').replace(/^0/, '');
 const year = new Date().getFullYear();
+const { hideHours = false } = Astro.props;
 ---
 <footer data-section="contact" class="border-t border-ink/15 mt-24 pb-16">
   <div class="mx-auto max-w-6xl px-5 pt-14 grid gap-10 md:grid-cols-3">
     <div>
-      <p class="font-display text-2xl">Tiny Flower House</p>
+      <p class="font-display text-base">Tiny Flower House</p>
       <p class="mt-3">Guerrilla gardening in Moss Vale, NSW.</p>
       <address class="not-italic mt-4 leading-relaxed">
         <span data-tl="contact.address">{fullAddress()}</span><br />
@@ -16,13 +17,13 @@ const year = new Date().getFullYear();
       </address>
       <a href={c.mapUrl} class="inline-block mt-2 underline underline-offset-4">Directions</a>
     </div>
-    <div>
-      <h2 class="font-display text-xl mb-3">Workshop hours</h2>
+    {!hideHours && <div>
+      <h2 class="font-display text-sm mb-3">Workshop hours</h2>
       <Hours listClass="divide-y divide-ink/10 max-w-xs" rowClass="flex justify-between py-1.5" dayClass="" timeClass="tabular-nums" closedClass="text-ink/50" />
       <p class="mt-3 text-sm text-ink/70">Open for phone and online requests. Deliveries Monday to Saturday.</p>
-    </div>
+    </div>}
     <div>
-      <h2 class="font-display text-xl mb-3">Talk to Lisa</h2>
+      <h2 class="font-display text-sm mb-3">Talk to Lisa</h2>
       <p><a href={tel} class="underline underline-offset-4 tabular-nums" data-tl="contact.phone">{c.phone}</a></p>
       <p class="mt-1"><a href={`mailto:${c.email}`} class="underline underline-offset-4 break-all" data-tl="contact.email">{c.email}</a></p>
       <p class="mt-8 text-sm text-ink/60">&copy; {year} Tiny Flower House. Flowers grown on the corner of North and East Street.</p>
