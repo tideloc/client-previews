@@ -10,9 +10,8 @@ const count = first?.items.length ?? 0;
 const ann = siteContent.announcement;
 ---
 <aside data-section="beds-card" class={`bg-ground text-ink p-6 md:p-7 shadow-2xl shadow-ink/40 ${cls}`}>
-  <p class="font-display text-xs tracking-[0.25em] text-primary">Updated by Lisa</p>
-  <p data-tl="announcement.text" class="mt-2 text-sm text-ink/70" hidden={!ann.enabled}>{ann.text}</p>
-  <PriceList sectionClass="mt-3" titleClass="font-display text-sm tracking-[0.12em] mb-2" itemClass="flex items-baseline justify-between gap-3 border-b border-ink/10 py-1.5 text-sm md:text-base" nameClass="" priceClass="hidden" noteClass="text-xs text-ink/55" />
+  <p class="font-display text-xs tracking-[0.25em] text-primary">Updated by Lisa from the portal</p>
+  <div class="[&_ul]:grid [&_ul]:grid-cols-2 [&_ul]:gap-x-5"><PriceList sectionClass="mt-3" titleClass="font-display text-sm tracking-[0.12em] mb-2" itemClass="flex items-baseline justify-between gap-2 border-b border-ink/10 py-1.5 text-sm" nameClass="" priceClass="hidden" noteClass="text-xs text-ink/55" /></div>
   <p class="mt-4 flex items-baseline justify-between text-sm">
     <span class="text-ink/70">{count} stems listed</span>
     <a href="#beds" class="underline underline-offset-4 font-semibold">All seasons</a>
