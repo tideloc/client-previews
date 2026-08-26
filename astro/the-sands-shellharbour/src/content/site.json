@@ -78,12 +78,12 @@
   },
   "priceList": [
     {
-      "title": "This week at The Sands",
+      "title": "What's on at The Sands",
       "items": [
         {
           "name": "Kiosk open 7 days",
           "price": "from 7am",
-          "note": "fully licensed, dogs welcome outside"
+          "note": "fully licensed"
         },
         {
           "name": "Thursday pizza night",
@@ -92,18 +92,13 @@
         },
         {
           "name": "Alice in Wonderland High Tea",
-          "price": "19 Sep",
-          "note": "$55 all inclusive, sold out"
-        },
-        {
-          "name": "Alice in Wonderland High Tea",
-          "price": "26 Sep",
-          "note": "$55 all inclusive, sold out"
+          "price": "19 + 26 Sep",
+          "note": "$55 all inclusive, both sold out"
         },
         {
           "name": "Kiosk closed during private events",
           "price": "",
-          "note": "check before you come on event days"
+          "note": "in the adjoining Receptions venue"
         }
       ]
     }

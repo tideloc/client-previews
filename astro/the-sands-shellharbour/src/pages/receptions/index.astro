@@ -16,9 +16,9 @@ import { receptions, memorial } from '../../data/venue';
   <Header slot="header" />
   <section data-section="hero" class="relative min-h-[76vh] flex items-end overflow-hidden bg-ink">
     <Picture src={party} widths={[768, 1280, 1920]} sizes="100vw" formats={['avif', 'webp']} alt="Wedding guests dancing with arms up under the lights in The Sands Receptions room" class="absolute inset-0 w-full h-full object-cover object-[50%_40%]" pictureAttributes={{ class: 'absolute inset-0' }} loading="eager" fetchpriority="high" />
-    <div class="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/45 to-ink/10"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/55 to-ink/25"></div>
     <div class="relative mx-auto max-w-6xl w-full px-5 pb-12 pt-28 text-white">
-      <p class="font-sub text-sm tracking-[0.3em] uppercase flex items-center gap-3"><span class="inline-block w-8 h-[3px] bg-primary"></span>The Sands Receptions</p>
+      <p class="inline-flex items-center gap-3 bg-ink/55 px-3 py-1.5 font-sub text-sm tracking-[0.25em] uppercase"><span class="inline-block w-8 h-[3px] bg-primary"></span>The Sands Receptions</p>
       <h1 class="font-display mt-4 text-[10vw] md:text-[4.6vw] leading-[1.05] max-w-4xl">Shellharbour's premier beachside event venue.</h1>
       <p class="mt-5 max-w-xl text-lg md:text-xl text-white/90">Panoramic views of the ocean through expanses of glass, soaring ceilings and a bright, modern interior.</p>
       <a href="#enquire" class="inline-block mt-7 bg-primary text-white px-7 py-3.5 font-semibold">Enquire about a date</a>
@@ -30,7 +30,7 @@ import { receptions, memorial } from '../../data/venue';
         <div class="border-t-2 border-white pt-2"><p class="font-sub text-xs tracking-[0.2em] uppercase text-white/80">Seated dining</p><p class="font-display text-7xl">{receptions.seated}</p></div>
         <div class="border-t-2 border-white pt-2"><p class="font-sub text-xs tracking-[0.2em] uppercase text-white/80">Cocktail</p><p class="font-display text-7xl">{receptions.cocktail}</p></div>
       </div>
-      <ul class="md:col-span-7 grid sm:grid-cols-2 gap-x-8">{receptions.facts.slice(0, 3).concat(receptions.uses.slice(0, 3)).map((f) => <li class="py-2 border-b border-white/20">{f}</li>)}</ul>
+      <ul class="md:col-span-7 grid sm:grid-cols-2 gap-x-8">{receptions.facts.map((f) => <li class="py-2 border-b border-white/20">{f}</li>)}</ul>
     </div>
   </section>
   <section data-section="gallery" class="mx-auto max-w-6xl px-5 mt-16 md:mt-20 grid gap-3 grid-cols-2 md:grid-cols-12">
@@ -52,10 +52,10 @@ import { receptions, memorial } from '../../data/venue';
       <Picture src={couple} widths={[480, 800]} sizes="(min-width: 768px) 40vw, 100vw" formats={['avif', 'webp']} alt="A couple walking on Shellharbour North Beach on their wedding day" class="w-full aspect-[4/5] object-cover" loading="lazy" />
     </div>
   </section>
-  <section data-section="memorials" class="bg-ground border-y border-ink/10 mt-16 md:mt-20">
-    <div class="mx-auto max-w-6xl px-5 py-12 grid gap-6 md:grid-cols-12 md:items-center">
-      <div class="md:col-span-5"><h2 class="font-display text-4xl">Celebrate a life beautifully.</h2><p class="mt-2 text-ink/80">The Sands Shellharbour Memorial Celebration Package.</p></div>
-      <ul class="md:col-span-7 grid sm:grid-cols-2 gap-x-8">{memorial.map((m) => <li class="py-2 border-b border-ink/10">{m}</li>)}</ul>
+  <section data-section="memorials" class="bg-ink text-white mt-16 md:mt-20">
+    <div class="mx-auto max-w-6xl px-5 py-14 md:py-20 grid gap-8 md:grid-cols-12 md:items-center">
+      <div class="md:col-span-6"><h2 class="font-display text-4xl md:text-6xl leading-tight">Celebrate a life beautifully.</h2><p class="mt-4 text-white/85 text-lg">The Sands Shellharbour Memorial Celebration Package. Honour their journey, to a peaceful coastal embrace.</p></div>
+      <ul class="md:col-span-5 md:col-start-8 divide-y divide-white/25 border-t border-b border-white/25 text-lg">{memorial.map((m) => <li class="py-3">{m}</li>)}</ul>
     </div>
   </section>
   <section id="enquire" data-section="request" class="mx-auto max-w-6xl px-5 mt-16 md:mt-20 grid gap-10 md:grid-cols-12">

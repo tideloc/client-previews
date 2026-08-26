@@ -3,6 +3,8 @@ import Base from '../../layouts/Base.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import EnquiryForm from '../../components/EnquiryForm.astro';
+import { Picture } from 'astro:assets';
+import beach from '../../assets/aerial-beach.jpg';
 import { siteContent, fullAddress } from '../../lib/site';
 const c = siteContent.contact;
 const tel = 'tel:+61' + c.phone.replace(/\D/g, '').replace(/^0/, '');
@@ -10,10 +12,12 @@ const mapQ = encodeURIComponent('115 Junction Road, Shellharbour NSW 2529');
 ---
 <Base title="Find us on Shellharbour North Beach | The Sands" description="The Sands Kiosk and Receptions, 115 Junction Road, Shellharbour North Beach, next door to Shellharbour Surf Club. Open 7 days from 7am. Phone 0411 476 855.">
   <Header slot="header" />
-  <section data-section="hero" class="bg-secondary text-white">
-    <div class="mx-auto max-w-6xl px-5 pt-16 pb-14 md:pt-24 md:pb-20 grid gap-10 md:grid-cols-12 md:items-end">
+  <section data-section="hero" class="relative overflow-hidden bg-ink text-white">
+    <Picture src={beach} widths={[768, 1280, 1920]} sizes="100vw" formats={['avif', 'webp']} alt="Aerial view of Shellharbour North Beach with the venue beside the sand" class="absolute inset-0 w-full h-full object-cover object-[50%_60%]" pictureAttributes={{ class: 'absolute inset-0' }} loading="eager" fetchpriority="high" />
+    <div class="absolute inset-0 bg-secondary/80"></div>
+    <div class="relative mx-auto max-w-6xl px-5 pt-16 pb-14 md:pt-24 md:pb-20 grid gap-10 md:grid-cols-12 md:items-end">
       <div class="md:col-span-7">
-        <p class="font-sub text-sm tracking-[0.3em] uppercase">Shellharbour North Beach</p>
+        <p class="inline-flex items-center gap-3 bg-ink/45 px-3 py-1.5 font-sub text-sm tracking-[0.25em] uppercase"><span class="inline-block w-8 h-[3px] bg-primary"></span>Shellharbour North Beach</p>
         <h1 class="font-display mt-4 text-[10vw] md:text-[4.6vw] leading-[1.05]">Next door to the surf club.</h1>
         <address class="not-italic mt-6 text-xl md:text-2xl leading-snug"><span data-tl="contact.address">{fullAddress()}</span></address>
         <div class="mt-8 flex flex-wrap gap-4"><a href={c.mapUrl} class="bg-white text-ink px-7 py-3.5 font-semibold">Directions</a><a href={tel} class="border border-white/70 px-7 py-3.5 font-semibold tabular-nums" data-tl="contact.phone">{c.phone}</a></div>
