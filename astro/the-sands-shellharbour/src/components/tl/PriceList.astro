@@ -1,0 +1,28 @@
+---
+/** Price list / menu from the portal. Sections + items; hidden items are
+ *  already filtered out server-side. */
+import { siteContent } from "../../lib/site";
+const {
+  sectionClass = "mb-8",
+  titleClass = "text-lg font-bold mb-3",
+  itemClass = "flex items-baseline justify-between gap-4 py-1",
+  nameClass = "",
+  priceClass = "font-semibold whitespace-nowrap",
+  noteClass = "text-sm opacity-70",
+} = Astro.props;
+---
+<div data-tl-list="priceList" data-tl-classes={JSON.stringify({ sectionClass, titleClass, itemClass, nameClass, priceClass, noteClass })}>
+  {siteContent.priceList.map((s) => (
+    <section class={sectionClass}>
+      {s.title && <h3 class={titleClass}>{s.title}</h3>}
+      <ul>
+        {s.items.map((i) => (
+          <li class={itemClass}>
+            <span class={nameClass}>{i.name}{i.note ? <span class={noteClass}> · {i.note}</span> : null}</span>
+            <span class={priceClass}>{i.price}</span>
+          </li>
+        ))}
+      </ul>
+    </section>
+  ))}
+</div>

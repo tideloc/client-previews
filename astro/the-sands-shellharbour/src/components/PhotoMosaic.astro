@@ -1,0 +1,16 @@
+---
+import { Picture } from 'astro:assets';
+import table from '../assets/kiosk-table-view.jpg';
+import dog from '../assets/kiosk-dog.jpg';
+import venue from '../assets/aerial-venue.jpg';
+import bagel from '../assets/bagel-salmon.jpg';
+import acai from '../assets/acai-bowl.jpg';
+import couple from '../assets/wedding-couple-beach.jpg';
+---
+<section data-section="gallery" aria-label="The Sands in photos" class="mx-auto max-w-6xl px-5 mt-16 md:mt-24 grid gap-3 grid-cols-2 md:grid-cols-6">
+  <Picture src={table} widths={[640, 1024, 1400]} sizes="(min-width: 768px) 50vw, 100vw" formats={['avif', 'webp']} alt="Coffee and cake on a kiosk table with the lawn and ocean behind" pictureAttributes={{ class: 'col-span-2 md:col-span-3 md:row-span-2 block' }} class="w-full h-full aspect-[4/3] md:aspect-auto object-cover" loading="lazy" />
+  <Picture src={dog} widths={[480, 800]} sizes="25vw" formats={['avif', 'webp']} alt="A black dog with a puppacino on the grass outside the kiosk" pictureAttributes={{ class: 'md:col-span-2 block' }} class="w-full aspect-[4/3] object-cover" loading="lazy" />
+  <Picture src={bagel} widths={[480, 800]} sizes="17vw" formats={['avif', 'webp']} alt="Smoked salmon bagel with lettuce" class="w-full h-full aspect-[4/3] md:aspect-auto object-cover" loading="lazy" />
+  <Picture src={venue} widths={[480, 800]} sizes="25vw" formats={['avif', 'webp']} alt="Aerial view of The Sands buildings beside the beach" pictureAttributes={{ class: 'md:col-span-2 block' }} class="w-full aspect-[4/3] object-cover" loading="lazy" />
+  <Picture src={couple} widths={[480, 800]} sizes="17vw" formats={['avif', 'webp']} alt="A couple walking on the beach on their wedding day" class="w-full h-full aspect-[4/3] md:aspect-auto object-cover" loading="lazy" />
+</section>

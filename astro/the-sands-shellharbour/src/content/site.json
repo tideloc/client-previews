@@ -1,0 +1,115 @@
+{
+  "slug": "the-sands-shellharbour",
+  "version": 1,
+  "updatedAt": "2026-08-25T00:00:00.000Z",
+  "businessName": "The Sands Shellharbour",
+  "hours": [
+    {
+      "day": "mon",
+      "closed": false,
+      "open": "07:00",
+      "close": "",
+      "label": "Monday",
+      "display": "From 7am"
+    },
+    {
+      "day": "tue",
+      "closed": false,
+      "open": "07:00",
+      "close": "",
+      "label": "Tuesday",
+      "display": "From 7am"
+    },
+    {
+      "day": "wed",
+      "closed": false,
+      "open": "07:00",
+      "close": "",
+      "label": "Wednesday",
+      "display": "From 7am"
+    },
+    {
+      "day": "thu",
+      "closed": false,
+      "open": "07:00",
+      "close": "",
+      "label": "Thursday",
+      "display": "From 7am"
+    },
+    {
+      "day": "fri",
+      "closed": false,
+      "open": "07:00",
+      "close": "",
+      "label": "Friday",
+      "display": "From 7am"
+    },
+    {
+      "day": "sat",
+      "closed": false,
+      "open": "07:00",
+      "close": "",
+      "label": "Saturday",
+      "display": "From 7am"
+    },
+    {
+      "day": "sun",
+      "closed": false,
+      "open": "07:00",
+      "close": "",
+      "label": "Sunday",
+      "display": "From 7am"
+    }
+  ],
+  "holidays": [],
+  "announcement": {
+    "enabled": true,
+    "text": "Thursday pizza night, house made pizzas from 5:30pm. Dine in or take away.",
+    "link": ""
+  },
+  "contact": {
+    "phone": "0411 476 855",
+    "email": "bookings@thesands.net.au",
+    "address": "115 Junction Road",
+    "suburb": "Shellharbour North Beach",
+    "state": "NSW",
+    "postcode": "2529",
+    "mapUrl": "https://www.google.com/maps/dir/?api=1&destination=115%20Junction%20Road%2C%20Shellharbour%20NSW%202529"
+  },
+  "priceList": [
+    {
+      "title": "This week at The Sands",
+      "items": [
+        {
+          "name": "Kiosk open 7 days",
+          "price": "from 7am",
+          "note": "fully licensed, dogs welcome outside"
+        },
+        {
+          "name": "Thursday pizza night",
+          "price": "5:30pm",
+          "note": "house made pizzas, dine in or take away"
+        },
+        {
+          "name": "Alice in Wonderland High Tea",
+          "price": "19 Sep",
+          "note": "$55 all inclusive, sold out"
+        },
+        {
+          "name": "Alice in Wonderland High Tea",
+          "price": "26 Sep",
+          "note": "$55 all inclusive, sold out"
+        },
+        {
+          "name": "Kiosk closed during private events",
+          "price": "",
+          "note": "check before you come on event days"
+        }
+      ]
+    }
+  ],
+  "social": {
+    "facebook": "https://www.facebook.com/p/The-Sands-Shellharbour-61561328113134/"
+  },
+  "openingHoursSpecification": []
+}

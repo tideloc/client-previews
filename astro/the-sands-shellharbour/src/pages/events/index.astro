@@ -1,0 +1,27 @@
+---
+import { Picture } from 'astro:assets';
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import EventsList from '../../components/EventsList.astro';
+import pizza from '../../assets/pizza-night-poster.jpg';
+import tea from '../../assets/high-tea-poster.jpg';
+---
+<Base title="Upcoming events, pizza nights and high teas | The Sands Shellharbour" description="What is on at The Sands Shellharbour: Thursday pizza nights from 5:30pm and themed high teas on Shellharbour North Beach. Dates, times and prices." schemaType="EventVenue">
+  <Header slot="header" />
+  <section data-section="hero" class="bg-primary text-white">
+    <div class="mx-auto max-w-6xl px-5 pt-16 pb-12 md:pt-24 md:pb-16 grid gap-8 md:grid-cols-12 md:items-end">
+      <div class="md:col-span-7">
+        <p class="font-sub text-sm tracking-[0.3em] uppercase flex items-center gap-3"><span class="inline-block w-8 h-[3px] bg-white"></span>What's on</p>
+        <h1 class="font-display mt-4 text-[10vw] md:text-[4.6vw] leading-[1.05]">Thursday pizza nights and high teas by the beach.</h1>
+        <p class="mt-5 max-w-xl text-lg text-white/90">Pizza night has you sorted, serving house made pizzas from 5.30pm. Dine in or take away.</p>
+      </div>
+      <div class="md:col-span-5 grid grid-cols-2 gap-3">
+        <Picture src={pizza} widths={[480, 800]} sizes="25vw" formats={['avif', 'webp']} alt="Pizza night poster: Thursdays from 5:30pm" class="w-full aspect-square object-cover" loading="eager" />
+        <Picture src={tea} widths={[480, 800]} sizes="25vw" formats={['avif', 'webp']} alt="Alice in Wonderland High Tea poster" class="w-full aspect-square object-cover" loading="eager" />
+      </div>
+    </div>
+  </section>
+  <EventsList heading="Dates" all />
+  <Footer slot="footer" />
+</Base>

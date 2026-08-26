@@ -1,0 +1,18 @@
+---
+import { events } from '../data/venue';
+interface Props { heading?: string; all?: boolean }
+const { heading = 'Upcoming events', all = false } = Astro.props;
+const list = all ? events : events.slice(0, 3);
+---
+<section data-section="events" class="mx-auto max-w-6xl px-5 mt-16 md:mt-24">
+  <h2 class="font-display text-4xl md:text-5xl">{heading}</h2>
+  <ol class="mt-6 border-t border-ink/15">
+    {list.map((e) => (
+      <li class="grid gap-2 md:grid-cols-12 md:gap-6 py-5 border-b border-ink/15">
+        <div class="md:col-span-3"><p class="font-sub text-sm tracking-wide uppercase text-primary">{e.date}</p><p class="text-ink/70">{e.time}</p></div>
+        <div class="md:col-span-6"><h3 class="font-display text-2xl">{e.name}{e.soldOut && <span class="ml-3 align-middle font-sub text-xs tracking-[0.2em] uppercase bg-ink text-white px-2 py-1">Sold out</span>}</h3><p class="mt-1 text-ink/80">{e.note}</p></div>
+        <div class="md:col-span-3 md:text-right"><p class="font-display text-2xl">{e.price}</p><a href={e.url} class="inline-block mt-1 underline underline-offset-4">{e.soldOut ? 'Details' : 'Reserve'}</a></div>
+      </li>
+    ))}
+  </ol>
+</section>

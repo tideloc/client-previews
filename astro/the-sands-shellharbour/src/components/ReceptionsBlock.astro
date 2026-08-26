@@ -1,0 +1,25 @@
+---
+import { Picture } from 'astro:assets';
+import party from '../assets/reception-party.jpg';
+import tables from '../assets/reception-tables-green.jpg';
+import canapes from '../assets/canapes-salmon.jpg';
+import { receptions } from '../data/venue';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+<section id="receptions" data-section="receptions" class="mx-auto max-w-6xl px-5 mt-16 md:mt-24 grid gap-8 md:grid-cols-12 md:items-center">
+  <div class="md:col-span-7 grid grid-cols-3 gap-3">
+    <Picture src={party} widths={[640, 1024, 1400]} sizes="(min-width: 768px) 58vw, 100vw" formats={['avif', 'webp']} alt="Wedding guests dancing with arms up under the lights in The Sands Receptions room" pictureAttributes={{ class: 'col-span-3 block' }} class="w-full aspect-[3/2] object-cover" loading="lazy" />
+    <Picture src={tables} widths={[480, 800]} sizes="30vw" formats={['avif', 'webp']} alt="Round reception tables set in white with a green living wall" pictureAttributes={{ class: 'col-span-2 block' }} class="w-full aspect-[16/9] object-cover" loading="lazy" />
+    <Picture src={canapes} widths={[480, 800]} sizes="20vw" formats={['avif', 'webp']} alt="Smoked salmon canapes on a timber board" class="w-full h-full object-cover" loading="lazy" />
+  </div>
+  <div class="md:col-span-5">
+    <p class="font-sub text-xs tracking-[0.25em] uppercase text-primary">The Sands Receptions</p>
+    <h2 class="font-display text-4xl md:text-5xl leading-tight mt-2">A versatile space in an idyllic seaside setting.</h2>
+    <dl class="mt-6 grid grid-cols-2 gap-4">
+      <div class="border-t-2 border-primary pt-2"><dt class="font-sub text-xs tracking-[0.2em] uppercase text-ink/60">Seated</dt><dd class="font-display text-5xl">{receptions.seated}</dd></div>
+      <div class="border-t-2 border-primary pt-2"><dt class="font-sub text-xs tracking-[0.2em] uppercase text-ink/60">Cocktail</dt><dd class="font-display text-5xl">{receptions.cocktail}</dd></div>
+    </dl>
+    <ul class="mt-6 divide-y divide-ink/10">{receptions.facts.slice(0, 3).map((f) => <li class="py-2">{f}</li>)}</ul>
+    <div class="mt-6 flex flex-wrap gap-4"><a href={`${base}/receptions/#enquire`} class="bg-ink text-white px-6 py-3 font-semibold">Enquire about a date</a><a href={`${base}/receptions/`} class="underline underline-offset-4 self-center">Packages and spaces</a></div>
+  </div>
+</section>

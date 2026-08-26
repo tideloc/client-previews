@@ -1,0 +1,34 @@
+---
+/** Opening hours list + upcoming holiday notes. Style via the class props;
+ *  the row markup is also emitted as a <template> so tl-live.js can rebuild
+ *  the list with the same classes when hours change. */
+import { siteContent } from "../../lib/site";
+const {
+  listClass = "divide-y",
+  rowClass = "flex items-baseline justify-between py-2",
+  dayClass = "font-semibold",
+  timeClass = "",
+  closedClass = "opacity-50",
+  holidayClass = "text-sm mt-3",
+} = Astro.props;
+---
+<ul data-tl-list="hours" class={listClass}>
+  {siteContent.hours.map((h) => (
+    <li class={`${rowClass} ${h.closed ? closedClass : ""}`} data-closed={h.closed ? "1" : undefined}>
+      <span class={dayClass}>{h.label}</span>
+      <span class={timeClass}>{h.display}{h.note ? ` · ${h.note}` : ""}</span>
+    </li>
+  ))}
+  <template data-tl-row>
+    <li class={rowClass} data-tl-closed-class={closedClass}>
+      <span class={dayClass}>{"{{label}}"}</span>
+      <span class={timeClass}>{"{{display}}"}</span>
+    </li>
+  </template>
+</ul>
+<ul data-tl-list="holidays" class={holidayClass} hidden={siteContent.holidays.length === 0}>
+  {siteContent.holidays.map((h) => (
+    <li>{h.label || "Holiday"}: {h.closed ? "closed" : `${h.open} - ${h.close}`} ({h.date})</li>
+  ))}
+  <template data-tl-row><li>{"{{label}}"}: {"{{display}}"} ({"{{date}}"})</li></template>
+</ul>

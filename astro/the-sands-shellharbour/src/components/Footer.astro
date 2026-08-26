@@ -1,0 +1,30 @@
+---
+import { siteContent, fullAddress } from '../lib/site';
+const c = siteContent.contact;
+const tel = 'tel:+61' + c.phone.replace(/\D/g, '').replace(/^0/, '');
+const year = new Date().getFullYear();
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+<footer data-section="contact" class="bg-ink text-white mt-24">
+  <div class="mx-auto max-w-6xl px-5 py-14 grid gap-10 md:grid-cols-3">
+    <div>
+      <p class="font-script text-4xl leading-none">The Sands</p>
+      <p class="font-sub text-sm tracking-[0.2em] mt-1 uppercase">Receptions and Kiosk</p>
+      <address class="not-italic mt-5 leading-relaxed text-white/85"><span data-tl="contact.address">{fullAddress()}</span><br />Next door to Shellharbour Surf Club</address>
+      <a href={c.mapUrl} class="inline-block mt-2 underline underline-offset-4">Directions</a>
+    </div>
+    <div>
+      <h2 class="font-sub text-sm tracking-[0.2em] uppercase mb-3">The Kiosk</h2>
+      <p class="text-white/85">Open 7 days a week from 7am. Fully licensed.</p>
+      <p class="mt-2 text-white/70 text-sm">The Sands Kiosk is closed whenever there's a private event in the adjoining The Sands Reception venue.</p>
+      <p class="mt-4"><a href={`${base}/events/`} class="underline underline-offset-4">Upcoming events</a></p>
+    </div>
+    <div>
+      <h2 class="font-sub text-sm tracking-[0.2em] uppercase mb-3">Bookings</h2>
+      <p><a href={tel} class="underline underline-offset-4 tabular-nums" data-tl="contact.phone">{c.phone}</a></p>
+      <p class="mt-1"><a href={`mailto:${c.email}`} class="underline underline-offset-4 break-all" data-tl="contact.email">{c.email}</a></p>
+      <p class="mt-2"><a href={siteContent.social.facebook} class="underline underline-offset-4">Facebook</a></p>
+      <p class="mt-8 text-sm text-white/60">&copy; {year} The Sands Shellharbour. 115 Junction Road, Shellharbour North Beach.</p>
+    </div>
+  </div>
+</footer>

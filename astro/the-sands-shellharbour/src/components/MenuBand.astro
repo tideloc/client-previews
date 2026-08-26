@@ -1,0 +1,23 @@
+---
+/** The saturated move: her sky blue at full strength carrying the kiosk menu names in full. */
+import { menu } from '../data/venue';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const groups = [['Breakfast', menu.breakfast], ['Lunch', menu.lunch], ['Drinks', menu.drinks], ['Thursdays', menu.thursday]] as const;
+---
+<section data-section="menu" class="bg-primary text-white">
+  <div class="mx-auto max-w-6xl px-5 py-14 md:py-20">
+    <div class="md:flex md:items-end md:justify-between gap-8">
+      <h2 class="font-display text-4xl md:text-6xl leading-none">Casual beachside dining featuring all the classics.</h2>
+      <p class="mt-4 md:mt-0 max-w-sm text-white/90">Whether you're an early riser seeking a sunrise breakfast or a leisurely wanderer in search of a lazy lunch, our doors are open seven days a week.</p>
+    </div>
+    <div class="mt-10 grid gap-8 sm:grid-cols-2 md:grid-cols-4">
+      {groups.map(([title, items]) => (
+        <div>
+          <h3 class="font-sub text-xs tracking-[0.25em] uppercase border-b border-white/40 pb-2">{title}</h3>
+          <ul class="mt-3 divide-y divide-white/20">{items.map((i) => <li class="py-1.5 text-lg">{i}</li>)}</ul>
+        </div>
+      ))}
+    </div>
+    <p class="mt-10 flex flex-wrap items-center gap-5"><a href={`${base}/kiosk/`} class="bg-white text-ink px-6 py-3 font-semibold">The Kiosk</a><span class="text-white/80">Fully licensed. Takeaway. Dogs welcome outside.</span></p>
+  </div>
+</section>

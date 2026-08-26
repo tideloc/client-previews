@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://staging.tideloc.com.au/cold/the-sands-shellharbour/v2/sitemap-index.xml

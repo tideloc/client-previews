@@ -1,0 +1,11 @@
+---
+/** Portal-editable data object: the price-list block, rendered as "This week at The Sands". */
+import PriceList from './tl/PriceList.astro';
+const { class: cls = '' } = Astro.props;
+---
+<aside data-section="this-week" class={`bg-white text-ink p-6 md:p-7 shadow-2xl shadow-ink/40 ${cls}`}>
+  <p class="font-sub text-xs tracking-[0.25em] uppercase text-primary">Updated by the venue from the portal</p>
+  <div class="[&_h3]:font-display [&_h3]:text-2xl [&_h3]:mt-2 [&_h3]:mb-3 [&_ul]:divide-y [&_ul]:divide-ink/10">
+    <PriceList sectionClass="" titleClass="" itemClass="flex items-baseline justify-between gap-3 py-2" nameClass="font-semibold" priceClass="font-sub text-sm text-primary whitespace-nowrap" noteClass="block font-normal text-sm text-ink/60" />
+  </div>
+</aside>
