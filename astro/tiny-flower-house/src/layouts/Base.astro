@@ -59,7 +59,12 @@ const palette = '#697E5D,#8CA87C,#FFF5EC,#33312F,#806C57'; // "#hex,#hex,..." fr
       <slot />
     </main>
     <slot name="footer" />
-    <TidelocBar />
+    <TidelocBar reasons={[
+      'Your seasonal range stays on the site all year: stems change state instead of being deleted for winter',
+      'Update the stems list, hours and the announcement yourself from a simple portal, live in minutes',
+      'Bunch requests and wedding enquiries come straight to you, phone tappable on every page',
+      'Search-ready: real page titles, sitemap and local business details built in',
+    ]} />
     <script is:inline defer src={`${base}/tl-live.js`}></script>
   </body>
 </html>

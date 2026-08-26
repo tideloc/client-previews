@@ -59,7 +59,13 @@ const palette = '#1CAADE,#5B96D0,#FFF0EC,#282936,#94949B'; // "#hex,#hex,..." fr
       <slot />
     </main>
     <slot name="footer" />
-    <TidelocBar />
+    <TidelocBar reasons={[
+      'Phone, email and directions on every page: the current site shows none of them',
+      'The Kiosk and Receptions each get a real page, with capacities, menu and packages laid out',
+      "What's-on, hours and the announcement are yours to update from a simple portal, live in minutes",
+      'Events listed with real dates and a working reservation link for pizza night',
+      'On the shop plan: sell high tea and event tickets on your own site, each date a product with seats capped, sold out handled automatically',
+    ]} />
     <script is:inline defer src={`${base}/tl-live.js`}></script>
   </body>
 </html>
