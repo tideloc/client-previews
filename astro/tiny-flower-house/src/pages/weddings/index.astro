@@ -5,7 +5,7 @@ import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import EnquiryForm from '../../components/EnquiryForm.astro';
 import urnPale from '../../assets/wedding-urn-pale.jpg';
-import urnBurgundy from '../../assets/wedding-urn-burgundy.jpg';
+import handBunch from '../../assets/bunch-mauve.jpg';
 import table from '../../assets/wedding-table.jpg';
 ---
 <Base
@@ -21,7 +21,7 @@ import table from '../../assets/wedding-table.jpg';
   <section data-section="gallery" aria-label="Wedding flowers" class="mx-auto max-w-6xl px-5 mt-12 grid gap-4 md:grid-cols-12">
     <Picture src={table} widths={[640, 1024, 1400]} sizes="(min-width: 768px) 58vw, 100vw" formats={['avif', 'webp']} alt="Loose garden arrangement of dahlias, roses and foliage on a white table" pictureAttributes={{ class: "md:col-span-7 block" }} class="w-full h-full aspect-[4/3] object-cover" loading="eager" fetchpriority="high" />
     <Picture src={urnPale} widths={[480, 800]} sizes="(min-width: 768px) 40vw, 100vw" formats={['avif', 'webp']} alt="Pale pink and cream garden flowers in a footed urn" pictureAttributes={{ class: "md:col-span-5 block" }} class="w-full h-full aspect-[4/3] md:aspect-auto object-cover" loading="lazy" />
-    <Picture src={urnBurgundy} widths={[480, 800]} sizes="(min-width: 768px) 40vw, 100vw" formats={['avif', 'webp']} alt="Burgundy and blush garden flowers arranged in a stone urn" pictureAttributes={{ class: "md:col-span-5 md:col-start-8 block" }} class="w-full aspect-[4/3] object-cover" loading="lazy" />
+    <Picture src={handBunch} widths={[480, 800]} sizes="(min-width: 768px) 40vw, 100vw" formats={['avif', 'webp']} alt="Hand-tied bunch of mauve stock, roses and lace held up in the workshop" pictureAttributes={{ class: "md:col-span-5 md:col-start-8 block" }} class="w-full aspect-[4/3] object-cover" loading="lazy" />
   </section>
 
   <section data-section="request" id="request" aria-labelledby="ask-h" class="mx-auto max-w-6xl px-5 mt-20 grid gap-10 md:grid-cols-5">
