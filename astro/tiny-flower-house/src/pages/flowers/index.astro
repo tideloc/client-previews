@@ -4,11 +4,11 @@ import Base from '../../layouts/Base.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import SeasonCalendar from '../../components/SeasonCalendar.astro';
-import BunchRequest from '../../components/BunchRequest.astro';
 import strawflowers from '../../assets/verge-strawflowers.jpg';
 import jug from '../../assets/bunch-jug.jpg';
 import posy from '../../assets/bunch-posy.jpg';
 import spring from '../../assets/bunch-spring.jpg';
+const requestHref = import.meta.env.BASE_URL.replace(/\/$/, '') + '/#request';
 ---
 <Base
   title="What is in the beds this week | Tiny Flower House, Moss Vale"
@@ -33,6 +33,8 @@ import spring from '../../assets/bunch-spring.jpg';
     <Picture src={jug} widths={[400, 800]} sizes="33vw" formats={['avif', 'webp']} alt="Garden bunch of roses and foliage arranged in a stoneware jug" class="w-full aspect-square object-cover" loading="lazy" />
   </section>
 
-  <BunchRequest heading="Request a bunch" intro="Tell us the occasion and roughly what you want to spend. Lisa prices a bunch when she cuts it and gets back to you with what is ready." showFormats={false} />
+  <section data-section="request" class="mx-auto max-w-6xl px-5 mt-16">
+    <p class="text-lg">Call <a href="tel:+61417000547" class="underline underline-offset-4">0417 000 547</a> to find out what is in bloom this week, or <a href={requestHref} class="underline underline-offset-4">request a bunch</a>.</p>
+  </section>
   <Footer slot="footer" />
 </Base>

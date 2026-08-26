@@ -3,7 +3,7 @@
 import EnquiryForm from './EnquiryForm.astro';
 import { formats } from '../data/seasons';
 interface Props { kind?: string; heading?: string; intro?: string; showFormats?: boolean }
-const { kind = 'bunch-request', heading = 'How a bunch happens', showFormats = true, intro = 'Tell us the occasion and roughly what you want to spend. Lisa cuts what is best that morning and prices it when she cuts it, never before. She rings or emails you back with what is ready.' } = Astro.props;
+const { kind = 'bunch-request', heading = 'How a bunch happens', showFormats = true, intro = 'Tell us the occasion and roughly what you want to spend, or call to find out what is in bloom this week.' } = Astro.props;
 ---
 <section id="request" data-section="request" aria-labelledby="request-h" class="mx-auto max-w-6xl px-5 mt-20 md:mt-28 grid gap-10 md:grid-cols-5">
   <div class="md:col-span-2">
@@ -23,7 +23,7 @@ const { kind = 'bunch-request', heading = 'How a bunch happens', showFormats = t
       kind={kind}
       site="Tiny Flower House"
       submitLabel="Request a bunch"
-      successText="Thanks. Lisa will ring or email you back with what is ready this week."
+      successText="Thanks. Your request has been sent to Tiny Flower House."
       fields={[
         { name: 'name', label: 'Your name', required: true },
         { name: 'phone', label: 'Phone', type: 'tel', required: true },

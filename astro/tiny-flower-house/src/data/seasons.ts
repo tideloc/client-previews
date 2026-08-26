@@ -14,19 +14,19 @@ export interface Season {
 
 export const seasons: Season[] = [
   {
-    key: 'spring', label: 'Spring', months: 'September to November', from: 'from 1 September',
+    key: 'spring', label: 'Spring', months: 'September to November', from: 'from September',
     stems: ['Daffodils', 'Snowball Viburnum', 'Ranunculus', 'Lilac', 'Dianthus', 'Hellebores', 'Foxgloves', 'Peonies', 'Arum Lilies', 'Stock', 'Violas', 'Blossoms', 'Roses', 'Larkspur', 'False Dill', "Queen Ann's Lace"],
-    note: 'The first bunches go out as soon as the verge wakes up.',
+    note: 'What is in bloom changes week to week.',
   },
   {
     key: 'summer', label: 'Summer', months: 'December to February', from: 'from December',
     stems: ['China Asters', 'Dahlias', 'Chocolate Lace Flower', 'Snapdragons', 'Zinnias', 'Hydrangea', 'Cosmos', 'Amaranth', 'Roses', 'Lilies', 'Feverfew'],
-    note: 'Cut early, before the heat, and wrapped the same morning.',
+    note: 'What is in bloom changes week to week.',
   },
   {
     key: 'autumn', label: 'Autumn', months: 'March to May', from: 'from March',
     stems: ['Dahlias', 'Chrysanthemums', 'Zinnias', 'Amaranth', 'Statice', 'Roses', 'Agastache', 'China Asters', 'Yarrow', 'Celosia'],
-    note: 'The dahlias keep going until the first frost.',
+    note: 'What is in bloom changes week to week.',
   },
   {
     key: 'winter', label: 'Winter', months: 'June to August', from: 'from June',
@@ -56,14 +56,14 @@ export function stateFor(season: SeasonKey, now: SeasonKey): StemState {
 }
 
 export const stateLabel: Record<StemState, string> = {
-  cutting: 'cutting now',
-  budding: 'budding',
-  resting: 'resting',
+  cutting: 'in season now',
+  budding: 'coming into season',
+  resting: 'out of season',
 };
 
 /** Formats she sells, as seen in her own photographs. No prices exist on her site. */
 export const formats = [
-  { name: 'Wrapped bunch', line: 'Whatever is best on the verge that morning, hand tied in paper.' },
-  { name: 'Posy in a box', line: 'A smaller bunch in a box with ribbon. Good for a hospital room or a thank you.' },
-  { name: 'Arrangement in a jug', line: 'Ready to stand on a table with nothing to trim at the other end.' },
+  { name: 'Wrapped bunch', line: 'Seasonal stems, hand tied in paper.' },
+  { name: 'Posy in a box', line: 'A smaller bunch in a box with ribbon.' },
+  { name: 'Arrangement in a jug', line: 'Arranged in a vessel, ready to stand.' },
 ];

@@ -19,8 +19,8 @@ const now = seasonFor(today);
 const cur = seasons.find((s) => s.key === now)!;
 const nxt = seasons.find((s) => s.key === nextSeason(now))!;
 const weekLine = cur.stems.length
-  ? `Week of ${dateLine}. Cutting now: ${cur.stems.slice(0, 4).join(', ').toLowerCase()} and more. Priced when we cut them.`
-  : `Week of ${dateLine}. The beds are resting until ${nxt.from.replace('from ', '')}.`;
+  ? `Week of ${dateLine}. In season: ${cur.stems.slice(0, 4).join(', ').toLowerCase()} and more. Call to find out what is in bloom this week.`
+  : `Week of ${dateLine}. Closed for winter, see you in spring.`;
 ---
 <Base
   title="Seasonal flowers grown in Moss Vale | Tiny Flower House"

@@ -20,7 +20,7 @@ const here = Astro.url.pathname.replace(/\/$/, '');
            class="hover:underline underline-offset-4 aria-[current]:underline">{l.label}</a>
       ))}
       <a href={tel} class="tabular-nums">{phone}</a>
-      <a href={`${base}/flowers/#request`} class="bg-primary text-ground px-4 py-2 font-semibold">Request a bunch</a>
+      <a href={`${base}/#request`} class="bg-primary text-ground px-4 py-2 font-semibold">Request a bunch</a>
     </nav>
     <button type="button" class="md:hidden ml-auto p-2 -mr-2" aria-expanded="false" aria-controls="mobile-nav" data-nav-toggle aria-label="Menu">
       <span class="block w-6 h-px bg-ink mb-1.5"></span><span class="block w-6 h-px bg-ink mb-1.5"></span><span class="block w-6 h-px bg-ink"></span>
@@ -30,7 +30,7 @@ const here = Astro.url.pathname.replace(/\/$/, '');
     <ul class="px-5 py-4 grid gap-3 text-lg">
       {links.map((l) => <li><a href={l.href} class="block py-1">{l.label}</a></li>)}
       <li><a href={tel} class="block py-1">{phone}</a></li>
-      <li class="pt-2"><a href={`${base}/flowers/#request`} class="inline-block bg-primary text-ground px-4 py-2 font-semibold">Request a bunch</a></li>
+      <li class="pt-2"><a href={`${base}/#request`} class="inline-block bg-primary text-ground px-4 py-2 font-semibold">Request a bunch</a></li>
     </ul>
   </nav>
 </header>

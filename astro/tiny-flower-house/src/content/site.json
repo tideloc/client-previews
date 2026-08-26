@@ -13,7 +13,7 @@
     { "day": "sun", "closed": true, "open": "09:00", "close": "17:00", "label": "Sunday", "display": "Closed" }
   ],
   "holidays": [],
-  "announcement": { "enabled": true, "text": "Closed for winter. Back in the beds from 1 September. Thank you for supporting a local business this season." },
+  "announcement": { "enabled": true, "text": "Tiny Flower House is now closed for winter. See you in Spring 26. Thank you for supporting a local business this season." },
   "contact": {
     "phone": "0417 000 547",
     "email": "tinyflowerhouse@protonmail.com",
