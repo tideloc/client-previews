@@ -27,14 +27,11 @@ const dot: Record<string, string> = { cutting: 'bg-primary', budding: 'bg-second
     const state = stateFor(s.key, now);
     return (
       <div role="tabpanel" id={`panel-${s.key}`} aria-labelledby={`tab-${s.key}`} hidden={s.key !== open} class="pt-6">
-        <p class="text-ink/70">{s.months}{state === 'budding' ? `, ${s.from}` : ''}. {s.note}</p>
+        <p class="text-ink/70">{s.months}{state === 'budding' ? `, ${s.from}` : ''}. {s.note}{s.stems.length ? ` Every stem below is ${stateLabel[state]}.` : ''}</p>
         {s.stems.length > 0 && (
           <ul class={`mt-5 grid gap-x-8 gap-y-2 ${compact ? 'sm:grid-cols-2 md:grid-cols-4' : 'sm:grid-cols-2 md:grid-cols-3'}`}>
             {s.stems.map((stem) => (
-              <li class="flex items-baseline justify-between border-b border-ink/10 py-1.5">
-                <span>{stem}</span>
-                <span class="text-xs text-ink/60 flex items-center gap-2"><span class={`inline-block w-2 h-2 rounded-full ${dot[state]}`}></span>{stateLabel[state]}</span>
-              </li>
+              <li class="border-b border-ink/10 py-1.5">{stem}</li>
             ))}
           </ul>
         )}
