@@ -63,7 +63,7 @@
     if (drawer) return;
     backdrop = document.createElement("div"); backdrop.className = "tl-backdrop"; backdrop.onclick = closeDrawer; document.body.appendChild(backdrop);
     drawer = document.createElement("aside"); drawer.className = "tl-drawer"; drawer.setAttribute("aria-label", "Your cart");
-    drawer.innerHTML = "<div class=\"tl-drawer-head\"><span>Your cart</span><button class=\"tl-btn tl-btn-ghost\" data-close>Close</button></div><div class=\"tl-drawer-body\"></div><div class=\"tl-drawer-foot\"><div class=\"tl-total\"><span>Total</span><span data-total>$0</span></div><button class=\"tl-btn\" data-checkout style=\"width:100%\">Checkout</button><p class=\"tl-note\">Card and Shopify fees come off each sale like any online checkout. No fees from Tideloc.</p></div>";
+    drawer.innerHTML = "<div class=\"tl-drawer-head\"><span>Your cart</span><button class=\"tl-btn tl-btn-ghost\" data-close>Close</button></div><div class=\"tl-drawer-body\"></div><div class=\"tl-drawer-foot\"><div class=\"tl-total\"><span>Total</span><span data-total>$0</span></div><button class=\"tl-btn\" data-checkout style=\"width:100%\">Checkout</button><p class=\"tl-note\">Your shop runs on your own Shopify account: you manage products, prices and stock, with Tideloc support a message away. Card and Shopify fees come off each sale like any online checkout. No fees from Tideloc.</p></div>";
     document.body.appendChild(drawer);
     q("[data-close]", drawer).onclick = closeDrawer;
     q("[data-checkout]", drawer).onclick = checkout;
@@ -113,7 +113,7 @@
         .catch(fallback);
       return;
     }
-    modal("Checkout runs on Shopify", "<p>On the live version of this site, this button opens Shopify's secure checkout with your cart already loaded. Card payments, shipping and receipts are handled there, and the shop owner manages products in their Shopify admin.</p><p>This portfolio copy isn't connected to a store yet, so the cart stops here.</p><p style=\"margin:0\"><strong>Cart total: " + money(total) + "</strong></p>");
+    modal("Checkout runs on Shopify", "<p>On the live version of this site, this button opens Shopify's secure checkout with your cart already loaded. Card payments, shipping and receipts are handled there, and the money goes straight to you.</p><p>The shop is your own Shopify account: you manage products, prices and stock in its admin, and Tideloc keeps collaborator access so help is only ever a message away.</p><p>This portfolio copy isn't connected to a store yet, so the cart stops here.</p><p style=\"margin:0\"><strong>Cart total: " + money(total) + "</strong></p>");
   }
   window.TLKit = { checkout: checkout, modal: modal };
   function shop() {
