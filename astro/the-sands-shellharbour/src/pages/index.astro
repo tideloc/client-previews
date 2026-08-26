@@ -3,6 +3,7 @@ import Base from '../layouts/Base.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import HeroSands from '../components/HeroSands.astro';
+import ThisWeekCard from '../components/ThisWeekCard.astro';
 import MenuBand from '../components/MenuBand.astro';
 import ReceptionsBlock from '../components/ReceptionsBlock.astro';
 import EventsList from '../components/EventsList.astro';
@@ -12,6 +13,7 @@ import LocationBand from '../components/LocationBand.astro';
 <Base title="Beachside cafe and event venue in Shellharbour | The Sands" description="Beachside dining on Shellharbour North Beach, open 7 days from 7am, plus a licensed event venue for up to 140 guests.">
   <Header slot="header" />
   <HeroSands />
+  <div class="mx-auto max-w-6xl px-5 mt-10 md:mt-14"><ThisWeekCard class="!shadow-none border border-ink/15 md:!p-8" /></div>
   <MenuBand />
   <ReceptionsBlock />
   <EventsList />
