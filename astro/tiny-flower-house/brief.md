@@ -23,7 +23,7 @@ Make a Southern Highlands customer send a bunch request for what is in the beds 
 - Logo: sage circle, TINY / FLOWER / HOUSE. The physical shopfront signage is mint, not sage; worth asking which she considers current.
 
 ## Layout, in two lines
-The first screen is content, not a pitch: the week line, "What is in the beds at the corner of North and East Street, Moss Vale" as the h1, a band of her verge and workshop photos, then her three published stem lists as Spring / Summer / Autumn / Winter tabs with each stem's calendar state. The About page opens on her own manifesto in caps.
+Portfolio-grade hero: full-bleed cosmos-on-the-verge photo, her manifesto "Not your typical florist. We are guerrilla gardeners." at scale in her caps with the second line in her logo sage, her tagline as the eyebrow, and a live "In the beds this week" card built from her published stem lists. Then a full-width sage band with her "Flowers for love, laughter and loss" copy, the season calendar, a photo band, the request form, weddings and gifts.
 
 ## Copy policy
 Every sentence traces to her site (inventory in the workdir) or describes a photograph. No prices, no reviews, no reopen date beyond "Spring", no process claims. Format names (wrapped bunch, posy in a box, arrangement in a jug) are descriptions of her product photos.
@@ -34,7 +34,8 @@ Every sentence traces to her site (inventory in the workdir) or describes a phot
 ## Quality control history (for Blake, this is the point of the test)
 - Self-review: passed. Blake rejected the hero (the standard AI hero stack) and the serif typography. Both rules now live in the skill and in memory.
 - Independent QC agent, fresh context each round: round 1 FAIL (slogan h1, split header, three-element tile, duplicate CTA labels), round 2 FAIL (invented copy: "we plant for your date", "gifts all year", "standing order"), round 3 FAIL (inferred "1 September", "keep for months", process sentences, duplicated form), round 4 FAIL (untraceable subhead, garbled month line, repeated urn photo). Each round fixed and redeployed. Round 5 verdict recorded in review.md.
-- Mechanical gate (static profile incl. new hero-stack check): PASS.
+- Blake then explained the real bar: the portfolio sites. The standard was rewritten from prohibitions to that bar (colours, type, facts, photos locked; layout free). Hero rebuilt to it.
+- Mechanical gate (static profile): PASS.
 
 ## Questions for Blake / Lisa
 1. Prices. None exist on her site, so the build ships a request form, not a checkout. Fixed prices per format, or priced on the day?
