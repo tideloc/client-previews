@@ -161,12 +161,26 @@
     var token = document.body.getAttribute("data-shopify-token");
     var roots = qa(".tl-shop");
     if (!domain || !token || !roots.length) return;
-    fetch("https://" + domain + "/api/2025-07/graphql.json", {
-      method: "POST",
-      headers: { "Content-Type": "application/json", "X-Shopify-Storefront-Access-Token": token },
-      body: JSON.stringify({ query: "{ products(first:100){ edges{ node{ handle title description availableForSale featuredImage{ url } variants(first:1){ edges{ node{ id availableForSale price{ amount } } } } } } } }" }),
-    }).then(function (r) { return r.json(); }).then(function (j) {
-      var edges = j && j.data && j.data.products && j.data.products.edges;
+    // Paginated fetch: 250 per page (Storefront API max), capped at 1000
+    // products so a runaway catalogue can't hang the page. Images come back
+    // pre-resized by Shopify's CDN so appended tiles stay light.
+    var QUERY = "query($cursor:String){ products(first:250, after:$cursor){ pageInfo{ hasNextPage endCursor } edges{ node{ handle title description availableForSale featuredImage{ url(transform:{maxWidth:900}) } variants(first:1){ edges{ node{ id availableForSale price{ amount } } } } } } } }";
+    function fetchPage(cursor, acc, depth) {
+      return fetch("https://" + domain + "/api/2025-07/graphql.json", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "X-Shopify-Storefront-Access-Token": token },
+        body: JSON.stringify({ query: QUERY, variables: { cursor: cursor } }),
+      }).then(function (r) { return r.json(); }).then(function (j) {
+        var page = j && j.data && j.data.products;
+        if (!page || !page.edges) return acc;
+        acc = acc.concat(page.edges);
+        if (page.pageInfo && page.pageInfo.hasNextPage && depth < 3) {
+          return fetchPage(page.pageInfo.endCursor, acc, depth + 1);
+        }
+        return acc;
+      });
+    }
+    fetchPage(null, [], 0).then(function (edges) {
       if (!edges || !edges.length) return;
       var byHandle = {};
       edges.forEach(function (e) { byHandle[e.node.handle] = e.node; });
