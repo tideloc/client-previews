@@ -15,7 +15,10 @@
  *                        with no rebuild. Add data-tl-sync="all" on .tl-shop
  *                        to ALSO append any Shopify product not hand-placed in
  *                        the markup (new products appear automatically, using
- *                        Shopify's own image). Without domain+token, the cart
+ *                        Shopify's own image). With <body data-tl-site="key">
+ *                        the CRM's plan gating applies: the grid caps at the
+ *                        client's plan allowance (+10% grace) and overages are
+ *                        flagged on their lead. Without domain+token, the cart
  *                        works and checkout explains where it goes.
  *   3. Booking embed  <div class="tl-booking" data-cal-link="tideloc/discovery"
  *                        data-cal-label="Book a table"></div>  (Cal.com inline)
@@ -180,8 +183,20 @@
         return acc;
       });
     }
-    fetchPage(null, [], 0).then(function (edges) {
+    // Plan gating: the CRM says how many products this client's plan allows
+    // (limit + a small grace so a promo push past the line doesn't hide
+    // anything). No site key or CRM unreachable -> uncapped (fail open).
+    var siteKey = document.body.getAttribute("data-tl-site");
+    var allowanceP = siteKey
+      ? fetch("https://crm.tideloc.com.au/api/shop-allowance?site=" + encodeURIComponent(siteKey)).then(function (r) { return r.json(); }).catch(function () { return { limit: null }; })
+      : Promise.resolve({ limit: null });
+    Promise.all([fetchPage(null, [], 0), allowanceP]).then(function (res) {
+      var edges = res[0];
+      var allowance = res[1] || { limit: null };
       if (!edges || !edges.length) return;
+      if (allowance.limit != null && siteKey && edges.length > allowance.limit) {
+        fetch("https://crm.tideloc.com.au/api/shop-allowance", { method: "POST", headers: { "Content-Type": "text/plain" }, body: JSON.stringify({ k: siteKey, catalogue: edges.length }) }).catch(function () {});
+      }
       var byHandle = {};
       edges.forEach(function (e) { byHandle[e.node.handle] = e.node; });
       roots.forEach(function (root) {
@@ -213,6 +228,9 @@
               soldOut: !(n.availableForSale && v.availableForSale),
             });
           });
+        }
+        if (allowance.limit != null) {
+          products = products.slice(0, allowance.limit + (allowance.grace || 0));
         }
         renderShopRoot(root, products);
       });
