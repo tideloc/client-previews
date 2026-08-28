@@ -13,9 +13,6 @@ export type Product = {
   badge?: string;
 };
 
-const U = (id: string, w = 900, h = 1200) =>
-  `https://images.unsplash.com/photo-${id}?w=${w}&h=${h}&fit=crop&q=80&auto=format`;
-
 export const products: Product[] = [
   {
     slug: 'widowmaker',
@@ -37,7 +34,7 @@ export const products: Product[] = [
       'Raw sugar',
       'Sea salt',
     ],
-    image: U('1472476443507-c7a5948772fc'),
+    image: '/client-previews/example-sites/blaze-brothers/_assets/img/product-widowmaker-900x1200.jpg',
     badge: 'Flagship',
   },
   {
@@ -59,7 +56,7 @@ export const products: Product[] = [
       'Apple cider vinegar',
       'Sea salt',
     ],
-    image: U('1604329760661-e71dc83f8f26'),
+    image: '/client-previews/example-sites/blaze-brothers/_assets/img/product-blackbird-900x1200.jpg',
   },
   {
     slug: 'sunset-reaper',
@@ -80,7 +77,7 @@ export const products: Product[] = [
       'Sea salt',
       'Native pepperberry',
     ],
-    image: U('1571091718767-18b5b1457add'),
+    image: '/client-previews/example-sites/blaze-brothers/_assets/img/product-sunset-reaper-900x1200.jpg',
     badge: 'Limited',
   },
   {
@@ -102,7 +99,7 @@ export const products: Product[] = [
       'Rice vinegar',
       'Sea salt',
     ],
-    image: U('1513558161293-cdaf765ed2fd'),
+    image: '/client-previews/example-sites/blaze-brothers/_assets/img/product-bush-smoulder-900x1200.jpg',
   },
   {
     slug: 'brothers-rub',
@@ -124,7 +121,7 @@ export const products: Product[] = [
       'Cracked pepper',
       'Sea salt',
     ],
-    image: U('1596040033229-a9821ebd058d'),
+    image: '/client-previews/example-sites/blaze-brothers/_assets/img/product-brothers-rub-900x1200.jpg',
   },
   {
     slug: 'ember-rub',
@@ -146,7 +143,7 @@ export const products: Product[] = [
       'Onion',
       'Sea salt',
     ],
-    image: U('1599305090598-fe179d501227'),
+    image: '/client-previews/example-sites/blaze-brothers/_assets/img/product-ember-rub-900x1200.jpg',
   },
   {
     slug: 'starter-flight',
@@ -160,7 +157,7 @@ export const products: Product[] = [
       'Four of our most-ordered sauces in 60ml share bottles. Bush Smoulder → Blackbird → Widowmaker → Sunset Reaper. Makes a mean gift for someone you like slightly less than you thought.',
     pairs: ['Dinner parties', 'Housewarmings', 'Father’s Day'],
     ingredients: ['See individual bottles'],
-    image: U('1587241321921-91a834d6d191'),
+    image: '/client-previews/example-sites/blaze-brothers/_assets/img/product-starter-flight-900x1200.jpg',
     badge: 'Best seller',
   },
   {
@@ -175,7 +172,7 @@ export const products: Product[] = [
       "Everything you need for a 12-hour smoke. Brothers' rub to start, Widowmaker to finish, and our Tallowwood stirring spoon (carved by a mate in Maleny) so you never reach for a plastic one again.",
     pairs: ['Brisket', 'Lamb shoulder', 'Whole pork collar'],
     ingredients: ['Brothers\' Rub 180g', 'Widowmaker 150ml', 'Tallowwood spoon'],
-    image: U('1509440159596-0249088772ff'),
+    image: '/client-previews/example-sites/blaze-brothers/_assets/img/product-low-slow-trio-900x1200.jpg',
     badge: 'Gift',
   },
 ];

@@ -9,9 +9,6 @@ export type Recipe = {
   image: string;
 };
 
-const U = (id: string, w = 900, h = 600) =>
-  `https://images.unsplash.com/photo-${id}?w=${w}&h=${h}&fit=crop&q=80&auto=format`;
-
 export const recipes: Recipe[] = [
   {
     slug: 'widowmaker-wings',
@@ -21,7 +18,7 @@ export const recipes: Recipe[] = [
     difficulty: 'Medium',
     sauce: 'Widowmaker',
     blurb: 'Dry-rubbed, smoked 90 min at 120°C, crisped over coals, drenched in Widowmaker. A Sunday ritual in our backyard since 2019.',
-    image: U('1606755962773-d324e0a13086'),
+    image: '/client-previews/example-sites/blaze-brothers/_assets/img/recipe-widowmaker-wings-900x600.jpg',
   },
   {
     slug: 'blackbird-tacos',
@@ -31,7 +28,7 @@ export const recipes: Recipe[] = [
     difficulty: 'Easy',
     sauce: 'Blackbird',
     blurb: 'Line-caught barra, charred corn tortillas, a fistful of coriander, a slick of Blackbird. The weeknight win.',
-    image: U('1551218808-94e220e084d2'),
+    image: '/client-previews/example-sites/blaze-brothers/_assets/img/recipe-blackbird-tacos-900x600.jpg',
   },
   {
     slug: 'brothers-brisket',
@@ -41,7 +38,7 @@ export const recipes: Recipe[] = [
     difficulty: 'Hard',
     sauce: "Brothers' Rub",
     blurb: '14 hours in the offset smoker over Queensland ironbark. Rubbed with Brothers, wrapped at 75°C, rested for 90 minutes. Patience is the recipe.',
-    image: U('1553163147-622ab57be1c7'),
+    image: '/client-previews/example-sites/blaze-brothers/_assets/img/recipe-brothers-brisket-900x600.jpg',
   },
   {
     slug: 'sunset-ribs',
@@ -51,7 +48,7 @@ export const recipes: Recipe[] = [
     difficulty: 'Medium',
     sauce: 'Sunset Reaper',
     blurb: 'Baby backs, Bundy glaze, a glaze of Sunset Reaper for the final 20 minutes. Sticky, terrifying, perfect.',
-    image: U('1544025162-d76694265947'),
+    image: '/client-previews/example-sites/blaze-brothers/_assets/img/recipe-reaper-ribs-900x600.jpg',
   },
   {
     slug: 'ember-chicken',
@@ -61,7 +58,7 @@ export const recipes: Recipe[] = [
     difficulty: 'Easy',
     sauce: 'Ember Rub',
     blurb: 'Spatchcocked, rubbed all over with Ember, roasted at 200°C on the kettle. Crispy skin, no apologies.',
-    image: U('1598103442097-8b74394b95c6'),
+    image: '/client-previews/example-sites/blaze-brothers/_assets/img/recipe-ember-chicken-900x600.jpg',
   },
   {
     slug: 'bush-smoulder-burger',
@@ -71,7 +68,7 @@ export const recipes: Recipe[] = [
     difficulty: 'Easy',
     sauce: 'Bush Smoulder',
     blurb: 'Two thin patties, aged cheddar, house pickles, a generous glug of Bush Smoulder. The best burger we make.',
-    image: U('1504674900247-0877df9cc836'),
+    image: '/client-previews/example-sites/blaze-brothers/_assets/img/recipe-smoulder-smash-900x600.jpg',
   },
   {
     slug: 'smoked-cauli',
@@ -81,7 +78,7 @@ export const recipes: Recipe[] = [
     difficulty: 'Easy',
     sauce: 'Ember Rub',
     blurb: 'Thick-cut cauliflower, Ember rub, 40 minutes in the smoker, finished with tahini. The reason our vegetarian mate still comes to barbecues.',
-    image: U('1568584711075-3d021a7c3ca3'),
+    image: '/client-previews/example-sites/blaze-brothers/_assets/img/recipe-cauliflower-900x600.jpg',
   },
   {
     slug: 'blackbird-eggs',
@@ -91,6 +88,6 @@ export const recipes: Recipe[] = [
     difficulty: 'Easy',
     sauce: 'Blackbird',
     blurb: 'Three eggs, sourdough, a quarter bottle of Blackbird. A hangover, cured. A Tuesday, elevated.',
-    image: U('1482049016688-2d3e1b311543'),
+    image: '/client-previews/example-sites/blaze-brothers/_assets/img/recipe-blackbird-eggs-900x600.jpg',
   },
 ];

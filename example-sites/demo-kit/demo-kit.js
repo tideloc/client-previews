@@ -58,15 +58,16 @@
 
   /* 2. Shop */
   var cart = [];
-  var cartKey = "tl-cart-" + location.pathname;
+  var cartKey = "tl-cart-" + location.pathname; // multi-page sites share one cart via <body data-tl-cart-scope="slug">
   function loadCart() { try { cart = JSON.parse(localStorage.getItem(cartKey) || "[]"); } catch (e) { cart = []; } }
   function saveCart() { localStorage.setItem(cartKey, JSON.stringify(cart)); renderCart(); }
   function cartCount() { return cart.reduce(function (n, l) { return n + l.qty; }, 0); }
   function cartTotal() { return cart.reduce(function (n, l) { return n + l.qty * l.price; }, 0); }
-  function addToCart(p, variant) {
+  function addToCart(p, variant, qty) {
+    qty = Math.max(1, qty || 1);
     var key = p.id + "|" + (variant || "");
     var line = cart.filter(function (l) { return l.key === key; })[0];
-    if (line) line.qty += 1; else cart.push({ key: key, id: p.id, name: p.name, variant: variant || "", price: p.price, image: p.image, shopifyVariantId: p.shopifyVariantId || null, qty: 1 });
+    if (line) line.qty += qty; else cart.push({ key: key, id: p.id, name: p.name, variant: variant || "", price: p.price, image: p.image, shopifyVariantId: p.shopifyVariantId || null, qty: qty });
     saveCart(); openDrawer();
   }
   var drawer, fab, backdrop;
@@ -149,7 +150,38 @@
   }
   function shop() {
     qa(".tl-shop").forEach(function (root) { renderShopRoot(root, rootProducts(root)); });
-    if (qa(".tl-shop").length) { loadCart(); renderCart(); shopifySync(); }
+    hydrateButtons();
+    if (qa(".tl-shop").length || qa("[data-tl-add]").length) { loadCart(); renderCart(); shopifySync(); }
+  }
+
+  /* 2a. Hydrate mode: a page that keeps its own product markup (e.g. the Blaze
+   *     Brothers portfolio site) marks its buy button with data-tl-add plus
+   *     data-handle/name/price/image, and optional [data-tl-qty] stepper
+   *     markup. The kit binds cart behaviour to the existing elements instead
+   *     of rendering its own tiles, so the site's layout is untouched. */
+  function hydrateButtons() {
+    qa("[data-tl-qty]").forEach(function (el) {
+      var scope = el.closest("[data-tl-item]") || document;
+      var dec = q("[data-tl-qty-dec]", scope), inc = q("[data-tl-qty-inc]", scope);
+      var get = function () { return Math.max(1, parseInt(el.textContent, 10) || 1); };
+      if (dec) dec.onclick = function () { el.textContent = String(Math.max(1, get() - 1)); };
+      if (inc) inc.onclick = function () { el.textContent = String(get() + 1); };
+    });
+    qa("[data-tl-add]").forEach(function (b) {
+      b.onclick = function () {
+        if (b.disabled) return;
+        var scope = b.closest("[data-tl-item]") || document;
+        var qtyEl = q("[data-tl-qty]", scope);
+        addToCart({
+          id: b.getAttribute("data-handle") || b.getAttribute("data-name"),
+          handle: b.getAttribute("data-handle") || "",
+          name: b.getAttribute("data-name") || "",
+          price: parseFloat(b.getAttribute("data-price") || "0"),
+          image: b.getAttribute("data-image") || "",
+          shopifyVariantId: b.getAttribute("data-variant-id") || null,
+        }, "", qtyEl ? Math.max(1, parseInt(qtyEl.textContent, 10) || 1) : 1);
+      };
+    });
   }
 
   /* 2b. Live product sync from the client's Shopify catalogue. The hand-placed
@@ -163,7 +195,8 @@
     var domain = document.body.getAttribute("data-shopify-domain");
     var token = document.body.getAttribute("data-shopify-token");
     var roots = qa(".tl-shop");
-    if (!domain || !token || !roots.length) return;
+    var hydrated = qa("[data-tl-add]");
+    if (!domain || !token || (!roots.length && !hydrated.length)) return;
     // Paginated fetch: 250 per page (Storefront API max), capped at 1000
     // products so a runaway catalogue can't hang the page. Images come back
     // pre-resized by Shopify's CDN so appended tiles stay light.
@@ -199,6 +232,20 @@
       }
       var byHandle = {};
       edges.forEach(function (e) { byHandle[e.node.handle] = e.node; });
+      hydrated.forEach(function (b) {
+        var live = byHandle[b.getAttribute("data-handle") || slugify(b.getAttribute("data-name"))];
+        if (!live) return;
+        var v = live.variants.edges.length ? live.variants.edges[0].node : null;
+        if (v) {
+          b.setAttribute("data-price", v.price.amount);
+          b.setAttribute("data-variant-id", String(v.id).replace(/^gid:\/\/shopify\/ProductVariant\//, ""));
+        }
+        if (!(live.availableForSale && v && v.availableForSale)) {
+          b.disabled = true;
+          b.textContent = "Sold out";
+          b.style.opacity = "0.5";
+        }
+      });
       roots.forEach(function (root) {
         var products = rootProducts(root);
         var used = {};
@@ -286,6 +333,10 @@
   }
   function esc(s) { return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;", "'": "&#39;" }[c]; }); }
 
-  function init() { planStrip(); shop(); booking(); requestForms(); }
+  function init() {
+    var cartScope = document.body.getAttribute("data-tl-cart-scope");
+    if (cartScope) cartKey = "tl-cart-" + cartScope;
+    planStrip(); shop(); booking(); requestForms();
+  }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init); else init();
 })();
