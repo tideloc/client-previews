@@ -7,8 +7,16 @@
  *   2. Shop           <div class="tl-shop" data-tl-products='[...]'></div>
  *                      + optional <body data-shopify-domain="x.myshopify.com"
  *                        data-shopify-token="storefront-access-token"> to make
- *                        checkout real via Shopify's Buy Button SDK. Without it,
- *                        the cart works and checkout explains where it goes.
+ *                        checkout real AND live-sync the tiles from the client's
+ *                        Shopify catalogue: prices and sold-out states hydrate
+ *                        from the Storefront API on every load (match by
+ *                        product `handle`, falling back to a slug of `name`),
+ *                        so a change in the Shopify admin shows on the site
+ *                        with no rebuild. Add data-tl-sync="all" on .tl-shop
+ *                        to ALSO append any Shopify product not hand-placed in
+ *                        the markup (new products appear automatically, using
+ *                        Shopify's own image). Without domain+token, the cart
+ *                        works and checkout explains where it goes.
  *   3. Booking embed  <div class="tl-booking" data-cal-link="tideloc/discovery"
  *                        data-cal-label="Book a table"></div>  (Cal.com inline)
  *   4. Request form   <form class="tl-request" data-tl-kind="booking-request|quote">
@@ -116,24 +124,85 @@
     modal("Checkout runs on Shopify", "<p>On the live version of this site, this button opens Shopify's secure checkout with your cart already loaded. Card payments, shipping and receipts are handled there, and the money goes straight to you.</p><p>The shop is your own Shopify account: you manage products, prices and stock in its admin, and Tideloc keeps collaborator access so help is only ever a message away.</p><p>This portfolio copy isn't connected to a store yet, so the cart stops here.</p><p style=\"margin:0\"><strong>Cart total: " + money(total) + "</strong></p>");
   }
   window.TLKit = { checkout: checkout, modal: modal };
-  function shop() {
-    qa(".tl-shop").forEach(function (root) {
-      var products = [];
-      try { products = JSON.parse(root.getAttribute("data-tl-products") || "[]"); } catch (e) { products = []; }
-      root.innerHTML = products.map(function (p) {
-        var variants = p.variants && p.variants.length ? "<select class=\"tl-variant\" data-variant=\"" + esc(p.id) + "\">" + p.variants.map(function (v) { return "<option>" + esc(v) + "</option>"; }).join("") + "</select>" : "";
-        return "<div class=\"tl-product\"><img src=\"" + esc(p.image || "") + "\" alt=\"" + esc(p.name) + "\" loading=\"lazy\"><div class=\"tl-product-body\"><div class=\"tl-product-name\">" + esc(p.name) + "</div><div class=\"tl-product-desc\">" + esc(p.desc || "") + "</div>" + variants + "<div class=\"tl-product-row\"><span class=\"tl-price\">" + money(p.price) + "</span><button class=\"tl-btn\" data-add=\"" + esc(p.id) + "\">Add to cart</button></div></div></div>";
-      }).join("");
-      qa("[data-add]", root).forEach(function (b) {
-        b.onclick = function () {
-          var id = b.getAttribute("data-add");
-          var p = products.filter(function (x) { return String(x.id) === id; })[0];
-          var sel = q("[data-variant=\"" + id + "\"]", root);
-          addToCart(p, sel ? sel.value : "");
-        };
-      });
+  function renderShopRoot(root, products) {
+    root.innerHTML = products.map(function (p) {
+      var variants = p.variants && p.variants.length ? "<select class=\"tl-variant\" data-variant=\"" + esc(p.id) + "\">" + p.variants.map(function (v) { return "<option>" + esc(v) + "</option>"; }).join("") + "</select>" : "";
+      var btn = p.soldOut
+        ? "<button class=\"tl-btn\" disabled>Sold out</button>"
+        : "<button class=\"tl-btn\" data-add=\"" + esc(p.id) + "\">Add to cart</button>";
+      return "<div class=\"tl-product\"><img src=\"" + esc(p.image || "") + "\" alt=\"" + esc(p.name) + "\" loading=\"lazy\"><div class=\"tl-product-body\"><div class=\"tl-product-name\">" + esc(p.name) + "</div><div class=\"tl-product-desc\">" + esc(p.desc || "") + "</div>" + variants + "<div class=\"tl-product-row\"><span class=\"tl-price\">" + money(p.price) + "</span>" + btn + "</div></div></div>";
+    }).join("");
+    qa("[data-add]", root).forEach(function (b) {
+      b.onclick = function () {
+        var id = b.getAttribute("data-add");
+        var p = products.filter(function (x) { return String(x.id) === id; })[0];
+        var sel = q("[data-variant=\"" + id + "\"]", root);
+        addToCart(p, sel ? sel.value : "");
+      };
     });
-    if (qa(".tl-shop").length) { loadCart(); renderCart(); }
+  }
+  function rootProducts(root) {
+    try { return JSON.parse(root.getAttribute("data-tl-products") || "[]"); } catch (e) { return []; }
+  }
+  function shop() {
+    qa(".tl-shop").forEach(function (root) { renderShopRoot(root, rootProducts(root)); });
+    if (qa(".tl-shop").length) { loadCart(); renderCart(); shopifySync(); }
+  }
+
+  /* 2b. Live product sync from the client's Shopify catalogue. The hand-placed
+   *     tiles keep their bespoke photography and copy; price, availability and
+   *     the checkout variant id come from Shopify so the admin is the single
+   *     source of truth. With data-tl-sync="all", products that exist only in
+   *     Shopify are appended after the hand-placed ones. Fails silent: on any
+   *     API problem the page simply keeps its built-in values. */
+  function slugify(t) { return String(t || "").toLowerCase().replace(/&/g, "and").replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, ""); }
+  function shopifySync() {
+    var domain = document.body.getAttribute("data-shopify-domain");
+    var token = document.body.getAttribute("data-shopify-token");
+    var roots = qa(".tl-shop");
+    if (!domain || !token || !roots.length) return;
+    fetch("https://" + domain + "/api/2025-07/graphql.json", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "X-Shopify-Storefront-Access-Token": token },
+      body: JSON.stringify({ query: "{ products(first:100){ edges{ node{ handle title description availableForSale featuredImage{ url } variants(first:1){ edges{ node{ id availableForSale price{ amount } } } } } } } }" }),
+    }).then(function (r) { return r.json(); }).then(function (j) {
+      var edges = j && j.data && j.data.products && j.data.products.edges;
+      if (!edges || !edges.length) return;
+      var byHandle = {};
+      edges.forEach(function (e) { byHandle[e.node.handle] = e.node; });
+      roots.forEach(function (root) {
+        var products = rootProducts(root);
+        var used = {};
+        products.forEach(function (p) {
+          var live = byHandle[p.handle || slugify(p.name)];
+          if (!live) return;
+          used[live.handle] = true;
+          var v = live.variants.edges.length ? live.variants.edges[0].node : null;
+          if (v) {
+            p.price = parseFloat(v.price.amount);
+            p.shopifyVariantId = String(v.id).replace(/^gid:\/\/shopify\/ProductVariant\//, "");
+            p.soldOut = !(live.availableForSale && v.availableForSale);
+          }
+        });
+        if (root.getAttribute("data-tl-sync") === "all") {
+          edges.forEach(function (e) {
+            var n = e.node;
+            if (used[n.handle]) return;
+            var v = n.variants.edges.length ? n.variants.edges[0].node : null;
+            if (!v) return;
+            products.push({
+              id: n.handle, handle: n.handle, name: n.title,
+              desc: (n.description || "").slice(0, 140),
+              price: parseFloat(v.price.amount),
+              image: n.featuredImage ? n.featuredImage.url : "",
+              shopifyVariantId: String(v.id).replace(/^gid:\/\/shopify\/ProductVariant\//, ""),
+              soldOut: !(n.availableForSale && v.availableForSale),
+            });
+          });
+        }
+        renderShopRoot(root, products);
+      });
+    }).catch(function () { /* keep built-in values */ });
   }
 
   /* 3. Cal.com inline embed */
