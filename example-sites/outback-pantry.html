@@ -62,8 +62,8 @@ body{font-family:'Lato',sans-serif;color:var(--char);background:var(--warm);over
 .pgrid-item-price small{font-family:'Lato',sans-serif;font-weight:400;font-size:.75rem;color:var(--clay)}
 /* PRODUCT DETAIL OVERLAY — slides from right */
 .pd-shade{display:none;position:fixed;inset:0;background:rgba(42,38,34,.35);z-index:200;backdrop-filter:blur(2px)}.pd-shade.open{display:block}
-.pd-panel{position:fixed;top:0;right:-520px;width:500px;max-width:100vw;height:100vh;background:var(--bone);z-index:210;overflow-y:auto;transition:right .4s ease;box-shadow:-8px 0 40px rgba(0,0,0,.08)}
-.pd-panel.open{right:0}
+.pd-panel{position:fixed;top:0;right:0;transform:translateX(105%);width:500px;max-width:100vw;height:100vh;background:var(--bone);z-index:210;overflow-y:auto;transition:transform .4s ease;box-shadow:-8px 0 40px rgba(0,0,0,.08)}
+.pd-panel.open{transform:none}
 .pd-panel-close{position:absolute;top:16px;right:16px;background:var(--linen);border:none;cursor:pointer;width:36px;height:36px;display:flex;align-items:center;justify-content:center;z-index:1}.pd-panel-close svg{width:16px;height:16px;color:var(--char)}
 .pd-panel-img{width:100%;height:320px;object-fit:cover;display:block}
 .pd-panel-body{padding:28px 32px 40px}
