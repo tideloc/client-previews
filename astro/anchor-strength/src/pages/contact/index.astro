@@ -1,0 +1,12 @@
+---
+import Base from '../../layouts/Base.astro';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+<Base title="Contact & Hours | Anchor Strength, Shellharbour" description="Anchor Strength, Unit 4, 8 Cove Road, Shellharbour. Appointment only, Monday to Saturday. Call 0412 345 678 or book a free consult online.">
+  <section class="bg-black text-white"><div class="wrap py-16 md:py-20"><p class="eyebrow">Contact</p><h1 class="mt-3 text-[36px] leading-[1.05] sm:text-[52px]">Cove Road, Shellharbour</h1><p class="mt-5 max-w-lg text-[16px] text-white/85">Behind the surf shop, unit 4. Parking at the door. Appointment only, so message ahead if you want to look around.</p></div></section>
+  <section class="wrap grid gap-6 py-14 md:grid-cols-3 md:py-20">
+    <div class="bg-cloud p-7"><p class="eyebrow">Address</p><p class="mt-3 text-[17px] leading-relaxed">Unit 4, 8 Cove Road<br>Shellharbour NSW 2529</p><a class="btn-ember mt-5 !py-3" href="https://www.google.com/maps/dir/?api=1&destination=8+Cove+Road+Shellharbour+NSW+2529" target="_blank" rel="noopener">Directions</a></div>
+    <div class="bg-cloud p-7"><p class="eyebrow">Call or text</p><p class="mt-3 text-[17px]"><a class="font-bold text-navy" href="tel:+61412345678">0412 345 678</a></p><p class="mt-2 text-[15px] text-ink/70">Mid-session I won't pick up. I'll call back between clients.</p><a class="btn-ember mt-5 !py-3" href={`${base}/book/`}>Book online instead</a></div>
+    <div class="bg-cloud p-7"><p class="eyebrow">Hours</p><dl class="mt-3 grid grid-cols-[auto_1fr] gap-x-6 gap-y-2 text-[16px]"><dt class="font-semibold">Mon to Fri</dt><dd>5:30am to 7pm</dd><dt class="font-semibold">Saturday</dt><dd>6:30am to 11am</dd><dt class="font-semibold">Sunday</dt><dd class="text-ink/60">Closed</dd></dl><p class="mt-4 text-[14px] text-ink/60">Appointment only. No walk-ins mid-session.</p></div>
+  </section>
+</Base>

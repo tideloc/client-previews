@@ -1,0 +1,24 @@
+---
+import Base from '../../layouts/Base.astro';
+import { Image } from 'astro:assets';
+import studio from '../../assets/studio.jpg';
+import board from '../../assets/board.jpg';
+import coach from '../../assets/coach.jpg';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+<Base title="About the Coach & Studio | Anchor Strength, Shellharbour" description="Anchor Strength is a one-coach private studio in Shellharbour. Fourteen years of coaching, a bias for simple strength work done well, and no crowds.">
+  <section class="bg-black text-white"><div class="wrap grid items-center gap-10 py-16 md:grid-cols-2 md:py-24">
+    <div><p class="eyebrow">About</p><h1 class="mt-3 text-[36px] leading-[1.05] sm:text-[52px]">One coach. One studio. No crowds.</h1><p class="mt-5 text-[16px] leading-relaxed text-white/85">Anchor Strength is a private studio on Cove Road, appointment only, one client at a time. Fourteen years of coaching, most of it with people who'd rather get strong quietly than perform for a room.</p></div>
+    <div class="overflow-hidden"><Image src={studio} alt="The studio from the doorway: rack, bench, kettlebells, a rower and a big window" widths={[640, 1024]} sizes="(min-width: 768px) 50vw, 100vw" class="aspect-[4/3] w-full object-cover" /></div>
+  </div></section>
+  <section class="wrap py-16 md:py-24"><div class="grid gap-12 md:grid-cols-3">
+    {[['Simple, loaded, repeated', 'Squat, hinge, push, pull, carry. The boring basics, taught properly and made heavier over months, not weeks.'], ['Assessment first', "Nobody lifts anything on day one until we know how you move and what's been sore before."], ['Progress you can measure', "Your numbers are written down every session. In three months you'll see exactly what changed."]].map(([t, d]) => (
+      <div><h2 class="text-[20px] tracking-wider">{t}</h2><p class="mt-3 text-[15px] leading-relaxed text-ink/75">{d}</p></div>
+    ))}
+  </div></section>
+  <section class="wrap pb-16 md:pb-24"><div class="grid gap-5 md:grid-cols-2">
+    <div class="overflow-hidden"><Image src={coach} alt="Coaching a kettlebell press" widths={[640, 1024]} sizes="(min-width: 768px) 50vw, 100vw" class="aspect-[4/3] w-full object-cover" /></div>
+    <div class="overflow-hidden"><Image src={board} alt="The programme board and a towel on the bench" widths={[640, 1024]} sizes="(min-width: 768px) 50vw, 100vw" class="aspect-[4/3] w-full object-cover" /></div>
+  </div>
+  <div class="mt-12 bg-navy p-8 text-white md:flex md:items-center md:justify-between md:gap-8"><div><h2 class="text-[26px]">Come and see the studio</h2><p class="mt-2 text-white/80">The free consult happens here. You'll know in thirty minutes if it's the right fit.</p></div><a href={`${base}/book/`} class="btn-ember mt-6 md:mt-0 shrink-0">Book a free consult</a></div></section>
+</Base>

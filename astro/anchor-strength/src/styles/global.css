@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+html { scroll-behavior: smooth; }
+body { @apply bg-white text-ink font-body antialiased; }
+h1, h2, h3 { @apply font-display font-semibold uppercase tracking-wide; }
+.wrap { @apply mx-auto w-full max-w-6xl px-5 sm:px-8; }
+.btn { @apply inline-flex items-center justify-center gap-2 px-7 py-3.5 font-display text-[15px] font-semibold uppercase tracking-wider transition; }
+.btn-ember { @apply btn bg-ember text-black hover:bg-[#ffa042]; }
+.btn-white { @apply btn bg-white text-black hover:bg-cloud; }
+.btn-outline { @apply btn border-2 border-white text-white hover:bg-white hover:text-black; }
+.eyebrow { @apply font-display text-[13px] font-semibold uppercase tracking-[0.28em] text-ember; }
+:focus-visible { outline: 3px solid #F28C28; outline-offset: 3px; }
+.skip { @apply sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:bg-black focus:px-4 focus:py-2 focus:text-white; }

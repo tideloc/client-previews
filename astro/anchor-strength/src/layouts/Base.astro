@@ -1,0 +1,33 @@
+---
+import '../styles/global.css';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+interface Props { title: string; description?: string; og?: string; }
+const { title, description = 'Anchor Strength is a private, appointment-only strength studio in Shellharbour. One-on-one and semi-private coaching, programmed for you. Book a free consult online.', og } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const canonical = new URL(Astro.url.pathname, 'https://tideloc.github.io').href;
+const ld = { '@context': 'https://schema.org', '@type': 'HealthClub', name: 'Anchor Strength', description, url: canonical, telephone: '+61 412 345 678',
+  address: { '@type': 'PostalAddress', streetAddress: 'Unit 4, 8 Cove Road', addressLocality: 'Shellharbour', addressRegion: 'NSW', postalCode: '2529', addressCountry: 'AU' },
+  openingHoursSpecification: [{ '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday','Tuesday','Wednesday','Thursday','Friday'], opens: '05:30', closes: '19:00' }, { '@type': 'OpeningHoursSpecification', dayOfWeek: 'Saturday', opens: '06:30', closes: '11:00' }], priceRange: '$$' };
+---
+<!doctype html>
+<html lang="en-AU">
+  <head>
+    <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title><meta name="description" content={description} /><link rel="canonical" href={canonical} />
+    <meta name="theme-color" content="#141415" /><link rel="icon" type="image/svg+xml" href={`${base}/favicon.svg`} />
+    <meta property="og:type" content="website" /><meta property="og:title" content={title} /><meta property="og:description" content={description} />
+    {og && <meta property="og:image" content={og} />}<meta name="twitter:card" content="summary_large_image" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/client-previews/example-sites/demo-kit/demo-kit.css" />
+    <script type="application/ld+json" set:html={JSON.stringify(ld)} />
+  </head>
+  <body class="min-h-screen flex flex-col" data-tl-plan="site" data-tl-label="personal trainer">
+    <a class="skip" href="#main">Skip to content</a>
+    <Nav />
+    <main id="main" class="flex-1"><slot /></main>
+    <Footer />
+    <script src="/client-previews/example-sites/demo-kit/demo-kit.js" defer></script>
+  </body>
+</html>

@@ -1,0 +1,36 @@
+---
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const path = Astro.url.pathname.replace(base, '') || '/';
+const links = [
+  { href: `${base}/about/`, label: 'About', match: '/about' },
+  { href: `${base}/training/`, label: 'Training', match: '/training' },
+  { href: `${base}/contact/`, label: 'Contact', match: '/contact' },
+];
+const isActive = (m: string) => path.startsWith(m);
+---
+<header class="sticky top-0 z-40 bg-black text-white">
+  <div class="wrap flex items-center justify-between gap-4 py-3">
+    <a href={`${base}/`} class="font-display text-[22px] font-bold uppercase tracking-wider" aria-label="Anchor Strength home">Anchor <span class="text-ember">Strength</span></a>
+    <nav class="hidden md:flex items-center gap-7 text-[14px] font-semibold uppercase tracking-wider" aria-label="Main">
+      {links.map((l) => <a href={l.href} class:list={['hover:text-ember', { 'text-ember': isActive(l.match) }]} aria-current={isActive(l.match) ? 'page' : undefined}>{l.label}</a>)}
+      <a href={`${base}/book/`} class="btn-ember !py-2.5 !px-5 !text-[13px]">Free Consult</a>
+    </nav>
+    <div class="flex items-center gap-2 md:hidden">
+      <a href={`${base}/book/`} class="btn-ember !py-2.5 !px-4 !text-[13px]">Consult</a>
+      <button id="menuBtn" class="grid h-11 w-11 place-items-center border-2 border-white/20" aria-expanded="false" aria-controls="mobileNav" aria-label="Menu">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M3 6h14M3 10h14M3 14h14"/></svg>
+      </button>
+    </div>
+  </div>
+  <nav id="mobileNav" class="md:hidden hidden border-t border-white/10 bg-black" aria-label="Mobile">
+    <div class="wrap flex flex-col py-2">
+      <a href={`${base}/`} class="py-3.5 text-[15px] font-semibold uppercase tracking-wider border-b border-white/5">Home</a>
+      {links.map((l) => <a href={l.href} class="py-3.5 text-[15px] font-semibold uppercase tracking-wider border-b border-white/5">{l.label}</a>)}
+      <a href="tel:+61412345678" class="py-3.5 text-[15px] font-semibold text-ember">Call 0412 345 678</a>
+    </div>
+  </nav>
+</header>
+<script>
+  const b = document.getElementById('menuBtn'); const n = document.getElementById('mobileNav');
+  b?.addEventListener('click', () => { const open = n!.classList.toggle('hidden') === false; b.setAttribute('aria-expanded', String(open)); });
+</script>

@@ -1,0 +1,24 @@
+---
+import Base from '../../layouts/Base.astro';
+---
+<Base title="Book a Free Consult | Anchor Strength, Shellharbour" description="Book a free 30-minute consult at Anchor Strength in Shellharbour. Pick a time from real availability and get a confirmation straight away.">
+  <section class="bg-black text-white"><div class="wrap py-16 md:py-20"><p class="eyebrow">Book</p><h1 class="mt-3 text-[36px] leading-[1.05] sm:text-[52px]">Free 30-minute consult</h1><p class="mt-5 max-w-lg text-[16px] text-white/85">Pick a time that suits. You'll get a confirmation you can move or cancel yourself.</p></div></section>
+  <section class="wrap py-12 md:py-16">
+    <div class="grid gap-10 lg:grid-cols-[1.4fr_1fr]">
+      <div>
+        <div class="tl-booking bg-white p-2 ring-1 ring-ink/10" data-cal-link="tideloc/discovery" data-cal-label="Book a free consult"></div>
+        <p class="mt-3 text-[13px] text-ink/50">Example site: the calendar is a live booking embed on a demo account. On a real site it's the coach's own calendar.</p>
+      </div>
+      <aside>
+        <h2 class="text-[22px]">Rather we call you?</h2>
+        <form class="tl-request mt-5 grid gap-4 bg-cloud p-6" data-tl-kind="booking-request">
+          <label class="grid gap-1.5 text-[14px] font-semibold">Your name<input name="name" required class="border border-ink/15 bg-white px-3.5 py-3 font-normal" autocomplete="name" /></label>
+          <label class="grid gap-1.5 text-[14px] font-semibold">Phone<input name="phone" type="tel" required class="border border-ink/15 bg-white px-3.5 py-3 font-normal" autocomplete="tel" /></label>
+          <label class="grid gap-1.5 text-[14px] font-semibold">What are you after?<select name="service" class="border border-ink/15 bg-white px-3.5 py-3 font-normal"><option>Not sure, let's talk</option><option>Once a week</option><option>Twice a week</option><option>Semi-private with someone</option><option>Programme only</option></select></label>
+          <label class="grid gap-1.5 text-[14px] font-semibold">Anything we should know?<textarea name="notes" rows="3" placeholder="Injuries, goals, mornings or evenings" class="border border-ink/15 bg-white px-3.5 py-3 font-normal"></textarea></label>
+          <button type="submit" class="btn-ember">Request a call back</button>
+        </form>
+      </aside>
+    </div>
+  </section>
+</Base>

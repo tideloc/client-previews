@@ -1,0 +1,104 @@
+---
+import Base from '../layouts/Base.astro';
+import { Image } from 'astro:assets';
+import hero from '../assets/hero.jpg';
+import coach from '../assets/coach.jpg';
+import studio from '../assets/studio.jpg';
+import client from '../assets/client.jpg';
+import sled from '../assets/sled.jpg';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const plans = [
+  ['Casual session', '$95', 'per session', ['One-on-one, 55 minutes', 'Programmed on the day', 'Book when it suits']],
+  ['Once a week', '$340', 'per month', ['4 x one-on-one sessions', 'A written programme for the other days', 'Check-in messages between sessions']],
+  ['Twice a week', '$640', 'per month', ['8 x one-on-one sessions', 'Full programme and nutrition basics', 'Priority booking times']],
+  ['Semi-private', '$60', 'per person, per session', ['Two people, one coach', 'Same programme, shared session', 'Bring a partner or a mate']],
+];
+---
+<Base title="Personal Training Shellharbour | Anchor Strength">
+  <!-- Full-bleed dark hero -->
+  <section class="relative isolate min-h-[640px] overflow-hidden bg-black text-white md:min-h-[720px]">
+    <Image src={hero} alt="Hands gripping a loaded barbell in the studio, chalk in the light" widths={[768, 1376]} sizes="100vw" loading="eager" fetchpriority="high" class="absolute inset-0 -z-10 h-full w-full object-cover opacity-70" />
+    <div class="absolute inset-0 -z-10 bg-gradient-to-r from-black/85 via-black/55 to-black/20"></div>
+    <div class="wrap flex min-h-[640px] flex-col justify-center py-20 md:min-h-[720px]">
+      <p class="eyebrow">Start your strength journey</p>
+      <h1 class="mt-4 max-w-3xl text-[36px] leading-[1.05] sm:text-[48px] md:text-[56px]">Personal training in Shellharbour. Private studio. One coach. Your programme.</h1>
+      <p class="mt-6 max-w-xl text-[16px] leading-relaxed text-white/85">Appointment-only strength coaching for people who want to get stronger, move better and stop guessing in a big gym. No crowds, no contracts, no mirrors selfies.</p>
+      <div class="mt-9 flex flex-wrap gap-3">
+        <a href={`${base}/book/`} class="btn-ember">Book a free consult</a>
+        <a href={`${base}/training/`} class="btn-outline">What it costs</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- White intro -->
+  <section class="wrap py-16 md:py-20">
+    <div class="grid gap-10 md:grid-cols-[1.1fr_1fr] md:items-center">
+      <div>
+        <h2 class="text-[28px] sm:text-[34px]">Strength coaching, not a workout to survive</h2>
+        <p class="mt-5 text-[16px] leading-relaxed text-ink/80">Every session is programmed for you, from a proper assessment on day one. Squat, hinge, push, pull, carry, done with good technique and loaded sensibly over time. That's how people in their forties, fifties and sixties get strong without getting hurt, and it's most of who trains here.</p>
+        <p class="mt-4 text-[16px] leading-relaxed text-ink/80">One coach. The same coach every time. If you've had a bad run of gym memberships you never used, this is the opposite of that.</p>
+        <a href={`${base}/about/`} class="mt-6 inline-block font-display text-[15px] font-semibold uppercase tracking-wider text-ember underline underline-offset-4">About the coach</a>
+      </div>
+      <div class="overflow-hidden"><Image src={coach} alt="A coach adjusting a client's elbow position on a kettlebell press" widths={[640, 1024]} sizes="(min-width: 768px) 45vw, 100vw" class="aspect-[4/3] w-full object-cover" /></div>
+    </div>
+  </section>
+
+  <!-- Navy: pricing cards -->
+  <section class="bg-navy text-white">
+    <div class="wrap py-16 md:py-20">
+      <p class="eyebrow text-center">Flexible</p>
+      <h2 class="mt-2 text-center text-[32px] sm:text-[40px]">Training options</h2>
+      <p class="mx-auto mt-3 max-w-lg text-center text-[15px] text-white/75">No lock-in contracts. Pay monthly, pause when life gets in the way.</p>
+      <div class="mt-12 grid gap-5 md:grid-cols-4">
+        {plans.map(([name, price, unit, feats]) => (
+          <div class="flex flex-col bg-black/40 p-6 ring-1 ring-white/10">
+            <h3 class="text-[18px] tracking-wider">{name}</h3>
+            <p class="mt-4 font-display text-[44px] font-bold leading-none">{price}</p>
+            <p class="text-[13px] text-white/60">{unit}</p>
+            <ul class="mt-5 flex-1 space-y-2 text-[14px] text-white/85">{(feats as string[]).map((f) => <li class="flex gap-2"><span class="text-ember">&#9656;</span>{f}</li>)}</ul>
+            <a href={`${base}/book/`} class="btn-ember mt-6 !py-3">Get started</a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Dark: what to expect -->
+  <section class="bg-black text-white">
+    <div class="wrap grid gap-10 py-16 md:grid-cols-2 md:items-center md:py-24">
+      <div class="overflow-hidden"><Image src={client} alt="A client in their fifties carrying two heavy kettlebells across the studio" widths={[640, 1024]} sizes="(min-width: 768px) 50vw, 100vw" class="aspect-[4/3] w-full object-cover" /></div>
+      <div>
+        <p class="eyebrow">What to expect</p>
+        <h2 class="mt-2 text-[30px] sm:text-[36px]">Your first month</h2>
+        <ol class="mt-8 space-y-6">
+          {[
+            ['Free 30-minute consult', "We talk about where you are, what's hurt before, and what you actually want. You leave with a plan whether you book or not."],
+            ['Assessment session', "Movement, strength baselines, and the numbers we'll measure against. No max-outs, no vomiting into a bucket."],
+            ['Programme starts', 'Sessions are yours alone. Between them you get a written programme for the days you train without me, if you want them.'],
+          ].map(([t, d], i) => (
+            <li class="flex gap-5"><span class="font-display text-[34px] font-bold leading-none text-ember">0{i + 1}</span><div><h3 class="text-[18px] tracking-wider">{t}</h3><p class="mt-1.5 text-[14px] leading-relaxed text-white/75">{d}</p></div></li>
+          ))}
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- Beyond strength band -->
+  <section class="bg-navy text-white">
+    <div class="wrap grid gap-8 py-14 md:grid-cols-3">
+      {[['Older, not weaker', 'Most clients are 40 to 65. Bone density, balance and joints are the point, not a six-pack.'], ['Coming back from injury', 'Cleared by your physio? We build from what you can do today, and we talk to your physio if you want us to.'], ['Never lifted before', 'Good. No habits to unlearn. Every rep is taught from the first one.']].map(([t, d]) => (
+        <div><h3 class="text-[18px] tracking-wider text-ember">{t}</h3><p class="mt-2 text-[14px] leading-relaxed text-white/80">{d}</p></div>
+      ))}
+    </div>
+  </section>
+
+  <!-- CTA band with studio image -->
+  <section class="relative isolate overflow-hidden bg-black text-white">
+    <Image src={studio} alt="The small private studio from the doorway" widths={[768, 1376]} sizes="100vw" class="absolute inset-0 -z-10 h-full w-full object-cover opacity-40" />
+    <div class="wrap py-20 text-center md:py-28">
+      <h2 class="text-[32px] sm:text-[44px]">Start with a free consult</h2>
+      <p class="mx-auto mt-4 max-w-md text-[15px] text-white/85">Thirty minutes, no obligation. Pick a time online or call.</p>
+      <div class="mt-8 flex flex-wrap justify-center gap-3"><a href={`${base}/book/`} class="btn-ember">Book online</a><a href="tel:+61412345678" class="btn-outline">0412 345 678</a></div>
+    </div>
+  </section>
+</Base>
