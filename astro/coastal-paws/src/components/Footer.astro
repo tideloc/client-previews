@@ -1,18 +1,31 @@
 ---
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
-<footer class="bg-deep text-cream">
-  <div class="wrap grid gap-10 py-14 md:grid-cols-3">
-    <div><p class="font-display text-xl font-bold uppercase tracking-wider">Coastal <span class="text-coral">Paws</span></p>
-      <p class="mt-4 text-[14px] leading-relaxed text-ash">Dog grooming, Kiama.<br>Shop 2, 12 Manning Street, Kiama NSW 2533</p>
-      <p class="mt-3 text-[15px] font-semibold"><a class="hover:text-coral" href="tel:+61412345678">0412 345 678</a></p>
-      <a class="mt-2 inline-block text-[14px] text-ash underline underline-offset-4 hover:text-coral" href="https://www.google.com/maps/dir/?api=1&destination=12+Manning+Street+Kiama+NSW+2533" target="_blank" rel="noopener">Get directions</a></div>
-    <div><p class="eyebrow">Hours</p>
-      <dl class="mt-3 space-y-1 text-[14px] text-ash"><div class="flex gap-4"><dt class="w-24">Tue to Fri</dt><dd>8am to 4:30pm</dd></div><div class="flex gap-4"><dt class="w-24">Saturday</dt><dd>8am to 1pm</dd></div><div class="flex gap-4"><dt class="w-24">Sun, Mon</dt><dd>Closed</dd></div></dl>
-      <p class="mt-4 text-[13px] text-ash">Nail trims: walk in Saturday mornings.</p></div>
-    <div><p class="eyebrow">Book</p>
-      <p class="mt-3 text-[14px] text-ash">Real availability, instant confirmation, and you can move it yourself up to 24 hours before.</p>
-      <a href={`${base}/book/`} class="btn-coral mt-5">Book online</a></div>
+<footer class="wrap pb-10 pt-6">
+  <div class="rounded-blob bg-navy p-8 text-white md:p-12">
+    <div class="grid gap-10 md:grid-cols-3">
+      <div>
+        <p class="font-display text-[24px] font-extrabold">Coastal <span class="text-sunshine">Paws</span></p>
+        <p class="mt-3 text-[14px] leading-relaxed text-ash">Shop 2, 5 Bandana Lane, Kiama NSW 2533</p>
+        <p class="mt-1 text-[14px]"><a class="text-sunshine font-semibold" href="tel:+61412345678">0412 345 678</a></p>
+        <p class="mt-1 text-[14px] text-ash">woof@coastalpaws.example</p>
+      </div>
+      <div>
+        <p class="font-display text-[18px] font-bold">Quick links</p>
+        <ul class="mt-3 space-y-1.5 text-[14px] text-ash">
+          <li><a class="hover:text-sunshine" href={`${base}/services/`}>Grooming &amp; prices</a></li><li><a class="hover:text-sunshine" href={`${base}/about/`}>About us</a></li>
+          <li><a class="hover:text-sunshine" href={`${base}/contact/`}>Contact</a></li><li><a class="hover:text-sunshine" href={`${base}/book/`}>Book a groom</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="font-display text-[18px] font-bold">Opening hours</p>
+        <dl class="mt-3 space-y-1 text-[14px] text-ash"><div class="flex gap-4"><dt class="w-24">Tue to Fri</dt><dd>8am to 4:30pm</dd></div><div class="flex gap-4"><dt class="w-24">Saturday</dt><dd>8am to 1pm</dd></div><div class="flex gap-4"><dt class="w-24">Sun, Mon</dt><dd>Closed</dd></div></dl>
+        <a href={`${base}/book/`} class="btn-coral mt-5 !bg-sunshine !text-navy hover:!bg-[#ffd466]">Book online</a>
+      </div>
+    </div>
+    <div class="mt-10 flex flex-col gap-2 border-t border-white/10 pt-5 text-[12.5px] text-ash sm:flex-row sm:justify-between">
+      <span>&copy; 2026 Coastal Paws Dog Grooming, Kiama. Bandana Lane is made up, the dogs are not.</span>
+      <span>Example site by <a class="underline hover:text-white" href="https://tideloc.com.au">Tideloc</a></span>
+    </div>
   </div>
-  <div class="border-t border-cream/10"><div class="wrap flex flex-col gap-2 py-5 text-[12.5px] text-ash sm:flex-row sm:justify-between"><span>&copy; 2026 Coastal Paws Dog Grooming. Kiama, NSW.</span><span>Example site by <a class="underline hover:text-cream" href="https://tideloc.com.au">Tideloc</a></span></div></div>
 </footer>

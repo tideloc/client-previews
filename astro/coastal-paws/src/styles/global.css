@@ -2,14 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 html { scroll-behavior: smooth; }
-body { @apply bg-cream text-ink font-body antialiased; }
-h1, h2, h3 { @apply font-display font-semibold uppercase tracking-wide; }
+body { @apply bg-white text-stone font-body antialiased; }
+h1, h2, h3 { @apply font-display font-bold tracking-normal text-sky; }
 .wrap { @apply mx-auto w-full max-w-6xl px-5 sm:px-8; }
-.btn { @apply inline-flex items-center justify-center gap-2 px-7 py-3.5 font-display text-[15px] font-semibold uppercase tracking-wider transition; }
-.btn-coral { @apply btn bg-coral text-white hover:bg-[#d15f3f]; }
-.btn-dark { @apply btn bg-ink text-cream hover:bg-deep; }
-.btn-outline { @apply btn border-2 border-cream text-cream hover:bg-cream hover:text-ink; }
-.btn-outline-dark { @apply btn border-2 border-ink text-ink hover:bg-ink hover:text-cream; }
-.eyebrow { @apply font-display text-[13px] font-semibold uppercase tracking-[0.28em] text-coral; }
-:focus-visible { outline: 3px solid #E5704F; outline-offset: 3px; }
-.skip { @apply sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:bg-ink focus:px-4 focus:py-2 focus:text-white; }
+.btn { @apply inline-flex items-center justify-center gap-2 rounded-full px-7 py-3.5 font-display text-[16px] font-bold transition; }
+.btn-coral { @apply btn bg-sky text-white hover:bg-[#0092c4]; }
+.btn-dark { @apply btn bg-navy text-white hover:bg-deep; }
+.btn-outline { @apply btn border-2 border-white text-white hover:bg-white hover:text-navy; }
+.btn-outline-dark { @apply btn border-2 border-navy text-navy hover:bg-navy hover:text-white; }
+.eyebrow { @apply font-display text-[15px] font-bold text-bubble; }
+.tick::before, .tick::after { content: "\2571"; @apply mx-3 text-sunshine; }
+:focus-visible { outline: 3px solid #FFC53D; outline-offset: 3px; }
+.skip { @apply sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-navy focus:px-4 focus:py-2 focus:text-white; }

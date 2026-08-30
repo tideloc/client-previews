@@ -11,25 +11,25 @@ const rows = [
 const extras = [['Nail trim (on its own)', '$20'], ['Nail trim (with a groom)', '$12'], ['Teeth brush', '$10'], ['Flea treatment', '$15'], ['Extra time for nervous dogs', 'no charge, just tell us']];
 ---
 <Base title="Services & Prices | Coastal Paws Dog Grooming, Kiama" description="Grooming prices by dog size at Coastal Paws in Kiama: full grooms, bath and tidy, de-shed, puppy intros, nail trims and add-ons. Book online.">
-  <section class="bg-ink text-cream">
+  <section class="bg-sand">
     <div class="wrap py-14 md:py-20">
       <p class="eyebrow">Services and prices</p>
       <h1 class="mt-4 max-w-2xl text-[40px] leading-[1] sm:text-[56px]">Priced by size. No surprises at pick-up.</h1>
-      <p class="mt-6 max-w-xl text-[17px] leading-relaxed text-cream/85">Prices are a guide for a dog in reasonable coat condition. Heavy matting or a very long coat can add time, and we always tell you before we start.</p>
+      <p class="mt-6 max-w-xl text-[17px] leading-relaxed text-stone">Prices are a guide for a dog in reasonable coat condition. Heavy matting or a very long coat can add time, and we always tell you before we start.</p>
     </div>
   </section>
 
   <section class="wrap py-14 md:py-20">
-    <div class="overflow-x-auto ring-1 ring-ink/10">
+    <div class="overflow-x-auto rounded-blob ring-1 ring-navy/10">
       <table class="w-full min-w-[720px] text-left text-[15px]">
-        <thead class="bg-ink text-cream">
+        <thead class="bg-ink text-white">
           <tr><th class="px-5 py-4 font-semibold">Service</th>{sizes.map((s) => <th class="px-4 py-4 font-semibold">{s}</th>)}</tr>
         </thead>
         <tbody>
           {rows.map((r, i) => (
             <tr class={i % 2 ? 'bg-sand/60' : 'bg-white'}>
               <td class="px-5 py-5 align-top"><span class="font-bold">{r.s}</span><br><span class="text-ink/60 text-[14px]">{r.d}</span></td>
-              {r.p.map((p) => <td class="px-4 py-5 align-top font-display text-lg font-extrabold text-coral">{p}</td>)}
+              {r.p.map((p) => <td class="px-4 py-5 align-top font-display text-lg font-extrabold text-sky">{p}</td>)}
             </tr>
           ))}
         </tbody>
@@ -40,15 +40,15 @@ const extras = [['Nail trim (on its own)', '$20'], ['Nail trim (with a groom)', 
     <div class="mt-14 grid gap-10 md:grid-cols-2">
       <div>
         <h2 class="text-[30px]">Add-ons</h2>
-        <dl class="mt-5 divide-y divide-ink/10 bg-white ring-1 ring-ink/10">
-          {extras.map(([n, p]) => <div class="flex items-center justify-between gap-4 px-5 py-4"><dt>{n}</dt><dd class="font-bold text-coral">{p}</dd></div>)}
+        <dl class="mt-5 divide-y divide-ink/10 rounded-blob bg-white ring-1 ring-navy/10">
+          {extras.map(([n, p]) => <div class="flex items-center justify-between gap-4 px-5 py-4"><dt>{n}</dt><dd class="font-bold text-sky">{p}</dd></div>)}
         </dl>
       </div>
-      <div class="bg-ink p-8 text-cream">
+      <div class="rounded-blob bg-navy p-8 text-white">
         <h2 class="text-[30px]">Not sure what your dog needs?</h2>
-        <p class="mt-3 text-cream/80 leading-relaxed">Book a bath and tidy and we'll talk through it at drop-off. You can upgrade on the day if there's time, and you'll only ever pay for what's done.</p>
+        <p class="mt-3 text-white/80 leading-relaxed">Book a bath and tidy and we'll talk through it at drop-off. You can upgrade on the day if there's time, and you'll only ever pay for what's done.</p>
         <a href={`${base}/book/`} class="btn-coral mt-6">Book online</a>
-        <p class="mt-4 text-[14px] text-cream/70">Or call <a class="font-semibold underline" href="tel:+61412345678">0412 345 678</a></p>
+        <p class="mt-4 text-[14px] text-white/70">Or call <a class="font-semibold underline" href="tel:+61412345678">0412 345 678</a></p>
       </div>
     </div>
   </section>

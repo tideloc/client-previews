@@ -7,108 +7,117 @@ import dry from '../assets/dry.jpg';
 import dogs from '../assets/dogs.jpg';
 import nails from '../assets/nails.jpg';
 import shopfront from '../assets/shopfront.jpg';
+import kelpie from '../assets/kelpie.jpg';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-const services = [
-  ['Full groom', 'from $95', ['Bath, blow dry, full clip or scissor', 'Nails, ears, sanitary tidy', 'Two to three hours, no cages']],
-  ['Bath and tidy', 'from $65', ['Wash, condition, dry, brush out', 'Face, feet and feathers tidy', 'Good between full grooms']],
-  ['De-shed', 'from $85', ['Bath and conditioning treatment', 'Long blow out for double coats', 'Less hair on the couch']],
-  ['Puppy intro', '$55', ['Under six months', 'Bath, light tidy, lots of treats', 'A gentle first visit']],
+const cares = [
+  ['bg-grape', 'Gentle handling', 'Slow, quiet, and we stop if a dog needs a minute. Nervous dogs get extra time at no charge.'],
+  ['bg-lime', 'No cages for the day', 'Drop off, do the shopping, pick up in two to three hours. A text the moment they are ready.'],
+  ['bg-bubble', 'Honest about coats', 'Heavy matting is clipped short, never brushed out painfully, and you hear about it before we start.'],
+  ['bg-navy', 'One groomer, start to finish', 'The person you hand the lead to is the person who does the groom. Every time.'],
 ];
+const services = [['Full groom', 'from $95', 'Bath, blow dry, full clip or scissor, nails, ears, sanitary tidy.'], ['Bath and tidy', 'from $65', 'Wash, condition, dry and brush out, face, feet and feathers.'], ['De-shed', 'from $85', 'Bath, conditioning treatment and a long blow out for double coats.'], ['Puppy intro', '$55', 'Under six months. Bath, light tidy, lots of treats.']];
 ---
 <Base title="Dog Grooming in Kiama | Coastal Paws">
-  <!-- Full-bleed hero -->
-  <section class="relative isolate min-h-[640px] overflow-hidden bg-deep text-cream md:min-h-[720px]">
-    <Image src={hero} alt="A freshly groomed cream golden doodle sitting on the grooming table at Coastal Paws" widths={[768, 1376]} sizes="100vw" loading="eager" fetchpriority="high" class="absolute inset-0 -z-10 h-full w-full object-cover object-[65%_center]" />
-    <div class="absolute inset-0 -z-10 bg-gradient-to-r from-deep/90 via-deep/60 to-deep/10"></div>
-    <div class="wrap flex min-h-[640px] flex-col justify-center py-20 md:min-h-[720px]">
-      <p class="eyebrow">Dog grooming, Kiama</p>
-      <h1 class="mt-4 max-w-2xl text-[40px] leading-[1.02] sm:text-[54px] md:text-[64px]">Clean dog. Happy dog. Booked online.</h1>
-      <p class="mt-6 max-w-lg text-[16px] leading-relaxed text-cream/90">Full grooms, baths and tidies, and nail trims, done gently by one groomer who takes her time. Pick a slot online in about a minute.</p>
-      <div class="mt-9 flex flex-wrap gap-3"><a href={`${base}/book/`} class="btn-coral">Book a groom</a><a href={`${base}/services/`} class="btn-outline">Services &amp; prices</a></div>
-      <p class="mt-8 text-[13px] text-cream/70">Shop 2, 12 Manning Street, Kiama &middot; Tue to Sat &middot; <a class="font-semibold text-cream" href="tel:+61412345678">0412 345 678</a></p>
-    </div>
-  </section>
-
-  <!-- Cream intro -->
-  <section class="wrap py-16 md:py-20">
-    <div class="grid gap-10 md:grid-cols-[1.1fr_1fr] md:items-center">
-      <div>
-        <h2 class="text-[28px] sm:text-[34px]">Small salon, one groomer, no rush</h2>
-        <p class="mt-5 text-[16px] leading-relaxed text-ink/80">Coastal Paws is a one-person salon on Manning Street. Eight years of grooming, a soft spot for the anxious ones, and a firm rule that no dog spends the day in a cage waiting.</p>
-        <p class="mt-4 text-[16px] leading-relaxed text-ink/80">Drop off, do the shopping, come back to a dog that smells like a dog should. You get a text the moment they're ready.</p>
-        <a href={`${base}/about/`} class="mt-6 inline-block font-display text-[15px] font-semibold uppercase tracking-wider text-coral underline underline-offset-4">About the salon</a>
+  <!-- Hero: full photo, centred translucent panel -->
+  <section class="relative isolate overflow-hidden">
+    <Image src={hero} alt="A freshly groomed cream golden doodle sitting on the grooming table at Coastal Paws" widths={[768, 1376]} sizes="100vw" loading="eager" fetchpriority="high" class="absolute inset-0 -z-10 h-full w-full object-cover" />
+    <div class="wrap flex min-h-[560px] items-center justify-center py-16 md:min-h-[640px]">
+      <div class="max-w-xl rounded-blob bg-navy/80 p-8 text-center text-white backdrop-blur-sm md:p-10">
+        <h1 class="text-[34px] leading-tight sm:text-[42px]">Dog Grooming in Kiama</h1>
+        <p class="mt-4 text-[15px] leading-relaxed text-white/90">Coastal Paws is a small one-groomer salon in Kiama. Full grooms, baths and tidies, nail trims and puppy intros, done gently, with no cages for the day. Book online any time.</p>
+        <div class="mt-6 flex flex-wrap justify-center gap-3"><a href={`${base}/book/`} class="btn-coral">Book a Groom</a><a href={`${base}/services/`} class="btn-outline">Grooming &amp; Prices</a></div>
       </div>
-      <div class="overflow-hidden"><Image src={dogs} alt="Three freshly groomed dogs of different sizes sitting together on a bench" widths={[640, 1024]} sizes="(min-width: 768px) 45vw, 100vw" class="aspect-[4/3] w-full object-cover" /></div>
     </div>
   </section>
 
-  <!-- Dark: services cards -->
-  <section class="bg-ink text-cream">
+  <!-- Row: image left, text right -->
+  <section class="wrap grid items-center gap-10 py-16 md:grid-cols-2 md:py-20">
+    <div class="overflow-hidden rounded-blob"><Image src={bath} alt="A small dog being washed in the grooming tub" widths={[640, 1024]} sizes="(min-width: 768px) 50vw, 100vw" class="aspect-[4/3] w-full object-cover" /></div>
+    <div>
+      <h2 class="text-[30px] sm:text-[36px]">Baths, tidies and the full works</h2>
+      <p class="mt-4 text-[15px] leading-relaxed">Every groom starts with a proper wash and a good dry. From there it's whatever your dog needs: a face, feet and feathers tidy, a full clip to your style, a de-shed for the double coats, or a nail trim on its own. Priced by size, no surprises at pick-up.</p>
+      <a href={`${base}/services/`} class="btn-coral mt-6">See grooming &amp; prices</a>
+    </div>
+  </section>
+
+  <!-- Row reversed -->
+  <section class="wrap grid items-center gap-10 pb-16 md:grid-cols-2 md:pb-20">
+    <div class="md:order-2 overflow-hidden rounded-blob"><Image src={dry} alt="Blow-drying and brushing a fluffy small white dog on the table" widths={[640, 1024]} sizes="(min-width: 768px) 50vw, 100vw" class="aspect-[4/3] w-full object-cover" /></div>
+    <div class="md:order-1">
+      <h2 class="text-[30px] sm:text-[36px]">Book online, any time</h2>
+      <p class="mt-4 text-[15px] leading-relaxed">The calendar shows real availability. Pick the service and the slot that suits, and the confirmation lands straight away. Need to move it? Do that yourself from the email, up to 24 hours before. Slots go fast on Saturdays, so book a week or two ahead.</p>
+      <a href={`${base}/book/`} class="btn-coral mt-6">Book a groom</a>
+    </div>
+  </section>
+
+  <!-- How we care: four coloured cards -->
+  <section class="bg-sand">
     <div class="wrap py-16 md:py-20">
-      <p class="eyebrow text-center">What we do</p>
-      <h2 class="mt-2 text-center text-[32px] sm:text-[40px]">Four things, done properly</h2>
-      <p class="mx-auto mt-3 max-w-lg text-center text-[15px] text-cream/75">Priced by dog size. Full prices on the services page.</p>
-      <div class="mt-12 grid gap-5 md:grid-cols-4">
-        {services.map(([name, price, feats]) => (
-          <div class="flex flex-col bg-deep/70 p-6 ring-1 ring-cream/10">
-            <h3 class="text-[18px] tracking-wider">{name}</h3>
-            <p class="mt-4 font-display text-[40px] font-bold leading-none">{price}</p>
-            <ul class="mt-5 flex-1 space-y-2 text-[14px] text-cream/85">{(feats as string[]).map((f) => <li class="flex gap-2"><span class="text-coral">&#9656;</span>{f}</li>)}</ul>
-            <a href={`${base}/book/`} class="btn-coral mt-6 !py-3">Book now</a>
+      <h2 class="text-center text-[30px] sm:text-[36px]"><span class="tick">How We Care for Your Dog</span></h2>
+      <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        {cares.map(([bg, t, d]) => (
+          <div class={`rounded-blob ${bg} p-7 text-center text-white`}>
+            <span class="mx-auto grid h-16 w-16 place-items-center rounded-full bg-white/20 font-display text-[28px] font-extrabold">&#10003;</span>
+            <h3 class="mt-4 text-[20px] text-white">{t}</h3>
+            <p class="mt-2 text-[13.5px] leading-relaxed text-white/90">{d}</p>
           </div>
         ))}
       </div>
-      <div class="mt-8 text-center"><a href={`${base}/services/`} class="font-display text-[15px] font-semibold uppercase tracking-wider text-coral underline underline-offset-4">All prices by size</a></div>
     </div>
   </section>
 
-  <!-- Deep: how it works -->
-  <section class="bg-deep text-cream">
-    <div class="wrap grid gap-10 py-16 md:grid-cols-2 md:items-center md:py-24">
-      <div class="overflow-hidden"><Image src={bath} alt="A small dog being washed in the grooming tub" widths={[640, 1024]} sizes="(min-width: 768px) 50vw, 100vw" class="aspect-[4/3] w-full object-cover" /></div>
-      <div>
-        <p class="eyebrow">How it works</p>
-        <h2 class="mt-2 text-[30px] sm:text-[36px]">Book. Drop off. Pick up a different dog.</h2>
-        <ol class="mt-8 space-y-6">
-          {[
-            ['Pick a time online', 'The calendar shows real availability. Choose the service and the slot, and the confirmation lands straight away.'],
-            ['Tell us about your dog', "Nervous, itchy, hates the dryer? Two minutes at the door so the groom fits the dog."],
-            ['Pick up in two to three hours', "No cages for the day. A text when they're ready, and a dog that looks like itself, only cleaner."],
-          ].map(([t, d], i) => (
-            <li class="flex gap-5"><span class="font-display text-[34px] font-bold leading-none text-coral">0{i + 1}</span><div><h3 class="text-[18px] tracking-wider">{t}</h3><p class="mt-1.5 text-[14px] leading-relaxed text-cream/75">{d}</p></div></li>
-          ))}
-        </ol>
-        <a href={`${base}/book/`} class="btn-coral mt-9">Book a groom</a>
-      </div>
+  <!-- Bright band with photo -->
+  <section class="bg-sky text-white">
+    <div class="wrap py-14 text-center md:py-16">
+      <h2 class="text-[30px] text-white sm:text-[38px]"><span class="tick">Freshly groomed in Kiama</span></h2>
+      <p class="mx-auto mt-2 max-w-md text-[15px] text-white/90">Your dog will be pampered by one groomer who takes her time.</p>
+      <a href={`${base}/book/`} class="btn-dark mt-6">Book a Groom Today!</a>
+      <div class="mx-auto mt-10 max-w-4xl overflow-hidden rounded-blob"><Image src={dogs} alt="Three freshly groomed dogs of different sizes sitting together on a bench" widths={[768, 1200]} sizes="(min-width: 1024px) 900px, 100vw" class="aspect-[16/9] w-full object-cover" /></div>
     </div>
   </section>
 
-  <!-- Sand: good to know -->
-  <section class="bg-sand">
-    <div class="wrap grid gap-8 py-14 md:grid-cols-3">
-      {[['Nervous dogs', 'Slower, quieter, and we stop if they need a break. Tell us at booking and we allow extra time, no charge.'], ['Matting', 'We never de-mat painfully. Heavy matting is clipped short, and you hear about it before we start.'], ['Cancellations', 'Life happens. Move or cancel from your confirmation email up to 24 hours before.']].map(([t, d]) => (
-        <div><h3 class="text-[18px] tracking-wider text-ink">{t}</h3><p class="mt-2 text-[14px] leading-relaxed text-ink/75">{d}</p></div>
+  <!-- Welcome panel -->
+  <section class="wrap py-16 md:py-20">
+    <h2 class="text-center text-[30px] sm:text-[36px]">Welcome to Coastal Paws</h2>
+    <div class="mt-8 rounded-blob bg-navy p-8 text-center text-[15px] leading-relaxed text-white/90 md:p-10">
+      <p>At Coastal Paws we don't believe your dog is just a pet. We know they are the boss of the house, and we treat them accordingly.</p>
+      <p class="mt-4">Eight years of grooming, one small salon, and one groomer who does every dog from the first hello to the last brush. We don't rush, we don't cage, and we don't de-mat painfully. If a coat is too far gone, it gets clipped short and you hear about it first.</p>
+      <p class="mt-4">Whether it's a puppy's first bath or a big kelpie who hates the dryer, this is where they get looked after.</p>
+    </div>
+  </section>
+
+  <!-- Photo band -->
+  <section class="relative isolate overflow-hidden">
+    <Image src={shopfront} alt="The outside of the Coastal Paws salon on a Kiama street" widths={[768, 1376]} sizes="100vw" class="absolute inset-0 -z-10 h-full w-full object-cover" />
+    <div class="bg-navy/55 py-24 text-center text-white md:py-32">
+      <p class="font-display text-[28px] font-extrabold text-sunshine sm:text-[36px]">Two doors up from the bakery</p>
+      <p class="font-display text-[30px] font-extrabold sm:text-[44px]">BANDANA LANE, KIAMA</p>
+    </div>
+  </section>
+
+  <!-- Services cards -->
+  <section class="wrap py-16 md:py-20">
+    <h2 class="text-center text-[30px] sm:text-[36px]">Grooming &amp; prices</h2>
+    <p class="mx-auto mt-2 max-w-md text-center text-[14px]">Priced by dog size. A guide for a coat in reasonable condition.</p>
+    <div class="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+      {services.map(([t, p, d]) => (
+        <div class="rounded-blob bg-navy p-6 text-white">
+          <h3 class="text-[20px] text-white">{t}</h3>
+          <p class="mt-1 font-display text-[26px] font-extrabold text-sunshine">{p}</p>
+          <p class="mt-2 text-[13.5px] leading-relaxed text-white/85">{d}</p>
+          <a href={`${base}/book/`} class="btn-coral mt-5 !py-2.5 !text-[14px]">Book now</a>
+        </div>
       ))}
     </div>
+    <div class="mt-8 text-center"><a href={`${base}/services/`} class="btn-outline-dark">See all sizes &amp; add-ons</a></div>
   </section>
 
   <!-- Gallery -->
-  <section class="wrap py-16 md:py-20">
-    <div class="text-center"><p class="eyebrow">Recent grooms</p><h2 class="mt-2 text-[32px] sm:text-[40px]">The proof is in the fluff</h2></div>
-    <div class="mt-10 grid grid-cols-2 gap-3 md:grid-cols-4">
-      {[[hero, 'Freshly groomed golden doodle'], [dry, 'Blow-drying a small white dog'], [nails, 'A nail trim'], [shopfront, 'The salon on Manning Street']].map(([img, alt]) => (
-        <div class="overflow-hidden"><Image src={img} alt={alt} widths={[480, 800]} sizes="(min-width: 768px) 25vw, 50vw" class="aspect-square w-full object-cover" /></div>
+  <section class="wrap pb-16 md:pb-20">
+    <div class="grid grid-cols-2 gap-4 md:grid-cols-4">
+      {[[kelpie, 'A kelpie enjoying a bath'], [nails, 'A nail trim'], [dry, 'Drying a small white dog'], [hero, 'Freshly groomed golden doodle']].map(([img, alt], i) => (
+        <div class={`overflow-hidden rounded-blob ${i % 2 ? 'md:translate-y-6' : ''}`}><Image src={img} alt={alt} widths={[480, 800]} sizes="(min-width: 768px) 25vw, 50vw" class="aspect-square w-full object-cover" /></div>
       ))}
-    </div>
-  </section>
-
-  <!-- CTA over the shopfront -->
-  <section class="relative isolate overflow-hidden bg-deep text-cream">
-    <Image src={shopfront} alt="The outside of the Coastal Paws salon on a Kiama street" widths={[768, 1376]} sizes="100vw" class="absolute inset-0 -z-10 h-full w-full object-cover opacity-35" />
-    <div class="wrap py-20 text-center md:py-28">
-      <h2 class="text-[32px] sm:text-[44px]">Book in a minute</h2>
-      <p class="mx-auto mt-4 max-w-md text-[15px] text-cream/85">Pick a time online, or call and we'll sort it on the phone.</p>
-      <div class="mt-8 flex flex-wrap justify-center gap-3"><a href={`${base}/book/`} class="btn-coral">Book online</a><a href="tel:+61412345678" class="btn-outline">0412 345 678</a></div>
     </div>
   </section>
 </Base>

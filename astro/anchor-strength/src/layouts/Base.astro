@@ -7,7 +7,7 @@ const { title, description = 'Anchor Strength is a private, appointment-only str
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const canonical = new URL(Astro.url.pathname, 'https://tideloc.github.io').href;
 const ld = { '@context': 'https://schema.org', '@type': 'HealthClub', name: 'Anchor Strength', description, url: canonical, telephone: '+61 412 345 678',
-  address: { '@type': 'PostalAddress', streetAddress: 'Unit 4, 8 Cove Road', addressLocality: 'Shellharbour', addressRegion: 'NSW', postalCode: '2529', addressCountry: 'AU' },
+  address: { '@type': 'PostalAddress', streetAddress: 'Unit 4, 22 Keel Lane', addressLocality: 'Shellharbour', addressRegion: 'NSW', postalCode: '2529', addressCountry: 'AU' },
   openingHoursSpecification: [{ '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday','Tuesday','Wednesday','Thursday','Friday'], opens: '05:30', closes: '19:00' }, { '@type': 'OpeningHoursSpecification', dayOfWeek: 'Saturday', opens: '06:30', closes: '11:00' }], priceRange: '$$' };
 ---
 <!doctype html>

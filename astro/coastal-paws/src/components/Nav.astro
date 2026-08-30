@@ -2,32 +2,40 @@
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const path = Astro.url.pathname.replace(base, '') || '/';
 const links = [
-  { href: `${base}/services/`, label: 'Services', match: '/services' },
-  { href: `${base}/about/`, label: 'About', match: '/about' },
+  { href: `${base}/`, label: 'Home', match: '/' },
+  { href: `${base}/services/`, label: 'Grooming & Prices', match: '/services' },
+  { href: `${base}/about/`, label: 'About Us', match: '/about' },
   { href: `${base}/contact/`, label: 'Contact', match: '/contact' },
 ];
-const isActive = (m: string) => path.startsWith(m);
+const isActive = (m: string) => (m === '/' ? path === '/' : path.startsWith(m));
 ---
-<header class="sticky top-0 z-40 bg-ink text-cream">
-  <div class="wrap flex items-center justify-between gap-4 py-3">
-    <a href={`${base}/`} class="font-display text-[22px] font-bold uppercase tracking-wider" aria-label="Coastal Paws home">Coastal <span class="text-coral">Paws</span></a>
-    <nav class="hidden md:flex items-center gap-7 text-[14px] font-semibold uppercase tracking-wider" aria-label="Main">
-      {links.map((l) => <a href={l.href} class:list={['hover:text-coral', { 'text-coral': isActive(l.match) }]} aria-current={isActive(l.match) ? 'page' : undefined}>{l.label}</a>)}
-      <a href="tel:+61412345678" class="hidden lg:inline text-cream/80 hover:text-coral normal-case tracking-normal">0412 345 678</a>
-      <a href={`${base}/book/`} class="btn-coral !py-2.5 !px-5 !text-[13px]">Book Now</a>
-    </nav>
+<header class="bg-white">
+  <div class="wrap flex flex-wrap items-center justify-between gap-4 py-4">
+    <a href={`${base}/`} class="flex items-center gap-3" aria-label="Coastal Paws home">
+      <span class="grid h-12 w-12 place-items-center rounded-full bg-sky font-display text-[17px] font-extrabold text-white">CP</span>
+      <span class="font-display text-[26px] font-extrabold leading-none text-navy">Coastal <span class="text-sky">Paws</span></span>
+    </a>
+    <div class="hidden items-center gap-8 text-[13px] md:flex">
+      <div><p class="font-display font-bold text-navy">Visit us</p><p class="text-stone">Shop 2, 5 Bandana Lane, Kiama NSW 2533</p></div>
+      <div><p class="font-display font-bold text-navy">Call us</p><a class="text-sky font-semibold" href="tel:+61412345678">0412 345 678</a></div>
+      <a href={`${base}/book/`} class="btn-coral !py-2.5">Book a Groom</a>
+    </div>
     <div class="flex items-center gap-2 md:hidden">
-      <a href={`${base}/book/`} class="btn-coral !py-2.5 !px-4 !text-[13px]">Book</a>
-      <button id="menuBtn" class="grid h-11 w-11 place-items-center border-2 border-cream/20" aria-expanded="false" aria-controls="mobileNav" aria-label="Menu">
-        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M3 6h14M3 10h14M3 14h14"/></svg>
+      <a href={`${base}/book/`} class="btn-coral !py-2.5 !px-4 !text-[14px]">Book</a>
+      <button id="menuBtn" class="grid h-11 w-11 place-items-center rounded-full bg-sand text-navy" aria-expanded="false" aria-controls="mobileNav" aria-label="Menu">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M3 6h14M3 10h14M3 14h14"/></svg>
       </button>
     </div>
   </div>
-  <nav id="mobileNav" class="md:hidden hidden border-t border-cream/10 bg-ink" aria-label="Mobile">
+  <nav class="hidden bg-navy md:block" aria-label="Main">
+    <div class="wrap flex items-center justify-center gap-10 py-3 text-[14px] font-semibold text-white">
+      {links.map((l) => <a href={l.href} class:list={['hover:text-sunshine', { 'text-sunshine': isActive(l.match) }]} aria-current={isActive(l.match) ? 'page' : undefined}>{l.label}</a>)}
+    </div>
+  </nav>
+  <nav id="mobileNav" class="md:hidden hidden bg-navy text-white" aria-label="Mobile">
     <div class="wrap flex flex-col py-2">
-      <a href={`${base}/`} class="py-3.5 text-[15px] font-semibold uppercase tracking-wider border-b border-cream/5">Home</a>
-      {links.map((l) => <a href={l.href} class="py-3.5 text-[15px] font-semibold uppercase tracking-wider border-b border-cream/5">{l.label}</a>)}
-      <a href="tel:+61412345678" class="py-3.5 text-[15px] font-semibold text-coral">Call 0412 345 678</a>
+      {links.map((l) => <a href={l.href} class="py-3.5 text-[16px] font-semibold border-b border-white/10">{l.label}</a>)}
+      <a href="tel:+61412345678" class="py-3.5 text-[16px] font-semibold text-sunshine">Call 0412 345 678</a>
     </div>
   </nav>
 </header>
