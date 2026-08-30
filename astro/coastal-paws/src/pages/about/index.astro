@@ -7,12 +7,12 @@ import bath from '../../assets/bath.jpg';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 <Base title="About the Salon | Coastal Paws Dog Grooming, Kiama" description="One groomer, one small salon in Kiama, and a way of working that puts the dog first. No cages for the day, no rushing, no painful de-matting.">
-  <section class="bg-sand">
+  <section class="bg-ink text-cream">
     <div class="wrap grid items-center gap-10 py-14 md:grid-cols-2 md:py-20">
       <div>
         <p class="eyebrow">About</p>
         <h1 class="mt-4 text-[40px] leading-[1] sm:text-[56px]">One groomer. One dog at a time.</h1>
-        <p class="mt-6 text-[17px] leading-relaxed text-ink/75">Coastal Paws is a one-person salon on Manning Street. Eight years of grooming, a soft spot for the anxious ones, and a firm rule that no dog spends the day in a cage waiting.</p>
+        <p class="mt-6 text-[17px] leading-relaxed text-cream/85">Coastal Paws is a one-person salon on Manning Street. Eight years of grooming, a soft spot for the anxious ones, and a firm rule that no dog spends the day in a cage waiting.</p>
       </div>
       <div class="overflow-hidden rounded-xl2"><Image src={shopfront} alt="The outside of the Coastal Paws salon on a Kiama street" widths={[640, 1024]} sizes="(min-width: 768px) 50vw, 100vw" class="h-full w-full object-cover" /></div>
     </div>
@@ -35,7 +35,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
       <div class="overflow-hidden rounded-xl2"><Image src={kelpie} alt="A kelpie having a bath, wet and grinning" widths={[640, 1024]} sizes="(min-width: 768px) 50vw, 100vw" class="aspect-[4/3] w-full object-cover" /></div>
       <div class="overflow-hidden rounded-xl2"><Image src={bath} alt="A small dog being washed in the grooming tub" widths={[640, 1024]} sizes="(min-width: 768px) 50vw, 100vw" class="aspect-[4/3] w-full object-cover" /></div>
     </div>
-    <div class="mt-12 rounded-xl2 bg-teal p-8 text-cream md:flex md:items-center md:justify-between md:gap-8">
+    <div class="mt-12 bg-ink p-8 text-cream md:flex md:items-center md:justify-between md:gap-8">
       <div><h2 class="text-[30px]">Come and meet us first.</h2><p class="mt-2 text-cream/80">Drop in on a Saturday morning with your dog. No booking needed for a nail trim and a hello.</p></div>
       <a href={`${base}/contact/`} class="btn-coral mt-6 md:mt-0 shrink-0">Where to find us</a>
     </div>
