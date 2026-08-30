@@ -50,7 +50,7 @@
     var who = document.body.getAttribute("data-tl-label") || "this business";
     var el = document.createElement("div");
     el.className = "tl-plan-strip";
-    el.innerHTML = "<span>Example site for a " + who + " on the <strong>" + p.label + "</strong>, " + p.price + ": " + p.blurb + ".</span> <a href=\"https://tideloc.com.au/services/#packages\" target=\"_blank\" rel=\"noopener\">See plans</a> <a href=\"https://tideloc.com.au/#quiz\" target=\"_blank\" rel=\"noopener\">Find your fit</a><button class=\"tl-close\" aria-label=\"Hide\">✕</button>";
+    el.innerHTML = "<span>Built by Tideloc for a " + who + " on the <strong>" + p.label + "</strong>, " + p.price + ": " + p.blurb + ".</span> <a href=\"https://tideloc.com.au/services/#packages\" target=\"_blank\" rel=\"noopener\">See plans</a> <a href=\"https://tideloc.com.au/#quiz\" target=\"_blank\" rel=\"noopener\">Find your fit</a><button class=\"tl-close\" aria-label=\"Hide\">✕</button>";
     q(".tl-close", el).onclick = function () { el.remove(); document.body.classList.remove("tl-has-strip"); localStorage.setItem("tl-strip-hidden-" + location.pathname, "1"); };
     document.body.appendChild(el);
     document.body.classList.add("tl-has-strip");
@@ -336,7 +336,7 @@
   function init() {
     var cartScope = document.body.getAttribute("data-tl-cart-scope");
     if (cartScope) cartKey = "tl-cart-" + cartScope;
-    planStrip(); shop(); booking(); requestForms();
+    /* planStrip() retired 2026-08-30: no plan/"example" tag on portfolio pieces (Blake). */ shop(); booking(); requestForms();
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init); else init();
 })();
