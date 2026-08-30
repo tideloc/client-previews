@@ -6,95 +6,123 @@ import bath from '../assets/bath.jpg';
 import dry from '../assets/dry.jpg';
 import dogs from '../assets/dogs.jpg';
 import nails from '../assets/nails.jpg';
+import kelpie from '../assets/kelpie.jpg';
+import shopfront from '../assets/shopfront.jpg';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const services = [
+  ['Full groom', 'Bath, dry, full clip or scissor to your style, nails, ears and a sanitary tidy.', 'from $95'],
+  ['Bath and tidy', 'Wash, condition, dry and brush out, with a face, feet and feathers tidy.', 'from $65'],
+  ['De-shed', 'Bath, conditioning treatment and a long blow out for double coats.', 'from $85'],
+  ['Puppy intro', 'A short, gentle first visit for pups under six months. Lots of treats.', '$55'],
+  ['Nail trim', 'Walk in on Saturday mornings, or add it to any booking.', '$20'],
+];
 ---
 <Base title="Dog Grooming in Kiama | Coastal Paws">
-  <!-- Hero -->
-  <section class="relative bg-sand">
-    <div class="wrap grid items-center gap-10 py-14 md:grid-cols-[1fr_1.1fr] md:py-20">
-      <div>
-        <p class="eyebrow">Dog grooming, Kiama</p>
-        <h1 class="mt-4 text-[44px] leading-[0.98] sm:text-[60px] md:text-[68px]">Clean dog.<br>Happy dog.<br><span class="text-teal">Booked online.</span></h1>
-        <p class="mt-6 max-w-md text-[17px] leading-relaxed text-ink/75">Full grooms, baths and tidies, and nail trims, done gently by one groomer who takes her time. Pick a slot online in about a minute.</p>
-        <div class="mt-8 flex flex-wrap gap-3">
-          <a href={`${base}/book/`} class="btn-coral">Book a groom</a>
-          <a href={`${base}/services/`} class="btn-ghost">Services &amp; prices</a>
-        </div>
-        <p class="mt-6 text-[14px] text-ink/60">Shop 2, 12 Manning Street, Kiama &middot; <a class="font-semibold text-teal" href="tel:+61412345678">0412 345 678</a></p>
+  <!-- Hero: two columns, serif headline, tall photo with a floating card -->
+  <section class="wrap grid items-center gap-10 py-14 md:grid-cols-[1fr_1fr] md:py-24">
+    <div>
+      <h1 class="text-[42px] leading-[1.08] sm:text-[54px] md:text-[60px]">Dog Grooming in Kiama</h1>
+      <p class="mt-6 max-w-md text-[17px] leading-relaxed text-ink/80">Your local dog grooming salon. Gentle handling, honest prices, and a dog that leaves looking like itself, only cleaner.</p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a href={`${base}/book/`} class="btn-dark">Book Now</a>
+        <a href={`${base}/services/`} class="btn-outline">View Services</a>
       </div>
-      <div class="overflow-hidden rounded-xl2 shadow-[0_30px_60px_-20px_rgba(31,42,46,.35)]">
-        <Image src={hero} alt="A freshly groomed cream golden doodle sitting on the grooming table at Coastal Paws" widths={[640, 1024, 1376]} sizes="(min-width: 768px) 55vw, 100vw" loading="eager" fetchpriority="high" class="h-full w-full object-cover" />
+      <p class="mt-7 text-[14px] font-semibold text-ink">Open Tuesday to Saturday. Book online any time.</p>
+      <p class="mt-1 max-w-md text-[13px] text-stone">Grooming dogs from Kiama, Gerringong, Jamberoo, Shellharbour, Albion Park and the South Coast.</p>
+    </div>
+    <div class="relative">
+      <div class="overflow-hidden rounded-2xl shadow-[0_24px_60px_-24px_rgba(30,58,54,.45)]">
+        <Image src={hero} alt="A freshly groomed cream golden doodle sitting on the grooming table at Coastal Paws" widths={[640, 1024, 1376]} sizes="(min-width: 768px) 50vw, 100vw" loading="eager" fetchpriority="high" class="aspect-[4/5] w-full object-cover" />
+      </div>
+      <div class="absolute -bottom-5 left-5 rounded-lg bg-cream px-4 py-3 shadow-lg ring-1 ring-ink/10">
+        <p class="text-[13px] font-semibold">Book online, 24 hours a day</p>
+        <p class="text-[12px] text-stone">Real availability, instant confirmation</p>
       </div>
     </div>
   </section>
 
-  <!-- Services -->
-  <section class="wrap py-16 md:py-24">
-    <div class="flex flex-wrap items-end justify-between gap-4">
-      <div>
-        <p class="eyebrow">What we do</p>
-        <h2 class="mt-3 text-[34px] leading-tight sm:text-[42px]">Four things, done properly.</h2>
-      </div>
-      <a href={`${base}/services/`} class="font-semibold text-teal underline underline-offset-4">All prices by size</a>
+  <!-- How it works: sand band, three numbered steps -->
+  <section class="bg-sand">
+    <div class="wrap py-16 md:py-20 text-center">
+      <h2 class="text-[32px] sm:text-[38px]">How It Works</h2>
+      <p class="mx-auto mt-3 max-w-md text-[15px] text-ink/70">Booking your dog's groom is simple. Here's what to expect from start to finish.</p>
+      <ol class="mt-12 grid gap-10 text-left md:grid-cols-3">
+        {[
+          ['Book online in minutes', 'Choose your service and pick a time that suits you. Available 24 hours a day through our online booking. You will receive a confirmation by email.'],
+          ['Drop off your dog', 'Bring your dog to our Manning Street salon at your booked time. We will check them in, discuss what you want, and take it from there.'],
+          ['Pick up a happy dog', 'We will text when your dog is ready. They will be freshly groomed, fluffy and smelling great, usually within two to three hours.'],
+        ].map(([t, d], i) => (
+          <li class="flex gap-4">
+            <span class="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-ink font-display text-[15px] font-bold text-cream">{i + 1}</span>
+            <div><h3 class="text-[19px]">{t}</h3><p class="mt-2 text-[14px] leading-relaxed text-ink/75">{d}</p></div>
+          </li>
+        ))}
+      </ol>
+      <a href={`${base}/book/`} class="btn-dark mt-12">Book an Appointment</a>
     </div>
-    <div class="mt-10 grid gap-5 sm:grid-cols-2">
-      {[
-        { t: 'Full groom', p: 'from $95', d: 'Bath, blow dry, full clip or scissor to your style, nails, ears and a sanitary tidy.', img: dry, alt: 'A small white dog being blow-dried and brushed on the grooming table' },
-        { t: 'Bath and tidy', p: 'from $65', d: 'Wash, condition, dry and brush out, with a face, feet and feathers tidy.', img: bath, alt: 'A small dog being washed in the grooming tub' },
-        { t: 'Nail trim', p: '$20', d: 'Walk in on Saturday mornings or add it to any booking. Quick and calm.', img: nails, alt: 'A dog paw held gently for a nail trim' },
-        { t: 'Puppy intro', p: '$55', d: 'A short, gentle first visit for pups under six months. Bath, a little tidy, lots of treats.', img: dogs, alt: 'Three freshly groomed dogs sitting together on a bench' },
-      ].map((s) => (
-        <article class="grid overflow-hidden rounded-xl2 bg-white shadow-sm ring-1 ring-ink/5 sm:grid-cols-[42%_1fr]">
-          <Image src={s.img} alt={s.alt} widths={[480, 800]} sizes="(min-width: 640px) 22vw, 100vw" class="h-52 w-full object-cover sm:h-full" />
-          <div class="p-6">
-            <div class="flex items-baseline justify-between gap-3">
-              <h3 class="text-[22px]">{s.t}</h3>
-              <span class="font-display text-lg font-extrabold text-teal">{s.p}</span>
-            </div>
-            <p class="mt-2 text-[15px] leading-relaxed text-ink/70">{s.d}</p>
+  </section>
+
+  <!-- Dark band: what owners can count on (in the slot Toby's uses for reviews) -->
+  <section class="bg-ink text-cream">
+    <div class="wrap grid items-center gap-10 py-16 md:grid-cols-2 md:py-24">
+      <div class="overflow-hidden rounded-2xl"><Image src={dogs} alt="Three freshly groomed dogs of different sizes sitting together on a bench" widths={[640, 1024]} sizes="(min-width: 768px) 50vw, 100vw" class="aspect-[4/3] w-full object-cover" /></div>
+      <div>
+        <h2 class="text-[32px] sm:text-[38px]">What every dog gets here</h2>
+        <ul class="mt-8 space-y-5 text-[15px] leading-relaxed text-cream/85">
+          <li><strong class="text-cream">No cages for the day.</strong> Drop off, do the shopping, pick up in two to three hours.</li>
+          <li><strong class="text-cream">Gentle handling, especially for nervous dogs.</strong> Slow, quiet, and we stop when they need a minute. Extra time at no charge.</li>
+          <li><strong class="text-cream">No painful de-matting.</strong> If a coat is too far gone to brush out kindly, it's clipped short and you hear about it first.</li>
+          <li><strong class="text-cream">One groomer, start to finish.</strong> The person you hand the lead to is the person who does the groom.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services: sand band, list with prices -->
+  <section class="bg-sand">
+    <div class="wrap py-16 md:py-20">
+      <div class="text-center"><h2 class="text-[32px] sm:text-[38px]">Our Grooming Services</h2><p class="mx-auto mt-3 max-w-md text-[15px] text-ink/70">Priced by dog size. Full prices on the services page.</p></div>
+      <div class="mt-10 divide-y divide-ink/10 rounded-2xl bg-cream ring-1 ring-ink/10">
+        {services.map(([t, d, p]) => (
+          <div class="flex items-start justify-between gap-6 px-6 py-5">
+            <div><h3 class="text-[19px]">{t}</h3><p class="mt-1 text-[14px] text-ink/70">{d}</p></div>
+            <span class="shrink-0 font-display text-[18px] font-bold">{p}</span>
           </div>
-        </article>
+        ))}
+      </div>
+      <div class="mt-8 text-center"><a href={`${base}/services/`} class="btn-dark">See All Services &amp; Pricing</a></div>
+    </div>
+  </section>
+
+  <!-- Why Kiama dogs come here: cream, short -->
+  <section class="wrap py-16 md:py-20 text-center">
+    <h2 class="text-[32px] sm:text-[38px]">Why Kiama dogs come here</h2>
+    <div class="mx-auto mt-10 grid max-w-4xl gap-8 sm:grid-cols-3 text-left">
+      {[['Two doors up from the bakery', 'Manning Street, parking out the front, a water bowl by the door.'], ['Honest about coats', 'What it will cost and what the coat can take, before we start.'], ['Saturday walk-ins', 'Nail trims and hellos on Saturday mornings, no booking needed.']].map(([t, d]) => (
+        <div><h3 class="text-[18px]">{t}</h3><p class="mt-2 text-[14px] leading-relaxed text-ink/70">{d}</p></div>
       ))}
     </div>
   </section>
 
-  <!-- How it works -->
-  <section class="bg-teal text-cream">
-    <div class="wrap py-16 md:py-20">
-      <p class="eyebrow !text-coral">How it works</p>
-      <h2 class="mt-3 max-w-2xl text-[34px] leading-tight sm:text-[42px]">Book in a minute. Drop off. Pick up a different dog.</h2>
-      <ol class="mt-10 grid gap-8 md:grid-cols-3">
-        {[
-          ['Pick a time online', 'The calendar shows real availability. Choose the service and the slot that suits, and you get a confirmation straight away.'],
-          ['Drop off, tell us about your dog', 'Nervous, itchy, hates the dryer? Two minutes at the door so the groom fits the dog.'],
-          ['Pick up in two to three hours', 'No cages for the day. A text when they are ready, and a dog that smells like a dog should.'],
-        ].map(([t, d], i) => (
-          <li class="rounded-xl2 bg-white/10 p-6">
-            <span class="font-display text-4xl font-extrabold text-coral">{i + 1}</span>
-            <h3 class="mt-3 text-[20px]">{t}</h3>
-            <p class="mt-2 text-[15px] leading-relaxed text-cream/80">{d}</p>
-          </li>
-        ))}
-      </ol>
-      <a href={`${base}/book/`} class="btn-coral mt-10">Book a groom</a>
+  <!-- Our work: gallery grid -->
+  <section class="wrap pb-16 md:pb-24">
+    <div class="text-center"><h2 class="text-[32px] sm:text-[38px]">Our Work</h2><p class="mt-3 text-[15px] text-ink/70">A few recent grooms.</p></div>
+    <div class="mt-10 grid grid-cols-2 gap-4 md:grid-cols-3">
+      {[[hero, 'Freshly groomed golden doodle'], [bath, 'A small dog in the bath'], [dry, 'Blow-drying a small white dog'], [nails, 'A nail trim'], [kelpie, 'A kelpie enjoying a bath'], [shopfront, 'The salon on Manning Street']].map(([img, alt]) => (
+        <div class="overflow-hidden rounded-xl"><Image src={img} alt={alt} widths={[480, 800]} sizes="(min-width: 768px) 33vw, 50vw" class="aspect-square w-full object-cover" /></div>
+      ))}
     </div>
+    <div class="mt-8 text-center"><a href={`${base}/about/`} class="btn-outline">About the salon</a></div>
   </section>
 
-  <!-- Good to know -->
-  <section class="wrap py-16 md:py-24">
-    <div class="grid gap-10 md:grid-cols-[1fr_1fr] md:items-center">
-      <div class="overflow-hidden rounded-xl2">
-        <Image src={dogs} alt="Three freshly groomed dogs of different sizes sitting together" widths={[640, 1024]} sizes="(min-width: 768px) 50vw, 100vw" class="h-full w-full object-cover" />
-      </div>
-      <div>
-        <p class="eyebrow">Good to know</p>
-        <h2 class="mt-3 text-[34px] leading-tight sm:text-[42px]">Small salon, one groomer, no rush.</h2>
-        <dl class="mt-8 space-y-5 text-[15px] leading-relaxed">
-          <div><dt class="font-bold">Nervous dogs</dt><dd class="text-ink/70">Slower, quieter, and we stop if they need a break. Tell us at booking and we allow extra time.</dd></div>
-          <div><dt class="font-bold">Matting</dt><dd class="text-ink/70">We never de-mat painfully. Heavy matting is clipped short, and we tell you before we start.</dd></div>
-          <div><dt class="font-bold">Cancellations</dt><dd class="text-ink/70">Life happens. Move or cancel from your confirmation email up to 24 hours before.</dd></div>
-        </dl>
-        <a href={`${base}/about/`} class="mt-8 inline-block font-semibold text-teal underline underline-offset-4">More about the salon</a>
+  <!-- Ready to book: dark band -->
+  <section class="bg-ink text-cream">
+    <div class="wrap py-16 text-center md:py-20">
+      <h2 class="text-[32px] sm:text-[38px]">Ready to Book?</h2>
+      <p class="mx-auto mt-3 max-w-md text-[15px] text-cream/80">Pick a time online, or call and we'll sort it out on the phone.</p>
+      <div class="mt-8 flex flex-wrap justify-center gap-3">
+        <a href="tel:+61412345678" class="btn-outline !border-cream !text-cream hover:!bg-cream hover:!text-ink">0412 345 678</a>
+        <a href={`${base}/book/`} class="btn-light">Book Online</a>
       </div>
     </div>
   </section>

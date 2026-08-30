@@ -4,20 +4,17 @@ export default {
   theme: {
     extend: {
       colors: {
-        ink: '#1F2A2E',
+        ink: '#1E3A36',      // headings and the dark bands (our deep teal, in the role Toby's uses green)
         teal: '#2A6F6B',
-        deepteal: '#1E5350',
-        sand: '#F5EFE4',
-        cream: '#FBF8F2',
+        cream: '#FDF6EE',    // page background
+        sand: '#E8DFD4',     // alternate bands
         coral: '#E5704F',
-        moss: '#6E8B5E',
-        stone: '#8A8F8C',
+        stone: '#6E7470',
       },
       fontFamily: {
-        display: ['"Bricolage Grotesque"', 'system-ui', 'sans-serif'],
-        body: ['"Inter"', 'system-ui', 'sans-serif'],
+        display: ['"Playfair Display"', 'Georgia', 'serif'],
+        body: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
       },
-      borderRadius: { xl2: '1.25rem' },
     },
   },
   plugins: [],
