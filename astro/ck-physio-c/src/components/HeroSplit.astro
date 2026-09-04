@@ -6,15 +6,15 @@ import BookingStrip from './BookingStrip.astro';
 import { claim } from '../data/content';
 ---
 <section data-section="hero" class="grid lg:grid-cols-2 bg-ink text-white">
-  <div class="order-1 px-5 md:px-10 lg:pl-[max(2.5rem,calc((100vw-76rem)/2+2rem))] pt-10 pb-8 lg:py-10 flex flex-col justify-between gap-8">
+  <div class="order-1 px-5 md:px-10 lg:pl-[max(2.5rem,calc((100vw-76rem)/2+2rem))] pt-5 pb-5 sm:pt-10 sm:pb-8 lg:py-10 flex flex-col justify-between gap-4 sm:gap-8">
     <div>
-      <h1 class="font-display font-extrabold text-[2.6rem] md:text-[3.4rem] xl:text-[3.6rem] leading-[1.0] tracking-tight text-white">{claim.short}</h1>
-      <p class="mt-5 text-lg text-white/85 max-w-xl leading-snug">{claim.long}.</p>
-      <p class="mt-4 text-accent font-display font-bold">{claim.experience} {claim.specialties.join(', ').replace(/, ([^,]*)$/, ' and $1').toLowerCase()}.</p>
+      <h1 class="font-display font-extrabold text-[1.95rem] sm:text-[2.6rem] md:text-[3.4rem] xl:text-[3.6rem] leading-[1.0] tracking-tight text-white">{claim.short}</h1>
+      <p class="mt-2 sm:mt-5 text-base sm:text-lg text-white/85 max-w-xl leading-snug">{claim.long}.</p>
+      <p class="hidden sm:block mt-4 text-accent font-display font-bold">{claim.experience} {claim.specialties.join(', ').replace(/, ([^,]*)$/, ' and $1').toLowerCase()}.</p>
     </div>
     <BookingStrip tone="navy" />
   </div>
-  <div class="order-2 relative min-h-[300px] sm:min-h-[380px] lg:min-h-0">
+  <div class="order-2 relative min-h-[240px] sm:min-h-[380px] lg:min-h-0">
     <Picture src={poolNight} formats={['avif', 'webp']} widths={[800, 1600]} sizes="(min-width: 1024px) 50vw, 100vw" alt="The indoor salt water therapy pool at CK Physiotherapy in Dover Heights at night, lit from below, with white fencing and glass doors on every side" class="absolute inset-0 w-full h-full object-cover object-[45%_60%]" pictureAttributes={{ class: 'absolute inset-0' }} loading="eager" />
   </div>
 </section>

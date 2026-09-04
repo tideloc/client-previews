@@ -12,7 +12,7 @@ import { watsuBenefits } from '../../data/content';
   <Header slot="header" />
   <PageIntro label="WATSU" title="WATSU: gentle aquatic bodywork in 34 degree water" lead="Coryn is the only WATSU certified physiotherapist in Sydney, NSW." />
 
-  <section class="wrap py-14 md:py-20 grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
+  <section class="wrap py-10 md:py-20 grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
     <div>
       <h2 class="text-3xl md:text-4xl">What is WATSU</h2>
       <p class="mt-4">WATSU (WATer ShiatsU) is a gentle form of aquatic bodywork performed in 34 degree Celsius water. A certified practitioner guides you through slow, flowing movements, stretches, and rotations while you are uniquely supported by the buoyancy of the water, creating deep relaxation and relief from joint loading.</p>
@@ -24,7 +24,7 @@ import { watsuBenefits } from '../../data/content';
   </section>
 
   <section class="bg-primary text-white">
-    <div class="wrap py-14 md:py-20 grid gap-10 md:grid-cols-2">
+    <div class="wrap py-10 md:py-20 grid gap-10 md:grid-cols-2">
       <div>
         <h2 class="text-white text-3xl">Immediate benefits</h2>
         <ul class="mt-5 space-y-2 text-lg">{watsuBenefits.immediate.map((b) => <li class="border-b border-white/25 pb-2">{b}</li>)}</ul>
@@ -36,7 +36,7 @@ import { watsuBenefits } from '../../data/content';
     </div>
   </section>
 
-  <section class="wrap py-14 md:py-20">
+  <section class="wrap py-10 md:py-20">
     <h2 class="text-3xl md:text-4xl">Who can benefit from WATSU?</h2>
     <ul class="mt-8 grid md:grid-cols-2 gap-x-12 gap-y-3">
       {watsuBenefits.who.map((w) => <li class="pl-4 relative before:absolute before:left-0 before:top-[0.6em] before:w-2 before:h-2 before:rounded-full before:bg-accent">{w}</li>)}

@@ -4,40 +4,42 @@ import logo from '../assets/logo.png';
 import { siteContent } from '../lib/site';
 import { BOOKING_URL } from '../data/content';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+// Four links only (Blake, 2026-09-04): the nav must not compete with the one Book button.
 const links = [
-  { href: `${base}/aquatic-physiotherapy/`, label: 'Aquatic physio' },
-  { href: `${base}/watsu/`, label: 'WATSU' },
+  { href: `${base}/treatments/`, label: 'Treatments' },
   { href: `${base}/conditions/`, label: 'Conditions' },
   { href: `${base}/about/`, label: 'About Coryn' },
-  { href: `${base}/testimonials/`, label: 'Testimonials' },
-  { href: `${base}/contact/`, label: 'Facility and contact' },
+  { href: `${base}/contact/`, label: 'Contact' },
 ];
 const phone = siteContent.contact.phone;
 const tel = 'tel:+61' + phone.replace(/\D/g, '').replace(/^0/, '');
 const here = Astro.url.pathname.replace(/\/$/, '');
 ---
 <header class="sticky top-0 z-30 bg-white/95 backdrop-blur border-b border-panel">
-  <div class="wrap h-[72px] flex items-center gap-6">
-    <a href={`${base}/`} class="shrink-0" aria-label="CK Physiotherapy & Aquatherapy home">
-      <Image src={logo} alt="CK Physiotherapy" width="240" height="45" class="h-9 w-auto" loading="eager" />
+  <div class="wrap h-16 md:h-[72px] flex items-center gap-4 md:gap-6">
+    <a href={`${base}/`} class="shrink-0 flex items-center min-h-[44px]" aria-label="CK Physiotherapy & Aquatherapy home">
+      <Image src={logo} alt="CK Physiotherapy" width="240" height="45" class="h-8 md:h-9 w-auto" loading="eager" />
     </a>
-    <nav aria-label="Main" class="hidden lg:flex items-center gap-5 ml-auto text-[15px] font-medium text-ink whitespace-nowrap">
-      {links.map((l) => (<a href={l.href} aria-current={here === l.href.replace(/\/$/, '') ? 'page' : undefined} class="hover:text-primary aria-[current]:text-primary aria-[current]:underline underline-offset-4">{l.label}</a>))}
-      <a href={tel} class="tabular-nums font-bold">{phone}</a>
+    <nav aria-label="Main" class="hidden md:flex items-center gap-6 ml-auto text-[15px] font-medium text-ink whitespace-nowrap">
+      {links.map((l) => (<a href={l.href} aria-current={here === l.href.replace(/\/$/, '') ? 'page' : undefined} class="py-2 hover:text-primary aria-[current]:text-primary aria-[current]:underline underline-offset-4">{l.label}</a>))}
+      <a href={tel} class="tabular-nums font-bold py-2" data-tl="contact.phone" data-tl-href="tel:">{phone}</a>
       <a href={BOOKING_URL} target="_blank" rel="noopener" class="btn-book !py-2">Book an assessment</a>
     </nav>
-    <div class="lg:hidden ml-auto flex items-center gap-3">
-      <a href={BOOKING_URL} target="_blank" rel="noopener" class="btn-book !py-2 !px-3 text-sm">Book</a>
-      <button type="button" class="p-2 -mr-2" aria-expanded="false" aria-controls="mobile-nav" data-nav-toggle aria-label="Menu">
+    <div class="md:hidden ml-auto flex items-center gap-1">
+      <a href={tel} class="inline-flex items-center justify-center min-w-[44px] min-h-[44px] rounded-md text-ink hover:bg-panel" aria-label={`Call ${phone}`}>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.9.6 2.8.7a2 2 0 0 1 1.8 2z"/></svg>
+      </a>
+      <a href={BOOKING_URL} target="_blank" rel="noopener" class="btn-book !py-2.5 !px-4 text-sm min-h-[44px]">Book</a>
+      <button type="button" class="inline-flex flex-col items-center justify-center min-w-[44px] min-h-[44px] -mr-2 rounded-md" aria-expanded="false" aria-controls="mobile-nav" data-nav-toggle aria-label="Menu">
         <span class="block w-6 h-0.5 bg-ink mb-1.5"></span><span class="block w-6 h-0.5 bg-ink mb-1.5"></span><span class="block w-6 h-0.5 bg-ink"></span>
       </button>
     </div>
   </div>
-  <nav id="mobile-nav" aria-label="Main" hidden class="lg:hidden border-t border-panel bg-white">
-    <ul class="wrap py-4 grid gap-3 text-lg font-medium text-ink">
-      {links.map((l) => <li><a href={l.href} class="block py-1">{l.label}</a></li>)}
-      <li><a href={tel} class="block py-1 tabular-nums font-bold">{phone}</a></li>
-      <li class="pt-2"><a href={BOOKING_URL} target="_blank" rel="noopener" class="btn-book">Book an assessment</a></li>
+  <nav id="mobile-nav" aria-label="Main" hidden class="md:hidden border-t border-panel bg-white">
+    <ul class="wrap py-3 grid text-lg font-medium text-ink">
+      {links.map((l) => <li><a href={l.href} class="block py-3 border-b border-panel">{l.label}</a></li>)}
+      <li><a href={tel} class="block py-3 tabular-nums font-bold">{phone}</a></li>
+      <li class="pt-1 pb-2"><a href={BOOKING_URL} target="_blank" rel="noopener" class="btn-book w-full">Book an assessment</a></li>
     </ul>
   </nav>
 </header>

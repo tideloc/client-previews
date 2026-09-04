@@ -10,7 +10,7 @@ import { conditionGroups, approach } from '../../data/content';
   <Header slot="header" />
   <PageIntro label="Conditions treated" title="We are spoilt for choice with treatment options" lead="We use evidence-based practice to treat and manage numerous conditions effectively, using land-based and/or water exercises and stretches. You do not need to know how to swim to have aquatic physiotherapy." />
 
-  <section class="wrap py-12 md:py-16">
+  <section class="wrap py-8 md:py-16">
     <nav aria-label="Condition groups" class="flex flex-wrap gap-2">
       {conditionGroups.map((g) => <a href={`#${g.id}`} class="rounded-full border border-primary text-primary px-4 py-1.5 text-sm font-bold hover:bg-primary hover:text-white">{g.name}</a>)}
     </nav>
@@ -32,7 +32,7 @@ import { conditionGroups, approach } from '../../data/content';
   </section>
 
   <section class="bg-white border-y border-panel">
-    <div class="wrap py-14 md:py-20">
+    <div class="wrap py-10 md:py-20">
       <h2 class="text-3xl md:text-4xl">My approach: strongly hands on and client-centred</h2>
       <div class="mt-8 grid md:grid-cols-2 gap-x-12 gap-y-8">
         {approach.map((a) => (

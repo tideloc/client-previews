@@ -34,6 +34,6 @@ Full-bleed night pool hero with her claim on the left and a Halaxy booking card 
 6. Socials, if any.
 
 ## Known issues
-- Independent QC failed twice (round 1: generated pool images read as another room, ordinals, hero contrast, one joined quote; round 2: star rows, stepper chrome, section repetition, mobile fold, headshot upscaling, one heading). All fixed except that on a 390x844 phone the hero booking card's button sits just below the first screen; the header "Book" pill is in view. Details in ~/tideloc/site-builds/ck-physio/review-b.md.
+- Independent QC failed twice (round 1: generated pool images read as another room, ordinals, hero contrast, one joined quote; round 2: star rows, stepper chrome, section repetition, mobile fold, headshot upscaling, one heading). All fixed. 2026-09-04 evening pass (Blake): nav cut to four links (Treatments, Conditions, About Coryn, Contact) plus phone and Book; /aquatic-physiotherapy/ became /treatments/ with aquatic, land, WATSU and programs sections; on a 390x844 phone the hero booking card's button now sits at y 542 to 590, inside the first screen, with a compact card (Open today line, full hours in a details toggle). Details in ~/tideloc/site-builds/ck-physio/review-b.md.
 - Google Maps iframe on the book section renders blank in headless screenshots only; it loads in a browser.
 - Booking is a link-out until the Halaxy embed arrives (same behaviour as her current site).

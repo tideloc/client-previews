@@ -7,7 +7,7 @@ const { count = testimonials.length, heading = 'What clients say', showRating = 
 const rows = testimonials.slice(0, count);
 ---
 <section data-section="reviews" class="bg-ground">
-  <div class="wrap py-14 md:py-20">
+  <div class="wrap py-10 md:py-20">
     <div class={`flex flex-wrap items-end justify-between gap-6 ${heading || showRating ? '' : 'hidden'}`}>
       {heading && <h2 class="font-display font-extrabold text-4xl md:text-5xl leading-none text-ink">{heading}</h2>}
       {showRating && <p class="font-display font-bold text-ink text-xl"><span class="text-accent text-3xl">{google.rating}</span> on Google from {google.count} reviews</p>}

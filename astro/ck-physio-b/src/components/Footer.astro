@@ -5,8 +5,8 @@ import { BOOKING_URL } from '../data/content';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const year = new Date().getFullYear();
 ---
-<footer class="bg-primary text-white mt-20">
-  <div class="wrap py-14 grid gap-10 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
+<footer class="bg-primary text-white mt-12 md:mt-20">
+  <div class="wrap py-10 md:py-14 grid gap-8 md:gap-10 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
     <div>
       <p class="font-display font-extrabold text-2xl text-white">CK Physiotherapy & Aquatherapy</p>
       <p class="mt-2 max-w-sm text-white/90">Land-based and one-on-one aquatic physiotherapy in Dover Heights, Sydney's Eastern Suburbs.</p>
@@ -24,12 +24,13 @@ const year = new Date().getFullYear();
     <div>
       <p class="font-bold mb-3 text-white">Pages</p>
       <ul class="space-y-1 text-white/90">
-        <li><a href={`${base}/aquatic-physiotherapy/`} class="hover:underline">Aquatic physiotherapy</a></li>
+        <li><a href={`${base}/treatments/`} class="hover:underline">Treatments</a></li>
+        <li><a href={`${base}/treatments/#aquatic`} class="hover:underline">Aquatic physiotherapy</a></li>
         <li><a href={`${base}/watsu/`} class="hover:underline">WATSU</a></li>
         <li><a href={`${base}/conditions/`} class="hover:underline">Conditions we treat</a></li>
         <li><a href={`${base}/about/`} class="hover:underline">About Coryn</a></li>
         <li><a href={`${base}/testimonials/`} class="hover:underline">Testimonials</a></li>
-        <li><a href={`${base}/contact/`} class="hover:underline">Facility and contact</a></li>
+        <li><a href={`${base}/contact/`} class="hover:underline">Contact and facility</a></li>
       </ul>
     </div>
   </div>

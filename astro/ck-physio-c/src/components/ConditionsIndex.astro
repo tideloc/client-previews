@@ -6,7 +6,7 @@ interface Props { linkToPage?: boolean; heading?: string }
 const { linkToPage = true, heading = 'Conditions we treat, by name' } = Astro.props;
 ---
 <section data-section="conditions" class="bg-white">
-  <div class="wrap py-14 md:py-20">
+  <div class="wrap py-10 md:py-20">
     <div class="grid gap-6 lg:grid-cols-12 lg:items-end">
       <h2 class="lg:col-span-7 font-display font-extrabold text-4xl md:text-5xl leading-none text-ink">{heading}</h2>
       <p class="lg:col-span-5 text-text max-w-md">{conditionsIntro}</p>

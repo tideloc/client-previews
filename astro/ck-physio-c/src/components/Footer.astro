@@ -8,7 +8,7 @@ const year = new Date().getFullYear();
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 <footer data-section="contact" class="bg-ink text-white">
-  <div class="wrap py-14 grid gap-10 md:grid-cols-12">
+  <div class="wrap py-10 md:py-14 grid gap-8 md:gap-10 md:grid-cols-12">
     <div class="md:col-span-4">
       <p class="font-display font-extrabold text-2xl leading-tight">CK Physiotherapy<br /><span class="text-accent">&amp; Aquatherapy</span></p>
       <p class="mt-3 text-white/80">Land-based and one-on-one aquatic physiotherapy in Sydney's Eastern Suburbs.</p>
@@ -29,12 +29,12 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     <div class="md:col-span-2">
       <h2 class="font-display font-bold text-base text-accent mb-3">Pages</h2>
       <ul class="space-y-1 text-white/85">
-        <li><a href={`${base}/aquatic-physiotherapy/`} class="hover:underline">Aquatic physiotherapy</a></li>
+        <li><a href={`${base}/treatments/`} class="hover:underline">Treatments</a></li>
         <li><a href={`${base}/watsu/`} class="hover:underline">WATSU</a></li>
         <li><a href={`${base}/conditions/`} class="hover:underline">Conditions treated</a></li>
         <li><a href={`${base}/about/`} class="hover:underline">About Coryn</a></li>
         <li><a href={`${base}/testimonials/`} class="hover:underline">Testimonials</a></li>
-        <li><a href={`${base}/contact/`} class="hover:underline">The clinic and contact</a></li>
+        <li><a href={`${base}/contact/`} class="hover:underline">Contact and the clinic</a></li>
       </ul>
     </div>
   </div>

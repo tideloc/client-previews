@@ -4,39 +4,42 @@ import logo from '../assets/logo.png';
 import { siteContent } from '../lib/site';
 import { BOOKING_URL } from '../data/content';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+// Four links only (Blake, 2026-09-04): fewer choices, Book stays the one filled action.
 const links = [
-  { href: `${base}/aquatic-physiotherapy/`, label: 'Aquatic physio' },
-  { href: `${base}/watsu/`, label: 'WATSU' },
+  { href: `${base}/treatments/`, label: 'Treatments' },
   { href: `${base}/conditions/`, label: 'Conditions' },
   { href: `${base}/about/`, label: 'About Coryn' },
-  { href: `${base}/testimonials/`, label: 'Testimonials' },
-  { href: `${base}/contact/`, label: 'The clinic' },
+  { href: `${base}/contact/`, label: 'Contact' },
 ];
 const phone = siteContent.contact.phone;
 const tel = 'tel:+61' + phone.replace(/\D/g, '').replace(/^0/, '');
 const here = Astro.url.pathname.replace(/\/$/, '');
 ---
 <header class="sticky top-0 z-30 bg-white border-b-4 border-accent">
-  <div class="wrap h-[72px] flex items-center gap-5">
+  <div class="wrap h-16 lg:h-[72px] flex items-center gap-4 lg:gap-5">
     <a href={`${base}/`} class="shrink-0" aria-label="CK Physiotherapy & Aquatherapy home">
-      <Image src={logo} alt="CK Physiotherapy" width={232} height={43} class="h-9 md:h-10 w-auto" loading="eager" />
+      <Image src={logo} alt="CK Physiotherapy" width={232} height={43} class="h-8 md:h-10 w-auto" loading="eager" />
     </a>
     <nav aria-label="Main" class="hidden lg:flex items-center gap-5 ml-auto font-display font-bold text-[15px] text-ink">
       {links.map((l) => (<a href={l.href} aria-current={here === l.href.replace(/\/$/, '') ? 'page' : undefined} class="border-b-2 border-transparent hover:border-accent aria-[current]:border-accent py-1">{l.label}</a>))}
       <a href={tel} class="tabular-nums font-body font-medium text-text" data-tl="contact.phone" data-tl-href="tel:">{phone}</a>
       <a href={BOOKING_URL} target="_blank" rel="noopener" class="btn-book-navy !py-2">Book online</a>
     </nav>
-    <div class="lg:hidden ml-auto flex items-center gap-3">
-      <a href={BOOKING_URL} target="_blank" rel="noopener" class="btn-book-navy !py-2 !px-4 text-sm">Book</a>
-      <button type="button" class="p-2 -mr-2" aria-expanded="false" aria-controls="mobile-nav" data-nav-toggle aria-label="Menu">
-        <span class="block w-6 h-0.5 bg-ink mb-1.5"></span><span class="block w-6 h-0.5 bg-ink mb-1.5"></span><span class="block w-6 h-0.5 bg-ink"></span>
+    <div class="lg:hidden ml-auto flex items-center gap-1">
+      <a href={tel} class="inline-flex items-center justify-center min-w-[44px] min-h-[44px] px-2 text-ink" aria-label={`Call ${phone}`} data-tl-href="tel:">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.8 2z"/></svg>
+      </a>
+      <a href={BOOKING_URL} target="_blank" rel="noopener" class="btn-book-navy min-h-[44px] !py-2 !px-4 text-sm">Book</a>
+      <button type="button" class="inline-flex items-center justify-center min-w-[44px] min-h-[44px] -mr-2" aria-expanded="false" aria-controls="mobile-nav" data-nav-toggle aria-label="Menu">
+        <span class="flex flex-col"><span class="block w-6 h-0.5 bg-ink mb-1.5"></span><span class="block w-6 h-0.5 bg-ink mb-1.5"></span><span class="block w-6 h-0.5 bg-ink"></span></span>
       </button>
     </div>
   </div>
   <nav id="mobile-nav" aria-label="Main" hidden class="lg:hidden border-t border-ground bg-white">
     <ul class="wrap py-4 grid gap-2 font-display font-bold text-lg text-ink">
-      {links.map((l) => <li><a href={l.href} class="block py-1.5">{l.label}</a></li>)}
-      <li class="pt-2 border-t border-ground"><a href={tel} class="block py-1.5 font-body font-medium text-text tabular-nums">{phone}</a></li>
+      {links.map((l) => <li><a href={l.href} class="block py-2.5 min-h-[44px]">{l.label}</a></li>)}
+      <li class="pt-2 border-t border-ground"><a href={tel} class="block py-2.5 min-h-[44px] font-body font-medium text-text tabular-nums" data-tl="contact.phone" data-tl-href="tel:">{phone}</a></li>
+      <li><a href={BOOKING_URL} target="_blank" rel="noopener" class="btn-book-navy w-full">Book online</a></li>
     </ul>
   </nav>
 </header>

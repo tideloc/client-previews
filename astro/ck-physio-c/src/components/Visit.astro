@@ -9,7 +9,7 @@ const c = siteContent.contact;
 const mapSrc = `https://www.google.com/maps?q=${encodeURIComponent(fullAddress())}&output=embed`;
 ---
 <section data-section="visit" id="visit" class="bg-white">
-  <div class="wrap py-14 md:py-20 grid gap-10 lg:grid-cols-12">
+  <div class="wrap py-10 md:py-20 grid gap-10 lg:grid-cols-12">
     <div class="lg:col-span-5">
       <h2 class="font-display font-extrabold text-4xl md:text-5xl leading-none text-ink">Visit the clinic</h2>
       <ContactDetails class="not-italic mt-6 space-y-1 text-lg text-ink" linkClass="underline decoration-accent decoration-2" />
@@ -24,7 +24,7 @@ const mapSrc = `https://www.google.com/maps?q=${encodeURIComponent(fullAddress()
       <div>
         <h3 class="font-display font-bold text-xl text-ink">Send a message</h3>
         <p class="mt-1 text-sm text-text">For appointment times, book online. For anything else, write to Coryn here.</p>
-        <EnquiryForm kind="enquiry" site="CK Physiotherapy & Aquatherapy" submitLabel="Send message" successText="Thanks, your message is on its way to Coryn." class="mt-4 grid gap-3" inputClass="w-full border-2 border-ink/20 bg-white px-3 py-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent" buttonClass="btn-book-navy" fields={[
+        <EnquiryForm kind="enquiry" site="CK Physiotherapy & Aquatherapy" submitLabel="Send message" successText="Thanks, your message is on its way to Coryn." class="mt-4 grid gap-3" inputClass="w-full text-base border-2 border-ink/20 bg-white px-3 py-2.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent" buttonClass="btn-book-navy" fields={[
           { name: 'name', label: 'Name', required: true },
           { name: 'email', label: 'Email', type: 'email', required: true },
           { name: 'phone', label: 'Phone', type: 'tel' },

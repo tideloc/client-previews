@@ -1,22 +1,26 @@
 ---
 /** The designed data object: mirrors the Halaxy booking flow and links out to it.
- *  Hours come from the kit (data-tl) so the portal can change them. */
+ *  Hours come from the kit (data-tl) so the portal can change them.
+ *  On phones the card is compact: practitioner + address, one "Open today" line
+ *  (computed client-side from the baked hours), the button, and the full week in a <details>. */
 import Hours from './tl/Hours.astro';
 import { siteContent } from '../lib/site';
 import { BOOKING_URL } from '../data/content';
 const { class: cls = '', compact = false } = Astro.props;
 const c = siteContent.contact;
+const hoursJson = JSON.stringify(siteContent.hours.map((h) => ({ day: h.day, closed: h.closed, display: h.display })));
 ---
-<div class={`rounded-xl bg-white text-body shadow-[0_12px_40px_-12px_rgba(44,82,130,0.35)] overflow-hidden ${cls}`} data-booking-card>
-  <div class="bg-tint px-6 py-4 flex items-center justify-between gap-4">
+<div class={`rounded-xl bg-white text-body shadow-[0_12px_40px_-12px_rgba(44,82,130,0.35)] overflow-hidden ${cls}`} data-booking-card data-hours={hoursJson}>
+  <div class="bg-tint px-5 sm:px-6 py-3 sm:py-4 flex items-center justify-between gap-4">
     <p class="font-display font-extrabold text-ink text-lg leading-tight">Book online</p>
     <p class="text-xs font-bold tracking-wide uppercase text-ink/70">with Halaxy</p>
   </div>
-  <p class="px-6 pt-5 text-[15px]">Pick a time, enter your details, confirm. Three steps on Halaxy, no account needed to start.</p>
-  <dl class="px-6 pt-5 grid grid-cols-[auto_1fr] gap-x-5 gap-y-1.5 text-[15px]">
+  <p class="px-6 pt-5 text-[15px] hidden sm:block">Pick a time, enter your details, confirm. Three steps on Halaxy, no account needed to start.</p>
+  <dl class="px-5 sm:px-6 pt-4 sm:pt-5 grid grid-cols-[auto_1fr] gap-x-4 sm:gap-x-5 gap-y-1 sm:gap-y-1.5 text-[15px]">
     <dt class="text-body/70">Practitioner</dt><dd class="font-semibold text-ink">Mrs Coryn Katz</dd>
-    <dt class="text-body/70">Location</dt><dd class="font-semibold text-ink">CK Physiotherapy</dd>
+    <dt class="text-body/70 hidden sm:block">Location</dt><dd class="font-semibold text-ink hidden sm:block">CK Physiotherapy</dd>
     <dt class="text-body/70">Address</dt><dd class="font-semibold text-ink" data-tl="contact.address">{c.address}, {c.suburb} {c.state} {c.postcode}</dd>
+    <dt class="text-body/70 sm:hidden">Today</dt><dd class="font-semibold text-ink sm:hidden" data-open-today>7:30am to 7pm Mon to Thu, to 4pm Fri</dd>
   </dl>
   {!compact && (
     <div class="px-6 pt-4 hidden sm:block">
@@ -24,8 +28,23 @@ const c = siteContent.contact;
       <Hours listClass="text-[14px] divide-y divide-panel" rowClass="flex justify-between gap-2 py-1" dayClass="text-body/80" timeClass="tabular-nums font-semibold text-ink" closedClass="opacity-50" holidayClass="text-xs mt-2" />
     </div>
   )}
-  <div class="px-6 pt-5 pb-6">
-    <a href={BOOKING_URL} target="_blank" rel="noopener" class="btn-book w-full text-base">Book an assessment</a>
-    <p class="mt-2 text-xs text-body/70">Bookings run on Halaxy, opens in a new tab. Or call <a href={`tel:${c.phone.replace(/\s+/g, '')}`} class="font-semibold text-ink" data-tl="contact.phone" data-tl-href="tel:">{c.phone}</a>.</p>
+  <div class="px-5 sm:px-6 pt-4 sm:pt-5 pb-4 sm:pb-6">
+    <a href={BOOKING_URL} target="_blank" rel="noopener" class="btn-book w-full text-base min-h-[48px]" data-booking-button>Book an assessment</a>
+    <p class="mt-2 text-xs text-body/70">Bookings run on Halaxy, opens in a new tab. Or call <a href={`tel:${c.phone.replace(/\s+/g, '')}`} class="font-semibold text-ink py-2 inline-block" data-tl="contact.phone" data-tl-href="tel:">{c.phone}</a>.</p>
+    <details class="sm:hidden mt-2 text-sm">
+      <summary class="cursor-pointer font-semibold text-ink py-2">All opening hours</summary>
+      <Hours listClass="text-[14px] divide-y divide-panel" rowClass="flex justify-between gap-2 py-1" dayClass="text-body/80" timeClass="tabular-nums font-semibold text-ink" closedClass="opacity-50" holidayClass="text-xs mt-2" />
+    </details>
   </div>
 </div>
+<script is:inline>
+  document.querySelectorAll('[data-booking-card]').forEach((card) => {
+    try {
+      const hours = JSON.parse(card.getAttribute('data-hours') || '[]');
+      const key = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'][new Date().getDay()];
+      const h = hours.find((x) => x.day === key);
+      const slot = card.querySelector('[data-open-today]');
+      if (h && slot) slot.textContent = h.closed ? 'Closed today' : 'Open today ' + h.display;
+    } catch (e) { /* keep the baked fallback line */ }
+  });
+</script>

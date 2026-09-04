@@ -1,0 +1,126 @@
+---
+import Base from '../../layouts/Base.astro';
+import { Picture } from 'astro:assets';
+import BookingStrip from '../../components/BookingStrip.astro';
+import poolDay from '../../assets/pool-day.jpg';
+import poolNight from '../../assets/pool-night.jpg';
+import room from '../../assets/treatment-room.jpg';
+import water from '../../assets/pool-water-tall.jpg';
+import { services, pool, noSwim, about, watsu } from '../../data/content';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const facts = [
+  ['Water', '33 to 34°C year round, with a heater at the pool in winter'],
+  ['Depth', '1.1 to 1.3 m, therapeutic depth'],
+  ['Pool', 'Indoor salt water therapy pool'],
+  ['Safety', 'Dual railing to enter, railing around the perimeter and through the practice'],
+  ['Change room', 'Inside the pool area, toilet in the clinic within metres'],
+  ['Parking', 'Directly outside the clinic, always available'],
+  ['Equipment', 'From America, South Africa, UK, Israel and Australia'],
+];
+const modes = [
+  { id: 'aquatic', label: 'Aquatic physiotherapy' },
+  { id: 'land', label: 'Land-based physiotherapy' },
+  { id: 'watsu', label: 'WATSU' },
+  { id: 'programs', label: 'Rehabilitation programs' },
+];
+---
+<Base title="Treatments in Dover Heights: aquatic, land, WATSU | CK Physio" description="Aquatic physiotherapy in a private 33-34°C salt water pool, hands-on land-based physiotherapy, WATSU and personalised rehabilitation programs. Dover Heights.">
+  <section class="bg-white">
+    <div class="wrap py-9 md:py-16 grid gap-6 lg:gap-8 lg:grid-cols-12 lg:items-end">
+      <div class="lg:col-span-7">
+        <p class="font-display font-bold text-accent uppercase tracking-[0.12em] text-sm">Treatments</p>
+        <h1 class="mt-2 font-display font-extrabold text-[2.2rem] md:text-6xl leading-[1.0] text-ink">In the water, in the clinic, one on one</h1>
+      </div>
+      <p class="lg:col-span-5 text-lg leading-relaxed">{services.programs.text}</p>
+    </div>
+    <nav aria-label="Treatments on this page" class="wrap pb-8">
+      <ol class="flex flex-wrap gap-2 text-sm font-display font-bold">
+        {modes.map((m, i) => <li><a href={`#${m.id}`} class="inline-flex items-center min-h-[44px] bg-ground text-ink px-3 py-1.5 hover:bg-tint"><span class="text-accent mr-1">{String(i + 1).padStart(2, '0')}</span>{m.label}</a></li>)}
+      </ol>
+    </nav>
+  </section>
+
+  <section id="aquatic" class="bg-ground scroll-mt-20">
+    <div class="wrap py-9 md:py-16 grid gap-8 md:grid-cols-12 md:items-center">
+      <div class="md:col-span-5">
+        <Picture src={poolDay} formats={['avif', 'webp']} widths={[592]} sizes="(min-width: 768px) 40vw, 100vw" alt="The pool by day with noodles, floats and resistance equipment along the far edge" class="w-full object-cover aspect-square" />
+      </div>
+      <div class="md:col-span-7">
+        <p class="font-display font-bold text-accent uppercase tracking-[0.12em] text-sm">01 In the water</p>
+        <h2 class="mt-2 font-display font-extrabold text-4xl md:text-5xl leading-none text-ink">{services.aquatic.title}</h2>
+        <p class="mt-4 text-lg leading-relaxed">{services.aquatic.text}</p>
+        <p class="mt-3">{about.specialties[0].text}</p>
+        <p class="mt-6 inline-block bg-mint text-ink font-display font-bold text-xl px-5 py-3 border-l-4 border-accent">{noSwim}.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-white">
+    <div class="wrap py-9 md:py-16">
+      <h2 class="font-display font-extrabold text-4xl md:text-5xl leading-none text-ink">About the pool</h2>
+      <div class="mt-8 grid gap-10 lg:grid-cols-12">
+        <dl class="lg:col-span-5 border-t-2 border-ink">
+          {facts.map(([k, v]) => (
+            <div class="grid grid-cols-[6.5rem_1fr] sm:grid-cols-[7rem_1fr] gap-4 py-3 border-b border-ink/15">
+              <dt class="font-display font-extrabold text-accent">{k}</dt>
+              <dd class="text-ink">{v}</dd>
+            </div>
+          ))}
+        </dl>
+        <div class="lg:col-span-7">
+          <Picture src={poolNight} formats={['avif', 'webp']} widths={[800, 1600]} sizes="(min-width: 1024px) 58vw, 100vw" alt="The pool at night, lit from below, with white fencing and glass doors on every side and a louvred ceiling" class="w-full object-cover aspect-[16/10]" />
+          <div class="mt-5 space-y-3 leading-relaxed">
+            <p>{pool.paragraphs[0]}</p>
+            <p>{pool.paragraphs[1]}</p>
+            <p>{pool.paragraphs[3]}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="land" class="bg-ground scroll-mt-20">
+    <div class="wrap py-9 md:py-16 grid gap-8 md:grid-cols-12 md:items-center">
+      <div class="md:col-span-7 md:order-1">
+        <p class="font-display font-bold text-accent uppercase tracking-[0.12em] text-sm">02 In the clinic</p>
+        <h2 class="mt-2 font-display font-extrabold text-4xl md:text-5xl leading-none text-ink">{services.land.title}</h2>
+        <p class="mt-4 text-lg leading-relaxed">{services.land.text}</p>
+        <p class="mt-3">{services.land.extra}</p>
+      </div>
+      <div class="md:col-span-5 md:order-2">
+        <Picture src={room} formats={['avif', 'webp']} widths={[640]} sizes="(min-width: 768px) 40vw, 100vw" alt="The treatment room at CK Physiotherapy: a navy treatment bed, desk and shelves, with a window onto the pool" class="w-full object-cover aspect-[4/5]" />
+      </div>
+    </div>
+  </section>
+
+  <section id="watsu" class="bg-ink text-white scroll-mt-20">
+    <div class="wrap py-9 md:py-16 grid gap-8 lg:grid-cols-12 lg:items-center">
+      <div class="lg:col-span-7">
+        <p class="font-display font-bold text-accent uppercase tracking-[0.12em] text-sm">03 WATer ShiatsU</p>
+        <h2 class="mt-2 font-display font-extrabold text-4xl md:text-5xl leading-none text-white">WATSU</h2>
+        <p class="mt-3 font-display font-bold text-xl text-accent">{about.watsuClaim}.</p>
+        <p class="mt-4 text-lg leading-relaxed text-white/85">{watsu.intro[0]}</p>
+        <p class="mt-3 text-white/85">{services.aquatic.extra}</p>
+        <a href={`${base}/watsu/`} class="mt-6 inline-block btn-ghost text-white">What happens in a WATSU session</a>
+      </div>
+      <div class="lg:col-span-5">
+        <Picture src={water} formats={['avif', 'webp']} widths={[640]} sizes="(min-width: 1024px) 40vw, 100vw" alt="The warm water of the therapy pool at night, lit from below" class="w-full object-cover aspect-[4/3] lg:aspect-[4/5]" />
+      </div>
+    </div>
+  </section>
+
+  <section id="programs" class="bg-white scroll-mt-20">
+    <div class="wrap py-9 md:py-16 grid gap-8 lg:grid-cols-12 lg:items-start">
+      <div class="lg:col-span-6">
+        <p class="font-display font-bold text-accent uppercase tracking-[0.12em] text-sm">04 Water and land together</p>
+        <h2 class="mt-2 font-display font-extrabold text-4xl leading-none text-ink">{services.programs.title}</h2>
+        <p class="mt-4 text-lg leading-relaxed">{services.programs.text}</p>
+        <h3 class="mt-8 font-display font-extrabold text-2xl leading-none text-ink">{pool.buoyancy.title}</h3>
+        <p class="mt-3 leading-relaxed">{pool.buoyancy.text}</p>
+        <h3 class="mt-8 font-display font-extrabold text-2xl leading-none text-ink">Ready to start moving?</h3>
+        <p class="mt-3">Join us for one-on-one care tailored to your specific recovery goals. Experience the unique healing benefits of aquatic therapy in our state-of-the-art Sydney facility conveniently located in the Eastern Suburbs.</p>
+      </div>
+      <div class="lg:col-span-6"><BookingStrip tone="white" /></div>
+    </div>
+  </section>
+</Base>

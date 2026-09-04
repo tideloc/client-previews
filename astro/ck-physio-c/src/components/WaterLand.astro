@@ -7,7 +7,7 @@ import { services } from '../data/content';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 <section data-section="treatments" class="bg-ground">
-  <div class="wrap py-14 md:py-20 space-y-14 md:space-y-20">
+  <div class="wrap py-10 md:py-20 space-y-10 md:space-y-20">
     <div class="grid gap-8 md:grid-cols-12 md:items-center">
       <div class="md:col-span-5">
         <Picture src={poolDay} formats={['avif', 'webp']} widths={[592]} sizes="(min-width: 768px) 40vw, 100vw" alt="The pool by day, with noodles, floats and resistance equipment along the far edge and dual rails at the steps" class="w-full h-full object-cover aspect-[4/5]" />
@@ -17,7 +17,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
         <h2 class="mt-2 font-display font-extrabold text-4xl md:text-5xl leading-none text-ink">{services.aquatic.title}</h2>
         <p class="mt-5 text-lg leading-relaxed">{services.aquatic.text}</p>
         <p class="mt-3">{services.aquatic.extra} <a href={`${base}/watsu/`} class="underline decoration-accent decoration-2 font-medium text-ink">What is WATSU</a></p>
-        <a href={`${base}/aquatic-physiotherapy/`} class="mt-6 inline-block btn-ghost text-ink">Aquatic physiotherapy and the pool</a>
+        <a href={`${base}/treatments/`} class="mt-6 inline-block btn-ghost text-ink">All treatments and the pool</a>
       </div>
     </div>
     <div class="grid gap-8 md:grid-cols-12 md:items-center">

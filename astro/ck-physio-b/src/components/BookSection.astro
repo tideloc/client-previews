@@ -5,10 +5,10 @@ import ContactDetails from './tl/ContactDetails.astro';
 const { heading = 'Ready to start your recovery?', embedSlot = false, card = 'compact', map = false } = Astro.props;
 import { BOOKING_URL } from '../data/content';
 ---
-<section id="book" class="wrap py-16 md:py-20">
+<section id="book" class="wrap py-10 md:py-20">
   <h2 class="text-3xl md:text-4xl">{heading}</h2>
   <p class="mt-3 max-w-2xl">Join us for one-on-one care tailored to your specific recovery goals. Book your assessment online, or send a message and we will get back to you as soon as possible.</p>
-  <div class="mt-10 grid gap-10 lg:grid-cols-[1fr_1fr]">
+  <div class="mt-8 md:mt-10 grid gap-8 md:gap-10 lg:grid-cols-[1fr_1fr]">
     <div>
       {card === 'none'
         ? <div class="rounded-xl bg-tint/50 p-6 md:p-8"><p class="font-display font-extrabold text-ink text-2xl">Book online with Halaxy</p><p class="mt-2">Pick a time, enter your details, confirm. Bookings run on Halaxy and open in a new tab.</p><a href={BOOKING_URL} target="_blank" rel="noopener" class="btn-book mt-5">Book an assessment</a></div>
@@ -19,7 +19,7 @@ import { BOOKING_URL } from '../data/content';
         </div>
       )}
     </div>
-    <div class="rounded-xl border border-panel bg-white p-6 md:p-8">
+    <div class="rounded-xl border border-panel bg-white p-5 md:p-8">
       <h3 class="text-xl">Send us a message</h3>
       <div class="mt-5">
         <EnquiryForm kind="enquiry" site="CK Physiotherapy & Aquatherapy" submitLabel="Send message" successText="Thanks, your message is on its way to Coryn."
@@ -29,7 +29,7 @@ import { BOOKING_URL } from '../data/content';
             { name: 'phone', label: 'Phone', type: 'tel' },
             { name: 'message', label: 'How can we help?', type: 'textarea', required: true },
           ]}
-          inputClass="w-full rounded-md border border-panel bg-ground px-3 py-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+          inputClass="w-full rounded-md border border-panel bg-ground px-3 py-2.5 text-base min-h-[44px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
           buttonClass="btn-book" />
       </div>
       <div class="mt-6 pt-6 border-t border-panel text-[15px]">
