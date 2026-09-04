@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation: none !important; transition: none !important; } }
+  body { font-feature-settings: "kern", "liga"; }
+  :focus-visible { outline: 2px solid theme('colors.primary'); outline-offset: 2px; }
+  img { max-width: 100%; height: auto; }
+  /* Headings on ckphysio.com.au are Wix Madefor Display Bold, sentence case, no tracking. Onest is its Google twin. */
+  h1, h2, h3, h4 { font-family: theme('fontFamily.display'); font-weight: 800; letter-spacing: -0.01em; color: theme('colors.ink'); }
+}
+@layer components {
+  .btn-book { @apply inline-flex items-center justify-center gap-2 rounded-md bg-primary px-5 py-3 font-bold text-white hover:bg-ink transition-colors; }
+  .btn-ghost { @apply inline-flex items-center justify-center gap-2 rounded-md border-2 border-current px-5 py-[10px] font-bold text-ink hover:bg-panel transition-colors; }
+  .wrap { @apply mx-auto max-w-wrap px-5 md:px-8; }
+  .label { @apply text-sm font-bold text-primary; }
+}

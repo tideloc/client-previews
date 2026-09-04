@@ -1,0 +1,47 @@
+---
+import { siteContent, fullAddress } from '../lib/site';
+import Hours from './tl/Hours.astro';
+import { BOOKING_URL, google } from '../data/content';
+const c = siteContent.contact;
+const tel = 'tel:+61' + c.phone.replace(/\D/g, '').replace(/^0/, '');
+const year = new Date().getFullYear();
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+<footer data-section="contact" class="bg-ink text-white">
+  <div class="wrap py-14 grid gap-10 md:grid-cols-12">
+    <div class="md:col-span-4">
+      <p class="font-display font-extrabold text-2xl leading-tight">CK Physiotherapy<br /><span class="text-accent">&amp; Aquatherapy</span></p>
+      <p class="mt-3 text-white/80">Land-based and one-on-one aquatic physiotherapy in Sydney's Eastern Suburbs.</p>
+      <p class="mt-5"><a href={BOOKING_URL} target="_blank" rel="noopener" class="btn-book">Book online</a></p>
+      <p class="mt-3 text-sm text-white/60">Bookings run on Halaxy and open in a new tab.</p>
+    </div>
+    <div class="md:col-span-3">
+      <h2 class="font-display font-bold text-base text-accent mb-3">Find us</h2>
+      <address class="not-italic leading-relaxed text-white/85"><span data-tl="contact.address">{fullAddress()}</span></address>
+      <p class="mt-2"><a href={c.mapUrl} class="underline" target="_blank" rel="noreferrer">Directions</a></p>
+      <p class="mt-4"><a href={tel} class="underline tabular-nums" data-tl="contact.phone" data-tl-href="tel:">{c.phone}</a></p>
+      <p class="mt-1"><a href={`mailto:${c.email}`} class="underline break-all" data-tl="contact.email" data-tl-href="mailto:">{c.email}</a></p>
+    </div>
+    <div class="md:col-span-3">
+      <h2 class="font-display font-bold text-base text-accent mb-3">Hours</h2>
+      <Hours listClass="text-white/85" rowClass="flex justify-between gap-4 py-0.5" dayClass="" timeClass="tabular-nums" closedClass="text-white/50" holidayClass="text-sm mt-3 text-white/70" />
+    </div>
+    <div class="md:col-span-2">
+      <h2 class="font-display font-bold text-base text-accent mb-3">Pages</h2>
+      <ul class="space-y-1 text-white/85">
+        <li><a href={`${base}/aquatic-physiotherapy/`} class="hover:underline">Aquatic physiotherapy</a></li>
+        <li><a href={`${base}/watsu/`} class="hover:underline">WATSU</a></li>
+        <li><a href={`${base}/conditions/`} class="hover:underline">Conditions treated</a></li>
+        <li><a href={`${base}/about/`} class="hover:underline">About Coryn</a></li>
+        <li><a href={`${base}/testimonials/`} class="hover:underline">Testimonials</a></li>
+        <li><a href={`${base}/contact/`} class="hover:underline">The clinic and contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="border-t border-white/15">
+    <div class="wrap py-4 text-sm text-white/60 flex flex-wrap gap-x-6 gap-y-1 justify-between">
+      <span>&copy; {year} CK Physiotherapy &amp; Aquatherapy. All rights reserved.</span>
+      <span>Rated {google.rating} on Google from {google.count} reviews. Medicare rebates and private health claims processed on site.</span>
+    </div>
+  </div>
+</footer>

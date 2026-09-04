@@ -1,0 +1,67 @@
+---
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import PageIntro from '../../components/PageIntro.astro';
+import PoolSpec from '../../components/PoolSpec.astro';
+import BookSection from '../../components/BookSection.astro';
+import { Picture } from 'astro:assets';
+import poolNight from '../../assets/pool-night.jpg';
+import poolDay from '../../assets/pool-day.jpg';
+import { approach } from '../../data/content';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+<Base title="Aquatic physiotherapy in Dover Heights | CK Physio" description="One-on-one aquatic physiotherapy in a private indoor salt water pool, 33 to 34 degrees and 1.1 to 1.3 m deep, in Dover Heights. No need to swim.">
+  <Header slot="header" />
+  <PageIntro label="Aquatic physiotherapy" title="One-on-one aquatic physiotherapy in a private, heated salt water pool" lead="You do not need to know how to swim to have aquatic physiotherapy. The physiotherapist is in the water at all times with the client." />
+
+  <section class="wrap py-14 md:py-20 grid gap-10 lg:grid-cols-2 lg:items-center">
+    <Picture src={poolNight} alt="The therapy pool at night with the underwater light on and the white perimeter fencing" widths={[640, 1000, 1600]} sizes="(min-width: 1024px) 50vw, 100vw" formats={['avif', 'webp']} class="w-full rounded-xl object-cover aspect-[3/2]" />
+    <div>
+      <h2 class="text-3xl md:text-4xl">The science of buoyancy</h2>
+      <p class="mt-4">By eliminating gravity, we enable movement that is otherwise impossible on land. Aquatic therapy utilises hydrostatic pressure to reduce swelling and improve circulation, providing a weightless environment where healing begins with every gentle pulse of the water.</p>
+      <p class="mt-4">Aquatic physiotherapy utilises the natural buoyancy and warmth of a 33 to 34 degree pool to eliminate gravity stress on painful joints, allowing patients to safely rebuild strength and mobility much sooner than on land. The water's gentle resistance also accelerates post-surgical healing and reduces swelling, making it an ideal, low-impact environment for pain relief and physical rehabilitation.</p>
+      <p class="mt-4">Having completed aquatic orthopaedic and neurological courses, and many more, Coryn is able to treat most conditions effectively in the water. We have loads of fun equipment to create resistance to help challenge you to improve your muscle strength and cardiovascular fitness and endurance.</p>
+    </div>
+  </section>
+
+  <section class="bg-white border-y border-panel">
+    <div class="wrap py-14 md:py-20">
+      <p class="label">About our facility</p>
+      <h2 class="mt-2 text-3xl md:text-4xl max-w-3xl">Therapeutic depth, therapeutic temperature, railing everywhere</h2>
+      <div class="mt-8 grid gap-10 lg:grid-cols-[1.1fr_0.9fr]">
+        <div>
+          <p>Our indoor salt water therapy pool is therapeutic depth (1.1 to 1.3 m deep). There is a change room inside the pool area, and toilet facilities in the clinic within metres. The pool has dual railing to enter, and there is railing throughout the perimeter of the pool as well as the physiotherapy practice to ensure client safety.</p>
+          <p class="mt-4">The temperature of the water is 33 to 34 degrees Celsius year round. During winter we have a heater at the pool for your comfort. Parking is highly convenient and always available directly outside the clinic.</p>
+          <p class="mt-4">We have unique aquatic equipment from America, South Africa, the UK, Israel and Australia to assist in improving balance and proprioception, muscle strength and endurance.</p>
+          <PoolSpec class="mt-8" />
+        </div>
+        <Picture src={poolDay} alt="The pool by day: the tiled entry steps with dual stainless steel handrails, the perimeter railing and equipment at the edge" widths={[592]} sizes="(min-width: 1024px) 40vw, 100vw" formats={['avif', 'webp']} class="w-full rounded-xl object-cover aspect-[4/5] lg:aspect-auto lg:h-full" />
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap py-14 md:py-20">
+    <h2 class="text-3xl md:text-4xl">My approach: strongly hands on and client-centred</h2>
+    <div class="mt-8 grid md:grid-cols-2 gap-x-12 gap-y-8">
+      {approach.map((a) => (
+        <div class="border-t-2 border-primary pt-4">
+          <h3 class="text-xl">{a.name}</h3>
+          <p class="mt-2">{a.text}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="relative bg-ink text-white">
+    <Picture src={poolNight} alt="The lit water of the therapy pool at night" widths={[768, 1600]} sizes="100vw" formats={['avif', 'webp']} class="absolute inset-0 w-full h-full object-cover object-[50%_80%] opacity-40" pictureAttributes={{ class: 'absolute inset-0' }} />
+    <div class="relative wrap py-16 md:py-20 max-w-3xl">
+      <h2 class="text-white text-3xl md:text-4xl">WATSU sessions are also offered at our practice</h2>
+      <p class="mt-4 text-white/90 text-lg">WATSU (WATer ShiatsU) is a gentle form of aquatic bodywork performed in 34 degree Celsius water. Coryn is the only WATSU certified physiotherapist in Sydney, NSW.</p>
+      <a href={`${base}/watsu/`} class="mt-6 inline-flex rounded-md bg-white text-ink px-5 py-3 font-bold">About WATSU</a>
+    </div>
+  </section>
+
+  <BookSection heading="Ready to start moving?" />
+  <Footer slot="footer" />
+</Base>

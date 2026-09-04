@@ -1,0 +1,44 @@
+---
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import BookSection from '../../components/BookSection.astro';
+import Hours from '../../components/tl/Hours.astro';
+import ContactDetails from '../../components/tl/ContactDetails.astro';
+import { Picture } from 'astro:assets';
+import room from '../../assets/treatment-room.jpg';
+import poolDay from '../../assets/pool-day.jpg';
+import { BOOKING_URL } from '../../data/content';
+---
+<Base title="Facility, hours and bookings, Dover Heights | CK Physio" description="CK Physiotherapy & Aquatherapy, 2 Weonga Road, Dover Heights. Mon to Thu 7:30am to 7pm, Fri 7:30am to 4pm. Book on Halaxy or call 0491 114 897.">
+  <Header slot="header" />
+
+  <section class="bg-white border-b border-panel">
+    <div class="wrap py-12 md:py-16 grid gap-10 lg:grid-cols-[1fr_1fr] lg:items-start">
+      <div>
+        <p class="label">Our facility and contact information</p>
+        <h1 class="mt-2 text-4xl md:text-5xl leading-[1.05]">2 Weonga Road, Dover Heights</h1>
+        <p class="mt-4 text-lg">Parking is highly convenient and always available directly outside the clinic. We process Medicare rebates, and private health claims via an EFTPOS machine.</p>
+        <div class="mt-8 grid sm:grid-cols-2 gap-8">
+          <div>
+            <p class="font-bold text-ink mb-2">Hours</p>
+            <Hours listClass="divide-y divide-panel" rowClass="flex justify-between gap-3 py-1.5" dayClass="font-medium text-ink" timeClass="tabular-nums" closedClass="opacity-50" holidayClass="text-sm mt-3" />
+          </div>
+          <div>
+            <p class="font-bold text-ink mb-2">Get in touch</p>
+            <ContactDetails class="not-italic space-y-1.5" linkClass="font-semibold text-ink hover:text-primary" />
+            <a href={BOOKING_URL} target="_blank" rel="noopener" class="btn-book mt-6">Book an assessment</a>
+          </div>
+        </div>
+      </div>
+      <div class="grid grid-cols-2 gap-4">
+        <Picture src={room} alt="The treatment room with a navy treatment bed and a window onto the pool" widths={[480, 640]} sizes="25vw" formats={['avif', 'webp']} class="w-full rounded-xl object-cover aspect-square" />
+        <Picture src={poolDay} alt="The indoor salt water pool with dual entry rails and perimeter railing" widths={[592]} sizes="25vw" formats={['avif', 'webp']} class="w-full rounded-xl object-cover aspect-square" />
+        <div class="col-span-2 rounded-xl bg-tint/50 p-6"><p class="font-display font-extrabold text-ink text-xl">The pool</p><p class="mt-2">Indoor salt water therapy pool, 33 to 34 degrees Celsius year round, 1.1 to 1.3 m deep, dual railing to enter and railing throughout the perimeter. Change room inside the pool area, toilet facilities in the clinic within metres, and a heater at the pool in winter.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <BookSection heading="Book your assessment" embedSlot={true} card="full" map={true} />
+  <Footer slot="footer" />
+</Base>

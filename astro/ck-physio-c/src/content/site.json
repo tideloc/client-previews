@@ -1,0 +1,37 @@
+{
+  "slug": "coryn-katz-ck-physiotherapy-aquatherapy",
+  "version": 1,
+  "updatedAt": "2026-09-04T00:00:00.000Z",
+  "businessName": "CK Physiotherapy & Aquatherapy",
+  "hours": [
+    { "day": "mon", "closed": false, "open": "07:30", "close": "19:00", "label": "Monday", "display": "7:30am to 7pm" },
+    { "day": "tue", "closed": false, "open": "07:30", "close": "19:00", "label": "Tuesday", "display": "7:30am to 7pm" },
+    { "day": "wed", "closed": false, "open": "07:30", "close": "19:00", "label": "Wednesday", "display": "7:30am to 7pm" },
+    { "day": "thu", "closed": false, "open": "07:30", "close": "19:00", "label": "Thursday", "display": "7:30am to 7pm" },
+    { "day": "fri", "closed": false, "open": "07:30", "close": "16:00", "label": "Friday", "display": "7:30am to 4pm" },
+    { "day": "sat", "closed": true, "open": "", "close": "", "label": "Saturday", "display": "Closed" },
+    { "day": "sun", "closed": true, "open": "", "close": "", "label": "Sunday", "display": "Closed" }
+  ],
+  "holidays": [],
+  "announcement": { "enabled": false, "text": "", "link": "" },
+  "contact": {
+    "phone": "0491 114 897",
+    "email": "corynkatz@gmail.com",
+    "address": "2 Weonga Road",
+    "suburb": "Dover Heights",
+    "state": "NSW",
+    "postcode": "2030",
+    "mapUrl": "https://www.google.com/maps/dir/?api=1&destination=2%20Weonga%20Road%2C%20Dover%20Heights%20NSW%202030"
+  },
+  "priceList": [],
+  "social": {
+    "booking": "https://www.halaxy.com/book/appointment/mrs-coryn-katz/physiotherapist/1324311/1037161/select-time"
+  },
+  "openingHoursSpecification": [
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": "Monday", "opens": "07:30", "closes": "19:00" },
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": "Tuesday", "opens": "07:30", "closes": "19:00" },
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": "Wednesday", "opens": "07:30", "closes": "19:00" },
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": "Thursday", "opens": "07:30", "closes": "19:00" },
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": "Friday", "opens": "07:30", "closes": "16:00" }
+  ]
+}

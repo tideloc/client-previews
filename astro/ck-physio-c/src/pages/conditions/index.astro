@@ -1,0 +1,57 @@
+---
+import Base from '../../layouts/Base.astro';
+import BookingStrip from '../../components/BookingStrip.astro';
+import { conditions, conditionsIntro, noSwim, approach } from '../../data/content';
+---
+<Base title="Conditions treated in Dover Heights | CK Physio" description="Arthritis, joint replacements, balance and falls, neurological conditions, chronic pain, back and neck pain and sport injuries, treated on land and in water.">
+  <section class="bg-white">
+    <div class="wrap py-12 md:py-16 grid gap-8 lg:grid-cols-12 lg:items-end">
+      <h1 class="lg:col-span-7 font-display font-extrabold text-[2.6rem] md:text-6xl leading-[1.0] text-ink">Conditions treated</h1>
+      <div class="lg:col-span-5">
+        <p class="text-lg leading-relaxed">{conditionsIntro}</p>
+        <p class="mt-3 font-display font-bold text-ink">{noSwim}.</p>
+      </div>
+    </div>
+    <nav aria-label="Condition groups" class="wrap pb-8">
+      <ol class="flex flex-wrap gap-2 text-sm font-display font-bold">
+        {conditions.map((g, i) => <li><a href={`#${g.id}`} class="inline-block bg-ground text-ink px-3 py-1.5 hover:bg-tint"><span class="text-accent mr-1">{String(i + 1).padStart(2, '0')}</span>{g.name}</a></li>)}
+      </ol>
+    </nav>
+  </section>
+
+  <section class="bg-ground">
+    <div class="wrap py-12 md:py-16">
+      <ol class="border-t-2 border-ink">
+        {conditions.map((g, i) => (
+          <li id={g.id} class="grid gap-4 lg:grid-cols-12 py-8 border-b border-ink/15 scroll-mt-24">
+            <div class="lg:col-span-5">
+              <span class="font-display font-extrabold text-accent text-3xl leading-none tabular-nums">{String(i + 1).padStart(2, '0')}</span>
+              <h2 class="mt-2 font-display font-extrabold text-3xl md:text-4xl leading-[1.05] text-ink">{g.name}</h2>
+            </div>
+            <div class="lg:col-span-7 grid gap-5 md:grid-cols-2">
+              <ul class="space-y-1.5 text-ink">{g.items.map((it) => <li class="pl-3 border-l-2 border-accent">{it}</li>)}</ul>
+              <p class="leading-relaxed">{g.text}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="bg-white">
+    <div class="wrap py-12 md:py-16 grid gap-10 lg:grid-cols-12">
+      <div class="lg:col-span-7">
+        <h2 class="font-display font-extrabold text-4xl md:text-5xl leading-none text-ink">My approach: strongly hands on and client-centred</h2>
+        <dl class="mt-8 grid gap-6 sm:grid-cols-2">
+          {approach.map((a) => (
+            <div class="border-t-2 border-ink pt-3">
+              <dt class="font-display font-extrabold text-xl text-ink">{a.title}</dt>
+              <dd class="mt-2 leading-relaxed">{a.text}</dd>
+            </div>
+          ))}
+        </dl>
+      </div>
+      <div class="lg:col-span-5"><BookingStrip tone="white" compact /></div>
+    </div>
+  </section>
+</Base>

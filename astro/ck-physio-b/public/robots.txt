@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://staging.tideloc.com.au/cold/coryn-katz-ck-physiotherapy-aquatherapy/v2/sitemap-index.xml

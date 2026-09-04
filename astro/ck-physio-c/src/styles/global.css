@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation: none !important; transition: none !important; } }
+  body { font-feature-settings: "kern", "liga"; font-size: 17px; }
+  :focus-visible { outline: 2px solid theme('colors.accent'); outline-offset: 2px; }
+  img { max-width: 100%; height: auto; }
+  /* Logo wordmark is a Gotham-class geometric bold: Figtree, heavy, sentence case, tight leading. */
+  h1, h2, h3, h4 { font-family: theme('fontFamily.display'); font-weight: 800; letter-spacing: -0.01em; line-height: 1.05; color: theme('colors.ink'); }
+  a { text-underline-offset: 4px; }
+  .grid > * { min-width: 0; }
+}
+
+@layer components {
+  .btn-book { @apply inline-flex items-center justify-center gap-2 bg-accent text-ink font-display font-bold px-6 py-3 rounded-[4px] hover:bg-tint transition-colors; }
+  .btn-book-navy { @apply inline-flex items-center justify-center gap-2 bg-ink text-white font-display font-bold px-6 py-3 rounded-[4px] hover:bg-accent hover:text-ink transition-colors; }
+  .btn-ghost { @apply inline-flex items-center justify-center font-display font-bold px-5 py-3 rounded-[4px] border-2 border-current; }
+  .wrap { @apply mx-auto max-w-wrap px-5 md:px-8; }
+}

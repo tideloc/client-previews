@@ -1,0 +1,50 @@
+---
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import PageIntro from '../../components/PageIntro.astro';
+import BookSection from '../../components/BookSection.astro';
+import { conditionGroups, approach } from '../../data/content';
+---
+<Base title="Conditions treated in Dover Heights | CK Physio" description="Arthritis, joint replacements, balance, neurological conditions, chronic pain, back and neck pain, sport injuries, treated on land and in water.">
+  <Header slot="header" />
+  <PageIntro label="Conditions treated" title="We are spoilt for choice with treatment options" lead="We use evidence-based practice to treat and manage numerous conditions effectively, using land-based and/or water exercises and stretches. You do not need to know how to swim to have aquatic physiotherapy." />
+
+  <section class="wrap py-12 md:py-16">
+    <nav aria-label="Condition groups" class="flex flex-wrap gap-2">
+      {conditionGroups.map((g) => <a href={`#${g.id}`} class="rounded-full border border-primary text-primary px-4 py-1.5 text-sm font-bold hover:bg-primary hover:text-white">{g.name}</a>)}
+    </nav>
+    <div class="mt-12 grid gap-12">
+      {conditionGroups.map((g) => (
+        <article id={g.id} class="scroll-mt-24 grid gap-6 md:grid-cols-[minmax(220px,1fr)_2fr] border-t-2 border-primary pt-6">
+          <div>
+            <h2 class="text-2xl md:text-3xl">{g.name}</h2>
+          </div>
+          <div>
+            <ul class="grid sm:grid-cols-2 gap-x-8 gap-y-1.5 text-[16px]">
+              {g.items.map((it) => <li class="pl-4 relative before:absolute before:left-0 before:top-[0.6em] before:w-1.5 before:h-1.5 before:rounded-full before:bg-accent">{it}</li>)}
+            </ul>
+            <p class="mt-5">{g.text}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="bg-white border-y border-panel">
+    <div class="wrap py-14 md:py-20">
+      <h2 class="text-3xl md:text-4xl">My approach: strongly hands on and client-centred</h2>
+      <div class="mt-8 grid md:grid-cols-2 gap-x-12 gap-y-8">
+        {approach.map((a) => (
+          <div class="border-t-2 border-primary pt-4">
+            <h3 class="text-xl">{a.name}</h3>
+            <p class="mt-2">{a.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <BookSection />
+  <Footer slot="footer" />
+</Base>

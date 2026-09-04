@@ -1,0 +1,120 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import BookingCard from '../components/BookingCard.astro';
+import PoolSpec from '../components/PoolSpec.astro';
+import ConditionsIndex from '../components/ConditionsIndex.astro';
+import ReviewTrio from '../components/ReviewTrio.astro';
+import BookSection from '../components/BookSection.astro';
+import { Picture, Image } from 'astro:assets';
+import poolNight from '../assets/pool-night.jpg';
+import poolDay from '../assets/pool-day.jpg';
+import room from '../assets/treatment-room.jpg';
+import coryn from '../assets/coryn.jpg';
+import { qualifications, BOOKING_URL } from '../data/content';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+<Base title="Aquatic and land physiotherapy in Dover Heights | CK Physio" description="One-on-one aquatic and land-based physiotherapy in Dover Heights, with a private 33 to 34 degree salt water pool. Book an assessment on Halaxy.">
+  <Header slot="header" />
+
+  <!-- 1. Hero: full-bleed night pool, claim left, Halaxy booking card right -->
+  <section class="relative bg-ink text-white">
+    <Picture src={poolNight} alt="The indoor salt water therapy pool at CK Physiotherapy at night, lit from under the water, with white fencing and glass doors on every side" widths={[768, 1200, 1800]} sizes="100vw" formats={['avif', 'webp']} loading="eager" class="absolute inset-0 w-full h-full object-cover object-[60%_50%]" pictureAttributes={{ class: 'absolute inset-0' }} />
+    <div class="absolute inset-0 bg-gradient-to-r from-ink/90 via-ink/70 to-ink/30" aria-hidden="true"></div>
+    <div class="relative wrap py-10 md:py-24 grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-end">
+      <div>
+        <p class="font-bold text-tint">Dover Heights, Sydney's Eastern Suburbs</p>
+        <h1 class="mt-3 text-white text-[34px] leading-[1.02] sm:text-5xl md:text-6xl lg:text-[64px] max-w-[13ch]">Unique in Sydney's Eastern Suburbs, we offer both land-based and <span class="text-tint">one-on-one aquatic physiotherapy</span></h1>
+        <p class="mt-6 text-xl md:text-2xl text-white/90 font-medium">Broader treatment options. Better individualised care.</p>
+        <p class="mt-3 text-white/80 max-w-xl hidden sm:block">Coryn gets into the water with each and every client, in a private indoor salt water pool heated to 33 to 34 degrees. You do not need to know how to swim.</p>
+      </div>
+      <BookingCard class="lg:max-w-md lg:justify-self-end w-full" />
+    </div>
+  </section>
+
+  <!-- 2. Teal band: the three specialties -->
+  <section class="bg-primary text-white">
+    <div class="wrap py-8 md:py-10 flex flex-col md:flex-row md:items-center gap-4 md:gap-10">
+      <p class="font-display font-extrabold text-xl md:text-2xl text-white shrink-0">Over 20 years experience specialising in</p>
+      <ul class="flex flex-wrap gap-x-8 gap-y-2 text-lg md:text-xl font-medium text-white/95">
+        <li>Musculoskeletal conditions</li>
+        <li>Acute and complex pain management</li>
+        <li>Aquatic physiotherapy</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 3. Two doors: water / land -->
+  <section class="wrap py-16 md:py-20">
+    <h2 class="text-3xl md:text-4xl max-w-3xl">Two ways to treat you, combined for your specific needs after assessment</h2>
+    <div class="mt-10 grid md:grid-cols-2 gap-8 md:gap-10">
+      <article>
+        <a href={`${base}/aquatic-physiotherapy/`} class="block rounded-xl overflow-hidden">
+          <Picture src={poolDay} alt="The therapy pool by day with foam noodles, a lane float and exercise equipment laid out on the tiles" widths={[480, 800]} sizes="(min-width: 768px) 45vw, 100vw" formats={['avif', 'webp']} class="w-full aspect-[5/4] object-cover" />
+        </a>
+        <h3 class="mt-5 text-2xl">Aquatic physiotherapy</h3>
+        <p class="mt-3">Aquatic physiotherapy utilises the natural buoyancy and warmth of a 33 to 34 degree pool to eliminate gravity stress on painful joints, allowing patients to safely rebuild strength and mobility much sooner than on land. The water's gentle resistance also accelerates post-surgical healing and reduces swelling, making it an ideal, low-impact environment for pain relief and physical rehabilitation. WATSU sessions are also offered at our practice.</p>
+        <p class="mt-4 flex flex-wrap gap-5 font-bold text-primary"><a href={`${base}/aquatic-physiotherapy/`} class="underline underline-offset-4">The pool and aquatic therapy</a><a href={`${base}/watsu/`} class="underline underline-offset-4">WATSU</a></p>
+      </article>
+      <article>
+        <a href={`${base}/conditions/`} class="block rounded-xl overflow-hidden">
+          <Picture src={room} alt="The treatment room at CK Physiotherapy with a navy treatment bed, desk and a window looking onto the pool" widths={[480, 800]} sizes="(min-width: 768px) 45vw, 100vw" formats={['avif', 'webp']} class="w-full aspect-[5/4] object-cover" />
+        </a>
+        <h3 class="mt-5 text-2xl">Land-based physiotherapy</h3>
+        <p class="mt-3">At CK Physiotherapy, our land-based treatment combines a patient-centred approach, hands-on manual therapy and evidence-based practice to help you achieve your recovery goals. We tailor every treatment plan to your unique lifestyle and needs, using proven, research-backed techniques to ensure your care is both safe and effective. By integrating skilled, hands-on joint and soft tissue mobilisation with the latest scientific clinical data, we focus on reducing your pain, restoring your mobility, and supporting your long-term physical wellbeing.</p>
+        <p class="mt-4 flex flex-wrap gap-5 font-bold text-primary"><a href={`${base}/conditions/`} class="underline underline-offset-4">Conditions we treat</a></p>
+      </article>
+    </div>
+    <p class="mt-10 max-w-3xl border-l-4 border-accent pl-5 text-lg">Personalised rehabilitation programs: our comprehensive assessments allow for customised care for neuro-musculoskeletal conditions, balance difficulties and complex pain conditions. We create tailored programs based on assessment findings and combine water and land therapy for your specific needs.</p>
+  </section>
+
+  <!-- 4. The pool as a spec sheet -->
+  <section class="bg-white border-y border-panel">
+    <div class="wrap py-16 md:py-20 grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+      <div>
+        <p class="label">The pool</p>
+        <h2 class="mt-2 text-3xl md:text-4xl">An indoor salt water therapy pool, built for one-on-one treatment</h2>
+        <p class="mt-4">The temperature of the water is 33 to 34 degrees Celsius year round, the ideal temperature to promote muscle relaxation, help ease pain, improve mobility and support comfortable movement on your rehabilitation journey. We have unique aquatic equipment from America, South Africa, the UK, Israel and Australia to assist in improving balance and proprioception, muscle strength and endurance.</p>
+        <PoolSpec class="mt-8" />
+      </div>
+      <Picture src={poolDay} alt="The therapy pool by day with foam noodles, floats and exercise equipment ready at the pool edge" widths={[592]} sizes="(min-width: 1024px) 55vw, 100vw" formats={['avif', 'webp']} class="w-full h-full min-h-[320px] object-cover object-[20%_45%] rounded-xl" />
+    </div>
+  </section>
+
+  <!-- 5. Conditions index -->
+  <section class="wrap py-16 md:py-20">
+    <div class="flex flex-wrap items-end justify-between gap-4">
+      <div class="max-w-2xl">
+        <p class="label">Conditions we treat</p>
+        <h2 class="mt-2 text-3xl md:text-4xl">We use evidence-based practice to treat and manage numerous conditions, using land-based and/or water exercises and stretches</h2>
+      </div>
+      <a href={`${base}/conditions/`} class="btn-ghost">How each is treated</a>
+    </div>
+    <div class="mt-10"><ConditionsIndex /></div>
+  </section>
+
+  <!-- 6. Coryn -->
+  <section class="bg-tint/40 border-y border-panel">
+    <div class="wrap py-16 md:py-20 grid gap-10 md:grid-cols-[minmax(240px,320px)_1fr] items-start">
+      <Image src={coryn} alt="Coryn Katz, physiotherapist" width="640" class="w-full max-w-[260px] md:max-w-none rounded-xl object-cover aspect-[3/4]" />
+      <div>
+        <p class="label">About Coryn</p>
+        <h2 class="mt-2 text-3xl md:text-4xl">“I get into the water with each and every client for hands-on aquatic therapy.”</h2>
+        <p class="mt-5">Coryn immigrated to Sydney from Cape Town, where she started CK Physiotherapy & Aquatherapy in 2014. After identifying the need for specialised one-on-one aquatic therapy in Sydney's Eastern Suburbs, she established CK Physiotherapy & Aquatherapy in Sydney. She is the only WATSU certified physiotherapist in Sydney, NSW.</p>
+        <ul class="mt-6 grid sm:grid-cols-2 gap-x-8 gap-y-3 text-[15px]">
+          {qualifications.map((q) => <li class="flex gap-3"><span class="font-display font-extrabold text-accent tabular-nums shrink-0">{q.year}</span><span>{q.text}</span></li>)}
+        </ul>
+        <a href={`${base}/about/`} class="mt-6 inline-block font-bold text-primary underline underline-offset-4">Coryn's journey and professional expertise</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. Reviews -->
+  <ReviewTrio />
+
+  <!-- 8. Book -->
+  <BookSection card="none" />
+
+  <Footer slot="footer" />
+</Base>

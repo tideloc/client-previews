@@ -1,0 +1,15 @@
+---
+/** Inner-page opener: label, h1, lead line on the ground, with the primary CTA. */
+import { BOOKING_URL } from '../data/content';
+const { label, title, lead } = Astro.props;
+---
+<section class="bg-white border-b border-panel">
+  <div class="wrap py-12 md:py-16 grid gap-6 md:grid-cols-[1fr_auto] md:items-end">
+    <div class="max-w-3xl">
+      <p class="label">{label}</p>
+      <h1 class="mt-2 text-4xl md:text-5xl leading-[1.05]">{title}</h1>
+      {lead && <p class="mt-4 text-lg md:text-xl text-body">{lead}</p>}
+    </div>
+    <a href={BOOKING_URL} target="_blank" rel="noopener" class="btn-book">Book an assessment</a>
+  </div>
+</section>

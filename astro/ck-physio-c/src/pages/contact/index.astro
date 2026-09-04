@@ -1,0 +1,48 @@
+---
+import Base from '../../layouts/Base.astro';
+import { Picture } from 'astro:assets';
+import BookingStrip from '../../components/BookingStrip.astro';
+import Visit from '../../components/Visit.astro';
+import poolNight from '../../assets/pool-night.jpg';
+import treatment from '../../assets/treatment-room.jpg';
+import { pool } from '../../data/content';
+---
+<Base title="Book, hours and the clinic in Dover Heights | CK Physio" description="Book online with Halaxy. Clinic hours Monday to Friday, 2 Weonga Road Dover Heights, parking outside, Medicare rebates and private health claims processed.">
+  <section class="bg-ink text-white">
+    <div class="wrap py-12 md:py-16 grid gap-10 lg:grid-cols-12 lg:items-end">
+      <div class="lg:col-span-6">
+        <h1 class="font-display font-extrabold text-[2.6rem] md:text-6xl leading-[1.0] text-white">Book your assessment today</h1>
+        <p class="mt-4 text-lg text-white/85">Appointments are booked online through Halaxy. Pick a time, add your details, confirm.</p>
+      </div>
+      <div class="lg:col-span-6" id="book">
+        <BookingStrip tone="navy" />
+        <!-- HALAXY_EMBED: paste the practitioner booking embed from Halaxy > Personal > Profile > Directory Profile Preferences > Embed here -->
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-white">
+    <div class="wrap py-12 md:py-16">
+      <h2 class="font-display font-extrabold text-4xl md:text-5xl leading-none text-ink">About our facility</h2>
+      <div class="mt-8 grid gap-8 lg:grid-cols-12">
+        <div class="lg:col-span-7">
+          <Picture src={poolNight} formats={['avif', 'webp']} widths={[800, 1600]} sizes="(min-width: 1024px) 58vw, 100vw" alt="The pool at night, lit from below, with white fencing and glass doors on every side" class="w-full object-cover aspect-[16/10]" />
+          <dl class="mt-6 grid grid-cols-2 md:grid-cols-4 border-t-2 border-ink">
+            {pool.specs.map((s) => (
+              <div class="py-4 pr-4 border-b border-ink/15">
+                <dt class="font-display font-extrabold text-accent text-[1.45rem] md:text-[1.7rem] leading-none tabular-nums whitespace-nowrap">{s.value}</dt>
+                <dd class="mt-1 text-sm text-text">{s.label}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+        <div class="lg:col-span-5 space-y-4 leading-relaxed">
+          {pool.paragraphs.map((p) => <p>{p}</p>)}
+          <Picture src={treatment} formats={['avif', 'webp']} widths={[640]} sizes="(min-width: 1024px) 40vw, 100vw" alt="The treatment room with its navy bed and a window onto the pool" class="w-full object-cover aspect-[4/3]" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Visit />
+</Base>

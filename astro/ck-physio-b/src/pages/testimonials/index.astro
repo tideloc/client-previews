@@ -1,0 +1,40 @@
+---
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import PageIntro from '../../components/PageIntro.astro';
+import BookSection from '../../components/BookSection.astro';
+import { testimonials, googleReviews } from '../../data/content';
+---
+<Base title="Client testimonials, CK Physio Dover Heights" description="Client experiences at CK Physiotherapy & Aquatherapy, in and out of the water: spinal fusion, rotator cuff, disc bulge. 5.0 on Google from 17 reviews.">
+  <Header slot="header" />
+  <PageIntro label="Client testimonials" title="Real experiences from our patients in and out of the water" lead="We are honoured to be part of your healing journey. 5.0 on Google from 17 reviews." />
+
+  <section class="wrap py-12 md:py-16">
+    <div class="columns-1 md:columns-2 gap-8">
+      {testimonials.map((t) => (
+        <blockquote class="break-inside-avoid mb-8 rounded-xl bg-white border border-panel p-6 md:p-7">
+          <p class="leading-relaxed">“{t.text}”</p>
+          <footer class="mt-4"><cite class="not-italic font-bold text-ink">{t.name}</cite><span class="block text-sm text-body/80">{t.condition}</span></footer>
+        </blockquote>
+      ))}
+    </div>
+  </section>
+
+  <section class="bg-white border-y border-panel">
+    <div class="wrap py-12 md:py-16">
+      <h2 class="text-3xl">From Google</h2>
+      <div class="mt-6 grid md:grid-cols-2 gap-8">
+        {googleReviews.map((r) => (
+          <blockquote class="border-l-4 border-accent pl-5">
+            <p>“{r.text}”</p>
+            <footer class="mt-3"><cite class="not-italic font-bold text-ink">{r.name}</cite><span class="block text-sm text-body/80">Google review</span></footer>
+          </blockquote>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <BookSection />
+  <Footer slot="footer" />
+</Base>

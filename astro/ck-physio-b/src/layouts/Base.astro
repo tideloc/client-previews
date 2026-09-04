@@ -1,0 +1,61 @@
+---
+/** Base layout: head meta, JSON-LD, live content kit, Tideloc bar. */
+import '../styles/global.css';
+import LiveContent from '../components/tl/LiveContent.astro';
+import LocalBusinessJsonLd from '../components/tl/LocalBusinessJsonLd.astro';
+import Announcement from '../components/tl/Announcement.astro';
+import TidelocBar from '../components/TidelocBar.astro';
+import { siteContent } from '../lib/site';
+import { getImage } from 'astro:assets';
+import defaultOg from '../assets/pool-night.jpg';
+
+interface Props { title: string; description: string; ogImage?: string; }
+const { title, description } = Astro.props;
+const site = Astro.site?.toString().replace(/\/$/, '') ?? '';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const canonical = `${site}${Astro.url.pathname}`;
+const fallbackOg = await getImage({ src: defaultOg, width: 1200, height: 630, format: 'jpg' });
+const ogImage = Astro.props.ogImage ?? `${site}${fallbackOg.src}`;
+const palette = '#32949D,#4BA9AC,#F7FAFC,#2C5282,#4A5568';
+---
+<!doctype html>
+<html lang="en-AU">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta name="theme-color" content="#32949D" />
+    <meta name="tl-palette" content={palette} />
+    <link rel="icon" href={`${base}/favicon.png`} type="image/png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={siteContent.businessName} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;700;800&display=swap" />
+    <LiveContent />
+    <LocalBusinessJsonLd type="Physiotherapy" url={`${site}${base}/`} image={ogImage} />
+  </head>
+  <body class="min-h-screen bg-ground text-body font-body antialiased text-[17px] leading-relaxed pb-12">
+    <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:bg-ground focus:px-3 focus:py-2">Skip to content</a>
+    <Announcement class="bg-ink text-white text-sm text-center px-4 py-2" />
+    <slot name="header" />
+    <main id="main">
+      <slot />
+    </main>
+    <slot name="footer" />
+    <TidelocBar reasons={[
+      'Book an assessment sits on every page and opens your existing Halaxy booking page, the current site only shows it as a small button',
+      'The pool facts (33 to 34 degrees, 1.1 to 1.3 m, salt water, dual rails, parking) are on the home page, not buried on the facility page',
+      'Every condition you treat is listed by name so people searching a diagnosis find you, the current home page has 296 words and no H1',
+      'Hours, address, phone and any announcement are yours to change from a simple portal, live in minutes',
+      'Coryn, her qualifications and eight real testimonials with the condition treated, on their own pages',
+    ]} />
+  </body>
+</html>

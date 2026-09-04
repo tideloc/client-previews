@@ -1,0 +1,63 @@
+---
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import BookSection from '../../components/BookSection.astro';
+import { Image, Picture } from 'astro:assets';
+import coryn from '../../assets/coryn.jpg';
+import poolDay from '../../assets/pool-day.jpg';
+import { qualifications, BOOKING_URL } from '../../data/content';
+---
+<Base title="About Coryn Katz, physiotherapist, Dover Heights | CK Physio" description="Coryn Katz started CK Physiotherapy & Aquatherapy in Cape Town in 2014, now in Sydney's Eastern Suburbs. Pain management diploma, WATSU certified.">
+  <Header slot="header" />
+
+  <section class="bg-white border-b border-panel">
+    <div class="wrap py-12 md:py-16 grid gap-10 md:grid-cols-[minmax(240px,340px)_1fr] items-start">
+      <Image src={coryn} alt="Coryn Katz, physiotherapist" width="680" class="w-full max-w-[280px] md:max-w-none rounded-xl object-cover aspect-[3/4]" loading="eager" />
+      <div>
+        <p class="label">About Coryn</p>
+        <h1 class="mt-2 text-4xl md:text-5xl leading-[1.05]">Coryn's journey and professional expertise</h1>
+        <p class="mt-5 text-lg">Coryn immigrated to Sydney from Cape Town, where she started CK Physiotherapy & Aquatherapy in 2014. After identifying the need for specialised one-on-one aquatic therapy in Sydney's Eastern Suburbs, she established CK Physiotherapy & Aquatherapy in Sydney.</p>
+        <p class="mt-4">Coryn decided to become a physiotherapist at just 11 years old after experiencing firsthand the benefits of physiotherapy through tennis injuries.</p>
+        <ul class="mt-6 space-y-3 border-t-2 border-primary pt-5">
+          {qualifications.map((q) => <li class="flex gap-4"><span class="font-display font-extrabold text-accent tabular-nums shrink-0 w-12">{q.year}</span><span>{q.text}</span></li>)}
+        </ul>
+        <a href={BOOKING_URL} target="_blank" rel="noopener" class="btn-book mt-8">Book an assessment</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap py-14 md:py-20 grid gap-10 lg:grid-cols-[1.1fr_0.9fr]">
+    <div class="space-y-4">
+      <h2 class="text-3xl md:text-4xl">Study, then the water</h2>
+      <p>She graduated from Tulane University (USA) in 1998 with a Bachelor of Science degree in Pre-Med, double majoring in Cell and Molecular Biology and Psychology while on a tennis scholarship. Coryn was named to the “Who's Who among Students in Universities and Colleges in America” after topping the Dean's List and graduating Magna Cum Laude.</p>
+      <p>She returned to South Africa to attend The University of Cape Town and completed her Bachelor of Science Physiotherapy Degree in 2002. She went on to complete her community service year at Red Cross Children's Hospital in 2003.</p>
+      <p>Coryn has completed advanced dry needling courses, as well as a kinesiology taping course. She has a special interest in helping people who suffer from both chronic and acute pain. This led her to complete a Post-graduate Diploma in Pain Management through The University of Cape Town in 2021, in which she graduated with distinction under the guidance of Professor Romy Parker.</p>
+      <p>Completing the advanced neuromuscular skeletal (ANMS) post-graduate diploma course in 2022 through Wits University further equipped her with the most recent evidence-based practice, and provided her with the clinical reasoning to effectively assess and treat both complex acute and chronic neuro-musculoskeletal conditions.</p>
+      <p>Aquatic physiotherapy, which is her passion, led her to complete aquatic foundation, neurology and orthopaedic courses in 2013. She is one of a handful of qualified WATSU practitioners in South Africa, having had the privilege of being taught by America's aquatic therapy guru, Peggy Schoedinger. She is also accomplished in techniques taught by Britain's Dr Heather Epps. She completed post-graduate aquatic studies in Switzerland in 2014 under the guidance of the pioneers of aquatic physiotherapy techniques, and world leaders in the field, Johan Lambeck and Urs Gamper.</p>
+      <p>She previously worked as an aquatic physiotherapist at Vincent Pallotti Hospital in Pinelands, Cape Town.</p>
+    </div>
+    <div>
+      <Picture src={poolDay} alt="The therapy pool Coryn designed and built, with equipment laid out ready for a session" widths={[480, 800]} sizes="(min-width: 1024px) 40vw, 100vw" formats={['avif', 'webp']} class="w-full rounded-xl object-cover aspect-[5/4]" />
+      <div class="mt-6 rounded-xl bg-tint/50 p-6">
+        <p class="font-display font-extrabold text-ink text-xl">Built for each and every client</p>
+        <p class="mt-2">Coryn designed and built a unique aquatic physiotherapy centre with each and every client in mind in both Cape Town and Sydney's Eastern Suburbs. Her aim is to facilitate able-bodied and disabled clients to function optimally, and to improve their quality of life.</p>
+        <p class="mt-3">Coryn has a passion for rehabilitation and for returning clients to an optimal level of functioning. This passion has been fuelled by her love for sports including tennis, marathon running, Ironman triathlons, paddling and cycling. She also loves sewing and cooking. She is a committed wife and a devoted mother to four beautiful children.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-primary text-white">
+    <div class="wrap py-14 md:py-20">
+      <h2 class="text-white text-3xl md:text-4xl">Expertise and specialties</h2>
+      <div class="mt-8 grid md:grid-cols-3 gap-8">
+        <div><h3 class="text-white text-xl">Aquatic physiotherapy</h3><p class="mt-2 text-white/90">Having completed aquatic orthopaedic and neurological courses, and many more, Coryn is able to treat most conditions effectively in the water. Aquatic therapy is performed in a salt water pool which is heated to 34 degrees (therapeutic temperature). We have loads of fun equipment to create resistance to help challenge you to improve your muscle strength and cardiovascular fitness and endurance.</p></div>
+        <div><h3 class="text-white text-xl">Complex pain management</h3><p class="mt-2 text-white/90">Complex pain management requires a whole person approach and an understanding of the long journey the client has endured. It requires multidisciplinary team management, and an understanding of the biological factors (such as hormones), social factors (workplace stress) and psychological factors (fear of movement and anxiety) contributing to pain.</p></div>
+        <div><h3 class="text-white text-xl">Balance and falls prevention</h3><p class="mt-2 text-white/90">Evidence shows that the most effective way to retrain balance in a safe environment without worrying about falling is to do so in the water. We have some fun equipment including balance beams and wobble boards in the water to really challenge balance.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <BookSection />
+  <Footer slot="footer" />
+</Base>

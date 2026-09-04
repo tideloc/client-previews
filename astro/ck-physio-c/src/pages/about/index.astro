@@ -1,0 +1,87 @@
+---
+import Base from '../../layouts/Base.astro';
+import { Picture } from 'astro:assets';
+import coryn from '../../assets/coryn.jpg';
+import { about, approach, testimonials, BOOKING_URL } from '../../data/content';
+const quotes = [testimonials[6], testimonials[9], testimonials[2]];
+const qualifications = [
+  'BSc Pre-Med (Cellular and Molecular Biology and Psychology), (Magna Cum Laude) Tulane University, USA, 1998',
+  'BSc Physiotherapy (Honours) University of Cape Town, South Africa, 2002',
+  'Post-Graduate Diploma in Interdisciplinary Pain Management (Distinction) University of Cape Town, South Africa, 2021',
+  'Post-Graduate Diploma course in Advanced Musculo-skeletal Conditions (Distinction) University of the Witwatersrand, Johannesburg, South Africa, 2022',
+];
+---
+<Base title="About Coryn Katz, physiotherapist | CK Physio" description="Coryn Katz: BSc Physiotherapy (Hons), post-graduate diplomas in pain management and musculoskeletal conditions, the only WATSU certified physio in Sydney.">
+  <section class="bg-white">
+    <div class="wrap py-12 md:py-16 grid gap-8 lg:grid-cols-12 lg:items-end">
+      <div class="lg:col-span-8">
+        <p class="font-display font-bold text-accent uppercase tracking-[0.12em] text-sm">About Coryn</p>
+        <h1 class="mt-2 font-display font-extrabold text-[2.6rem] md:text-6xl leading-[1.0] text-ink">{about.heading}</h1>
+      </div>
+      <p class="lg:col-span-4 font-display font-bold text-xl text-ink">{about.watsuClaim}.</p>
+    </div>
+  </section>
+
+  <section class="bg-ground">
+    <div class="wrap py-12 md:py-16 grid gap-10 lg:grid-cols-12">
+      <div class="lg:col-span-4">
+        <Picture src={coryn} formats={['avif', 'webp']} widths={[458]} sizes="(min-width: 1024px) 30vw, 60vw" alt="Coryn Katz, physiotherapist and owner of CK Physiotherapy & Aquatherapy" class="w-full max-w-sm object-cover aspect-[3/4]" />
+        <h2 class="mt-8 font-display font-extrabold text-2xl text-ink">Qualifications</h2>
+        <ul class="mt-3 border-t-2 border-ink max-w-sm">
+          {qualifications.map((q) => <li class="py-3 border-b border-ink/15 text-[15px] leading-snug text-ink">{q}</li>)}
+        </ul>
+      </div>
+      <div class="lg:col-span-8 space-y-4 text-lg leading-relaxed">
+        {about.paragraphs.map((p) => <p>{p}</p>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-white">
+    <div class="wrap py-12 md:py-16">
+      <h2 class="font-display font-extrabold text-4xl md:text-5xl leading-none text-ink">My approach: strongly hands on and client-centred</h2>
+      <dl class="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-4 border-t-2 border-ink pt-8">
+        {approach.map((a) => (
+          <div>
+            <dt class="font-display font-extrabold text-xl text-ink">{a.title}</dt>
+            <dd class="mt-2 leading-relaxed">{a.text}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+  </section>
+
+  <section class="bg-ground">
+    <div class="wrap py-12 md:py-16">
+      <h2 class="font-display font-extrabold text-4xl md:text-5xl leading-none text-ink">Expertise and specialties</h2>
+      <div class="mt-8 grid gap-8 md:grid-cols-2 border-t-2 border-ink pt-8">
+        {about.specialties.map((s) => (
+          <div>
+            <h3 class="font-display font-extrabold text-2xl text-ink">{s.title}</h3>
+            <p class="mt-3 leading-relaxed">{s.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-ink text-white">
+    <div class="wrap py-12 md:py-16 grid gap-10 lg:grid-cols-12 lg:items-center">
+      <div class="lg:col-span-8">
+        <h2 class="font-display font-extrabold text-4xl leading-none text-white">What clients say</h2>
+        <div class="mt-6 border-t border-white/20">
+          {quotes.map((q) => (
+            <blockquote class="py-5 border-b border-white/20">
+              <p class="text-lg leading-relaxed text-white/90">"{q.text.length > 220 ? q.text.split('. ').slice(0, 2).join('. ') + '.' : q.text}"</p>
+              <footer class="mt-2 text-accent font-display font-bold">{q.name}{q.condition ? `, ${q.condition.toLowerCase()}` : ''}</footer>
+            </blockquote>
+          ))}
+        </div>
+      </div>
+      <div class="lg:col-span-4">
+        <a href={BOOKING_URL} target="_blank" rel="noopener" class="btn-book w-full">Book online</a>
+        <p class="mt-3 text-sm text-white/70">Bookings run on Halaxy, opens in a new tab.</p>
+      </div>
+    </div>
+  </section>
+</Base>

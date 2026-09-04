@@ -1,0 +1,49 @@
+---
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import PageIntro from '../../components/PageIntro.astro';
+import BookSection from '../../components/BookSection.astro';
+import { Picture } from 'astro:assets';
+import poolNight from '../../assets/pool-night.jpg';
+import { watsuBenefits } from '../../data/content';
+---
+<Base title="WATSU aquatic bodywork in Dover Heights | CK Physio" description="WATSU (WATer ShiatsU) in 34 degree water with Sydney's only WATSU certified physiotherapist. Deep relaxation and pain relief in Dover Heights.">
+  <Header slot="header" />
+  <PageIntro label="WATSU" title="WATSU: gentle aquatic bodywork in 34 degree water" lead="Coryn is the only WATSU certified physiotherapist in Sydney, NSW." />
+
+  <section class="wrap py-14 md:py-20 grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
+    <div>
+      <h2 class="text-3xl md:text-4xl">What is WATSU</h2>
+      <p class="mt-4">WATSU (WATer ShiatsU) is a gentle form of aquatic bodywork performed in 34 degree Celsius water. A certified practitioner guides you through slow, flowing movements, stretches, and rotations while you are uniquely supported by the buoyancy of the water, creating deep relaxation and relief from joint loading.</p>
+      <p class="mt-4">The movements through the water provide a gentle stretching into all ranges for the spine and extremities. Gentle soft tissue massage and joint mobilisation techniques can also be incorporated into a WATSU session.</p>
+      <p class="mt-4">Furthermore, WATSU helps decrease spasticity. The rhythmical, gentle rocking motions in warm water coupled with the repeated trunk rotations and trunk elongation are effective in decreasing abnormal tone. Clients also report decreased pain, as WATSU decreases their muscle spasm and muscle guarding, increases their range of motion and promotes profound relaxation.</p>
+      <p class="mt-4">Promoting deep relaxation and pain relief, WATSU has been scientifically shown to enhance the parasympathetic nervous system, the body's core for rest and recovery. It thereby helps improve sleep quality, boosts gut function, improves lymph drainage, reduces stress, and increases overall wellbeing and injury recovery.</p>
+    </div>
+    <Picture src={poolNight} alt="The warm salt water of the therapy pool at night, lit from below" widths={[640, 1000, 1600]} sizes="(min-width: 1024px) 45vw, 100vw" formats={['avif', 'webp']} class="w-full rounded-xl object-cover object-[50%_75%] aspect-[4/3]" />
+  </section>
+
+  <section class="bg-primary text-white">
+    <div class="wrap py-14 md:py-20 grid gap-10 md:grid-cols-2">
+      <div>
+        <h2 class="text-white text-3xl">Immediate benefits</h2>
+        <ul class="mt-5 space-y-2 text-lg">{watsuBenefits.immediate.map((b) => <li class="border-b border-white/25 pb-2">{b}</li>)}</ul>
+      </div>
+      <div>
+        <h2 class="text-white text-3xl">Long-term benefits</h2>
+        <ul class="mt-5 space-y-2 text-lg">{watsuBenefits.longTerm.map((b) => <li class="border-b border-white/25 pb-2">{b}</li>)}</ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap py-14 md:py-20">
+    <h2 class="text-3xl md:text-4xl">Who can benefit from WATSU?</h2>
+    <ul class="mt-8 grid md:grid-cols-2 gap-x-12 gap-y-3">
+      {watsuBenefits.who.map((w) => <li class="pl-4 relative before:absolute before:left-0 before:top-[0.6em] before:w-2 before:h-2 before:rounded-full before:bg-accent">{w}</li>)}
+    </ul>
+    <p class="mt-8 text-sm text-body/80">The above information is sourced from “Clinical Watsu Techniques” written by Coryn's instructor, physiotherapist Peggy Schoedinger.</p>
+  </section>
+
+  <BookSection heading="Book your WATSU session" />
+  <Footer slot="footer" />
+</Base>

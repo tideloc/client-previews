@@ -1,0 +1,29 @@
+---
+/** Testimonials as a ledger: name, condition, quote. No cards, no carousel. */
+import { testimonials, google } from '../data/content';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+interface Props { count?: number; heading?: string; showRating?: boolean }
+const { count = testimonials.length, heading = 'What clients say', showRating = true } = Astro.props;
+const rows = testimonials.slice(0, count);
+---
+<section data-section="reviews" class="bg-ground">
+  <div class="wrap py-14 md:py-20">
+    <div class={`flex flex-wrap items-end justify-between gap-6 ${heading || showRating ? '' : 'hidden'}`}>
+      {heading && <h2 class="font-display font-extrabold text-4xl md:text-5xl leading-none text-ink">{heading}</h2>}
+      {showRating && <p class="font-display font-bold text-ink text-xl"><span class="text-accent text-3xl">{google.rating}</span> on Google from {google.count} reviews</p>}
+    </div>
+    <div class={`${heading || showRating ? 'mt-10' : ''} border-t-2 border-ink`}>
+      {rows.map((r) => (
+        <article class="grid gap-3 md:grid-cols-12 py-6 border-b border-ink/15">
+          <div class="md:col-span-4">
+            <p class="font-display font-extrabold text-ink text-xl leading-none">{r.name}</p>
+            {r.condition && <p class="mt-1 text-sm text-accent font-medium">{r.condition}</p>}
+            {r.source && <p class="text-xs text-text/70 mt-1">{r.source}</p>}
+          </div>
+          <blockquote class="md:col-span-8 leading-relaxed text-text">{r.text}</blockquote>
+        </article>
+      ))}
+    </div>
+    {count < testimonials.length && <a href={`${base}/testimonials/`} class="mt-8 inline-block btn-ghost text-ink">All {testimonials.length} testimonials</a>}
+  </div>
+</section>

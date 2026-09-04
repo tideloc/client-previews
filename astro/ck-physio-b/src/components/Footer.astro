@@ -1,0 +1,42 @@
+---
+import Hours from './tl/Hours.astro';
+import ContactDetails from './tl/ContactDetails.astro';
+import { BOOKING_URL } from '../data/content';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const year = new Date().getFullYear();
+---
+<footer class="bg-primary text-white mt-20">
+  <div class="wrap py-14 grid gap-10 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
+    <div>
+      <p class="font-display font-extrabold text-2xl text-white">CK Physiotherapy & Aquatherapy</p>
+      <p class="mt-2 max-w-sm text-white/90">Land-based and one-on-one aquatic physiotherapy in Dover Heights, Sydney's Eastern Suburbs.</p>
+      <a href={BOOKING_URL} target="_blank" rel="noopener" class="mt-5 inline-flex rounded-md bg-white text-ink px-5 py-3 font-bold">Book an assessment</a>
+      <p class="mt-3 text-sm text-white/80">Bookings run on Halaxy, opens in a new tab.</p>
+    </div>
+    <div>
+      <p class="font-bold mb-3 text-white">Get in touch</p>
+      <ContactDetails class="not-italic space-y-1 text-white/90" linkClass="hover:underline" />
+    </div>
+    <div>
+      <p class="font-bold mb-3 text-white">Hours</p>
+      <Hours listClass="text-white/90" rowClass="flex justify-between gap-3 py-0.5" dayClass="" timeClass="tabular-nums" closedClass="opacity-60" holidayClass="text-sm mt-3" />
+    </div>
+    <div>
+      <p class="font-bold mb-3 text-white">Pages</p>
+      <ul class="space-y-1 text-white/90">
+        <li><a href={`${base}/aquatic-physiotherapy/`} class="hover:underline">Aquatic physiotherapy</a></li>
+        <li><a href={`${base}/watsu/`} class="hover:underline">WATSU</a></li>
+        <li><a href={`${base}/conditions/`} class="hover:underline">Conditions we treat</a></li>
+        <li><a href={`${base}/about/`} class="hover:underline">About Coryn</a></li>
+        <li><a href={`${base}/testimonials/`} class="hover:underline">Testimonials</a></li>
+        <li><a href={`${base}/contact/`} class="hover:underline">Facility and contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="border-t border-white/20">
+    <div class="wrap py-4 text-sm text-white/80 flex flex-wrap gap-4 justify-between">
+      <span>© {year} CK Physiotherapy & Aquatherapy. All rights reserved.</span>
+      <span>We process Medicare rebates and private health claims via EFTPOS.</span>
+    </div>
+  </div>
+</footer>
