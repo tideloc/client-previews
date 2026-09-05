@@ -73,8 +73,8 @@
   "address": "",
   "suburb": "Shellharbour",
   "state": "NSW",
-  "postcode": "2529",
-  "mapUrl": "https://www.google.com/maps/dir/?api=1&destination=Shellharbour%20NSW%202529"
+  "postcode": "",
+  "mapUrl": "https://www.google.com/maps/search/?api=1&query=Shellharbour%20NSW"
  },
  "priceList": [
   {
