@@ -1,8 +1,8 @@
 {
- "slug": "brandos",
+ "slug": "brados",
  "version": 1,
  "updatedAt": "2026-09-05T00:00:00.000Z",
- "businessName": "Brando's",
+ "businessName": "Brado's",
  "hours": [
   {
    "day": "mon",
@@ -65,11 +65,11 @@
  "announcement": {
   "enabled": true,
   "text": "New in: 2 and 3 Tender Salad Combos, with a drink. From $14.90.",
-  "link": "/cold/brandos/v2/menu/#new-in"
+  "link": "/cold/brados/v2/menu/#new-in"
  },
  "contact": {
   "phone": "0417 000 547",
-  "email": "hello@brandos.com.au",
+  "email": "hello@brados.com.au",
   "address": "49 Princes Hwy",
   "suburb": "Figtree",
   "state": "NSW",

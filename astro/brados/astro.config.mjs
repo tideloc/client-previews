@@ -6,7 +6,7 @@ import sitemap from '@astrojs/sitemap';
 // To promote to a client domain: set site to the domain and base to '/'.
 export default defineConfig({
   site: 'https://staging.tideloc.com.au',
-  base: '/cold/brandos/v2',
+  base: '/cold/brados/v2',
   outDir: './dist',
   trailingSlash: 'ignore',
   build: { assets: '_assets', format: 'directory' },

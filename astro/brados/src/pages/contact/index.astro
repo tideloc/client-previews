@@ -9,7 +9,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const phone = siteContent.contact.phone;
 const tel = `tel:+61${phone.replace(/\s+/g, '').replace(/^0/, '')}`;
 ---
-<Base title="Find us | Brando's" description="Brando's is at 49 Princes Hwy, Figtree NSW 2525. Open seven days 10am to 8:30pm for dine in, take away and delivery. Phone, hours, map and directions.">
+<Base title="Find us | Brado's" description="Brado's is at 49 Princes Hwy, Figtree NSW 2525. Open seven days 10am to 8:30pm for dine in, take away and delivery. Phone, hours, map and directions.">
   <Header slot="header" />
   <section data-section="contact-intro" aria-labelledby="con-h1" class="bg-primary">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-14 pb-12 lg:pt-20 lg:pb-16 grid lg:grid-cols-12 gap-8 items-end">
@@ -31,7 +31,7 @@ const tel = `tel:+61${phone.replace(/\s+/g, '').replace(/^0/, '')}`;
         <p class="mt-4 font-body text-lg text-ink/85">A question about the menu, allergens or catering. For anything today, the phone is faster: <a href={tel} class="font-semibold underline underline-offset-4 decoration-2 decoration-primary">{phone}</a>.</p>
       </div>
       <div class="lg:col-span-7 bg-white p-6 sm:p-8">
-        <EnquiryForm kind="enquiry" site="Brando's" submitLabel="Send message" successText="Thanks, your message is on its way." class="grid sm:grid-cols-2 gap-4 font-body" inputClass="w-full border border-ink/25 bg-white px-3 py-2.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent" buttonClass="rounded-full bg-ink text-white font-semibold text-sm uppercase tracking-[0.12em] px-7 py-4 hover:bg-accent"
+        <EnquiryForm kind="enquiry" site="Brado's" submitLabel="Send message" successText="Thanks, your message is on its way." class="grid sm:grid-cols-2 gap-4 font-body" inputClass="w-full border border-ink/25 bg-white px-3 py-2.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent" buttonClass="rounded-full bg-ink text-white font-semibold text-sm uppercase tracking-[0.12em] px-7 py-4 hover:bg-accent"
           fields={[
             { name: 'name', label: 'Your name', required: true },
             { name: 'email', label: 'Email', type: 'email', required: true },
