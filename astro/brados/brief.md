@@ -3,10 +3,10 @@
 2026-09-05 · lead 28197 · skill tideloc-site-build · preview https://staging.tideloc.com.au/cold/brados/v2/
 
 ## Who this is for
-Brado's, Figtree. A demo rebrand requested by Blake: "based on Chicko's Chicken at Figtree but call it Brado's". A takeaway chicken shop on the Princes Highway: chicken schnitzel burgers in a signature bread roll, tenders cut from the tenderloin, Texas fried chicken, Portuguese wings, BBQ chicken, hot food, salads, gelato and cakes. "Wollongong's home of legendary chicken schnitzel burgers." Every fact, price, hour and photo is Chicko's, verified live on 2026-09-05; only the name is Brado's.
+Brado's, Shellharbour (Blake, 2026-09-05: "Shellharbour not Figtree"; the site shows Shellharbour NSW 2529 with no street because none was given). A demo rebrand requested by Blake: "based on Chicko's Chicken at Figtree but call it Brado's". A takeaway chicken shop on the Princes Highway: chicken schnitzel burgers in a signature bread roll, tenders cut from the tenderloin, Texas fried chicken, Portuguese wings, BBQ chicken, hot food, salads, gelato and cakes. "Wollongong's home of legendary chicken schnitzel burgers." Every fact, price, hour and photo is Chicko's, verified live on 2026-09-05; only the name is Brado's.
 
 ## What the site has to make happen
-Make a Figtree or Wollongong customer open the menu and come in or call ahead. Primary CTA "See the menu". Secondary: call (text link everywhere), directions, catering enquiry form on /catering/, community nomination form on /community/.
+Make a Shellharbour customer open the menu and come in or call ahead. Primary CTA "See the menu". Secondary: call (text link everywhere), directions, catering enquiry form on /catering/, community nomination form on /community/.
 
 ## Verified live on 2026-09-05
 - chickos.com.au is a Wix store: 202 products in 24 categories, every one priced and photographed square on the brand yellow. No hours on the site, no about, contact or catering page; catering is a marquee ribbon.
@@ -30,8 +30,8 @@ The one typographic moment is the four-line "IT'S WHAT WE'RE FAMOUS FOR." at 8.5
 
 ## Questions for Blake / the client
 1. Phone and email on the build are placeholders (0417 000 547, hello@brados.com.au). Chicko's real ones were deliberately not used under the Brado's name. What should they be?
-2. The address is the real Figtree shop (49 Princes Hwy). Keep it, or move Brado's somewhere fictional?
-3. "For over 22 years ... part of Wollongong" and the community initiatives are Chicko's history and programs. Fine for a demo, or should the about copy be neutral?
+2. Brado's is now in Shellharbour with no street address. What address should the map, footer and schema carry?
+3. "For over 22 years ... part of Shellharbour" (Chicko's line with the suburb swapped) and the community initiatives are Chicko's history and programs. Fine for a demo, or should the about copy be neutral?
 4. Catering: only trays, family packs and whole cakes are priced. Is there a catering menu beyond the retail menu?
 5. Online ordering: Chicko's runs a Wix store. The demo links the menu and takes catering enquiries only. Is ordering in scope?
 6. Four menu names were spelling-corrected (Mousse, Jalapeno, Moroccan, Tabouli). Keep the corrections?
