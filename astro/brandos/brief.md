@@ -38,5 +38,6 @@ The one typographic moment is the four-line "IT'S WHAT WE'RE FAMOUS FOR." at 8.5
 7. Photos of the shop, counter and team are needed to replace the product-only imagery on about and community.
 
 ## Known issues
-- QC verdict pending at the time of writing; updated below if it changes.
-- The Google Maps embed on /contact/ renders blank in the headless screenshot tool; it loads in Chrome.
+- Independent QC round 1 returned FAIL with 8 findings; all 8 were actioned in the one re-author (see ~/tideloc/site-builds/brandos/review.md). Blake stopped QC round 2 and asked for the sample to ship as-is, so there is no PASS on record.
+- The Google Maps embed on /contact/ renders blank in the headless screenshot tool; it loads in Chrome (review/chrome-contact-map.jpg).
+- Static gate: PASS after meta-description trims and a contact-page form.
