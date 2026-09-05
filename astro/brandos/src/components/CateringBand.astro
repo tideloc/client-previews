@@ -1,0 +1,22 @@
+---
+/** Catering band: the saturated ink move. Trays with prices, one CTA to the catering page. */
+import { siteContent } from '../lib/site';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const chips = siteContent.priceList.find((s) => s.title === 'Hot chips')?.items ?? [];
+const wedges = siteContent.priceList.find((s) => s.title === 'Wedges')?.items ?? [];
+const trays = [...chips, ...wedges].filter((i) => /Tray/.test(i.name));
+---
+<section data-section="catering" aria-labelledby="catering-h2" class="bg-ink text-white">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 lg:py-24 grid lg:grid-cols-12 gap-10 items-end">
+    <div class="lg:col-span-7">
+      <h2 id="catering-h2" class="font-display font-bold uppercase text-5xl sm:text-6xl lg:text-7xl leading-[0.9]">Catering that brings everyone to the <span class="text-primary underline decoration-4 underline-offset-8">table.</span></h2>
+      <p class="mt-6 font-body text-lg text-white/85 max-w-xl">Trays of hot chips and wedges, family packs, whole BBQ chickens and whole cakes. Tell us the date and the head count.</p>
+      <a href={`${base}/catering/`} class="inline-block mt-8 rounded-full bg-primary text-ink font-body font-semibold text-sm uppercase tracking-[0.12em] px-7 py-4 hover:bg-secondary">Catering enquiry</a>
+    </div>
+    <ul class="lg:col-span-5 divide-y divide-white/15 border-y border-white/15 font-body">
+      {trays.map((t) => (
+        <li class="flex items-baseline justify-between gap-6 py-3"><span class="font-display font-semibold uppercase text-xl">{t.name}</span><span class="font-display font-bold text-2xl text-primary">{t.price}</span></li>
+      ))}
+    </ul>
+  </div>
+</section>

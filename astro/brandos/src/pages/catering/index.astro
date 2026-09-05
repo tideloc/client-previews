@@ -1,0 +1,72 @@
+---
+import { Picture } from 'astro:assets';
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import EnquiryForm from '../../components/EnquiryForm.astro';
+import { siteContent } from '../../lib/site';
+import { photo } from '../../lib/photos';
+const pl = siteContent.priceList;
+const sec = (t: string) => pl.find((s) => s.title === t)?.items ?? [];
+const trays = [...sec('Hot chips'), ...sec('Wedges')].filter((i) => /Tray/.test(i.name));
+const packs = sec('Family packs');
+const cakes = sec('Cakes').filter((i) => !/Slice/.test(i.name));
+const phone = siteContent.contact.phone;
+const tel = `tel:+61${phone.replace(/\s+/g, '').replace(/^0/, '')}`;
+const shots = [
+  ['hot-chips-large-tray', 'A large catering tray of golden hot chips'],
+  ['family-pack-10-pieces-texas-fried-chicken', 'Ten pieces of Texas fried chicken with large chips and salad'],
+  ['wedges-large-tray', 'A large catering tray of seasoned potato wedges'],
+  ['caramel-cake-whole-large-10-inches', 'A whole caramel cake with a swirled top on a yellow backdrop'],
+];
+---
+<Base title="Catering | Brando's" description="Brando's catering in Figtree and the Illawarra: trays of hot chips and wedges, tender and Texas fried family packs, whole BBQ chickens and whole cakes. Send the date and head count.">
+  <Header slot="header" />
+  <section data-section="catering-intro" aria-labelledby="cat-h1" class="bg-ink text-white">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-14 pb-12 lg:pt-20 lg:pb-16">
+      <h1 id="cat-h1" class="font-display font-bold uppercase text-6xl sm:text-7xl lg:text-8xl leading-[0.9] max-w-4xl">Catering that brings everyone to the <span class="text-primary underline decoration-4 underline-offset-8">table.</span></h1>
+      <p class="mt-6 font-body text-lg text-white/85 max-w-2xl">Trays of hot chips and wedges, family packs of tenders, Texas fried chicken and BBQ chicken, whole cakes to finish. Send the date and the head count below, or call <a href={tel} class="underline decoration-primary underline-offset-4 font-semibold">{phone}</a>.</p>
+    </div>
+    <ul class="grid grid-cols-2 lg:grid-cols-4">
+      {shots.map(([slug, alt]) => { const img = photo(slug); return img ? <li><Picture src={img} alt={alt} widths={[400, 800]} formats={['avif', 'webp']} sizes="(min-width: 1024px) 25vw, 50vw" loading="eager" class="w-full aspect-square object-cover" /></li> : null; })}
+    </ul>
+  </section>
+  <section data-section="catering-prices" aria-labelledby="prices-h2" class="bg-ground">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14 lg:py-20 grid lg:grid-cols-3 gap-10">
+      <div>
+        <h2 id="prices-h2" class="font-display font-bold uppercase text-accent text-4xl leading-none">Trays.</h2>
+        <ul class="mt-4 divide-y divide-ink/15 border-y border-ink/15">{trays.map((i) => <li class="flex justify-between gap-4 py-3 font-body"><span>{i.name}</span><span class="font-display font-semibold text-xl">{i.price}</span></li>)}</ul>
+      </div>
+      <div>
+        <h2 class="font-display font-bold uppercase text-accent text-4xl leading-none">Family packs.</h2>
+        <ul class="mt-4 divide-y divide-ink/15 border-y border-ink/15">{packs.map((i) => <li class="py-3 font-body"><div class="flex justify-between gap-4"><span>{i.name}</span><span class="font-display font-semibold text-xl">{i.price}</span></div>{i.note && <p class="text-sm text-ink/60">{i.note}</p>}</li>)}</ul>
+      </div>
+      <div>
+        <h2 class="font-display font-bold uppercase text-accent text-4xl leading-none">Whole cakes.</h2>
+        <ul class="mt-4 divide-y divide-ink/15 border-y border-ink/15">{cakes.map((i) => <li class="py-3 font-body"><div class="flex justify-between gap-4"><span>{i.name}</span><span class="font-display font-semibold text-xl">{i.price}</span></div>{i.note && <p class="text-sm text-ink/60">{i.note}</p>}</li>)}</ul>
+      </div>
+    </div>
+  </section>
+  <section data-section="catering-form" aria-labelledby="form-h2" class="bg-primary">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14 lg:py-20 grid lg:grid-cols-12 gap-10">
+      <div class="lg:col-span-5">
+        <h2 id="form-h2" class="font-display font-bold uppercase text-ink text-5xl sm:text-6xl leading-none">Send the <span class="text-accent">date.</span></h2>
+        <p class="mt-4 font-body text-lg text-ink">Tell us when, how many and what you are thinking. We will come back to you with what fits.</p>
+        <p class="mt-6 font-body text-sm text-ink/80">Please be advised that our food may have come in contact or may contain peanuts, tree nuts, soy, milk, eggs, wheat, shellfish or fish. Allergen details are on the <a href={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/allergens/`} class="underline underline-offset-4 decoration-2">allergen page</a>.</p>
+      </div>
+      <div class="lg:col-span-7 bg-white p-6 sm:p-8">
+        <EnquiryForm kind="catering" site="Brando's" submitLabel="Send catering enquiry" successText="Thanks, your catering enquiry is on its way. We will be in touch." class="grid sm:grid-cols-2 gap-4 font-body" inputClass="w-full border border-ink/25 bg-white px-3 py-2.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent" buttonClass="rounded-full bg-ink text-white font-semibold text-sm uppercase tracking-[0.12em] px-7 py-4 hover:bg-accent"
+          fields={[
+            { name: 'name', label: 'Your name', required: true },
+            { name: 'phone', label: 'Phone', type: 'tel', required: true },
+            { name: 'email', label: 'Email', type: 'email' },
+            { name: 'date', label: 'Date of the event', placeholder: 'e.g. Saturday 24 October' },
+            { name: 'people', label: 'How many people' },
+            { name: 'pickup', label: 'Pick up or delivery' },
+            { name: 'message', label: 'What are you after', type: 'textarea', placeholder: 'Trays, packs, cakes, anything from the menu' },
+          ]} />
+      </div>
+    </div>
+  </section>
+  <Footer slot="footer" />
+</Base>

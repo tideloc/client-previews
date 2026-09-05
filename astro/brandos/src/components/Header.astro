@@ -1,0 +1,63 @@
+---
+/** Site header: Brando's wordmark, main nav, phone as text, the one filled CTA. */
+import { siteContent } from '../lib/site';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const phone = siteContent.contact.phone;
+const tel = `tel:+61${phone.replace(/\s+/g, '').replace(/^0/, '')}`;
+const nav = [
+  { href: `${base}/menu/`, label: 'Menu' },
+  { href: `${base}/catering/`, label: 'Catering' },
+  { href: `${base}/community/`, label: 'Community' },
+  { href: `${base}/allergens/`, label: 'Allergens' },
+  { href: `${base}/contact/`, label: 'Find us' },
+];
+const path = Astro.url.pathname;
+---
+<header class="bg-white border-b-4 border-primary sticky top-0 z-30">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-16 lg:h-20 flex items-center justify-between gap-6">
+    <a href={`${base}/`} class="flex items-center gap-2" aria-label="Brando's home">
+      <span class="inline-flex items-center justify-center w-9 h-9 lg:w-10 lg:h-10 bg-primary text-accent font-display font-bold text-2xl lg:text-3xl leading-none">B</span>
+      <span class="font-display font-bold uppercase text-accent text-2xl lg:text-3xl leading-none tracking-tight">Brando's</span>
+      <span class="hidden sm:inline font-body text-[11px] uppercase tracking-[0.2em] text-ink/70 ml-1 mt-1">Figtree</span>
+    </a>
+    <nav aria-label="Main" class="hidden lg:block">
+      <ul class="flex items-center gap-7">
+        {nav.map((n) => (
+          <li><a href={n.href} class:list={['font-body text-[13px] font-semibold uppercase tracking-[0.14em] text-ink hover:text-accent', path.startsWith(n.href) && 'text-accent underline underline-offset-8 decoration-2']}>{n.label}</a></li>
+        ))}
+      </ul>
+    </nav>
+    <div class="hidden lg:flex items-center gap-5">
+      <a href={tel} class="font-display font-semibold text-lg text-ink hover:text-accent" data-tl="contact.phone" data-tl-href="tel:">{phone}</a>
+      <a href={`${base}/menu/`} class="rounded-full bg-ink text-white font-body font-semibold text-sm uppercase tracking-[0.12em] px-6 py-3 hover:bg-accent">See the menu</a>
+    </div>
+    <button type="button" class="lg:hidden inline-flex items-center gap-2 font-body text-xs font-semibold uppercase tracking-[0.14em] text-ink" aria-expanded="false" aria-controls="mobile-nav" data-nav-toggle>
+      <span data-nav-label>Menu</span>
+      <span class="flex flex-col gap-1.5" aria-hidden="true"><i class="block w-6 h-0.5 bg-ink"></i><i class="block w-6 h-0.5 bg-ink"></i><i class="block w-6 h-0.5 bg-ink"></i></span>
+    </button>
+  </div>
+  <div id="mobile-nav" hidden class="lg:hidden bg-ink text-white">
+    <nav aria-label="Main mobile" class="mx-auto max-w-7xl px-4 sm:px-6 py-6">
+      <ul class="divide-y divide-white/15">
+        {nav.map((n) => (
+          <li><a href={n.href} class="block py-4 font-display font-semibold uppercase text-2xl tracking-wide hover:text-primary">{n.label}</a></li>
+        ))}
+      </ul>
+      <div class="mt-6 flex flex-col gap-3">
+        <a href={`${base}/menu/`} class="rounded-full bg-primary text-ink text-center font-body font-semibold text-sm uppercase tracking-[0.12em] px-6 py-3">See the menu</a>
+        <a href={tel} class="text-center font-display text-xl">{phone}</a>
+      </div>
+    </nav>
+  </div>
+</header>
+<script>
+  const btn = document.querySelector('[data-nav-toggle]');
+  const panel = document.getElementById('mobile-nav');
+  const label = document.querySelector('[data-nav-label]');
+  btn?.addEventListener('click', () => {
+    const open = panel && !panel.hidden;
+    if (panel) panel.hidden = open;
+    btn.setAttribute('aria-expanded', String(!open));
+    if (label) label.textContent = open ? 'Menu' : 'Close';
+  });
+</script>

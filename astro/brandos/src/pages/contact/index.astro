@@ -1,0 +1,27 @@
+---
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import FindUs from '../../components/FindUs.astro';
+import { siteContent } from '../../lib/site';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const phone = siteContent.contact.phone;
+const tel = `tel:+61${phone.replace(/\s+/g, '').replace(/^0/, '')}`;
+---
+<Base title="Find us | Brando's" description="Brando's is at 49 Princes Hwy, Figtree NSW 2525. Open seven days 10am to 8:30pm for dine in, take away and delivery. Phone, hours, map and directions.">
+  <Header slot="header" />
+  <section data-section="contact-intro" aria-labelledby="con-h1" class="bg-primary">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-14 pb-12 lg:pt-20 lg:pb-16 grid lg:grid-cols-12 gap-8 items-end">
+      <div class="lg:col-span-8">
+        <h1 id="con-h1" class="font-display font-bold uppercase text-ink text-6xl sm:text-7xl lg:text-8xl leading-[0.9]">49 Princes Hwy, <span class="text-accent">Figtree.</span></h1>
+        <p class="mt-6 font-body text-xl text-ink max-w-2xl">Open seven days, 10am to 8:30pm. Dine in, take away or delivery.</p>
+      </div>
+      <div class="lg:col-span-4 flex flex-col gap-3">
+        <a href={tel} class="rounded-full bg-ink text-white text-center font-display font-semibold text-2xl px-7 py-4 hover:bg-accent">Call {phone}</a>
+        <a href={`${base}/menu/`} class="text-center font-body text-sm font-semibold uppercase tracking-[0.14em] text-ink underline underline-offset-8 decoration-2 hover:text-accent">See the menu</a>
+      </div>
+    </div>
+  </section>
+  <FindUs />
+  <Footer slot="footer" />
+</Base>

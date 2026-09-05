@@ -1,0 +1,50 @@
+---
+/** Community: the three real initiatives with their real dollar figures.
+ *  Home (default) sets them as a stacked ledger: figure left, initiative right, one rule per row.
+ *  The community page (full) sets them as three columns. Two structures, one content unit. */
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const items = [
+  { figure: '$150', unit: 'voucher, weekly', title: 'Team of the week', body: 'Spotlighting a local junior sporting team each week with a $150 voucher to fuel up together after the game, recognising their achievements and supporting the role they play in our community.' },
+  { figure: '$100', unit: 'Bunnings voucher, weekly', title: 'Tradie of the week', body: 'Backing the tradies who support us with a weekly spotlight and a $100 Bunnings voucher as a small thank you, while recognising the local tradies building the Illawarra and the role they play in keeping our community moving.' },
+  { figure: '100%', unit: 'of proceeds donated', title: 'Charity hoodies', body: "Supporting our community through limited-edition charity hoodies and beanies, with 100% of proceeds donated to the Children's Ward at Wollongong Hospital, recognising the vital role they play in caring for local families across the Illawarra Shoalhaven." },
+];
+const { full = false } = Astro.props;
+---
+<section data-section="community" aria-labelledby="community-h2" class="bg-ground border-t-8 border-primary">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 lg:py-20">
+    {full ? (
+      <>
+        <div class="lg:flex lg:items-end lg:justify-between gap-8">
+          <h2 id="community-h2" class="font-display font-bold uppercase text-accent text-5xl sm:text-6xl leading-none">Local initiatives.</h2>
+          <p class="mt-4 lg:mt-0 font-body text-lg text-ink/80 max-w-md">Three things that run every week of the year.</p>
+        </div>
+        <div class="mt-10 grid md:grid-cols-3 gap-px bg-ink/15 border border-ink/15">
+          {items.map((i) => (
+            <article class="bg-white p-6 sm:p-8">
+              <p class="font-display font-bold text-6xl sm:text-7xl text-ink leading-none">{i.figure}</p>
+              <p class="font-body text-xs font-semibold uppercase tracking-[0.18em] text-ink/70 mt-1">{i.unit}</p>
+              <h3 class="mt-6 font-display font-semibold uppercase text-2xl text-accent">{i.title}</h3>
+              <p class="mt-2 font-body text-ink/85 leading-relaxed">{i.body}</p>
+            </article>
+          ))}
+        </div>
+      </>
+    ) : (
+      <div class="grid lg:grid-cols-12 gap-10">
+        <div class="lg:col-span-4">
+          <h2 id="community-h2" class="font-display font-bold uppercase text-accent text-5xl sm:text-6xl leading-none">Happiness in every bite.<br /><span class="text-ink">Always.</span></h2>
+          <p class="mt-4 font-body text-lg text-ink/80">It's more than the food, it's the people, the moments and the community behind every visit.</p>
+          <a href={`${base}/community/`} class="inline-block mt-6 font-body text-sm font-semibold uppercase tracking-[0.14em] text-ink underline underline-offset-8 decoration-2 decoration-primary hover:text-accent">Community Brando's</a>
+        </div>
+        <dl class="lg:col-span-8 border-t-4 border-ink">
+          {items.map((i) => (
+            <div class="grid grid-cols-[7rem_1fr] sm:grid-cols-[11rem_1fr] gap-4 sm:gap-8 py-6 border-b border-ink/15">
+              <dt><span class="block font-display font-bold text-4xl sm:text-6xl text-ink leading-none">{i.figure}</span><span class="block mt-1 font-body text-[11px] sm:text-xs font-semibold uppercase tracking-[0.16em] text-ink/70">{i.unit}</span></dt>
+              <dd><h3 class="font-display font-semibold uppercase text-2xl text-accent leading-none">{i.title}</h3><p class="mt-2 font-body text-ink/85 leading-relaxed">{i.body}</p></dd>
+            </div>
+          ))}
+        </dl>
+      </div>
+    )}
+  </div>
+</section>

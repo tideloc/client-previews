@@ -1,0 +1,38 @@
+---
+/** Hero: split panel. Yellow half with the claim, CTA and today's hours; photo half whose backdrop is the same yellow. */
+import { Picture } from 'astro:assets';
+import hero from '../assets/hero-schnitzel-burgers.jpg';
+import Hours from './tl/Hours.astro';
+import { siteContent } from '../lib/site';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const phone = siteContent.contact.phone;
+const tel = `tel:+61${phone.replace(/\s+/g, '').replace(/^0/, '')}`;
+---
+<section data-section="hero" aria-labelledby="hero-h1" class="bg-primary text-ink">
+  <div class="mx-auto max-w-[1600px] grid lg:grid-cols-12">
+    <div class="lg:col-span-6 px-4 sm:px-6 lg:pl-12 xl:pl-20 lg:pr-4 pt-12 pb-10 lg:py-20 flex flex-col justify-between gap-10">
+      <div>
+        <p class="font-body text-xs sm:text-sm font-semibold uppercase tracking-[0.22em] text-ink/80">Figtree, on the Princes Highway. Home of the legendary chicken schnitzel burger.</p>
+        <h1 id="hero-h1" class="mt-5 font-display font-bold uppercase leading-[0.86] tracking-tight text-[3.6rem] sm:text-[5.5rem] lg:text-[6.5rem] xl:text-[8.5rem]">
+          It's what<br />we're<br /><span class="text-accent">famous</span><br />for.
+        </h1>
+        <p class="mt-6 max-w-md font-body text-lg leading-snug">Crispy schnitzel in our signature bread roll, from $13.45 with a drink. Tenders cut from the tenderloin, Texas fried chicken, BBQ chicken, hot food, salads, gelato and cakes.</p>
+        <div class="mt-7 flex flex-wrap items-center gap-x-6 gap-y-3">
+          <a href={`${base}/menu/`} class="rounded-full bg-ink text-white font-body font-semibold text-sm uppercase tracking-[0.12em] px-7 py-4 hover:bg-accent">See the menu</a>
+          <a href={tel} class="font-display font-semibold text-2xl underline underline-offset-8 decoration-2 decoration-ink/40 hover:text-accent">Call {phone}</a>
+        </div>
+      </div>
+      <div class="bg-ink text-white p-6 sm:p-7 max-w-md" data-object="hours">
+        <div class="flex items-baseline justify-between gap-4">
+          <p class="font-display font-semibold uppercase text-xl text-primary">Open seven days</p>
+          <p class="font-body text-xs uppercase tracking-[0.18em] text-white/70">10am to 8:30pm</p>
+        </div>
+        <Hours listClass="mt-3 font-body text-sm divide-y divide-white/10" rowClass="flex items-baseline justify-between py-1" dayClass="font-medium" timeClass="text-white/80" closedClass="opacity-50" holidayClass="text-xs mt-2 text-white/80" />
+        <p class="mt-4 font-body text-sm text-white/85">49 Princes Hwy, Figtree. Dine in, take away or delivery.</p>
+      </div>
+    </div>
+    <div class="lg:col-span-6 relative min-h-[320px] sm:min-h-[420px] lg:min-h-0">
+      <Picture src={hero} alt="Two crispy chicken schnitzel burgers with lettuce and tomato in bread rolls on a yellow backdrop" widths={[800, 1200, 1600, 2400]} formats={['avif', 'webp']} sizes="(min-width: 1024px) 50vw, 100vw" loading="eager" fetchpriority="high" class="absolute inset-0 w-full h-full object-cover object-[60%_55%]" pictureAttributes={{ class: 'absolute inset-0' }} />
+    </div>
+  </div>
+</section>

@@ -1,0 +1,33 @@
+---
+/** Explore by category: eight photo tiles, each a real menu section on /menu/. */
+import { Picture } from 'astro:assets';
+import { photo } from '../lib/photos';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const tiles = [
+  { key: 'burgers', label: 'Burgers', slug: 'original-mini', alt: 'The Original chicken schnitzel burger with lettuce and mayonnaise in a bread roll', span: 'lg:col-span-2 lg:row-span-2' },
+  { key: 'tenders', label: 'Tenders', slug: 'new-york-tender-1-piece', alt: 'A single crispy New York chicken tender on a yellow backdrop', span: '' },
+  { key: 'texas-fried', label: 'Texas fried', slug: 'texas-fried-chicken-4-or-less-per-piece', alt: 'A piece of Texas fried chicken with a crisp golden coating', span: '' },
+  { key: 'bbq-chicken', label: 'BBQ chicken', slug: 'whole-bbq-chicken', alt: 'A whole BBQ roast chicken with golden skin on a yellow backdrop', span: '' },
+  { key: 'hot-chips', label: 'Hot chips', slug: 'hot-chips-large', alt: 'A large box of golden hot chips on a yellow backdrop', span: '' },
+  { key: 'salads', label: 'Salads', slug: 'greek-small', alt: 'A tub of Greek salad with tomato, cucumber, red onion and feta', span: '' },
+  { key: 'gelato', label: 'Gelato', slug: 'salted-caramel-family', alt: 'A tub of salted caramel gelato on a yellow backdrop', span: '' },
+  { key: 'cakes', label: 'Cakes', slug: 'chocolate-cake-whole-large-10-inches', alt: 'A whole chocolate cake with a dark chocolate coating on a yellow backdrop', span: 'lg:col-span-2' },
+  { key: 'family-packs', label: 'Family packs', slug: 'family-pack-10-new-york-tenders', alt: 'A family pack of ten New York tenders with large chips and a large salad', span: 'lg:col-span-2' },
+];
+---
+<section data-section="categories" aria-labelledby="cat-h2" class="bg-white">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 lg:py-20">
+    <h2 id="cat-h2" class="font-display font-bold uppercase text-accent text-5xl sm:text-6xl leading-none">Explore by category.</h2>
+    <p class="mt-3 font-body text-lg text-ink/80 max-w-2xl">Twenty-three sections, every price listed. Pick a door.</p>
+    <ul class="mt-8 grid grid-cols-2 lg:grid-cols-4 gap-3 lg:auto-rows-[220px]">
+      {tiles.map((t) => { const img = photo(t.slug); return (
+        <li class:list={['relative bg-primary overflow-hidden group', t.span]}>
+          <a href={`${base}/menu/#${t.key}`} class="block h-full">
+            {img && <Picture src={img} alt={t.alt} widths={[400, 800, 1200]} formats={['avif', 'webp']} sizes="(min-width: 1024px) 25vw, 50vw" loading="lazy" class="w-full h-full aspect-square lg:aspect-auto object-cover transition-transform duration-300 group-hover:scale-[1.03]" pictureAttributes={{ class: 'block h-full' }} />}
+            <span class="absolute left-0 bottom-0 bg-ink text-white font-display font-semibold uppercase text-lg sm:text-2xl px-4 py-2 group-hover:bg-accent">{t.label}</span>
+          </a>
+        </li>
+      ); })}
+    </ul>
+  </div>
+</section>

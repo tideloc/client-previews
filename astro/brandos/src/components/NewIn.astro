@@ -1,0 +1,41 @@
+---
+/** New in: the "New in" section of the portal price list, with the product photos. */
+import { Picture } from 'astro:assets';
+import { siteContent } from '../lib/site';
+import { photo } from '../lib/photos';
+import sections from '../content/menu-sections.json';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const live = siteContent.priceList.find((s) => s.title === 'New in');
+const meta = sections.find((s) => s.key === 'new-in')!;
+const alts: Record<string, string> = {
+  '3-tender-salad-combo': 'Three crispy tenders with a garden salad, dipping sauce and a can of drink',
+  '2-tender-salad-combo': 'Two crispy tenders with a small garden salad, dipping sauce and a can of drink',
+  '10-tender-family-pack': 'Ten crispy tenders in a box with large chips and a large salad',
+  'bananarama': 'A tub of pale yellow Bananarama gelato on a yellow backdrop',
+  'mocha-crunch-family': 'A tub of Cappuccino gelato on a yellow backdrop',
+  '5-gelato': 'Six tubs of gelato in different flavours on a yellow backdrop',
+};
+const items = meta.items.map((m, i) => ({ ...m, price: live?.items[i]?.price ?? m.price, img: photo(m.slug) }));
+---
+<section data-section="new-in" aria-labelledby="new-in-h2" class="bg-ground">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 lg:py-20">
+    <div class="flex flex-wrap items-end justify-between gap-4">
+      <h2 id="new-in-h2" class="font-display font-bold uppercase text-accent text-5xl sm:text-6xl leading-none">New in.</h2>
+      <a href={`${base}/menu/#new-in`} class="font-body text-sm font-semibold uppercase tracking-[0.14em] text-ink underline underline-offset-8 decoration-2 decoration-primary hover:text-accent">Full menu</a>
+    </div>
+    <ul class="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-ink/10 border border-ink/10">
+      {items.map((it) => (
+        <li class="bg-white flex sm:block">
+          {it.img && <Picture src={it.img} alt={alts[it.slug] ?? it.name} widths={[400, 800]} formats={['avif', 'webp']} sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 40vw" loading="lazy" class="w-36 h-36 sm:w-full sm:h-auto sm:aspect-square object-cover shrink-0" pictureAttributes={{ class: 'shrink-0' }} />}
+          <div class="p-4 sm:p-5 flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 sm:gap-3 min-w-0">
+            <div>
+              <p class="font-display font-semibold uppercase text-xl sm:text-2xl leading-tight text-ink">{it.name}</p>
+              {it.note && <p class="mt-1 font-body text-sm text-ink/70">{it.note}</p>}
+            </div>
+            <p class="font-display font-bold text-2xl sm:text-3xl text-accent sm:whitespace-nowrap">{it.price}</p>
+          </div>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>

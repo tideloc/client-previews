@@ -1,0 +1,1168 @@
+{
+ "slug": "brandos",
+ "version": 1,
+ "updatedAt": "2026-09-05T00:00:00.000Z",
+ "businessName": "Brando's",
+ "hours": [
+  {
+   "day": "mon",
+   "closed": false,
+   "open": "10:00",
+   "close": "20:30",
+   "label": "Monday",
+   "display": "10am to 8:30pm"
+  },
+  {
+   "day": "tue",
+   "closed": false,
+   "open": "10:00",
+   "close": "20:30",
+   "label": "Tuesday",
+   "display": "10am to 8:30pm"
+  },
+  {
+   "day": "wed",
+   "closed": false,
+   "open": "10:00",
+   "close": "20:30",
+   "label": "Wednesday",
+   "display": "10am to 8:30pm"
+  },
+  {
+   "day": "thu",
+   "closed": false,
+   "open": "10:00",
+   "close": "20:30",
+   "label": "Thursday",
+   "display": "10am to 8:30pm"
+  },
+  {
+   "day": "fri",
+   "closed": false,
+   "open": "10:00",
+   "close": "20:30",
+   "label": "Friday",
+   "display": "10am to 8:30pm"
+  },
+  {
+   "day": "sat",
+   "closed": false,
+   "open": "10:00",
+   "close": "20:30",
+   "label": "Saturday",
+   "display": "10am to 8:30pm"
+  },
+  {
+   "day": "sun",
+   "closed": false,
+   "open": "10:00",
+   "close": "20:30",
+   "label": "Sunday",
+   "display": "10am to 8:30pm"
+  }
+ ],
+ "holidays": [],
+ "announcement": {
+  "enabled": true,
+  "text": "New in: 2 and 3 Tender Salad Combos, with a drink. From $14.90.",
+  "link": "/cold/brandos/v2/menu/#new-in"
+ },
+ "contact": {
+  "phone": "0417 000 547",
+  "email": "hello@brandos.com.au",
+  "address": "49 Princes Hwy",
+  "suburb": "Figtree",
+  "state": "NSW",
+  "postcode": "2525",
+  "mapUrl": "https://www.google.com/maps/dir/?api=1&destination=49%20Princes%20Hwy%2C%20Figtree%20NSW%202525"
+ },
+ "priceList": [
+  {
+   "title": "New in",
+   "items": [
+    {
+     "name": "3 Tender Salad Combo",
+     "price": "$18.90",
+     "note": "3 Tenders, Medium Salad, Drink, 70ml Dipping Sauce"
+    },
+    {
+     "name": "2 Tender Salad Combo",
+     "price": "$14.90",
+     "note": "2 Tenders, Small Salad, Drink, 70ml Dipping Sauce"
+    },
+    {
+     "name": "10 Tender Family Pack",
+     "price": "$52.00",
+     "note": "Large Salad, Large Chips, 4 x 70ml dipping Sauce"
+    },
+    {
+     "name": "Bananarama",
+     "price": "$5.00"
+    },
+    {
+     "name": "Cappuccino",
+     "price": "$5.00"
+    },
+    {
+     "name": "Five Dollar Gelato",
+     "price": "$5.00",
+     "note": "Small size, All flavours"
+    }
+   ]
+  },
+  {
+   "title": "Burgers",
+   "items": [
+    {
+     "name": "Original",
+     "price": "$13.45",
+     "note": "with a drink"
+    },
+    {
+     "name": "Canadian",
+     "price": "$14.45",
+     "note": "with a drink"
+    },
+    {
+     "name": "Nacho",
+     "price": "$14.45",
+     "note": "with a drink"
+    },
+    {
+     "name": "Hot Lava",
+     "price": "$14.45",
+     "note": "with a drink"
+    },
+    {
+     "name": "African",
+     "price": "$14.45",
+     "note": "with a drink"
+    },
+    {
+     "name": "New York",
+     "price": "$14.90",
+     "note": "with a drink"
+    },
+    {
+     "name": "USA",
+     "price": "$14.90",
+     "note": "with a drink"
+    },
+    {
+     "name": "Lebanese",
+     "price": "$14.45",
+     "note": "with a drink"
+    },
+    {
+     "name": "Aussie",
+     "price": "$14.45",
+     "note": "with a drink"
+    },
+    {
+     "name": "Greek",
+     "price": "$14.45",
+     "note": "with a drink"
+    },
+    {
+     "name": "English",
+     "price": "$14.45",
+     "note": "with a drink"
+    },
+    {
+     "name": "Plain",
+     "price": "$13.45",
+     "note": "with a drink"
+    },
+    {
+     "name": "Scallopini",
+     "price": "$14.45",
+     "note": "with a drink"
+    },
+    {
+     "name": "Coleslaw",
+     "price": "$13.45",
+     "note": "with a drink"
+    },
+    {
+     "name": "Hawaiian",
+     "price": "$13.45",
+     "note": "with a drink"
+    },
+    {
+     "name": "Parmi",
+     "price": "$14.45",
+     "note": "with a drink"
+    },
+    {
+     "name": "Sweet Chilli",
+     "price": "$13.45",
+     "note": "with a drink"
+    },
+    {
+     "name": "Gravy",
+     "price": "$13.45",
+     "note": "with a drink"
+    },
+    {
+     "name": "Tomato Hot Chip",
+     "price": "$9.55",
+     "note": "with a drink"
+    },
+    {
+     "name": "Scallopini Hot Chip",
+     "price": "$9.55",
+     "note": "with a drink"
+    },
+    {
+     "name": "Jalapeno Aioli & Chill Salt Hot Chip",
+     "price": "$9.55",
+     "note": "with a drink"
+    },
+    {
+     "name": "Gravy Hot Chip",
+     "price": "$9.55",
+     "note": "with a drink"
+    },
+    {
+     "name": "Gravy Mozzarella Hot Chip",
+     "price": "$9.55",
+     "note": "with a drink"
+    },
+    {
+     "name": "Pork Roll",
+     "price": "$14.65"
+    }
+   ]
+  },
+  {
+   "title": "Burger + mini chips combos",
+   "items": [
+    {
+     "name": "USA Burger + Mini Chips",
+     "price": "$19.10",
+     "note": "with a drink"
+    },
+    {
+     "name": "New York Burger + Mini Chips",
+     "price": "$19.10",
+     "note": "with a drink"
+    },
+    {
+     "name": "Greek Burger + Mini Chips",
+     "price": "$18.55",
+     "note": "with a drink"
+    },
+    {
+     "name": "Parmi Burger + Mini Chips",
+     "price": "$18.55",
+     "note": "with a drink"
+    },
+    {
+     "name": "African Burger +Mini Chips",
+     "price": "$18.55",
+     "note": "with a drink"
+    },
+    {
+     "name": "Hot Lava Burger + Mini Chips",
+     "price": "$18.55",
+     "note": "with a drink"
+    },
+    {
+     "name": "Lebanese Burger + Mini Chips",
+     "price": "$18.55",
+     "note": "with a drink"
+    },
+    {
+     "name": "Canadian Burger + Mini Chips",
+     "price": "$18.55",
+     "note": "with a drink"
+    },
+    {
+     "name": "Nacho Burger + Mini Chips",
+     "price": "$18.55",
+     "note": "with a drink"
+    },
+    {
+     "name": "Aussie Burger + Mini Chips",
+     "price": "$18.55",
+     "note": "with a drink"
+    },
+    {
+     "name": "English Burger + Mini Chips",
+     "price": "$18.55",
+     "note": "with a drink"
+    },
+    {
+     "name": "Coleslaw Burger + Mini Chips",
+     "price": "$17.50",
+     "note": "with a drink"
+    },
+    {
+     "name": "Hawaiian Burger + Mini Chips",
+     "price": "$17.50",
+     "note": "with a drink"
+    },
+    {
+     "name": "Gravy Burger + Mini Chips",
+     "price": "$17.50",
+     "note": "with a drink"
+    },
+    {
+     "name": "Sweet Chilli Burger + Mini Chips",
+     "price": "$17.50",
+     "note": "with a drink"
+    },
+    {
+     "name": "Original Burger + Mini Chips",
+     "price": "$17.50",
+     "note": "with a drink"
+    }
+   ]
+  },
+  {
+   "title": "Burger extras",
+   "items": [
+    {
+     "name": "Salsa",
+     "price": "$1.70"
+    },
+    {
+     "name": "Feta",
+     "price": "$1.65"
+    },
+    {
+     "name": "Red Onion",
+     "price": "$1.10"
+    },
+    {
+     "name": "Fried Onion",
+     "price": "$1.10"
+    },
+    {
+     "name": "Avocado",
+     "price": "$1.70"
+    },
+    {
+     "name": "Beetroot",
+     "price": "$1.10"
+    },
+    {
+     "name": "Tomato",
+     "price": "$1.10"
+    },
+    {
+     "name": "Pineapple",
+     "price": "$1.70"
+    },
+    {
+     "name": "Tabouli",
+     "price": "$2.60"
+    },
+    {
+     "name": "Caesar Salad",
+     "price": "$2.60"
+    },
+    {
+     "name": "Coleslaw",
+     "price": "$1.80"
+    },
+    {
+     "name": "Mashed Potato",
+     "price": "$1.40"
+    },
+    {
+     "name": "Mozzarella",
+     "price": "$1.50"
+    },
+    {
+     "name": "Shredded Tasty",
+     "price": "$1.10"
+    },
+    {
+     "name": "Tasty Cheese Slice",
+     "price": "$1.10"
+    },
+    {
+     "name": "Sour Cream",
+     "price": "$1.00"
+    },
+    {
+     "name": "Hot Chips",
+     "price": "$1.80",
+     "note": "Burger Extra"
+    },
+    {
+     "name": "Large Bacon - 3 Rashers",
+     "price": "$2.65"
+    },
+    {
+     "name": "Mini Bacon - 2 Rashers",
+     "price": "$1.80"
+    }
+   ]
+  },
+  {
+   "title": "Sauces",
+   "items": [
+    {
+     "name": "Gravy",
+     "price": "$1.50"
+    },
+    {
+     "name": "USA BBQ",
+     "price": "$1.80"
+    },
+    {
+     "name": "Garlic Aioli",
+     "price": "$1.80"
+    },
+    {
+     "name": "Jalapeno Aioli",
+     "price": "$1.80"
+    },
+    {
+     "name": "Honey Mustard",
+     "price": "$1.80"
+    },
+    {
+     "name": "Sweet Chilli",
+     "price": "$1.80"
+    },
+    {
+     "name": "Mayonnaise",
+     "price": "$1.80"
+    },
+    {
+     "name": "Tartare",
+     "price": "$1.80"
+    },
+    {
+     "name": "Caesar",
+     "price": "$1.80"
+    },
+    {
+     "name": "BBQ",
+     "price": "$1.80"
+    },
+    {
+     "name": "Shaka",
+     "price": "$1.80"
+    },
+    {
+     "name": "Lebanese Garlic",
+     "price": "$1.80"
+    },
+    {
+     "name": "Tomato",
+     "price": "$1.80"
+    },
+    {
+     "name": "Sour Cream",
+     "price": "$1.80"
+    },
+    {
+     "name": "New York",
+     "price": "$1.80"
+    },
+    {
+     "name": "Scallopini",
+     "price": "$2.00"
+    },
+    {
+     "name": "Hot Chilli",
+     "price": "$1.80"
+    }
+   ]
+  },
+  {
+   "title": "Tenders",
+   "items": [
+    {
+     "name": "New York Tender",
+     "price": "$3.95",
+     "note": "with a dipping sauce"
+    },
+    {
+     "name": "African Tender",
+     "price": "$3.95",
+     "note": "with a dipping sauce"
+    },
+    {
+     "name": "New York Tenders + Chips",
+     "price": "$13.50"
+    },
+    {
+     "name": "African Tenders + Chips",
+     "price": "$13.50"
+    },
+    {
+     "name": "2 Tender Salad Combo",
+     "price": "$14.90",
+     "note": "2 Tenders, Small Salad, Drink, 70ml Dipping Sauce"
+    },
+    {
+     "name": "3 Tender Salad Combo",
+     "price": "$18.90",
+     "note": "3 Tenders, Medium Salad, Drink, 70ml Dipping Sauce"
+    },
+    {
+     "name": "10 Tender Family Pack",
+     "price": "$52.00",
+     "note": "Large Salad, Large Chips, 4 x 70ml dipping Sauce"
+    },
+    {
+     "name": "10 African Tenders Family Pack",
+     "price": "$52.00",
+     "note": "10 African Tenders, Large Chips, Large Salad, 4 x 70ml Dipping Sauce"
+    },
+    {
+     "name": "10 New York Tenders Family Pack",
+     "price": "$52.00",
+     "note": "10 New York Tenders, Large Chips, Large Salad, 4 x 70ml Dipping Sauce"
+    },
+    {
+     "name": "New York Dinner",
+     "price": "$14.35",
+     "note": "2 New York Tenders, Mashed Potato, Peas, Scallopini Sauce - 140ml"
+    }
+   ]
+  },
+  {
+   "title": "Texas fried chicken",
+   "items": [
+    {
+     "name": "Texas Fried Chicken",
+     "price": "$3.80"
+    },
+    {
+     "name": "Texas Fried Chicken + Mini Chips",
+     "price": "$10.45"
+    }
+   ]
+  },
+  {
+   "title": "Portuguese wings",
+   "items": [
+    {
+     "name": "20 Portuguese Wings + Family Chips",
+     "price": "$32.40",
+     "note": "20 Wings, Family Chips"
+    },
+    {
+     "name": "10 Portuguese Wings + Medium Chips",
+     "price": "$18.30",
+     "note": "10 Wings, Medium Chips"
+    },
+    {
+     "name": "Portuguese Wings + Mini Chips",
+     "price": "$7.90",
+     "note": "Portuguese Wings, Mini Chips"
+    },
+    {
+     "name": "Portuguese Wings",
+     "price": "$3.90"
+    }
+   ]
+  },
+  {
+   "title": "BBQ chicken",
+   "items": [
+    {
+     "name": "BBQ Chicken",
+     "price": "$7.85"
+    },
+    {
+     "name": "Quarter BBQ Chicken + Chips",
+     "price": "$14.65",
+     "note": "Quarter of BBQ Chicken, Mini Chips"
+    },
+    {
+     "name": "Quarter BBQ Chicken + Wedges",
+     "price": "$16.75",
+     "note": "Quarter of BBQ Chicken, Mini Wedges"
+    },
+    {
+     "name": "Half BBQ Chicken + Wedges",
+     "price": "$23.15",
+     "note": "Half of BBQ Chicken, Small Wedges"
+    },
+    {
+     "name": "Half BBQ Chicken + Chips",
+     "price": "$21.00",
+     "note": "Half of BBQ Chicken, Small Chips"
+    }
+   ]
+  },
+  {
+   "title": "Schnitzels",
+   "items": [
+    {
+     "name": "Mini Chicken Schnitzel",
+     "price": "$4.95"
+    },
+    {
+     "name": "Chicken Schnitzel",
+     "price": "$8.90"
+    },
+    {
+     "name": "Mini Nacho Schnitzel",
+     "price": "$4.95"
+    },
+    {
+     "name": "Nacho Schnitzel",
+     "price": "$8.90"
+    },
+    {
+     "name": "Mini Schnitzel + Chips",
+     "price": "$12.95",
+     "note": "1 Mini Schnitzel Piece, Mini Chips"
+    },
+    {
+     "name": "Schnitzel + Wedges",
+     "price": "$16.95",
+     "note": "1 Schnitzel Piece, 1 Mini Wedges"
+    },
+    {
+     "name": "Schnitzel + Chips",
+     "price": "$15.55",
+     "note": "1 Schnitzel Piece, Mini Chips"
+    }
+   ]
+  },
+  {
+   "title": "Combos",
+   "items": [
+    {
+     "name": "Nuggets + Mini Chips",
+     "price": "$7.30"
+    },
+    {
+     "name": "Fish + Mini Chips",
+     "price": "$14.20",
+     "note": "2 Fish Pieces, Mini Chips"
+    },
+    {
+     "name": "20 Calamari + Large Chips",
+     "price": "$37.15",
+     "note": "20 Calamari Pieces, Large Chips"
+    },
+    {
+     "name": "10 Calamari + Medium Chips",
+     "price": "$23.65",
+     "note": "10 Calamari Pieces, Medium Chips"
+    },
+    {
+     "name": "Calamari + Mini Chips",
+     "price": "$9.75"
+    }
+   ]
+  },
+  {
+   "title": "Hot chips",
+   "items": [
+    {
+     "name": "Hot Chips - Mini",
+     "price": "$5.00"
+    },
+    {
+     "name": "Hot Chips - Small",
+     "price": "$6.30"
+    },
+    {
+     "name": "Hot Chips - Medium",
+     "price": "$8.95"
+    },
+    {
+     "name": "Hot Chips - Large",
+     "price": "$11.95"
+    },
+    {
+     "name": "Hot Chips - Family",
+     "price": "$14.35"
+    },
+    {
+     "name": "Hot Chips - Small Tray",
+     "price": "$19.90"
+    },
+    {
+     "name": "Hot Chips - Large Tray",
+     "price": "$29.00"
+    }
+   ]
+  },
+  {
+   "title": "Wedges",
+   "items": [
+    {
+     "name": "Wedges - Large Tray",
+     "price": "$33.00"
+    },
+    {
+     "name": "Wedges - Small Tray",
+     "price": "$24.00"
+    },
+    {
+     "name": "Wedges - Family",
+     "price": "$16.25"
+    },
+    {
+     "name": "Wedges - Large",
+     "price": "$14.25"
+    },
+    {
+     "name": "Wedges - Medium",
+     "price": "$9.90"
+    },
+    {
+     "name": "Wedges - Small",
+     "price": "$7.50"
+    },
+    {
+     "name": "Wedges - Mini",
+     "price": "$5.30"
+    }
+   ]
+  },
+  {
+   "title": "Fish and calamari",
+   "items": [
+    {
+     "name": "Calamari",
+     "price": "$5.95"
+    },
+    {
+     "name": "Fish",
+     "price": "$14.20",
+     "note": "with a drink"
+    },
+    {
+     "name": "Fish Piece",
+     "price": "$5.20",
+     "note": "1 Fish Piece*New Zealand Dory"
+    }
+   ]
+  },
+  {
+   "title": "Hot food",
+   "items": [
+    {
+     "name": "Pineapple Fritter - 1 Piece",
+     "price": "$4.20",
+     "note": "1 Pineapple Fritter"
+    },
+    {
+     "name": "Nuggets",
+     "price": "$7.00"
+    },
+    {
+     "name": "Spring Rolls",
+     "price": "$6.20"
+    }
+   ]
+  },
+  {
+   "title": "Family packs",
+   "items": [
+    {
+     "name": "10 Pieces Texas Fried Chicken",
+     "price": "$47.55",
+     "note": "10 Pieces Texas Fried Chicken, Large Chips, Large Salad"
+    },
+    {
+     "name": "6 Mini Schnitzels",
+     "price": "$47.55",
+     "note": "6 Mini Schnitzels, Large Chips, Large Salad"
+    },
+    {
+     "name": "Whole BBQ Chicken",
+     "price": "$47.55",
+     "note": "1 Whole BBQ Chicken, Large Chips, Large Salad"
+    },
+    {
+     "name": "Family Pack - Whole BBQ Chicken & Chips",
+     "price": "$35.90",
+     "note": "1 Whole BBQ Chicken, Large Chips"
+    },
+    {
+     "name": "Family Pack - Whole BBQ Chicken & Salad",
+     "price": "$35.30",
+     "note": "1 Whole BBQ Chicken, Large Salad"
+    }
+   ]
+  },
+  {
+   "title": "Meal packs",
+   "items": [
+    {
+     "name": "Salad Pack",
+     "price": "$19.85",
+     "note": "Quarter BBQ Chicken, Family Salad"
+    },
+    {
+     "name": "Rice Pack",
+     "price": "$18.85",
+     "note": "Quarter BBQ Chicken, Small Salad, Small Rice, Crumbed Potato"
+    },
+    {
+     "name": "Hawaiian Pack",
+     "price": "$18.85",
+     "note": "Quarter BBQ Chicken, Calamari Piece, Banana Fritter, Mini Chips"
+    },
+    {
+     "name": "Hot Pack",
+     "price": "$18.85",
+     "note": "Quarter BBQ Chicken, Peas, Crumbed Potato, Gravy - 140ml"
+    },
+    {
+     "name": "Schnitzel Dinner",
+     "price": "$18.20",
+     "note": "Chicken Schnitzel Piece, Peas, Crumbed Potato, Gravy - 140ml"
+    },
+    {
+     "name": "Pork Dinner",
+     "price": "$18.95",
+     "note": "2 Pieces of Pork, Peas, Crumbed Potato, Gravy - 140ml"
+    }
+   ]
+  },
+  {
+   "title": "Salads",
+   "items": [
+    {
+     "name": "Fruit",
+     "price": "$8.70"
+    },
+    {
+     "name": "Seafood Supreme",
+     "price": "$9.25"
+    },
+    {
+     "name": "New York",
+     "price": "$9.25"
+    },
+    {
+     "name": "Moroccan",
+     "price": "$9.25"
+    },
+    {
+     "name": "Berry",
+     "price": "$8.70"
+    },
+    {
+     "name": "Seafood Pasta",
+     "price": "$8.70"
+    },
+    {
+     "name": "Tabouli",
+     "price": "$8.70"
+    },
+    {
+     "name": "Greek",
+     "price": "$8.70"
+    },
+    {
+     "name": "Caesar",
+     "price": "$8.70"
+    },
+    {
+     "name": "Bean",
+     "price": "$8.70"
+    },
+    {
+     "name": "Potato",
+     "price": "$8.40"
+    },
+    {
+     "name": "Coleslaw",
+     "price": "$8.40"
+    }
+   ]
+  },
+  {
+   "title": "Hot sides",
+   "items": [
+    {
+     "name": "Creamed Potato",
+     "price": "$6.65"
+    },
+    {
+     "name": "Mashed Potato",
+     "price": "$5.75"
+    },
+    {
+     "name": "Peas",
+     "price": "$4.90"
+    },
+    {
+     "name": "Savoury Rice",
+     "price": "$6.65"
+    },
+    {
+     "name": "Crumbed Potato",
+     "price": "$1.30"
+    }
+   ]
+  },
+  {
+   "title": "Desserts",
+   "items": [
+    {
+     "name": "Jersey Caramel",
+     "price": "$5.30"
+    },
+    {
+     "name": "Mousse",
+     "price": "$5.30"
+    },
+    {
+     "name": "Rice Pudding",
+     "price": "$5.30"
+    }
+   ]
+  },
+  {
+   "title": "Gelato",
+   "items": [
+    {
+     "name": "Bananarama",
+     "price": "$5.00"
+    },
+    {
+     "name": "White Chocolate",
+     "price": "$5.00"
+    },
+    {
+     "name": "Vanilla",
+     "price": "$5.00"
+    },
+    {
+     "name": "Strawberry",
+     "price": "$5.00"
+    },
+    {
+     "name": "Salted Caramel",
+     "price": "$5.00"
+    },
+    {
+     "name": "Cappuccino",
+     "price": "$5.00"
+    },
+    {
+     "name": "Mint",
+     "price": "$5.00"
+    },
+    {
+     "name": "Cookies & Cream",
+     "price": "$5.00"
+    },
+    {
+     "name": "Chocolate",
+     "price": "$5.00"
+    },
+    {
+     "name": "Choc Hazelnut",
+     "price": "$5.00"
+    },
+    {
+     "name": "Biscoff",
+     "price": "$5.00"
+    },
+    {
+     "name": "Coconut",
+     "price": "$5.00"
+    }
+   ]
+  },
+  {
+   "title": "Cakes",
+   "items": [
+    {
+     "name": "Alfredo Cake",
+     "price": "$31.00",
+     "note": "Small - 7 Inches, Large - 10 Inches"
+    },
+    {
+     "name": "Caramel Cake",
+     "price": "$31.00",
+     "note": "Small - 7 Inches, Large - 10 Inches"
+    },
+    {
+     "name": "Chocolate Cake",
+     "price": "$31.00",
+     "note": "Small - 7 Inches, Large - 10 Inches"
+    },
+    {
+     "name": "Carrot Cake",
+     "price": "$31.00"
+    },
+    {
+     "name": "Cheesecake",
+     "price": "$38.00",
+     "note": "Large - 9 Inches"
+    },
+    {
+     "name": "Raspberry Cheesecake - Slice",
+     "price": "$5.95"
+    },
+    {
+     "name": "Passionfruit Cheesecake - Slice",
+     "price": "$5.95"
+    },
+    {
+     "name": "Cheesecake - Slice",
+     "price": "$5.95"
+    },
+    {
+     "name": "Alfredo Cake - Slice",
+     "price": "$5.95"
+    },
+    {
+     "name": "Caramel Cake - Slice",
+     "price": "$5.95"
+    },
+    {
+     "name": "Chocolate Cake - Slice",
+     "price": "$5.95"
+    },
+    {
+     "name": "Carrot Cake - Slice",
+     "price": "$5.95"
+    }
+   ]
+  },
+  {
+   "title": "Drinks",
+   "items": [
+    {
+     "name": "2 or More Drinks - Per Drink",
+     "price": "$3.25"
+    },
+    {
+     "name": "Coca Cola",
+     "price": "$3.50",
+     "note": "375ml"
+    },
+    {
+     "name": "Coca Cola Zero",
+     "price": "$3.50",
+     "note": "375ml"
+    },
+    {
+     "name": "Sunkist",
+     "price": "$3.50",
+     "note": "375ml"
+    },
+    {
+     "name": "Sunkist Zero",
+     "price": "$3.50",
+     "note": "375ml"
+    },
+    {
+     "name": "Solo",
+     "price": "$3.50",
+     "note": "375ml"
+    },
+    {
+     "name": "Pepsi",
+     "price": "$3.50",
+     "note": "375ml"
+    },
+    {
+     "name": "Pepsi Max",
+     "price": "$3.50",
+     "note": "375ml"
+    },
+    {
+     "name": "Pasito",
+     "price": "$3.50",
+     "note": "375ml"
+    },
+    {
+     "name": "Pasito Sugar Free",
+     "price": "$3.50",
+     "note": "375ml"
+    },
+    {
+     "name": "Mountain Dew",
+     "price": "$3.50",
+     "note": "375ml"
+    },
+    {
+     "name": "Lemonade",
+     "price": "$3.50",
+     "note": "375ml"
+    },
+    {
+     "name": "Creaming Soda",
+     "price": "$3.50",
+     "note": "375ml"
+    },
+    {
+     "name": "Water",
+     "price": "$3.50",
+     "note": "600ml"
+    },
+    {
+     "name": "Orange Juice",
+     "price": "$3.50",
+     "note": "250ml"
+    },
+    {
+     "name": "Apple Blackcurrant Juice",
+     "price": "$3.50",
+     "note": "250ml"
+    },
+    {
+     "name": "Apple Juice",
+     "price": "$3.50",
+     "note": "250ml"
+    }
+   ]
+  }
+ ],
+ "social": {},
+ "openingHoursSpecification": [
+  {
+   "@type": "OpeningHoursSpecification",
+   "dayOfWeek": "Monday",
+   "opens": "10:00",
+   "closes": "20:30"
+  },
+  {
+   "@type": "OpeningHoursSpecification",
+   "dayOfWeek": "Tuesday",
+   "opens": "10:00",
+   "closes": "20:30"
+  },
+  {
+   "@type": "OpeningHoursSpecification",
+   "dayOfWeek": "Wednesday",
+   "opens": "10:00",
+   "closes": "20:30"
+  },
+  {
+   "@type": "OpeningHoursSpecification",
+   "dayOfWeek": "Thursday",
+   "opens": "10:00",
+   "closes": "20:30"
+  },
+  {
+   "@type": "OpeningHoursSpecification",
+   "dayOfWeek": "Friday",
+   "opens": "10:00",
+   "closes": "20:30"
+  },
+  {
+   "@type": "OpeningHoursSpecification",
+   "dayOfWeek": "Saturday",
+   "opens": "10:00",
+   "closes": "20:30"
+  },
+  {
+   "@type": "OpeningHoursSpecification",
+   "dayOfWeek": "Sunday",
+   "opens": "10:00",
+   "closes": "20:30"
+  }
+ ]
+}

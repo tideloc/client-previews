@@ -1,0 +1,58 @@
+---
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import CommunityInitiatives from '../../components/CommunityInitiatives.astro';
+import EnquiryForm from '../../components/EnquiryForm.astro';
+const pillars = [
+  ['01', 'Celebrate local people.', 'Shining a light on the individuals who make our community special, from long-time customers and local legends to everyday heroes making a difference.'],
+  ['02', 'Support those doing it tough.', 'Using simple acts of kindness to help people in our community during challenging times.'],
+  ['03', 'Acts of kindness.', 'Recognising the quiet achievers who show up, contribute and make a difference without recognition.'],
+  ['04', 'Everyday heroes.', ''],
+  ['05', 'Shared moments.', "Bringing people together through food, creating connection, joy and community around a Brando's feed."],
+];
+---
+<Base title="Community | Brando's" description="Community Brando's in Figtree: Team of the Week, Tradie of the Week and charity hoodies for the Children's Ward at Wollongong Hospital. Nominate a team, a tradie or a local legend.">
+  <Header slot="header" />
+  <section data-section="community-intro" aria-labelledby="com-h1" class="bg-primary">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-14 pb-12 lg:pt-20 lg:pb-16">
+      <p class="font-body text-xs sm:text-sm font-semibold uppercase tracking-[0.22em] text-ink/80">Introducing Community Brando's</p>
+      <h1 id="com-h1" class="mt-4 font-display font-bold uppercase text-ink text-6xl sm:text-7xl lg:text-8xl leading-[0.9]">Good food.<br /><span class="text-accent">Good moments.</span></h1>
+      <p class="mt-6 font-body text-xl text-ink max-w-2xl">Creating small moments that bring people together. It's more than the food, it's the people, the moments and the community behind every visit.</p>
+    </div>
+  </section>
+  <CommunityInitiatives full />
+  <section data-section="pillars" aria-labelledby="pillars-h2" class="bg-white">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 lg:py-20">
+      <h2 id="pillars-h2" class="font-display font-bold uppercase text-accent text-5xl sm:text-6xl leading-none">Our pillars.</h2>
+      <ol class="mt-8 border-t border-ink/15">
+        {pillars.map(([n, t, b]) => (
+          <li class="grid sm:grid-cols-12 gap-3 sm:gap-8 py-6 border-b border-ink/15">
+            <span class="sm:col-span-1 font-display font-bold text-4xl text-primary [text-shadow:0_0_1px_#403D77]">{n}</span>
+            <h3 class="sm:col-span-4 font-display font-semibold uppercase text-2xl sm:text-3xl text-ink leading-none">{t}</h3>
+            <p class="sm:col-span-7 font-body text-lg text-ink/85">{b}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+  <section data-section="reach-out" aria-labelledby="reach-h2" class="bg-ink text-white">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14 lg:py-20 grid lg:grid-cols-12 gap-10">
+      <div class="lg:col-span-5">
+        <h2 id="reach-h2" class="font-display font-bold uppercase text-5xl sm:text-6xl leading-none">Reach out <span class="text-primary">to us.</span></h2>
+        <p class="mt-4 font-body text-lg text-white/85">Nominate a junior team, a tradie or a local legend. Tell us who and why.</p>
+      </div>
+      <div class="lg:col-span-7 bg-white text-ink p-6 sm:p-8">
+        <EnquiryForm kind="community-nomination" site="Brando's" submitLabel="Send nomination" successText="Thanks, we have your nomination." class="grid sm:grid-cols-2 gap-4 font-body" inputClass="w-full border border-ink/25 bg-white px-3 py-2.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent" buttonClass="rounded-full bg-ink text-white font-semibold text-sm uppercase tracking-[0.12em] px-7 py-4 hover:bg-accent"
+          fields={[
+            { name: 'name', label: 'Your name', required: true },
+            { name: 'email', label: 'Email', type: 'email', required: true },
+            { name: 'nominee', label: 'Who are you nominating' },
+            { name: 'type', label: 'Team, tradie or local legend' },
+            { name: 'message', label: 'Why them', type: 'textarea', required: true },
+          ]} />
+      </div>
+    </div>
+  </section>
+  <Footer slot="footer" />
+</Base>

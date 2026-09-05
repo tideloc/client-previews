@@ -1,0 +1,28 @@
+---
+/** Find us: hours (kit), address, phone, directions, keyless map. */
+import Hours from './tl/Hours.astro';
+import ContactDetails from './tl/ContactDetails.astro';
+import { siteContent, fullAddress } from '../lib/site';
+const { withMap = true } = Astro.props;
+const q = encodeURIComponent(fullAddress());
+---
+<section data-section="find-us" aria-labelledby="find-h2" class="bg-white">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 lg:py-20 grid lg:grid-cols-12 gap-10">
+    <div class="lg:col-span-5">
+      <h2 id="find-h2" class="font-display font-bold uppercase text-accent text-5xl sm:text-6xl leading-none">Find us.</h2>
+      <p class="mt-4 font-body text-lg text-ink">On the Princes Highway at Figtree. Dine in, take away or delivery.</p>
+      <ContactDetails class="not-italic mt-6 space-y-2 font-display text-2xl text-ink" linkClass="underline underline-offset-8 decoration-2 decoration-primary hover:text-accent" />
+      <a href={siteContent.contact.mapUrl} target="_blank" rel="noreferrer" class="inline-block mt-6 rounded-full bg-ink text-white font-body font-semibold text-sm uppercase tracking-[0.12em] px-7 py-4 hover:bg-accent">Get directions</a>
+      <div class="mt-10 bg-primary p-6">
+        <p class="font-display font-semibold uppercase text-xl text-ink">Open seven days</p>
+        <Hours listClass="mt-3 divide-y divide-ink/15 font-body" rowClass="flex items-baseline justify-between py-1.5" dayClass="font-medium" timeClass="" closedClass="opacity-50" holidayClass="text-sm mt-3" />
+      </div>
+    </div>
+    {withMap && (
+      <div class="lg:col-span-7 min-h-[360px] bg-ground flex flex-col">
+        <a href={siteContent.contact.mapUrl} target="_blank" rel="noreferrer" class="font-body text-xs font-semibold uppercase tracking-[0.16em] text-ink px-4 py-3 border-b border-ink/15 hover:text-accent">Open in Google Maps</a>
+        <iframe title="Map of Brando's, 49 Princes Hwy, Figtree" src={`https://www.google.com/maps?q=${q}&output=embed`} class="w-full flex-1 min-h-[420px] border-0 grayscale-[0.2]" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+      </div>
+    )}
+  </div>
+</section>

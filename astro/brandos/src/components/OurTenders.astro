@@ -1,0 +1,29 @@
+---
+/** Our tenders: the tenderloin copy on the yellow band with the cut-out tender. */
+import { Picture } from 'astro:assets';
+import tender from '../assets/tender-cutout.jpg';
+import { siteContent } from '../lib/site';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const t = siteContent.priceList.find((s) => s.title === 'Tenders');
+const single = t?.items.find((i) => i.name === 'New York Tender')?.price ?? '';
+const pack = t?.items.find((i) => i.name === '10 Tender Family Pack')?.price ?? '';
+---
+<section data-section="tenders" aria-labelledby="tenders-h2" class="bg-primary text-ink overflow-hidden">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 lg:py-24 grid lg:grid-cols-12 gap-10 items-center">
+    <div class="lg:col-span-7">
+      <h2 id="tenders-h2" class="font-display font-bold uppercase text-6xl sm:text-7xl lg:text-8xl leading-[0.9]">Our <span class="text-accent">tenders.</span></h2>
+      <div class="mt-8 grid sm:grid-cols-2 gap-6 font-body text-lg leading-snug">
+        <p><strong class="font-semibold">It starts with the cut.</strong> Our tenders are made from the tenderloin, the most tender part of the chicken breast. Because this muscle does less work, it naturally stays softer and juicier when cooked properly.</p>
+        <p>The seasoning and crispy coating do more than add crunch. They help lock in heat, moisture and flavour while cooking, creating that juicy centre and signature Brando's taste in every bite.</p>
+      </div>
+      <dl class="mt-8 flex flex-wrap gap-x-10 gap-y-4">
+        <div><dt class="font-body text-xs font-semibold uppercase tracking-[0.18em] text-ink/70">New York or African, per tender</dt><dd class="font-display font-bold text-4xl">{single} <span class="font-body text-sm font-normal text-ink/70">with a dipping sauce</span></dd></div>
+        <div><dt class="font-body text-xs font-semibold uppercase tracking-[0.18em] text-ink/70">10 Tender Family Pack</dt><dd class="font-display font-bold text-4xl">{pack} <span class="font-body text-sm font-normal text-ink/70">large chips, large salad, four sauces</span></dd></div>
+      </dl>
+      <a href={`${base}/menu/#tenders`} class="inline-block mt-8 rounded-full bg-ink text-white font-body font-semibold text-sm uppercase tracking-[0.12em] px-7 py-4 hover:bg-accent">The tender menu</a>
+    </div>
+    <div class="lg:col-span-5">
+      <Picture src={tender} alt="A single crispy golden chicken tender photographed against white" widths={[480, 960]} formats={['avif', 'webp']} sizes="(min-width: 1024px) 40vw, 80vw" loading="lazy" class="w-full max-w-md mx-auto mix-blend-multiply rotate-[-12deg]" />
+    </div>
+  </div>
+</section>

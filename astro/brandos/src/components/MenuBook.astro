@@ -1,0 +1,43 @@
+---
+/** The menu: section index that wraps, then the portal price list in two columns with anchors per section. */
+import { Picture } from 'astro:assets';
+import PriceList from './tl/PriceList.astro';
+import { photo } from '../lib/photos';
+import sections from '../content/menu-sections.json';
+const strip = [
+  ['parmi-mini', 'Parmi chicken schnitzel burger with melted cheese and parmigiana sauce'],
+  ['african-tender-1-piece', 'A spicy African chicken tender on a yellow backdrop'],
+  ['wings-1-4-per-piece', 'Portuguese chicken wings with a charred spicy coating'],
+  ['hot-pack', 'Hot pack with quarter BBQ chicken, peas, crumbed potato and gravy'],
+  ['caesar-small', 'A tub of Caesar salad with croutons and dressing'],
+  ['mint-family', 'A tub of green mint gelato on a yellow backdrop'],
+  ['cheesecake-whole-large-9-inches', 'A whole baked cheesecake on a yellow backdrop'],
+  ['pork-roll', 'Roast pork in a bread roll on a yellow backdrop'],
+];
+const idFor = (title: string) => sections.find((s) => s.title === title)?.key ?? title.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+---
+<section data-section="menu" aria-labelledby="menu-h1" class="bg-ground">
+  <div class="bg-primary">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-12 pb-8">
+      <h1 id="menu-h1" class="font-display font-bold uppercase text-ink text-6xl sm:text-7xl lg:text-8xl leading-[0.9]">The menu.<br /><span class="text-accent">Every price.</span></h1>
+      <p class="mt-4 font-body text-lg text-ink max-w-2xl">Chicken schnitzel burgers from $13.45 with a drink. Tenders, Texas fried, Portuguese wings, BBQ chicken, hot food, salads, gelato, cakes and drinks. Twenty-three sections, every price.</p>
+      <nav aria-label="Menu sections" class="mt-8">
+        <ul class="flex flex-wrap gap-2">
+          {sections.map((s) => <li><a href={`#${s.key}`} class="inline-block bg-ink text-white font-body text-xs font-semibold uppercase tracking-[0.12em] px-3 py-2 hover:bg-accent">{s.title}</a></li>)}
+        </ul>
+      </nav>
+    </div>
+    <ul class="grid grid-cols-4 lg:grid-cols-8">
+      {strip.map(([slug, alt]) => { const img = photo(slug); return img ? <li><Picture src={img} alt={alt} widths={[300, 600]} formats={['avif', 'webp']} sizes="(min-width: 1024px) 12.5vw, 25vw" loading="lazy" class="w-full aspect-square object-cover" /></li> : null; })}
+    </ul>
+  </div>
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 lg:py-16 [&>div]:md:columns-2 [&>div]:gap-12" data-menu-root>
+    <PriceList sectionClass="break-inside-avoid mb-10 scroll-mt-24" titleClass="font-display font-bold uppercase text-accent text-3xl border-b-4 border-primary pb-2 mb-3" itemClass="flex items-baseline justify-between gap-4 py-2 border-b border-ink/10" nameClass="font-body text-ink" priceClass="font-display font-semibold text-xl text-ink whitespace-nowrap" noteClass="text-sm text-ink/60" />
+  </div>
+  <script is:inline define:vars={{ ids: Object.fromEntries(sections.map((s) => [s.title, s.key])) }}>
+    const tag = () => document.querySelectorAll('[data-menu-root] section').forEach((sec) => { const h = sec.querySelector('h3'); if (h && ids[h.textContent.trim()]) sec.id = ids[h.textContent.trim()]; });
+    tag();
+    if (location.hash) requestAnimationFrame(() => document.getElementById(location.hash.slice(1))?.scrollIntoView());
+    new MutationObserver(tag).observe(document.querySelector('[data-menu-root]'), { childList: true, subtree: true });
+  </script>
+</section>
