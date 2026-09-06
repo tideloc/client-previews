@@ -1,0 +1,83 @@
+{
+  "slug": "sitebook",
+  "version": 1,
+  "updatedAt": "2026-09-06T00:00:00.000Z",
+  "businessName": "Sitebook",
+  "appUrl": "https://sitebook-self.vercel.app",
+  "calUrl": "https://cal.com/blake-tideloc/discovery",
+  "hours": [],
+  "holidays": [],
+  "announcement": {
+    "enabled": false,
+    "text": ""
+  },
+  "contact": {
+    "phone": "",
+    "email": "admin@tideloc.com.au",
+    "address": "",
+    "suburb": "Wollongong",
+    "state": "NSW",
+    "postcode": ""
+  },
+  "priceList": [
+    {
+      "title": "Capture, one-off",
+      "items": [
+        {
+          "name": "Asset capture on site (minimum 150 assets)",
+          "price": "$18 / asset"
+        },
+        {
+          "name": "Asset capture where a register already exists",
+          "price": "$12 / asset"
+        },
+        {
+          "name": "Role interview",
+          "price": "$600 / role"
+        },
+        {
+          "name": "Plan digitisation",
+          "price": "$400 / floor plate"
+        },
+        {
+          "name": "Review and sign-off workshop",
+          "price": "$800 / site"
+        },
+        {
+          "name": "Self-capture licence with one training day",
+          "price": "about $2,000 / site"
+        }
+      ]
+    },
+    {
+      "title": "Subscription, per site per month",
+      "items": [
+        {
+          "name": "Small retail, office tower or logistics region",
+          "price": "$150 / site / month"
+        },
+        {
+          "name": "Regional centre",
+          "price": "$300 / site / month"
+        },
+        {
+          "name": "Super-regional or CBD",
+          "price": "$500 / site / month"
+        }
+      ]
+    },
+    {
+      "title": "Pilot",
+      "items": [
+        {
+          "name": "Three sites over three months",
+          "price": "$15,000 fixed"
+        }
+      ]
+    }
+  ],
+  "social": {
+    "booking": "https://cal.com/blake-tideloc/discovery"
+  },
+  "openingHoursSpecification": []
+}

@@ -1,0 +1,82 @@
+---
+/** Book a call band: plain Ink, the claim and the one filled button left, one object right. The object varies per page:
+ *  plan = drawn plan fragment with a single pin (home); chips = the three engraved tags DB-03, AHU-12, FIP-01 (product);
+ *  price = the big mono $18 figure (pricing); quote = the origin line with the founder credit (who we are);
+ *  segmented = the Desktop / Phone control glyph (explore); none = words and button only. No background grid. */
+import { CAL_URL, BOOK_LABEL } from '../lib/links';
+import { siteContent } from '../lib/site';
+type Variant = 'plan' | 'chips' | 'price' | 'quote' | 'segmented' | 'none';
+interface Props { heading?: string; body?: string; email?: boolean; object?: Variant }
+const {
+  heading = 'Talk it through on a call',
+  body = 'A short call to see whether Sitebook fits your sites, and what capture would look like for one of them.',
+  email = false,
+  object = 'plan',
+} = Astro.props;
+const line = 'rgba(246,247,249,0.45)';
+const chips = ['DB-03', 'AHU-12', 'FIP-01'];
+---
+<section data-section="cta" data-object={object} aria-labelledby="cta-h" class="bg-ink text-ground">
+  <div class={`mx-auto max-w-wrap px-5 sm:px-8 py-16 lg:py-20 grid gap-10 ${object === 'none' ? '' : 'lg:grid-cols-12 lg:items-center'}`}>
+    <div class={object === 'none' ? '' : 'lg:col-span-8'}>
+      <h2 id="cta-h" class="text-4xl sm:text-5xl lg:text-6xl leading-[0.98] tracking-[-0.02em] max-w-[16ch]">{heading}</h2>
+      <p class="mt-5 text-ground/80 text-[17px] max-w-[36rem]">{body}</p>
+      <div class="mt-7 flex flex-wrap items-center gap-x-6 gap-y-3">
+        <a href={CAL_URL} class="btn-primary text-base" target="_blank" rel="noreferrer">{BOOK_LABEL}</a>
+        {email && <a href={`mailto:${siteContent.contact.email}`} class="mono-tag text-xs text-ground/80 underline underline-offset-4">{siteContent.contact.email}</a>}
+      </div>
+    </div>
+
+    {object === 'plan' && (
+      <div class="lg:col-span-4 lg:justify-self-end w-full max-w-[22rem]" aria-hidden="true">
+        <svg viewBox="0 0 360 240" class="w-full h-auto" xmlns="http://www.w3.org/2000/svg">
+          <g fill="none" stroke={line} stroke-width="1.5">
+            <rect x="20.75" y="20.75" width="150" height="110" />
+            <rect x="190.75" y="20.75" width="150" height="70" />
+            <rect x="190.75" y="110.75" width="70" height="90" />
+            <rect x="280.75" y="110.75" width="60" height="90" />
+            <rect x="20.75" y="150.75" width="150" height="70" />
+            <path d="M60 130 h30 M90 130 a30 30 0 0 0 -30 -30" opacity="0.6" />
+          </g>
+          <g font-family="IBM Plex Mono, monospace" font-size="11" fill={line}>
+            <text x="20" y="236">A</text>
+            <text x="170" y="236" text-anchor="middle">B</text>
+            <text x="340" y="236" text-anchor="end">C</text>
+          </g>
+          <circle cx="130" cy="86" r="9" fill="#F26B1D" stroke="#16213A" stroke-width="2" />
+          <rect x="146" y="76" width="58" height="20" rx="3" fill="#F6F7F9" />
+          <text x="175" y="90" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" fill="#16213A">DB-03</text>
+        </svg>
+      </div>
+    )}
+
+    {object === 'chips' && (
+      <ul class="lg:col-span-4 lg:justify-self-end flex flex-wrap gap-3" aria-label="Three asset tags from the demo plan">
+        {chips.map((c) => (<li><span class="tag tag-sheet tag-lg">{c}</span></li>))}
+      </ul>
+    )}
+
+    {object === 'price' && (
+      <p class="lg:col-span-4 lg:justify-self-end flex flex-wrap items-baseline gap-x-4 gap-y-1">
+        <span class="font-mono tabular leading-[0.85] tracking-[-0.04em] text-[96px] sm:text-[128px]">$18</span>
+        <span class="mono-tag text-xs text-ground/70 max-w-[9rem] leading-[1.4]">per asset captured on site</span>
+      </p>
+    )}
+
+    {object === 'quote' && (
+      <figure class="lg:col-span-4 lg:justify-self-end w-full max-w-[24rem] border-l border-rule-dark pl-6">
+        <blockquote class="display text-2xl sm:text-3xl leading-[1.05] tracking-[-0.015em]">The record-keeping existed because a standard required it. The rest of the asset base had no such record.</blockquote>
+        <figcaption class="mt-4 mono-tag text-xs text-ground/70">Blake Hutchison, founder</figcaption>
+      </figure>
+    )}
+
+    {object === 'segmented' && (
+      <div class="lg:col-span-4 lg:justify-self-end" aria-hidden="true">
+        <div class="inline-flex rounded-sm border border-rule-dark p-1">
+          <span class="mono-tag text-xs px-4 py-2 rounded-tag bg-ground text-ink">Desktop</span>
+          <span class="mono-tag text-xs px-4 py-2 rounded-tag text-ground/70">Phone</span>
+        </div>
+      </div>
+    )}
+  </div>
+</section>

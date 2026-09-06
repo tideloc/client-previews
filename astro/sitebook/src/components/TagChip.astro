@@ -1,0 +1,6 @@
+---
+/** Engraved traffolyte label. Section eyebrows and feature labels only, never decoration on prose. */
+interface Props { label: string; tone?: 'ink' | 'sheet'; size?: 'md' | 'lg'; class?: string }
+const { label, tone = 'ink', size = 'md', class: cls = '' } = Astro.props;
+---
+<span class={`tag ${tone === 'sheet' ? 'tag-sheet' : ''} ${size === 'lg' ? 'tag-lg' : ''} ${cls}`}>{label}</span>

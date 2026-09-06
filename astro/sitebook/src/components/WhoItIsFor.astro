@@ -1,0 +1,27 @@
+---
+/** Three roles as a typeset spread: three columns under one rule, role name in display type at scale,
+ *  one line beneath, the access label as a tag chip. Hairline between columns. No rows, no ledger. */
+import TagChip from './TagChip.astro';
+const cols = [
+  { who: 'Operations and facilities roles', what: 'First. Centre managers, building managers, facilities coordinators and supervisors.', tag: 'Per-person abilities' },
+  { who: 'Contractors', what: 'A read-only view of their own assets. In the demo, sign in as Sam to see it.', tag: 'Read-only' },
+  { who: 'Head office', what: 'Reads consistency and evidence.', tag: 'Reads' },
+];
+---
+<section data-section="who-it-is-for" aria-labelledby="wf-h" class="bg-card border-b border-rule">
+  <div class="mx-auto max-w-wrap px-5 sm:px-8 py-14 lg:py-20">
+    <div class="grid gap-4 lg:grid-cols-12 lg:items-end">
+      <h2 id="wf-h" class="lg:col-span-7 text-4xl sm:text-5xl lg:text-6xl leading-[0.96] tracking-[-0.02em]">Who it is for</h2>
+      <p class="lg:col-span-5 text-[17px] leading-[1.5] text-ink-2">Role-based access with per-person abilities. Vendor master records and insurance stay with the vendor portal.</p>
+    </div>
+    <div class="mt-10 grid sm:grid-cols-3 border-t-2 border-ink">
+      {cols.map((c, i) => (
+        <div class={`grid content-start pt-8 pb-8 sm:pb-2 sm:pr-8 ${i > 0 ? 'sm:pl-8 sm:border-l border-rule border-t sm:border-t-0' : ''}`}>
+          <h3 class="text-[44px] sm:text-[40px] lg:text-[56px] xl:text-[64px] leading-[0.94] tracking-[-0.025em]">{c.who}</h3>
+          <p class="mt-5 text-ink-2 text-[17px] leading-[1.45] max-w-[22rem]">{c.what}</p>
+          <div class="mt-6"><TagChip label={c.tag} /></div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

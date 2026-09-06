@@ -1,0 +1,25 @@
+---
+/** Content-first hero: the claim spans the page, the product screen is the first thing under it. */
+import { CAL_URL, BOOK_LABEL } from '../lib/links';
+import AppPanel from './AppPanel.astro';
+import TagChip from './TagChip.astro';
+---
+<section data-section="hero" aria-labelledby="hero-h">
+  <div class="mx-auto max-w-wrap px-5 sm:px-8 pt-8 pb-8 lg:pt-14 lg:pb-10">
+    <div class="grid gap-6 lg:grid-cols-12 lg:items-end">
+      <div class="lg:col-span-9">
+        <div class="flex flex-wrap gap-2">
+          <TagChip label="Site knowledge base" />
+          <TagChip label="Shopping centres" />
+          <TagChip label="Office buildings" />
+        </div>
+        <h1 id="hero-h" class="mt-5 text-[40px] leading-[0.96] tracking-[-0.02em] sm:text-[60px] lg:text-[80px] xl:text-[92px] max-w-[18ch]">Every asset on the plan. Every contact on the roster. It stays with the landlord.</h1>
+      </div>
+      <div class="lg:col-span-3 lg:pb-2">
+        <p class="text-[17px] leading-[1.45]">A landlord-owned site knowledge base for shopping centres and office buildings.</p>
+        <a href={CAL_URL} class="btn-primary mt-5" target="_blank" rel="noreferrer">{BOOK_LABEL}</a>
+      </div>
+    </div>
+    <AppPanel compact class="mt-8 lg:mt-12" />
+  </div>
+</section>

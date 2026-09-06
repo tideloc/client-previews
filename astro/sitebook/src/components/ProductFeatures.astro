@@ -1,0 +1,206 @@
+---
+/**
+ * Nine feature units from the inventory, in five structures so the page does not repeat one grammar:
+ *  1. Map: a full-width drawn plate (8 x 6 grid, rooms, three pinned tags) with the asset fields as annotations around it.
+ *  2. Contractors and People: one paired spread, two columns under one rule.
+ *  3. Runbooks: the cadence as a ruled strip of seven cells.
+ *  4. Work requests and Handover: the chip / heading / list ledger, two blocks side by side.
+ *  5. Emergency, Import and Access: one ruled schedule table, like the home page's "What it holds".
+ */
+import TagChip from './TagChip.astro';
+
+const ink = '#16213A';
+const rule = '#D9DEE7';
+const sheet = '#F6F7F9';
+const cols = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
+const rows = [1, 2, 3, 4, 5, 6];
+// Plate geometry: 8 columns of 110, 6 rows of 90, origin (70, 50).
+const gx = (c: number) => 70 + c * 110;
+const gy = (r: number) => 50 + r * 90;
+const pins = [
+  { tag: 'DB-03', c: 2.35, r: 1.55, w: 60 },
+  { tag: 'AHU-12', c: 5.4, r: 1.2, w: 66 },
+  { tag: 'FIP-01', c: 3.6, r: 4.55, w: 62 },
+];
+const leftNotes = [
+  { k: 'Photo', v: 'A photo of the asset, on its pin.' },
+  { k: 'Tag', v: 'The label on the asset, as the mono chip on the pin.' },
+  { k: 'Grid reference', v: 'Column and row on the floor plate, A to H by 1 to 6 here.' },
+];
+const rightNotes = [
+  { k: 'Group', v: 'The asset group it belongs to.' },
+  { k: 'Level', v: 'Which floor plate it sits on.' },
+  { k: 'Contractor', v: 'The firm that holds it, from the contractor register.' },
+];
+const cadence = ['Daily', 'Weekly', 'Monthly', 'Quarterly', 'Six-monthly', 'Annual', 'Event guides'];
+const ledgers = [
+  { id: 'work-requests', tag: 'Work requests', title: 'Work requests with items pinned on the plan', body: 'Exported as a PDF and emailed with a confirmation step.', spec: ['Items pinned', 'PDF export', 'Email', 'Confirmation step'] },
+  { id: 'handover', tag: 'Handover', title: 'Printable handover packs and contractor transition packs', body: 'The handover pack is for the incoming manager; the transition pack is for the incoming contractor.', spec: ['Handover pack', 'Transition pack', 'Printable'] },
+];
+const schedule = [
+  { id: 'emergency', tag: 'Emergency', title: 'Emergency codes and isolation points', body: 'The codes the site uses and where each service is isolated.', fields: 'Code, isolation point, level and grid reference' },
+  { id: 'import', tag: 'Import', title: 'Import from another system', body: 'Make, model, serial and replacement dates come in from another system by API or spreadsheet.', fields: 'Make, model, serial, replacement date' },
+  { id: 'access', tag: 'Access', title: 'Role-based access with per-person abilities', body: 'Vendor master records and insurance stay with the vendor portal.', fields: 'Per-person abilities, contractor read-only' },
+];
+---
+<section data-section="features" aria-label="Features" class="border-b border-rule">
+
+  <!-- 1. Map: the drawn plate, annotated -->
+  <article id="map" data-section="feature-map" class="border-b border-rule">
+    <div class="mx-auto max-w-wrap px-5 sm:px-8 py-12 lg:py-16">
+      <div class="flex flex-wrap items-end justify-between gap-4">
+        <div>
+          <TagChip label="Map" size="lg" />
+          <h2 class="mt-4 text-3xl sm:text-4xl lg:text-5xl leading-[0.98] tracking-[-0.015em] max-w-[22ch]">Every asset pinned on the floor plan</h2>
+        </div>
+        <p class="text-[17px] leading-[1.5] max-w-[30rem]">Each asset sits on its floor plate with a photo, a tag and a grid reference. Six fields, read off the plate.</p>
+      </div>
+
+      <div class="mt-10 grid gap-8 lg:grid-cols-[minmax(0,3fr)_minmax(0,8fr)_minmax(0,3fr)] lg:gap-6 lg:items-center">
+        <dl class="grid gap-5 lg:text-right order-2 lg:order-1">
+          {leftNotes.map((n) => (
+            <div class="border-t border-rule pt-3 lg:border-t-0 lg:border-r lg:pr-5 lg:pt-0">
+              <dt class="mono-tag text-xs">{n.k}</dt>
+              <dd class="mt-1 text-ink-2 text-[14px] leading-[1.4]">{n.v}</dd>
+            </div>
+          ))}
+        </dl>
+
+        <div class="order-1 lg:order-2 rounded-md border border-rule bg-card p-2 sm:p-3">
+          <svg viewBox="0 0 960 620" class="w-full h-auto" role="img" aria-label="Drawn floor plate, grid A to H by 1 to 6, five rooms, three assets pinned and tagged DB-03, AHU-12 and FIP-01" xmlns="http://www.w3.org/2000/svg">
+            <rect x="0.5" y="0.5" width="959" height="619" fill="none" stroke={rule} />
+            <g font-family="IBM Plex Mono, monospace" font-size="13" fill={ink} opacity="0.7">
+              {cols.map((c, i) => (<text x={gx(i) + 55} y="34" text-anchor="middle">{c}</text>))}
+              {rows.map((r, i) => (<text x="36" y={gy(i) + 50} text-anchor="middle">{r}</text>))}
+            </g>
+            <g stroke={rule} stroke-dasharray="3 5">
+              {cols.map((_, i) => (<line x1={gx(i)} y1={gy(0)} x2={gx(i)} y2={gy(6)} />))}
+              <line x1={gx(8)} y1={gy(0)} x2={gx(8)} y2={gy(6)} />
+              {rows.map((_, i) => (<line x1={gx(0)} y1={gy(i)} x2={gx(8)} y2={gy(i)} />))}
+              <line x1={gx(0)} y1={gy(6)} x2={gx(8)} y2={gy(6)} />
+            </g>
+            <g fill="none" stroke={ink} stroke-width="2">
+              <rect x={gx(0.5)} y={gy(0.5)} width="330" height="210" />
+              <rect x={gx(4)} y={gy(0.5)} width="380" height="150" />
+              <rect x={gx(4)} y={gy(2.5)} width="180" height="140" />
+              <rect x={gx(6)} y={gy(2.5)} width="200" height="140" />
+              <rect x={gx(0.5)} y={gy(3.2)} width="220" height="230" />
+              <rect x={gx(2.7)} y={gy(4.2)} width="523" height="140" />
+              <path d={`M${gx(2.5)} ${gy(4.2)} H${gx(2.7)} M${gx(3.5)} ${gy(2.83)} V${gy(3.2)} H${gx(2.7)}`} />
+            </g>
+            <g fill="none" stroke={ink} stroke-width="1" opacity="0.6">
+              <path d={`M${gx(0.7)} ${gy(2.83)} h40 M${gx(0.7) + 40} ${gy(2.83)} a40 40 0 0 0 -40 -40`} />
+              <path d={`M${gx(7.4)} ${gy(2.17)} h-30 M${gx(7.4) - 30} ${gy(2.17)} a30 30 0 0 1 30 -30`} />
+              <path d={`M${gx(2.7)} ${gy(5.75)} h40 M${gx(2.7) + 40} ${gy(5.75)} a40 40 0 0 0 -40 -40`} />
+            </g>
+            {pins.map((p) => (
+              <g>
+                <circle cx={gx(p.c)} cy={gy(p.r)} r="9" fill="#F26B1D" stroke={sheet} stroke-width="2" />
+                <rect x={gx(p.c) + 14} y={gy(p.r) - 11} width={p.w} height="22" rx="3" fill={ink} />
+                <rect x={gx(p.c) + 17} y={gy(p.r) - 8} width={p.w - 6} height="16" rx="2" fill="none" stroke={sheet} stroke-opacity="0.4" />
+                <text x={gx(p.c) + 14 + p.w / 2} y={gy(p.r) + 4} text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" letter-spacing="0.04em" fill={sheet}>{p.tag}</text>
+              </g>
+            ))}
+            <g font-family="IBM Plex Mono, monospace" font-size="11" fill={ink} opacity="0.7">
+              <text x={gx(8)} y="612" text-anchor="end">LEVEL 1 OF 2</text>
+              <text x={gx(0)} y="612">GRID 8 X 6</text>
+            </g>
+          </svg>
+        </div>
+
+        <dl class="grid gap-5 order-3">
+          {rightNotes.map((n) => (
+            <div class="border-t border-rule pt-3 lg:border-t-0 lg:border-l lg:pl-5 lg:pt-0">
+              <dt class="mono-tag text-xs">{n.k}</dt>
+              <dd class="mt-1 text-ink-2 text-[14px] leading-[1.4]">{n.v}</dd>
+            </div>
+          ))}
+        </dl>
+      </div>
+    </div>
+  </article>
+
+  <!-- 2. Contractors and People: one paired spread -->
+  <div class="mx-auto max-w-wrap px-5 sm:px-8 py-12 lg:py-16 border-b border-rule" data-section="feature-roster">
+    <p class="mono-tag text-xs text-ink-2">Who holds it, who to call</p>
+    <div class="mt-4 grid gap-10 lg:grid-cols-2 lg:gap-16 border-t-2 border-ink pt-8">
+      <article id="contractors" class="grid gap-4 content-start">
+        <TagChip label="Contractors" size="lg" class="justify-self-start" />
+        <h2 class="text-3xl sm:text-4xl leading-[0.98] tracking-[-0.015em]">Contractors and their scope on this site</h2>
+        <p class="text-[17px] leading-[1.5] max-w-[32rem]">Which firm holds which assets and what the scope covers. Contractors get a read-only view of their own assets; in the demo, that is Sam.</p>
+        <p class="mono-tag text-xs text-ink-2 pt-3 border-t border-rule">Trade, scope, assets held, contract end</p>
+      </article>
+      <article id="people" class="grid gap-4 content-start">
+        <TagChip label="People" size="lg" class="justify-self-start" />
+        <h2 class="text-3xl sm:text-4xl leading-[0.98] tracking-[-0.015em]">Who to call</h2>
+        <p class="text-[17px] leading-[1.5] max-w-[32rem]">Including after-hours and radio call signs from the roster, in the same place as the asset they relate to.</p>
+        <p class="mono-tag text-xs text-ink-2 pt-3 border-t border-rule">Organisation, role, after-hours, radio call sign</p>
+      </article>
+    </div>
+  </div>
+
+  <!-- 3. Runbooks: the cadence strip -->
+  <article id="runbooks" data-section="feature-runbooks" class="bg-card border-b border-rule">
+    <div class="mx-auto max-w-wrap px-5 sm:px-8 py-12 lg:py-16">
+      <div class="grid gap-4 lg:grid-cols-12 lg:items-end">
+        <div class="lg:col-span-7">
+          <TagChip label="Runbooks" size="lg" />
+          <h2 class="mt-4 text-3xl sm:text-4xl lg:text-5xl leading-[0.98] tracking-[-0.015em]">Role runbooks by cadence</h2>
+        </div>
+        <p class="lg:col-span-5 text-[17px] leading-[1.5]">What each role does and how often, written down by cadence, plus the guides for events.</p>
+      </div>
+      <ol class="mt-8 grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 border-t border-l border-rule">
+        {cadence.map((c, i) => (
+          <li class="border-r border-b border-rule p-4 lg:p-5 min-h-[7rem] grid content-between">
+            <span class="mono-tag text-xs text-ink-2 tabular">{String(i + 1).padStart(2, '0')}</span>
+            <span class="display text-xl sm:text-2xl leading-tight tracking-[-0.01em]">{c}</span>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </article>
+
+  <!-- 4. Work requests and Handover: chip, heading, mono list -->
+  <div class="mx-auto max-w-wrap px-5 sm:px-8 py-12 lg:py-16 grid gap-10 lg:grid-cols-2 lg:gap-16 border-b border-rule">
+    {ledgers.map((f) => (
+      <article id={f.id} data-section={`feature-${f.id}`} class="grid gap-4 content-start sm:grid-cols-[minmax(0,1fr)_11rem] sm:gap-x-6">
+        <div class="sm:col-span-2"><TagChip label={f.tag} size="lg" /></div>
+        <div>
+          <h2 class="text-3xl sm:text-4xl leading-[0.98] tracking-[-0.015em] max-w-[18ch]">{f.title}</h2>
+          <p class="mt-4 text-[17px] leading-[1.5] max-w-[30rem]">{f.body}</p>
+        </div>
+        <ul class="grid gap-px bg-rule border border-rule rounded-sm overflow-hidden self-start">
+          {f.spec.map((s) => (<li class="mono-tag text-xs px-3 py-2 bg-card">{s}</li>))}
+        </ul>
+      </article>
+    ))}
+  </div>
+
+  <!-- 5. Emergency, Import, Access: the schedule table -->
+  <div class="mx-auto max-w-wrap px-5 sm:px-8 py-12 lg:py-16" data-section="feature-schedule">
+    <div class="flex flex-wrap items-end justify-between gap-4">
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl leading-[0.98] tracking-[-0.015em]">And three more it keeps</h2>
+      <p class="mono-tag text-xs text-ink-2">Schedule of holdings, seven to nine</p>
+    </div>
+    <table class="mt-8 w-full border-t-2 border-ink text-left">
+      <thead class="hidden sm:table-header-group">
+        <tr class="mono-tag text-xs text-ink-2 border-b border-rule">
+          <th scope="col" class="py-2 pr-4 font-normal w-40">Tag</th>
+          <th scope="col" class="py-2 pr-4 font-normal">Holds</th>
+          <th scope="col" class="py-2 pr-4 font-normal">Detail</th>
+          <th scope="col" class="py-2 font-normal w-56">Fields</th>
+        </tr>
+      </thead>
+      <tbody>
+        {schedule.map((it) => (
+          <tr id={it.id} class="grid sm:table-row gap-2 py-5 sm:py-0 border-b border-rule">
+            <td class="sm:py-5 sm:pr-4 align-top"><TagChip label={it.tag} /></td>
+            <td class="sm:py-5 sm:pr-8 align-top"><span class="display text-2xl leading-tight tracking-[-0.01em]">{it.title}</span></td>
+            <td class="sm:py-5 sm:pr-8 align-top text-ink-2 max-w-[26rem]">{it.body}</td>
+            <td class="sm:py-5 align-top mono-tag text-xs text-ink-2">{it.fields}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+</section>

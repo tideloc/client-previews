@@ -1,0 +1,33 @@
+---
+/** Explore the app page body: the one iframe with the Desktop / Phone control, instructions, persona sign-in chips, mobile note. */
+import { APP_SIGN_IN } from '../lib/links';
+import TagChip from './TagChip.astro';
+import DemoFrame from './DemoFrame.astro';
+const people = ['Priya', 'Sam', 'Harriet', 'Nadia'];
+---
+<section data-section="explorer" aria-labelledby="ex-h" class="border-b border-rule">
+  <div class="mx-auto max-w-wrap px-5 sm:px-8 pt-10 pb-8 grid gap-6 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:items-end">
+    <div>
+      <TagChip label="Explore the app" />
+      <h1 id="ex-h" class="mt-4 text-4xl sm:text-5xl lg:text-6xl leading-[0.98] tracking-[-0.02em]">Explore the app</h1>
+    </div>
+    <div class="text-[17px] leading-[1.5]">
+      <p>Pick a person to see the demo as they would. Priya runs operations across two centres. Sam is a contractor and sees only his assets.</p>
+      <p class="mt-3 text-ink-2 text-[15px]">A working demo with a fictional portfolio, Harbourline Property, and three invented sites: Ridgeway Fair, Marlow Central and Quay Tower. Nothing in it belongs to a real property group.</p>
+    </div>
+  </div>
+  <div class="mx-auto max-w-wrap px-5 sm:px-8 pb-12">
+    <DemoFrame variant="explore" />
+    <p class="mt-3 text-[13px] leading-[18px] text-ink-2 md:hidden">On a phone, <a href={APP_SIGN_IN} target="_blank" rel="noreferrer" class="underline underline-offset-4 text-ink">open the demo in its own tab</a>; it installs to your home screen.</p>
+  </div>
+</section>
+<section data-section="quick-links" aria-labelledby="ql-h" class="bg-card border-b border-rule">
+  <div class="mx-auto max-w-wrap px-5 sm:px-8 py-10 flex flex-wrap items-center gap-x-8 gap-y-4">
+    <p id="ql-h" class="text-[17px] leading-[1.5] text-ink-2 max-w-[34rem]">The sign-in page above lists the people in the demo. Open it in its own tab as any of them; on a phone, it installs to your home screen.</p>
+    <ul class="flex flex-wrap gap-2" aria-label="Sign in to the demo as">
+      {people.map((p) => (
+        <li><a href={APP_SIGN_IN} target="_blank" rel="noreferrer" class="tag tag-lg hover:bg-ink-raised"><span class="sr-only">Sign in as </span>{p}</a></li>
+      ))}
+    </ul>
+  </div>
+</section>

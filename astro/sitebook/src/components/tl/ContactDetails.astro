@@ -1,0 +1,13 @@
+---
+/** Phone / email / address with live slots. Each piece is optional. */
+import { siteContent, fullAddress } from "../../lib/site";
+const c = siteContent.contact;
+const { class: cls = "not-italic space-y-1", linkClass = "underline" } = Astro.props;
+---
+<address class={cls}>
+  <div data-tl-wrap="contact.phone" hidden={!c.phone}><a class={linkClass} data-tl="contact.phone" data-tl-href="tel:" href={`tel:${c.phone.replace(/\s+/g, "")}`}>{c.phone}</a></div>
+  <div data-tl-wrap="contact.email" hidden={!c.email}><a class={linkClass} data-tl="contact.email" data-tl-href="mailto:" href={`mailto:${c.email}`}>{c.email}</a></div>
+  <div data-tl-wrap="contact.address" hidden={!fullAddress()}>
+    <a class={linkClass} data-tl="contact.address" href={c.mapUrl || `https://www.google.com/maps/search/${encodeURIComponent(fullAddress())}`} target="_blank" rel="noreferrer">{fullAddress()}</a>
+  </div>
+</address>

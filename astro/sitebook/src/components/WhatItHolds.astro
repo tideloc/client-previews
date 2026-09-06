@@ -1,0 +1,40 @@
+---
+/** Six holdings from the inventory, set as a drawing schedule: full-width rows, chip, item, detail. */
+import TagChip from './TagChip.astro';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const items = [
+  { tag: 'Map', title: 'Every asset pinned on the floor plan', body: 'With a photo, a tag and a grid reference.' },
+  { tag: 'Contractors', title: 'Contractors and their scope on this site', body: 'Which firm holds which assets and what the scope covers. Contractors get a read-only view of their own assets.' },
+  { tag: 'People', title: 'Who to call', body: 'Including after-hours and radio call signs from the roster.' },
+  { tag: 'Emergency', title: 'Emergency codes and isolation points', body: 'The codes the site uses and where each service is isolated.' },
+  { tag: 'Runbooks', title: 'Role runbooks by cadence', body: 'Daily, weekly, monthly, quarterly, six-monthly and annual, plus event guides.' },
+  { tag: 'Handover', title: 'Printable handover packs and contractor transition packs', body: 'The site as a document, for the incoming manager or the incoming contractor.' },
+];
+---
+<section data-section="what-it-holds" aria-labelledby="wih-h" class="bg-card border-b border-rule">
+  <div class="mx-auto max-w-wrap px-5 sm:px-8 py-14 lg:py-20">
+    <div class="flex flex-wrap items-end justify-between gap-4">
+      <h2 id="wih-h" class="text-4xl sm:text-5xl lg:text-6xl leading-[0.96] tracking-[-0.02em]">What it holds</h2>
+      <p class="mono-tag text-xs text-ink-2">Schedule of holdings, six of nine</p>
+    </div>
+    <table class="mt-8 w-full border-t-2 border-ink text-left">
+      <thead class="hidden sm:table-header-group">
+        <tr class="mono-tag text-xs text-ink-2 border-b border-rule">
+          <th scope="col" class="py-2 pr-4 font-normal w-40">Tag</th>
+          <th scope="col" class="py-2 pr-4 font-normal">Holds</th>
+          <th scope="col" class="py-2 font-normal">Detail</th>
+        </tr>
+      </thead>
+      <tbody>
+        {items.map((it) => (
+          <tr class="grid sm:table-row gap-2 py-5 sm:py-0 border-b border-rule">
+            <td class="sm:py-5 sm:pr-4 align-top"><TagChip label={it.tag} /></td>
+            <td class="sm:py-5 sm:pr-8 align-top"><span class="display text-2xl leading-tight tracking-[-0.01em]">{it.title}</span></td>
+            <td class="sm:py-5 align-top text-ink-2 max-w-[30rem]">{it.body}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+    <p class="mt-5 text-ink-2">Work requests, imports and access are on the <a href={`${base}/product/`} class="underline underline-offset-4 text-ink">product page</a>.</p>
+  </div>
+</section>

@@ -1,0 +1,23 @@
+---
+/** Product screen: the live demo in a hairline frame. md and up: the one iframe with the Desktop / Phone control. Below md: drawn plan and an outline launch button, no iframe. */
+import { APP_URL, APP_SIGN_IN } from '../lib/links';
+import PlanGrid from './PlanGrid.astro';
+import DemoFrame from './DemoFrame.astro';
+interface Props { class?: string }
+const { class: cls = '' } = Astro.props;
+---
+<div class={`rounded-lg border border-rule bg-card overflow-hidden ${cls}`} data-app-panel>
+  <div class="flex flex-wrap items-center gap-x-4 gap-y-1 px-4 py-2.5 border-b border-rule bg-ground">
+    <span class="mono-tag text-xs text-ink-2">{APP_URL.replace(/^https?:\/\//, '')}</span>
+    <span class="text-[13px] leading-[18px] text-ink hidden md:inline">Pick a person to see the demo as they would. Priya runs operations across two centres. Sam is a contractor and sees only his assets.</span>
+    <a href={APP_SIGN_IN} target="_blank" rel="noreferrer" class="ml-auto text-[13px] font-medium underline underline-offset-4 whitespace-nowrap">Open the demo</a>
+  </div>
+  <div class="hidden md:block bg-ground">
+    <DemoFrame variant="hero" class="pt-3 px-3 pb-0 [&_[data-frame]]:rounded-t-md [&_[data-frame]]:border [&_[data-frame]]:border-b-0 [&_[data-frame]]:border-rule" />
+  </div>
+  <div class="md:hidden relative grid-paper p-4">
+    <PlanGrid class="w-full h-auto" pins={6} />
+    <a href={APP_SIGN_IN} target="_blank" rel="noreferrer" class="btn-outline w-full mt-4">Open the demo</a>
+    <p class="mt-3 text-[13px] leading-[18px] text-ink-2">Pick a person to see the demo as they would. Priya runs operations across two centres. Sam is a contractor and sees only his assets. On a phone, open the demo in its own tab; it installs to your home screen.</p>
+  </div>
+</div>
