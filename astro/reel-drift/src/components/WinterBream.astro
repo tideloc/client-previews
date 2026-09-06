@@ -1,0 +1,18 @@
+---
+import { Picture } from 'astro:assets';
+import angler from '../assets/angler-casting.jpg';
+import dawn from '../assets/gen-river-dawn.jpg';
+---
+<section data-section="winter-bream" aria-labelledby="bream-h" class="bg-ground text-ink">
+  <div class="mx-auto max-w-7xl px-5 sm:px-8 py-16 lg:py-24 grid gap-10 lg:grid-cols-[1fr_1.15fr] lg:items-stretch">
+    <Picture src={angler} widths={[640, 1024, 1179]} sizes="(min-width: 1024px) 45vw, 100vw" formats={['avif', 'webp']} alt="Angler casting a light spin rod from the bow beneath tall gum trees on a river bank" class="w-full h-full object-cover border border-primary" pictureAttributes={{ class: 'block aspect-[3/4] lg:aspect-auto lg:min-h-[640px]' }} />
+    <div class="flex flex-col">
+      <p class="font-display font-light uppercase tracking-[0.35em] text-xs">From the 20 July drift</p>
+      <h2 id="bream-h" class="mt-4 font-display font-extrabold uppercase leading-[0.95] text-4xl sm:text-5xl lg:text-6xl">Winter bream can be hard to find.</h2>
+      <p class="mt-6 text-xl leading-relaxed max-w-2xl">Do you start upstream and work your way down? Or do you go to the lower reaches? Persistence and patience and always willing to try new things.</p>
+      <p class="mt-4 text-lg text-ink/80 max-w-2xl">What are your winter bream theories? Tell us on the reel.</p>
+      <a href="https://www.instagram.com/reel.drift.wa/reel/DbBCvkchtiT/" target="_blank" rel="noreferrer" class="mt-6 inline-flex self-start bg-primary text-ground px-6 py-3.5 font-display font-extrabold uppercase tracking-wide text-sm">Watch the winter bream drift</a>
+      <Picture src={dawn} widths={[640, 1024, 1376]} sizes="(min-width: 1024px) 50vw, 100vw" formats={['avif', 'webp']} alt="Bow of an aluminium tinnie drifting on a calm gum-lined river at first light" class="w-full h-full object-cover border border-primary" pictureAttributes={{ class: 'mt-10 block aspect-[16/8] flex-1' }} />
+    </div>
+  </div>
+</section>

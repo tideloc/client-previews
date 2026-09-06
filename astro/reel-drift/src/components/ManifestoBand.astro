@@ -1,0 +1,15 @@
+---
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+<section data-section="manifesto" aria-labelledby="manifesto-h" class="bg-primary text-ground border-t border-ground/10">
+  <div class="mx-auto max-w-7xl px-5 sm:px-8 py-16 lg:py-24 grid gap-10 lg:grid-cols-[auto_1fr] lg:items-start">
+    <img src={`${base}/mark-cream.png`} alt="" width="440" height="200" class="w-40 lg:w-56 h-auto opacity-90" aria-hidden="true" />
+    <div>
+      <h2 id="manifesto-h" class="font-display font-extrabold uppercase leading-[0.95] text-4xl sm:text-5xl lg:text-6xl">Our goal is simple.</h2>
+      <blockquote class="mt-8 max-w-3xl text-xl sm:text-2xl leading-relaxed text-ground/90">
+        <p>Share our love of fishing through genuine adventures, practical tips, plenty of laughs, and memories made along the way. Whether we're chasing new species, exploring new water, or spending time with family and mates, we hope every post leaves you inspired to get out on the water.</p>
+      </blockquote>
+      <p class="mt-8 font-script text-4xl sm:text-5xl">Until the next drift.</p>
+    </div>
+  </div>
+</section>

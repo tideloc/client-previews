@@ -1,0 +1,68 @@
+---
+import { Picture } from 'astro:assets';
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import EnquiryForm from '../../components/EnquiryForm.astro';
+import PriceList from '../../components/tl/PriceList.astro';
+import { INSTAGRAM, YOUTUBE } from '../../data/reels';
+import bank from '../../assets/gen-river-bank.jpg';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+<Base title="Contact | Reel Drift" description="Get in touch with Reel Drift, a fishing channel from Western Australia. Brands, collabs and mates who want to come along: send a message or find us on Instagram.">
+  <Header slot="header" />
+  <section data-section="contact-form" aria-labelledby="contact-h" class="bg-ground text-ink">
+    <div class="mx-auto max-w-7xl px-5 sm:px-8 pt-14 pb-16 lg:pb-24 grid gap-12 lg:grid-cols-[1.1fr_1fr]">
+      <div>
+        <p class="font-display font-light uppercase tracking-[0.35em] text-xs">Contact</p>
+        <h1 id="contact-h" class="mt-4 font-display font-extrabold uppercase leading-[0.95] text-5xl sm:text-6xl lg:text-7xl">Get in touch.</h1>
+        <p class="mt-6 max-w-xl text-lg">Reel Drift fishes Western Australia and lives on Instagram for now. The form lands in the Reel Drift inbox. Comments and theories go on the reels.</p>
+        <dl class="mt-10 border-t border-primary max-w-xl">
+          <div class="grid grid-cols-[8rem_1fr] gap-4 py-4 border-b border-primary/25">
+            <dt class="font-display font-light uppercase tracking-[0.2em] text-[11px] pt-1">Brands</dt>
+            <dd>Tackle already on the boat and tagged in the reels: Hurricane Lures, Millerods, Tackle West, Outback Breamer Baits, Shimano Fish AU. If yours belongs there, say so.</dd>
+          </div>
+          <div class="grid grid-cols-[8rem_1fr] gap-4 py-4 border-b border-primary/25">
+            <dt class="font-display font-light uppercase tracking-[0.2em] text-[11px] pt-1">Mates</dt>
+            <dd>Family and mates are half the point of every drift. Hellos, tips and laughs all welcome.</dd>
+          </div>
+          <div class="grid grid-cols-[8rem_1fr] gap-4 py-4 border-b border-primary/25">
+            <dt class="font-display font-light uppercase tracking-[0.2em] text-[11px] pt-1">Theories</dt>
+            <dd>Upstream first, or the lower reaches? Winter bream theories are wanted on the 20 July reel.</dd>
+          </div>
+          <div class="grid grid-cols-[8rem_1fr] gap-4 py-4 border-b border-primary/25">
+            <dt class="font-display font-light uppercase tracking-[0.2em] text-[11px] pt-1">Follow</dt>
+            <dd class="flex flex-wrap gap-x-6 gap-y-1"><a class="underline" href={INSTAGRAM} target="_blank" rel="noreferrer">Instagram @reel.drift.wa</a><a class="underline" href={YOUTUBE} target="_blank" rel="noreferrer">YouTube @ReelDriftWA</a></dd>
+          </div>
+        </dl>
+      </div>
+      <div class="bg-primary text-ground p-6 sm:p-8 self-start">
+        <h2 class="font-display font-extrabold uppercase text-2xl">Send a message.</h2>
+        <p class="mt-2 text-sm text-ground/80">Name, email, what you're after.</p>
+        <EnquiryForm kind="enquiry" site="Reel Drift" submitLabel="Send" successText="Sent. Thanks for reaching out."
+          class="mt-6 grid gap-4"
+          inputClass="w-full border border-ground/50 bg-transparent text-ground placeholder:text-ground/50 px-3 py-2.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ground"
+          buttonClass="bg-ground text-primary px-6 py-3.5 font-display font-extrabold uppercase tracking-wide text-sm"
+          fields={[
+            { name: 'name', label: 'Name', required: true },
+            { name: 'email', label: 'Email', type: 'email', required: true },
+            { name: 'message', label: 'Message', type: 'textarea', required: true, placeholder: 'What are you after?' },
+          ]} />
+      </div>
+    </div>
+  </section>
+  <section data-section="contact-log" aria-labelledby="log-h" class="bg-secondary text-ink">
+    <div class="mx-auto max-w-7xl px-5 sm:px-8 py-16 lg:py-24 grid gap-10 lg:grid-cols-[1fr_1.2fr] lg:items-stretch">
+      <Picture src={bank} widths={[480, 768]} sizes="(min-width: 1024px) 40vw, 100vw" formats={['avif', 'webp']} alt="Paperbarks and gum trees lining a still river under a pale winter sky" class="w-full h-full object-cover border border-primary" pictureAttributes={{ class: 'block aspect-[4/5] lg:aspect-auto' }} />
+      <div>
+        <h2 id="log-h" class="font-display font-extrabold uppercase leading-none text-4xl sm:text-5xl">While you wait, the drift log.</h2>
+        <p class="mt-4 text-lg max-w-xl">Six posts since 28 June 2026. Every reel plays on Instagram.</p>
+        <div class="mt-6 bg-ground p-6 border border-primary">
+          <PriceList sectionClass="" titleClass="sr-only" itemClass="grid grid-cols-[1fr_auto] gap-x-4 py-3 border-b border-primary/15 items-baseline" nameClass="text-[15px] leading-snug" priceClass="font-display font-light tracking-[0.15em] text-xs uppercase whitespace-nowrap" noteClass="block text-xs text-ink/60 mt-0.5" />
+          <a href={`${base}/videos/`} class="mt-4 inline-block font-display font-light uppercase tracking-[0.3em] text-xs border-b border-primary pb-1">All drifts</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <Footer slot="footer" />
+</Base>

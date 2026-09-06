@@ -1,0 +1,20 @@
+---
+/** Full-bleed photo closer for the About page: the invitation from the 28 Jun post, two actions, no form. */
+import { Picture } from 'astro:assets';
+import river from '../assets/hero-river-sunset.jpg';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+<section data-section="ride" aria-labelledby="ride-h" class="relative bg-primary text-ground">
+  <Picture src={river} widths={[640, 1024, 1179]} sizes="100vw" formats={['avif', 'webp']} alt="Boy fishing from the bow of a Quintrex tinnie on a gum-lined river at sunset" class="h-full w-full object-cover" pictureAttributes={{ class: 'absolute inset-0' }} />
+  <div class="absolute inset-0 bg-primary/70" aria-hidden="true"></div>
+  <div class="relative mx-auto max-w-7xl px-5 sm:px-8 py-24 lg:py-32 grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end">
+    <div>
+      <h2 id="ride-h" class="font-display font-extrabold uppercase leading-[0.95] text-4xl sm:text-5xl lg:text-6xl">Come along<br />for the ride.</h2>
+      <p class="mt-5 max-w-lg text-lg text-ground/90">Grateful you've chosen to. Reels on Instagram now, full adventures on YouTube when they land.</p>
+    </div>
+    <div class="flex flex-wrap gap-4">
+      <a href={`${base}/videos/`} class="inline-flex bg-ground text-primary px-6 py-3.5 font-display font-extrabold uppercase tracking-wide text-sm">Watch the latest drift</a>
+      <a href={`${base}/contact/`} class="inline-flex border border-ground/70 px-6 py-3.5 font-display font-extrabold uppercase tracking-wide text-sm">Send a message</a>
+    </div>
+  </div>
+</section>

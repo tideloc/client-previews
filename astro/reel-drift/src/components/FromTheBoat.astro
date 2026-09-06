@@ -1,0 +1,39 @@
+---
+/** Photo mosaic of the real cover frames with their captions. Static grid, no scroll strip. */
+import { Picture } from 'astro:assets';
+import river from '../assets/hero-river-sunset.jpg';
+import bream from '../assets/bream-in-net.jpg';
+import bow from '../assets/bow-sunrise.jpg';
+import deck from '../assets/logo-on-deck.jpg';
+import angler from '../assets/angler-casting.jpg';
+---
+<section data-section="from-the-boat" aria-labelledby="boat-h" class="bg-secondary text-ink">
+  <div class="mx-auto max-w-7xl px-5 sm:px-8 py-16 lg:py-24">
+    <div class="flex flex-wrap items-end justify-between gap-4 border-b-2 border-primary pb-5">
+      <h2 id="boat-h" class="font-display font-extrabold uppercase leading-none text-4xl sm:text-5xl">From the boat.</h2>
+      <p class="font-display font-light uppercase tracking-[0.3em] text-xs">Frames from the reels, June to July 2026</p>
+    </div>
+    <div class="mt-8 grid gap-4 grid-cols-2 lg:grid-cols-4">
+      <figure class="col-span-2 lg:row-span-2 relative aspect-[4/5] lg:aspect-auto">
+        <Picture src={angler} widths={[640, 1024, 1179]} sizes="(min-width: 1024px) 50vw, 100vw" formats={['avif', 'webp']} alt="Angler casting a light spin rod from the bow beneath tall gum trees on a river bank" class="w-full h-full object-cover border border-primary" pictureAttributes={{ class: 'block absolute inset-0' }} />
+        <figcaption class="absolute left-0 bottom-0 bg-ground text-ink px-4 py-2 text-sm">27 Jul. Flicking lightly weighted plastics under the gums.</figcaption>
+      </figure>
+      <figure class="relative">
+        <Picture src={river} widths={[480, 800]} sizes="(min-width: 1024px) 25vw, 50vw" formats={['avif', 'webp']} alt="Boy fishing from the bow of a Quintrex tinnie on a gum-lined river at sunset" class="w-full h-full object-cover border border-primary" pictureAttributes={{ class: 'block aspect-square' }} />
+        <figcaption class="absolute left-0 bottom-0 bg-ground text-ink px-3 py-1.5 text-xs">31 Jul. The oldest lad, hooked on plastics.</figcaption>
+      </figure>
+      <figure class="relative">
+        <Picture src={bream} widths={[480, 720]} sizes="(min-width: 1024px) 25vw, 50vw" formats={['avif', 'webp']} alt="Three bream in a landing net on the boat deck beside a pack of Hurricane Lures Sprats" class="w-full h-full object-cover border border-primary" pictureAttributes={{ class: 'block aspect-square' }} />
+        <figcaption class="absolute left-0 bottom-0 bg-ground text-ink px-3 py-1.5 text-xs">20 Jul. Three winter bream in the net.</figcaption>
+      </figure>
+      <figure class="relative">
+        <Picture src={bow} widths={[480, 640]} sizes="(min-width: 1024px) 25vw, 50vw" formats={['avif', 'webp']} alt="Bow of the boat on flat estuary water under a pink and blue sunrise sky" class="w-full h-full object-cover border border-primary" pictureAttributes={{ class: 'block aspect-square' }} />
+        <figcaption class="absolute left-0 bottom-0 bg-ground text-ink px-3 py-1.5 text-xs">11 Jul. Bow at sunrise.</figcaption>
+      </figure>
+      <figure class="relative">
+        <Picture src={deck} widths={[480, 640]} sizes="(min-width: 1024px) 25vw, 50vw" formats={['avif', 'webp']} alt="Reel Drift rod and wave logo overlaid on the grey deck of the boat in sunlight" class="w-full h-full object-cover border border-primary" pictureAttributes={{ class: 'block aspect-square' }} />
+        <figcaption class="absolute left-0 bottom-0 bg-ground text-ink px-3 py-1.5 text-xs">4 Jul. On the deck.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>

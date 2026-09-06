@@ -1,0 +1,20 @@
+---
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import LatestDrifts from '../../components/LatestDrifts.astro';
+import FollowStrip from '../../components/FollowStrip.astro';
+---
+<Base title="Videos | Reel Drift" description="Every Reel Drift drift so far: bream on soft plastics from the boat in WA, plus the slots waiting for full adventures and tips on YouTube.">
+  <Header slot="header" />
+  <section data-section="page-intro" class="bg-ground text-ink border-b border-primary/15">
+    <div class="mx-auto max-w-7xl px-5 sm:px-8 pt-14 pb-10">
+      <p class="font-display font-light uppercase tracking-[0.35em] text-xs">Videos</p>
+      <h1 class="mt-4 font-display font-extrabold uppercase leading-[0.95] text-5xl sm:text-6xl lg:text-7xl">Every drift so far.</h1>
+      <p class="mt-6 max-w-2xl text-lg">Six posts since 28 June 2026: five reels from the boat in Western Australia and the post that started it. Reels play on Instagram. The Full adventures and Tips tabs are the slots waiting for YouTube.</p>
+    </div>
+  </section>
+  <LatestDrifts heading="All drifts." id="all" />
+  <FollowStrip />
+  <Footer slot="footer" />
+</Base>

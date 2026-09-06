@@ -1,0 +1,32 @@
+---
+import { Picture } from 'astro:assets';
+import PriceList from './tl/PriceList.astro';
+import hero from '../assets/hero-river-sunset.jpg';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+<section data-section="hero" aria-labelledby="hero-h" class="relative bg-primary text-ground">
+  <Picture src={hero} widths={[640, 1024, 1179]} sizes="100vw" formats={['avif', 'webp']} loading="eager" fetchpriority="high"
+    alt="Boy fishing from the bow of a Quintrex tinnie on a gum-lined river at sunset, road bridge behind"
+    pictureAttributes={{ class: 'absolute inset-0' }} class="h-full w-full object-cover object-[35%_center]" />
+  <div class="absolute inset-0 bg-gradient-to-r from-primary/95 via-primary/40 to-primary/5" aria-hidden="true"></div>
+  <div class="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-primary/90 to-transparent" aria-hidden="true"></div>
+  <div class="relative mx-auto max-w-7xl px-5 sm:px-8 pt-14 pb-14 lg:pt-14 lg:pb-16 grid gap-10 lg:grid-cols-[1.25fr_1fr] lg:items-end min-h-[70vh]">
+    <div class="self-end">
+      <p class="font-display font-light uppercase tracking-[0.35em] text-xs sm:text-sm text-ground/80">Reel Drift. Fishing Western Australia.</p>
+      <h1 id="hero-h" class="mt-5 font-display font-extrabold uppercase leading-[0.92] text-[2.6rem] sm:text-6xl lg:text-6xl xl:text-[3.9rem]">Learning the water.<br />Sharing the journey.<br /><span class="text-ground/70">One drift at a time.</span></h1>
+      <p class="mt-5 max-w-lg text-base sm:text-lg text-ground/90">Reels from the boat in Western Australia: bream on soft plastics, light tackle, family and mates. Full adventures on YouTube when they land.</p>
+      <div class="mt-8 flex flex-wrap gap-4 items-center">
+        <a href={`${base}/videos/`} class="inline-flex bg-ground text-primary px-6 py-3.5 font-display font-extrabold uppercase tracking-wide text-sm">Watch the latest drift</a>
+        <a href="https://www.instagram.com/reel.drift.wa/" target="_blank" rel="noreferrer" class="font-display font-light uppercase tracking-[0.3em] text-xs border-b border-ground/60 pb-1">Follow on Instagram</a>
+      </div>
+    </div>
+    <aside class="bg-ground text-ink p-6 sm:p-8 self-end" aria-label="Drift log">
+      <div class="flex items-baseline justify-between gap-4 border-b border-primary pb-3">
+        <h2 class="font-display font-extrabold uppercase text-2xl">Drift log.</h2>
+        <span class="font-display font-light uppercase tracking-[0.3em] text-[11px]">Winter 2026</span>
+      </div>
+      <PriceList sectionClass="mt-1" titleClass="sr-only" itemClass="grid grid-cols-[1fr_auto] gap-x-4 py-3 border-b border-primary/15 items-baseline" nameClass="text-[15px] leading-snug" priceClass="font-display font-light tracking-[0.15em] text-xs uppercase whitespace-nowrap" noteClass="block text-xs text-ink/60 mt-0.5" />
+      <a href={`${base}/videos/`} class="mt-4 inline-block font-display font-light uppercase tracking-[0.3em] text-xs border-b border-primary pb-1">All drifts</a>
+    </aside>
+  </div>
+</section>

@@ -1,0 +1,31 @@
+---
+import EnquiryForm from './EnquiryForm.astro';
+import { INSTAGRAM, YOUTUBE } from '../data/reels';
+interface Props { heading?: string }
+const { heading = 'Come along for the ride.' } = Astro.props;
+---
+<section data-section="contact" aria-labelledby="follow-h" class="bg-primary text-ground">
+  <div class="mx-auto max-w-7xl px-5 sm:px-8 py-16 lg:py-24 grid gap-12 lg:grid-cols-2">
+    <div>
+      <h2 id="follow-h" class="font-display font-extrabold uppercase leading-[0.95] text-4xl sm:text-5xl">{heading}</h2>
+      <p class="mt-6 text-lg text-ground/90 max-w-lg">This is just the beginning. Reels land on Instagram now and full adventures are coming to YouTube.</p>
+      <ul class="mt-8 grid gap-3 max-w-md">
+        <li><a href={INSTAGRAM} target="_blank" rel="noreferrer" class="flex items-center justify-between border border-ground/40 px-5 py-4 hover:bg-ground hover:text-primary"><span class="font-display font-extrabold uppercase text-sm">Instagram</span><span class="font-display font-light tracking-[0.2em] text-xs uppercase">@reel.drift.wa</span></a></li>
+        <li><a href={YOUTUBE} target="_blank" rel="noreferrer" class="flex items-center justify-between border border-ground/40 px-5 py-4 hover:bg-ground hover:text-primary"><span class="font-display font-extrabold uppercase text-sm">YouTube</span><span class="font-display font-light tracking-[0.2em] text-xs uppercase">@ReelDriftWA</span></a></li>
+      </ul>
+    </div>
+    <div class="bg-ground text-ink p-6 sm:p-8">
+      <h3 class="font-display font-extrabold uppercase text-2xl">Send a message.</h3>
+      <p class="mt-2 text-sm text-ink/75">Brands, collabs, or a mate who wants to come along. It lands in the Reel Drift inbox.</p>
+      <EnquiryForm kind="enquiry" site="Reel Drift" submitLabel="Send" successText="Sent. Thanks for reaching out."
+        class="mt-6 grid gap-4"
+        inputClass="w-full border border-primary/40 bg-transparent px-3 py-2.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+        buttonClass="bg-primary text-ground px-6 py-3.5 font-display font-extrabold uppercase tracking-wide text-sm"
+        fields={[
+          { name: 'name', label: 'Name', required: true },
+          { name: 'email', label: 'Email', type: 'email', required: true },
+          { name: 'message', label: 'Message', type: 'textarea', required: true, placeholder: 'What are you after?' },
+        ]} />
+    </div>
+  </div>
+</section>

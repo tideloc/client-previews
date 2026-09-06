@@ -1,0 +1,34 @@
+---
+import { INSTAGRAM, YOUTUBE } from '../data/reels';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const year = new Date().getFullYear();
+---
+<footer class="bg-primary text-ground" data-section="footer">
+  <div class="mx-auto max-w-7xl px-5 sm:px-8 py-14 grid gap-10 md:grid-cols-[1.4fr_1fr_1fr]">
+    <div>
+      <img src={`${base}/logo-cream.png`} alt="Reel Drift" width="660" height="360" class="h-24 w-auto" />
+      <p class="mt-5 max-w-sm text-ground/85">Learning the water. Sharing the journey. One drift at a time. Fishing content from the boat in Western Australia.</p>
+      <p class="mt-4 font-script text-3xl text-ground">Until the next drift.</p>
+    </div>
+    <div>
+      <p class="font-display font-light uppercase tracking-[0.3em] text-xs text-ground/70 mb-4">Pages</p>
+      <ul class="grid gap-2">
+        <li><a class="hover:underline" href={`${base}/`}>Home</a></li>
+        <li><a class="hover:underline" href={`${base}/videos/`}>Videos</a></li>
+        <li><a class="hover:underline" href={`${base}/about/`}>About</a></li>
+        <li><a class="hover:underline" href={`${base}/contact/`}>Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="font-display font-light uppercase tracking-[0.3em] text-xs text-ground/70 mb-4">Follow</p>
+      <ul class="grid gap-2">
+        <li><a class="hover:underline" href={INSTAGRAM} rel="noreferrer" target="_blank">Instagram @reel.drift.wa</a></li>
+        <li><a class="hover:underline" href={YOUTUBE} rel="noreferrer" target="_blank">YouTube @ReelDriftWA</a></li>
+      </ul>
+      <p class="mt-6 text-sm text-ground/70">Western Australia</p>
+    </div>
+  </div>
+  <div class="border-t border-ground/15">
+    <p class="mx-auto max-w-7xl px-5 sm:px-8 py-5 text-xs text-ground/60">&copy; {year} Reel Drift. All rights reserved.</p>
+  </div>
+</footer>

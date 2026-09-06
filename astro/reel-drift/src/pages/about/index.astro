@@ -1,0 +1,65 @@
+---
+import { Picture } from 'astro:assets';
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import FromTheBoat from '../../components/FromTheBoat.astro';
+import RideBand from '../../components/RideBand.astro';
+import dawn from '../../assets/gen-river-dawn.jpg';
+import bank from '../../assets/gen-river-bank.jpg';
+import somethingNew from '../../assets/something-new.jpg';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+<Base title="About | Reel Drift" description="Reel Drift is a fishing channel from Western Australia. Genuine adventures, practical tips, plenty of laughs, family and mates, one drift at a time.">
+  <Header slot="header" />
+  <section data-section="about-hero" aria-labelledby="about-h" class="bg-ground text-ink">
+    <div class="mx-auto max-w-7xl px-5 sm:px-8 pt-14 pb-16 grid gap-10 lg:grid-cols-[1.1fr_1fr] lg:items-end">
+      <div>
+        <p class="font-display font-light uppercase tracking-[0.35em] text-xs">About Reel Drift</p>
+        <h1 id="about-h" class="mt-4 font-display font-extrabold uppercase leading-[0.95] text-5xl sm:text-6xl lg:text-7xl">Our goal is simple.</h1>
+        <div class="mt-8 max-w-2xl text-xl leading-relaxed space-y-5">
+          <p>At Reel Drift our goal is simple: share our love of fishing through genuine adventures, practical tips, plenty of laughs, and memories made along the way.</p>
+          <p>Whether we're chasing new species, exploring new water, or spending time with family and mates, we hope every post leaves you inspired to get out on the water.</p>
+          <p>This is just the beginning, and we're grateful you've chosen to come along for the ride. New content is on the way. Full adventures will be shared on YouTube @ReelDriftWA.</p>
+        </div>
+        <p class="mt-8 font-script text-4xl">Until the next drift.</p>
+      </div>
+      <Picture src={dawn} widths={[640, 1024, 1376]} sizes="(min-width: 1024px) 45vw, 100vw" formats={['avif', 'webp']} loading="eager" alt="Bow of an aluminium tinnie drifting on a calm gum-lined river at first light" class="w-full h-full object-cover border border-primary" pictureAttributes={{ class: 'block aspect-[4/5] lg:aspect-[4/5]' }} />
+    </div>
+  </section>
+  <section data-section="what-we-fish" aria-labelledby="water-h" class="bg-primary text-ground">
+    <div class="mx-auto max-w-7xl px-5 sm:px-8 py-16 lg:py-24 grid gap-10 lg:grid-cols-[1fr_1.4fr] lg:items-center">
+      <Picture src={bank} widths={[480, 768]} sizes="(min-width: 1024px) 35vw, 100vw" formats={['avif', 'webp']} alt="Paperbarks and gum trees lining a still river under a pale winter sky" class="w-full h-full object-cover border border-ground/40" pictureAttributes={{ class: 'block aspect-[3/4]' }} />
+      <div>
+        <h2 id="water-h" class="font-display font-extrabold uppercase leading-[0.95] text-4xl sm:text-5xl">Rivers, bream, light tackle.</h2>
+        <ul class="mt-8 grid gap-0 border-t border-ground/30 text-lg">
+          <li class="grid sm:grid-cols-[10rem_1fr] gap-2 py-4 border-b border-ground/20"><span class="font-display font-light uppercase tracking-[0.2em] text-xs pt-1.5">Where</span><span>Western Australian rivers and estuaries, fished from the boat.</span></li>
+          <li class="grid sm:grid-cols-[10rem_1fr] gap-2 py-4 border-b border-ground/20"><span class="font-display font-light uppercase tracking-[0.2em] text-xs pt-1.5">What</span><span>Bream on soft plastics, winter and otherwise. New species when the chance comes.</span></li>
+          <li class="grid sm:grid-cols-[10rem_1fr] gap-2 py-4 border-b border-ground/20"><span class="font-display font-light uppercase tracking-[0.2em] text-xs pt-1.5">How</span><span>PE 0.6 braid, 3lb leader, lightly weighted plastics flicked from the bow.</span></li>
+          <li class="grid sm:grid-cols-[10rem_1fr] gap-2 py-4 border-b border-ground/20"><span class="font-display font-light uppercase tracking-[0.2em] text-xs pt-1.5">Who</span><span>Family and mates, including the oldest lad getting hooked on plastics.</span></li>
+          <li class="grid sm:grid-cols-[10rem_1fr] gap-2 py-4 border-b border-ground/20"><span class="font-display font-light uppercase tracking-[0.2em] text-xs pt-1.5">Since</span><span>First post 28 June 2026. Six drifts logged so far.</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <FromTheBoat />
+  <section data-section="where-it-started" aria-labelledby="new-h" class="bg-ground text-ink">
+    <div class="mx-auto max-w-7xl px-5 sm:px-8 py-16 lg:py-24 grid gap-10 md:grid-cols-[1fr_1.2fr] items-center">
+      <Picture src={somethingNew} widths={[480, 800, 1254]} sizes="(min-width: 768px) 40vw, 100vw" formats={['avif', 'webp']} alt="Reel Drift logo above the words Something new is coming on a cream background" class="w-full h-auto border border-primary" pictureAttributes={{ class: 'block' }} />
+      <div>
+        <p class="font-display font-light uppercase tracking-[0.35em] text-xs">Where it started</p>
+        <h2 id="new-h" class="mt-4 font-display font-extrabold uppercase leading-[0.95] text-4xl sm:text-5xl">The first post, 28 June 2026.</h2>
+        <p class="mt-6 text-lg">A cream card, the rod-and-wave mark, and a promise: new content, new adventures, full adventures on YouTube @ReelDriftWA. Five reels have followed since, every one from the boat.</p>
+        <ul class="mt-8 border-t border-primary">
+          <li class="grid grid-cols-[6rem_1fr] gap-4 py-3 border-b border-primary/25"><span class="font-display font-light uppercase tracking-[0.2em] text-[11px] pt-1">28 Jun</span><span>Something new is coming. The mark, the goal, the YouTube promise.</span></li>
+          <li class="grid grid-cols-[6rem_1fr] gap-4 py-3 border-b border-primary/25"><span class="font-display font-light uppercase tracking-[0.2em] text-[11px] pt-1">4 to 11 Jul</span><span>First reels: the deck, the bow at sunrise.</span></li>
+          <li class="grid grid-cols-[6rem_1fr] gap-4 py-3 border-b border-primary/25"><span class="font-display font-light uppercase tracking-[0.2em] text-[11px] pt-1">20 Jul</span><span>Winter bream, and the question of upstream or the lower reaches.</span></li>
+          <li class="grid grid-cols-[6rem_1fr] gap-4 py-3 border-b border-primary/25"><span class="font-display font-light uppercase tracking-[0.2em] text-[11px] pt-1">27 to 31 Jul</span><span>The light-tackle rundown, then the oldest lad's plastics session.</span></li>
+        </ul>
+        <a href={`${base}/videos/`} class="mt-8 inline-flex bg-primary text-ground px-6 py-3.5 font-display font-extrabold uppercase tracking-wide text-sm">Watch the latest drift</a>
+      </div>
+    </div>
+  </section>
+  <RideBand />
+  <Footer slot="footer" />
+</Base>

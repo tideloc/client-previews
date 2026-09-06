@@ -1,0 +1,35 @@
+---
+import { Picture } from 'astro:assets';
+import bream from '../assets/bream-in-net.jpg';
+import plastic from '../assets/gen-soft-plastic.jpg';
+const gear = [
+  { name: 'Millerods Grub Freak', role: 'Rod', line: 'The favourite for flicking lightly weighted soft plastics.' },
+  { name: 'Daiwa Certate 2500S', role: 'Reel', line: 'Pairs nicely with the Grub Freak.' },
+  { name: 'Varivas light game braid, PE 0.6', role: 'Main line', line: 'Has always been very reliable.' },
+  { name: 'Yamatoyo Chinu Harris, 3lb', role: 'Leader', line: 'Fished with the PE 0.6 braid; always been very reliable.' },
+  { name: 'Veetail 70, Yabby oil', role: 'Soft plastic', line: 'Doing the damage on the plastics session with the oldest lad.' },
+  { name: 'Hurricane Lures Sprat', role: 'Soft plastic', line: 'In the net beside three winter bream.' },
+];
+---
+<section data-section="gear" aria-labelledby="gear-h" class="bg-secondary text-ink">
+  <div class="mx-auto max-w-7xl px-5 sm:px-8 py-16 lg:py-24 grid gap-12 lg:grid-cols-[1fr_1.1fr] lg:items-start">
+    <div>
+      <p class="font-display font-light uppercase tracking-[0.35em] text-xs">On the boat</p>
+      <h2 id="gear-h" class="mt-4 font-display font-extrabold uppercase leading-[0.95] text-4xl sm:text-5xl">What we fish with.</h2>
+      <p class="mt-5 max-w-xl text-lg">Light tackle for river bream on soft plastics. Every item here is named in a Reel Drift caption or sitting in the net in the footage.</p>
+      <dl class="mt-8 border-t border-primary">
+        {gear.map((g) => (
+          <div class="grid grid-cols-[7rem_1fr] gap-4 py-4 border-b border-primary/25">
+            <dt class="font-display font-light uppercase tracking-[0.2em] text-[11px] pt-1">{g.role}</dt>
+            <dd><p class="font-display font-extrabold text-base">{g.name}</p><p class="text-sm text-ink/75 mt-0.5">{g.line}</p></dd>
+          </div>
+        ))}
+      </dl>
+      <p class="mt-6 text-sm text-ink/70">Tagged along the way: Tackle West, Hurricane Lures, Millerods, Outback Breamer Baits, Shimano Fish AU.</p>
+    </div>
+    <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
+      <Picture src={bream} widths={[480, 720]} sizes="(min-width: 1280px) 30vw, (min-width: 1024px) 50vw, 100vw" formats={['avif', 'webp']} alt="Three bream in a landing net on the boat deck beside a pack of Hurricane Lures Sprats" class="w-full h-full object-cover border border-primary" pictureAttributes={{ class: 'aspect-[16/10] xl:col-span-2 block' }} />
+      <Picture src={plastic} widths={[480, 800, 1376]} sizes="(min-width: 1280px) 30vw, (min-width: 1024px) 50vw, 100vw" formats={['avif', 'webp']} alt="A green soft plastic grub on a light jighead held above dark river water beside a spin outfit" class="w-full h-full object-cover border border-primary" pictureAttributes={{ class: 'aspect-[16/10] xl:col-span-2 block' }} />
+    </div>
+  </div>
+</section>

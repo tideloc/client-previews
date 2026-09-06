@@ -1,0 +1,22 @@
+{
+  "slug": "reel-drift",
+  "version": 1,
+  "updatedAt": "2026-09-06T00:00:00.000Z",
+  "businessName": "Reel Drift",
+  "hours": [],
+  "holidays": [],
+  "announcement": { "enabled": true, "text": "New content is on the way. Full adventures will be shared on YouTube @ReelDriftWA", "link": "https://www.youtube.com/@ReelDriftWA" },
+  "contact": { "phone": "", "email": "", "address": "", "suburb": "", "state": "", "postcode": "" },
+  "priceList": [
+    { "title": "Drift log", "items": [
+      { "name": "Taking the oldest lad out to get him hooked on fishing with plastics", "price": "31 Jul 2026", "note": "Veetail 70, Yabby oil" },
+      { "name": "Light game braid, 3lb leader and the Grub Freak", "price": "27 Jul 2026", "note": "Varivas, Yamatoyo, Millerods, Daiwa" },
+      { "name": "Winter bream can be hard to find", "price": "20 Jul 2026", "note": "Hurricane Lures, Millerods" },
+      { "name": "Bow at sunrise", "price": "11 Jul 2026", "note": "Reel" },
+      { "name": "On the deck with Outback Breamer Baits", "price": "4 Jul 2026", "note": "Millerods, Shimano" },
+      { "name": "Something new is coming", "price": "28 Jun 2026", "note": "First post" }
+    ] }
+  ],
+  "social": { "instagram": "https://www.instagram.com/reel.drift.wa/" },
+  "openingHoursSpecification": []
+}

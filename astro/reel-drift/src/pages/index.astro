@@ -1,0 +1,21 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Hero from '../components/Hero.astro';
+import ManifestoBand from '../components/ManifestoBand.astro';
+import LatestDrifts from '../components/LatestDrifts.astro';
+import OnTheBoat from '../components/OnTheBoat.astro';
+import WinterBream from '../components/WinterBream.astro';
+import FollowBand from '../components/FollowBand.astro';
+---
+<Base title="Fishing WA one drift at a time | Reel Drift" description="Reel Drift shares fishing from the boat in Western Australia: bream on soft plastics, light tackle and the odd lesson. Watch the latest drifts and follow along.">
+  <Header slot="header" />
+  <Hero />
+  <ManifestoBand />
+  <LatestDrifts limit={3} />
+  <OnTheBoat />
+  <WinterBream />
+  <FollowBand />
+  <Footer slot="footer" />
+</Base>
