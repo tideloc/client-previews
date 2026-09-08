@@ -28,8 +28,8 @@ const crumbs = {
     <p class="max-w-2xl">Open a group to see the conditions in it and how Coryn treats them.</p>
 
     <div class="mt-6 md:mt-8 rounded-xl border border-panel bg-white overflow-hidden divide-y divide-panel">
-      {conditionGroups.map((g, i) => (
-        <details id={g.id} name="conditions" open={i === 0} class="group scroll-mt-24">
+      {conditionGroups.map((g) => (
+        <details id={g.id} name="conditions" class="group scroll-mt-24">
           <summary class="flex items-center gap-4 cursor-pointer list-none select-none px-5 py-4 md:px-6 md:py-5 min-h-[60px] hover:bg-tint/30 group-open:bg-tint/30 transition-colors [&::-webkit-details-marker]:hidden">
             <span class="shrink-0 h-2.5 w-2.5 rounded-full bg-accent" aria-hidden="true"></span>
             <h2 class="text-[17px] md:text-lg leading-snug group-open:text-primary">{g.name}</h2>

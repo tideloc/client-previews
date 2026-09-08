@@ -60,5 +60,7 @@ Full-bleed night pool hero with her claim on the left and a Halaxy booking card 
   pills; conditions uses the treatment room. Only pool-night is above 1280px wide, so the photo sits in a
   bounded column (521 CSS px from a 588px source at 1280) rather than full bleed, which would have upscaled
   a 592px file to 1800w. About, contact, testimonials and watsu still use the plain white band.
+- 2026-09-08, sixth pass (Blake): the /conditions/ accordions all start closed, so the page opens as the same
+  eight-row index as the home page. A #hash link still opens the panel it points at.
 - Google Maps iframe on the book section renders blank in headless screenshots only; it loads in a browser.
 - Booking is a link-out until the Halaxy embed arrives (same behaviour as her current site).
