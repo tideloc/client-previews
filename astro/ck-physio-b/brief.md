@@ -20,7 +20,7 @@ Make an Eastern Suburbs patient book an assessment on Halaxy. Primary CTA "Book 
 - Logo: the bold "CK Physiotherapy" wordmark (navy + cyan wave) that her site declares as its schema.org logo. Favicon is the wave mark.
 
 ## Layout, in two lines
-Full-bleed night pool hero with her claim on the left and a Halaxy booking card (steps, practitioner, location, live hours, one button) as the data object on the right; then a teal specialties band, two photo doors (water / land), the pool as a spec sheet, the complete conditions index, Coryn with dated qualifications, three full reviews and a book section with form and map. The typographic moment is the 64px hero claim with "one-on-one aquatic physiotherapy" in the light teal.
+Full-bleed night pool hero with her claim on the left and a Halaxy booking card (steps, practitioner, location, live hours, one button) as the data object on the right; then a teal specialties band, two photo doors (water / land), the pool as a spec sheet, an eight-row index of the condition groups, Coryn with dated qualifications, three full reviews and a book section with form and map. The typographic moment is the 64px hero claim with "one-on-one aquatic physiotherapy" in the light teal.
 
 ## Imagery
 4 first-party photos only (ckphysio.com.au: night pool, day pool, treatment room, Coryn), reused with different crops. 0 generated images: three Gemini fills were tried and QC failed them for reading as a different room beside her real pool, so they were removed. No stock.
@@ -35,5 +35,11 @@ Full-bleed night pool hero with her claim on the left and a Halaxy booking card 
 
 ## Known issues
 - Independent QC failed twice (round 1: generated pool images read as another room, ordinals, hero contrast, one joined quote; round 2: star rows, stepper chrome, section repetition, mobile fold, headshot upscaling, one heading). All fixed. 2026-09-04 evening pass (Blake): nav cut to four links (Treatments, Conditions, About Coryn, Contact) plus phone and Book; /aquatic-physiotherapy/ became /treatments/ with aquatic, land, WATSU and programs sections; on a 390x844 phone the hero booking card's button now sits at y 542 to 590, inside the first screen, with a compact card (Open today line, full hours in a details toggle). Details in ~/tideloc/site-builds/ck-physio/review-b.md.
+- 2026-09-08 pass (Blake: "the conditions sections are a little overwhelming"): the home page now lists the eight
+  condition groups as tappable rows linking to /conditions/#anchor instead of printing all 29 conditions, and
+  /conditions/ is eight <details> accordions (first open, exclusive, terms as pills) instead of eight stacked
+  lists. Every condition name is still in the /conditions/ HTML. On a 390px phone the home conditions band went
+  1970px to 966px and the conditions page 8563px to 4632px. The duplicated "My approach" block was removed from
+  /conditions/ (it lives on /treatments/#programs) and a BreadcrumbList was added.
 - Google Maps iframe on the book section renders blank in headless screenshots only; it loads in a browser.
 - Booking is a link-out until the Halaxy embed arrives (same behaviour as her current site).

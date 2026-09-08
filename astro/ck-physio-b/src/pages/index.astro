@@ -82,16 +82,17 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     </div>
   </section>
 
-  <!-- 5. Conditions index -->
-  <section class="wrap py-10 md:py-20">
-    <div class="flex flex-wrap items-end justify-between gap-4">
+  <!-- 5. Conditions index: the eight groups as an index, not the whole taxonomy -->
+  <section data-section="conditions" aria-labelledby="conditions-heading" class="wrap py-10 md:py-20">
+    <div class="flex flex-wrap items-end justify-between gap-x-8 gap-y-5">
       <div class="max-w-2xl">
         <p class="label">Conditions we treat</p>
-        <h2 class="mt-2 text-3xl md:text-4xl">We use evidence-based practice to treat and manage numerous conditions, using land-based and/or water exercises and stretches</h2>
+        <h2 id="conditions-heading" class="mt-2 text-3xl md:text-4xl">Conditions we treat, on land and in water</h2>
+        <p class="mt-4 text-lg">We use evidence-based practice to treat and manage numerous conditions effectively, using land-based and/or water exercises and stretches.</p>
       </div>
-      <a href={`${base}/conditions/`} class="btn-ghost">How each is treated</a>
+      <a href={`${base}/conditions/`} class="btn-ghost">Every condition, and how each is treated</a>
     </div>
-    <div class="mt-10"><ConditionsIndex /></div>
+    <div class="mt-8 md:mt-10"><ConditionsIndex /></div>
   </section>
 
   <!-- 6. Coryn -->
