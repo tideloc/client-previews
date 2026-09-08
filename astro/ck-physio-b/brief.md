@@ -49,5 +49,9 @@ Full-bleed night pool hero with her claim on the left and a Halaxy booking card 
 - 2026-09-08, third pass (Blake): the teal specialties band wrapped its three items onto two lines, because
   beside the lead-in they only had about 640px of the 1216px wrap. The lead-in now sits above the list, so the
   three sit on one line from 1024px up. Two lines at tablet width and three on a phone are unavoidable.
+- 2026-09-08, fourth pass (Blake): the /conditions/ accordion rows now use the same row as the home index
+  (teal dot, 18px/800 ink heading, 20px by 24px padding, 68px closed height, tint hover) instead of a bigger
+  heading with a circled plus. The marker is a chevron rather than the home arrow because these rows open.
+  Measured identical on both pages at 1280px.
 - Google Maps iframe on the book section renders blank in headless screenshots only; it loads in a browser.
 - Booking is a link-out until the Halaxy embed arrives (same behaviour as her current site).
