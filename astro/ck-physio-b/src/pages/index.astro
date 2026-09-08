@@ -45,28 +45,31 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     </div>
   </section>
 
-  <!-- 3. Two doors: water / land -->
-  <section class="wrap py-10 md:py-20">
-    <h2 class="text-3xl md:text-4xl max-w-3xl">Two ways to treat you, combined for your specific needs after assessment</h2>
+  <!-- 3. Two doors: water / land. Two verbatim sentences each; the full text is on /treatments/. -->
+  <section data-section="treatments" aria-labelledby="doors-heading" class="wrap py-10 md:py-20">
+    <h2 id="doors-heading" class="text-3xl md:text-4xl max-w-3xl">Two ways to treat you, combined for your specific needs after assessment</h2>
     <div class="mt-8 grid md:grid-cols-2 gap-8 md:gap-10">
-      <article>
+      <article class="flex flex-col">
         <a href={`${base}/treatments/#aquatic`} class="block rounded-xl overflow-hidden">
-          <Picture src={poolDay} alt="The therapy pool by day with foam noodles, a lane float and exercise equipment laid out on the tiles" widths={[480, 800]} sizes="(min-width: 768px) 45vw, 100vw" formats={['avif', 'webp']} class="w-full aspect-[5/4] object-cover" />
+          <Picture src={poolDay} alt="The therapy pool by day with foam noodles, a lane float and exercise equipment laid out on the tiles" widths={[480, 592]} sizes="(min-width: 768px) 45vw, 100vw" formats={['avif', 'webp']} class="w-full aspect-[5/4] object-cover" />
         </a>
         <h3 class="mt-5 text-2xl">Aquatic physiotherapy</h3>
-        <p class="mt-3">Aquatic physiotherapy utilises the natural buoyancy and warmth of a 33 to 34 degree pool to eliminate gravity stress on painful joints, allowing patients to safely rebuild strength and mobility much sooner than on land. The water's gentle resistance also accelerates post-surgical healing and reduces swelling, making it an ideal, low-impact environment for pain relief and physical rehabilitation. WATSU sessions are also offered at our practice.</p>
-        <p class="mt-4 flex flex-wrap gap-5 font-bold text-primary"><a href={`${base}/treatments/#aquatic`} class="underline underline-offset-4">The pool and aquatic therapy</a><a href={`${base}/watsu/`} class="underline underline-offset-4">WATSU</a></p>
+        <p class="mt-3">Aquatic physiotherapy utilises the natural buoyancy and warmth of a 33 to 34 degree pool to eliminate gravity stress on painful joints, allowing patients to safely rebuild strength and mobility much sooner than on land. The water's gentle resistance also accelerates post-surgical healing and reduces swelling, making it an ideal, low-impact environment for pain relief and physical rehabilitation.</p>
+        <p class="mt-auto pt-5 flex flex-wrap gap-x-6 gap-y-2 font-bold text-primary"><a href={`${base}/treatments/#aquatic`} class="underline underline-offset-4">The pool and aquatic therapy</a><a href={`${base}/watsu/`} class="underline underline-offset-4">WATSU</a></p>
       </article>
-      <article>
+      <article class="flex flex-col">
         <a href={`${base}/treatments/#land`} class="block rounded-xl overflow-hidden">
-          <Picture src={room} alt="The treatment room at CK Physiotherapy with a navy treatment bed, desk and a window looking onto the pool" widths={[480, 800]} sizes="(min-width: 768px) 45vw, 100vw" formats={['avif', 'webp']} class="w-full aspect-[5/4] object-cover" />
+          <Picture src={room} alt="The treatment room at CK Physiotherapy with a navy treatment bed, desk and a window looking onto the pool" widths={[480, 640]} sizes="(min-width: 768px) 45vw, 100vw" formats={['avif', 'webp']} class="w-full aspect-[5/4] object-cover" />
         </a>
         <h3 class="mt-5 text-2xl">Land-based physiotherapy</h3>
-        <p class="mt-3">At CK Physiotherapy, our land-based treatment combines a patient-centred approach, hands-on manual therapy and evidence-based practice to help you achieve your recovery goals. We tailor every treatment plan to your unique lifestyle and needs, using proven, research-backed techniques to ensure your care is both safe and effective. By integrating skilled, hands-on joint and soft tissue mobilisation with the latest scientific clinical data, we focus on reducing your pain, restoring your mobility, and supporting your long-term physical wellbeing.</p>
-        <p class="mt-4 flex flex-wrap gap-5 font-bold text-primary"><a href={`${base}/treatments/#land`} class="underline underline-offset-4">Land-based treatment</a><a href={`${base}/conditions/`} class="underline underline-offset-4">Conditions we treat</a></p>
+        <p class="mt-3">At CK Physiotherapy, our land-based treatment combines a patient-centred approach, hands-on manual therapy and evidence-based practice to help you achieve your recovery goals. We tailor every treatment plan to your unique lifestyle and needs, using proven, research-backed techniques to ensure your care is both safe and effective.</p>
+        <p class="mt-auto pt-5 flex flex-wrap gap-x-6 gap-y-2 font-bold text-primary"><a href={`${base}/treatments/#land`} class="underline underline-offset-4">Land-based treatment</a><a href={`${base}/conditions/`} class="underline underline-offset-4">Conditions we treat</a></p>
       </article>
     </div>
-    <p class="mt-10 max-w-3xl border-l-4 border-accent pl-5 text-lg">Personalised rehabilitation programs: our comprehensive assessments allow for customised care for neuro-musculoskeletal conditions, balance difficulties and complex pain conditions. We create tailored programs based on assessment findings and combine water and land therapy for your specific needs.</p>
+    <div class="mt-8 md:mt-10 rounded-xl border border-panel bg-white p-6 md:p-8">
+      <p class="label">Personalised rehabilitation programs</p>
+      <p class="mt-2 text-lg">Our comprehensive assessments allow for customised care for neuro-musculoskeletal conditions, balance difficulties and complex pain conditions. We create tailored programs based on assessment findings and combine water and land therapy for your specific needs.</p>
+    </div>
   </section>
 
   <!-- 4. The pool as a spec sheet -->

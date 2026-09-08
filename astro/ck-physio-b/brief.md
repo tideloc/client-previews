@@ -62,5 +62,10 @@ Full-bleed night pool hero with her claim on the left and a Halaxy booking card 
   a 592px file to 1800w. About, contact, testimonials and watsu still use the plain white band.
 - 2026-09-08, sixth pass (Blake): the /conditions/ accordions all start closed, so the page opens as the same
   eight-row index as the home page. A #hash link still opens the panel it points at.
+- 2026-09-08, seventh pass (Blake: tidy the two-doors section on home): the two columns ran 6 and 8 lines so
+  the link rows sat at different heights. Each card is now a flex column with the links pinned by mt-auto, so
+  they align; each paragraph dropped its last sentence (whole sentences, nothing truncated, and every
+  remaining sentence still appears verbatim on /treatments/, checked by script). The programs line became a
+  white card with the label split out instead of a half-width rule-and-quote.
 - Google Maps iframe on the book section renders blank in headless screenshots only; it loads in a browser.
 - Booking is a link-out until the Halaxy embed arrives (same behaviour as her current site).
