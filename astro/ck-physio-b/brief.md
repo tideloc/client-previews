@@ -67,5 +67,8 @@ Full-bleed night pool hero with her claim on the left and a Halaxy booking card 
   they align; each paragraph dropped its last sentence (whole sentences, nothing truncated, and every
   remaining sentence still appears verbatim on /treatments/, checked by script). The programs line became a
   white card with the label split out instead of a half-width rule-and-quote.
+- 2026-09-08, eighth pass (Blake): the home hero eyebrow and h1 are centred below sm and left-aligned from
+  sm up. The h1's max-w-[13ch] now starts at sm as well: on a 350px phone column it was holding the heading
+  to about 215px, which is what made it seven ragged lines. It is five lines full-width now.
 - Google Maps iframe on the book section renders blank in headless screenshots only; it loads in a browser.
 - Booking is a link-out until the Halaxy embed arrives (same behaviour as her current site).
