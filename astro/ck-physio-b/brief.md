@@ -41,5 +41,10 @@ Full-bleed night pool hero with her claim on the left and a Halaxy booking card 
   lists. Every condition name is still in the /conditions/ HTML. On a 390px phone the home conditions band went
   1970px to 966px and the conditions page 8563px to 4632px. The duplicated "My approach" block was removed from
   /conditions/ (it lives on /treatments/#programs) and a BreadcrumbList was added.
+- 2026-09-08, second pass (Blake): Home added to the nav, above Treatments, in both the desktop bar and the
+  menu. Five links plus Book need about 1035px of header, so the full nav now starts at lg (1024px) instead of
+  md and tablets get the menu button; the header phone number shows from xl. That also cleared a pre-existing
+  sideways scroll: the header overflowed at 768 to 900px and the four-column footer at 768px (now two columns
+  until lg). No horizontal overflow from 360px up; 320px still overflows by 27px, unchanged from before.
 - Google Maps iframe on the book section renders blank in headless screenshots only; it loads in a browser.
 - Booking is a link-out until the Halaxy embed arrives (same behaviour as her current site).
