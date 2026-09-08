@@ -46,5 +46,8 @@ Full-bleed night pool hero with her claim on the left and a Halaxy booking card 
   md and tablets get the menu button; the header phone number shows from xl. That also cleared a pre-existing
   sideways scroll: the header overflowed at 768 to 900px and the four-column footer at 768px (now two columns
   until lg). No horizontal overflow from 360px up; 320px still overflows by 27px, unchanged from before.
+- 2026-09-08, third pass (Blake): the teal specialties band wrapped its three items onto two lines, because
+  beside the lead-in they only had about 640px of the 1216px wrap. The lead-in now sits above the list, so the
+  three sit on one line from 1024px up. Two lines at tablet width and three on a phone are unavoidable.
 - Google Maps iframe on the book section renders blank in headless screenshots only; it loads in a browser.
 - Booking is a link-out until the Halaxy embed arrives (same behaviour as her current site).
