@@ -14,16 +14,14 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 <Base title="Aquatic, land and WATSU physiotherapy, Dover Heights | CK" description="One-on-one aquatic physiotherapy in a private 33 to 34 degree salt water pool, hands-on land-based physiotherapy and WATSU in Dover Heights. No need to swim.">
   <Header slot="header" />
-  <PageIntro label="Treatments" title="Aquatic physiotherapy, land-based physiotherapy and WATSU, one on one" lead="Broader treatment options. Better individualised care. We combine water and land therapy for your specific needs after assessment." />
-
-  <nav aria-label="On this page" class="bg-white border-b border-panel">
-    <ul class="wrap py-3 flex flex-wrap gap-x-6 gap-y-1 text-[15px] font-bold text-primary">
-      <li><a href="#aquatic" class="inline-block py-2 underline-offset-4 hover:underline">Aquatic physiotherapy</a></li>
-      <li><a href="#land" class="inline-block py-2 underline-offset-4 hover:underline">Land-based physiotherapy</a></li>
-      <li><a href="#watsu" class="inline-block py-2 underline-offset-4 hover:underline">WATSU</a></li>
-      <li><a href="#programs" class="inline-block py-2 underline-offset-4 hover:underline">Rehabilitation programs</a></li>
-    </ul>
-  </nav>
+  <PageIntro label="Treatments" title="Aquatic physiotherapy, land-based physiotherapy and WATSU, one on one" lead="Broader treatment options. Better individualised care. We combine water and land therapy for your specific needs after assessment."
+    image={poolDay} alt="The therapy pool by day with foam noodles, a lane float and exercise equipment laid out on the tiles" imgClass="object-[45%_55%]"
+    links={[
+      { href: '#aquatic', label: 'Aquatic physiotherapy' },
+      { href: '#land', label: 'Land-based physiotherapy' },
+      { href: '#watsu', label: 'WATSU' },
+      { href: '#programs', label: 'Rehabilitation programs' },
+    ]} />
 
   <!-- Aquatic -->
   <section id="aquatic" class="wrap py-10 md:py-20 scroll-mt-20 grid gap-8 md:gap-10 lg:grid-cols-2 lg:items-center">

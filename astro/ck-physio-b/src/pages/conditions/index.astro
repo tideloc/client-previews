@@ -5,6 +5,7 @@ import Footer from '../../components/Footer.astro';
 import PageIntro from '../../components/PageIntro.astro';
 import BookSection from '../../components/BookSection.astro';
 import { conditionGroups } from '../../data/content';
+import room from '../../assets/treatment-room.jpg';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const site = Astro.site?.toString().replace(/\/$/, '') ?? '';
 // Breadcrumb only. Every condition name stays in the page HTML inside the panels, which is what
@@ -20,7 +21,8 @@ const crumbs = {
 ---
 <Base title="Conditions treated in Dover Heights | CK Physio" description="Coryn treats arthritis, joint replacements, balance, neurological, chronic pain, back, neck and sport injuries on land and in water, in Dover Heights.">
   <Header slot="header" />
-  <PageIntro label="Conditions treated" title="We are spoilt for choice with treatment options" lead="We use evidence-based practice to treat and manage numerous conditions effectively, using land-based and/or water exercises and stretches. You do not need to know how to swim to have aquatic physiotherapy." />
+  <PageIntro label="Conditions treated" title="We are spoilt for choice with treatment options" lead="We use evidence-based practice to treat and manage numerous conditions effectively, using land-based and/or water exercises and stretches. You do not need to know how to swim to have aquatic physiotherapy."
+    image={room} alt="The treatment room at CK Physiotherapy with a navy treatment bed, desk and a window looking onto the pool" imgClass="object-[60%_45%]" />
 
   <section data-section="conditions" class="wrap py-8 md:py-16">
     <p class="max-w-2xl">Open a group to see the conditions in it and how Coryn treats them.</p>

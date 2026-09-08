@@ -53,5 +53,12 @@ Full-bleed night pool hero with her claim on the left and a Halaxy booking card 
   (teal dot, 18px/800 ink heading, 20px by 24px padding, 68px closed height, tint hover) instead of a bigger
   heading with a circled plus. The marker is a chevron rather than the home arrow because these rows open.
   Measured identical on both pages at 1280px.
+- 2026-09-08, fifth pass (Blake: strengthen the treatments and conditions hero): both were a pale white band
+  with an h1 and one button. PageIntro now takes an optional image and renders an ink hero split against a
+  photo panel, with the label in tint, a 52px h1, the lead at 20px, Book plus the phone as a second CTA, and
+  an optional jump strip. Treatments uses the day pool and absorbs the old "On this page" white nav band as
+  pills; conditions uses the treatment room. Only pool-night is above 1280px wide, so the photo sits in a
+  bounded column (521 CSS px from a 588px source at 1280) rather than full bleed, which would have upscaled
+  a 592px file to 1800w. About, contact, testimonials and watsu still use the plain white band.
 - Google Maps iframe on the book section renders blank in headless screenshots only; it loads in a browser.
 - Booking is a link-out until the Halaxy embed arrives (same behaviour as her current site).
