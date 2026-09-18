@@ -6,7 +6,7 @@
 DAMO, an Australian workforce-development organisation. In its own words it "connects people, education, employers and training providers through structured career-development pathways". It is explicitly not labour hire, not recruitment, not a training provider, and not selling courses.
 
 ## What the site has to make happen
-A school leaver, career entrant, existing worker, employer, school or training provider recognises their own door and starts the conversation. Primary CTA "Start the conversation" (the only filled button). The brief's audience CTAs are arrow links on each door.
+DAMO's own Facebook post (screenshots supplied by Blake after the first build) asks for a launch site that lets candidates, schools, employers and industry partners register their interest. So each visitor recognises their own door and registers interest. Primary CTA "Register your interest" (the only filled button), with the form on the home page and on its own page, audience pre-selected from the four home buttons. A portal-editable launch notice runs across the top. No portal, passport, dashboard or learning feature is built; the Cadet Passport appears only as a labelled concept card. The brief's audience CTAs are arrow links on each door.
 
 ## Verified on 2026-09-19
 - No live website: damo.com.au, damo.org.au and damo.au do not resolve. No search results. No CRM lead.
@@ -31,7 +31,7 @@ Self-review: one re-author. Independent QC round 1: FAIL (14 findings, all actio
 1. Vector logo master. The current header logo is lifted from a low-res mock-up and its descriptor line is soft.
 2. Phone, email, address, state or region served, ABN, socials. The contact slots are wired to the portal and hidden until filled. The enquiry form currently posts to the Tideloc demo endpoint.
 3. What happens at each of the six pathway stages. Only the names are given, so the site does not describe them.
-4. Is DAMO operating or pre-launch, and which domain will it use?
+4. Which domain will DAMO use, and who should receive registrations of interest?
 5. Real photos of cadets, mentors and worksites, and any named partner employers, schools or RTOs.
 6. The brief requires regulated claims to be checked before publication. The "around 12 months" readiness line uses the brief's preferred wording but still needs DAMO's sign-off.
 

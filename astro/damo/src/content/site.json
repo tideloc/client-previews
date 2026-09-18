@@ -1,12 +1,23 @@
 {
   "slug": "damo",
-  "version": 1,
+  "version": 2,
   "updatedAt": "2026-09-19T00:00:00.000Z",
   "businessName": "DAMO - Development and Management Organisation",
   "hours": [],
   "holidays": [],
-  "announcement": { "enabled": false, "text": "" },
-  "contact": { "phone": "", "email": "", "address": "", "suburb": "", "state": "", "postcode": "" },
+  "announcement": {
+    "enabled": true,
+    "text": "DAMO is preparing for launch. Register your interest now.",
+    "link": "/cold/damo/v2/contact/"
+  },
+  "contact": {
+    "phone": "",
+    "email": "",
+    "address": "",
+    "suburb": "",
+    "state": "",
+    "postcode": ""
+  },
   "priceList": [],
   "social": {},
   "openingHoursSpecification": []

@@ -2,10 +2,9 @@
 import Base from '../../layouts/Base.astro';
 import SiteHeader from '../../components/SiteHeader.astro';
 import SiteFooter from '../../components/SiteFooter.astro';
-import EnquiryForm from '../../components/EnquiryForm.astro';
+import InterestForm from '../../components/InterestForm.astro';
 import ContactDetails from '../../components/tl/ContactDetails.astro';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-const input = 'w-full border-2 border-secondary/40 bg-white text-ink px-3 py-3 rounded-sm focus-visible:outline-none focus-visible:border-primary';
 const who = [
   { t: "I'm looking for a career", d: 'Still at school, looking for a new direction, or already working in industry.', href: `${base}/careers/` },
   { t: "I'm an employer", d: 'Looking to develop your workforce.', href: `${base}/employers/` },
@@ -13,12 +12,12 @@ const who = [
   { t: "I'm a training provider", d: 'RTOs certify them.', href: `${base}/employers/#partners` },
 ];
 ---
-<Base title="Start the conversation | DAMO" description="Start the conversation with DAMO, whether you are looking for a career, an employer, a school or education partner, or a training provider.">
+<Base title="Register your interest | DAMO" description="Register your interest with DAMO, whether you are looking for a career, an employer, a school or education partner, or a training provider.">
   <SiteHeader slot="header" />
   <section data-section="contact" aria-labelledby="contact-h" class="bg-primary text-white">
     <div class="wrap py-14 lg:py-20 grid gap-12 lg:grid-cols-12">
       <div class="lg:col-span-5">
-        <p class="label text-steel">Contact DAMO</p>
+        <p class="label text-steel">DAMO is preparing for launch</p>
         <h1 id="contact-h" class="display text-[2.6rem] sm:text-6xl mt-4">Where could your career take you?</h1>
         <p class="mt-6 text-lg text-white/90">Whether you're still at school, looking for a new direction, already working in industry or looking to develop your workforce, start the conversation with DAMO.</p>
         <ul class="mt-9 border-t border-white/30">
@@ -34,32 +33,12 @@ const who = [
         <ContactDetails class="not-italic space-y-1 mt-8 text-lg" linkClass="underline" />
       </div>
       <div class="lg:col-span-7 bg-white text-ink p-6 sm:p-10 border-t-8 border-secondary self-start">
-        <h2 class="display text-secondary text-3xl">Tell DAMO who you are.</h2>
+        <h2 class="display text-secondary text-3xl">Register your interest.</h2>
         <div class="mt-6">
-          <EnquiryForm kind="enquiry" site="DAMO" submitLabel="Start the conversation" successText="Thanks. Your message is on its way to DAMO."
-            inputClass={input} buttonClass="btn-primary"
-            fields={[
-              { name: 'audience', label: 'I am', type: 'select', required: true, options: [
-                { value: 'career', label: 'Looking for a career' },
-                { value: 'employer', label: 'An employer' },
-                { value: 'school', label: 'A school / education partner' },
-                { value: 'training', label: 'A training provider' },
-              ] },
-              { name: 'name', label: 'Your name', required: true },
-              { name: 'email', label: 'Email', type: 'email', required: true },
-              { name: 'phone', label: 'Phone', type: 'tel' },
-              { name: 'organisation', label: 'School, employer or organisation (if any)' },
-              { name: 'message', label: 'What would you like to talk about?', type: 'textarea' },
-            ]} />
+          <InterestForm />
         </div>
       </div>
     </div>
   </section>
   <SiteFooter slot="footer" />
 </Base>
-<script is:inline>
-  (function () {
-    var i = new URLSearchParams(location.search).get('i'), s = document.getElementById('f-audience');
-    if (i && s && [].some.call(s.options, function (o) { return o.value === i; })) s.value = i;
-  })();
-</script>

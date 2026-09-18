@@ -7,7 +7,7 @@ const nav = [
   { href: `${base}/`, label: 'Home' },
   { href: `${base}/careers/`, label: 'Careers' },
   { href: `${base}/employers/`, label: 'Employers and partners' },
-  { href: `${base}/contact/`, label: 'Contact' },
+  { href: `${base}/contact/`, label: 'Register interest' },
 ];
 const isActive = (href: string) => (href === `${base}/` ? path === href : path.startsWith(href));
 ---
@@ -24,7 +24,7 @@ const isActive = (href: string) => (href === `${base}/` ? path === href : path.s
       </ul>
     </nav>
     <div class="flex items-center gap-3">
-      <a href={`${base}/contact/`} class="btn-primary !py-3 !px-4 !text-[0.78rem] hidden sm:inline-flex">Start the conversation</a>
+      <a href={`${base}/contact/`} class="btn-primary !py-3 !px-4 !text-[0.78rem] hidden sm:inline-flex">Register your interest</a>
       <button type="button" id="nav-toggle" aria-expanded="false" aria-controls="mobile-nav" class="lg:hidden inline-flex items-center justify-center w-11 h-11 border-2 border-secondary text-secondary rounded-sm">
         <span class="sr-only">Menu</span>
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
@@ -34,7 +34,7 @@ const isActive = (href: string) => (href === `${base}/` ? path === href : path.s
   <nav id="mobile-nav" aria-label="Mobile" hidden class="lg:hidden bg-secondary text-white">
     <ul class="wrap py-4 grid gap-1 font-display font-bold uppercase tracking-wider">
       {nav.map((n) => <li><a href={n.href} class="block py-3 border-b border-white/15">{n.label}</a></li>)}
-      <li class="pt-4 pb-2"><a href={`${base}/contact/`} class="btn-primary on-blue w-full justify-center">Start the conversation</a></li>
+      <li class="pt-4 pb-2"><a href={`${base}/contact/`} class="btn-primary on-blue w-full justify-center">Register your interest</a></li>
     </ul>
   </nav>
 </header>

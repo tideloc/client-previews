@@ -1,0 +1,31 @@
+---
+/** Expression-of-interest form: the launch site's one job (DAMO Facebook post, 2026-09-19). */
+import EnquiryForm from './EnquiryForm.astro';
+const input = 'w-full border-2 border-secondary/40 bg-white text-ink px-3 py-3 rounded-sm focus-visible:outline-none focus-visible:border-primary';
+---
+<EnquiryForm kind="expression-of-interest" site="DAMO" submitLabel="Register your interest" successText="Thanks. Your registration of interest is on its way to DAMO."
+  inputClass={input} buttonClass="btn-primary"
+  fields={[
+    { name: 'audience', label: 'I am', type: 'select', required: true, options: [
+      { value: 'career', label: 'Looking for a career' },
+      { value: 'employer', label: 'An employer' },
+      { value: 'school', label: 'A school / education partner' },
+      { value: 'training', label: 'A training provider' },
+      { value: 'industry', label: 'An industry partner' },
+    ] },
+    { name: 'name', label: 'Your name', required: true },
+    { name: 'email', label: 'Email', type: 'email', required: true },
+    { name: 'phone', label: 'Phone', type: 'tel' },
+    { name: 'organisation', label: 'School, employer or organisation (if any)' },
+    { name: 'message', label: 'Anything you would like DAMO to know?', type: 'textarea' },
+  ]} />
+<script is:inline>
+  (function () {
+    var s = document.getElementById('f-audience'); if (!s) return;
+    function pick(v) { if (v && [].some.call(s.options, function (o) { return o.value === v; })) s.value = v; }
+    pick(new URLSearchParams(location.search).get('i'));
+    document.querySelectorAll('[data-pick-audience]').forEach(function (a) {
+      a.addEventListener('click', function () { pick(a.getAttribute('data-pick-audience')); });
+    });
+  })();
+</script>

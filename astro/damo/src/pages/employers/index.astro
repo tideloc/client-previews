@@ -20,7 +20,7 @@ const input = 'w-full border-2 border-secondary/40 bg-white text-ink px-3 py-3 r
         <p class="label text-steel">Employers</p>
         <h1 id="emp-h" class="display text-[2.2rem] sm:text-5xl lg:text-[3.6rem] mt-4">Your people are your most important asset. <span class="text-steel">How are you developing them?</span></h1>
         <p class="mt-7 text-lg text-white/90 max-w-xl">DAMO is designed to help employers turn recruitment into long-term workforce development through structured mentoring, competency development, career planning and leadership pathways.</p>
-        <p class="mt-8"><a href="#partner-form" class="btn-primary on-blue">Start the conversation <span aria-hidden="true">&rarr;</span></a></p>
+        <p class="mt-8"><a href="#partner-form" class="btn-primary on-blue">Register your interest <span aria-hidden="true">&rarr;</span></a></p>
       </div>
       <Picture src={employer} formats={['avif', 'webp']} widths={[640, 1024, 1376]} sizes="(min-width:1024px) 50vw, 100vw" loading="eager" fetchpriority="high"
         alt="Supervisor and younger worker reviewing a clipboard together at a steel workbench"
@@ -74,7 +74,7 @@ const input = 'w-full border-2 border-secondary/40 bg-white text-ink px-3 py-3 r
           class="w-full h-56 lg:h-full object-cover" pictureAttributes={{ class: 'block mt-8 lg:flex-1 lg:min-h-0' }} />
       </div>
       <div class="lg:col-span-7 bg-white p-6 sm:p-9 border-t-8 border-primary">
-        <EnquiryForm kind="partner-enquiry" site="DAMO" submitLabel="Start the conversation" successText="Thanks. Your message is on its way to DAMO."
+        <EnquiryForm kind="expression-of-interest-employer" site="DAMO" submitLabel="Register your interest" successText="Thanks. Your registration of interest is on its way to DAMO."
           inputClass={input} buttonClass="btn-primary"
           fields={[
             { name: 'name', label: 'Your name', required: true },
