@@ -1,0 +1,23 @@
+---
+import { getImage } from 'astro:assets';
+import mine from '../assets/gen-mining.jpg';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const bg = await getImage({ src: mine, width: 1376, format: 'webp' });
+const buttons = [
+  { label: "I'm looking for a career", i: 'career' },
+  { label: "I'm an employer", i: 'employer' },
+  { label: "I'm a school / education partner", i: 'school' },
+  { label: "I'm a training provider", i: 'training' },
+];
+---
+<section data-section="cta" aria-labelledby="cta-h" class="relative text-white bg-secondary bg-cover bg-center" style={`background-image:linear-gradient(rgba(18,51,91,.88),rgba(18,51,91,.80)),url(${bg.src})`}>
+  <div class="wrap py-16 lg:py-24">
+    <h2 id="cta-h" class="display text-4xl sm:text-5xl lg:text-7xl max-w-4xl">Where could your career take you?</h2>
+    <p class="mt-6 max-w-2xl text-lg sm:text-xl text-white/90">Whether you're still at school, looking for a new direction, already working in industry or looking to develop your workforce, start the conversation with DAMO.</p>
+    <ul class="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+      {buttons.map((b) => (
+        <li><a href={`${base}/contact/?i=${b.i}`} class="flex h-full items-center justify-between gap-3 border-2 border-white px-5 py-5 font-display font-extrabold uppercase tracking-wide text-sm hover:bg-white hover:text-secondary transition-colors">{b.label} <span aria-hidden="true">&rarr;</span></a></li>
+      ))}
+    </ul>
+  </div>
+</section>

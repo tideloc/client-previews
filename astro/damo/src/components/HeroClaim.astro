@@ -1,0 +1,40 @@
+---
+import { Picture } from 'astro:assets';
+import hero from '../assets/gen-hero.jpg';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const stages = ['Discover', 'Ready', 'Develop', 'Qualify', 'Lead', 'Manage'];
+const alt = 'Apprentice in a hard hat and hi-vis vest checking a painted steel beam in a fabrication workshop';
+---
+<section data-section="hero" aria-labelledby="hero-h" class="bg-primary text-white">
+  <div class="lg:grid lg:grid-cols-12">
+    <div class="lg:col-span-8 px-5 sm:px-8 lg:pl-[max(2rem,calc((100vw-78rem)/2+2rem))] lg:pr-10 pt-10 pb-10 lg:pt-14 lg:pb-14">
+      <p class="label text-steel">Development and Management Organisation</p>
+      <h1 id="hero-h" class="display mt-5 text-[2.7rem] sm:text-7xl lg:text-[min(6.2vw,5.7rem)] !leading-[0.93]">
+        <span class="block">Building careers.</span>
+        <span class="block">Developing people.</span>
+        <span class="block text-steel">Strengthening industry.</span>
+      </h1>
+      <div class="mt-8 flex flex-col sm:flex-row sm:items-center gap-6">
+        <a href={`${base}/contact/`} class="btn-primary on-blue shrink-0 self-start">Start the conversation <span aria-hidden="true">&rarr;</span></a>
+        <p class="text-lg leading-snug text-white/90 max-w-md">Creating clearer pathways from education and career entry to employment, skills, qualifications and leadership.</p>
+      </div>
+    </div>
+    <div class="lg:col-span-4 relative">
+      <Picture src={hero} formats={['avif', 'webp']} widths={[640, 900]} sizes="(min-width:1024px) 34vw, 100vw" loading="eager" fetchpriority="high"
+        alt={alt} class="h-full w-full object-cover object-[60%_35%]" pictureAttributes={{ class: 'block h-56 sm:h-[24rem] lg:h-auto lg:absolute lg:inset-0' }} />
+      <div id="pathway" class="relative lg:absolute lg:left-[-2rem] lg:right-6 lg:bottom-8 bg-secondary border-l-[8px] border-steel px-5 py-5 sm:px-6 shadow-none" aria-labelledby="ladder-h">
+        <h2 id="ladder-h" class="label text-steel">The DAMO career pathway</h2>
+        <ol class="mt-3 grid grid-cols-2 gap-x-6 border-t border-white/25">
+          {stages.map((s, i) => (
+            <li class="flex flex-col sm:flex-row sm:items-baseline gap-x-3 border-b border-white/25 py-2">
+              <span class="text-[0.68rem] font-display font-bold tracking-[0.14em] text-steel/80 whitespace-nowrap">STAGE {i + 1}</span>
+              <span class="display text-lg sm:text-xl">{s}</span>
+            </li>
+          ))}
+        </ol>
+        <p class="mt-3 text-sm text-white/85">From your first conversation about industry to becoming one of its future leaders.</p>
+        <p class="mt-3"><a href={`${base}/careers/#pathway`} class="font-display font-extrabold uppercase tracking-wider text-xs border-b-2 border-white/70 pb-0.5 hover:border-white">See the career pathway <span aria-hidden="true">&rarr;</span></a></p>
+      </div>
+    </div>
+  </div>
+</section>

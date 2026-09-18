@@ -1,0 +1,40 @@
+---
+import { Picture } from 'astro:assets';
+import school from '../assets/gen-school.jpg';
+import entrant from '../assets/gen-entrant.jpg';
+import advance from '../assets/gen-advance.jpg';
+import employer from '../assets/gen-employer.jpg';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const doors = [
+  { who: 'School leavers', h: 'Your future starts with a conversation.', p: 'Discover careers you may never have considered and understand where they could take you.', cta: 'Explore industry careers', href: `${base}/careers/#school-leavers`, img: school, alt: 'School leaver in a hi-vis vest standing at a workshop roller door watching fabrication work', span: 'lg:col-span-7', tone: 'bg-steel text-secondary' },
+  { who: 'Career entrants', h: 'Ready for something different?', p: "You don't need years of industry experience. DAMO looks for attitude, reliability, willingness to learn and people who want to build a future.", cta: 'Start your industry career', href: `${base}/careers/#career-entrants`, img: entrant, alt: 'Gloved hands guiding a new worker holding an abrasive blasting nozzle over steel pipe', span: 'lg:col-span-5', tone: 'bg-secondary text-white' },
+  { who: 'Existing workers: DAMO ADVANCE', h: 'Experience should take you somewhere.', p: 'Already working in industry? DAMO ADVANCE is designed to help experienced workers identify existing capability, close competency gaps and build a clearer pathway toward qualifications and career progression.', cta: 'Advance my career', href: `${base}/careers/#advance`, img: advance, alt: 'Industrial painter in a protective hood spraying coating onto a large steel pipe spool', span: 'lg:col-span-5', tone: 'bg-primary text-white' },
+  { who: 'Employers', h: 'Your people are your most important asset. How are you developing them?', p: 'DAMO is designed to help employers turn recruitment into long-term workforce development through structured mentoring, competency development, career planning and leadership pathways.', cta: 'Partner with DAMO', href: `${base}/employers/`, img: employer, alt: 'Supervisor and younger worker reviewing a clipboard together at a steel workbench', span: 'lg:col-span-7', tone: 'bg-steel text-secondary' },
+];
+---
+<section data-section="audiences" aria-labelledby="doors-h" class="bg-ground">
+  <div class="wrap pb-16 lg:pb-24">
+    <div class="flex flex-wrap items-end justify-between gap-4 border-t-4 border-secondary pt-6">
+      <h2 id="doors-h" class="display text-secondary text-3xl sm:text-4xl lg:text-5xl">Don't just find a job. Build a career.</h2>
+      <p class="label text-primary">Where are you starting from?</p>
+    </div>
+    <div class="mt-8 grid gap-4 lg:grid-cols-12">
+      {doors.map((d) => (
+        <article class={`${d.span} flex flex-col`}>
+          <a href={d.href} class="block overflow-hidden" tabindex="-1" aria-hidden="true">
+            <Picture src={d.img} formats={['avif', 'webp']} widths={[640, 1024, 1376]} sizes="(min-width:1024px) 55vw, 100vw" alt={d.alt}
+              class="w-full h-64 sm:h-80 lg:h-[23rem] object-cover hover:scale-[1.02] transition-transform duration-500" />
+          </a>
+          <div class={`${d.tone} p-6 sm:p-8 flex-1 flex flex-col`}>
+            <p class="label opacity-80">{d.who}</p>
+            <h3 class="display text-2xl sm:text-3xl mt-3">{d.h}</h3>
+            <p class="mt-4 leading-relaxed opacity-95">{d.p}</p>
+            <p class="mt-6 pt-1 mt-auto">
+              <a href={d.href} class="inline-flex items-center gap-2 font-display font-extrabold uppercase tracking-wider text-sm border-b-2 border-current pb-1">{d.cta} <span aria-hidden="true">&rarr;</span></a>
+            </p>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

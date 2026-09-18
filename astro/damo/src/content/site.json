@@ -1,0 +1,13 @@
+{
+  "slug": "damo",
+  "version": 1,
+  "updatedAt": "2026-09-19T00:00:00.000Z",
+  "businessName": "DAMO - Development and Management Organisation",
+  "hours": [],
+  "holidays": [],
+  "announcement": { "enabled": false, "text": "" },
+  "contact": { "phone": "", "email": "", "address": "", "suburb": "", "state": "", "postcode": "" },
+  "priceList": [],
+  "social": {},
+  "openingHoursSpecification": []
+}

@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation: none !important; transition: none !important; } }
+  body { font-feature-settings: "kern", "liga"; }
+  :focus-visible { outline: 2px solid theme('colors.primary'); outline-offset: 2px; }
+  img { max-width: 100%; height: auto; }
+}
+
+@layer components {
+  .display { font-family: theme('fontFamily.display'); font-weight: 800; text-transform: uppercase; letter-spacing: -0.02em; line-height: 0.98; }
+  .label { font-family: theme('fontFamily.display'); font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; font-size: 0.78rem; }
+  .wrap { max-width: 78rem; margin-inline: auto; padding-inline: 1.25rem; }
+  @media (min-width: 640px) { .wrap { padding-inline: 2rem; } }
+  .btn-primary { display: inline-flex; align-items: center; gap: .6rem; background: theme('colors.primary'); color: #fff; font-family: theme('fontFamily.display'); font-weight: 800; text-transform: uppercase; letter-spacing: .06em; font-size: .9rem; padding: 1rem 1.5rem; border-radius: 2px; }
+  .btn-primary:hover { background: theme('colors.secondary'); }
+  .btn-primary.on-blue { background: #fff; color: theme('colors.primary'); }
+  .btn-primary.on-blue:hover { background: theme('colors.steel'); }
+  .arrow-link { display: inline-flex; align-items: center; gap: .5rem; font-family: theme('fontFamily.display'); font-weight: 800; text-transform: uppercase; letter-spacing: .06em; font-size: .88rem; color: theme('colors.primary'); border-bottom: 2px solid currentColor; padding-bottom: .2rem; }
+  .arrow-link:hover { color: theme('colors.secondary'); }
+  .steel-bg { background-color: theme('colors.steel'); background-size: cover; background-position: center; }
+  /* chevron plates for the pathway rail (desktop only) */
+  @media (min-width: 1024px) {
+    .plate { clip-path: polygon(0 0, calc(100% - 22px) 0, 100% 50%, calc(100% - 22px) 100%, 0 100%, 22px 50%); margin-left: -12px; padding-left: 2.4rem !important; }
+    .plate:first-child { clip-path: polygon(0 0, calc(100% - 22px) 0, 100% 50%, calc(100% - 22px) 100%, 0 100%); margin-left: 0; padding-left: 1.4rem !important; }
+  }
+}

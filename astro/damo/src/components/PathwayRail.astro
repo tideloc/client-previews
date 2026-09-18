@@ -1,0 +1,29 @@
+---
+import steel from '../assets/steel-texture.jpg';
+import { getImage } from 'astro:assets';
+interface Props { heading?: string; intro?: string }
+const { heading = "Don't just find a job. Build a career.", intro } = Astro.props;
+const tex = await getImage({ src: steel, width: 1376, format: 'webp' });
+const stages = ['Discover', 'Ready', 'Develop', 'Qualify', 'Lead', 'Manage'];
+---
+<section id="pathway" data-section="pathway" aria-labelledby="pathway-h" class="steel-bg border-y border-ink/15" style={`background-image:linear-gradient(rgba(213,216,219,.55),rgba(213,216,219,.55)),url(${tex.src})`}>
+  <div class="wrap py-12 lg:py-16">
+    <div class="flex flex-wrap items-end justify-between gap-x-10 gap-y-3">
+      <h2 id="pathway-h" class="display text-secondary text-3xl sm:text-4xl lg:text-5xl max-w-3xl">{heading}</h2>
+      <p class="label text-secondary">The DAMO career pathway</p>
+    </div>
+    {intro && <p class="mt-5 max-w-2xl text-lg text-ink">{intro}</p>}
+    <ol class="mt-8 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2 lg:gap-0">
+      {stages.map((s, i) => (
+        <li class={`plate px-4 py-5 lg:py-7 text-white ${i % 2 === 0 ? 'bg-secondary' : 'bg-primary'}`}>
+          <span class="block text-[0.7rem] font-display font-bold tracking-[0.18em] text-white/70">STAGE {i + 1}</span>
+          <span class="display block text-xl sm:text-2xl lg:text-[1.45rem] xl:text-[1.7rem] mt-1">{s}</span>
+        </li>
+      ))}
+    </ol>
+    <div class="mt-4 flex justify-between gap-6 text-secondary font-semibold text-sm sm:text-base">
+      <p class="max-w-[14rem]">From your first conversation about industry</p>
+      <p class="max-w-[14rem] text-right">to becoming one of its future leaders.</p>
+    </div>
+  </div>
+</section>

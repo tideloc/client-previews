@@ -1,0 +1,17 @@
+---
+/** The brief's wording rules (p6), in the preferred wording only. */
+interface Props { tone?: 'light' | 'dark' }
+const { tone = 'light' } = Astro.props;
+const items = [
+  'Career opportunities are subject to employer selection.',
+  'Pathways lead toward an appropriate qualification, subject to RTO assessment and requirements.',
+  'Qualification readiness may be assessed around 12 months, subject to evidence and RTO assessment.',
+  'DAMO works with relevant RTO and training partners.',
+  'Career progression is role and capability dependent.',
+];
+---
+<ul class={`grid gap-2.5 leading-relaxed ${tone === 'dark' ? 'text-white/75 text-sm' : 'text-ink text-base sm:text-lg font-medium'}`}>
+  {items.map((t) => (
+    <li class="flex gap-3"><span aria-hidden="true" class={`mt-2 h-1.5 w-1.5 shrink-0 ${tone === 'dark' ? 'bg-steel' : 'bg-primary'}`}></span><span>{t}</span></li>
+  ))}
+</ul>

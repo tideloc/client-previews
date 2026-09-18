@@ -1,0 +1,21 @@
+---
+import Base from '../layouts/Base.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import HeroClaim from '../components/HeroClaim.astro';
+import WhatIsDamo from '../components/WhatIsDamo.astro';
+import AudienceDoors from '../components/AudienceDoors.astro';
+import ModelStatement from '../components/ModelStatement.astro';
+import ProgramsPointer from '../components/ProgramsPointer.astro';
+import FinalCta from '../components/FinalCta.astro';
+---
+<Base title="DAMO | Career pathways for Australian industry" description="DAMO connects people, education, employers and training providers through structured career-development pathways, from career discovery to leadership.">
+  <SiteHeader slot="header" />
+  <HeroClaim />
+  <WhatIsDamo />
+  <AudienceDoors />
+  <ModelStatement />
+  <ProgramsPointer />
+  <FinalCta />
+  <SiteFooter slot="footer" />
+</Base>

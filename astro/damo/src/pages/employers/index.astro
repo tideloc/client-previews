@@ -1,0 +1,91 @@
+---
+import Base from '../../layouts/Base.astro';
+import { Picture } from 'astro:assets';
+import SiteHeader from '../../components/SiteHeader.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
+import ModelStatement from '../../components/ModelStatement.astro';
+import EnquiryForm from '../../components/EnquiryForm.astro';
+import employer from '../../assets/gen-employer.jpg';
+import mine from '../../assets/gen-mining.jpg';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const builds = ['Structured mentoring', 'Competency development', 'Career planning', 'Leadership pathways'];
+const input = 'w-full border-2 border-secondary/40 bg-white text-ink px-3 py-3 rounded-sm focus-visible:outline-none focus-visible:border-primary';
+---
+<Base title="Employers and industry partners | DAMO" description="DAMO is designed to help employers turn recruitment into long-term workforce development, working with schools and RTO training partners.">
+  <SiteHeader slot="header" />
+
+  <section data-section="hero" aria-labelledby="emp-h" class="bg-ground">
+    <div class="grid lg:grid-cols-2">
+      <div class="bg-primary text-white px-5 sm:px-8 lg:pl-[max(2rem,calc((100vw-78rem)/2+2rem))] lg:pr-14 py-14 lg:py-24">
+        <p class="label text-steel">Employers</p>
+        <h1 id="emp-h" class="display text-[2.2rem] sm:text-5xl lg:text-[3.6rem] mt-4">Your people are your most important asset. <span class="text-steel">How are you developing them?</span></h1>
+        <p class="mt-7 text-lg text-white/90 max-w-xl">DAMO is designed to help employers turn recruitment into long-term workforce development through structured mentoring, competency development, career planning and leadership pathways.</p>
+        <p class="mt-8"><a href="#partner-form" class="btn-primary on-blue">Start the conversation <span aria-hidden="true">&rarr;</span></a></p>
+      </div>
+      <Picture src={employer} formats={['avif', 'webp']} widths={[640, 1024, 1376]} sizes="(min-width:1024px) 50vw, 100vw" loading="eager" fetchpriority="high"
+        alt="Supervisor and younger worker reviewing a clipboard together at a steel workbench"
+        class="w-full h-72 lg:h-full object-cover" pictureAttributes={{ class: 'block' }} />
+    </div>
+  </section>
+
+  <section data-section="workforce-development" aria-labelledby="wd-h" class="bg-ground">
+    <div class="wrap py-16 lg:py-20 grid gap-10 lg:grid-cols-12">
+      <div class="lg:col-span-5">
+        <h2 id="wd-h" class="display text-secondary text-3xl sm:text-4xl lg:text-5xl">From recruitment to long-term workforce development.</h2>
+        <p class="mt-5 text-lg leading-relaxed">DAMO is not selling courses. DAMO is building and managing career pathways.</p>
+      </div>
+      <ul class="lg:col-span-7 border-t-4 border-secondary">
+        {builds.map((b) => (
+          <li class="flex items-center gap-5 border-b-2 border-steel py-5"><span aria-hidden="true" class="h-3 w-3 bg-primary shrink-0"></span><span class="display text-2xl sm:text-4xl text-secondary">{b}</span></li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <ModelStatement showLink={false} />
+
+  <section id="partners" data-section="partners" aria-labelledby="partners-h" class="bg-ground scroll-mt-24">
+    <div class="wrap py-16 lg:py-20">
+      <h2 id="partners-h" class="display text-secondary text-3xl sm:text-4xl lg:text-5xl max-w-3xl">Schools and training providers have a place in the model too.</h2>
+      <div class="mt-10 grid gap-4 md:grid-cols-2">
+        <article class="bg-steel p-7 sm:p-10 text-secondary">
+          <p class="label text-primary">Schools and education partners</p>
+          <h3 class="display text-3xl mt-3">Education prepares them.</h3>
+          <p class="mt-4 text-ink leading-relaxed">DAMO connects education with employers and training providers, creating clearer pathways from education and career entry to employment. For students, it starts with a conversation about careers they may never have considered.</p>
+          <p class="mt-6"><a class="arrow-link" href={`${base}/contact/?i=school`}>I'm a school / education partner <span aria-hidden="true">&rarr;</span></a></p>
+        </article>
+        <article class="bg-primary p-7 sm:p-10 text-white">
+          <p class="label text-steel">Training providers</p>
+          <h3 class="display text-3xl mt-3"><span class="normal-case">RTOs</span> certify them.</h3>
+          <p class="mt-4 text-white/90 leading-relaxed">DAMO works with relevant RTO and training partners. Pathways lead toward an appropriate qualification, subject to RTO assessment and requirements.</p>
+          <p class="mt-6"><a class="inline-flex items-center gap-2 font-display font-extrabold uppercase tracking-wider text-sm border-b-2 border-white pb-1" href={`${base}/contact/?i=training`}>I'm a training provider <span aria-hidden="true">&rarr;</span></a></p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="partner-form" data-section="enquiry" aria-labelledby="pf-h" class="bg-steel scroll-mt-24">
+    <div class="wrap py-16 lg:py-20 grid gap-10 lg:grid-cols-12">
+      <div class="lg:col-span-5 flex flex-col">
+        <h2 id="pf-h" class="display text-secondary text-4xl sm:text-5xl">Partner with DAMO.</h2>
+        <p class="mt-5 text-lg leading-relaxed">Looking to develop your workforce? Start the conversation with DAMO.</p>
+        <Picture src={mine} formats={['avif', 'webp']} widths={[640, 1024]} sizes="(min-width:1024px) 40vw, 100vw"
+          alt="Open-cut mine with red earth benches and processing plant at golden hour"
+          class="w-full h-56 lg:h-full object-cover" pictureAttributes={{ class: 'block mt-8 lg:flex-1 lg:min-h-0' }} />
+      </div>
+      <div class="lg:col-span-7 bg-white p-6 sm:p-9 border-t-8 border-primary">
+        <EnquiryForm kind="partner-enquiry" site="DAMO" submitLabel="Start the conversation" successText="Thanks. Your message is on its way to DAMO."
+          inputClass={input} buttonClass="btn-primary"
+          fields={[
+            { name: 'name', label: 'Your name', required: true },
+            { name: 'organisation', label: 'Organisation', required: true },
+            { name: 'email', label: 'Email', type: 'email', required: true },
+            { name: 'phone', label: 'Phone', type: 'tel' },
+            { name: 'message', label: 'How are you developing your people today?', type: 'textarea' },
+          ]} />
+      </div>
+    </div>
+  </section>
+
+  <SiteFooter slot="footer" />
+</Base>

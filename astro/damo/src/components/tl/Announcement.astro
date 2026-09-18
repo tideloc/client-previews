@@ -1,0 +1,11 @@
+---
+/** Announcement strip. Renders hidden when off; tl-live.js toggles it. */
+import { siteContent } from "../../lib/site";
+const a = siteContent.announcement;
+const { class: cls = "bg-black text-white text-sm text-center px-4 py-2" } = Astro.props;
+---
+<div data-tl="announcement" class={cls} hidden={!a.enabled}>
+  <a data-tl="announcement.link" href={a.link || "#"} class={a.link ? "underline" : "pointer-events-none no-underline"}>
+    <span data-tl="announcement.text">{a.text}</span>
+  </a>
+</div>

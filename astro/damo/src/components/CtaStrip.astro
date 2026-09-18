@@ -1,0 +1,9 @@
+---
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+<section data-section="cta" aria-labelledby="strip-h" class="bg-primary text-white">
+  <div class="wrap py-12 lg:py-16 flex flex-wrap items-center justify-between gap-8">
+    <h2 id="strip-h" class="display text-3xl sm:text-5xl max-w-3xl">Start the conversation with DAMO.</h2>
+    <a href={`${base}/contact/?i=career`} class="btn-primary on-blue">Start the conversation <span aria-hidden="true">&rarr;</span></a>
+  </div>
+</section>

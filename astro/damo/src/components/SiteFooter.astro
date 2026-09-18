@@ -1,0 +1,35 @@
+---
+import { Image } from 'astro:assets';
+import plate from '../assets/logo-plate.png';
+import ContactDetails from './tl/ContactDetails.astro';
+import Conditions from './Conditions.astro';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const year = new Date().getFullYear();
+---
+<footer class="bg-secondary text-white pb-24">
+  <div class="wrap py-14 grid gap-12 lg:grid-cols-12">
+    <div class="lg:col-span-4">
+      <Image src={plate} alt="DAMO logo debossed in royal blue on a brushed steel plate" width={650} class="w-full max-w-sm rounded-sm" />
+      <p class="display text-xl mt-6 leading-tight">Building careers.<br />Developing people.<br />Strengthening industry.</p>
+    </div>
+    <div class="lg:col-span-3">
+      <h2 class="label text-steel mb-4">Who DAMO works with</h2>
+      <ul class="grid gap-2.5 font-semibold">
+        <li><a class="hover:underline" href={`${base}/careers/#school-leavers`}>School leavers</a></li>
+        <li><a class="hover:underline" href={`${base}/careers/#career-entrants`}>Career entrants</a></li>
+        <li><a class="hover:underline" href={`${base}/careers/#advance`}>Existing workers: DAMO ADVANCE</a></li>
+        <li><a class="hover:underline" href={`${base}/employers/`}>Employers</a></li>
+        <li><a class="hover:underline" href={`${base}/employers/#partners`}>Schools and training providers</a></li>
+        <li><a class="hover:underline" href={`${base}/contact/`}>Start the conversation</a></li>
+      </ul>
+      <ContactDetails class="not-italic space-y-1 mt-6 text-white/85" linkClass="underline" />
+    </div>
+    <div class="lg:col-span-5">
+      <h2 class="label text-steel mb-4">How DAMO pathways work</h2>
+      <Conditions tone="dark" />
+    </div>
+  </div>
+  <div class="border-t border-white/15">
+    <p class="wrap py-5 text-sm text-white/70">&copy; {year} DAMO - Development and Management Organisation. An Australian workforce-development organisation.</p>
+  </div>
+</footer>

@@ -1,0 +1,18 @@
+---
+import { Picture } from 'astro:assets';
+import fifo from '../assets/gen-lifeready.jpg';
+const topics = ['Money', 'Communication', 'FIFO life', 'Relationships', 'Resilience', 'Life beyond the workplace'];
+---
+<div id="life-ready" class="grid md:grid-cols-12 bg-steel scroll-mt-28">
+  <Picture src={fifo} formats={['avif', 'webp']} widths={[640, 1024, 1376]} sizes="(min-width:768px) 50vw, 100vw"
+    alt="Two FIFO workers in hi-vis carrying duffel bags toward a small plane on a red dirt airstrip"
+    class="w-full h-64 md:h-full object-cover" pictureAttributes={{ class: 'md:col-span-6 block' }} />
+  <div class="md:col-span-6 p-6 sm:p-10 lg:p-12 text-secondary">
+    <p class="label text-primary">DAMO LIFE READY</p>
+    <h3 class="display text-3xl sm:text-4xl mt-3">Building people, not just workers.</h3>
+    <p class="mt-5 text-lg leading-relaxed text-ink">DAMO LIFE READY develops practical knowledge around money, communication, FIFO life, relationships, resilience and preparing for life beyond the workplace.</p>
+    <ul class="mt-6 grid grid-cols-2 gap-x-6 border-t-2 border-secondary">
+      {topics.map((t) => <li class="border-b border-secondary/30 py-2.5 font-display font-extrabold uppercase tracking-wide text-sm">{t}</li>)}
+    </ul>
+  </div>
+</div>

@@ -1,0 +1,31 @@
+---
+import { Image } from 'astro:assets';
+import mark from '../assets/mark.png';
+const records = ['Training', 'Qualifications', 'Verified competencies', 'DAMO development milestones'];
+---
+<div id="cadet-passport" class="grid gap-8 md:grid-cols-2 md:items-center scroll-mt-28">
+  <div>
+    <p class="label text-primary">DAMO Cadet Passport</p>
+    <h3 class="display text-secondary text-3xl sm:text-4xl mt-3">One career. One development journey.</h3>
+    <p class="mt-5 text-lg leading-relaxed">The DAMO Cadet Passport is being designed as a portable record of an individual's career development, bringing together training, qualifications, verified competencies and DAMO development milestones throughout their career.</p>
+    <p class="mt-4 inline-block bg-steel text-secondary label px-3 py-2">Status: being developed</p>
+  </div>
+  <div class="bg-secondary text-white p-6 sm:p-8 rounded-sm border-l-[10px] border-primary" role="img" aria-label="Concept illustration of the Cadet Passport record, which is still being developed">
+    <div class="flex items-center justify-between gap-4">
+      <div>
+        <p class="label text-steel">Cadet Passport</p>
+        <p class="display text-2xl mt-1">Career record</p>
+      </div>
+      <span class="bg-white p-2 rounded-sm shrink-0"><Image src={mark} alt="" width={56} class="w-12 h-12 object-contain" /></span>
+    </div>
+    <ul class="mt-6 border-t border-white/25">
+      {records.map((r) => (
+        <li class="flex items-center justify-between gap-4 border-b border-white/25 py-3.5">
+          <span class="font-semibold">{r}</span>
+          <span class="text-[0.68rem] font-display font-bold tracking-[0.16em] text-steel/80 uppercase">Designed to record</span>
+        </li>
+      ))}
+    </ul>
+    <p class="mt-5 text-sm text-white/70">Concept only. The Cadet Passport technology is still being developed.</p>
+  </div>
+</div>
