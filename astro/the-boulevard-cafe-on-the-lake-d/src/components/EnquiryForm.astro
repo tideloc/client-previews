@@ -1,0 +1,61 @@
+---
+/** Demo enquiry form. Posts JSON to the CRM demo endpoint (emails Blake, no DB write).
+ *  Style via the class props so it matches the site; keep labels visible. */
+interface Field { name: string; label: string; type?: 'text' | 'email' | 'tel' | 'textarea'; required?: boolean; placeholder?: string }
+interface Props {
+  kind: string;          // "enquiry", "quote", "booking", "running-list"
+  site: string;          // business name
+  fields: Field[];
+  submitLabel: string;
+  successText: string;
+  class?: string;
+  inputClass?: string;
+  buttonClass?: string;
+}
+const {
+  kind, site, fields, submitLabel, successText,
+  class: cls = 'grid gap-4',
+  inputClass = 'w-full border border-ink/20 bg-transparent px-3 py-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary',
+  buttonClass = 'bg-primary text-ground px-5 py-3 font-semibold',
+} = Astro.props;
+const endpoint = 'https://crm.tideloc.com.au/api/demo/enquiry';
+---
+<form data-enquiry-form data-kind={kind} data-site={site} action={endpoint} method="post" class={cls} novalidate>
+  {fields.map((f) => (
+    <div>
+      <label for={`f-${f.name}`} class="block text-sm mb-1">{f.label}{f.required ? ' *' : ''}</label>
+      {f.type === 'textarea'
+        ? <textarea id={`f-${f.name}`} name={f.name} rows="4" required={f.required} placeholder={f.placeholder} class={inputClass}></textarea>
+        : <input id={`f-${f.name}`} name={f.name} type={f.type ?? 'text'} required={f.required} placeholder={f.placeholder} class={inputClass} />}
+    </div>
+  ))}
+  <input type="text" name="website" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
+  <div>
+    <button type="submit" class={buttonClass}>{submitLabel}</button>
+    <p data-status class="text-sm mt-2" aria-live="polite"></p>
+  </div>
+</form>
+<script is:inline define:vars={{ successText }}>
+  document.querySelectorAll('form[data-enquiry-form]').forEach((form) => {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const status = form.querySelector('[data-status]');
+      const data = Object.fromEntries(new FormData(form).entries());
+      if (data.website) return;
+      delete data.website;
+      const missing = [...form.querySelectorAll('[required]')].filter((el) => !el.value.trim());
+      if (missing.length) { status.textContent = 'Please fill in the starred fields.'; missing[0].focus(); return; }
+      status.textContent = 'Sending...';
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ ...data, kind: form.dataset.kind, site: form.dataset.site, page: location.href }),
+        });
+        if (!res.ok) throw new Error(String(res.status));
+        form.innerHTML = `<p class="text-lg">${successText}</p>`;
+      } catch {
+        status.textContent = 'That did not send. Please call us instead.';
+      }
+    });
+  });
+</script>

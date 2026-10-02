@@ -1,0 +1,21 @@
+---
+/** Lunch, burgers and bowls with their descriptions, three columns of text and no photographs
+ *  (there is no photograph of a current lunch dish yet). */
+import { section } from '../lib/menu';
+import { base } from '../lib/links';
+const items = ['Lunch', 'Burgers', 'Bowls'].flatMap((t) => section(t)?.items ?? []).filter((i) => i.name !== 'Prawn Laksa').map((i) => (i.name === 'Chicken Laksa' ? { ...i, name: 'Laksa, chicken or prawn' } : i));
+---
+<section data-section="lunch" aria-labelledby="lunch-h" class="mx-auto max-w-7xl px-6 py-20 lg:py-28">
+  <div class="flex flex-wrap items-end justify-between gap-6">
+    <h2 id="lunch-h" class="font-display font-light text-5xl sm:text-6xl">Lunch, burgers and bowls</h2>
+    <a href={`${base}/menu/`} class="font-semibold underline underline-offset-[6px] decoration-accent decoration-2">See the menu</a>
+  </div>
+  <dl class="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-x-12 border-t-2 border-ink">
+    {items.map((i) => (
+      <div class="py-5 border-b border-ink/15">
+        <dt class="font-display text-xl">{i.name}</dt>
+        <dd class="mt-1 text-ink/75 leading-relaxed">{i.desc}</dd>
+      </div>
+    ))}
+  </dl>
+</section>

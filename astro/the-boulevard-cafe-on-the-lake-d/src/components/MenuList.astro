@@ -1,0 +1,30 @@
+---
+/** Full menu from menu.json in two balanced columns: dishes with descriptions, then sides,
+ *  desserts and drinks as plain lists. No prices. */
+import { menuSections } from '../lib/menu';
+const pick = (titles: string[]) => titles.map((t) => menuSections.find((s) => s.title === t)).filter(Boolean) as typeof menuSections;
+const cols = [pick(['Breakfast', 'Lunch', 'Bowls']), pick(['Burgers', 'Pizzas', 'Sides', 'Desserts', 'Drinks'])];
+---
+<div class="grid gap-14 lg:grid-cols-2 lg:gap-20">
+  {cols.map((col) => (
+    <div class="space-y-14">
+      {col.map((s) => (
+        <section>
+          <h2 class="font-display font-light text-4xl">{s.title}</h2>
+          {s.compact ? (
+            <p class="mt-5 pt-5 border-t border-ink/20 text-lg leading-loose">{s.items.map((i) => i.name).join(', ')}.</p>
+          ) : (
+            <dl class="mt-5 border-t border-ink/20">
+              {s.items.map((i) => (
+                <div class="py-4 border-b border-ink/15">
+                  <dt class="font-display text-xl">{i.name}</dt>
+                  {i.desc && <dd class="mt-1 text-ink/75 leading-relaxed">{i.desc}</dd>}
+                </div>
+              ))}
+            </dl>
+          )}
+        </section>
+      ))}
+    </div>
+  ))}
+</div>

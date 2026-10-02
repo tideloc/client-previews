@@ -1,0 +1,39 @@
+---
+/** Google reviews (verbatim, named), the rating and the 2021 award on the navy. One review
+ *  is set large; three sit beside it. */
+const lead = { name: 'gerard cawley', text: 'So I settled on Eggs Benne. The best I have ever eaten. Top marks to the chef. Coffee was spectacular.' };
+const rest = [
+  { name: 'Stephanie Siu', text: 'The salmon Benedict was fresh and full of flavour, and the battered fish was golden, crispy, and cooked to perfection. Great portions, lovely presentation, and a relaxed atmosphere' },
+  { name: 'John Symons', text: 'That brekky burger was considerably better than most and the hash browns that went with it were beautifully done. The iced coffee was also very good. Lovely place, and peaceful at breakfast time.' },
+  { name: 'Chris Poole', text: 'we ended up ordering the chicken and waffles and the garlic prawns and they were absolutely delicious' },
+];
+---
+<section data-section="reviews" aria-labelledby="reviews-h" class="bg-ink text-ground">
+  <div class="mx-auto max-w-7xl px-6 py-20 lg:py-28">
+    <h2 id="reviews-h" class="text-sm uppercase tracking-[0.2em] text-accent font-semibold">What people say</h2>
+    <div class="mt-8 grid gap-14 lg:grid-cols-[1.15fr_1fr] lg:gap-20">
+      <div>
+        <blockquote class="font-display font-light text-3xl sm:text-4xl lg:text-[2.9rem] leading-[1.2]">"{lead.text}"</blockquote>
+        <p class="mt-6 text-ground/75">{lead.name}, Google review</p>
+        <div class="mt-12 pt-8 border-t border-ground/20 grid grid-cols-2 gap-8 max-w-lg">
+          <div>
+            <p class="font-display text-5xl">4.3</p>
+            <p class="mt-2 text-sm text-ground/75">out of 5 from 558 Google reviews, October 2026</p>
+          </div>
+          <div>
+            <p class="font-display text-xl leading-snug">Winner, Hospitality</p>
+            <p class="mt-2 text-sm text-ground/75">Business Victor Harbor Excellence in Business Awards 2021</p>
+          </div>
+        </div>
+      </div>
+      <ul class="space-y-9">
+        {rest.map((r) => (
+          <li>
+            <blockquote class="text-lg leading-relaxed text-ground/90">"{r.text}"</blockquote>
+            <p class="mt-3 text-sm text-ground/65">{r.name}, Google review</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</section>

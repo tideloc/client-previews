@@ -1,0 +1,17 @@
+---
+/** The saturated move: a full-width orange band with what the cafe does in its own words,
+ *  then two breakfast plates edge to edge. */
+import { Picture } from 'astro:assets';
+import bigBreakfast from '../assets/big-breakfast.jpg';
+import baconBenny from '../assets/bacon-benny.jpg';
+---
+<section data-section="offer" aria-label="What the cafe offers" class="bg-accent text-ink">
+  <div class="mx-auto max-w-7xl px-6 py-12 lg:py-16">
+    <p class="font-display font-light leading-[1.05] text-4xl sm:text-6xl lg:text-7xl">Dine in, takeaway, catering and functions.</p>
+    <p class="mt-5 text-lg font-semibold">Licensed, with local produce on the plate.</p>
+  </div>
+</section>
+<section data-section="plates" aria-label="Breakfast plates" class="grid sm:grid-cols-2">
+  <Picture src={bigBreakfast} widths={[400, 744]} formats={['avif', 'webp']} sizes="(min-width: 640px) 50vw, 100vw" loading="lazy" alt="A big breakfast plate with fried eggs, hash browns, bacon, fried chicken and mushrooms" class="w-full h-80 sm:h-[28rem] lg:h-[36rem] object-cover object-bottom" />
+  <Picture src={baconBenny} widths={[400, 744]} formats={['avif', 'webp']} sizes="(min-width: 640px) 50vw, 100vw" loading="lazy" alt="Eggs benedict with bacon and spinach on a blue glazed plate" class="w-full h-80 sm:h-[28rem] lg:h-[36rem] object-cover object-bottom" />
+</section>

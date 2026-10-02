@@ -1,0 +1,31 @@
+---
+/** Hero: the lake photograph full-bleed with the sign's own line set large over a navy fade,
+ *  then the week's hours as a band in the shopfront blue. Content: signage, bio, hours, phone. */
+import { Picture } from 'astro:assets';
+import HoursBand from './HoursBand.astro';
+import Wave from './Wave.astro';
+import lake from '../assets/lake-drink.jpg';
+import { siteContent } from '../lib/site';
+import { base, directionsUrl, telHref } from '../lib/links';
+---
+<section data-section="hero" aria-labelledby="hero-h" class="relative bg-ink text-ground">
+  <Picture src={lake} widths={[640, 1024, 1477]} formats={['avif', 'webp']} sizes="100vw" loading="eager" fetchpriority="high" alt="A fruit iced tea held up on the lawn with the lake and blue sky behind" class="absolute inset-0 w-full h-full object-cover object-[30%_40%]" pictureAttributes={{ class: 'absolute inset-0' }} />
+  <div class="absolute inset-0 bg-gradient-to-r from-ink/95 via-ink/55 to-transparent" aria-hidden="true"></div>
+  <div class="absolute inset-0 bg-gradient-to-t from-ink/70 to-transparent sm:hidden" aria-hidden="true"></div>
+  <div class="relative mx-auto max-w-7xl px-6 pt-20 pb-20 sm:pt-28 sm:pb-28 lg:pt-36 lg:pb-36">
+    <div class="max-w-2xl">
+      <h1 id="hero-h">
+        <span class="block text-sm sm:text-base tracking-[0.2em] uppercase text-ground/80">Victor Harbor. Open seven days from 8am</span>
+        <span class="block mt-5 font-display font-light leading-[0.95] text-6xl sm:text-7xl lg:text-[6.5rem]">café on<br class="hidden lg:block" /> the lake</span>
+      </h1>
+      <Wave class="w-56 sm:w-72 h-8 mt-6" under="#f4f2ea" />
+      <p class="mt-7 text-lg sm:text-xl leading-relaxed text-ground/90 max-w-lg">Licensed café with a passion for local produce and high quality meals, in a beautiful location.</p>
+      <div class="mt-9 flex flex-wrap items-center gap-x-8 gap-y-4">
+        <a href={directionsUrl} target="_blank" rel="noreferrer" class="bg-ground text-ink font-semibold px-7 py-4">Get directions</a>
+        <a href={telHref} class="font-semibold underline underline-offset-[6px] decoration-accent decoration-2">Call {siteContent.contact.phone}</a>
+        <a href={`${base}/menu/`} class="font-semibold underline underline-offset-[6px] decoration-accent decoration-2">See the menu</a>
+      </div>
+    </div>
+  </div>
+</section>
+<HoursBand />

@@ -1,0 +1,27 @@
+---
+/** Three breakfast plates as framed prints, with a panel in the brand orange carrying what the
+ *  cafe offers in its own words. */
+import { Picture } from 'astro:assets';
+import benny from '../assets/salmon-benny.jpg';
+import bigBreakfast from '../assets/big-breakfast.jpg';
+import baconBenny from '../assets/bacon-benny.jpg';
+const prints = [
+  { src: benny, alt: 'Salmon eggs benedict with hollandaise and pea shoots on a grey plate' },
+  { src: bigBreakfast, alt: 'A big breakfast plate with fried eggs, hash browns, bacon, fried chicken and mushrooms' },
+  { src: baconBenny, alt: 'Eggs benedict with bacon and spinach on a blue glazed plate' },
+];
+---
+<section data-section="plates" aria-label="Breakfast plates and what the cafe offers" class="px-4 sm:px-6 pb-20 lg:pb-28 grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 items-stretch">
+  {prints.slice(0, 2).map((p) => (
+    <div class="border border-ink/20 p-2">
+      <Picture src={p.src} widths={[400, 744]} formats={['avif', 'webp']} sizes="(min-width: 1024px) 23vw, 46vw" loading="lazy" alt={p.alt} class="w-full h-full aspect-[3/4] object-cover object-bottom" pictureAttributes={{ class: 'block h-full' }} />
+    </div>
+  ))}
+  <div class="bg-accent text-ink p-6 sm:p-8 flex flex-col justify-between">
+    <p class="font-display font-light text-3xl sm:text-5xl leading-[1.08]">Dine in, takeaway, catering and functions.</p>
+    <p class="mt-6 font-semibold">Licensed, seven days.</p>
+  </div>
+  <div class="border border-ink/20 p-2">
+    <Picture src={prints[2].src} widths={[400, 744]} formats={['avif', 'webp']} sizes="(min-width: 1024px) 23vw, 46vw" loading="lazy" alt={prints[2].alt} class="w-full h-full aspect-[3/4] object-cover object-bottom" pictureAttributes={{ class: 'block h-full' }} />
+  </div>
+</section>

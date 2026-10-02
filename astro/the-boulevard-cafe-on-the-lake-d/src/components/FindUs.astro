@@ -1,0 +1,16 @@
+---
+/** Map row: keyless Google map, address, phone, email, directions. */
+import ContactDetails from './tl/ContactDetails.astro';
+import { directionsUrl, mapEmbedUrl } from '../lib/links';
+const { heading = 'Find us on the lake' } = Astro.props;
+---
+<section data-section="contact" aria-labelledby="find-h" class="mx-auto max-w-7xl px-6 py-20 lg:py-28 grid gap-10 lg:grid-cols-[1fr_1.7fr] lg:gap-20">
+  <div>
+    <p class="text-sm uppercase tracking-[0.2em] text-primary font-semibold">41 Bartel Blvd, Victor Harbor</p>
+    <h2 id="find-h" class="mt-3 font-display font-light text-4xl sm:text-5xl leading-tight">{heading}</h2>
+    <ContactDetails class="not-italic mt-8 space-y-3 text-lg" linkClass="underline underline-offset-4 decoration-ink/30" />
+    <p class="mt-6 text-ink/80">On Encounter Lakes. Look for the blue band and the orange chairs.</p>
+    <p class="mt-9"><a href={directionsUrl} target="_blank" rel="noreferrer" class="inline-block bg-ink text-ground font-semibold px-7 py-4">Get directions</a></p>
+  </div>
+  <iframe src={mapEmbedUrl} title="Map showing The Boulevard Cafe on the Lake, 41 Bartel Blvd, Victor Harbor" loading="lazy" class="w-full h-80 lg:h-[28rem] border-0 bg-secondary" referrerpolicy="no-referrer-when-downgrade"></iframe>
+</section>

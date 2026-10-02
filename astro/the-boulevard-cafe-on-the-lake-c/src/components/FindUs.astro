@@ -1,0 +1,19 @@
+---
+/** Map row: keyless Google map, address, phone, email, directions. */
+import ContactDetails from './tl/ContactDetails.astro';
+import Hours from './tl/Hours.astro';
+import { directionsUrl, mapEmbedUrl } from '../lib/links';
+const { showHours = true } = Astro.props;
+const { heading = 'Find us on the lake' } = Astro.props;
+---
+<section data-section="contact" aria-labelledby="find-h" class="mx-auto max-w-7xl px-6 py-20 lg:py-28 grid gap-10 lg:grid-cols-[1fr_1.7fr] lg:gap-20">
+  <div>
+    <p class="text-sm uppercase tracking-[0.2em] text-primary font-semibold">41 Bartel Blvd, Victor Harbor</p>
+    <h2 id="find-h" class="mt-3 font-display font-light text-4xl sm:text-5xl leading-tight">{heading}</h2>
+    <ContactDetails class="not-italic mt-8 space-y-3 text-lg" linkClass="underline underline-offset-4 decoration-ink/30" />
+    <p class="mt-6 text-ink/80">On Encounter Lakes. Look for the blue band and the orange chairs.</p>
+    {showHours && <Hours listClass="mt-6 border-t border-ink/20 max-w-sm" rowClass="flex items-baseline justify-between py-2 border-b border-ink/15" dayClass="" timeClass="font-semibold tabular-nums" />}
+    <p class="mt-9"><a href={directionsUrl} target="_blank" rel="noreferrer" class="inline-block bg-ink text-ground font-semibold px-7 py-4">Get directions</a></p>
+  </div>
+  <iframe src={mapEmbedUrl} title="Map showing The Boulevard Cafe on the Lake, 41 Bartel Blvd, Victor Harbor" loading="lazy" class="w-full h-80 lg:h-full lg:min-h-[34rem] border-0 bg-secondary" referrerpolicy="no-referrer-when-downgrade"></iframe>
+</section>

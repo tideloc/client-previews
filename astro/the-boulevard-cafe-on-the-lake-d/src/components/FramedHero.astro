@@ -1,0 +1,38 @@
+---
+/** Hero: a plain claim on the cream, then the lake photograph in a fine frame beside a panel in
+ *  the shopfront blue carrying the week's hours, the address and the phone.
+ *  Content: bio, hours, address, phone. */
+import { Picture } from 'astro:assets';
+import Hours from './tl/Hours.astro';
+import lake from '../assets/lake-drink.jpg';
+import { siteContent, fullAddress } from '../lib/site';
+import { base, directionsUrl, telHref } from '../lib/links';
+---
+<section data-section="hero" aria-labelledby="hero-h" class="mx-auto max-w-7xl px-6 pt-12 lg:pt-14">
+  <div class="grid gap-8 lg:grid-cols-[1.6fr_1fr] lg:items-end lg:gap-16">
+    <h1 id="hero-h">
+      <span class="block text-sm uppercase tracking-[0.2em] text-primary font-semibold">The Boulevard Cafe, Victor Harbor</span>
+      <span class="block mt-4 font-display font-light leading-[1.02] text-5xl sm:text-6xl lg:text-[5.2rem]">Breakfast and lunch <span class="text-accent">on the lake.</span></span>
+    </h1>
+    <div class="lg:pb-3">
+      <p class="text-lg leading-relaxed text-ink/80">Licensed café with a passion for local produce and high quality meals, in a beautiful location.</p>
+      <div class="mt-6 flex flex-wrap items-center gap-x-7 gap-y-4">
+        <a href={directionsUrl} target="_blank" rel="noreferrer" class="bg-ink text-ground font-semibold px-7 py-4">Get directions</a>
+        <a href={`${base}/menu/`} class="font-semibold underline underline-offset-[6px] decoration-accent decoration-2">See the menu</a>
+      </div>
+    </div>
+  </div>
+  <div class="mt-10 lg:mt-12 grid gap-4 lg:grid-cols-[2fr_1fr] lg:gap-6">
+    <div class="border border-ink/20 p-2 sm:p-3">
+      <Picture src={lake} widths={[640, 1024, 1477]} formats={['avif', 'webp']} sizes="(min-width: 1024px) 800px, 95vw" loading="eager" fetchpriority="high" alt="A fruit iced tea held up on the lawn with the lake and blue sky behind" class="w-full h-72 sm:h-[26rem] lg:h-[34rem] object-cover object-[50%_42%]" />
+    </div>
+    <div class="bg-primary text-ground p-7 sm:p-9 flex flex-col" data-section="hours">
+      <h2 class="font-display text-3xl">Open seven days</h2>
+      <Hours listClass="mt-5 border-t border-ground/30" rowClass="flex items-baseline justify-between gap-4 py-2.5 border-b border-ground/30" dayClass="" timeClass="font-semibold tabular-nums" closedClass="opacity-60" />
+      <div class="mt-auto pt-8">
+        <p class="leading-relaxed">{fullAddress()}<br />On Encounter Lakes</p>
+        <p class="mt-4"><a href={telHref} class="font-display text-3xl">{siteContent.contact.phone}</a></p>
+      </div>
+    </div>
+  </div>
+</section>

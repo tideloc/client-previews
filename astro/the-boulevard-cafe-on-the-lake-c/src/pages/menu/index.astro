@@ -1,0 +1,35 @@
+---
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import MenuList from '../../components/MenuList.astro';
+import HoursBand from '../../components/HoursBand.astro';
+import benny from '../../assets/salmon-benny.jpg';
+import { Picture } from 'astro:assets';
+import baconBenny from '../../assets/bacon-benny.jpg';
+import bigBreakfast from '../../assets/big-breakfast.jpg';
+import { siteContent } from '../../lib/site';
+import { telHref } from '../../lib/links';
+---
+<Base title="Menu | The Boulevard Cafe on the Lake" description="Breakfast, lunch, burgers, bowls and pizzas at The Boulevard Cafe on the Lake, Victor Harbor. Dine in, licensed, or takeaway.">
+  <Header slot="header" />
+  <section data-section="menu-intro" class="bg-ink text-ground">
+    <div class="mx-auto max-w-7xl px-6 pt-10 pb-16 lg:pb-20 grid gap-10 lg:grid-cols-[1fr_1.5fr] lg:items-end">
+      <div>
+        <h1 class="font-display font-light text-7xl sm:text-8xl">Menu</h1>
+        <p class="mt-6 text-lg sm:text-xl text-ground/85 max-w-xl leading-relaxed">Dine in, licensed, or takeaway. Call <a href={telHref} class="font-semibold underline underline-offset-[6px] decoration-accent decoration-2">{siteContent.contact.phone}</a>.</p>
+      </div>
+      <div class="grid grid-cols-3 gap-4">
+        <Picture src={benny} widths={[400, 744]} formats={['avif', 'webp']} sizes="(min-width: 1024px) 20vw, 33vw" loading="eager" alt="Salmon eggs benedict with hollandaise and pea shoots on a grey plate" class="w-full aspect-[4/5] object-cover object-bottom" />
+        <Picture src={baconBenny} widths={[400, 744]} formats={['avif', 'webp']} sizes="(min-width: 1024px) 20vw, 33vw" loading="eager" alt="Eggs benedict with bacon and spinach on a blue glazed plate" class="w-full aspect-[4/5] object-cover object-bottom" />
+        <Picture src={bigBreakfast} widths={[400, 744]} formats={['avif', 'webp']} sizes="(min-width: 1024px) 20vw, 33vw" loading="eager" alt="A big breakfast plate with fried eggs, hash browns, bacon, fried chicken and mushrooms" class="w-full aspect-[4/5] object-cover object-bottom" />
+      </div>
+    </div>
+  </section>
+  <HoursBand id="menu-hours-h" />
+  <section data-section="menu" aria-label="Full menu" class="mx-auto max-w-7xl px-6 py-16 lg:py-24">
+    <p class="border-l-2 border-accent pl-4 mb-14 text-sm text-ink/75 max-w-2xl">Example content. Dishes and descriptions are from the cafe's current online ordering menu. Prices are left off until the dine-in menu is supplied.</p>
+    <MenuList />
+  </section>
+  <Footer slot="footer" />
+</Base>

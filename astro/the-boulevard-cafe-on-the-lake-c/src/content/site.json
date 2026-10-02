@@ -1,0 +1,126 @@
+{
+  "slug": "the-boulevard-cafe-on-the-lake",
+  "version": 1,
+  "updatedAt": "2026-10-02T00:00:00.000Z",
+  "businessName": "The Boulevard Cafe on the Lake",
+  "hours": [
+    {
+      "day": "mon",
+      "closed": false,
+      "open": "08:00",
+      "close": "15:00",
+      "label": "Monday",
+      "display": "8am - 3pm"
+    },
+    {
+      "day": "tue",
+      "closed": false,
+      "open": "08:00",
+      "close": "15:00",
+      "label": "Tuesday",
+      "display": "8am - 3pm"
+    },
+    {
+      "day": "wed",
+      "closed": false,
+      "open": "08:00",
+      "close": "15:00",
+      "label": "Wednesday",
+      "display": "8am - 3pm"
+    },
+    {
+      "day": "thu",
+      "closed": false,
+      "open": "08:00",
+      "close": "15:30",
+      "label": "Thursday",
+      "display": "8am - 3:30pm"
+    },
+    {
+      "day": "fri",
+      "closed": false,
+      "open": "08:00",
+      "close": "15:00",
+      "label": "Friday",
+      "display": "8am - 3pm"
+    },
+    {
+      "day": "sat",
+      "closed": false,
+      "open": "08:00",
+      "close": "15:00",
+      "label": "Saturday",
+      "display": "8am - 3pm"
+    },
+    {
+      "day": "sun",
+      "closed": false,
+      "open": "08:00",
+      "close": "15:00",
+      "label": "Sunday",
+      "display": "8am - 3pm"
+    }
+  ],
+  "holidays": [],
+  "announcement": {
+    "enabled": true,
+    "text": "Example site by Tideloc, built from the cafe's public photos and menus as a starting point. Details to be confirmed."
+  },
+  "contact": {
+    "phone": "(08) 8552 5092",
+    "email": "theboulevardcafe8@gmail.com",
+    "address": "41 Bartel Blvd",
+    "suburb": "Victor Harbor",
+    "state": "SA",
+    "postcode": "5211",
+    "mapUrl": "https://www.google.com/maps/dir/?api=1&destination=The%20Boulevard%20Cafe%20on%20the%20Lake%2C%2041%20Bartel%20Blvd%2C%20Victor%20Harbor%20SA%205211"
+  },
+  "priceList": [],
+  "social": {
+    "facebook": "https://www.facebook.com/TheBoulevardCafeOnTheLake"
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Monday",
+      "opens": "08:00",
+      "closes": "15:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Tuesday",
+      "opens": "08:00",
+      "closes": "15:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Wednesday",
+      "opens": "08:00",
+      "closes": "15:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Thursday",
+      "opens": "08:00",
+      "closes": "15:30"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Friday",
+      "opens": "08:00",
+      "closes": "15:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Saturday",
+      "opens": "08:00",
+      "closes": "15:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Sunday",
+      "opens": "08:00",
+      "closes": "15:00"
+    }
+  ]
+}

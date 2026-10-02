@@ -1,0 +1,12 @@
+---
+/** Home page map: full width, with one line of address and the directions link under it. */
+import { fullAddress } from '../lib/site';
+import { directionsUrl, mapEmbedUrl } from '../lib/links';
+---
+<section data-section="map" aria-labelledby="map-h" class="border-t border-ink/15">
+  <div class="mx-auto max-w-7xl px-6 pt-16 lg:pt-20 pb-8 flex flex-wrap items-end justify-between gap-6">
+    <h2 id="map-h" class="font-display font-light text-4xl sm:text-5xl">Find us on the lake</h2>
+    <p class="text-lg">{fullAddress()}. <a href={directionsUrl} target="_blank" rel="noreferrer" class="font-semibold underline underline-offset-[6px] decoration-accent decoration-2">Get directions</a></p>
+  </div>
+  <iframe src={mapEmbedUrl} title="Map showing The Boulevard Cafe on the Lake, 41 Bartel Blvd, Victor Harbor" loading="lazy" class="block w-full h-96 lg:h-[30rem] border-0 bg-secondary" referrerpolicy="no-referrer-when-downgrade"></iframe>
+</section>

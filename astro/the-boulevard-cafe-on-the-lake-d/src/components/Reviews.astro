@@ -1,0 +1,31 @@
+---
+/** Google reviews (verbatim, named) two by two on the navy, beside the rating and the 2021
+ *  award on the shopfront blue. */
+const reviews = [
+  { name: 'Stephanie Siu', text: 'The salmon Benedict was fresh and full of flavour, and the battered fish was golden, crispy, and cooked to perfection. Great portions, lovely presentation, and a relaxed atmosphere' },
+  { name: 'John Symons', text: 'That brekky burger was considerably better than most and the hash browns that went with it were beautifully done. The iced coffee was also very good. Lovely place, and peaceful at breakfast time.' },
+  { name: 'gerard cawley', text: 'So I settled on Eggs Benne. The best I have ever eaten. Top marks to the chef. Coffee was spectacular.' },
+  { name: 'Chris Poole', text: 'we ended up ordering the chicken and waffles and the garlic prawns and they were absolutely delicious' },
+];
+---
+<section data-section="reviews" aria-labelledby="reviews-h" class="bg-ink text-ground">
+  <div class="mx-auto max-w-7xl px-6 py-20 lg:py-28 grid gap-12 lg:grid-cols-[1fr_2fr] lg:gap-20">
+    <div>
+      <h2 id="reviews-h" class="font-display font-light text-5xl sm:text-6xl leading-[1.05]">What people say</h2>
+      <div class="mt-10 bg-primary p-7">
+        <p class="font-display text-6xl">4.3</p>
+        <p class="mt-2 text-ground/90">out of 5 from 558 Google reviews, October 2026</p>
+        <p class="mt-7 pt-6 border-t border-ground/30 font-display text-2xl">Winner, Hospitality</p>
+        <p class="mt-2 text-ground/90">Business Victor Harbor Excellence in Business Awards 2021</p>
+      </div>
+    </div>
+    <ul class="grid gap-x-14 gap-y-12 sm:grid-cols-2 content-start">
+      {reviews.map((r) => (
+        <li class="border-t border-ground/25 pt-6">
+          <blockquote class="font-display font-light text-2xl leading-snug">"{r.text}"</blockquote>
+          <p class="mt-5 text-sm text-ground/65">{r.name}, Google review</p>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>

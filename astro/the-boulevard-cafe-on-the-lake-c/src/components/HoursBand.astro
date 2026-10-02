@@ -1,0 +1,14 @@
+---
+/** The week's hours as a band in the shopfront blue (Hours kit, portal-editable). */
+import Hours from './tl/Hours.astro';
+const { id = 'hours-h' } = Astro.props;
+---
+<section data-section="hours" aria-labelledby={id} class="bg-primary text-ground">
+  <div class="mx-auto max-w-7xl px-6 py-7 lg:py-8 grid gap-5 lg:grid-cols-[auto_1fr] lg:items-center lg:gap-14">
+    <div>
+      <h2 id={id} class="font-display text-2xl tracking-wide">Open seven days</h2>
+      <p class="text-sm text-ground/85 mt-1">41 Bartel Blvd, on Encounter Lakes</p>
+    </div>
+    <Hours listClass="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-x-6 gap-y-3" rowClass="flex flex-col border-l border-ground/35 pl-3" dayClass="text-xs uppercase tracking-[0.16em] text-ground/85" timeClass="font-semibold tabular-nums mt-0.5" closedClass="opacity-60" holidayClass="text-sm mt-3 lg:col-span-2" />
+  </div>
+</section>

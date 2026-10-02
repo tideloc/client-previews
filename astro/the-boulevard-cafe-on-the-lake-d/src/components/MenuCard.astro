@@ -1,0 +1,35 @@
+---
+/** The menu as a printed card: a double navy rule, breakfast and lunch side by side with their
+ *  descriptions. */
+import Wave from './Wave.astro';
+import { section } from '../lib/menu';
+import { base } from '../lib/links';
+const breakfast = section('Breakfast');
+const lunch = section('Lunch');
+const lunchItems = lunch?.items ?? [];
+---
+<section data-section="menu" aria-labelledby="card-h" class="mx-auto max-w-7xl px-6 py-20 lg:py-28">
+  <div class="border-[3px] border-double border-ink px-6 py-12 sm:px-12 lg:px-20 lg:py-16">
+    <div class="text-center">
+      <h2 id="card-h" class="font-display font-light text-5xl sm:text-6xl">The menu</h2>
+      <Wave class="w-40 h-6 mx-auto mt-4" under="#1b6cb0" />
+    </div>
+    <div class="mt-12 grid gap-12 lg:grid-cols-2 lg:gap-20">
+      {[{ t: 'Breakfast', sub: 'From 8am, every day', items: breakfast?.items ?? [] }, { t: 'Lunch', sub: 'Licensed, dine in or takeaway', items: lunchItems }].map((col) => (
+        <div>
+          <h3 class="font-display text-3xl">{col.t}</h3>
+          <p class="mt-1 text-sm uppercase tracking-[0.18em] text-primary font-semibold">{col.sub}</p>
+          <dl class="mt-5 border-t border-ink/25">
+            {col.items.map((i) => (
+              <div class="py-4 border-b border-ink/15">
+                <dt class="font-display text-xl">{i.name}</dt>
+                {i.desc && <dd class="mt-1 text-ink/75 leading-relaxed">{i.desc}</dd>}
+              </div>
+            ))}
+          </dl>
+        </div>
+      ))}
+    </div>
+    <p class="mt-12 text-center"><a href={`${base}/menu/`} class="font-semibold underline underline-offset-[6px] decoration-accent decoration-2">See the menu</a></p>
+  </div>
+</section>

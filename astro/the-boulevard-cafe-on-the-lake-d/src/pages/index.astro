@@ -1,0 +1,21 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import FramedHero from '../components/FramedHero.astro';
+import MenuCard from '../components/MenuCard.astro';
+import Prints from '../components/Prints.astro';
+import Reviews from '../components/Reviews.astro';
+import Functions from '../components/Functions.astro';
+import MapBand from '../components/MapBand.astro';
+---
+<Base title="Cafe on the lake in Victor Harbor | The Boulevard" description="The Boulevard is a licensed cafe on Encounter Lakes in Victor Harbor. Breakfast and lunch seven days, dine in or takeaway, catering and functions.">
+  <Header slot="header" />
+  <FramedHero />
+  <MenuCard />
+  <Prints />
+  <Reviews />
+  <Functions />
+  <MapBand />
+  <Footer slot="footer" />
+</Base>

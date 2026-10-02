@@ -1,0 +1,54 @@
+---
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import FindUs from '../../components/FindUs.astro';
+import EnquiryForm from '../../components/EnquiryForm.astro';
+import Hours from '../../components/tl/Hours.astro';
+import { Picture } from 'astro:assets';
+import shopfront from '../../assets/shopfront.jpg';
+import lakeLawn from '../../assets/lake-lawn.jpg';
+import { siteContent } from '../../lib/site';
+---
+<Base title="Find us | The Boulevard Cafe on the Lake" description="The Boulevard Cafe on the Lake is at 41 Bartel Blvd, Victor Harbor, on Encounter Lakes. Opening hours, phone, map and directions.">
+  <Header slot="header" />
+  <section data-section="contact-intro" class="bg-ink text-ground">
+    <div class="mx-auto max-w-7xl px-6 pt-10 pb-16 lg:pb-20 grid gap-10 lg:grid-cols-[1.2fr_1fr] lg:items-end">
+      <div>
+        <h1 class="font-display font-light text-7xl sm:text-8xl">Find us</h1>
+        <p class="mt-6 text-lg sm:text-xl text-ground/85 max-w-xl leading-relaxed">On Encounter Lakes in Victor Harbor. Open seven days from 8am.</p>
+      </div>
+      <div class="grid grid-cols-2 gap-4">
+        <Picture src={shopfront} widths={[480, 768]} formats={['avif', 'webp']} sizes="(min-width: 1024px) 22vw, 50vw" loading="eager" alt="The Boulevard shopfront with its blue band, wordmark sign and verandah" class="w-full aspect-[4/5] object-cover object-top" />
+        <Picture src={lakeLawn} widths={[480, 720]} formats={['avif', 'webp']} sizes="(min-width: 1024px) 22vw, 50vw" loading="eager" alt="A drink held up on the lawn across the road with the lake behind it" class="w-full aspect-[4/5] object-cover" />
+      </div>
+    </div>
+  </section>
+  <FindUs heading="Address and directions" showHours={false} />
+  <section data-section="hours" aria-labelledby="hours-h" class="bg-primary text-ground">
+    <div class="mx-auto max-w-7xl px-6 py-20 grid gap-14 lg:grid-cols-2 lg:gap-20">
+      <div>
+        <h2 id="hours-h" class="font-display font-light text-4xl sm:text-5xl">Opening hours</h2>
+        <Hours listClass="mt-7 border-t border-ground/30" rowClass="flex items-baseline justify-between py-3.5 border-b border-ground/30 text-lg" dayClass="" timeClass="font-semibold tabular-nums" />
+      </div>
+      <div>
+        <h2 class="font-display font-light text-4xl sm:text-5xl">Send a message</h2>
+        <EnquiryForm
+          kind="enquiry"
+          site={siteContent.businessName}
+          class="grid gap-5 mt-7 sm:grid-cols-2 [&>div:nth-last-child(-n+3)]:sm:col-span-2"
+          inputClass="w-full border-0 border-b border-ground/60 bg-transparent px-0 py-2 text-lg focus-visible:outline-none focus-visible:border-ground"
+          buttonClass="bg-ground text-ink font-semibold px-7 py-4"
+          submitLabel="Send message"
+          successText="Thanks, your message has been sent."
+          fields={[
+            { name: 'name', label: 'Your name', required: true },
+            { name: 'phone', label: 'Phone', type: 'tel', required: true },
+            { name: 'message', label: 'Message', type: 'textarea', required: true },
+          ]}
+        />
+      </div>
+    </div>
+  </section>
+  <Footer slot="footer" />
+</Base>

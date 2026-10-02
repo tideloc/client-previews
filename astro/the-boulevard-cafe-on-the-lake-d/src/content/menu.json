@@ -1,0 +1,237 @@
+[
+ {
+  "title": "Breakfast",
+  "items": [
+   {
+    "name": "Breakfast Burger",
+    "desc": "Bacon, fried egg, cheese, mixed salad leaf and tomato on sesame seeded milk buns. Served with 3 mini hash browns."
+   },
+   {
+    "name": "Chicken Waffle",
+    "desc": "Warm waffle topped with crispy battered Taiwanese fried chicken thigh, fried egg, bacon and maple syrup."
+   },
+   {
+    "name": "Chilli Eggs",
+    "desc": "Cheesy scrambled eggs, chorizo, caramelised onion and sriracha mayonnaise served with toasted sourdough."
+   },
+   {
+    "name": "Eggs Benny",
+    "desc": "Two poached eggs, wilted spinach, hollandaise sauce and sprinkled paprika powder."
+   },
+   {
+    "name": "Big Breakfast",
+    "desc": "Scrambled eggs, two rashers of bacon, chorizo, grilled tomatoes, mushrooms, 3 mini hash browns and tomato relish. Served with sourdough and butter."
+   },
+   {
+    "name": "Vegetarian Big Breakfast",
+    "desc": "Scrambled eggs, halloumi, avocado, grilled tomato, mushrooms, tomato relish and hash browns. Served with sourdough."
+   }
+  ]
+ },
+ {
+  "title": "Lunch",
+  "items": [
+   {
+    "name": "Chicken Laksa",
+    "desc": "Rice vermicelli noodles, bok choy and fried tofu, garnished with fried onion, bean sprouts and coriander in Thai style laksa soup."
+   },
+   {
+    "name": "Prawn Laksa",
+    "desc": "Rice vermicelli noodles, bok choy and fried tofu, garnished with fried onion, bean sprouts and coriander in Thai style laksa soup."
+   },
+   {
+    "name": "Garlic Prawns",
+    "desc": "Served with salad and jasmine rice."
+   },
+   {
+    "name": "Grilled Prawn Salad",
+    "desc": "Mixed lettuce, cucumber, red onion, pickled carrot, fried onion and coriander."
+   },
+   {
+    "name": "Salt and Pepper Squid",
+    "desc": "Served with chips, salad and tartare sauce."
+   },
+   {
+    "name": "Flathead",
+    "desc": "Battered flathead served with chips, salad and tartare sauce."
+   },
+   {
+    "name": "Fried Chicken",
+    "desc": "Our famous Taiwanese fried chicken served with chips and aioli."
+   },
+   {
+    "name": "Butter Chicken",
+    "desc": "Tender chicken in a rich, creamy tomato sauce."
+   }
+  ]
+ },
+ {
+  "title": "Burgers",
+  "items": [
+   {
+    "name": "Angus Beef Burger",
+    "desc": "Angus beef patty, cheese, fried egg, tomato, mixed lettuce, red onion and tomato relish on sesame milk buns. Served with chips."
+   },
+   {
+    "name": "Fried Chicken Burger",
+    "desc": "Crispy battered Taiwanese fried chicken, cheese, red onion, tomato and mayonnaise on sesame milk buns. Served with chips."
+   },
+   {
+    "name": "Halloumi Burger",
+    "desc": "Halloumi, avocado, tomato, mixed lettuce and tomato relish on sesame milk buns. Served with chips."
+   }
+  ]
+ },
+ {
+  "title": "Bowls",
+  "items": [
+   {
+    "name": "Poke Bowl",
+    "desc": "Avocado, roasted pumpkin, carrot, cucumber, cherry tomato, jasmine rice and mixed salad leaf with roasted sesame dressing. Topped with tofu, Taiwanese style fried chicken, squid or prawns."
+   },
+   {
+    "name": "Noodles Bowl",
+    "desc": "Vermicelli noodles, cucumber, pickled carrots and mixed salad, served with Vietnamese style dressing. Topped with salt and pepper tofu or fried chicken. Contains fish sauce."
+   }
+  ]
+ },
+ {
+  "title": "Pizzas",
+  "items": [
+   {
+    "name": "Meat Lovers",
+    "desc": "Chicken, bacon, pepperoni, ham, pork fennel sausage, onion, capsicum and stretch mozzarella cheese."
+   },
+   {
+    "name": "BBQ Chicken",
+    "desc": "Roasted chicken, onion, capsicum and mozzarella cheese on bbq sauce base."
+   },
+   {
+    "name": "Hawaiian",
+    "desc": "Ham, pineapple, mozzarella cheese and tomato sugo sauce."
+   },
+   {
+    "name": "Margherita",
+    "desc": "Tomato, basil and mozzarella cheese."
+   },
+   {
+    "name": "Pepperoni",
+    "desc": "Loaded pepperoni, mozzarella cheese on tomato sugo base."
+   }
+  ]
+ },
+ {
+  "title": "Sides",
+  "compact": true,
+  "items": [
+   {
+    "name": "Onion rings",
+    "desc": ""
+   },
+   {
+    "name": "Prawn spring rolls with sweet chilli sauce",
+    "desc": ""
+   },
+   {
+    "name": "Chicken spring rolls",
+    "desc": ""
+   },
+   {
+    "name": "Mini hash browns",
+    "desc": ""
+   },
+   {
+    "name": "Bowl of hot chips",
+    "desc": ""
+   }
+  ]
+ },
+ {
+  "title": "Desserts",
+  "compact": true,
+  "items": [
+   {
+    "name": "Churros with chocolate dipping sauce",
+    "desc": ""
+   },
+   {
+    "name": "Cheesecake",
+    "desc": ""
+   },
+   {
+    "name": "Muffin",
+    "desc": ""
+   },
+   {
+    "name": "Biscuits",
+    "desc": ""
+   }
+  ]
+ },
+ {
+  "title": "Drinks",
+  "compact": true,
+  "items": [
+   {
+    "name": "Coffee",
+    "desc": ""
+   },
+   {
+    "name": "Chai latte",
+    "desc": ""
+   },
+   {
+    "name": "Hot chocolate",
+    "desc": ""
+   },
+   {
+    "name": "Iced coffee",
+    "desc": ""
+   },
+   {
+    "name": "Iced chocolate",
+    "desc": ""
+   },
+   {
+    "name": "Iced latte",
+    "desc": ""
+   },
+   {
+    "name": "Iced long black",
+    "desc": ""
+   },
+   {
+    "name": "Iced mocha",
+    "desc": ""
+   },
+   {
+    "name": "Iced chai",
+    "desc": ""
+   },
+   {
+    "name": "Fruit tea",
+    "desc": ""
+   },
+   {
+    "name": "Milk tea",
+    "desc": ""
+   },
+   {
+    "name": "Lemon, lime and bitters",
+    "desc": ""
+   },
+   {
+    "name": "Ginger beer",
+    "desc": ""
+   },
+   {
+    "name": "Nippy's orange juice",
+    "desc": ""
+   },
+   {
+    "name": "Coke, Coke Zero and lemonade",
+    "desc": ""
+   }
+  ]
+ }
+]

@@ -1,0 +1,24 @@
+---
+/** Breakfast: one large plate photograph beside the breakfast dishes with their descriptions. */
+import { Picture } from 'astro:assets';
+import benny from '../assets/salmon-benny.jpg';
+import { section } from '../lib/menu';
+const breakfast = section('Breakfast');
+---
+<section data-section="breakfast" aria-labelledby="breakfast-h" class="mx-auto max-w-7xl px-6 py-20 lg:py-28 grid gap-12 lg:grid-cols-[1fr_1.05fr] lg:gap-20 lg:items-center">
+  <Picture src={benny} widths={[480, 768, 1116]} formats={['avif', 'webp']} sizes="(min-width: 1024px) 45vw, 100vw" loading="lazy" alt="Salmon eggs benedict with hollandaise and pea shoots on a grey plate" class="w-full aspect-[4/5] object-cover object-bottom" />
+  <div>
+    <p class="text-sm uppercase tracking-[0.2em] text-primary font-semibold">From 8am, every day</p>
+    <h2 id="breakfast-h" class="mt-3 font-display font-light text-5xl sm:text-6xl">Breakfast</h2>
+    {breakfast && (
+      <dl class="mt-9 divide-y divide-ink/15 border-y border-ink/15">
+        {breakfast.items.map((i) => (
+          <div class="py-4">
+            <dt class="font-display text-xl">{i.name}</dt>
+            {i.desc && <dd class="mt-1 text-ink/75 leading-relaxed">{i.desc}</dd>}
+          </div>
+        ))}
+      </dl>
+    )}
+  </div>
+</section>
