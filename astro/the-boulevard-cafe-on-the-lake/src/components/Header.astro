@@ -1,0 +1,30 @@
+---
+import { base, nav, directionsUrl } from '../lib/links';
+---
+<header class="bg-ground border-b border-secondary">
+  <div class="mx-auto max-w-6xl px-5 py-4 flex items-center justify-between gap-6">
+    <a href={`${base}/`} class="leading-none">
+      <span class="block font-display uppercase tracking-[0.22em] text-xl sm:text-2xl text-ink">The Boulevard</span>
+      <span class="block font-display tracking-[0.3em] text-xs text-primary mt-1">café on the lake</span>
+    </a>
+    <nav aria-label="Main" class="hidden md:block">
+      <ul class="flex items-center gap-8 font-display uppercase tracking-[0.18em] text-sm">
+        {nav.map((n) => <li><a href={n.href} class="hover:text-primary">{n.label}</a></li>)}
+        <li><a href={directionsUrl} target="_blank" rel="noreferrer" class="bg-accent text-ink font-semibold px-4 pt-3 pb-2 inline-block">Get directions</a></li>
+      </ul>
+    </nav>
+    <button type="button" class="md:hidden font-display uppercase tracking-[0.18em] text-sm border border-ink px-3 pt-2 pb-1" aria-expanded="false" aria-controls="mobile-nav" id="nav-toggle">Pages</button>
+  </div>
+  <nav aria-label="Main" id="mobile-nav" hidden class="md:hidden border-t border-secondary">
+    <ul class="font-display uppercase tracking-[0.18em] text-sm">
+      {nav.map((n) => <li class="border-b border-secondary"><a href={n.href} class="block px-5 py-4">{n.label}</a></li>)}
+    </ul>
+  </nav>
+</header>
+<script is:inline>
+  (function () {
+    var b = document.getElementById('nav-toggle'), n = document.getElementById('mobile-nav');
+    if (!b || !n) return;
+    b.addEventListener('click', function () { var open = n.hidden; n.hidden = !open; b.setAttribute('aria-expanded', String(open)); });
+  })();
+</script>

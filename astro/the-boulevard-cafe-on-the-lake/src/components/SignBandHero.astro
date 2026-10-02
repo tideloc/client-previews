@@ -1,0 +1,32 @@
+---
+/** Hero: the shopfront's blue band carrying the sign's own line at full size, with the week's
+ *  hours on a cream card. The lake photograph starts directly under it, inside the first screen.
+ *  Content: signage, Facebook bio, GBP hours, phone. */
+import Hours from './tl/Hours.astro';
+import Wave from './Wave.astro';
+import { siteContent } from '../lib/site';
+import { base, directionsUrl, telHref } from '../lib/links';
+---
+<section data-section="hero" aria-labelledby="hero-h" class="bg-primary text-ground">
+  <div class="mx-auto max-w-6xl px-5 pt-10 pb-10 lg:pt-12 lg:pb-12">
+    <h1 id="hero-h">
+      <span class="block font-display font-semibold uppercase tracking-[0.2em] text-sm sm:text-base">The Boulevard, Victor Harbor</span>
+      <span class="block mt-3 font-display font-light uppercase tracking-[0.06em] leading-[0.9] text-[3.2rem] sm:text-7xl lg:text-[5.6rem] lg:whitespace-nowrap">Café on the lake</span>
+    </h1>
+    <Wave class="w-64 sm:w-96 h-9 mt-4" under="#f4f2ea" />
+    <div class="mt-7 grid gap-8 lg:grid-cols-[1fr_1.1fr] lg:items-end">
+      <div>
+        <p class="text-lg sm:text-xl max-w-xl leading-relaxed">Licensed café with a passion for local produce and high quality meals. Dine in, takeaway, catering and functions in a beautiful location.</p>
+        <div class="mt-6 flex flex-wrap items-center gap-x-7 gap-y-4">
+          <a href={directionsUrl} target="_blank" rel="noreferrer" class="bg-accent text-ink font-display font-semibold uppercase tracking-[0.18em] px-6 pt-4 pb-3">Get directions</a>
+          <a href={telHref} class="text-lg font-bold underline underline-offset-4">Call {siteContent.contact.phone}</a>
+          <a href={`${base}/menu/`} class="text-lg font-bold underline underline-offset-4">See the menu</a>
+        </div>
+      </div>
+      <div class="bg-ground text-ink px-6 py-5 rounded-sm" data-section="hours">
+        <h2 class="font-display font-semibold uppercase tracking-[0.2em] text-base text-primary">Open seven days</h2>
+        <Hours listClass="mt-2 grid sm:grid-cols-2 gap-x-8" rowClass="flex items-baseline justify-between py-1.5 border-b border-secondary" dayClass="font-semibold" timeClass="tabular-nums" />
+      </div>
+    </div>
+  </div>
+</section>

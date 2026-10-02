@@ -1,0 +1,9 @@
+---
+/** The two-stroke wave from the shopfront sign, drawn in the brand orange with a second stroke
+ *  that takes the colour passed in (cream on the blue band, navy on cream). */
+const { class: cls = 'w-40 h-6', under = '#0f2040' } = Astro.props;
+---
+<svg class={cls} viewBox="0 0 200 30" fill="none" aria-hidden="true" preserveAspectRatio="none">
+  <path d="M2 16 C 40 2, 70 2, 100 12 S 160 24, 198 8" stroke="#eb6206" stroke-width="4" stroke-linecap="round" />
+  <path d="M2 24 C 40 10, 70 10, 100 20 S 160 30, 198 16" stroke={under} stroke-width="4" stroke-linecap="round" />
+</svg>

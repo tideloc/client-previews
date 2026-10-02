@@ -1,0 +1,341 @@
+{
+  "slug": "the-boulevard-cafe-on-the-lake",
+  "version": 1,
+  "updatedAt": "2026-10-02T00:00:00.000Z",
+  "businessName": "The Boulevard Cafe on the Lake",
+  "hours": [
+    {
+      "day": "mon",
+      "closed": false,
+      "open": "08:00",
+      "close": "15:00",
+      "label": "Monday",
+      "display": "8am - 3pm"
+    },
+    {
+      "day": "tue",
+      "closed": false,
+      "open": "08:00",
+      "close": "15:00",
+      "label": "Tuesday",
+      "display": "8am - 3pm"
+    },
+    {
+      "day": "wed",
+      "closed": false,
+      "open": "08:00",
+      "close": "15:00",
+      "label": "Wednesday",
+      "display": "8am - 3pm"
+    },
+    {
+      "day": "thu",
+      "closed": false,
+      "open": "08:00",
+      "close": "15:30",
+      "label": "Thursday",
+      "display": "8am - 3:30pm"
+    },
+    {
+      "day": "fri",
+      "closed": false,
+      "open": "08:00",
+      "close": "15:00",
+      "label": "Friday",
+      "display": "8am - 3pm"
+    },
+    {
+      "day": "sat",
+      "closed": false,
+      "open": "08:00",
+      "close": "15:00",
+      "label": "Saturday",
+      "display": "8am - 3pm"
+    },
+    {
+      "day": "sun",
+      "closed": false,
+      "open": "08:00",
+      "close": "15:00",
+      "label": "Sunday",
+      "display": "8am - 3pm"
+    }
+  ],
+  "holidays": [],
+  "announcement": {
+    "enabled": true,
+    "text": "Example site by Tideloc, built from the cafe's public photos and menus as a starting point. Details to be confirmed."
+  },
+  "contact": {
+    "phone": "(08) 8552 5092",
+    "email": "theboulevardcafe8@gmail.com",
+    "address": "41 Bartel Blvd",
+    "suburb": "Victor Harbor",
+    "state": "SA",
+    "postcode": "5211",
+    "mapUrl": "https://www.google.com/maps/dir/?api=1&destination=The%20Boulevard%20Cafe%20on%20the%20Lake%2C%2041%20Bartel%20Blvd%2C%20Victor%20Harbor%20SA%205211"
+  },
+  "priceList": [
+    {
+      "title": "Breakfast",
+      "items": [
+        {
+          "name": "Granola",
+          "price": "$18"
+        },
+        {
+          "name": "Eggs Benny",
+          "price": "$23"
+        },
+        {
+          "name": "Big Breakfast",
+          "price": "$28"
+        },
+        {
+          "name": "Truffle Mushroom",
+          "price": "$23.90"
+        },
+        {
+          "name": "Chili Eggs",
+          "price": "$23.90"
+        },
+        {
+          "name": "Smashed Avo",
+          "price": "$22"
+        },
+        {
+          "name": "Pancakes",
+          "price": "$19"
+        },
+        {
+          "name": "Bacon & Egg Roll",
+          "price": "$14"
+        }
+      ]
+    },
+    {
+      "title": "Lunch",
+      "items": [
+        {
+          "name": "Fish and Chips",
+          "price": "$24"
+        },
+        {
+          "name": "Salt and Pepper Squid",
+          "price": "$24"
+        },
+        {
+          "name": "Garlic Prawns",
+          "price": "$30"
+        },
+        {
+          "name": "Taiwanese Fried Chicken",
+          "price": "$22.90"
+        }
+      ]
+    },
+    {
+      "title": "Fri and Sat dinner: entree",
+      "items": [
+        {
+          "name": "Chicken spring rolls",
+          "price": "$6.90",
+          "note": "2pc"
+        },
+        {
+          "name": "Curry puff",
+          "price": "$6.90",
+          "note": "2pc, vegetarian"
+        },
+        {
+          "name": "Satay chicken skewers",
+          "price": "$8",
+          "note": "2pc"
+        },
+        {
+          "name": "BBQ pork steam bun",
+          "price": "$14",
+          "note": "2pc"
+        },
+        {
+          "name": "Duck breast steam bun",
+          "price": "$18",
+          "note": "2pc"
+        },
+        {
+          "name": "Cauliflower with Sriracha mayo",
+          "price": "$10.90"
+        },
+        {
+          "name": "Prawn crackers with peanut sauce",
+          "price": "$8.50"
+        }
+      ]
+    },
+    {
+      "title": "Fri and Sat dinner: chef specials",
+      "items": [
+        {
+          "name": "Taiwanese fried chicken with mayo",
+          "price": "$17.90"
+        },
+        {
+          "name": "Honey chicken",
+          "price": "$17.90"
+        },
+        {
+          "name": "BBQ pork with steam vegetables",
+          "price": "$20.90"
+        },
+        {
+          "name": "Salt and pepper squid",
+          "price": "$24.90"
+        },
+        {
+          "name": "Honey prawns",
+          "price": "$25.90"
+        },
+        {
+          "name": "Garlic prawns",
+          "price": "$23.90"
+        },
+        {
+          "name": "Stir-fry mix vegetable",
+          "price": "$16.90"
+        },
+        {
+          "name": "Crispy Pad Thai with chicken",
+          "price": "$17.90"
+        },
+        {
+          "name": "Crispy Pad Thai with prawns",
+          "price": "$23.90"
+        },
+        {
+          "name": "Teriyaki Wagyu beef",
+          "price": "$33.90"
+        }
+      ]
+    },
+    {
+      "title": "Fri and Sat dinner: curry",
+      "items": [
+        {
+          "name": "Red curry with confit duck leg",
+          "price": "$24.90",
+          "note": "GF"
+        },
+        {
+          "name": "Red curry with chicken",
+          "price": "$18.90"
+        },
+        {
+          "name": "Massaman beef curry",
+          "price": "$23.90",
+          "note": "GF"
+        }
+      ]
+    },
+    {
+      "title": "Fri and Sat dinner: salad",
+      "items": [
+        {
+          "name": "Grilled prawns salad",
+          "price": "$23.90",
+          "note": "GF"
+        }
+      ]
+    },
+    {
+      "title": "Fri and Sat dinner: rice",
+      "items": [
+        {
+          "name": "Steam jasmine rice",
+          "price": "$3.50 / $5.50",
+          "note": "GF, small or large"
+        },
+        {
+          "name": "Fried rice with veggie or tofu",
+          "price": "$16.90"
+        },
+        {
+          "name": "Fried rice with BBQ pork",
+          "price": "$17.90"
+        },
+        {
+          "name": "Fried rice with grilled prawns",
+          "price": "$22.90"
+        }
+      ]
+    },
+    {
+      "title": "Fri and Sat dinner: noodles and soup",
+      "items": [
+        {
+          "name": "Laksa noodles soup with chicken",
+          "price": "$17.90"
+        },
+        {
+          "name": "Laksa noodles soup with prawns",
+          "price": "$23.90",
+          "note": "GF"
+        },
+        {
+          "name": "Tom Yum prawns soup",
+          "price": "$18.90"
+        },
+        {
+          "name": "Tom Yum prawns soup with noodles",
+          "price": "$21.90"
+        }
+      ]
+    }
+  ],
+  "social": {
+    "facebook": "https://www.facebook.com/TheBoulevardCafeOnTheLake"
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Monday",
+      "opens": "08:00",
+      "closes": "15:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Tuesday",
+      "opens": "08:00",
+      "closes": "15:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Wednesday",
+      "opens": "08:00",
+      "closes": "15:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Thursday",
+      "opens": "08:00",
+      "closes": "15:30"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Friday",
+      "opens": "08:00",
+      "closes": "15:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Saturday",
+      "opens": "08:00",
+      "closes": "15:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Sunday",
+      "opens": "08:00",
+      "closes": "15:00"
+    }
+  ]
+}

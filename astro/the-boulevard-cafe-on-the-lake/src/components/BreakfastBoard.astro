@@ -1,0 +1,29 @@
+---
+/** Breakfast price table from the portal price list, beside two plates. */
+import { Picture } from 'astro:assets';
+import bigBreakfast from '../assets/big-breakfast.jpg';
+import croissant from '../assets/bacon-egg-croissant.jpg';
+import { siteContent } from '../lib/site';
+import { base } from '../lib/links';
+const breakfast = siteContent.priceList.find((s) => s.title === 'Breakfast');
+---
+<section data-section="menu" aria-labelledby="breakfast-h" class="mx-auto max-w-6xl px-5 py-16 lg:py-20 grid gap-10 lg:grid-cols-[1fr_1.15fr] lg:items-start">
+  <div>
+    <h2 id="breakfast-h" class="font-display font-light uppercase tracking-[0.18em] text-4xl sm:text-5xl">Breakfast</h2>
+    <p class="mt-3 text-lg">From 8am, every day of the week.</p>
+    {breakfast && (
+      <ul class="mt-6 border-t-2 border-ink">
+        {breakfast.items.map((i) => (
+          <li class="flex items-baseline justify-between gap-4 py-3 border-b border-secondary text-lg">
+            <span class="font-semibold">{i.name}</span>
+            <span class="font-bold text-primary tabular-nums">{i.price}</span>
+          </li>
+        ))}
+      </ul>
+    )}
+      </div>
+  <div class="grid grid-cols-2 gap-3">
+    <Picture src={bigBreakfast} widths={[400, 744]} formats={['avif', 'webp']} sizes="(min-width: 1024px) 26vw, 50vw" loading="lazy" alt="A big breakfast plate with fried eggs, hash browns, bacon, fried chicken and mushrooms" class="w-full h-full object-cover rounded-sm" />
+    <Picture src={croissant} widths={[400, 744]} formats={['avif', 'webp']} sizes="(min-width: 1024px) 26vw, 50vw" loading="lazy" alt="A croissant filled with bacon and a fried egg, topped with parsley" class="w-full h-full object-cover rounded-sm mt-10" />
+  </div>
+</section>

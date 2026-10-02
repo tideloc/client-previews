@@ -1,0 +1,31 @@
+---
+/** Photo mosaic directly under the sign band: the lake full width, then the shopfront, the
+ *  dining room and the plate. */
+import { Picture } from 'astro:assets';
+import lake from '../assets/lake-drink.jpg';
+import shopfront from '../assets/shopfront.jpg';
+import room from '../assets/dining-room.jpg';
+import benny from '../assets/salmon-benny.jpg';
+import { base, directionsUrl } from '../lib/links';
+const cap = 'absolute left-0 bottom-0 bg-ink text-ground font-display uppercase tracking-[0.18em] text-sm px-4 pt-3 pb-2';
+---
+<section data-section="photos" aria-label="The lake, the cafe and the food" class="bg-ink">
+  <a href={directionsUrl} target="_blank" rel="noreferrer" class="relative block">
+    <Picture src={lake} widths={[640, 1024, 1477]} formats={['avif', 'webp']} sizes="100vw" loading="eager" fetchpriority="high" alt="A fruit iced tea held up on the lawn with the lake and blue sky behind" class="w-full h-80 sm:h-[30rem] lg:h-[38rem] object-cover object-[50%_35%]" />
+    <span class={cap + ' sm:text-base'}>Across the lawn from the lake</span>
+  </a>
+  <div class="grid gap-1 mt-1 sm:grid-cols-3">
+    <a href={`${base}/contact/`} class="relative block">
+      <Picture src={shopfront} widths={[480, 768]} formats={['avif', 'webp']} sizes="(min-width: 640px) 33vw, 100vw" loading="lazy" alt="The Boulevard shopfront with its blue band, wordmark sign and verandah" class="w-full h-72 lg:h-96 object-cover object-top" />
+      <span class={cap}>41 Bartel Blvd</span>
+    </a>
+    <div class="relative">
+      <Picture src={room} widths={[480, 768, 1116]} formats={['avif', 'webp']} sizes="(min-width: 640px) 33vw, 100vw" loading="lazy" alt="The dining room with timber tables, tiled floor and doors open to the verandah" class="w-full h-72 lg:h-96 object-cover" />
+      <span class={cap}>Inside</span>
+    </div>
+    <a href={`${base}/menu/`} class="relative block">
+      <Picture src={benny} widths={[480, 768, 1116]} formats={['avif', 'webp']} sizes="(min-width: 640px) 33vw, 100vw" loading="lazy" alt="Salmon eggs benedict with hollandaise and pea shoots on a grey plate" class="w-full h-72 lg:h-96 object-cover object-bottom" />
+      <span class={cap}>The salmon benny</span>
+    </a>
+  </div>
+</section>

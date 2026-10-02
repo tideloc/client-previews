@@ -1,0 +1,43 @@
+---
+/** Catering and functions: the Facebook bio line, the events the page has posted, the verandah,
+ *  and the enquiry form in the same section. */
+import { Picture } from 'astro:assets';
+import verandah from '../assets/verandah.jpg';
+import EnquiryForm from './EnquiryForm.astro';
+import { siteContent } from '../lib/site';
+import { telHref } from '../lib/links';
+---
+<section id="functions" data-section="functions" aria-labelledby="functions-h" class="scroll-mt-4">
+  <Picture src={verandah} widths={[640, 1024, 1600]} formats={['avif', 'webp']} sizes="100vw" loading="lazy" alt="Orange chairs and a round table under the cafe verandah, looking out to the trees" class="w-full h-64 sm:h-80 lg:h-[26rem] object-cover object-[50%_60%]" />
+  <div class="mx-auto max-w-6xl px-5 py-14 lg:py-16 grid gap-12 lg:grid-cols-2 lg:items-start">
+    <div>
+      <h2 id="functions-h" class="font-display font-light uppercase tracking-[0.18em] text-3xl sm:text-5xl">Functions and catering</h2>
+      <p class="mt-5 text-lg leading-relaxed max-w-md">The café is licensed and takes catering and function bookings as well as dine in and takeaway.</p>
+      <h3 class="mt-8 font-display font-semibold uppercase tracking-[0.18em] text-sm text-primary">Held here before</h3>
+      <ul class="mt-2 border-t-2 border-ink text-lg max-w-md">
+        <li class="py-3 border-b border-secondary font-semibold">Melbourne Cup luncheons</li>
+        <li class="py-3 border-b border-secondary font-semibold">Fundraiser dinners</li>
+      </ul>
+      <p class="mt-6 text-lg">Or call <a href={telHref} class="font-bold text-primary underline underline-offset-4">{siteContent.contact.phone}</a>.</p>
+    </div>
+    <div class="bg-secondary p-6 sm:p-8 rounded-sm">
+      <EnquiryForm
+        kind="booking"
+        site={siteContent.businessName}
+        class="grid gap-4 sm:grid-cols-2 [&>div:nth-last-child(-n+3)]:sm:col-span-2"
+        inputClass="w-full border border-ink/40 bg-ground px-3 py-2.5 text-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+        buttonClass="border-2 border-ink text-ink font-display font-semibold uppercase tracking-[0.18em] px-6 pt-4 pb-3"
+        submitLabel="Ask about a function"
+        successText="Thanks, your enquiry has been sent."
+        fields={[
+          { name: 'name', label: 'Your name', required: true },
+          { name: 'phone', label: 'Phone', type: 'tel', required: true },
+          { name: 'date', label: 'Date you have in mind' },
+          { name: 'guests', label: 'Number of guests' },
+          { name: 'email', label: 'Email', type: 'email' },
+          { name: 'message', label: 'What are you planning?', type: 'textarea' },
+        ]}
+      />
+    </div>
+  </div>
+</section>
