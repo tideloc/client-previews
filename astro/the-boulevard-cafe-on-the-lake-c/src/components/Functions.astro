@@ -1,43 +1,21 @@
 ---
-/** The dining room, then catering and functions with the enquiry form. Content: Facebook bio,
- *  event posts, dining room and verandah photos. */
+/** Home page teaser for catering and functions: the dining room and verandah photographs, the
+ *  bio line, and one link through to the functions page. */
 import { Picture } from 'astro:assets';
 import room from '../assets/dining-room.jpg';
 import verandah from '../assets/verandah.jpg';
-import EnquiryForm from './EnquiryForm.astro';
-import { siteContent } from '../lib/site';
-import { telHref } from '../lib/links';
+import { base } from '../lib/links';
 ---
-<section id="functions" data-section="functions" aria-labelledby="functions-h" class="bg-secondary scroll-mt-4">
+<section data-section="functions" aria-labelledby="functions-h" class="bg-secondary">
   <div class="grid lg:grid-cols-[1.6fr_1fr]">
     <Picture src={room} widths={[640, 1116]} formats={['avif', 'webp']} sizes="(min-width: 1024px) 62vw, 100vw" loading="eager" alt="The dining room with timber tables, tiled floor and doors open to the verandah" class="w-full h-72 sm:h-96 lg:h-[30rem] object-cover" pictureAttributes={{ class: 'block' }} />
     <Picture src={verandah} widths={[640, 1024]} formats={['avif', 'webp']} sizes="(min-width: 1024px) 38vw, 100vw" loading="eager" alt="Orange chairs and a round table under the cafe verandah, looking out to the trees" class="w-full h-72 sm:h-96 lg:h-[30rem] object-cover" pictureAttributes={{ class: 'block' }} />
   </div>
-  <div class="mx-auto max-w-7xl px-6 py-20 lg:py-24 grid gap-14 lg:grid-cols-[1fr_1.1fr] lg:gap-20">
+  <div class="mx-auto max-w-7xl px-6 py-16 lg:py-20 grid gap-8 lg:grid-cols-[1fr_1.2fr] lg:gap-20 lg:items-center">
+    <h2 id="functions-h" class="font-display font-light text-4xl sm:text-6xl leading-[1.05]">Functions and catering</h2>
     <div>
-      <h2 id="functions-h" class="font-display font-light text-4xl sm:text-5xl leading-tight">Functions and catering</h2>
-      <p class="mt-6 text-lg leading-relaxed max-w-md text-ink/80">The café is licensed and takes catering and function bookings as well as dine in and takeaway.</p>
-      <dl class="mt-9 max-w-md border-t border-ink/20">
-        <div class="py-4 border-b border-ink/20 flex justify-between gap-6"><dt class="text-ink/65">Held here before</dt><dd class="font-semibold text-right">Melbourne Cup luncheons<br />Fundraiser dinners</dd></div>
-        <div class="py-4 border-b border-ink/20 flex justify-between gap-6"><dt class="text-ink/65">By phone</dt><dd><a href={telHref} class="font-semibold underline underline-offset-4">{siteContent.contact.phone}</a></dd></div>
-      </dl>
+      <p class="text-lg sm:text-xl leading-relaxed text-ink/80">The café is licensed and available for catering and functions as well as dine in and takeaway. It has hosted Melbourne Cup luncheons and fundraiser dinners.</p>
+      <p class="mt-7"><a href={`${base}/functions/`} class="inline-block bg-ink text-ground font-semibold px-7 py-4">Ask about a function</a></p>
     </div>
-    <EnquiryForm
-      kind="booking"
-      site={siteContent.businessName}
-      class="grid gap-5 sm:grid-cols-2 [&>div:nth-last-child(-n+3)]:sm:col-span-2"
-      inputClass="w-full border-0 border-b border-ink/40 bg-transparent px-0 py-2 text-lg focus-visible:outline-none focus-visible:border-primary"
-      buttonClass="bg-ink text-ground font-semibold px-7 py-4"
-      submitLabel="Ask about a function"
-      successText="Thanks, your enquiry has been sent."
-      fields={[
-        { name: 'name', label: 'Your name', required: true },
-        { name: 'phone', label: 'Phone', type: 'tel', required: true },
-        { name: 'date', label: 'Date you have in mind' },
-        { name: 'guests', label: 'Number of guests' },
-        { name: 'email', label: 'Email', type: 'email' },
-        { name: 'message', label: 'What are you planning?', type: 'textarea' },
-      ]}
-    />
   </div>
 </section>

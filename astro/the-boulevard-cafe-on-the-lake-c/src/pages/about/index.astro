@@ -1,0 +1,57 @@
+---
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import PageIntro from '../../components/PageIntro.astro';
+import HoursBand from '../../components/HoursBand.astro';
+import { Picture } from 'astro:assets';
+import lake from '../../assets/lake-drink.jpg';
+import verandah from '../../assets/verandah.jpg';
+import room from '../../assets/dining-room.jpg';
+import award from '../../assets/award-2021.jpg';
+import milkTea from '../../assets/milk-tea-lake.jpg';
+import { base, directionsUrl } from '../../lib/links';
+const link = 'font-semibold underline underline-offset-[6px] decoration-accent decoration-2';
+---
+<Base title="The cafe | The Boulevard Cafe on the Lake, Victor Harbor" description="About The Boulevard Cafe on the Lake: a licensed cafe on Encounter Lakes in Victor Harbor, winner of the 2021 Business Victor Harbor hospitality award.">
+  <Header slot="header" />
+  <PageIntro title="The café" line="Licensed café with a passion for local produce and high quality meals. Available for dine in, takeaway, catering and functions in a beautiful location.">
+    <Picture src={verandah} widths={[640, 1024, 1600]} formats={['avif', 'webp']} sizes="(min-width: 1024px) 55vw, 100vw" loading="eager" alt="Orange chairs and a round table under the cafe verandah, looking out to the trees" class="w-full h-72 sm:h-96 object-cover" />
+  </PageIntro>
+  <section data-section="lake" aria-labelledby="lake-h" class="mx-auto max-w-7xl px-6 py-20 lg:py-28 grid gap-12 lg:grid-cols-[1fr_1.5fr] lg:gap-20 lg:items-center">
+    <div>
+      <h2 id="lake-h" class="font-display font-light text-5xl sm:text-6xl leading-[1.02]">On Encounter Lakes</h2>
+      <p class="mt-6 text-lg leading-relaxed text-ink/80">The café sits on Encounter Lakes at 41 Bartel Blvd, Victor Harbor. The lawn, the shelter and the lake are straight across from the café, which is where these drinks were photographed.</p>
+      <p class="mt-7"><a href={directionsUrl} target="_blank" rel="noreferrer" class={link}>Get directions</a></p>
+    </div>
+    <div class="grid grid-cols-[1.9fr_1fr] gap-4">
+      <Picture src={lake} widths={[640, 1024, 1477]} formats={['avif', 'webp']} sizes="(min-width: 1024px) 38vw, 62vw" loading="lazy" alt="A fruit iced tea held up on the lawn with the lake and blue sky behind" class="w-full h-72 sm:h-[26rem] object-cover" />
+      <Picture src={milkTea} widths={[400, 744]} formats={['avif', 'webp']} sizes="(min-width: 1024px) 20vw, 33vw" loading="lazy" alt="A milk bubble tea held up on the lawn with the lake behind" class="w-full h-72 sm:h-[26rem] object-cover" />
+    </div>
+  </section>
+  <section data-section="award" aria-labelledby="award-h" class="bg-primary text-ground">
+    <div class="mx-auto max-w-7xl px-6 py-20 lg:py-24 grid gap-12 lg:grid-cols-[1fr_1.4fr] lg:gap-20 lg:items-center">
+      <Picture src={award} widths={[400, 744]} formats={['avif', 'webp']} sizes="(min-width: 1024px) 35vw, 100vw" loading="lazy" alt="Framed 2021 Excellence in Business Awards certificate naming The Boulevard as hospitality winner, with a glass trophy" class="w-full max-w-md aspect-[4/5] object-cover object-top" />
+      <div>
+        <p class="text-sm uppercase tracking-[0.2em] font-semibold">Business Victor Harbor, 2021</p>
+        <h2 id="award-h" class="mt-4 font-display font-light text-5xl sm:text-6xl lg:text-7xl leading-[1.02]">Winner, Hospitality</h2>
+        <p class="mt-6 text-lg sm:text-xl leading-relaxed max-w-xl">The Boulevard won the Hospitality category at the 2021 Excellence in Business Awards. In January that year the café marked five years in business.</p>
+        <p class="mt-10 max-w-md border-t border-ground/30 pt-8 flex items-baseline gap-5"><span class="font-display text-6xl">4.3</span><span class="text-ground/90">out of 5 from 558 Google reviews, October 2026</span></p>
+      </div>
+    </div>
+  </section>
+  <section data-section="inside" aria-labelledby="inside-h" class="mx-auto max-w-7xl px-6 py-20 lg:py-28 grid gap-12 lg:grid-cols-[1.5fr_1fr] lg:gap-20 lg:items-center">
+    <Picture src={room} widths={[640, 1116]} formats={['avif', 'webp']} sizes="(min-width: 1024px) 55vw, 100vw" loading="lazy" alt="The dining room with timber tables, tiled floor and doors open to the verandah" class="w-full h-72 sm:h-[30rem] object-cover" />
+    <div>
+      <h2 id="inside-h" class="font-display font-light text-5xl sm:text-6xl leading-[1.02]">Inside and out</h2>
+      <p class="mt-6 text-lg leading-relaxed text-ink/80">Timber tables in the dining room, doors that open to the verandah, and orange chairs outside under cover. Dine in, or take it across to the lake.</p>
+      <ul class="mt-8 border-t border-ink/20 text-lg">
+        <li class="py-3.5 border-b border-ink/15"><a href={`${base}/menu/`} class={link}>See the menu</a></li>
+        <li class="py-3.5 border-b border-ink/15"><a href={`${base}/gallery/`} class={link}>Look through the gallery</a></li>
+        <li class="py-3.5 border-b border-ink/15"><a href={`${base}/functions/`} class={link}>Ask about a function</a></li>
+      </ul>
+    </div>
+  </section>
+  <HoursBand id="about-hours-h" />
+  <Footer slot="footer" />
+</Base>

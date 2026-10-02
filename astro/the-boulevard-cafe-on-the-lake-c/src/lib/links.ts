@@ -7,6 +7,8 @@ export const mapEmbedUrl = `https://www.google.com/maps?q=${encodeURIComponent(m
 export const telHref = 'tel:+61885525092';
 export const nav = [
   { href: `${base}/menu/`, label: 'Menu' },
-  { href: `${base}/#functions`, label: 'Functions' },
+  { href: `${base}/functions/`, label: 'Functions' },
+  { href: `${base}/about/`, label: 'The café' },
+  { href: `${base}/gallery/`, label: 'Gallery' },
   { href: `${base}/contact/`, label: 'Find us' },
 ];

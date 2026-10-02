@@ -1,0 +1,14 @@
+---
+/** Navy page header used by the inner pages: big light heading, one line, and a slot for
+ *  photographs on the right. */
+const { title, line } = Astro.props;
+---
+<section data-section="page-intro" class="bg-ink text-ground">
+  <div class="mx-auto max-w-7xl px-6 pt-10 pb-16 lg:pb-20 grid gap-10 lg:grid-cols-[1fr_1.4fr] lg:items-end">
+    <div>
+      <h1 class="font-display font-light text-6xl sm:text-7xl lg:text-8xl leading-[0.95]">{title}</h1>
+      <p class="mt-6 text-lg sm:text-xl text-ground/85 max-w-xl leading-relaxed">{line}</p>
+    </div>
+    <slot />
+  </div>
+</section>

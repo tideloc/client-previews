@@ -96,31 +96,6 @@
   ]
  },
  {
-  "title": "Pizzas",
-  "items": [
-   {
-    "name": "Meat Lovers",
-    "desc": "Chicken, bacon, pepperoni, ham, pork fennel sausage, onion, capsicum and stretch mozzarella cheese."
-   },
-   {
-    "name": "BBQ Chicken",
-    "desc": "Roasted chicken, onion, capsicum and mozzarella cheese on bbq sauce base."
-   },
-   {
-    "name": "Hawaiian",
-    "desc": "Ham, pineapple, mozzarella cheese and tomato sugo sauce."
-   },
-   {
-    "name": "Margherita",
-    "desc": "Tomato, basil and mozzarella cheese."
-   },
-   {
-    "name": "Pepperoni",
-    "desc": "Loaded pepperoni, mozzarella cheese on tomato sugo base."
-   }
-  ]
- },
- {
   "title": "Sides",
   "compact": true,
   "items": [

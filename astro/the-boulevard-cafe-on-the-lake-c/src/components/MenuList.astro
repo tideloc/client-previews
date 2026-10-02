@@ -3,7 +3,7 @@
  *  desserts and drinks as plain lists. No prices. */
 import { menuSections } from '../lib/menu';
 const pick = (titles: string[]) => titles.map((t) => menuSections.find((s) => s.title === t)).filter(Boolean) as typeof menuSections;
-const cols = [pick(['Breakfast', 'Lunch', 'Bowls']), pick(['Burgers', 'Pizzas', 'Sides', 'Desserts', 'Drinks'])];
+const cols = [pick(['Breakfast', 'Lunch']), pick(['Burgers', 'Bowls', 'Sides', 'Desserts', 'Drinks'])];
 ---
 <div class="grid gap-14 lg:grid-cols-2 lg:gap-20">
   {cols.map((col) => (

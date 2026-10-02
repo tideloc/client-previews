@@ -1,0 +1,58 @@
+---
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import PageIntro from '../../components/PageIntro.astro';
+import HoursBand from '../../components/HoursBand.astro';
+import EnquiryForm from '../../components/EnquiryForm.astro';
+import { Picture } from 'astro:assets';
+import room from '../../assets/dining-room.jpg';
+import verandah from '../../assets/verandah.jpg';
+import { siteContent, fullAddress } from '../../lib/site';
+import { telHref } from '../../lib/links';
+---
+<Base title="Functions and catering | The Boulevard Cafe on the Lake" description="Ask The Boulevard Cafe on the Lake in Victor Harbor about a function or catering. A licensed cafe on Encounter Lakes with a dining room and verandah.">
+  <Header slot="header" />
+  <PageIntro title="Functions and catering" line="A licensed café on Encounter Lakes, available for catering and functions in a beautiful location.">
+    <Picture src={room} widths={[640, 1116]} formats={['avif', 'webp']} sizes="(min-width: 1024px) 55vw, 100vw" loading="eager" alt="The dining room with timber tables, tiled floor and doors open to the verandah" class="w-full h-72 sm:h-96 object-cover" />
+  </PageIntro>
+  <section data-section="offer" aria-label="What has been held here" class="bg-accent text-ink">
+    <div class="mx-auto max-w-7xl px-6 py-12 lg:py-14 grid gap-6 lg:grid-cols-[auto_1fr] lg:items-baseline lg:gap-16">
+      <h2 class="text-sm uppercase tracking-[0.2em] font-semibold">Held here before</h2>
+      <p class="font-display font-light text-4xl sm:text-5xl lg:text-6xl leading-[1.08]">Melbourne Cup luncheons and fundraiser dinners.</p>
+    </div>
+  </section>
+  <section data-section="functions" aria-labelledby="ask-h" class="mx-auto max-w-7xl px-6 py-20 lg:py-28 grid gap-14 lg:grid-cols-[1fr_1.1fr] lg:gap-20">
+    <div>
+      <h2 id="ask-h" class="font-display font-light text-4xl sm:text-5xl leading-tight">Ask about a function</h2>
+      <p class="mt-6 text-lg leading-relaxed text-ink/80 max-w-md">The café is licensed and available for catering and functions. Send the date, the numbers and what you are planning, or call.</p>
+      <dl class="mt-9 max-w-md border-t border-ink/20">
+        <div class="py-4 border-b border-ink/20 flex justify-between gap-6"><dt class="text-ink/65">Where</dt><dd class="font-semibold text-right">{fullAddress()}</dd></div>
+        <div class="py-4 border-b border-ink/20 flex justify-between gap-6"><dt class="text-ink/65">Open</dt><dd class="font-semibold text-right">Seven days, from 8am</dd></div>
+        <div class="py-4 border-b border-ink/20 flex justify-between gap-6"><dt class="text-ink/65">By phone</dt><dd><a href={telHref} class="font-semibold underline underline-offset-4">{siteContent.contact.phone}</a></dd></div>
+      </dl>
+    </div>
+    <EnquiryForm
+      kind="booking"
+      site={siteContent.businessName}
+      class="grid gap-5 sm:grid-cols-2 [&>div:nth-last-child(-n+3)]:sm:col-span-2"
+      inputClass="w-full border-0 border-b border-ink/40 bg-transparent px-0 py-2 text-lg focus-visible:outline-none focus-visible:border-primary"
+      buttonClass="bg-ink text-ground font-semibold px-7 py-4"
+      submitLabel="Ask about a function"
+      successText="Thanks, your enquiry has been sent."
+      fields={[
+        { name: 'name', label: 'Your name', required: true },
+        { name: 'phone', label: 'Phone', type: 'tel', required: true },
+        { name: 'date', label: 'Date you have in mind' },
+        { name: 'guests', label: 'Number of guests' },
+        { name: 'email', label: 'Email', type: 'email' },
+        { name: 'message', label: 'What are you planning?', type: 'textarea' },
+      ]}
+    />
+  </section>
+  <section data-section="spaces" aria-label="Under the verandah">
+    <Picture src={verandah} widths={[640, 1024, 1600]} formats={['avif', 'webp']} sizes="100vw" loading="lazy" alt="Orange chairs and a round table under the cafe verandah, looking out to the trees" class="w-full h-80 sm:h-[30rem] lg:h-[36rem] object-cover object-[50%_60%]" pictureAttributes={{ class: 'block' }} />
+  </section>
+  <HoursBand id="fn-hours-h" />
+  <Footer slot="footer" />
+</Base>

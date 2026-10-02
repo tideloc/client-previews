@@ -7,17 +7,18 @@ import { base, nav, directionsUrl } from '../lib/links';
       <span class="block font-display uppercase tracking-[0.26em] text-lg sm:text-xl">The Boulevard</span>
       <span class="block font-display tracking-[0.32em] text-[0.7rem] text-ground/70 mt-1.5">café on the lake</span>
     </a>
-    <nav aria-label="Main" class="hidden md:block">
-      <ul class="flex items-center gap-9 text-[0.95rem]">
+    <nav aria-label="Main" class="hidden lg:block">
+      <ul class="flex items-center gap-8 text-[0.95rem]">
         {nav.map((n) => <li><a href={n.href} class="hover:text-accent">{n.label}</a></li>)}
         <li><a href={directionsUrl} target="_blank" rel="noreferrer" class="border border-ground/60 px-5 py-2.5 hover:bg-ground hover:text-ink">Get directions</a></li>
       </ul>
     </nav>
-    <button type="button" class="md:hidden border border-ground/60 px-3 py-2 text-sm" aria-expanded="false" aria-controls="mobile-nav" id="nav-toggle">Pages</button>
+    <button type="button" class="lg:hidden border border-ground/60 px-3 py-2 text-sm" aria-expanded="false" aria-controls="mobile-nav" id="nav-toggle">Pages</button>
   </div>
-  <nav aria-label="Main" id="mobile-nav" hidden class="md:hidden border-t border-ground/15">
+  <nav aria-label="Main" id="mobile-nav" hidden class="lg:hidden border-t border-ground/15">
     <ul>
       {nav.map((n) => <li class="border-b border-ground/15"><a href={n.href} class="block px-6 py-4">{n.label}</a></li>)}
+      <li><a href={directionsUrl} target="_blank" rel="noreferrer" class="block px-6 py-4 font-semibold">Get directions</a></li>
     </ul>
   </nav>
 </header>

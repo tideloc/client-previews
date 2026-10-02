@@ -11,13 +11,13 @@ import bigBreakfast from '../../assets/big-breakfast.jpg';
 import { siteContent } from '../../lib/site';
 import { telHref } from '../../lib/links';
 ---
-<Base title="Menu | The Boulevard Cafe on the Lake" description="Breakfast, lunch, burgers, bowls and pizzas at The Boulevard Cafe on the Lake, Victor Harbor. Dine in, licensed, or takeaway.">
+<Base title="Menu | The Boulevard Cafe on the Lake" description="Breakfast, lunch, burgers and bowls at The Boulevard Cafe on the Lake, Victor Harbor. Dine in, licensed, or takeaway.">
   <Header slot="header" />
   <section data-section="menu-intro" class="bg-ink text-ground">
     <div class="mx-auto max-w-7xl px-6 pt-10 pb-16 lg:pb-20 grid gap-10 lg:grid-cols-[1fr_1.5fr] lg:items-end">
       <div>
         <h1 class="font-display font-light text-7xl sm:text-8xl">Menu</h1>
-        <p class="mt-6 text-lg sm:text-xl text-ground/85 max-w-xl leading-relaxed">Dine in, licensed, or takeaway. Call <a href={telHref} class="font-semibold underline underline-offset-[6px] decoration-accent decoration-2">{siteContent.contact.phone}</a>.</p>
+        <p class="mt-6 text-lg sm:text-xl text-ground/85 max-w-xl leading-relaxed">Dine in (licensed) or takeaway. Call <a href={telHref} class="font-semibold underline underline-offset-[6px] decoration-accent decoration-2">{siteContent.contact.phone}</a>.</p>
       </div>
       <div class="grid grid-cols-3 gap-4">
         <Picture src={benny} widths={[400, 744]} formats={['avif', 'webp']} sizes="(min-width: 1024px) 20vw, 33vw" loading="eager" alt="Salmon eggs benedict with hollandaise and pea shoots on a grey plate" class="w-full aspect-[4/5] object-cover object-bottom" />

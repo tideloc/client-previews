@@ -16,3 +16,12 @@ Option C of three (B at /v2/, D built locally and not deployed). Blake on B: lik
 - Static gate: PASS.
 - "Example site by Tideloc" strip and the "Example content" note on the menu are deliberate. Remove before launch.
 - Forms post to the demo endpoint (email Blake).
+
+## Multi-page build (2 Oct 2026, afternoon)
+Blake asked for Option C to be built out. Six pages now: home, menu, functions, about ("The café"), gallery, contact.
+- Functions: orange "held here before" band, enquiry form, verandah photo, hours. Wording is "available for catering and functions", not "bookings".
+- The café: Encounter Lakes, the 2021 Hospitality award with the certificate photo, "In January 2021 the café marked five years in business" (from a Facebook graphic; ownership history unknown, confirm with Yvette), dining room.
+- Gallery: twelve of the cafe's own photos in two groups, each captioned with its Facebook post date. Four dishes are no longer on the menu and the page says so.
+- Menu: pizzas removed (they were on the first Uber Eats read only).
+- Independent QC on the multi-page build: round 1 FAIL (gallery layout, pizzas, wording), round 2 PASS. Static gate PASS. Taste notes left: all inner pages share one navy header pattern; functions page is short; the benny and big breakfast photos differ from the current menu descriptions; the lake photo opens the gallery twice.
+- Extra questions for Yvette: is the five-years line right for her ownership; which rooms functions use and how many they seat; current benny and big breakfast photos.
