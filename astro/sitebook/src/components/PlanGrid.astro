@@ -1,4 +1,5 @@
 ---
+import typeColors from '../lib/type-colors.json';
 /** A real floor plan from the Sitebook demo with Marker pins at the seed's own asset coordinates.
  *  The drawing is the app's plan image; pins and tag chips are HTML on top so they stay legible at any width.
  *  Optional A to H / 1 to 6 grid reference strips line up with the plan's own grid (8 x 6).
@@ -38,9 +39,25 @@ const band = (i: number, size: number, start: number, span: number) => {
 const colLabels = letters.map((l, i) => ({ l, at: band(i, colW, x0, cw) })).filter((c) => c.at !== null);
 const rowLabels = Array.from({ length: plan.rows }, (_, i) => ({ l: String(i + 1), at: band(i, rowH, y0, ch) })).filter((r) => r.at !== null);
 
+// Pin colour by asset type and shape by trade, the same key the app uses (copied from the app's src/lib/type-colors.json).
+const SHAPE_PATH: Record<string, string> = {
+  square: 'M3.5 3.5h13v13h-13z',
+  circle: 'M10 3a7 7 0 1 1 0 14a7 7 0 1 1 0-14z',
+  drop: 'M10 2.5C13 6.5 16 9.5 16 12.5a6 6 0 0 1-12 0C4 9.5 7 6.5 10 2.5z',
+  triangle: 'M10 2.5l8 14.5H2z',
+  hexagon: 'M10 2.5l6.5 3.75v7.5L10 17.5l-6.5-3.75v-7.5z',
+  pentagon: 'M10 2.5l7.6 5.5-2.9 9H5.3l-2.9-9z',
+  diamond: 'M10 2l8 8-8 8-8-8z',
+  cross: 'M7.25 2.75h5.5v4.5h4.5v5.5h-4.5v4.5h-5.5v-4.5h-4.5v-5.5h4.5z',
+};
+const typeStyle = (tag: string) => {
+  const t = (typeColors.types as Record<string, { group: string; color: string; text: string }>)[tag.replace(/-\d+$/, '').toUpperCase()];
+  const shape = t ? (typeColors.shapes as Record<string, string>)[t.group] : 'circle';
+  return { color: t?.color ?? '#F26B1D', text: t?.text ?? '#ffffff', path: SHAPE_PATH[shape] ?? SHAPE_PATH.circle };
+};
 const placed = pins.map((p) => {
   const s = planPin(plan, p.tag);
-  return { ...p, ...s, left: (s.x * plan.width - x0) / cw, top: (s.y * plan.height - y0) / ch };
+  return { ...p, ...s, ...typeStyle(p.tag), left: (s.x * plan.width - x0) / cw, top: (s.y * plan.height - y0) / ch };
 });
 // Chip beside the pin (default right) so it lands in open floor rather than on a room name; 'below' matches the app's label.
 const chipPos: Record<Side, (l: string, t: string) => string> = {
@@ -79,16 +96,17 @@ const strip = 'mono-tag text-[11px] leading-none text-ink-2';
         style={`width:${pct(plan.width / cw)};height:auto;left:${pct(-x0 / cw)};top:${pct(-y0 / ch)}`}
       />
       {placed.map((p) => (
-        <span
-          class="absolute block size-3 sm:size-3.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary"
-          style={`left:${pct(p.left)};top:${pct(p.top)};box-shadow:0 0 0 2px #F6F7F9, 0 1px 3px 1px rgb(22 33 58 / 0.4)`}
+        <svg
+          viewBox="0 0 20 20"
+          class="absolute block size-3.5 sm:size-[18px] -translate-x-1/2 -translate-y-1/2 overflow-visible"
+          style={`left:${pct(p.left)};top:${pct(p.top)};filter:drop-shadow(0 1px 1.2px rgb(22 33 58 / 0.45))`}
           aria-hidden="true"
-        ></span>
+        ><path d={p.path} fill={p.color} stroke="#ffffff" stroke-width="2" stroke-linejoin="round" paint-order="stroke" /></svg>
       ))}
       {placed.filter((p) => p.chip).map((p) => (
         <span
           class="tag absolute text-[10px] leading-[14px] px-[7px] py-[3px] sm:text-[11px]"
-          style={chipPos[p.side ?? 'right'](pct(p.left), pct(p.top))}
+          style={`${chipPos[p.side ?? 'right'](pct(p.left), pct(p.top))};--tag-face:${p.color};--tag-text:${p.text}`}
           aria-hidden="true"
         >{p.tag}</span>
       ))}

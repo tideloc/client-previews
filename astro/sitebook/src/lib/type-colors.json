@@ -1,0 +1,254 @@
+{
+  "shapes": {
+    "electrical": "square",
+    "mechanical": "circle",
+    "hydraulic": "drop",
+    "fire": "triangle",
+    "vertical": "hexagon",
+    "waste": "pentagon",
+    "access": "diamond",
+    "safety": "cross"
+  },
+  "types": {
+    "DB": {
+      "group": "electrical",
+      "color": "#2a78d6",
+      "text": "#ffffff"
+    },
+    "EM": {
+      "group": "electrical",
+      "color": "#eb6834",
+      "text": "#ffffff"
+    },
+    "MSSB": {
+      "group": "electrical",
+      "color": "#1baf7a",
+      "text": "#ffffff"
+    },
+    "UPS": {
+      "group": "electrical",
+      "color": "#eda100",
+      "text": "#16213a"
+    },
+    "MSB": {
+      "group": "electrical",
+      "color": "#e87ba4",
+      "text": "#ffffff"
+    },
+    "GEN": {
+      "group": "electrical",
+      "color": "#008300",
+      "text": "#ffffff"
+    },
+    "EF": {
+      "group": "mechanical",
+      "color": "#2a78d6",
+      "text": "#ffffff"
+    },
+    "AHU": {
+      "group": "mechanical",
+      "color": "#eb6834",
+      "text": "#ffffff"
+    },
+    "FCU": {
+      "group": "mechanical",
+      "color": "#1baf7a",
+      "text": "#ffffff"
+    },
+    "PMP": {
+      "group": "mechanical",
+      "color": "#eda100",
+      "text": "#16213a"
+    },
+    "CU": {
+      "group": "mechanical",
+      "color": "#e87ba4",
+      "text": "#ffffff"
+    },
+    "CH": {
+      "group": "mechanical",
+      "color": "#008300",
+      "text": "#ffffff"
+    },
+    "CT": {
+      "group": "mechanical",
+      "color": "#6250d6",
+      "text": "#ffffff"
+    },
+    "IV": {
+      "group": "hydraulic",
+      "color": "#2a78d6",
+      "text": "#ffffff"
+    },
+    "HWU": {
+      "group": "hydraulic",
+      "color": "#eb6834",
+      "text": "#ffffff"
+    },
+    "SP": {
+      "group": "hydraulic",
+      "color": "#1baf7a",
+      "text": "#ffffff"
+    },
+    "BF": {
+      "group": "hydraulic",
+      "color": "#eda100",
+      "text": "#16213a"
+    },
+    "GT": {
+      "group": "hydraulic",
+      "color": "#e87ba4",
+      "text": "#ffffff"
+    },
+    "GV": {
+      "group": "hydraulic",
+      "color": "#008300",
+      "text": "#ffffff"
+    },
+    "WM": {
+      "group": "hydraulic",
+      "color": "#6250d6",
+      "text": "#ffffff"
+    },
+    "EXT": {
+      "group": "fire",
+      "color": "#2a78d6",
+      "text": "#ffffff"
+    },
+    "HYD": {
+      "group": "fire",
+      "color": "#eb6834",
+      "text": "#ffffff"
+    },
+    "HR": {
+      "group": "fire",
+      "color": "#1baf7a",
+      "text": "#ffffff"
+    },
+    "FD": {
+      "group": "fire",
+      "color": "#eda100",
+      "text": "#16213a"
+    },
+    "SV": {
+      "group": "fire",
+      "color": "#e87ba4",
+      "text": "#ffffff"
+    },
+    "SD": {
+      "group": "fire",
+      "color": "#008300",
+      "text": "#ffffff"
+    },
+    "FIP": {
+      "group": "fire",
+      "color": "#6250d6",
+      "text": "#ffffff"
+    },
+    "BV": {
+      "group": "fire",
+      "color": "#e34948",
+      "text": "#ffffff"
+    },
+    "EWIS": {
+      "group": "fire",
+      "color": "#5b6577",
+      "text": "#ffffff"
+    },
+    "LIFT": {
+      "group": "vertical",
+      "color": "#2a78d6",
+      "text": "#ffffff"
+    },
+    "ESC": {
+      "group": "vertical",
+      "color": "#eb6834",
+      "text": "#ffffff"
+    },
+    "GL": {
+      "group": "vertical",
+      "color": "#1baf7a",
+      "text": "#ffffff"
+    },
+    "WST": {
+      "group": "waste",
+      "color": "#2a78d6",
+      "text": "#ffffff"
+    },
+    "CMP": {
+      "group": "waste",
+      "color": "#eb6834",
+      "text": "#ffffff"
+    },
+    "BAL": {
+      "group": "waste",
+      "color": "#1baf7a",
+      "text": "#ffffff"
+    },
+    "PD": {
+      "group": "access",
+      "color": "#2a78d6",
+      "text": "#ffffff"
+    },
+    "AP": {
+      "group": "access",
+      "color": "#eb6834",
+      "text": "#ffffff"
+    },
+    "KS": {
+      "group": "access",
+      "color": "#1baf7a",
+      "text": "#ffffff"
+    },
+    "RH": {
+      "group": "access",
+      "color": "#eda100",
+      "text": "#16213a"
+    },
+    "RD": {
+      "group": "access",
+      "color": "#e87ba4",
+      "text": "#ffffff"
+    },
+    "ACP": {
+      "group": "access",
+      "color": "#008300",
+      "text": "#ffffff"
+    },
+    "LD": {
+      "group": "access",
+      "color": "#6250d6",
+      "text": "#ffffff"
+    },
+    "EEL": {
+      "group": "safety",
+      "color": "#2a78d6",
+      "text": "#ffffff"
+    },
+    "FA": {
+      "group": "safety",
+      "color": "#eb6834",
+      "text": "#ffffff"
+    },
+    "EW": {
+      "group": "safety",
+      "color": "#1baf7a",
+      "text": "#ffffff"
+    },
+    "SK": {
+      "group": "safety",
+      "color": "#eda100",
+      "text": "#16213a"
+    },
+    "ESB": {
+      "group": "safety",
+      "color": "#e87ba4",
+      "text": "#ffffff"
+    },
+    "AED": {
+      "group": "safety",
+      "color": "#008300",
+      "text": "#ffffff"
+    }
+  }
+}
