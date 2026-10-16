@@ -1,27 +1,15 @@
 ---
 /**
  * Nine feature units from the inventory, in five structures so the page does not repeat one grammar:
- *  1. Map: a full-width drawn plate (8 x 6 grid, rooms, three pinned tags) with the asset fields as annotations around it.
+ *  1. Map: the demo's Ridgeway Fair ground plan (8 x 6 grid, real seed pins, three tagged) with the asset fields as annotations around it.
  *  2. Contractors and People: one paired spread, two columns under one rule.
  *  3. Runbooks: the cadence as a ruled strip of seven cells.
  *  4. Work requests and Handover: the chip / heading / list ledger, two blocks side by side.
  *  5. Emergency, Import and Access: one ruled schedule table, like the home page's "What it holds".
  */
 import TagChip from './TagChip.astro';
+import PlanGrid from './PlanGrid.astro';
 
-const ink = '#16213A';
-const rule = '#D9DEE7';
-const sheet = '#F6F7F9';
-const cols = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
-const rows = [1, 2, 3, 4, 5, 6];
-// Plate geometry: 8 columns of 110, 6 rows of 90, origin (70, 50).
-const gx = (c: number) => 70 + c * 110;
-const gy = (r: number) => 50 + r * 90;
-const pins = [
-  { tag: 'DB-03', c: 2.35, r: 1.55, w: 60 },
-  { tag: 'AHU-12', c: 5.4, r: 1.2, w: 66 },
-  { tag: 'FIP-01', c: 3.6, r: 4.55, w: 62 },
-];
 const leftNotes = [
   { k: 'Photo', v: 'A photo of the asset, on its pin.' },
   { k: 'Tag', v: 'The label on the asset, as the mono chip on the pin.' },
@@ -45,7 +33,7 @@ const schedule = [
 ---
 <section data-section="features" aria-label="Features" class="border-b border-rule">
 
-  <!-- 1. Map: the drawn plate, annotated -->
+  <!-- 1. Map: the demo plan, annotated -->
   <article id="map" data-section="feature-map" class="border-b border-rule">
     <div class="mx-auto max-w-wrap px-5 sm:px-8 py-12 lg:py-16">
       <div class="flex flex-wrap items-end justify-between gap-4">
@@ -67,45 +55,14 @@ const schedule = [
         </dl>
 
         <div class="order-1 lg:order-2 rounded-md border border-rule bg-card p-2 sm:p-3">
-          <svg viewBox="0 0 960 620" class="w-full h-auto" role="img" aria-label="Drawn floor plate, grid A to H by 1 to 6, five rooms, three assets pinned and tagged DB-03, AHU-12 and FIP-01" xmlns="http://www.w3.org/2000/svg">
-            <rect x="0.5" y="0.5" width="959" height="619" fill="none" stroke={rule} />
-            <g font-family="IBM Plex Mono, monospace" font-size="13" fill={ink} opacity="0.7">
-              {cols.map((c, i) => (<text x={gx(i) + 55} y="34" text-anchor="middle">{c}</text>))}
-              {rows.map((r, i) => (<text x="36" y={gy(i) + 50} text-anchor="middle">{r}</text>))}
-            </g>
-            <g stroke={rule} stroke-dasharray="3 5">
-              {cols.map((_, i) => (<line x1={gx(i)} y1={gy(0)} x2={gx(i)} y2={gy(6)} />))}
-              <line x1={gx(8)} y1={gy(0)} x2={gx(8)} y2={gy(6)} />
-              {rows.map((_, i) => (<line x1={gx(0)} y1={gy(i)} x2={gx(8)} y2={gy(i)} />))}
-              <line x1={gx(0)} y1={gy(6)} x2={gx(8)} y2={gy(6)} />
-            </g>
-            <g fill="none" stroke={ink} stroke-width="2">
-              <rect x={gx(0.5)} y={gy(0.5)} width="330" height="210" />
-              <rect x={gx(4)} y={gy(0.5)} width="380" height="150" />
-              <rect x={gx(4)} y={gy(2.5)} width="180" height="140" />
-              <rect x={gx(6)} y={gy(2.5)} width="200" height="140" />
-              <rect x={gx(0.5)} y={gy(3.2)} width="220" height="230" />
-              <rect x={gx(2.7)} y={gy(4.2)} width="523" height="140" />
-              <path d={`M${gx(2.5)} ${gy(4.2)} H${gx(2.7)} M${gx(3.5)} ${gy(2.83)} V${gy(3.2)} H${gx(2.7)}`} />
-            </g>
-            <g fill="none" stroke={ink} stroke-width="1" opacity="0.6">
-              <path d={`M${gx(0.7)} ${gy(2.83)} h40 M${gx(0.7) + 40} ${gy(2.83)} a40 40 0 0 0 -40 -40`} />
-              <path d={`M${gx(7.4)} ${gy(2.17)} h-30 M${gx(7.4) - 30} ${gy(2.17)} a30 30 0 0 1 30 -30`} />
-              <path d={`M${gx(2.7)} ${gy(5.75)} h40 M${gx(2.7) + 40} ${gy(5.75)} a40 40 0 0 0 -40 -40`} />
-            </g>
-            {pins.map((p) => (
-              <g>
-                <circle cx={gx(p.c)} cy={gy(p.r)} r="9" fill="#F26B1D" stroke={sheet} stroke-width="2" />
-                <rect x={gx(p.c) + 14} y={gy(p.r) - 11} width={p.w} height="22" rx="3" fill={ink} />
-                <rect x={gx(p.c) + 17} y={gy(p.r) - 8} width={p.w - 6} height="16" rx="2" fill="none" stroke={sheet} stroke-opacity="0.4" />
-                <text x={gx(p.c) + 14 + p.w / 2} y={gy(p.r) + 4} text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" letter-spacing="0.04em" fill={sheet}>{p.tag}</text>
-              </g>
-            ))}
-            <g font-family="IBM Plex Mono, monospace" font-size="11" fill={ink} opacity="0.7">
-              <text x={gx(8)} y="612" text-anchor="end">LEVEL 1 OF 2</text>
-              <text x={gx(0)} y="612">GRID 8 X 6</text>
-            </g>
-          </svg>
+          <PlanGrid
+            footer={['GRID 8 X 6', 'LEVEL 1 OF 2']}
+            pins={[
+              { tag: 'DB-02', chip: true, side: 'left' }, { tag: 'AHU-01', chip: true }, { tag: 'FIP-01', chip: true, side: 'left' },
+              { tag: 'HYD-02' }, { tag: 'FCU-03' }, { tag: 'PMP-01' }, { tag: 'DB-12' },
+              { tag: 'MSB-01' }, { tag: 'GT-02' }, { tag: 'CU-01' }, { tag: 'DB-05' },
+            ]}
+          />
         </div>
 
         <dl class="grid gap-5 order-3">

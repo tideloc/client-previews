@@ -1,43 +1,105 @@
 ---
-/** A drawn floor plate with grid references and Marker pins: the product's own device, not a photograph.
- *  Pins are decorative shapes; the real map lives in the app. */
-interface Props { class?: string; dark?: boolean; pins?: number }
-const { class: cls = '', dark = false, pins = 6 } = Astro.props;
-const ink = dark ? '#F6F7F9' : '#16213A';
-const rule = dark ? 'rgba(246,247,249,0.25)' : '#D9DEE7';
-const cols = ['A','B','C','D','E','F','G','H'];
-const rows = [1,2,3,4,5,6];
-const spots = [[2.4,1.6],[4.7,2.3],[6.3,1.4],[1.6,4.2],[5.2,4.7],[7.3,3.6],[3.4,3.1],[6.8,5.4]].slice(0, pins);
+/** A real floor plan from the Sitebook demo with Marker pins at the seed's own asset coordinates.
+ *  The drawing is the app's plan image; pins and tag chips are HTML on top so they stay legible at any width.
+ *  Optional A to H / 1 to 6 grid reference strips line up with the plan's own grid (8 x 6).
+ *  crop = [x, y, width, height] in plan pixels for a fragment. sheet = white card, for placing on Ink. */
+import { RIDGEWAY_G, ridgewayPin, type PlanDef } from '../lib/plans';
+type Side = 'right' | 'left' | 'below';
+interface PinSpec { tag: string; chip?: boolean; side?: Side }
+interface Props {
+  class?: string;
+  plan?: PlanDef;
+  pins: PinSpec[];
+  crop?: [number, number, number, number];
+  cols?: 'top' | 'bottom' | 'none';
+  rows?: boolean;
+  footer?: [string, string];
+  sheet?: boolean;
+  label?: string;
+}
+const {
+  class: cls = '', plan = RIDGEWAY_G, pins, crop, cols = 'top', rows = true, footer, sheet = false, label,
+} = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const [x0, y0, cw, ch] = crop ?? [0, 0, plan.width, plan.height];
+const pct = (n: number) => `${+(n * 100).toFixed(3)}%`;
+
+const letters = 'ABCDEFGHIJKL'.slice(0, plan.cols).split('');
+const colW = plan.width / plan.cols;
+const rowH = plan.height / plan.rows;
+// Label each grid band at the centre of its visible part; skip bands mostly outside a crop.
+const band = (i: number, size: number, start: number, span: number) => {
+  const a = Math.max(i * size, start);
+  const b = Math.min((i + 1) * size, start + span);
+  return b - a > size * 0.4 ? ((a + b) / 2 - start) / span : null;
+};
+const colLabels = letters.map((l, i) => ({ l, at: band(i, colW, x0, cw) })).filter((c) => c.at !== null);
+const rowLabels = Array.from({ length: plan.rows }, (_, i) => ({ l: String(i + 1), at: band(i, rowH, y0, ch) })).filter((r) => r.at !== null);
+
+const placed = pins.map((p) => {
+  const s = ridgewayPin(p.tag);
+  return { ...p, ...s, left: (s.x * plan.width - x0) / cw, top: (s.y * plan.height - y0) / ch };
+});
+// Chip beside the pin (default right) so it lands in open floor rather than on a room name; 'below' matches the app's label.
+const chipPos: Record<Side, (l: string, t: string) => string> = {
+  right: (l, t) => `left:calc(${l} + 13px);top:${t};transform:translateY(-50%)`,
+  left: (l, t) => `left:calc(${l} - 13px);top:${t};transform:translate(-100%,-50%)`,
+  below: (l, t) => `left:${l};top:calc(${t} + 11px);transform:translateX(-50%)`,
+};
+const chipped = placed.filter((p) => p.chip).map((p) => p.tag);
+const aria = label ?? `${plan.site}, ${plan.level.toLowerCase()} floor plan from the Sitebook demo, ${placed.length === 1 ? 'one asset pinned' : `${placed.length} assets pinned`}${chipped.length ? `, tagged ${chipped.join(', ')}` : ''}`;
+const strip = 'mono-tag text-[11px] leading-none text-ink-2';
 ---
-<svg viewBox="0 0 880 620" class={cls} role="img" aria-label={`Drawn floor plate with grid references A to H and 1 to 6 and ${pins === 1 ? "one orange asset pin" : "orange asset pins"}`} xmlns="http://www.w3.org/2000/svg">
-  <rect x="0.5" y="0.5" width="879" height="619" fill="none" stroke={rule} />
-  {cols.map((c, i) => (<text x={60 + i * 100 + 50} y="28" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="13" fill={ink} opacity="0.7">{c}</text>))}
-  {rows.map((r, i) => (<text x="30" y={40 + i * 95 + 52} text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="13" fill={ink} opacity="0.7">{r}</text>))}
-  {cols.map((_, i) => (<line x1={60 + i * 100} y1="40" x2={60 + i * 100} y2="610" stroke={rule} stroke-dasharray="3 5" />))}
-  {rows.map((_, i) => (<line x1="60" y1={40 + i * 95} x2="860" y2={40 + i * 95} stroke={rule} stroke-dasharray="3 5" />))}
-  <g fill="none" stroke={ink} stroke-width="2">
-    <rect x="120" y="80" width="330" height="220" />
-    <rect x="470" y="80" width="360" height="140" />
-    <rect x="470" y="240" width="170" height="130" />
-    <rect x="660" y="240" width="170" height="130" />
-    <rect x="120" y="330" width="220" height="230" />
-    <rect x="360" y="400" width="470" height="160" />
-    <path d="M340 400 H360 M450 300 V330 H360" />
-  </g>
-  <g fill="none" stroke={ink} stroke-width="1" opacity="0.6">
-    <path d="M140 300 h40 M180 300 a40 40 0 0 0 -40 -40" />
-    <path d="M820 220 h-30 M790 220 a30 30 0 0 1 30 -30" />
-    <path d="M360 560 h40 M400 560 a40 40 0 0 0 -40 -40" />
-  </g>
-  {spots.map(([cx, cy]) => (
-    <g>
-      <circle cx={60 + cx * 100} cy={40 + cy * 95} r="9" fill="#F26B1D" stroke={dark ? '#16213A' : '#F6F7F9'} stroke-width="2" />
-    </g>
-  ))}
-  <g font-family="IBM Plex Mono, monospace" font-size="11" fill={dark ? '#16213A' : '#F6F7F9'}>
-    {pins >= 1 && (<rect x={60 + 2.4 * 100 + 14} y={40 + 1.6 * 95 - 10} width="58" height="20" rx="3" fill={ink} />)}
-    {pins >= 1 && (<text x={60 + 2.4 * 100 + 43} y={40 + 1.6 * 95 + 4} text-anchor="middle">DB-03</text>)}
-    {pins >= 5 && (<rect x={60 + 5.2 * 100 + 14} y={40 + 4.7 * 95 - 10} width="62" height="20" rx="3" fill={ink} />)}
-    {pins >= 5 && (<text x={60 + 5.2 * 100 + 45} y={40 + 4.7 * 95 + 4} text-anchor="middle">AHU-12</text>)}
-  </g>
-</svg>
+<figure class={`${sheet ? 'rounded-md bg-card p-2 sm:p-3' : ''} ${cls}`} role="img" aria-label={aria} data-plan={plan.file}>
+  <div class={`grid ${rows ? 'grid-cols-[1.125rem_minmax(0,1fr)] sm:grid-cols-[1.5rem_minmax(0,1fr)]' : 'grid-cols-1'}`}>
+    {cols === 'top' && rows && <span aria-hidden="true"></span>}
+    {cols === 'top' && (
+      <div class="relative h-5" aria-hidden="true">
+        {colLabels.map((c) => (<span class={`absolute top-0.5 -translate-x-1/2 ${strip}`} style={`left:${pct(c.at!)}`}>{c.l}</span>))}
+      </div>
+    )}
+    {rows && (
+      <div class="relative" aria-hidden="true">
+        {rowLabels.map((r) => (<span class={`absolute left-0 -translate-y-1/2 ${strip}`} style={`top:${pct(r.at!)}`}>{r.l}</span>))}
+      </div>
+    )}
+    <div class="relative overflow-hidden rounded-sm border border-rule bg-[#F7F8FA]" style={`aspect-ratio:${cw} / ${ch}`}>
+      <img
+        src={`${base}/${plan.file}`}
+        alt=""
+        width={plan.width}
+        height={plan.height}
+        loading="eager"
+        decoding="async"
+        draggable="false"
+        class="absolute max-w-none select-none"
+        style={`width:${pct(plan.width / cw)};height:auto;left:${pct(-x0 / cw)};top:${pct(-y0 / ch)}`}
+      />
+      {placed.map((p) => (
+        <span
+          class="absolute block size-3 sm:size-3.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary"
+          style={`left:${pct(p.left)};top:${pct(p.top)};box-shadow:0 0 0 2px #F6F7F9, 0 1px 3px 1px rgb(22 33 58 / 0.4)`}
+          aria-hidden="true"
+        ></span>
+      ))}
+      {placed.filter((p) => p.chip).map((p) => (
+        <span
+          class="tag absolute text-[10px] leading-[14px] px-[7px] py-[3px] sm:text-[11px]"
+          style={chipPos[p.side ?? 'right'](pct(p.left), pct(p.top))}
+          aria-hidden="true"
+        >{p.tag}</span>
+      ))}
+    </div>
+    {cols === 'bottom' && rows && <span aria-hidden="true"></span>}
+    {cols === 'bottom' && (
+      <div class="relative h-5" aria-hidden="true">
+        {colLabels.map((c) => (<span class={`absolute bottom-0.5 -translate-x-1/2 ${strip}`} style={`left:${pct(c.at!)}`}>{c.l}</span>))}
+      </div>
+    )}
+  </div>
+  {footer && (
+    <div class={`mt-2 flex justify-between gap-4 ${strip} ${rows ? 'pl-[1.125rem] sm:pl-6' : ''}`} aria-hidden="true">
+      <span>{footer[0]}</span><span>{footer[1]}</span>
+    </div>
+  )}
+</figure>

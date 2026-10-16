@@ -1,5 +1,5 @@
 ---
-/** Product screen: the live demo in a hairline frame. md and up: the one iframe with the Desktop / Phone control. Below md: drawn plan and an outline launch button, no iframe. */
+/** Product screen: the live demo in a hairline frame. md and up: the one iframe with the Desktop / Phone control. Below md: the demo's Ridgeway Fair ground plan with seed pins and an outline launch button, no iframe. */
 import { APP_URL, APP_SIGN_IN } from '../lib/links';
 import PlanGrid from './PlanGrid.astro';
 import DemoFrame from './DemoFrame.astro';
@@ -16,7 +16,10 @@ const { class: cls = '' } = Astro.props;
     <DemoFrame variant="hero" class="pt-3 px-3 pb-0 [&_[data-frame]]:rounded-t-md [&_[data-frame]]:border [&_[data-frame]]:border-b-0 [&_[data-frame]]:border-rule" />
   </div>
   <div class="md:hidden relative grid-paper p-4">
-    <PlanGrid class="w-full h-auto" pins={6} />
+    <PlanGrid sheet class="w-full" pins={[
+      { tag: 'DB-02', chip: true }, { tag: 'AHU-01', chip: true }, { tag: 'FIP-01' },
+      { tag: 'HYD-02' }, { tag: 'FCU-03' }, { tag: 'PMP-01' },
+    ]} />
     <a href={APP_SIGN_IN} target="_blank" rel="noreferrer" class="btn-outline w-full mt-4">Open the demo</a>
     <p class="mt-3 text-[13px] leading-[18px] text-ink-2">Pick a person to see the demo as they would. Priya runs operations across two centres. Sam is a contractor and sees only his assets. On a phone, open the demo in its own tab; it installs to your home screen.</p>
   </div>
