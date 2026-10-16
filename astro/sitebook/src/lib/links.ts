@@ -3,6 +3,8 @@ import site from '../content/site.json';
 
 export const APP_URL = ((import.meta.env.PUBLIC_APP_URL as string | undefined) || site.appUrl).replace(/\/$/, '');
 export const APP_SIGN_IN = `${APP_URL}/sign-in`;
+/** Opens the demo signed in as Harriet on Wattleford Central, level 1: the populated map with pins by asset type. */
+export const APP_DEMO = `${APP_URL}/demo`;
 export const CAL_URL = site.calUrl;
 export const BOOK_LABEL = 'Book a call';
 

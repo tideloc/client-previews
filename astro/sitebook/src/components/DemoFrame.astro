@@ -7,8 +7,8 @@
  * Default is Desktop at 1024px and above, Phone below. Plain JS, no framework.
  */
 import { APP_SIGN_IN } from '../lib/links';
-interface Props { variant?: 'hero' | 'explore'; class?: string }
-const { variant = 'hero', class: cls = '' } = Astro.props;
+interface Props { variant?: 'hero' | 'explore'; class?: string; src?: string }
+const { variant = 'hero', class: cls = '', src = APP_SIGN_IN } = Astro.props;
 const desktopClass = variant === 'hero'
   ? 'relative w-full h-[560px] md:h-[640px] lg:h-[720px] bg-card'
   : 'relative w-full min-h-[max(80vh,800px)] rounded-lg border border-rule bg-card overflow-hidden';
@@ -27,7 +27,7 @@ const desktopStyle = variant === 'hero' ? 'height:100%' : 'height:max(80vh,800px
     <div data-bar class="h-6 bg-ink items-center justify-center" style="display:none" aria-hidden="true">
       <span class="block w-14 h-1.5 rounded-full bg-ground/70"></span>
     </div>
-    <iframe src={APP_SIGN_IN} title="Sitebook demo" loading="lazy" allow="clipboard-write" width="100%" class="block w-full" style={`border:0;${desktopStyle}`}></iframe>
+    <iframe src={src} title="Sitebook demo" loading="lazy" allow="clipboard-write" width="100%" class="block w-full" style={`border:0;${desktopStyle}`}></iframe>
   </div>
 </div>
 <script is:inline>

@@ -1,6 +1,6 @@
 ---
 /** Explore the app page body: the one iframe with the Desktop / Phone control, instructions, persona sign-in chips, mobile note. */
-import { APP_SIGN_IN } from '../lib/links';
+import { APP_SIGN_IN, APP_DEMO } from '../lib/links';
 import TagChip from './TagChip.astro';
 import DemoFrame from './DemoFrame.astro';
 const people = ['Priya', 'Sam', 'Harriet', 'Nadia'];
@@ -12,12 +12,12 @@ const people = ['Priya', 'Sam', 'Harriet', 'Nadia'];
       <h1 id="ex-h" class="mt-4 text-4xl sm:text-5xl lg:text-6xl leading-[0.98] tracking-[-0.02em]">Explore the app</h1>
     </div>
     <div class="text-[17px] leading-[1.5]">
-      <p>Pick a person to see the demo as they would. Priya runs operations across two centres. Sam is a contractor and sees only his assets. Harriet sees all five sites, including Wattleford Central and Brindle Park.</p>
+      <p>The demo below opens as Harriet, who sees all five sites, on the Wattleford Central level 1 map. Pin colour shows the asset type and pin shape shows the trade; the key sits above the plan. Switch person from the menu at the top right. Priya runs operations across two centres. Sam is a contractor and sees only his assets.</p>
       <p class="mt-3 text-ink-2 text-[15px]">A working demo with a fictional portfolio, Harbourline Property, and five invented sites: Ridgeway Fair, Marlow Central, Quay Tower, Wattleford Central and Brindle Park. Two of them, Wattleford Central and Brindle Park, are drawn on layouts derived from real centres in OpenStreetMap, with invented names and data. Nothing in the demo belongs to a real property group.</p>
     </div>
   </div>
   <div class="mx-auto max-w-wrap px-5 sm:px-8 pb-12">
-    <DemoFrame variant="explore" />
+    <DemoFrame variant="explore" src={APP_DEMO} />
     <p class="mt-3 text-[13px] leading-[18px] text-ink-2 md:hidden">On a phone, <a href={APP_SIGN_IN} target="_blank" rel="noreferrer" class="underline underline-offset-4 text-ink">open the demo in its own tab</a>; it installs to your home screen.</p>
   </div>
 </section>
