@@ -1,7 +1,8 @@
 ---
 /**
  * Nine feature units from the inventory, in five structures so the page does not repeat one grammar:
- *  1. Map: the demo's Ridgeway Fair ground plan (8 x 6 grid, real seed pins, three tagged) with the asset fields as annotations around it.
+ *  1. Map: the demo's Wattleford Central level 1 plan (invented centre on an OpenStreetMap-derived layout, 8 x 6 grid,
+ *     13 verified seed pins, three tagged, ODbL credit under it) with the asset fields as annotations around it.
  *  2. Contractors and People: one paired spread, two columns under one rule.
  *  3. Runbooks: the cadence as a ruled strip of seven cells.
  *  4. Work requests and Handover: the chip / heading / list ledger, two blocks side by side.
@@ -9,6 +10,7 @@
  */
 import TagChip from './TagChip.astro';
 import PlanGrid from './PlanGrid.astro';
+import { WATTLEFORD_L1 } from '../lib/plans';
 
 const leftNotes = [
   { k: 'Photo', v: 'A photo of the asset, on its pin.' },
@@ -56,11 +58,13 @@ const schedule = [
 
         <div class="order-1 lg:order-2 rounded-md border border-rule bg-card p-2 sm:p-3">
           <PlanGrid
-            footer={['GRID 8 X 6', 'LEVEL 1 OF 2']}
+            plan={WATTLEFORD_L1}
+            footer={['GRID 8 X 6', 'L1, LEVEL 2 OF 3']}
+            caption="Wattleford Central, level 1, from the demo. The centre, its shops and its assets are invented."
             pins={[
-              { tag: 'DB-02', chip: true, side: 'left' }, { tag: 'AHU-01', chip: true }, { tag: 'FIP-01', chip: true, side: 'left' },
-              { tag: 'HYD-02' }, { tag: 'FCU-03' }, { tag: 'PMP-01' }, { tag: 'DB-12' },
-              { tag: 'MSB-01' }, { tag: 'GT-02' }, { tag: 'CU-01' }, { tag: 'DB-05' },
+              { tag: 'WM-01', chip: true }, { tag: 'HYD-12', chip: true }, { tag: 'MSSB-07', chip: true },
+              { tag: 'HWU-10' }, { tag: 'AHU-32' }, { tag: 'DB-57' }, { tag: 'AHU-17' }, { tag: 'HR-19' },
+              { tag: 'HYD-17' }, { tag: 'HYD-16' }, { tag: 'AHU-23' }, { tag: 'GT-04' }, { tag: 'EM-14' },
             ]}
           />
         </div>

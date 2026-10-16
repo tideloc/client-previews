@@ -2,11 +2,12 @@
 import Base from '../../layouts/Base.astro';
 import PageIntro from '../../components/PageIntro.astro';
 import TagChip from '../../components/TagChip.astro';
-import { CAL_URL, BOOK_LABEL, APP_SIGN_IN, DEMO_SITES, DEMO_TOTAL, fmt } from '../../lib/links';
+import { CAL_URL, BOOK_LABEL, APP_SIGN_IN, DEMO_SITES, DEMO_TOTAL, DEMO_LEVELS, DEMO_SITE_COUNT, fmt } from '../../lib/links';
 import { siteContent } from '../../lib/site';
 const personas = [
   { name: 'Priya', line: 'Runs operations across two centres.' },
   { name: 'Sam', line: 'A contractor. Sees only his assets, read-only.' },
+  { name: 'Harriet', line: 'Sees all five sites, including Wattleford Central and Brindle Park.' },
 ];
 ---
 <Base title="Contact | Sitebook" description="Book a call with Tideloc about Sitebook, or email admin@tideloc.com.au. Tideloc is a small web studio in Wollongong, NSW.">
@@ -72,8 +73,8 @@ const personas = [
             ))}
             <tr class="border-b border-rule">
               <td class="py-4 pr-4 align-baseline"><span class="display text-xl sm:text-2xl leading-tight tracking-[-0.01em] inline-flex items-center gap-2"><span class="inline-block w-3 h-3 rounded-full bg-primary ring-2 ring-ground" aria-hidden="true"></span>Portfolio</span></td>
-              <td class="py-4 pr-4 align-baseline text-ink-2 hidden sm:table-cell">Three sites</td>
-              <td class="py-4 pr-4 align-baseline font-mono tabular text-right">18</td>
+              <td class="py-4 pr-4 align-baseline text-ink-2 hidden sm:table-cell">{DEMO_SITE_COUNT}</td>
+              <td class="py-4 pr-4 align-baseline font-mono tabular text-right">{DEMO_LEVELS}</td>
               <td class="py-4 align-baseline font-mono tabular text-right text-xl sm:text-2xl">{fmt(DEMO_TOTAL)}</td>
             </tr>
           </tbody>

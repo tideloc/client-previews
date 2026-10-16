@@ -6,11 +6,16 @@ export const APP_SIGN_IN = `${APP_URL}/sign-in`;
 export const CAL_URL = site.calUrl;
 export const BOOK_LABEL = 'Book a call';
 
-/** Demo portfolio counts, from the product seed (src/data/seed/*.json, 2026-09-06). */
+/** Demo portfolio counts, from the product seed (src/data/seed/*.json, 2026-10-16). All five sites are invented;
+ *  Wattleford Central and Brindle Park are drawn on layouts derived from OpenStreetMap data. */
 export const DEMO_SITES = [
   { name: 'Ridgeway Fair', kind: 'Sub-regional centre', levels: 2, assets: 178 },
   { name: 'Marlow Central', kind: 'Regional centre', levels: 4, assets: 703 },
   { name: 'Quay Tower', kind: 'Office tower', levels: 12, assets: 375 },
+  { name: 'Wattleford Central', kind: 'Regional centre', levels: 3, assets: 820 },
+  { name: 'Brindle Park', kind: 'Regional centre', levels: 3, assets: 700 },
 ] as const;
 export const DEMO_TOTAL = DEMO_SITES.reduce((n, s) => n + s.assets, 0);
+export const DEMO_LEVELS = DEMO_SITES.reduce((n, s) => n + s.levels, 0);
+export const DEMO_SITE_COUNT = 'Five sites';
 export const fmt = (n: number) => n.toLocaleString('en-AU');

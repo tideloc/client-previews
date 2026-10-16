@@ -3,7 +3,7 @@ import Base from '../../layouts/Base.astro';
 import PageIntro from '../../components/PageIntro.astro';
 import TagChip from '../../components/TagChip.astro';
 import CtaBand from '../../components/CtaBand.astro';
-import { APP_SIGN_IN, DEMO_SITES } from '../../lib/links';
+import { APP_SIGN_IN, DEMO_SITES, fmt } from '../../lib/links';
 ---
 <Base title="Who we are | Sitebook" description="Sitebook is built by Tideloc, a small web studio in Wollongong NSW, from first-hand experience running shopping centre operations.">
   <PageIntro tag="Who we are" title="Built by Tideloc, Wollongong" lead="A small web studio in Wollongong, NSW." />
@@ -22,14 +22,14 @@ import { APP_SIGN_IN, DEMO_SITES } from '../../lib/links';
     <div class="mx-auto max-w-wrap px-5 sm:px-8 py-14 lg:py-16">
       <div class="grid gap-4 lg:grid-cols-12 lg:items-end">
         <h2 id="dd-h" class="lg:col-span-6 text-3xl sm:text-4xl lg:text-5xl leading-[0.98] tracking-[-0.015em]">Harbourline Property is invented</h2>
-        <p class="lg:col-span-6 text-[17px] leading-[1.5]">The app on this site is a working demo with a fictional portfolio, Harbourline Property, and three invented sites: Ridgeway Fair, Marlow Central and Quay Tower. Nothing in it belongs to a real property group.</p>
+        <p class="lg:col-span-6 text-[17px] leading-[1.5]">The app on this site is a working demo with a fictional portfolio, Harbourline Property, and five invented sites: Ridgeway Fair, Marlow Central, Quay Tower, Wattleford Central and Brindle Park. Two of them, Wattleford Central and Brindle Park, are drawn on layouts derived from real centres in OpenStreetMap, with invented names and data. Nothing in the demo belongs to a real property group.</p>
       </div>
-      <dl class="mt-8 grid sm:grid-cols-3 border-l border-t border-rule">
+      <dl class="mt-8 grid sm:grid-cols-3 lg:grid-cols-5 border-l border-t border-rule">
         {DEMO_SITES.map((s) => (
           <div class="border-r border-b border-rule p-5">
             <dt class="display text-2xl">{s.name}</dt>
             <dd class="mono-tag text-xs text-ink-2 mt-1">{s.kind}</dd>
-            <dd class="font-mono tabular text-3xl mt-3 leading-none">{s.assets}</dd>
+            <dd class="font-mono tabular text-3xl mt-3 leading-none">{fmt(s.assets)}</dd>
             <dd class="mono-tag text-xs text-ink-2 mt-1">assets pinned</dd>
           </div>
         ))}
