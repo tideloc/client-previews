@@ -1,0 +1,54 @@
+---
+/** Ease of use: the three-step phone flow from real demo screenshots, then four plain facts about using it. */
+import { Image } from 'astro:assets';
+import TagChip from './TagChip.astro';
+import open from '../assets/ease-1-open.png';
+import choose from '../assets/ease-2-choose.png';
+import tap from '../assets/ease-3-tap.png';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const steps = [
+  { img: open, alt: 'Phone showing the Wattleford Central ground floor plan with no pins and a Choose pins button', t: '1. Open the site', d: 'The plan opens clean, with nothing in the way.' },
+  { img: choose, alt: 'Phone showing the legend with Electrical switched on', t: '2. Switch on what you need', d: 'Tap a trade or a single type. Only those pins appear.' },
+  { img: tap, alt: 'Phone showing distribution board DB-01 with its photo, location and contractor', t: '3. Tap the pin', d: 'Photo, location, contractor and what it feeds. Verify it or record a replacement on the spot.' },
+];
+const facts = [
+  { t: 'Search the way you talk', d: 'Shop names, rooms, tags, or "what feeds EM-01".' },
+  { t: 'Nothing to install', d: 'Opens in the browser and adds to the home screen on iPhone and Android.' },
+  { t: 'Only what your job needs', d: 'Each role sees the screens it uses. Contractors see only their own assets.' },
+  { t: 'Every site works the same way', d: 'The same map, tabs and reports at every centre, so moving sites is easy.' },
+];
+---
+<section data-section="ease-of-use" aria-labelledby="ease-h" class="border-b border-rule">
+  <div class="mx-auto max-w-wrap px-5 sm:px-8 py-14 lg:py-20">
+    <div class="grid gap-4 lg:grid-cols-12 lg:items-end">
+      <div class="lg:col-span-7">
+        <TagChip label="Easy to use" />
+        <h2 id="ease-h" class="mt-4 text-4xl sm:text-5xl lg:text-6xl leading-[0.96] tracking-[-0.02em]">Built for the person standing in the plant room.</h2>
+      </div>
+      <p class="lg:col-span-5 text-[19px] leading-[1.5]">If you can use a map on your phone, you can find an asset in Sitelore.</p>
+    </div>
+
+    <ol class="mt-12 grid gap-10 md:grid-cols-3 md:gap-8">
+      {steps.map((s) => (
+        <li class="flex flex-col">
+          <div class="mx-auto w-full max-w-[300px] rounded-[28px] border border-rule bg-card overflow-hidden shadow-[0_18px_40px_rgba(22,33,58,0.14)]">
+            <Image src={s.img} alt={s.alt} widths={[300, 600]} sizes="300px" class="block w-full h-auto" />
+          </div>
+          <h3 class="mt-6 text-2xl sm:text-3xl leading-[1.05] tracking-[-0.015em]">{s.t}</h3>
+          <p class="mt-2 text-ink-2 text-[17px] leading-[1.5] max-w-[26rem]">{s.d}</p>
+        </li>
+      ))}
+    </ol>
+
+    <ul class="mt-14 grid gap-x-8 gap-y-8 sm:grid-cols-2 lg:grid-cols-4 border-t border-rule pt-10">
+      {facts.map((f) => (
+        <li>
+          <h3 class="display text-xl leading-tight tracking-[-0.01em]">{f.t}</h3>
+          <p class="mt-2 text-ink-2 text-[15px] leading-[1.5]">{f.d}</p>
+        </li>
+      ))}
+    </ul>
+
+    <p class="mt-10"><a href={`${base}/explore/`} class="btn-primary">Try it yourself</a></p>
+  </div>
+</section>
