@@ -7,7 +7,7 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   site: 'https://staging.tideloc.com.au',
   // SITE_BASE lets the same build deploy to the old /cold/sitebook/ address so existing links keep working
-  base: process.env.SITE_BASE || '/cold/centrebook/v2',
+  base: process.env.SITE_BASE || '/cold/sitelore/v2',
   outDir: './dist',
   trailingSlash: 'ignore',
   build: { assets: '_assets', format: 'directory' },

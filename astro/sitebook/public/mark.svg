@@ -3,6 +3,6 @@
   <g fill="none" stroke="#F6F7F9" stroke-opacity="0.18" stroke-width="4">
     <path d="M128 96v320M256 96v320M384 96v320M96 160h320M96 256h320M96 352h320"/>
   </g>
-  <path d="M338 164A123 123 0 1 0 338 348" fill="none" stroke="#F6F7F9" stroke-width="40" stroke-linecap="round"/>
-  <circle cx="338" cy="164" r="30" fill="#F26B1D"/>
+  <path d="M304 168A58 58 0 1 0 256 256A58 58 0 1 1 208 344" fill="none" stroke="#F6F7F9" stroke-width="40" stroke-linecap="round"/>
+  <circle cx="304" cy="168" r="30" fill="#F26B1D"/>
 </svg>

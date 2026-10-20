@@ -1,6 +1,6 @@
 ---
 import typeColors from '../lib/type-colors.json';
-/** A real floor plan from the Centrebook demo with Marker pins at the seed's own asset coordinates.
+/** A real floor plan from the Sitelore demo with Marker pins at the seed's own asset coordinates.
  *  The drawing is the app's plan image; pins and tag chips are HTML on top so they stay legible at any width.
  *  Optional A to H / 1 to 6 grid reference strips line up with the plan's own grid (8 x 6).
  *  crop = [x, y, width, height] in plan pixels for a fragment. sheet = white card, for placing on Ink.
@@ -66,7 +66,7 @@ const chipPos: Record<Side, (l: string, t: string) => string> = {
   below: (l, t) => `left:${l};top:calc(${t} + 11px);transform:translateX(-50%)`,
 };
 const chipped = placed.filter((p) => p.chip).map((p) => p.tag);
-const aria = label ?? `${plan.site}, ${plan.level.toLowerCase()} floor plan from the Centrebook demo, ${placed.length === 1 ? 'one asset pinned' : `${placed.length} assets pinned`}${chipped.length ? `, tagged ${chipped.join(', ')}` : ''}`;
+const aria = label ?? `${plan.site}, ${plan.level.toLowerCase()} floor plan from the Sitelore demo, ${placed.length === 1 ? 'one asset pinned' : `${placed.length} assets pinned`}${chipped.length ? `, tagged ${chipped.join(', ')}` : ''}`;
 const strip = 'mono-tag text-[11px] leading-none text-ink-2';
 ---
 <figure class={`${sheet ? 'rounded-md bg-card p-2 sm:p-3' : ''} ${cls}`} data-plan={plan.file}>
