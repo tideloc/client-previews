@@ -1,15 +1,15 @@
 # Build brief - Sitelore
 
-2026-09-07 · lead 28199 · skill tideloc-site-build (phases 3, 5, 6; research and image phases skipped by instruction) · preview https://staging.tideloc.com.au/cold/sitebook/v2/
+2026-09-07 · lead 28199 · skill tideloc-site-build (phases 3, 5, 6; research and image phases skipped by instruction) · preview https://staging.tideloc.com.au/cold/sitelore/v2/
 
 ## Who this is for
 Blake Hutchison, Tideloc, Wollongong. Sitelore is Tideloc's own product: a site knowledge base held by the asset manager for shopping centres and office buildings. Assets pinned on the floor plan with a photo, tag and grid reference; contractors and their scope on this site; who to call, including after-hours and radio call signs; emergency codes and isolation points; role runbooks by cadence; work requests pinned on the plan and exported as a PDF; handover and contractor transition packs; imports from another system; role-based access.
 
 ## What the site has to make happen
-Get a property operations lead to open the live demo and book a call. Primary CTA "Book a call" (Tideloc Cal URL). Secondary: open the demo at https://sitebook-self.vercel.app/sign-in.
+Get a property operations lead to open the live demo and book a call. Primary CTA "Book a call" (Tideloc Cal URL). Secondary: open the demo at https://sitelore-demo.vercel.app/sign-in.
 
 ## Verified live on 2026-09-07
-- Demo app serves 200 at sitebook-self.vercel.app and embeds in the site's app explorer with a Desktop and Phone toggle.
+- Demo app serves 200 at sitelore-demo.vercel.app and embeds in the site's app explorer with a Desktop and Phone toggle.
 - Seed counts used on the site: Ridgeway Fair 178, Marlow Central 703, Quay Tower 375 assets, 18 levels, 1,256 total.
 - Rate card and subscription tiers as listed in the concept note (indicative, ex GST).
 

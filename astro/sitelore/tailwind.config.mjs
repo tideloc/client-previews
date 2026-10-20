@@ -1,5 +1,5 @@
 /** @type {import('tailwindcss').Config} */
-// Every value here comes from brand.json (sitebook/src/app/globals.css). Do not add colours the brand does not own.
+// Every value here comes from brand.json (sitelore/src/app/globals.css). Do not add colours the brand does not own.
 export default {
   content: ['./src/**/*.{astro,html,js,ts,md}'],
   theme: {

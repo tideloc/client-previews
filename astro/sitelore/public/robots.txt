@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://staging.tideloc.com.au/cold/sitebook/v2/sitemap-index.xml
+Sitemap: https://staging.tideloc.com.au/cold/sitelore/v2/sitemap-index.xml
