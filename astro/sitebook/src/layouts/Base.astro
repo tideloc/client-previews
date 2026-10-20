@@ -2,7 +2,7 @@
 /**
  * Base layout: head meta, JSON-LD (SoftwareApplication), live content kit.
  * Every page passes title + description; exactly one h1 lives in the page.
- * No TidelocBar on this site: Sitebook is Tideloc's own product.
+ * No TidelocBar on this site: Centrebook is Tideloc's own product.
  */
 import '../styles/global.css';
 import LiveContent from '../components/tl/LiveContent.astro';
@@ -12,7 +12,7 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { siteContent } from '../lib/site';
 import { getImage } from 'astro:assets';
-import defaultOg from '../assets/og-sitebook.png'; // rendered from the brand set, no photograph exists
+import defaultOg from '../assets/og-centrebook.png'; // rendered from the brand set, no photograph exists
 
 interface Props {
   title: string;

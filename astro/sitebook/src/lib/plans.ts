@@ -1,5 +1,5 @@
 /**
- * Floor plans and asset pins from the Sitebook demo seed, so every drawing on the site is the app's own data.
+ * Floor plans and asset pins from the Centrebook demo seed, so every drawing on the site is the app's own data.
  * Plans are copied from ~/Projects/sitebook/public/plans/ into public/plans/. Pins are copied from
  * ~/Projects/sitebook/src/data/seed/<site>.json, verified assets on the named level only.
  * x and y are the seed's normalised plate coordinates (0 to 1 of the 1600 x 1000 drawing); gridRef is the seed's own.

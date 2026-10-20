@@ -6,7 +6,8 @@ import sitemap from '@astrojs/sitemap';
 // To promote to a client domain: set site to the domain and base to '/'.
 export default defineConfig({
   site: 'https://staging.tideloc.com.au',
-  base: '/cold/sitebook/v2',
+  // SITE_BASE lets the same build deploy to the old /cold/sitebook/ address so existing links keep working
+  base: process.env.SITE_BASE || '/cold/centrebook/v2',
   outDir: './dist',
   trailingSlash: 'ignore',
   build: { assets: '_assets', format: 'directory' },
