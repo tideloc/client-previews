@@ -2,7 +2,9 @@
 /** Hero: the claim and one button on the left; the app itself on the right, shown inside a phone (map with pins in front,
  *  a distribution board's details behind). Static screenshots from the demo, no live demo. */
 import { Image } from 'astro:assets';
-import { CAL_URL, BOOK_LABEL } from '../lib/links';
+import { CAL_URL, BOOK_LABEL, APP_DEMO } from '../lib/links';
+// opens the demo signed in as Harriet on the Wattleford ground floor with the electrical boards and emergency lights on
+const heroDemo = `${APP_DEMO}?as=harriet&to=${encodeURIComponent('/sites/wattleford/map?level=G&show=DB,MSSB,MSB,EM,EEL&zoom=1')}`;
 import phoneMap from '../assets/hero-phone-map.png';
 import phoneAsset from '../assets/hero-phone-asset.png';
 ---
@@ -15,7 +17,7 @@ import phoneAsset from '../assets/hero-phone-asset.png';
     </div>
 
     <figure class="lg:col-span-6">
-      <div class="relative mx-auto h-[650px] w-[290px] sm:h-[690px] sm:w-[310px] lg:w-[520px]">
+      <div class="relative mx-auto h-[650px] w-[290px] sm:h-[690px] sm:w-[310px] lg:h-[680px] lg:w-[520px]">
         <!-- back phone: an asset's details (desktop only) -->
         <div class="hidden lg:block absolute right-0 top-10 w-[260px] rotate-[4deg]">
           <div class="rounded-[44px] bg-ink p-[10px] shadow-[0_30px_60px_rgba(22,33,58,0.25)]">
@@ -26,16 +28,22 @@ import phoneAsset from '../assets/hero-phone-asset.png';
           </div>
         </div>
         <!-- front phone: the map -->
-        <div class="absolute left-0 top-0 w-[290px] sm:w-[310px] lg:-rotate-[2deg]">
+        <div class="absolute left-0 top-0 w-[290px] sm:w-[310px]">
           <div class="rounded-[48px] bg-ink p-[11px] shadow-[0_34px_70px_rgba(22,33,58,0.32)]">
             <div class="relative overflow-hidden rounded-[38px] bg-card">
               <div aria-hidden="true" class="relative flex h-[34px] items-center justify-between bg-card px-7 text-[12px] font-semibold text-ink"><span>9:41</span><span class="absolute left-1/2 top-[7px] h-[22px] w-[86px] -translate-x-1/2 rounded-full bg-ink"></span><span class="flex items-center gap-1"><span class="inline-block h-[9px] w-[15px] rounded-[2px] border border-ink/70"></span></span></div>
-              <Image src={phoneMap} alt="Sitelore on a phone: Wattleford Central ground floor with switchboards and emergency lights pinned on the plan" widths={[310, 620]} sizes="310px" class="block w-full h-auto" loading="eager" />
+              <!-- phones and tablets: a picture of the app, so the page scrolls normally -->
+              <Image src={phoneMap} alt="Sitelore on a phone: Wattleford Central ground floor with switchboards and emergency lights pinned on the plan" widths={[310, 620]} sizes="310px" class="block w-full h-auto lg:hidden" loading="eager" />
+              <!-- desktop: the live app, rendered at phone size (390 x 812) and scaled to the 288px screen inside the frame -->
+              <div class="hidden lg:block relative h-[600px] overflow-hidden">
+                <iframe src={heroDemo} title="Sitelore live demo" class="absolute left-0 top-0 border-0 origin-top-left" style="width:390px;height:812px;transform:scale(0.7385)" loading="eager"></iframe>
+              </div>
             </div>
           </div>
         </div>
       </div>
-      <figcaption class="mt-6 text-center lg:text-left text-[13px] leading-[18px] text-ink-2 max-w-[30rem] mx-auto lg:mx-0">Wattleford Central, an invented centre on a layout derived from OpenStreetMap data, © OpenStreetMap contributors, ODbL.</figcaption>
+      <p class="mt-6 text-center lg:text-left"><a href={APP_DEMO} target="_blank" rel="noreferrer" class="text-[15px] font-semibold underline underline-offset-4"><span class="hidden lg:inline">Live demo, tap around. </span>Open it full screen</a></p>
+      <figcaption class="mt-3 text-center lg:text-left text-[13px] leading-[18px] text-ink-2 max-w-[30rem] mx-auto lg:mx-0">Wattleford Central, an invented centre on a layout derived from OpenStreetMap data, © OpenStreetMap contributors, ODbL.</figcaption>
     </figure>
   </div>
 </section>

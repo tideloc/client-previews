@@ -4,6 +4,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const path = Astro.url.pathname.replace(base, '') || '/';
 const nav = [
   { href: `${base}/product/`, label: 'Product', key: '/product/' },
+  { href: `${base}/explore/`, label: 'Try the demo', key: '/explore/' },
   { href: `${base}/who-we-are/`, label: 'Who we are', key: '/who-we-are/' },
   { href: `${base}/contact/`, label: 'Contact', key: '/contact/' },
 ];
