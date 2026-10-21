@@ -1,0 +1,6 @@
+{
+  "redirects": [
+    { "source": "/pdf", "destination": "/p/108689189578/Sitelore-proposal-deck.pdf", "permanent": false },
+    { "source": "/pdf/", "destination": "/p/108689189578/Sitelore-proposal-deck.pdf", "permanent": false }
+  ]
+}
