@@ -20,7 +20,7 @@ const leftNotes = [
 const rightNotes = [
   { k: 'Group', v: 'The asset group it belongs to.' },
   { k: 'Level', v: 'Which floor plate it sits on.' },
-  { k: 'Contractor', v: 'The firm that holds it, from the contractor register.' },
+  { k: 'Contractor', v: 'The firm that services it.' },
 ];
 const cadence = ['Daily', 'Weekly', 'Monthly', 'Quarterly', 'Six-monthly', 'Annual', 'Event guides'];
 const ledgers = [
@@ -30,7 +30,7 @@ const ledgers = [
 const schedule = [
   { id: 'emergency', tag: 'Emergency', title: 'Emergency codes and isolation points', body: 'The codes the site uses and where each service is isolated.', fields: 'Code, isolation point, level and grid reference' },
   { id: 'import', tag: 'Import', title: 'Import from another system', body: 'Make, model, serial and replacement dates come in from another system by API or spreadsheet.', fields: 'Make, model, serial, replacement date' },
-  { id: 'access', tag: 'Access', title: 'Role-based access with per-person abilities', body: 'Vendor master records and insurance stay with the vendor portal.', fields: 'Per-person abilities, contractor read-only' },
+  { id: 'access', tag: 'Access', title: 'Role-based access with per-person abilities', body: 'Contract management, compliance and insurance stay in your operations software.', fields: 'Per-person abilities, contractor read-only' },
 ];
 ---
 <section data-section="features" aria-label="Features" class="border-b border-rule">
@@ -86,10 +86,10 @@ const schedule = [
     <p class="mono-tag text-xs text-ink-2">Who holds it, who to call</p>
     <div class="mt-4 grid gap-10 lg:grid-cols-2 lg:gap-16 border-t-2 border-ink pt-8">
       <article id="contractors" class="grid gap-4 content-start">
-        <TagChip label="Contractors" size="lg" class="justify-self-start" />
-        <h2 class="text-3xl sm:text-4xl leading-[0.98] tracking-[-0.015em]">Contractors and their scope on this site</h2>
-        <p class="text-[17px] leading-[1.5] max-w-[32rem]">Which firm holds which assets and what the scope covers. Contractors get a read-only view of their own assets; in the demo, that is Sam.</p>
-        <p class="mono-tag text-xs text-ink-2 pt-3 border-t border-rule">Trade, scope, assets held, contract end</p>
+        <TagChip label="Contractor access" size="lg" class="justify-self-start" />
+        <h2 class="text-3xl sm:text-4xl leading-[0.98] tracking-[-0.015em]">Access for contractors, on your terms</h2>
+        <p class="text-[17px] leading-[1.5] max-w-[32rem]">Add a contractor, limit them to their own assets at the sites they work on, and revoke access in one click when the work ends. For reactive quotes and repairs, export the asset, its location and photos instead. In the demo, Sam sees only his own assets.</p>
+        <p class="mono-tag text-xs text-ink-2 pt-3 border-t border-rule">Own assets only, chosen sites, revoke any time</p>
       </article>
       <article id="people" class="grid gap-4 content-start">
         <TagChip label="People" size="lg" class="justify-self-start" />

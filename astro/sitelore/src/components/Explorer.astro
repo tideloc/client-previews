@@ -11,7 +11,7 @@ const tasks = [
   { t: 'Open a distribution board', d: 'Photo, location, contractor, and what it feeds.', to: `/sites/wattleford/map?level=G&show=DB&asset=${db01}&zoom=1` },
   { t: 'Find what feeds an emergency light', d: 'Search "what feeds EM-01", answered from the board schedules.', to: '/search?q=' + encodeURIComponent('what feeds EM-01') },
   { t: 'See the emergency codes', d: 'Steps and who to call for each code, plus isolation points.', to: '/sites/wattleford/emergency' },
-  { t: 'Who covers what', d: 'Contractors, their scope, contract dates and after-hours numbers.', to: '/sites/wattleford/contractors' },
+  { t: 'See what a contractor sees', d: 'Signed in as Sam from Corliss Fire: only his own assets, nothing else.', to: '/sites/marlow-central/assets', as: 'sam' },
   { t: 'Print a handover pack', d: 'Everything a new manager needs on day one.', to: '/sites/wattleford/handover' },
 ];
 const firstSrc = `${APP_DEMO}?as=harriet&to=${encodeURIComponent(tasks[0].to)}`;
@@ -32,7 +32,7 @@ const firstSrc = `${APP_DEMO}?as=harriet&to=${encodeURIComponent(tasks[0].to)}`;
     <ul class="mt-3 grid gap-2 sm:grid-cols-2 lg:grid-cols-3" data-tasks>
       {tasks.map((t, i) => (
         <li>
-          <button type="button" data-to={t.to} aria-pressed={i === 0 ? 'true' : 'false'} class="task w-full text-left rounded-md border border-rule bg-card px-4 py-3 hover:border-ink">
+          <button type="button" data-to={t.to} data-as={t.as ?? 'harriet'} aria-pressed={i === 0 ? 'true' : 'false'} class="task w-full text-left rounded-md border border-rule bg-card px-4 py-3 hover:border-ink">
             <span class="block display text-lg leading-tight">{t.t}</span>
             <span class="block mt-1 text-[14px] leading-[1.4] text-ink-2">{t.d}</span>
           </button>
@@ -53,7 +53,7 @@ const firstSrc = `${APP_DEMO}?as=harriet&to=${encodeURIComponent(tasks[0].to)}`;
     list.addEventListener('click', function (e) {
       var btn = e.target.closest('button[data-to]');
       if (!btn) return;
-      ifr.src = demo + '?as=harriet&to=' + encodeURIComponent(btn.getAttribute('data-to'));
+      ifr.src = demo + '?as=' + encodeURIComponent(btn.getAttribute('data-as') || 'harriet') + '&to=' + encodeURIComponent(btn.getAttribute('data-to'));
       list.querySelectorAll('button[data-to]').forEach(function (b) { b.setAttribute('aria-pressed', b === btn ? 'true' : 'false'); });
       var r = ifr.getBoundingClientRect();
       if (r.top < 0 || r.top > window.innerHeight * 0.6) ifr.scrollIntoView({ behavior: 'smooth', block: 'start' });
