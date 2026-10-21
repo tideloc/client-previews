@@ -1,0 +1,25 @@
+---
+/** The four outcomes, one line each, in generous blocks. Matches the proposal deck. */
+import TagChip from './TagChip.astro';
+const items = [
+  { t: 'Asset location and identification', d: 'Find any asset on the plan and know exactly what it is and what it feeds.' },
+  { t: 'Operational streamlining', d: 'Less chasing and fewer wasted call-outs. Contractors arrive knowing what and where.' },
+  { t: 'Capex budgeting', d: 'A replacement forecast by financial year, built from the register, across every centre.' },
+  { t: 'Knowledge transition', d: 'New managers, relief staff and contractors up to speed in days, not months.' },
+];
+---
+<section data-section="outcomes" aria-labelledby="out-h" class="bg-card border-b border-rule">
+  <div class="mx-auto max-w-wrap px-5 sm:px-8 py-16 lg:py-24">
+    <TagChip label="What it delivers" />
+    <h2 id="out-h" class="mt-4 text-4xl sm:text-5xl lg:text-6xl leading-[0.96] tracking-[-0.02em]">Four outcomes.</h2>
+    <ol class="mt-12 grid gap-x-12 gap-y-12 sm:grid-cols-2">
+      {items.map((it, i) => (
+        <li class="border-t-2 border-ink pt-6">
+          <p class="mono-tag text-xs text-marker-ink">{String(i + 1).padStart(2, '0')}</p>
+          <h3 class="mt-3 text-2xl sm:text-3xl leading-[1.05] tracking-[-0.015em]">{it.t}</h3>
+          <p class="mt-3 text-[17px] leading-[1.55] text-ink-2 max-w-[30rem]">{it.d}</p>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>

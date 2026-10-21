@@ -141,7 +141,7 @@ const schedule = [
   <div class="mx-auto max-w-wrap px-5 sm:px-8 py-12 lg:py-16" data-section="feature-schedule">
     <div class="flex flex-wrap items-end justify-between gap-4">
       <h2 class="text-3xl sm:text-4xl lg:text-5xl leading-[0.98] tracking-[-0.015em]">And three more it keeps</h2>
-      <p class="mono-tag text-xs text-ink-2">Schedule of holdings, seven to nine</p>
+      
     </div>
     <table class="mt-8 w-full border-t-2 border-ink text-left">
       <thead class="hidden sm:table-header-group">
@@ -149,16 +149,14 @@ const schedule = [
           <th scope="col" class="py-2 pr-4 font-normal w-40">Tag</th>
           <th scope="col" class="py-2 pr-4 font-normal">Holds</th>
           <th scope="col" class="py-2 pr-4 font-normal">Detail</th>
-          <th scope="col" class="py-2 font-normal w-56">Fields</th>
         </tr>
       </thead>
       <tbody>
         {schedule.map((it) => (
           <tr id={it.id} class="grid sm:table-row gap-2 py-5 sm:py-0 border-b border-rule">
-            <td class="sm:py-5 sm:pr-4 align-top"><TagChip label={it.tag} /></td>
-            <td class="sm:py-5 sm:pr-8 align-top"><span class="display text-2xl leading-tight tracking-[-0.01em]">{it.title}</span></td>
-            <td class="sm:py-5 sm:pr-8 align-top text-ink-2 max-w-[26rem]">{it.body}</td>
-            <td class="sm:py-5 align-top mono-tag text-xs text-ink-2">{it.fields}</td>
+            <td class="sm:py-7 sm:pr-4 align-top"><TagChip label={it.tag} /></td>
+            <td class="sm:py-7 sm:pr-10 align-top"><span class="display text-2xl leading-tight tracking-[-0.01em]">{it.title}</span></td>
+            <td class="sm:py-5 align-top text-ink-2 max-w-[30rem]">{it.body}</td>
           </tr>
         ))}
       </tbody>

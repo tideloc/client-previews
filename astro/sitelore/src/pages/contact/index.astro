@@ -2,16 +2,11 @@
 import Base from '../../layouts/Base.astro';
 import PageIntro from '../../components/PageIntro.astro';
 import TagChip from '../../components/TagChip.astro';
-import { CAL_URL, BOOK_LABEL, APP_SIGN_IN, DEMO_SITES, DEMO_TOTAL, DEMO_LEVELS, DEMO_SITE_COUNT, fmt } from '../../lib/links';
+import { CAL_URL, BOOK_LABEL } from '../../lib/links';
 import { siteContent } from '../../lib/site';
-const personas = [
-  { name: 'Priya', line: 'Runs operations across two centres.' },
-  { name: 'Sam', line: 'A contractor. Sees only his assets, read-only.' },
-  { name: 'Harriet', line: 'Sees all five sites, including Wattleford Central and Brindle Park.' },
-];
 ---
 <Base title="Contact | Sitelore" description="Book a call with Tideloc about Sitelore, or email admin@tideloc.com.au. Tideloc is a small web studio in Wollongong, NSW.">
-  <PageIntro tag="Contact" title="Book a call" lead="A call to see whether Sitelore fits your sites and what capture would cost for one of them." />
+  <PageIntro tag="Contact" title="Book a call" lead="A short call to see whether Sitelore fits your sites." />
   <section data-section="contact" aria-labelledby="ct-h" class="border-b border-rule">
     <div class="mx-auto max-w-wrap px-5 sm:px-8 py-14 lg:py-20 grid gap-12 lg:grid-cols-12 lg:gap-16">
       <div class="lg:col-span-5 grid gap-8 content-start">
@@ -38,57 +33,17 @@ const personas = [
           <label class="grid gap-1 text-[13px] font-medium">Message<textarea name="message" rows="4" class="rounded-[4px] border border-rule bg-white px-3 py-2 text-base font-normal"></textarea></label>
           <button type="submit" class="btn-primary justify-self-start">Draft the email</button>
         </form>
-        <div class="border-t border-rule pt-6" data-section="map">
-          <TagChip label="Where" />
-          <p class="mt-3 text-ink-2 text-[15px]">Wollongong, NSW. Calls and site visits by arrangement.</p>
-          <iframe class="mt-4 w-full h-56 border border-rule" src="https://www.google.com/maps?q=Wollongong%20NSW&output=embed" title="Map of Wollongong NSW" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-        </div>
+
       </div>
 
-      <div class="lg:col-span-7" data-section="contact-demo">
-        <div class="flex flex-wrap items-end justify-between gap-3">
-          <div>
-            <TagChip label="Demo" />
-            <h2 class="mt-4 text-3xl sm:text-4xl leading-[0.98] tracking-[-0.015em]">Want to look first?</h2>
-          </div>
-          <p class="mono-tag text-xs text-ink-2">Harbourline Property, fictional</p>
-        </div>
-        <table class="mt-6 w-full border-t-2 border-ink text-left">
-          <thead>
-            <tr class="mono-tag text-xs text-ink-2 border-b border-rule">
-              <th scope="col" class="py-2 pr-4 font-normal">Site</th>
-              <th scope="col" class="py-2 pr-4 font-normal hidden sm:table-cell">Kind</th>
-              <th scope="col" class="py-2 pr-4 font-normal text-right">Levels</th>
-              <th scope="col" class="py-2 font-normal text-right">Assets pinned</th>
-            </tr>
-          </thead>
-          <tbody>
-            {DEMO_SITES.map((s) => (
-              <tr class="border-b border-rule">
-                <td class="py-4 pr-4 align-baseline"><span class="display text-xl sm:text-2xl leading-tight tracking-[-0.01em]">{s.name}</span></td>
-                <td class="py-4 pr-4 align-baseline text-ink-2 hidden sm:table-cell">{s.kind}</td>
-                <td class="py-4 pr-4 align-baseline font-mono tabular text-right">{s.levels}</td>
-                <td class="py-4 align-baseline font-mono tabular text-right text-xl sm:text-2xl">{fmt(s.assets)}</td>
-              </tr>
-            ))}
-            <tr class="border-b border-rule">
-              <td class="py-4 pr-4 align-baseline"><span class="display text-xl sm:text-2xl leading-tight tracking-[-0.01em] inline-flex items-center gap-2"><span class="inline-block w-3 h-3 rounded-full bg-primary ring-2 ring-ground" aria-hidden="true"></span>Portfolio</span></td>
-              <td class="py-4 pr-4 align-baseline text-ink-2 hidden sm:table-cell">{DEMO_SITE_COUNT}</td>
-              <td class="py-4 pr-4 align-baseline font-mono tabular text-right">{DEMO_LEVELS}</td>
-              <td class="py-4 align-baseline font-mono tabular text-right text-xl sm:text-2xl">{fmt(DEMO_TOTAL)}</td>
-            </tr>
-          </tbody>
-        </table>
-        <dl class="mt-6 grid sm:grid-cols-2 gap-x-8">
-          {personas.map((p) => (
-            <div class="border-t border-rule py-4 grid gap-1">
-              <dt class="display text-2xl leading-tight">{p.name}</dt>
-              <dd class="text-ink-2">{p.line}</dd>
-              <dd><a href={APP_SIGN_IN} target="_blank" rel="noreferrer" class="text-[13px] font-medium underline underline-offset-4">Sign in as {p.name}</a></dd>
-            </div>
-          ))}
-        </dl>
-        <p class="mt-2 text-ink-2 text-[13px]">Pick a person to see the demo as they would. Each link opens the sign-in page in a new tab.</p>
+      <div class="lg:col-span-7" data-section="contact-call">
+        <TagChip label="The call" />
+        <h2 class="mt-4 text-3xl sm:text-4xl leading-[0.98] tracking-[-0.015em]">What happens on the call</h2>
+        <ol class="mt-8 grid gap-8">
+          <li class="border-t border-rule pt-5"><h3 class="display text-2xl leading-tight">One of your sites, on screen</h3><p class="mt-2 text-ink-2 max-w-[32rem]">We look at a floor plan and walk through how its assets, isolation points and contacts would sit in Sitelore.</p></li>
+          <li class="border-t border-rule pt-5"><h3 class="display text-2xl leading-tight">What matters to your team</h3><p class="mt-2 text-ink-2 max-w-[32rem]">Finding assets, call-outs, capex planning or handovers. We start with the one that costs you most.</p></li>
+          <li class="border-t border-rule pt-5"><h3 class="display text-2xl leading-tight">Whether a pilot makes sense</h3><p class="mt-2 text-ink-2 max-w-[32rem]">If it fits, a short pilot at a few sites, measured against agreed results before anything wider.</p></li>
+        </ol>
       </div>
     </div>
   </section>

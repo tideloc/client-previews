@@ -1,25 +1,28 @@
 ---
-/** Content-first hero: the claim spans the page, the product screen is the first thing under it. */
+/** Hero: one claim, one line, one button, then the product itself: the Wattleford plan with pins and the phone view. Static images, no live demo. */
+import { Image } from 'astro:assets';
 import { CAL_URL, BOOK_LABEL } from '../lib/links';
-import AppPanel from './AppPanel.astro';
-import TagChip from './TagChip.astro';
+import plan from '../assets/hero-plan.png';
+import phone from '../assets/ease-3-tap.png';
 ---
-<section data-section="hero" aria-labelledby="hero-h">
-  <div class="mx-auto max-w-wrap px-5 sm:px-8 pt-8 pb-8 lg:pt-14 lg:pb-10">
-    <div class="grid gap-6 lg:grid-cols-12 lg:items-end">
-      <div class="lg:col-span-9">
-        <div class="flex flex-wrap gap-2">
-          <TagChip label="Site knowledge base" />
-          <TagChip label="Shopping centres" />
-          <TagChip label="Office buildings" />
-        </div>
-        <h1 id="hero-h" class="mt-5 text-[40px] leading-[0.96] tracking-[-0.02em] sm:text-[60px] lg:text-[80px] xl:text-[92px] max-w-[18ch]">Every asset on the plan. Every contact on the roster. Every centre ready to hand over.</h1>
-      </div>
-      <div class="lg:col-span-3 lg:pb-2">
-        <p class="text-[17px] leading-[1.45]">A site knowledge base for shopping centres and office buildings, held by the asset manager.</p>
-        <a href={CAL_URL} class="btn-primary mt-5" target="_blank" rel="noreferrer">{BOOK_LABEL}</a>
+<section data-section="hero" aria-labelledby="hero-h" class="border-b border-rule">
+  <div class="mx-auto max-w-wrap px-5 sm:px-8 pt-12 pb-16 lg:pt-20 lg:pb-24">
+    <div class="grid gap-8 lg:grid-cols-12 lg:items-end">
+      <h1 id="hero-h" class="lg:col-span-8 text-[44px] leading-[0.96] tracking-[-0.025em] sm:text-[64px] lg:text-[84px] max-w-[15ch]">Every asset on the plan. Every site known from day one.</h1>
+      <div class="lg:col-span-4 lg:pb-3">
+        <p class="text-[19px] leading-[1.5] max-w-[24rem]">A site knowledge base for shopping centres and office buildings, held by the asset manager.</p>
+        <a href={CAL_URL} class="btn-primary mt-6" target="_blank" rel="noreferrer">{BOOK_LABEL}</a>
       </div>
     </div>
-    <AppPanel compact class="mt-8 lg:mt-12" />
+
+    <figure class="relative mt-14 lg:mt-20">
+      <div class="rounded-lg border border-rule bg-card overflow-hidden shadow-[0_24px_60px_rgba(22,33,58,0.14)] lg:mr-[150px]">
+        <Image src={plan} alt="Wattleford Central ground floor in Sitelore, with distribution boards, switchboards, emergency lights and fire equipment pinned on the plan" widths={[800, 1400, 2000]} sizes="(min-width: 1024px) 1000px, 100vw" class="block w-full h-auto" />
+      </div>
+      <div class="hidden lg:block absolute right-0 bottom-[-40px] w-[260px] rounded-[28px] border border-rule bg-card overflow-hidden shadow-[0_24px_60px_rgba(22,33,58,0.22)]">
+        <Image src={phone} alt="Phone showing distribution board DB-01 with its photo, location and contractor" widths={[260, 520]} sizes="260px" class="block w-full h-auto" />
+      </div>
+      <figcaption class="mt-5 lg:mt-14 text-[13px] leading-[18px] text-ink-2 max-w-[44rem]">Wattleford Central, an invented centre drawn on a layout derived from OpenStreetMap data, © OpenStreetMap contributors, ODbL.</figcaption>
+    </figure>
   </div>
 </section>

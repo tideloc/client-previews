@@ -1,5 +1,5 @@
 ---
-import { CAL_URL, BOOK_LABEL, APP_SIGN_IN } from '../lib/links';
+import { CAL_URL, BOOK_LABEL } from '../lib/links';
 import { siteContent } from '../lib/site';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const year = new Date().getFullYear();
@@ -19,18 +19,13 @@ const c = siteContent.contact;
       <p class="mono-tag text-xs text-ground/60 mb-3">Pages</p>
       <ul class="grid gap-2">
         <li><a class="hover:underline" href={`${base}/product/`}>Product</a></li>
-        <li><a class="hover:underline" href={`${base}/explore/`}>Explore the app</a></li>
-        <li><a class="hover:underline" href={`${base}/pricing/`}>Pricing</a></li>
         <li><a class="hover:underline" href={`${base}/who-we-are/`}>Who we are</a></li>
         <li><a class="hover:underline" href={`${base}/contact/`}>Contact</a></li>
       </ul>
     </div>
     <div>
-      <p class="mono-tag text-xs text-ground/60 mb-3">Demo</p>
-      <ul class="grid gap-2">
-        <li><a class="hover:underline" href={APP_SIGN_IN} target="_blank" rel="noreferrer">Open the demo</a></li>
-        <li class="text-ground/80">Harbourline Property and its five sites are invented. Two of them, Wattleford Central and Brindle Park, are drawn on layouts derived from real centres in OpenStreetMap, with invented names and data. Nothing in the demo belongs to a real property group.</li>
-      </ul>
+      <p class="mono-tag text-xs text-ground/60 mb-3">Images</p>
+      <p class="text-ground/80 max-w-[22rem]">Screens show an invented portfolio. Two layouts are derived from OpenStreetMap data, © OpenStreetMap contributors, ODbL.</p>
       <p class="mono-tag text-xs text-ground/60 mt-8 mb-2">Tideloc</p>
       <p class="text-ground/80">{c.suburb} {c.state}</p>
       <p><a class="hover:underline" href={`mailto:${c.email}`}>{c.email}</a></p>
@@ -39,7 +34,6 @@ const c = siteContent.contact;
   <div class="border-t border-rule-dark">
     <div class="mx-auto max-w-wrap px-5 sm:px-8 py-4 flex flex-wrap justify-between gap-3 mono-tag text-xs text-ground/60">
       <span>&copy; {year} Tideloc. Sitelore.</span>
-      <span>Indicative pricing, ex GST</span>
     </div>
   </div>
 </footer>
