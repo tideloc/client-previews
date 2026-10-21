@@ -1,28 +1,41 @@
 ---
-/** Hero: one claim, one line, one button, then the product itself: the Wattleford plan with pins and the phone view. Static images, no live demo. */
+/** Hero: the claim and one button on the left; the app itself on the right, shown inside a phone (map with pins in front,
+ *  a distribution board's details behind). Static screenshots from the demo, no live demo. */
 import { Image } from 'astro:assets';
 import { CAL_URL, BOOK_LABEL } from '../lib/links';
-import plan from '../assets/hero-plan.png';
-import phone from '../assets/ease-3-tap.png';
+import phoneMap from '../assets/hero-phone-map.png';
+import phoneAsset from '../assets/hero-phone-asset.png';
 ---
-<section data-section="hero" aria-labelledby="hero-h" class="border-b border-rule">
-  <div class="mx-auto max-w-wrap px-5 sm:px-8 pt-12 pb-16 lg:pt-20 lg:pb-24">
-    <div class="grid gap-8 lg:grid-cols-12 lg:items-end">
-      <h1 id="hero-h" class="lg:col-span-8 text-[44px] leading-[0.96] tracking-[-0.025em] sm:text-[64px] lg:text-[84px] max-w-[15ch]">Every asset on the plan. Every site known from day one.</h1>
-      <div class="lg:col-span-4 lg:pb-3">
-        <p class="text-[19px] leading-[1.5] max-w-[24rem]">A site knowledge base for shopping centres and office buildings, held by the asset manager.</p>
-        <a href={CAL_URL} class="btn-primary mt-6" target="_blank" rel="noreferrer">{BOOK_LABEL}</a>
-      </div>
+<section data-section="hero" aria-labelledby="hero-h" class="border-b border-rule overflow-hidden">
+  <div class="mx-auto max-w-wrap px-5 sm:px-8 pt-12 pb-16 lg:pt-16 lg:pb-20 grid gap-14 lg:grid-cols-12 lg:items-center">
+    <div class="lg:col-span-6">
+      <h1 id="hero-h" class="text-[44px] leading-[0.96] tracking-[-0.025em] sm:text-[60px] lg:text-[76px] max-w-[14ch]">Every asset on the plan. Every site known from day one.</h1>
+      <p class="mt-7 text-[19px] leading-[1.5] max-w-[28rem]">A site knowledge base for shopping centres and office buildings, held by the asset manager.</p>
+      <a href={CAL_URL} class="btn-primary mt-8" target="_blank" rel="noreferrer">{BOOK_LABEL}</a>
     </div>
 
-    <figure class="relative mt-14 lg:mt-20">
-      <div class="rounded-lg border border-rule bg-card overflow-hidden shadow-[0_24px_60px_rgba(22,33,58,0.14)] lg:mr-[150px]">
-        <Image src={plan} alt="Wattleford Central ground floor in Sitelore, with distribution boards, switchboards, emergency lights and fire equipment pinned on the plan" widths={[800, 1400, 2000]} sizes="(min-width: 1024px) 1000px, 100vw" class="block w-full h-auto" />
+    <figure class="lg:col-span-6">
+      <div class="relative mx-auto h-[650px] w-[290px] sm:h-[690px] sm:w-[310px] lg:w-[520px]">
+        <!-- back phone: an asset's details (desktop only) -->
+        <div class="hidden lg:block absolute right-0 top-10 w-[260px] rotate-[4deg]">
+          <div class="rounded-[44px] bg-ink p-[10px] shadow-[0_30px_60px_rgba(22,33,58,0.25)]">
+            <div class="relative overflow-hidden rounded-[35px] bg-card">
+              <div aria-hidden="true" class="relative flex h-[34px] items-center justify-between bg-card px-7 text-[12px] font-semibold text-ink"><span>9:41</span><span class="absolute left-1/2 top-[7px] h-[20px] w-[76px] -translate-x-1/2 rounded-full bg-ink"></span><span class="flex items-center gap-1"><span class="inline-block h-[9px] w-[15px] rounded-[2px] border border-ink/70"></span></span></div>
+              <Image src={phoneAsset} alt="Distribution board DB-01 in Sitelore: photo, location, contractor and what it feeds" widths={[260, 520]} sizes="260px" class="block w-full h-auto" />
+            </div>
+          </div>
+        </div>
+        <!-- front phone: the map -->
+        <div class="absolute left-0 top-0 w-[290px] sm:w-[310px] lg:-rotate-[2deg]">
+          <div class="rounded-[48px] bg-ink p-[11px] shadow-[0_34px_70px_rgba(22,33,58,0.32)]">
+            <div class="relative overflow-hidden rounded-[38px] bg-card">
+              <div aria-hidden="true" class="relative flex h-[34px] items-center justify-between bg-card px-7 text-[12px] font-semibold text-ink"><span>9:41</span><span class="absolute left-1/2 top-[7px] h-[22px] w-[86px] -translate-x-1/2 rounded-full bg-ink"></span><span class="flex items-center gap-1"><span class="inline-block h-[9px] w-[15px] rounded-[2px] border border-ink/70"></span></span></div>
+              <Image src={phoneMap} alt="Sitelore on a phone: Wattleford Central ground floor with switchboards and emergency lights pinned on the plan" widths={[310, 620]} sizes="310px" class="block w-full h-auto" loading="eager" />
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="hidden lg:block absolute right-0 bottom-[-40px] w-[260px] rounded-[28px] border border-rule bg-card overflow-hidden shadow-[0_24px_60px_rgba(22,33,58,0.22)]">
-        <Image src={phone} alt="Phone showing distribution board DB-01 with its photo, location and contractor" widths={[260, 520]} sizes="260px" class="block w-full h-auto" />
-      </div>
-      <figcaption class="mt-5 lg:mt-14 text-[13px] leading-[18px] text-ink-2 max-w-[44rem]">Wattleford Central, an invented centre drawn on a layout derived from OpenStreetMap data, © OpenStreetMap contributors, ODbL.</figcaption>
+      <figcaption class="mt-6 text-center lg:text-left text-[13px] leading-[18px] text-ink-2 max-w-[30rem] mx-auto lg:mx-0">Wattleford Central, an invented centre on a layout derived from OpenStreetMap data, © OpenStreetMap contributors, ODbL.</figcaption>
     </figure>
   </div>
 </section>
