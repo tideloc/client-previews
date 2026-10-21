@@ -1,0 +1,90 @@
+---
+/** Product page: the four outcomes, each with one real screen and four features (title + one line). Built features only.
+ *  Then one platform strip. Sections alternate image side on desktop and stack on phones. */
+import { Image } from 'astro:assets';
+import TagChip from './TagChip.astro';
+import locate from '../assets/prod-locate.png';
+import ops from '../assets/prod-ops.png';
+import capex from '../assets/prod-capex.png';
+import knowledge from '../assets/prod-knowledge.png';
+
+const sections = [
+  { id: 'locate', n: '01', name: 'Asset location and identification', title: 'Find any asset, and know exactly what it is.', img: locate,
+    alt: 'Wattleford Central ground floor with boards, switchboards, emergency lights and fire equipment pinned on the plan',
+    caption: 'Wattleford Central, an invented centre on a layout derived from OpenStreetMap data, © OpenStreetMap contributors, ODbL.',
+    items: [
+      { t: 'Every asset on the plan', d: 'Pinned on the floor plan with a photo, a tag and a grid reference.' },
+      { t: 'Colour by type, filters by trade', d: 'The plan opens clean. Switch on only what you need.' },
+      { t: 'Search the way you talk', d: 'Tags, shop names, rooms, or "what feeds EM-01".' },
+      { t: 'What feeds what', d: 'Each board records its supply and what every circuit feeds.' },
+    ] },
+  { id: 'ops', n: '02', name: 'Operational streamlining', title: 'Less chasing, fewer wasted call-outs.', img: ops,
+    alt: 'A work request with items pinned on the plan and photos attached',
+    items: [
+      { t: 'Work requests on the plan', d: 'Pin each item, add photos, then email it or export the PDF.' },
+      { t: 'Contractor access', d: 'Contractors see only their own assets. Revoke access in one click.' },
+      { t: 'Who to call, and who is on', d: 'After-hours escalation order and this week’s roster, with photos of the roster kept.' },
+      { t: 'Emergency codes and incident card', d: 'Steps, isolation points and contacts, printed for the control room.' },
+    ] },
+  { id: 'capex', n: '03', name: 'Capex budgeting', title: 'Budgets built from the register, not rebuilt every year.', img: capex,
+    alt: 'Replacement forecast by financial year with a year-by-year cost table',
+    items: [
+      { t: 'Replacement forecast', d: 'Totals by financial year from install and replace-by dates.' },
+      { t: 'Dates and costs on every asset', d: 'Install and replace-by dates, with an indicative replacement cost by type.' },
+      { t: 'Portfolio view', d: 'Compare record quality across every centre you manage.' },
+      { t: 'Reports and exports', d: 'Register, forecast, compliance and board schedules as PDF, Excel or JSON.' },
+    ] },
+  { id: 'knowledge', n: '04', name: 'Knowledge transition', title: 'When people change, the knowledge stays.', img: knowledge,
+    alt: 'Handover pack screen with revision history and completeness',
+    items: [
+      { t: 'Handover and transition packs', d: 'One printable pack for a new manager or an incoming contractor.' },
+      { t: 'Role guides by cadence', d: 'Daily to annual tasks for each role, at this site.' },
+      { t: 'Bring in what you have', d: 'Import existing registers by spreadsheet or sync, matched by tag.' },
+      { t: 'Photos kept with the record', d: 'Asset photos and photos of the areas each board serves.' },
+    ] },
+];
+const platform = [
+  { t: 'Works on any phone', d: 'Opens in the browser and adds to the home screen.' },
+  { t: 'Roles and permissions', d: 'Each person gets the access their job needs.' },
+  { t: 'Standalone', d: 'Runs on its own. AI features are optional and off by default.' },
+  { t: 'Your data stays yours', d: 'Each centre’s record exports in full at any time.' },
+];
+---
+{sections.map((s, i) => (
+  <section id={s.id} data-section={`outcome-${s.id}`} aria-labelledby={`${s.id}-h`} class={`border-b border-rule ${i % 2 ? 'bg-card' : ''}`}>
+    <div class="mx-auto max-w-wrap px-5 sm:px-8 py-16 lg:py-24 grid gap-12 lg:grid-cols-12 lg:gap-16 lg:items-center">
+      <div class={`lg:col-span-5 ${i % 2 ? 'lg:order-2' : ''}`}>
+        <p class="mono-tag text-xs text-marker-ink">{s.n} · {s.name}</p>
+        <h2 id={`${s.id}-h`} class="mt-4 text-3xl sm:text-4xl lg:text-[44px] leading-[1.02] tracking-[-0.02em]">{s.title}</h2>
+        <ul class="mt-10 grid gap-7">
+          {s.items.map((it) => (
+            <li class="border-t border-rule pt-4">
+              <h3 class="display text-xl leading-tight tracking-[-0.01em]">{it.t}</h3>
+              <p class="mt-1.5 text-[16px] leading-[1.5] text-ink-2">{it.d}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <figure class={`lg:col-span-7 ${i % 2 ? 'lg:order-1' : ''}`}>
+        <div class="rounded-lg border border-rule bg-card overflow-hidden shadow-[0_20px_50px_rgba(22,33,58,0.12)]">
+          <Image src={s.img} alt={s.alt} widths={[700, 1200, 1800]} sizes="(min-width: 1024px) 720px, 100vw" class="block w-full h-auto" />
+        </div>
+        {s.caption && <figcaption class="mt-3 text-[13px] leading-[18px] text-ink-2">{s.caption}</figcaption>}
+      </figure>
+    </div>
+  </section>
+))}
+<section data-section="platform" aria-labelledby="plat-h" class="border-b border-rule">
+  <div class="mx-auto max-w-wrap px-5 sm:px-8 py-16 lg:py-20">
+    <TagChip label="Platform" />
+    <h2 id="plat-h" class="mt-4 text-3xl sm:text-4xl leading-[1.02] tracking-[-0.02em]">Built to fit how your sites already work.</h2>
+    <ul class="mt-10 grid gap-x-10 gap-y-8 sm:grid-cols-2 lg:grid-cols-4">
+      {platform.map((p) => (
+        <li class="border-t-2 border-ink pt-4">
+          <h3 class="display text-xl leading-tight">{p.t}</h3>
+          <p class="mt-1.5 text-[15px] leading-[1.5] text-ink-2">{p.d}</p>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
