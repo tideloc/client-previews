@@ -3,8 +3,8 @@
  *  a distribution board's details behind). Static screenshots from the demo, no live demo. */
 import { Image } from 'astro:assets';
 import { CAL_URL, BOOK_LABEL, APP_DEMO } from '../lib/links';
-// opens the demo signed in as Harriet on the Wattleford ground floor with the electrical boards and emergency lights on
-const heroDemo = `${APP_DEMO}?as=harriet&to=${encodeURIComponent('/sites/wattleford/map?level=G&show=DB,MSSB,MSB,EM,EEL&zoom=1')}`;
+// opens the demo signed in as Harriet on the Wattleford ground floor with the major plant on: boards, switchboards, fire panel, AHUs, chillers, lifts, pumps
+const heroDemo = `${APP_DEMO}?as=harriet&to=${encodeURIComponent('/sites/wattleford/map?level=G&show=DB,MSSB,MSB,FIP,AHU,CH,LIFT,PMP&zoom=1')}`;
 import phoneMap from '../assets/hero-phone-map.png';
 import phoneAsset from '../assets/hero-phone-asset.png';
 ---
@@ -33,7 +33,7 @@ import phoneAsset from '../assets/hero-phone-asset.png';
             <div class="relative overflow-hidden rounded-[38px] bg-card">
               <div aria-hidden="true" class="relative flex h-[34px] items-center justify-between bg-card px-7 text-[12px] font-semibold text-ink"><span>9:41</span><span class="absolute left-1/2 top-[7px] h-[22px] w-[86px] -translate-x-1/2 rounded-full bg-ink"></span><span class="flex items-center gap-1"><span class="inline-block h-[9px] w-[15px] rounded-[2px] border border-ink/70"></span></span></div>
               <!-- phones and tablets: a picture of the app, so the page scrolls normally -->
-              <Image src={phoneMap} alt="Sitelore on a phone: Wattleford Central ground floor with switchboards and emergency lights pinned on the plan" widths={[310, 620]} sizes="310px" class="block w-full h-auto lg:hidden" loading="eager" />
+              <Image src={phoneMap} alt="Sitelore on a phone: Wattleford Central ground floor with switchboards, the fire panel and air handling units pinned on the plan" widths={[310, 620]} sizes="310px" class="block w-full h-auto lg:hidden" loading="eager" />
               <!-- desktop: the live app, rendered at phone size (390 x 812) and scaled to the 288px screen inside the frame -->
               <div class="hidden lg:block relative h-[600px] overflow-hidden">
                 <iframe src={heroDemo} title="Sitelore live demo" class="absolute left-0 top-0 border-0 origin-top-left" style="width:390px;height:812px;transform:scale(0.7385)" loading="eager"></iframe>
