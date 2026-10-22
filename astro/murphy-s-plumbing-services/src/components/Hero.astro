@@ -1,0 +1,27 @@
+---
+import { Picture } from 'astro:assets';
+import hero from '../assets/hero-kobelco-trench.jpg';
+import PlantCard from './PlantCard.astro';
+import { enquiryHref, btnOnDark } from '../lib/links';
+---
+<section data-section="hero" aria-labelledby="hero-h1" class="relative bg-primary text-ground overflow-hidden">
+  <Picture src={hero} widths={[640, 1024, 1600, 2400]} formats={['avif', 'webp']} sizes="100vw" loading="eager" fetchpriority="high"
+    alt="Murphy's Plumbing Services 22-tonne Kobelco excavator over a deep trench with a crew laying a lined water main"
+    pictureAttributes={{ class: 'absolute inset-0' }} class="w-full h-full object-cover object-[60%_45%]" />
+  <div class="absolute inset-0 bg-gradient-to-r from-ink/90 via-ink/60 to-ink/25" aria-hidden="true"></div>
+  <div class="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-ink/80 to-transparent" aria-hidden="true"></div>
+  <div class="relative mx-auto max-w-7xl px-5 lg:px-8 pt-10 pb-10 lg:pt-28 lg:pb-16 grid gap-10 lg:grid-cols-12 lg:items-end lg:min-h-[82vh]">
+    <div class="lg:col-span-7">
+      <p class="font-medium uppercase tracking-[0.22em] text-xs text-ground/80">Civil and industrial plumbing contractor, Illawarra</p>
+      <h1 id="hero-h1" class="mt-4 font-display text-[2.4rem] leading-[1.02] sm:text-6xl lg:text-7xl max-w-4xl">Large-scale civil pipework for water, sewage, stormwater and gas.</h1>
+      <p class="mt-6 max-w-xl text-lg text-ground/90">Our own excavators, our own PE 100 welding, our own licensed crew. Based in the Illawarra, with recent Sydney Water infrastructure works.</p>
+      <div class="mt-8 flex flex-wrap items-center gap-5">
+        <a href={enquiryHref} class={btnOnDark}>Send a project enquiry</a>
+        <a href="#capabilities" class="underline underline-offset-4 font-medium">What we install</a>
+      </div>
+    </div>
+    <div class="lg:col-span-4 lg:col-start-9">
+      <PlantCard />
+    </div>
+  </div>
+</section>

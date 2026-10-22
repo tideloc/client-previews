@@ -1,0 +1,44 @@
+---
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import EnquiryBand from '../../components/EnquiryBand.astro';
+import ContactDetails from '../../components/tl/ContactDetails.astro';
+---
+<Base title="Contact | Murphy's Plumbing Services" description="Contact Murphy's Plumbing Services, Illawarra civil and industrial plumbing contractor, about your next infrastructure project or excavator hire.">
+  <Header slot="header" />
+  <section data-section="contact-lead" aria-labelledby="ct-h1" class="bg-ground">
+    <div class="mx-auto max-w-7xl px-5 lg:px-8 pt-14 lg:pt-20 pb-12 grid gap-10 lg:grid-cols-12">
+      <div class="lg:col-span-7">
+        <p class="font-medium uppercase tracking-[0.22em] text-xs">Contact</p>
+        <h1 id="ct-h1" class="mt-4 font-display text-5xl lg:text-7xl leading-[1.02]">We're ready to discuss your next project.</h1>
+        <p class="mt-6 text-lg text-ink/80 max-w-xl">Please fill out the form below, or email us.</p>
+      </div>
+      <div class="lg:col-span-4 lg:col-start-9">
+        <dl class="border-t border-ink">
+          <div class="py-4 border-b border-accent">
+            <dt class="font-medium uppercase tracking-[0.22em] text-xs">Email</dt>
+            <dd class="mt-1"><ContactDetails class="not-italic" linkClass="font-display text-xl underline underline-offset-4 break-all" /></dd>
+          </div>
+          <div class="py-4 border-b border-accent">
+            <dt class="font-medium uppercase tracking-[0.22em] text-xs">Based</dt>
+            <dd class="mt-1 font-display text-xl">Illawarra, NSW 2530</dd>
+          </div>
+          <div class="py-4 border-b border-accent">
+            <dt class="font-medium uppercase tracking-[0.22em] text-xs">Registration</dt>
+            <dd class="mt-1 text-ink/80">ABN 24 101 951 759<br />Licence 521S<br />Licence 142861C</dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+  </section>
+  <EnquiryBand heading="Tell us the scope, the materials and the program." />
+  <section data-section="map" aria-labelledby="map-h2" class="bg-primary text-ground">
+    <div class="mx-auto max-w-7xl px-5 lg:px-8 pt-12 pb-6 flex flex-wrap items-baseline justify-between gap-4">
+      <h2 id="map-h2" class="font-display text-3xl lg:text-4xl">Based in the Illawarra</h2>
+      <p class="text-ground/80">NSW 2530. Working on Sydney Water infrastructure and civil projects.</p>
+    </div>
+    <iframe title="Map of the Illawarra, NSW 2530, where Murphy's Plumbing Services is based" src="https://www.google.com/maps?q=Dapto%20NSW%202530&output=embed" width="100%" height="420" style="border:0" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+  </section>
+  <Footer slot="footer" />
+</Base>

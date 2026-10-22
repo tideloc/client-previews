@@ -1,0 +1,34 @@
+---
+import { Picture } from 'astro:assets';
+import weld from '../assets/weld-electrofusion-coupler.jpg';
+import rig from '../assets/weld-butt-rig-channel.jpg';
+const certs = ['PE 100 installations', 'Electrofusion', 'Butt Welding', 'Vac Operations'];
+const installs = ['Steel and DICL installations', 'PE 100 Electrofusion', 'PE 100 Butt Welding', 'Press Fit'];
+---
+<section data-section="welding" aria-labelledby="weld-h2" class="bg-ground">
+  <div class="mx-auto max-w-7xl px-5 lg:px-8 py-16 lg:py-24 grid gap-10 lg:grid-cols-12">
+    <div class="lg:col-span-6 grid grid-cols-3 gap-3">
+      <Picture src={weld} widths={[640, 1024, 1600]} formats={['avif', 'webp']} sizes="(min-width: 1024px) 33vw, 66vw" loading="lazy"
+        alt="Electrofusion coupler on a black pipe in the trench, welding leads connected"
+        pictureAttributes={{ class: 'col-span-2 block' }} class="w-full h-full aspect-[4/5] object-cover" />
+      <Picture src={rig} widths={[480, 800, 1200]} formats={['avif', 'webp']} sizes="(min-width: 1024px) 17vw, 33vw" loading="lazy"
+        alt="Butt welding rig under a gazebo on a channel bank, welded pipe string beside it"
+        pictureAttributes={{ class: 'block' }} class="w-full h-full aspect-[4/5] object-cover" />
+    </div>
+    <div class="lg:col-span-5 lg:col-start-8">
+      <p class="font-medium uppercase tracking-[0.22em] text-xs">PE 100 polyethylene</p>
+      <h2 id="weld-h2" class="mt-3 font-display text-4xl lg:text-5xl leading-tight">Electrofusion and butt welding, certified and done by the crew that lays the pipe.</h2>
+      <p class="mt-5 text-ink/80">We adhere to the highest industry standards, with certifications in PE 100 installations, Electrofusion, Butt Welding, and Vac Operations. Our licensed team ensures that every project meets strict safety and quality requirements.</p>
+      <div class="mt-8 border border-ink">
+        <p class="px-5 py-3 border-b border-ink font-medium uppercase tracking-[0.22em] text-xs">Certifications held</p>
+        <ul class="px-5">
+          {certs.map((c) => <li class="py-3 border-b border-accent last:border-0 font-display text-xl">{c}</li>)}
+        </ul>
+        <p class="px-5 py-3 border-t border-ink font-medium uppercase tracking-[0.22em] text-xs">Installations</p>
+        <ul class="px-5">
+          {installs.map((c) => <li class="py-3 border-b border-accent last:border-0 font-display text-xl">{c}</li>)}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

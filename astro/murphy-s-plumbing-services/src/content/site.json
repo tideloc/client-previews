@@ -1,0 +1,21 @@
+{
+  "slug": "murphy-s-plumbing-services",
+  "version": 1,
+  "updatedAt": "2026-10-23T00:00:00.000Z",
+  "businessName": "Murphy's Plumbing Services",
+  "hours": [],
+  "holidays": [],
+  "announcement": { "enabled": false, "text": "" },
+  "contact": { "phone": "", "email": "info@murphysplumbingservices.com.au", "address": "", "suburb": "", "state": "", "postcode": "" },
+  "priceList": [
+    {
+      "title": "Plant for hire",
+      "items": [
+        { "name": "22-tonne excavator", "price": "Wet or dry hire", "note": "" },
+        { "name": "5-tonne excavator", "price": "Wet or dry hire", "note": "" }
+      ]
+    }
+  ],
+  "social": {},
+  "openingHoursSpecification": []
+}

@@ -1,0 +1,91 @@
+---
+import { Picture } from 'astro:assets';
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import EnquiryBand from '../../components/EnquiryBand.astro';
+import { alts } from '../../lib/photos';
+import lead1 from '../../assets/project-main-on-piers.jpg';
+import lead2 from '../../assets/project-valve-assembly.jpg';
+import b1 from '../../assets/project-wrapped-pipes.jpg';
+import b2 from '../../assets/project-valves-pit-above.jpg';
+import b3 from '../../assets/project-main-through-bush.jpg';
+const certs = ['PE 100 installations', 'Electrofusion', 'Butt Welding', 'Vac Operations'];
+const register = [
+  ['Company', "Murphy's Plumbing Services Pty Ltd"],
+  ['ABN', '24 101 951 759, registered 1 October 2002'],
+  ['Licence numbers', '521S and 142861C'],
+  ['Based', 'Illawarra, NSW 2530'],
+  ['Crew', 'Licensed plumbers, pipe layers and excavator operators'],
+  ['Plant', '22-tonne and 5-tonne excavators, wet or dry hire'],
+];
+const band = [{ src: b1, file: 'project-wrapped-pipes.jpg' }, { src: b2, file: 'project-valves-pit-above.jpg' }, { src: b3, file: 'project-main-through-bush.jpg' }];
+---
+<Base title="About | Murphy's Plumbing Services" description="Illawarra civil and industrial plumbing company with licensed plumbers, pipe layers and excavator operators, two excavators and PE 100 welding certifications.">
+  <Header slot="header" />
+  <section data-section="about-lead" aria-labelledby="ab-h1" class="bg-ground">
+    <div class="mx-auto max-w-7xl px-5 lg:px-8 pt-14 lg:pt-20 pb-12 grid gap-10 lg:grid-cols-12">
+      <div class="lg:col-span-6">
+        <p class="font-medium uppercase tracking-[0.22em] text-xs">About</p>
+        <h1 id="ab-h1" class="mt-4 font-display text-5xl lg:text-7xl leading-[1.02]">Industrial and civil plumbing, with the equipment to match.</h1>
+        <p class="mt-6 text-ink/80">Murphy's Plumbing Services is a trusted name in industrial and civil plumbing, delivering reliable and high-quality solutions for complex infrastructure projects. With a skilled team of licensed plumbers, pipe layers, and excavator operators, we specialise in large-scale water, sewage, stormwater, and gas systems.</p>
+        <p class="mt-4 text-ink/80">Our commitment to excellence is backed by years of experience and the equipment to match. From deep trenching to precise pipe installations, we take pride in tackling challenging projects with professionalism and precision.</p>
+      </div>
+      <div class="lg:col-span-6 grid grid-cols-5 gap-3">
+        <Picture src={lead1} widths={[640, 1024, 1600]} formats={['avif', 'webp']} sizes="(min-width: 1024px) 30vw, 60vw" loading="eager" alt={alts['project-main-on-piers.jpg']}
+          pictureAttributes={{ class: 'col-span-3 block' }} class="w-full h-full aspect-[4/5] object-cover" />
+        <Picture src={lead2} widths={[480, 800, 1200]} formats={['avif', 'webp']} sizes="(min-width: 1024px) 20vw, 40vw" loading="lazy" alt={alts['project-valve-assembly.jpg']}
+          pictureAttributes={{ class: 'col-span-2 block self-end' }} class="w-full aspect-[4/5] object-cover" />
+      </div>
+    </div>
+  </section>
+
+  <section data-section="certs" aria-labelledby="ce-h2" class="bg-primary text-ground">
+    <div class="mx-auto max-w-7xl px-5 lg:px-8 py-16 lg:py-20 grid gap-10 lg:grid-cols-12">
+      <div class="lg:col-span-5">
+        <p class="font-medium uppercase tracking-[0.22em] text-xs text-ground/70">Certifications and accreditations</p>
+        <h2 id="ce-h2" class="mt-3 font-display text-4xl lg:text-5xl leading-tight">We're proud to hold key certifications that reflect our dedication to quality and expertise.</h2>
+      </div>
+      <ul class="lg:col-span-6 lg:col-start-7 border-t border-ground/40">
+        {certs.map((c) => <li class="py-4 border-b border-ground/20 font-display text-3xl">{c}</li>)}
+      </ul>
+    </div>
+  </section>
+
+  <section data-section="apart" aria-labelledby="ap-h2" class="bg-ground">
+    <div class="mx-auto max-w-7xl px-5 lg:px-8 py-16 lg:py-20 grid gap-10 lg:grid-cols-12">
+      <div class="lg:col-span-5">
+        <p class="font-medium uppercase tracking-[0.22em] text-xs">What sets us apart</p>
+        <h2 id="ap-h2" class="mt-3 font-display text-4xl lg:text-5xl leading-tight">Diverse pipe materials, and our own excavators.</h2>
+        <div class="mt-6 text-ink/80 space-y-4">
+          <p>We stand out for our expertise in handling diverse pipe materials, including PE 100 polyethylene, Ductile Iron Cement Lines (DICL), stainless steel press fit, concrete, and PVC. This flexibility ensures we can adapt to the specific needs of every job, delivering durable and reliable results every time.</p>
+          <p>Our fleet includes a 22-tonne and a 5-tonne excavator, available for wet or dry hire, giving us the capability to manage even the most demanding projects efficiently.</p>
+        </div>
+      </div>
+      <div class="lg:col-span-6 lg:col-start-7">
+        <p class="font-medium uppercase tracking-[0.22em] text-xs">On the record</p>
+        <table class="mt-3 w-full border-t border-ink">
+          <tbody>
+            {register.map(([k, v]) => (
+              <tr class="border-b border-accent align-baseline">
+                <th scope="row" class="py-3.5 pr-4 text-left font-display text-xl font-normal w-[40%]">{k}</th>
+                <td class="py-3.5 text-ink/80">{v}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section data-section="about-photos" aria-label="On site" class="bg-secondary">
+    <div class="mx-auto max-w-7xl px-5 lg:px-8 py-12 lg:py-16 grid grid-cols-1 sm:grid-cols-3 gap-3">
+      {band.map((p) => (
+        <Picture src={p.src} widths={[480, 800, 1200]} formats={['avif', 'webp']} sizes="(min-width: 640px) 33vw, 100vw" alt={alts[p.file]} loading="lazy"
+          pictureAttributes={{ class: 'block' }} class="w-full aspect-[4/5] object-cover" />
+      ))}
+    </div>
+  </section>
+  <EnquiryBand compact />
+  <Footer slot="footer" />
+</Base>

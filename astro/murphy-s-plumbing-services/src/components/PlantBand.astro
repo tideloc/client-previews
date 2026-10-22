@@ -1,0 +1,38 @@
+---
+import { Picture } from 'astro:assets';
+import p1 from '../assets/plant-kobelco-fence.jpg';
+import p2 from '../assets/plant-kobelco-elbow.jpg';
+import p3 from '../assets/plant-kobelco-pit.jpg';
+import { base, btnOnDark } from '../lib/links';
+const photos = [
+  { src: p1, alt: 'Kobelco excavator digging beside the site fence' },
+  { src: p2, alt: 'Operator beside the excavator as it lifts a blue flanged elbow' },
+  { src: p3, alt: 'Excavator lifting at a precast pit with the crew guiding a black pipe into place' },
+];
+---
+<section data-section="plant" aria-labelledby="plant-h2" class="bg-primary text-ground">
+  <div class="mx-auto max-w-7xl px-5 lg:px-8 py-16 lg:py-24">
+    <div class="grid gap-10 lg:grid-cols-12 lg:items-end">
+      <div class="lg:col-span-6">
+        <p class="font-medium uppercase tracking-[0.22em] text-xs text-ground/70">Our fleet, wet or dry hire</p>
+        <div class="mt-4 flex flex-wrap items-baseline gap-x-10 gap-y-2">
+          <p class="font-display leading-none text-[6.5rem] sm:text-[9rem] lg:text-[11rem]">22<span class="text-[0.4em] ml-2">t</span></p>
+          <p class="font-display leading-none text-[6.5rem] sm:text-[9rem] lg:text-[11rem]">5<span class="text-[0.4em] ml-2">t</span></p>
+        </div>
+        <p class="mt-2 font-display text-2xl">Two excavators and our own operators, available wet or dry.</p>
+      </div>
+      <div class="lg:col-span-5 lg:col-start-8">
+        <h2 id="plant-h2" class="font-display text-3xl lg:text-4xl leading-tight">The machinery for all the civil plumbing works, large and small.</h2>
+        <p class="mt-5 text-ground/85">Our fleet includes a 22-tonne and a 5-tonne excavator, available for wet or dry hire, giving us the capability to manage even the most demanding projects efficiently.</p>
+        <p class="mt-3 text-ground/85">The crew includes licensed plumbers, pipe layers and excavator operators, so the machine and the pipework come from the one contractor.</p>
+        <a href={`${base}/plant-hire/`} class={`mt-7 ${btnOnDark}`}>Plant hire</a>
+      </div>
+    </div>
+    <div class="mt-12 grid grid-cols-1 sm:grid-cols-3 gap-3">
+      {photos.map((p) => (
+        <Picture src={p.src} widths={[480, 800, 1200]} formats={['avif', 'webp']} sizes="(min-width: 640px) 33vw, 100vw" alt={p.alt} loading="lazy"
+          pictureAttributes={{ class: 'block' }} class="w-full aspect-[4/5] object-cover" />
+      ))}
+    </div>
+  </div>
+</section>

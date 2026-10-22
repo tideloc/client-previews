@@ -1,0 +1,93 @@
+---
+import { Picture } from 'astro:assets';
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import EnquiryBand from '../../components/EnquiryBand.astro';
+import { alts } from '../../lib/photos';
+import water from '../../assets/project-stainless-vertical.jpg';
+import sewer from '../../assets/project-trench-pipe-shoring.jpg';
+import storm from '../../assets/project-stormwater-pit.jpg';
+import gas from '../../assets/project-pe-gravel-bedding.jpg';
+import trench from '../../assets/project-trench-bedding.jpg';
+import manhole from '../../assets/project-manhole-riser-worker.jpg';
+import plant from '../../assets/project-stainless-plant.jpg';
+import pe from '../../assets/weld-pe-pipe-trench.jpg';
+import dicl from '../../assets/dicl-pipe-crane-sling.jpg';
+import press from '../../assets/project-press-fit-plant.jpg';
+import pvc from '../../assets/project-pvc-valves-trench.jpg';
+import concrete from '../../assets/project-pink-pipe-manhole.jpg';
+const scopes = [
+  { name: 'Water supply', text: 'Water supply pipework and treatment plant piping.', img: water, file: 'project-stainless-vertical.jpg' },
+  { name: 'Sewage', text: 'Large-scale sewage pipework for civil infrastructure projects.', img: sewer, file: 'project-trench-pipe-shoring.jpg' },
+  { name: 'Stormwater', text: 'Stormwater systems for civil infrastructure projects.', img: storm, file: 'project-stormwater-pit.jpg' },
+  { name: 'Gas', text: 'Gas systems for civil and industrial projects.', img: gas, file: 'project-pe-gravel-bedding.jpg' },
+  { name: 'Deep trenching', text: 'Precise trenching and navigation around existing services, with our own 22-tonne and 5-tonne excavators.', img: trench, file: 'project-trench-bedding.jpg' },
+  { name: 'Manhole installations', text: 'Manhole installations on civil infrastructure projects.', img: manhole, file: 'project-manhole-riser-worker.jpg' },
+  { name: 'Treatment plant piping', text: 'Specialised piping inside treatment plants.', img: plant, file: 'project-stainless-plant.jpg' },
+];
+const materials = [
+  { name: 'PE 100 polyethylene', text: 'Electrofusion and butt welding, certified.', img: pe, file: 'weld-pe-pipe-trench.jpg' },
+  { name: 'Ductile Iron Cement Lined (DICL) and steel', text: 'Steel and DICL installations.', img: dicl, file: 'dicl-pipe-crane-sling.jpg' },
+  { name: 'Stainless steel and copper press fit', text: 'Press fit installations.', img: press, file: 'project-press-fit-plant.jpg' },
+  { name: 'PVC', text: 'PVC pipework.', img: pvc, file: 'project-pvc-valves-trench.jpg' },
+  { name: 'Concrete', text: 'Concrete pipework.', img: concrete, file: 'project-pink-pipe-manhole.jpg' },
+];
+const certs = ['PE 100 installations', 'Electrofusion', 'Butt Welding', 'Vac Operations'];
+---
+<Base title="Civil and industrial plumbing services | Murphy's Plumbing Services" description="Water, sewage, stormwater and gas pipework, deep trenching, manholes and treatment plant piping in PE 100, DICL, press fit, PVC and concrete.">
+  <Header slot="header" />
+  <section data-section="services-lead" aria-labelledby="sv-h1" class="bg-ground">
+    <div class="mx-auto max-w-7xl px-5 lg:px-8 pt-14 lg:pt-20 pb-6">
+      <p class="font-medium uppercase tracking-[0.22em] text-xs">Services</p>
+      <h1 id="sv-h1" class="mt-4 font-display text-5xl lg:text-7xl leading-[1.02] max-w-4xl">Civil and industrial plumbing for complex infrastructure projects.</h1>
+      <p class="mt-6 text-lg text-ink/80 max-w-2xl">We provide specialised solutions for civil infrastructure, focusing on water, sewage, stormwater, and gas systems. From deep trenching and manhole installations to treatment plant piping, our expertise ensures every project is handled with precision and efficiency.</p>
+    </div>
+  </section>
+
+  <section data-section="scopes" aria-labelledby="sc-h2" class="bg-ground">
+    <div class="mx-auto max-w-7xl px-5 lg:px-8 py-10 lg:py-16">
+      <h2 id="sc-h2" class="font-medium uppercase tracking-[0.22em] text-xs border-b border-ink pb-3">Scopes</h2>
+      <ul class="divide-y divide-accent">
+        {scopes.map((s) => (
+          <li class="py-8 grid gap-6 md:grid-cols-12 md:items-center">
+            <h3 class="md:col-span-4 font-display text-3xl lg:text-4xl leading-tight">{s.name}</h3>
+            <p class="md:col-span-5 text-ink/80">{s.text}</p>
+            <Picture src={s.img} widths={[480, 800]} formats={['avif', 'webp']} sizes="(min-width: 768px) 25vw, 100vw" alt={alts[s.file]} loading="lazy"
+              pictureAttributes={{ class: 'md:col-span-3 block' }} class="w-full aspect-[4/3] object-cover" />
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section data-section="materials" aria-labelledby="mat-h2" class="bg-primary text-ground">
+    <div class="mx-auto max-w-7xl px-5 lg:px-8 py-16 lg:py-24">
+      <div class="grid gap-8 lg:grid-cols-12 lg:items-end">
+        <div class="lg:col-span-8">
+          <p class="font-medium uppercase tracking-[0.22em] text-xs text-ground/70">Materials</p>
+          <h2 id="mat-h2" class="mt-3 font-display text-4xl lg:text-5xl leading-tight">PE 100, DICL, steel, stainless and copper press fit, PVC and concrete.</h2>
+          <p class="mt-5 text-ground/85 max-w-2xl">We stand out for our expertise in handling diverse pipe materials. This flexibility ensures we can adapt to the specific needs of every job, delivering durable and reliable results every time.</p>
+        </div>
+        <div class="lg:col-span-4">
+          <p class="font-medium uppercase tracking-[0.22em] text-xs text-ground/70 border-b border-ground/40 pb-2">Certifications held</p>
+          <ul class="grid grid-cols-2 gap-x-6">
+            {certs.map((c) => <li class="py-2 border-b border-ground/20 font-display text-lg">{c}</li>)}
+          </ul>
+        </div>
+      </div>
+      <div class="mt-12 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+        {materials.map((m) => (
+          <div>
+            <Picture src={m.img} widths={[480, 800]} formats={['avif', 'webp']} sizes="(min-width: 1024px) 20vw, (min-width: 640px) 50vw, 100vw" alt={alts[m.file]} loading="lazy"
+              pictureAttributes={{ class: 'block' }} class="w-full aspect-[4/5] object-cover" />
+            <h3 class="mt-3 font-display text-xl leading-tight">{m.name}</h3>
+            <p class="mt-1 text-sm text-ground/75">{m.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+  <EnquiryBand compact heading="Send the scope and the materials, and we will price it." />
+  <Footer slot="footer" />
+</Base>

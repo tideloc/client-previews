@@ -1,0 +1,38 @@
+---
+import { Picture } from 'astro:assets';
+import a from '../assets/project-site-wide.jpg';
+import b from '../assets/project-circular-tank-risers.jpg';
+import c from '../assets/project-trench-dusk.jpg';
+import d from '../assets/project-manhole-crane-sky.jpg';
+import e from '../assets/project-plant-pump-pipework.jpg';
+import f from '../assets/project-above-ground-main-bush.jpg';
+import g from '../assets/project-tank-wall-risers.jpg';
+import { base, btnPrimary } from '../lib/links';
+const tiles = [
+  { src: a, alt: 'Site with concrete walls, scaffold, a crane and a wrapped pipe laid in a trench', cls: 'col-span-2 row-span-2 sm:col-span-8', sizes: '(min-width: 640px) 66vw, 100vw' },
+  { src: b, alt: 'Circular concrete structure with five blue flanged risers down the wall', cls: 'col-span-1 sm:col-span-4', sizes: '(min-width: 640px) 33vw, 50vw' },
+  { src: c, alt: 'Deep trench at dusk with several pipes laid and bedded', cls: 'col-span-1 sm:col-span-4', sizes: '(min-width: 640px) 33vw, 50vw' },
+  { src: d, alt: 'Crane lowering a precast concrete ring into an excavation', cls: 'col-span-1 sm:col-span-3', sizes: '(min-width: 640px) 25vw, 50vw' },
+  { src: e, alt: 'Pumps and metal pipework outside a plant building', cls: 'col-span-1 sm:col-span-5', sizes: '(min-width: 640px) 41vw, 50vw' },
+  { src: f, alt: 'Black pipe on concrete piers through bushland, worker on a ladder', cls: 'col-span-1 sm:col-span-4', sizes: '(min-width: 640px) 33vw, 50vw' },
+  { src: g, alt: 'Concrete wall with black risers and blue fittings, crew working at the base', cls: 'col-span-1 sm:col-span-12 sm:aspect-[21/9]', sizes: '100vw' },
+];
+---
+<section data-section="projects" aria-labelledby="proj-h2" class="bg-secondary">
+  <div class="mx-auto max-w-7xl px-5 lg:px-8 py-16 lg:py-24">
+    <div class="grid gap-6 lg:grid-cols-12 lg:items-end">
+      <div class="lg:col-span-8">
+        <p class="font-medium uppercase tracking-[0.22em] text-xs">Recent work</p>
+        <h2 id="proj-h2" class="mt-3 font-display text-4xl lg:text-5xl leading-tight">Sydney Water infrastructure works, and the small to medium civil plumbing jobs in between.</h2>
+      </div>
+      <p class="lg:col-span-4 text-ink/80">Take a look at our work showcasing the scale and precision of our industrial and civil plumbing projects. These images demonstrate the expertise, materials, and techniques we apply.</p>
+    </div>
+    <div class="mt-10 grid grid-cols-2 sm:grid-cols-12 gap-3 auto-rows-fr">
+      {tiles.map((t) => (
+        <Picture src={t.src} widths={[480, 800, 1200, 1600]} formats={['avif', 'webp']} sizes={t.sizes} alt={t.alt} loading="lazy"
+          pictureAttributes={{ class: `block ${t.cls}` }} class="w-full h-full object-cover aspect-[4/3] sm:aspect-auto" />
+      ))}
+    </div>
+    <a href={`${base}/projects/`} class={`mt-10 ${btnPrimary}`}>See all projects</a>
+  </div>
+</section>
