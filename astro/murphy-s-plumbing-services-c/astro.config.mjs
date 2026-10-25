@@ -10,5 +10,5 @@ export default defineConfig({
   outDir: './dist',
   trailingSlash: 'ignore',
   build: { assets: '_assets', format: 'directory' },
-  integrations: [tailwind({ applyBaseStyles: false }), sitemap()],
+  integrations: [tailwind({ applyBaseStyles: false }), sitemap({ filter: (page) => !page.includes('/capability-statement/') })],
 });
