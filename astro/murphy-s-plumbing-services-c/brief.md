@@ -28,6 +28,8 @@ Same eight as Option B (phone, address, Sydney Water project names, fleet detail
 10. Licence 521S: confirm which register it belongs to (the NSW Fair Trading link is a search page, not a direct record). Insurances and any Sydney Water listed-provider status, if he wants them on the record table and the PDF.
 
 ## Known issues
-- Independent QC verdict for this option: see the end of review-v3.md in the workdir (deployed on Blake's standing "stage it" instruction while QC ran).
-- Static gate: see below.
-- Google Maps embed on contact is a keyless postcode query (Dapto NSW 2530) until an address is supplied; rendered greyscale to sit on the dark page.
+- Independent QC: PASS on the premium navy cut (25 Oct 2026), after three earlier cuts of this option failed and were replaced at Blake's direction.
+- Static gate: PASS, with BRAND_PALETTE_REF set to the released palette (#0D1117, #141B24, #F2F4F6, #2BC4B4, #8B95A1, #243040).
+- Colour is off the client's monochrome brand by Blake's call; the client has not seen it.
+- Renders are generic machines and fittings, labelled by part, not his units.
+- Google Maps embed is a keyless postcode query until an address is supplied.
