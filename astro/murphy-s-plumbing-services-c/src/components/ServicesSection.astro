@@ -1,5 +1,6 @@
 ---
-/** Services: photo plate first, then lead and the scope / material lists. `full` adds installations, certifications and a second photo. */
+/** Services. Desktop: photo plate, then heading, lead and the scope / material lists. Phone: heading and one line first, photo under them, scopes as a single list, materials as one line.
+ *  `full` adds installations, certifications and a second photo (the sub-page carries its own lead). */
 import { Picture } from 'astro:assets';
 import { alts } from '../lib/photos';
 import { facts } from '../lib/facts';
@@ -7,27 +8,31 @@ import { base, linkMore, eyebrow, eyebrowMuted } from '../lib/links';
 import pipe from '../assets/weld-pe-pipe-trench.jpg';
 import plant from '../assets/project-plant-pump-pipework.jpg';
 const { full = false } = Astro.props;
+const materialsLine = 'PE 100 polyethylene, ductile iron cement lined (DICL), steel, stainless steel and copper press fit, PVC and concrete';
 ---
-<section id="services" data-section="services" aria-labelledby={full ? undefined : "sv-h2"} aria-label={full ? "Services" : undefined} class="bg-ground text-ink">
-  <figure class="w-full">
+<section id="services" data-section="services" aria-labelledby={full ? undefined : "sv-h2"} aria-label={full ? "Services" : undefined} class="bg-ground text-ink flex flex-col">
+  <figure class={`w-full ${full ? '' : 'order-2 md:order-1'}`}>
     <Picture src={pipe} widths={[768, 1200, 1800, 2400]} formats={['avif', 'webp']} sizes="100vw" loading={full ? 'lazy' : 'eager'} alt={alts['weld-pe-pipe-trench.jpg']} pictureAttributes={{ class: 'block' }} class="w-full aspect-[4/3] md:aspect-[21/9] object-cover object-[50%_45%]" />
   </figure>
-  <div class="mx-auto max-w-[96rem] px-5 lg:px-10 py-14 lg:py-20">
-    {!full && <div class="grid gap-6 lg:grid-cols-12 lg:items-end">
+  {!full && (
+    <div class="order-1 md:order-2 mx-auto w-full max-w-[96rem] px-5 lg:px-10 pt-12 md:pt-14 lg:pt-20 pb-8 md:pb-0 grid gap-4 lg:gap-6 lg:grid-cols-12 lg:items-end">
       <div class="lg:col-span-7">
-        <p class={eyebrow}>Skills and services</p>
+        <p class={eyebrow}>What we do</p>
         <h2 id="sv-h2" class="mt-3 font-display text-3xl lg:text-5xl leading-[1.05]">Water, sewage, stormwater and gas pipework for infrastructure projects.</h2>
       </div>
-      <p class="lg:col-span-5 text-muted">From deep trenching and manhole installations to treatment plant piping, in PE 100, DICL, steel, stainless and copper press fit, PVC and concrete. We provide specialised solutions for civil infrastructure, and our expertise ensures every project is handled with precision and efficiency.</p>
-    </div>}
-    <div class={`${full ? '' : 'mt-10'} grid gap-x-10 gap-y-8 md:grid-cols-2`}>
+      <p class="lg:col-span-5 text-muted">From deep trenching and manhole installations to treatment plant piping. Specialised solutions for civil infrastructure, handled with precision and efficiency.</p>
+    </div>
+  )}
+  <div class={`order-3 mx-auto w-full max-w-[96rem] px-5 lg:px-10 ${full ? 'pt-12 lg:pt-16' : 'pt-8 md:pt-10'} pb-14 lg:pb-20`}>
+    <div class="grid gap-x-10 gap-y-8 md:grid-cols-2">
       <div>
         <p class={`${eyebrowMuted} border-b border-ink/30 pb-3`}>Scopes</p>
-        <ul class="grid grid-cols-2 md:grid-cols-1 gap-x-6">{facts.scopes.map((s) => <li class="py-3 border-b rule font-display text-xl lg:text-2xl leading-tight">{s}</li>)}</ul>
+        <ul class="sm:grid sm:grid-cols-2 md:grid-cols-1 sm:gap-x-6">{facts.scopes.map((s) => <li class="py-2.5 md:py-3 border-b rule font-display text-xl lg:text-2xl leading-tight">{s}</li>)}</ul>
       </div>
       <div>
         <p class={`${eyebrowMuted} border-b border-ink/30 pb-3`}>Materials</p>
-        <ul class="grid grid-cols-2 md:grid-cols-1 gap-x-6">{facts.materials.map((m) => <li class="py-3 border-b rule text-muted">{m}</li>)}</ul>
+        <p class="md:hidden pt-3 text-muted leading-relaxed">{materialsLine}.</p>
+        <ul class="hidden md:block">{facts.materials.map((m) => <li class="py-3 border-b rule text-muted">{m}</li>)}</ul>
       </div>
     </div>
     {full ? (
