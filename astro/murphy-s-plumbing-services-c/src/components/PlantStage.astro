@@ -1,0 +1,38 @@
+---
+import { Picture } from 'astro:assets';
+import drawing from '../assets/gen-exploded-excavator.jpg';
+import p1 from '../assets/plant-kobelco-elbow.jpg';
+import p2 from '../assets/plant-kobelco-pit.jpg';
+import { alts } from '../lib/photos';
+import { base, btn, eyebrow } from '../lib/links';
+---
+<section data-section="plant" aria-labelledby="plant-h2" class="relative bg-primary text-ink overflow-hidden border-t hairline">
+  <Picture src={drawing} widths={[768, 1376]} formats={['avif', 'webp']} sizes="100vw" loading="lazy"
+    alt="Exploded-view line drawing of a tracked excavator: boom, dipper, bucket, house and undercarriage separated"
+    pictureAttributes={{ class: 'absolute inset-x-0 top-0 h-[60vh] lg:h-full drawing opacity-50 lg:opacity-90' }} class="w-full h-full object-contain object-[50%_20%] lg:object-[85%_50%]" />
+  <div class="relative mx-auto max-w-[88rem] px-5 lg:px-10 pt-[52vh] lg:pt-28 pb-20 lg:pb-28">
+    <div class="grid gap-10 lg:grid-cols-12 lg:items-end">
+      <div class="lg:col-span-5">
+        <p class={eyebrow}>Our fleet, wet or dry hire</p>
+        <h2 id="plant-h2" class="mt-4 font-display font-light text-4xl lg:text-5xl leading-[1.05]">The machinery for all the civil plumbing works, large and small.</h2>
+        <p class="mt-6 text-accent">Our fleet includes a 22-tonne and a 5-tonne excavator, available for wet or dry hire, giving us the capability to manage even the most demanding projects efficiently.</p>
+        <p class="mt-3 text-accent">The crew includes licensed plumbers, pipe layers and excavator operators, so the machine and the pipework come from the one contractor.</p>
+        <a href={`${base}/plant-hire/`} class={`mt-8 ${btn}`}>Plant hire</a>
+      </div>
+      <div class="lg:col-span-6 lg:col-start-7 grid grid-cols-2 gap-3">
+        <div class="border hairline p-5 bg-ground/70 backdrop-blur-[2px]">
+          <p class="font-display font-light leading-none text-[5rem] lg:text-[7rem]">22<span class="text-[0.4em] ml-1">t</span></p>
+          <p class={`mt-3 ${eyebrow}`}>Excavator, wet or dry hire</p>
+        </div>
+        <div class="border hairline p-5 bg-ground/70 backdrop-blur-[2px]">
+          <p class="font-display font-light leading-none text-[5rem] lg:text-[7rem]">5<span class="text-[0.4em] ml-1">t</span></p>
+          <p class={`mt-3 ${eyebrow}`}>Excavator, wet or dry hire</p>
+        </div>
+      </div>
+    </div>
+    <div class="mt-16 grid sm:grid-cols-2 gap-3">
+      <Picture src={p1} widths={[640, 1024, 1600]} formats={['avif', 'webp']} sizes="(min-width: 640px) 50vw, 100vw" alt={alts['plant-kobelco-elbow.jpg']} loading="lazy" pictureAttributes={{ class: 'block reveal' }} class="w-full aspect-[5/4] object-cover" />
+      <Picture src={p2} widths={[640, 1024, 1600]} formats={['avif', 'webp']} sizes="(min-width: 640px) 50vw, 100vw" alt={alts['plant-kobelco-pit.jpg']} loading="lazy" pictureAttributes={{ class: 'block reveal' }} class="w-full aspect-[5/4] object-cover" />
+    </div>
+  </div>
+</section>

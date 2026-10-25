@@ -1,0 +1,65 @@
+---
+import { Picture } from 'astro:assets';
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import EnquiryBand from '../../components/EnquiryBand.astro';
+import { alts } from '../../lib/photos';
+import lead1 from '../../assets/project-main-on-piers.jpg';
+import lead2 from '../../assets/project-valve-assembly.jpg';
+import b1 from '../../assets/project-wrapped-pipes.jpg';
+import b2 from '../../assets/project-valves-pit-above.jpg';
+import b3 from '../../assets/project-main-through-bush.jpg';
+import { eyebrow } from '../../lib/links';
+const certs = ['PE 100 installations', 'Electrofusion', 'Butt Welding', 'Vac Operations'];
+const band = [{ src: b1, file: 'project-wrapped-pipes.jpg' }, { src: b2, file: 'project-valves-pit-above.jpg' }, { src: b3, file: 'project-main-through-bush.jpg' }];
+---
+<Base title="About | Murphy's Plumbing Services" description="Illawarra civil and industrial plumbing company with licensed plumbers, pipe layers and excavator operators, two excavators and PE 100 welding certifications.">
+  <Header slot="header" />
+  <section data-section="about-lead" aria-labelledby="ab-h1" class="bg-ground text-ink">
+    <div class="mx-auto max-w-[88rem] px-5 lg:px-10 pt-14 lg:pt-24 pb-16 grid gap-12 lg:grid-cols-12">
+      <div class="lg:col-span-6">
+        <p class={eyebrow}>About</p>
+        <h1 id="ab-h1" class="mt-5 font-display font-light text-5xl lg:text-7xl leading-[1]">Industrial and civil plumbing, with the equipment to match.</h1>
+        <p class="mt-7 text-accent">Murphy's Plumbing Services is a trusted name in industrial and civil plumbing, delivering reliable and high-quality solutions for complex infrastructure projects. With a skilled team of licensed plumbers, pipe layers, and excavator operators, we specialise in large-scale water, sewage, stormwater, and gas systems.</p>
+        <p class="mt-4 text-accent">Our commitment to excellence is backed by years of experience and the equipment to match. From deep trenching to precise pipe installations, we take pride in tackling challenging projects with professionalism and precision.</p>
+      </div>
+      <div class="lg:col-span-6 grid grid-cols-5 gap-4">
+        <Picture src={lead1} widths={[640, 1024, 1600]} formats={['avif', 'webp']} sizes="(min-width: 1024px) 30vw, 60vw" loading="eager" alt={alts['project-main-on-piers.jpg']} pictureAttributes={{ class: 'col-span-3 block' }} class="w-full h-full aspect-[4/5] object-cover" />
+        <Picture src={lead2} widths={[480, 800, 1200]} formats={['avif', 'webp']} sizes="(min-width: 1024px) 20vw, 40vw" loading="lazy" alt={alts['project-valve-assembly.jpg']} pictureAttributes={{ class: 'col-span-2 block self-end' }} class="w-full aspect-[4/5] object-cover" />
+      </div>
+    </div>
+  </section>
+
+  <section data-section="certs" aria-labelledby="ce-h2" class="bg-ink text-ground">
+    <div class="mx-auto max-w-[88rem] px-5 lg:px-10 py-20 lg:py-24 grid gap-10 lg:grid-cols-12">
+      <div class="lg:col-span-5">
+        <p class="font-medium uppercase tracking-[0.28em] text-[11px] text-ground/60">Certifications and accreditations</p>
+        <h2 id="ce-h2" class="mt-4 font-display font-light text-4xl lg:text-5xl leading-[1.05]">We're proud to hold key certifications that reflect our dedication to quality and expertise.</h2>
+      </div>
+      <ul class="lg:col-span-6 lg:col-start-7 border-t hairline-dark">
+        {certs.map((c) => <li class="reveal py-5 border-b hairline-dark font-display font-light text-3xl lg:text-4xl">{c}</li>)}
+      </ul>
+    </div>
+  </section>
+
+  <section data-section="apart" aria-labelledby="ap-h2" class="bg-ground text-ink">
+    <div class="mx-auto max-w-[88rem] px-5 lg:px-10 py-20 lg:py-24 grid gap-10 lg:grid-cols-12">
+      <div class="lg:col-span-5">
+        <p class={eyebrow}>What sets us apart</p>
+        <h2 id="ap-h2" class="mt-4 font-display font-light text-4xl lg:text-5xl leading-[1.05]">Diverse pipe materials, and our own excavators.</h2>
+      </div>
+      <div class="lg:col-span-6 lg:col-start-7 text-accent space-y-4 text-lg">
+        <p>We stand out for our expertise in handling diverse pipe materials, including PE 100 polyethylene, Ductile Iron Cement Lines (DICL), stainless steel press fit, concrete, and PVC. This flexibility ensures we can adapt to the specific needs of every job, delivering durable and reliable results every time.</p>
+        <p>Our fleet includes a 22-tonne and a 5-tonne excavator, available for wet or dry hire, giving us the capability to manage even the most demanding projects efficiently.</p>
+      </div>
+    </div>
+    <div class="mx-auto max-w-[88rem] px-5 lg:px-10 pb-20 grid grid-cols-1 sm:grid-cols-3 gap-4">
+      {band.map((p) => (
+        <Picture src={p.src} widths={[480, 800, 1200]} formats={['avif', 'webp']} sizes="(min-width: 640px) 33vw, 100vw" alt={alts[p.file]} loading="lazy" pictureAttributes={{ class: 'block reveal' }} class="w-full aspect-[4/5] object-cover" />
+      ))}
+    </div>
+  </section>
+  <EnquiryBand record />
+  <Footer slot="footer" />
+</Base>

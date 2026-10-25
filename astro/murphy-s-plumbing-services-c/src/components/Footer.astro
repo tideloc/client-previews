@@ -1,0 +1,41 @@
+---
+import ContactDetails from './tl/ContactDetails.astro';
+import { base, nav, enquiryHref } from '../lib/links';
+const year = new Date().getFullYear();
+---
+<footer class="bg-primary text-ink">
+  <div class="mx-auto max-w-[88rem] px-5 lg:px-10 py-16 grid gap-12 md:grid-cols-12">
+    <div class="md:col-span-5">
+      <p class="font-display uppercase tracking-[0.3em] text-[13px]">Murphys Plumbing Services</p>
+      <p class="mt-5 max-w-sm text-accent">Specialising in large-scale pipework for water, sewage, storm water, and gas projects.</p>
+      <p class="mt-4 text-accent">Based in the Illawarra (NSW 2530). Working on Sydney Water infrastructure and civil projects.</p>
+    </div>
+    <div class="md:col-span-3">
+      <p class="font-medium uppercase tracking-[0.28em] text-[11px] text-accent/70">Contact</p>
+      <ContactDetails class="not-italic mt-3 space-y-1" linkClass="underline underline-offset-4 decoration-ink/40 hover:decoration-ink break-all" />
+      <a href={enquiryHref} class="mt-6 inline-block border border-ink px-5 py-3 font-medium hover:bg-ink hover:text-ground transition-colors">Send a project enquiry</a>
+    </div>
+    <div class="md:col-span-2">
+      <p class="font-medium uppercase tracking-[0.28em] text-[11px] text-accent/70">Pages</p>
+      <ul class="mt-3 space-y-1">
+        <li><a href={`${base}/`} class="hover:underline">Home</a></li>
+        {nav.map((n) => <li><a href={n.href} class="hover:underline">{n.label}</a></li>)}
+      </ul>
+    </div>
+    <div class="md:col-span-2">
+      <p class="font-medium uppercase tracking-[0.28em] text-[11px] text-accent/70">Registration</p>
+      <ul class="mt-3 space-y-1 text-accent">
+        <li>ABN 24 101 951 759</li>
+        <li>Licence 521S</li>
+        <li>Licence 142861C</li>
+        <li>Murphy's Plumbing Services Pty Ltd</li>
+      </ul>
+    </div>
+  </div>
+  <div class="border-t hairline">
+    <div class="mx-auto max-w-[88rem] px-5 lg:px-10 py-5 text-sm text-accent/70 flex flex-wrap justify-between gap-2">
+      <span>&copy; {year} Murphy's Plumbing Services Pty Ltd</span>
+      <span>Civil and industrial plumbing for infrastructure projects</span>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,22 @@
+---
+/** Designed data object: hairline spec plate. Plant lines come from site.json priceList (portal-editable); certifications from the site. */
+import PriceList from './tl/PriceList.astro';
+import { base } from '../lib/links';
+const certs = ['PE 100 installations', 'Electrofusion', 'Butt Welding', 'Vac Operations'];
+---
+<div class="border hairline bg-ground/70 backdrop-blur-[2px] text-ink">
+  <div class="px-6 py-4 border-b hairline flex items-baseline justify-between gap-4">
+    <p class="font-medium uppercase tracking-[0.28em] text-[11px] text-accent">Plant for hire</p>
+    <p class="font-medium uppercase tracking-[0.28em] text-[11px] text-accent">Illawarra</p>
+  </div>
+  <div class="px-6">
+    <PriceList sectionClass="" titleClass="sr-only" itemClass="grid grid-cols-[1fr_auto] gap-x-4 py-4 border-b hairline" nameClass="font-display text-2xl leading-none [&>span]:hidden" priceClass="font-medium text-xs uppercase tracking-[0.2em] text-accent pt-1.5" noteClass="" />
+  </div>
+  <div class="px-6 py-4 border-b hairline">
+    <p class="font-medium uppercase tracking-[0.28em] text-[11px] text-accent">Certified</p>
+    <ul class="mt-2 grid grid-cols-2 gap-x-4 gap-y-1 text-sm">
+      {certs.map((c) => <li>{c}</li>)}
+    </ul>
+  </div>
+  <a href={`${base}/plant-hire/`} class="block px-6 py-4 font-medium hover:bg-ink hover:text-ground transition-colors">Plant hire details</a>
+</div>

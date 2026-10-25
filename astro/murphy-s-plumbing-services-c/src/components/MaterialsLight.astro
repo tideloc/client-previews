@@ -1,0 +1,43 @@
+---
+import { Picture } from 'astro:assets';
+import drawing from '../assets/gen-exploded-flanged-joint.jpg';
+import weld from '../assets/weld-electrofusion-coupler.jpg';
+import { alts } from '../lib/photos';
+const materials = [
+  ['PE 100 polyethylene', 'Electrofusion and butt welding, certified'],
+  ['Ductile Iron Cement Lined (DICL) and steel', 'Steel and DICL installations'],
+  ['Stainless steel and copper press fit', 'Press fit installations'],
+  ['PVC', 'PVC pipework'],
+  ['Concrete', 'Concrete pipework'],
+];
+const certs = ['PE 100 installations', 'Electrofusion', 'Butt Welding', 'Vac Operations'];
+---
+<section data-section="materials" aria-labelledby="mat-h2" class="relative bg-ink text-ground overflow-hidden">
+  <div class="relative mx-auto max-w-[88rem] px-5 lg:px-10 py-20 lg:py-28 grid gap-12 lg:grid-cols-12">
+    <div class="lg:col-span-6">
+      <p class="font-medium uppercase tracking-[0.28em] text-[11px] text-ground/60">Materials and certifications</p>
+      <h2 id="mat-h2" class="mt-4 font-display font-light text-4xl lg:text-6xl leading-[1.05]">PE 100, DICL, steel, press fit, PVC and concrete. Welded and installed by a certified crew.</h2>
+      <p class="mt-6 text-ground/75 max-w-xl">We stand out for our expertise in handling diverse pipe materials. This flexibility ensures we can adapt to the specific needs of every job, delivering durable and reliable results every time.</p>
+      <dl class="mt-10 border-t hairline-dark">
+        {materials.map(([m, d]) => (
+          <div class="reveal grid sm:grid-cols-[1fr_1fr] gap-x-8 py-4 border-b hairline-dark items-baseline">
+            <dt class="font-display text-2xl leading-tight">{m}</dt>
+            <dd class="text-ground/70">{d}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+    <div class="lg:col-span-5 lg:col-start-8">
+      <Picture src={drawing} widths={[768, 1376]} formats={['avif', 'webp']} sizes="(min-width: 1024px) 40vw, 100vw" loading="lazy"
+        alt="Exploded-view line drawing of a flanged pipe joint: two flanges, the gasket ring and the bolts separated"
+        pictureAttributes={{ class: 'block drawing-inv reveal' }} class="w-full aspect-[16/9] object-cover" />
+      <Picture src={weld} widths={[480, 800, 1200]} formats={['avif', 'webp']} sizes="(min-width: 1024px) 30vw, 100vw" alt={alts['weld-electrofusion-coupler.jpg']} loading="lazy" pictureAttributes={{ class: 'block reveal mt-4' }} class="w-full aspect-[16/10] object-cover" />
+      <div class="mt-4 border hairline-dark">
+        <p class="px-5 py-3 border-b hairline-dark font-medium uppercase tracking-[0.28em] text-[11px] text-ground/60">Certifications held</p>
+        <ul class="px-5 grid grid-cols-2 gap-x-4">
+          {certs.map((c) => <li class="py-2.5 font-display text-lg">{c}</li>)}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

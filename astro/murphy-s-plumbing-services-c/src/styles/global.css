@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation: none !important; transition: none !important; } }
+  body { font-feature-settings: "kern", "liga"; font-weight: 300; }
+  h1, h2, h3, h4 { font-weight: 400; }
+  strong { font-weight: 500; }
+  :focus-visible { outline: 2px solid theme('colors.accent'); outline-offset: 3px; }
+  img { max-width: 100%; height: auto; }
+  ::selection { background: theme('colors.ink'); color: theme('colors.ground'); }
+}
+
+@layer components {
+  /* generated line drawings: lighten-blend so their charcoal backgrounds vanish into the ground */
+  .drawing { mix-blend-mode: lighten; }
+  /* on light sections the same drawing is inverted to black line on off-white and darken-blended */
+  .drawing-inv { filter: invert(1); mix-blend-mode: darken; }
+  .hairline { border-color: rgb(250 250 250 / 0.18); }
+  .hairline-dark { border-color: rgb(0 0 0 / 0.18); }
+}
