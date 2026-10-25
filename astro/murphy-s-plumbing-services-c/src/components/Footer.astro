@@ -1,4 +1,6 @@
 ---
+import { Image } from 'astro:assets';
+import mark from '../assets/mark-teal.png';
 import { base, nav, pdfHref, abnUrl, licenceUrl, email } from '../lib/links';
 import { facts } from '../lib/facts';
 const year = new Date().getFullYear();
@@ -6,7 +8,7 @@ const year = new Date().getFullYear();
 <footer class="bg-ground text-ink border-t rule">
   <div class="mx-auto max-w-[96rem] px-5 lg:px-10 py-12 grid gap-8 md:grid-cols-12 text-sm">
     <div class="md:col-span-5">
-      <p class="font-display uppercase tracking-[0.26em] text-[12px]">Murphys Plumbing Services</p>
+      <div class="flex items-center gap-3"><Image src={mark} alt="" width="40" height="40" loading="lazy" class="w-10 h-10" /><p class="font-display uppercase tracking-[0.3em] text-[12px] leading-[1.35]">Murphys<br />Plumbing Services</p></div>
       <p class="mt-3 text-muted max-w-sm">Specialising in large-scale pipework for water, sewage, storm water, and gas projects. Based in the Illawarra (NSW 2530).</p>
     </div>
     <div class="md:col-span-3">

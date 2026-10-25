@@ -1,13 +1,13 @@
 ---
 import { Image } from 'astro:assets';
-import mark from '../assets/mark.png';
+import mark from '../assets/mark-teal.png';
 import { base, nav, enquiryHref } from '../lib/links';
 ---
 <header class="absolute inset-x-0 top-0 z-30 text-ink">
   <div class="mx-auto max-w-[96rem] px-5 lg:px-10 py-5 flex items-center justify-between gap-6">
     <a href={`${base}/`} class="flex items-center gap-3">
-      <Image src={mark} alt="Murphy's Plumbing Services MP monogram" width="40" height="40" loading="eager" class="w-10 h-10 invert" />
-      <span class="font-display uppercase tracking-[0.26em] text-[12px] leading-tight">Murphys<br class="sm:hidden" /> Plumbing Services</span>
+      <Image src={mark} alt="Murphy's Plumbing Services MP monogram" width="56" height="56" loading="eager" class="w-12 h-12 lg:w-14 lg:h-14" />
+      <span class="font-display uppercase tracking-[0.3em] text-[13px] lg:text-sm leading-[1.35]">Murphys<br /> Plumbing Services</span>
     </a>
     <nav aria-label="Main" class="hidden lg:block">
       <ul class="flex items-center gap-8 text-sm">
