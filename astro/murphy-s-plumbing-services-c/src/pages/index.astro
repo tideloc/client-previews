@@ -15,6 +15,7 @@ import butt from '../assets/gen-butt-fusion-navy.jpg';
 import ef from '../assets/gen-col-electrofusion.jpg';
 import flange from '../assets/gen-col-flanged-joint.jpg';
 import site from '../assets/project-site-wide.jpg';
+import pipe from '../assets/weld-pe-pipe-trench.jpg';
 import w1 from '../assets/project-circular-tank-risers.jpg';
 import w2 from '../assets/dicl-pipe-crane-sling.jpg';
 import w3 from '../assets/plant-kobelco-trench.jpg';
@@ -86,11 +87,21 @@ const work = [[site,'project-site-wide.jpg'],[w1,'project-circular-tank-risers.j
     <dl class="relative border-t border-b rule bg-ground/60 backdrop-blur">
       <div class="mx-auto max-w-[96rem] px-5 lg:px-10 grid sm:grid-cols-2 lg:grid-cols-4 divide-y sm:divide-y-0 lg:divide-x divide-line">
         <div class="py-5 lg:px-8 first:lg:pl-0"><dt class={eyebrowMuted}>Plant</dt><dd class="mt-1 font-display text-lg">22 t and 5 t excavators, wet or dry hire</dd></div>
-        <div class="py-5 lg:px-8"><dt class={eyebrowMuted}>Certified</dt><dd class="mt-1 font-display text-lg">PE 100, Electrofusion, Butt Welding, Vac Operations</dd></div>
+        <div class="py-5 lg:px-8"><dt class={eyebrowMuted}>Certified</dt><dd class="mt-1 font-display text-lg">PE 100 installations, Electrofusion, Butt Welding</dd></div>
         <div class="py-5 lg:px-8"><dt class={eyebrowMuted}>Licence numbers</dt><dd class="mt-1 font-display text-lg">{facts.licences.join(' and ')}</dd></div>
         <div class="py-5 lg:px-8"><dt class={eyebrowMuted}>ABN</dt><dd class="mt-1 font-display text-lg">{facts.abn}</dd></div>
       </div>
     </dl>
+  </section>
+
+  <section data-section="pipework" aria-label="Civil pipework on site" class="bg-ground text-ink">
+    <figure>
+      <Picture src={pipe} widths={[768, 1200, 1800, 2400]} formats={['avif', 'webp']} sizes="100vw" loading="eager" alt={alts['weld-pe-pipe-trench.jpg']} pictureAttributes={{ class: 'block' }} class="w-full aspect-[4/3] md:aspect-[21/9] object-cover object-[50%_45%]" />
+      <figcaption class="mx-auto max-w-[96rem] px-5 lg:px-10 py-4 flex flex-wrap justify-between gap-3 text-sm border-b rule">
+        <span class={eyebrow}>Civil pipework on site</span>
+        <span class="text-muted">{alts['weld-pe-pipe-trench.jpg']}</span>
+      </figcaption>
+    </figure>
   </section>
 
   <section id="plant" data-section="plant" aria-labelledby="plant-h2" class="bg-ground text-ink">
@@ -120,7 +131,7 @@ const work = [[site,'project-site-wide.jpg'],[w1,'project-circular-tank-risers.j
           <p class={eyebrow}>PE 100 welding</p>
           <h2 id="weld-h2" class="mt-4 font-display text-4xl lg:text-6xl leading-[1.02]">Butt welding and electrofusion, certified. Steel and DICL installations.</h2>
         </div>
-        <p class="lg:col-span-4 text-muted">We adhere to the highest industry standards, with certifications in PE 100 installations, Electrofusion, Butt Welding, and Vac Operations. Our licensed team ensures that every project meets strict safety and quality requirements.</p>
+        <p class="lg:col-span-4 text-muted">We adhere to the highest industry standards, with certifications in PE 100 installations, Electrofusion and Butt Welding. Our licensed team ensures that every project meets strict safety and quality requirements.</p>
       </div>
       <div class="mt-12">
         <p class={eyebrowMuted}>Butt fusion machine</p>
@@ -146,7 +157,6 @@ const work = [[site,'project-site-wide.jpg'],[w1,'project-circular-tank-risers.j
       <div class="mt-12 grid gap-10 lg:grid-cols-12">
         <ul class="lg:col-span-6 border-t border-ink/30">
           {facts.scopes.map((s) => <li class="py-4 border-b rule font-display text-3xl lg:text-4xl leading-none">{s}</li>)}
-          <li class="py-4 border-b rule font-display text-3xl lg:text-4xl leading-none">Vac operations <span class="font-body text-xs uppercase tracking-[0.2em] text-accent align-middle ml-3">certified</span></li>
         </ul>
         <div class="lg:col-span-3">
           <p class={`${eyebrowMuted} border-b border-ink/30 pb-3`}>Materials</p>

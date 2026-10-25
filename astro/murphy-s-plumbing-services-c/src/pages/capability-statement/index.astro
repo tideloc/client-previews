@@ -69,7 +69,7 @@ const year = new Date().getFullYear();
     <div class="eyebrow">Capability</div>
     <h2 style="font-size:20pt; margin-top:2mm;">Scopes, materials, installations and certifications.</h2>
     <div class="cols3" style="margin-top:6mm;">
-      <div><div class="eyebrow" style="border-bottom:1px solid #000; padding-bottom:1.5mm;">Scopes</div><ul>{facts.scopes.map((s) => <li>{s}</li>)}<li>Vac operations (certified)</li></ul></div>
+      <div><div class="eyebrow" style="border-bottom:1px solid #000; padding-bottom:1.5mm;">Scopes</div><ul>{facts.scopes.map((s) => <li>{s}</li>)}</ul></div>
       <div><div class="eyebrow" style="border-bottom:1px solid #000; padding-bottom:1.5mm;">Materials</div><ul>{facts.materials.map((m) => <li>{m}</li>)}</ul></div>
       <div><div class="eyebrow" style="border-bottom:1px solid #000; padding-bottom:1.5mm;">Installations and certifications</div><ul>{facts.installs.map((m) => <li>{m}</li>)}{facts.certs.map((c) => <li>{c} (certified)</li>)}</ul></div>
     </div>
