@@ -30,7 +30,6 @@ const photos = Object.entries(all)
       {photos.map((p) => (
         <figure class={`${p.landscape ? 'col-span-2' : 'col-span-1'}`}>
           <Picture src={p.src} widths={[480, 800, 1200]} formats={['avif', 'webp']} sizes={p.landscape ? '(min-width: 768px) 50vw, 100vw' : '(min-width: 768px) 25vw, 50vw'} alt={p.alt} loading="lazy" pictureAttributes={{ class: 'block' }} class={`w-full object-cover ${p.landscape ? 'aspect-[3/2]' : 'aspect-[3/4]'}`} />
-          <figcaption class="mt-2 mb-4 font-medium uppercase tracking-[0.18em] text-[10px] text-muted">{p.alt}</figcaption>
         </figure>
       ))}
     </div>

@@ -92,9 +92,8 @@ const work = [[site,'project-site-wide.jpg'],[w1,'project-circular-tank-risers.j
       </div>
     <figure class="w-full">
       <Picture src={pipe} widths={[768, 1200, 1800, 2400]} formats={['avif', 'webp']} sizes="100vw" loading="eager" alt={alts['weld-pe-pipe-trench.jpg']} pictureAttributes={{ class: 'block' }} class="w-full aspect-[4/3] md:aspect-[21/9] object-cover object-[50%_45%]" />
-      <figcaption class="mx-auto max-w-[96rem] px-5 lg:px-10 py-4 flex flex-wrap justify-between gap-3 text-sm border-b rule">
+      <figcaption class="mx-auto max-w-[96rem] px-5 lg:px-10 py-4 text-sm border-b rule">
         <span class={eyebrow}>Civil pipework on site</span>
-        <span class="text-muted">{alts['weld-pe-pipe-trench.jpg']}</span>
       </figcaption>
     </figure>
     </section>
@@ -219,7 +218,6 @@ const work = [[site,'project-site-wide.jpg'],[w1,'project-circular-tank-risers.j
         {work.map(([src, f]) => (
           <figure>
             <Picture src={src} widths={[480, 800]} formats={['avif', 'webp']} sizes="(min-width: 1024px) 25vw, 50vw" alt={alts[f]} loading="lazy" pictureAttributes={{ class: 'block' }} class="w-full aspect-[4/5] object-cover" />
-            <figcaption class="mt-2 text-xs text-muted">{alts[f]}</figcaption>
           </figure>
         ))}
       </div>
