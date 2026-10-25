@@ -1,8 +1,8 @@
 export const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 export const nav = [
-  { label: 'Plant', href: `${base}/#plant` },
+  { label: 'Services', href: `${base}/#capability` },
   { label: 'Welding', href: `${base}/#welding` },
-  { label: 'Capability', href: `${base}/#capability` },
+  { label: 'Plant', href: `${base}/#plant` },
   { label: 'Registration', href: `${base}/#registration` },
   { label: 'Projects', href: `${base}/projects/` },
   { label: 'Contact', href: `${base}/contact/` },
