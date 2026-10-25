@@ -18,9 +18,7 @@ import ex22 from '../assets/gen-col-excavator-22t.jpg';
 import ex5 from '../assets/gen-col-excavator-5t.jpg';
 import ef from '../assets/gen-col-electrofusion.jpg';
 import water from '../assets/project-stainless-vertical.jpg';
-import sewer from '../assets/project-trench-pipe-shoring.jpg';
 import storm from '../assets/project-stormwater-pit.jpg';
-import gas from '../assets/project-pe-gravel-bedding.jpg';
 import trench from '../assets/plant-kobelco-trench.jpg';
 import manhole from '../assets/project-manhole-crane-sky.jpg';
 import plant from '../assets/project-plant-pump-pipework.jpg';
@@ -32,7 +30,7 @@ import w4 from '../assets/weld-electrofusion-coupler.jpg';
 import w5 from '../assets/plant-kobelco-elbow.jpg';
 import w6 from '../assets/project-main-on-piers.jpg';
 const scopes = [
-  ['Water supply', water, 'project-stainless-vertical.jpg'], ['Sewage', sewer, 'project-trench-pipe-shoring.jpg'], ['Stormwater', storm, 'project-stormwater-pit.jpg'], ['Gas', gas, 'project-pe-gravel-bedding.jpg'],
+  ['Water supply', water, 'project-stainless-vertical.jpg'], ['Sewage', null, ''], ['Stormwater', storm, 'project-stormwater-pit.jpg'], ['Gas', null, ''],
   ['Deep trenching', trench, 'plant-kobelco-trench.jpg'], ['Manhole installations', manhole, 'project-manhole-crane-sky.jpg'], ['Treatment plant piping', plant, 'project-plant-pump-pipework.jpg'], ['Vac operations', vac, 'project-valves-pit-above.jpg'],
 ];
 const work = [[w1,'project-circular-tank-risers.jpg'],[w2,'dicl-pipe-crane-sling.jpg'],[w3,'project-above-ground-main-bush.jpg'],[w4,'weld-electrofusion-coupler.jpg'],[w5,'plant-kobelco-elbow.jpg'],[w6,'project-main-on-piers.jpg']];
@@ -72,9 +70,9 @@ const record = [
   <Rail slot="header" current="dossier" />
 
   <section data-section="hero" aria-labelledby="hero-h1" class="relative bg-primary text-ground">
-    <Picture src={hero} widths={[768, 1200, 1800, 2400]} formats={['avif', 'webp']} sizes="(min-width: 1024px) 75vw, 100vw" loading="eager" fetchpriority="high" alt={alts['plant-excavation-three-pipes.jpg']} pictureAttributes={{ class: 'block' }} class="w-full h-[58vh] lg:h-[88vh] object-cover object-[50%_40%]" />
+    <Picture src={hero} widths={[768, 1200, 1800, 2400]} formats={['avif', 'webp']} sizes="(min-width: 1024px) 75vw, 100vw" loading="eager" fetchpriority="high" alt={alts['plant-excavation-three-pipes.jpg']} pictureAttributes={{ class: 'block' }} class="w-full h-[52vh] lg:h-[88vh] object-cover object-[50%_40%]" />
     <div class="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/30 to-transparent" aria-hidden="true"></div>
-    <div class="absolute inset-x-0 bottom-0 px-5 lg:px-12 pb-8 lg:pb-12 grid gap-6 lg:grid-cols-12 lg:items-end">
+    <div class="absolute inset-x-0 bottom-0 px-5 lg:px-12 pb-6 lg:pb-12 grid gap-4 lg:gap-6 lg:grid-cols-12 lg:items-end">
       <div class="lg:col-span-8">
         <p class={eyebrowDark}>Civil and industrial plumbing contractor, Illawarra</p>
         <h1 id="hero-h1" class="mt-3 font-display text-[2.1rem] leading-[1.02] sm:text-5xl xl:text-6xl max-w-3xl">Large-scale civil pipework for water, sewage, stormwater and gas.</h1>
@@ -119,7 +117,7 @@ const record = [
         <div class="bg-primary text-ground p-6">
           <p class={eyebrowDark}>Capability statement</p>
           <p class="mt-2 text-ground/80">Two A4 pages with the same facts as this dossier, for your subcontractor register.</p>
-          <a href={pdfHref} class="mt-4 inline-flex bg-ground text-ink font-medium px-5 py-3 hover:bg-secondary">Download PDF</a>
+          <a href={pdfHref} class="mt-4 inline-flex bg-ground text-ink font-medium px-5 py-3 hover:bg-secondary">Capability statement (PDF)</a>
         </div>
       </div>
     </div>
@@ -128,12 +126,16 @@ const record = [
 
   <Chapter id="capability" n="03" title="Water, sewage, stormwater and gas. Deep trenching to treatment plant piping." lead="We provide specialised solutions for civil infrastructure, focusing on water, sewage, stormwater, and gas systems. From deep trenching and manhole installations to treatment plant piping, our expertise ensures every project is handled with precision and efficiency.">
     <div class="grid grid-cols-2 md:grid-cols-4 gap-x-4 gap-y-6">
-      {scopes.map(([n, src, f]) => (
-        <figure>
-          <Picture src={src} widths={[480, 800]} formats={['avif', 'webp']} sizes="(min-width: 768px) 20vw, 50vw" alt={alts[f]} loading="lazy" pictureAttributes={{ class: 'block' }} class="w-full aspect-[4/3] object-cover" />
-          <figcaption class="mt-2 font-display text-xl leading-tight">{n}</figcaption>
-        </figure>
-      ))}
+      {scopes.map(([n, src, f]) =>
+        src ? (
+          <figure>
+            <Picture src={src} widths={[480, 800]} formats={['avif', 'webp']} sizes="(min-width: 768px) 20vw, 50vw" alt={alts[f]} loading="lazy" pictureAttributes={{ class: 'block' }} class="w-full aspect-[4/3] object-cover" />
+            <figcaption class="mt-2 font-display text-xl leading-tight">{n}</figcaption>
+          </figure>
+        ) : (
+          <div class="bg-primary text-ground aspect-[4/3] p-4 flex items-end"><span class="font-display text-xl leading-tight">{n}</span></div>
+        )
+      )}
     </div>
     <div class="mt-12 grid gap-10 lg:grid-cols-12">
       <div class="lg:col-span-4">
@@ -220,6 +222,6 @@ const record = [
   </Chapter>
   <Footer slot="footer" />
 </Base>
-<style>
+<style is:global>
   [data-enquiry-form] > div:has(textarea), [data-enquiry-form] > div:last-child { grid-column: 1 / -1; }
 </style>

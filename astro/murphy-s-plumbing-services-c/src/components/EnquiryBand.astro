@@ -24,7 +24,7 @@ const { heading = 'Ready to start your next infrastructure project?', compact = 
         <h2 id="enq-h2" class="mt-3 font-display text-4xl lg:text-5xl leading-tight">{heading}</h2>
         <p class="mt-5 text-ink/75">We're ready to discuss your next project. Send through the scope, the materials and the program, or email us directly. Tender and estimating enquiries welcome.</p>
         <a href={`mailto:${email}`} class="mt-4 inline-block font-medium underline underline-offset-4 break-all">{email}</a>
-        <p class="mt-6 text-sm text-ink/60">Need the facts in one page for a subcontractor register? <a href={pdfHref} class="underline underline-offset-4 text-ink">Download the capability statement (PDF)</a>.</p>
+        <p class="mt-6 text-sm text-ink/60">Need the facts in one page for a subcontractor register? <a href={pdfHref} class="underline underline-offset-4 text-ink">Capability statement (PDF)</a>.</p>
       </div>
       <div class="lg:col-span-6 lg:col-start-7">
         <EnquiryForm kind="quote" site="Murphy's Plumbing Services" submitLabel="Send project enquiry"
@@ -45,6 +45,6 @@ const { heading = 'Ready to start your next infrastructure project?', compact = 
     </div>
   </section>
 )}
-<style>
+<style is:global>
   [data-enquiry-form] > div:has(textarea), [data-enquiry-form] > div:last-child { grid-column: 1 / -1; }
 </style>
