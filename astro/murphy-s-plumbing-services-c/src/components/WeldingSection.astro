@@ -21,7 +21,7 @@ const methods = [
 ---
 <section id="welding" data-section="welding" aria-labelledby={full ? undefined : "weld-h2"} aria-label={full ? "Welding and jointing" : undefined} class="bg-primary text-ink border-t rule flex flex-col">
   {!full && (
-    <div class="order-1 md:order-2 mx-auto w-full max-w-[96rem] px-5 lg:px-10 pt-12 md:pt-14 lg:pt-20 pb-6 md:pb-0 grid gap-4 lg:gap-6 lg:grid-cols-12 lg:items-end">
+    <div class="order-1 md:order-2 mx-auto w-full max-w-6xl px-5 lg:px-10 pt-12 md:pt-14 lg:pt-20 pb-6 md:pb-0 grid gap-4 lg:gap-6 lg:grid-cols-12 lg:items-end">
       <div class="lg:col-span-8">
         <p class={eyebrow}>Welding and jointing</p>
         <h2 id="weld-h2" class="mt-3 font-display text-3xl lg:text-5xl leading-[1.05]">PE 100 butt welding and electrofusion, certified. Steel and DICL installations.</h2>
@@ -29,11 +29,11 @@ const methods = [
       <p class="lg:col-span-4 text-muted">We adhere to the highest industry standards, with certifications in PE 100 installations, Electrofusion and Butt Welding. Our licensed team ensures that every project meets strict safety and quality requirements.</p>
     </div>
   )}
-  <div class={`${full ? '' : 'order-2 md:order-1'} mx-auto w-full max-w-[96rem] px-5 lg:px-10 pt-8 md:pt-12 lg:pt-16`}>
+  <div class={`${full ? '' : 'order-2 md:order-1'} mx-auto w-full max-w-6xl px-5 lg:px-10 pt-8 md:pt-12 lg:pt-16`}>
     <p class={eyebrowMuted}>Butt fusion machine</p>
     <Exploded src={butt} alt="Exploded-view render of a hydraulic butt fusion welding machine on black PE 100 pipe: clamp carriage, heater plate, facing tool and hydraulic unit separated" callouts={cButt} class="mt-3" sizes="(min-width: 1024px) 90vw, 100vw" />
   </div>
-  <div class={`order-3 mx-auto w-full max-w-[96rem] px-5 lg:px-10 ${full ? 'pt-12 lg:pt-16' : 'pt-10 md:pt-12'} pb-14 lg:pb-20`}>
+  <div class={`order-3 mx-auto w-full max-w-6xl px-5 lg:px-10 ${full ? 'pt-12 lg:pt-16' : 'pt-10 md:pt-12'} pb-14 lg:pb-20`}>
     <p class={`${eyebrowMuted} border-b border-ink/30 pb-3`}>Jointing methods and equipment</p>
     <ul class="grid md:grid-cols-2 gap-x-10">
       {methods.map((m) => (

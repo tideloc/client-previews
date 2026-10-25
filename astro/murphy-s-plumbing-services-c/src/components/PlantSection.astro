@@ -18,7 +18,7 @@ const { full = false } = Astro.props;
 const photos = [[g1,'plant-excavation-three-pipes.jpg'],[g2,'plant-kobelco-reinforced-pit.jpg'],[g3,'plant-valve-lift.jpg'],[g4,'plant-kobelco-fence.jpg'],[g5,'plant-kobelco-elbow.jpg'],[g6,'plant-kobelco-pit.jpg']];
 ---
 <section id="plant" data-section="plant" aria-labelledby={full ? undefined : "plant-h2"} aria-label={full ? "Plant and equipment" : undefined} class="bg-ground text-ink border-t rule">
-  <div class="mx-auto max-w-[96rem] px-5 lg:px-10 pt-16 lg:pt-24">
+  <div class="mx-auto max-w-6xl px-5 lg:px-10 pt-16 lg:pt-24">
     <div class="grid gap-10 lg:grid-cols-12">
       <div class="lg:col-span-6">
         {!full && <p class={eyebrow}>Our own plant and equipment</p>}
@@ -42,7 +42,7 @@ const photos = [[g1,'plant-excavation-three-pipes.jpg'],[g2,'plant-kobelco-reinf
     {!full && <div class="pb-16 lg:pb-24"><a href={`${base}/plant/`} class={`mt-10 ${linkMore}`}>Plant and equipment in detail</a></div>}
   </div>
   {full && (
-    <div class="mx-auto max-w-[96rem] px-5 lg:px-10 pt-16 pb-16 lg:pb-24">
+    <div class="mx-auto max-w-6xl px-5 lg:px-10 pt-16 pb-16 lg:pb-24">
       <div class="grid gap-10 lg:grid-cols-12 lg:items-center">
         <div class="lg:col-span-5">
           <p class={eyebrowMuted}>5-tonne excavator, wet or dry hire</p>

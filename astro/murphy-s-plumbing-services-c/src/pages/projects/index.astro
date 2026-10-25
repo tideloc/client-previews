@@ -16,7 +16,7 @@ const photos = Object.entries(all)
   <Header slot="header" />
   <PageLead kicker="Projects" title="Our work across infrastructure projects." lead="Recent projects range from large-scale infrastructure works to small and medium civil plumbing jobs. Take a look at our work showcasing the scale and precision of our industrial and civil plumbing projects." />
   <section data-section="gallery" aria-label="Project photographs" class="bg-primary text-ink border-t rule">
-    <div class="mx-auto max-w-[96rem] px-5 lg:px-10 py-14 lg:py-20 grid grid-cols-2 md:grid-cols-4 gap-4">
+    <div class="mx-auto max-w-6xl px-5 lg:px-10 py-14 lg:py-20 grid grid-cols-2 md:grid-cols-4 gap-4">
       {photos.map((p) => (
         <figure class={`${p.landscape ? 'col-span-2' : 'col-span-1'}`}>
           <Picture src={p.src} widths={[480, 800, 1200]} formats={['avif', 'webp']} sizes={p.landscape ? '(min-width: 768px) 50vw, 100vw' : '(min-width: 768px) 25vw, 50vw'} alt={p.alt} loading="lazy" pictureAttributes={{ class: 'block' }} class={`w-full object-cover ${p.landscape ? 'aspect-[3/2]' : 'aspect-[3/4]'}`} />
