@@ -15,7 +15,7 @@ export const facts = {
     { name: '5-tonne excavator', hire: 'Wet or dry hire' },
   ],
   crew: 'Licensed plumbers, pipe layers and excavator operators',
-  recent: 'Recent projects include Sydney Water infrastructure works, alongside small and medium civil plumbing jobs.',
+  recent: 'Recent projects range from large-scale infrastructure works to small and medium civil plumbing jobs.',
   packages: [
     { name: 'Pipework subcontract', what: 'Water supply, sewage, stormwater and gas pipework for civil infrastructure projects, from deep trenching and manhole installations to treatment plant piping.', note: 'Materials: PE 100, DICL, steel, stainless and copper press fit, PVC, concrete.' },
     { name: 'PE 100 welding', what: 'Electrofusion and butt welding of PE 100 polyethylene, by a crew certified in PE 100 installations, Electrofusion and Butt Welding.', note: '' },
