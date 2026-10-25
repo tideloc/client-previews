@@ -1,26 +1,28 @@
 ---
 import { Picture } from 'astro:assets';
 import drawing from '../assets/gen-hero-electrofusion.jpg';
-import SpecPlate from './SpecPlate.astro';
-import { enquiryHref, btnFilled, eyebrow } from '../lib/links';
+import SpecLedger from './SpecLedger.astro';
+import { enquiryHref, base, btnFilled, eyebrow } from '../lib/links';
 ---
 <section data-section="hero" aria-labelledby="hero-h1" class="relative bg-ground text-ink overflow-hidden">
-  <Picture src={drawing} widths={[768, 1376]} formats={['avif', 'webp']} sizes="100vw" loading="eager" fetchpriority="high"
-    alt="Exploded-view line drawing of an electrofusion coupler joint on a polyethylene pipe, with the welding clamp above"
-    pictureAttributes={{ class: 'absolute inset-0 drawing opacity-60 lg:opacity-100' }} class="w-full h-full object-cover object-[80%_50%]" />
-  <div class="absolute inset-0 bg-gradient-to-r from-ground via-ground/80 to-transparent lg:via-ground/55 lg:to-transparent" aria-hidden="true"></div>
-  <div class="relative mx-auto max-w-[88rem] px-5 lg:px-10 pt-12 pb-10 lg:pt-24 lg:pb-14 grid gap-10 lg:grid-cols-12 lg:min-h-[86vh]">
-    <div class="lg:col-span-7 lg:self-start">
-      <p class={eyebrow}>Civil and industrial plumbing contractor, Illawarra</p>
-      <h1 id="hero-h1" class="mt-5 font-display font-light text-[2.6rem] leading-[1] sm:text-6xl lg:text-7xl xl:text-[6rem] max-w-3xl">Large-scale civil pipework for water, sewage, stormwater and gas.</h1>
-      <p class="mt-7 max-w-lg text-lg text-accent">Our own excavators, our own PE 100 welding, our own licensed crew. Based in the Illawarra, with recent Sydney Water infrastructure works.</p>
-      <div class="mt-9 flex flex-wrap items-center gap-6">
-        <a href={enquiryHref} class={btnFilled}>Send a project enquiry</a>
-        <a href="#index" class="underline underline-offset-[6px] decoration-ink/40 hover:decoration-ink">What we install</a>
+  <div class="relative lg:min-h-[78vh]">
+    <Picture src={drawing} widths={[768, 1376]} formats={['avif', 'webp']} sizes="(min-width: 1024px) 62vw, 100vw" loading="eager" fetchpriority="high"
+      alt="Exploded-view line drawing of an electrofusion coupler joint on a polyethylene pipe, with the welding clamp above"
+      pictureAttributes={{ class: 'block lg:absolute lg:inset-y-0 lg:left-[38%] lg:right-0 drawing' }} class="w-full h-auto lg:h-full object-cover object-[50%_50%]" />
+    <div class="hidden lg:block absolute inset-y-0 left-[38%] w-[22%] bg-gradient-to-r from-ground to-transparent" aria-hidden="true"></div>
+    <div class="relative mx-auto max-w-[88rem] px-5 lg:px-10 pt-10 pb-12 lg:pt-28 lg:pb-20 lg:min-h-[78vh] flex flex-col justify-between gap-10">
+      <div class="lg:max-w-[52%]">
+        <p class={eyebrow}>Civil and industrial plumbing contractor, Illawarra</p>
+        <h1 id="hero-h1" class="mt-5 font-display font-light text-[2.7rem] leading-[0.98] sm:text-6xl lg:text-7xl xl:text-[6.4rem]">Large-scale civil pipework for water, sewage, stormwater and gas.</h1>
+      </div>
+      <div class="lg:max-w-[40%]">
+        <p class="text-lg text-accent">Our own excavators, our own PE 100 welding, our own licensed crew. Based in the Illawarra, with recent Sydney Water infrastructure works.</p>
+        <div class="mt-7 flex flex-wrap items-center gap-6">
+          <a href={enquiryHref} class={btnFilled}>Send a project enquiry</a>
+          <a href={`${base}/plant-hire/`} class="underline underline-offset-[6px] decoration-ink/40 hover:decoration-ink">Plant hire</a>
+        </div>
       </div>
     </div>
-    <div class="lg:col-span-4 lg:col-start-9 lg:self-end">
-      <SpecPlate />
-    </div>
   </div>
+  <SpecLedger />
 </section>

@@ -24,10 +24,10 @@ const photos = [
   <section data-section="plant-lead" aria-labelledby="ph-h1" class="relative bg-ground text-ink overflow-hidden">
     <Picture src={drawing} widths={[768, 1376]} formats={['avif', 'webp']} sizes="100vw" loading="eager" fetchpriority="high"
       alt="Exploded-view line drawing of a tracked excavator: boom, dipper, bucket, house and undercarriage separated"
-      pictureAttributes={{ class: 'absolute inset-0 drawing opacity-60 lg:opacity-100' }} class="w-full h-full object-cover object-[85%_50%]" />
-    <div class="absolute inset-0 bg-gradient-to-r from-ground via-ground/80 to-transparent lg:via-ground/55" aria-hidden="true"></div>
-    <div class="relative mx-auto max-w-[88rem] px-5 lg:px-10 pt-12 pb-12 lg:pt-24 lg:pb-20 grid gap-10 lg:grid-cols-12 lg:min-h-[70vh]">
-      <div class="lg:col-span-6 lg:self-end">
+      pictureAttributes={{ class: 'block lg:absolute lg:inset-y-0 lg:left-[44%] lg:right-0 drawing' }} class="w-full h-auto lg:h-full object-cover object-[50%_50%]" />
+    <div class="hidden lg:block absolute inset-y-0 left-[44%] w-[18%] bg-gradient-to-r from-ground to-transparent" aria-hidden="true"></div>
+    <div class="relative mx-auto max-w-[88rem] px-5 lg:px-10 pt-10 pb-12 lg:pt-24 lg:pb-20 grid gap-10 lg:grid-cols-12 lg:min-h-[70vh]">
+      <div class="lg:col-span-5 lg:self-end">
         <p class={eyebrow}>Plant hire</p>
         <h1 id="ph-h1" class="mt-5 font-display font-light text-5xl lg:text-7xl leading-[1]">22-tonne and 5-tonne excavators, wet or dry hire.</h1>
         <p class="mt-7 text-lg text-accent max-w-xl">Large and small machines for all the civil plumbing works, run by excavator operators who are part of a licensed plumbing crew.</p>
