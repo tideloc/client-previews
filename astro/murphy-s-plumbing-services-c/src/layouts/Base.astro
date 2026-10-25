@@ -11,7 +11,7 @@ import Announcement from '../components/tl/Announcement.astro';
 import TidelocBar from '../components/TidelocBar.astro';
 import { siteContent } from '../lib/site';
 import { getImage } from 'astro:assets';
-import defaultOg from "../assets/project-site-wide.jpg";
+import defaultOg from "../assets/gen-hero-excavator-navy.jpg";
 
 interface Props {
   title: string;
@@ -25,7 +25,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const canonical = `${site}${Astro.url.pathname}`;
 const fallbackOg = await getImage({ src: defaultOg, width: 1200, height: 630, format: 'jpg' });
 const ogImage = Astro.props.ogImage ?? `${site}${fallbackOg.src}`; // every page gets an og:image
-const palette = '#000000,#1C1C1C,#DCDCDC,#FAFAFA,#FFFFFF'; // "#hex,#hex,..." from brand.json
+const palette = '#0D1117,#141B24,#F2F4F6,#2BC4B4,#8B95A1,#243040'; // "#hex,#hex,..." from brand.json
 ---
 <!doctype html>
 <html lang="en-AU">
@@ -35,7 +35,7 @@ const palette = '#000000,#1C1C1C,#DCDCDC,#FAFAFA,#FFFFFF'; // "#hex,#hex,..." fr
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
-    <meta name="theme-color" content="#FAFAFA" />
+    <meta name="theme-color" content="#0D1117" />
     <meta name="tl-palette" content={palette} />
     <link rel="icon" href={`${base}/favicon.png`} type="image/png" />
     <meta property="og:type" content="website" />
@@ -53,14 +53,12 @@ const palette = '#000000,#1C1C1C,#DCDCDC,#FAFAFA,#FFFFFF'; // "#hex,#hex,..." fr
   </head>
   <body class="min-h-screen bg-ground text-ink font-body antialiased">
     <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:bg-ground focus:px-3 focus:py-2">Skip to content</a>
-    <Announcement class="bg-primary text-ground text-sm text-center px-4 py-2 lg:pl-[19rem] xl:pl-[21rem]" />
+    <Announcement class="bg-accent text-ground text-sm text-center px-4 py-2" />
     <slot name="header" />
-    <div class="lg:pl-[19rem] xl:pl-[21rem]">
-      <main id="main">
-        <slot />
-      </main>
-      <slot name="footer" />
-    </div>
+    <main id="main">
+      <slot />
+    </main>
+    <slot name="footer" />
     <TidelocBar />
     <script is:inline defer src={`${base}/tl-live.js`}></script>
   </body>

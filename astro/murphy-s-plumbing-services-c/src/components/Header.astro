@@ -1,0 +1,33 @@
+---
+import { Image } from 'astro:assets';
+import mark from '../assets/mark.png';
+import { base, nav, enquiryHref } from '../lib/links';
+---
+<header class="absolute inset-x-0 top-0 z-30 text-ink">
+  <div class="mx-auto max-w-[96rem] px-5 lg:px-10 py-5 flex items-center justify-between gap-6">
+    <a href={`${base}/`} class="flex items-center gap-3">
+      <Image src={mark} alt="Murphy's Plumbing Services MP monogram" width="40" height="40" loading="eager" class="w-10 h-10 invert" />
+      <span class="font-display uppercase tracking-[0.26em] text-[12px] leading-tight">Murphys<br class="sm:hidden" /> Plumbing Services</span>
+    </a>
+    <nav aria-label="Main" class="hidden lg:block">
+      <ul class="flex items-center gap-8 text-sm">
+        {nav.map((n) => <li><a href={n.href} class="text-ink/70 hover:text-accent transition-colors">{n.label}</a></li>)}
+        <li><a href={enquiryHref} class="inline-block border border-accent text-accent font-medium tracking-[0.02em] px-5 py-2.5 hover:bg-accent hover:text-ground transition-colors">Send a project enquiry</a></li>
+      </ul>
+    </nav>
+    <button type="button" class="lg:hidden border border-ink/30 px-3 py-2 text-sm font-medium" aria-expanded="false" aria-controls="mobile-nav" id="nav-toggle">Menu</button>
+  </div>
+  <nav aria-label="Main" id="mobile-nav" hidden class="lg:hidden bg-primary border-t border-b rule">
+    <ul>
+      {nav.map((n) => <li class="border-b rule"><a href={n.href} class="block px-5 py-4">{n.label}</a></li>)}
+      <li><a href={enquiryHref} class="block px-5 py-4 bg-accent text-ground font-medium">Send a project enquiry</a></li>
+    </ul>
+  </nav>
+</header>
+<script is:inline>
+  (function () {
+    var b = document.getElementById('nav-toggle'), n = document.getElementById('mobile-nav');
+    if (!b || !n) return;
+    b.addEventListener('click', function () { var open = n.hidden; n.hidden = !open; b.setAttribute('aria-expanded', String(open)); });
+  })();
+</script>

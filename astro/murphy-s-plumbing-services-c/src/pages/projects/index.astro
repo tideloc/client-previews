@@ -1,36 +1,36 @@
 ---
 import { Picture } from 'astro:assets';
 import Base from '../../layouts/Base.astro';
-import Rail from '../../components/Rail.astro';
+import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import EnquiryBand from '../../components/EnquiryBand.astro';
 import { alts, fileName } from '../../lib/photos';
-import { eyebrow } from '../../lib/links';
+import { eyebrow, eyebrowMuted } from '../../lib/links';
 const all = import.meta.glob<{ default: ImageMetadata }>('../../assets/*.jpg', { eager: true });
 const photos = Object.entries(all)
   .filter(([p]) => !/hero-|logo|mark|gen-/.test(p))
   .map(([p, m]) => ({ src: m.default, alt: alts[fileName(p)] ?? '', landscape: m.default.width > m.default.height }));
 ---
 <Base title="Projects | Murphy's Plumbing Services" description="Photos from Murphy's Plumbing Services civil plumbing projects: Sydney Water infrastructure works, treatment plant piping, manholes and trenching.">
-  <Rail slot="header" current="projects" />
-  <section data-section="projects-lead" aria-labelledby="pr-h1" class="bg-secondary">
-    <div class="px-5 lg:px-12 pt-14 lg:pt-20 pb-12 grid gap-8 lg:grid-cols-12 lg:items-start">
+  <Header slot="header" />
+  <section data-section="projects-lead" aria-labelledby="pr-h1" class="bg-ground text-ink">
+    <div class="mx-auto max-w-[96rem] px-5 lg:px-10 pt-28 lg:pt-36 pb-12 grid gap-8 lg:grid-cols-12 lg:items-start">
       <div class="lg:col-span-8">
         <p class={eyebrow}>Projects</p>
         <h1 id="pr-h1" class="mt-5 font-display text-5xl lg:text-7xl leading-[1]">Our work across infrastructure projects.</h1>
       </div>
-      <div class="lg:col-span-4 lg:pt-12 text-ink/75">
+      <div class="lg:col-span-4 lg:pt-12 text-muted">
         <p>Recent projects include Sydney Water infrastructure works, alongside small to medium civil plumbing jobs.</p>
         <p class="mt-3">Take a look at our work showcasing the scale and precision of our industrial and civil plumbing projects. These images demonstrate the expertise, materials, and techniques we apply to deliver high-quality solutions for complex infrastructure needs.</p>
       </div>
     </div>
   </section>
-  <section data-section="gallery" aria-label="Project photographs" class="bg-ground border-t rule">
-    <div class="px-5 lg:px-12 py-14 lg:py-20 grid grid-cols-2 md:grid-cols-4 gap-4">
+  <section data-section="gallery" aria-label="Project photographs" class="bg-primary text-ink border-t rule">
+    <div class="mx-auto max-w-[96rem] px-5 lg:px-10 py-14 lg:py-20 grid grid-cols-2 md:grid-cols-4 gap-4">
       {photos.map((p) => (
         <figure class={`${p.landscape ? 'col-span-2' : 'col-span-1'}`}>
           <Picture src={p.src} widths={[480, 800, 1200]} formats={['avif', 'webp']} sizes={p.landscape ? '(min-width: 768px) 50vw, 100vw' : '(min-width: 768px) 25vw, 50vw'} alt={p.alt} loading="lazy" pictureAttributes={{ class: 'block' }} class={`w-full object-cover ${p.landscape ? 'aspect-[3/2]' : 'aspect-[3/4]'}`} />
-          <figcaption class="mt-2 mb-4 font-medium uppercase tracking-[0.18em] text-[10px] text-ink/60">{p.alt}</figcaption>
+          <figcaption class="mt-2 mb-4 font-medium uppercase tracking-[0.18em] text-[10px] text-muted">{p.alt}</figcaption>
         </figure>
       ))}
     </div>

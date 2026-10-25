@@ -1,43 +1,43 @@
 ---
 import Base from '../../layouts/Base.astro';
-import Rail from '../../components/Rail.astro';
+import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import EnquiryBand from '../../components/EnquiryBand.astro';
 import ContactDetails from '../../components/tl/ContactDetails.astro';
-import { eyebrow } from '../../lib/links';
+import { eyebrow, eyebrowMuted } from '../../lib/links';
 ---
 <Base title="Contact | Murphy's Plumbing Services" description="Contact Murphy's Plumbing Services, Illawarra civil and industrial plumbing contractor, about your next infrastructure project or excavator hire.">
-  <Rail slot="header" current="contact" />
-  <section data-section="contact-lead" aria-labelledby="ct-h1" class="bg-secondary">
-    <div class="px-5 lg:px-12 pt-14 lg:pt-20 pb-16 grid gap-12 lg:grid-cols-12">
+  <Header slot="header" />
+  <section data-section="contact-lead" aria-labelledby="ct-h1" class="bg-ground text-ink">
+    <div class="mx-auto max-w-[96rem] px-5 lg:px-10 pt-28 lg:pt-36 pb-16 grid gap-12 lg:grid-cols-12">
       <div class="lg:col-span-7">
         <p class={eyebrow}>Contact</p>
         <h1 id="ct-h1" class="mt-5 font-display text-5xl lg:text-7xl leading-[1]">We're ready to discuss your next project.</h1>
-        <p class="mt-7 text-lg text-ink/75 max-w-xl">Please fill out the form below, or email us.</p>
+        <p class="mt-7 text-lg text-muted max-w-xl">Please fill out the form below, or email us.</p>
       </div>
       <div class="lg:col-span-4 lg:col-start-9">
-        <dl class="border-t border-ink">
+        <dl class="border-t border-ink/30">
           <div class="py-5 border-b rule">
-            <dt class={eyebrow}>Email</dt>
+            <dt class={eyebrowMuted}>Email</dt>
             <dd class="mt-1"><ContactDetails class="not-italic" linkClass="font-display text-xl underline underline-offset-4 break-all" /></dd>
           </div>
           <div class="py-5 border-b rule">
-            <dt class={eyebrow}>Based</dt>
+            <dt class={eyebrowMuted}>Based</dt>
             <dd class="mt-1 font-display text-xl">Illawarra, NSW 2530</dd>
           </div>
           <div class="py-5 border-b rule">
-            <dt class={eyebrow}>Registration</dt>
-            <dd class="mt-1 text-ink/75">ABN 24 101 951 759<br />Licence 521S<br />Licence 142861C</dd>
+            <dt class={eyebrowMuted}>Registration</dt>
+            <dd class="mt-1 text-muted">ABN 24 101 951 759<br />Licence 521S<br />Licence 142861C</dd>
           </div>
         </dl>
       </div>
     </div>
   </section>
   <EnquiryBand heading="Tell us the scope, the materials and the program." />
-  <section data-section="map" aria-labelledby="map-h2" class="bg-primary text-ground">
-    <div class="px-5 lg:px-12 pt-14 pb-6 flex flex-wrap items-baseline justify-between gap-4">
+  <section data-section="map" aria-labelledby="map-h2" class="bg-ground text-ink border-t rule">
+    <div class="mx-auto max-w-[96rem] px-5 lg:px-10 pt-14 pb-6 flex flex-wrap items-baseline justify-between gap-4">
       <h2 id="map-h2" class="font-display text-3xl lg:text-5xl">Based in the Illawarra</h2>
-      <p class="text-ground/80">NSW 2530. Recent projects include Sydney Water infrastructure works.</p>
+      <p class="text-muted">NSW 2530. Recent projects include Sydney Water infrastructure works.</p>
     </div>
     <iframe title="Map of the Illawarra, NSW 2530, where Murphy's Plumbing Services is based" src="https://www.google.com/maps?q=Dapto%20NSW%202530&output=embed" width="100%" height="440" style="border:0" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
   </section>

@@ -7,10 +7,10 @@ interface Callout { x: number; y: number; label: string; sub?: string; side?: 'l
 interface Props { src: ImageMetadata; alt: string; callouts: Callout[]; eager?: boolean; sizes?: string; class?: string; listClass?: string; dark?: boolean }
 const { src, alt, callouts, eager = false, sizes = '(min-width: 1024px) 60vw, 100vw', class: cls = '', listClass = '', dark = true } = Astro.props;
 const ratio = `${src.width} / ${src.height}`;
-const ink = dark ? 'text-ground' : 'text-ink';
-const line = dark ? 'bg-ground/60' : 'bg-ink/50';
-const dot = dark ? 'bg-ground ring-ground/30' : 'bg-ink ring-ink/30';
-const subCls = dark ? 'text-accent' : 'text-ink/60';
+const ink = dark ? 'text-ink' : 'text-ground';
+const line = dark ? 'bg-accent/70' : 'bg-ground/50';
+const dot = dark ? 'bg-accent ring-accent/25' : 'bg-ground ring-ground/30';
+const subCls = dark ? 'text-muted' : 'text-ground/60';
 ---
 <figure class={`relative ${cls}`} style={`aspect-ratio: ${ratio}`}>
   <Picture src={src} widths={[768, 1376]} formats={['avif', 'webp']} sizes={sizes} loading={eager ? 'eager' : 'lazy'} fetchpriority={eager ? 'high' : undefined}
@@ -51,7 +51,7 @@ const subCls = dark ? 'text-accent' : 'text-ink/60';
     })}
   </ul>
 </figure>
-<ol class={`md:hidden mt-4 border-t ${dark ? 'hairline text-ground' : 'hairline-dark'} ${listClass}`}>
+<ol class={`md:hidden mt-4 border-t ${dark ? 'hairline text-ink' : 'hairline-dark'} ${listClass}`}>
   {callouts.map((c) => (
     <li class={`py-2.5 border-b ${dark ? 'hairline' : 'hairline-dark'} flex items-baseline justify-between gap-4`}>
       <span class="font-medium uppercase tracking-[0.2em] text-[11px]">{c.label}</span>

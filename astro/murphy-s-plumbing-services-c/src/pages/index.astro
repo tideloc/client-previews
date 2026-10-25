@@ -1,45 +1,29 @@
 ---
 import { Picture } from 'astro:assets';
 import Base from '../layouts/Base.astro';
-import Rail from '../components/Rail.astro';
+import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import Plate from '../components/Plate.astro';
-import Chapter from '../components/Chapter.astro';
 import Exploded from '../components/Exploded.astro';
 import PriceList from '../components/tl/PriceList.astro';
-import EnquiryForm from '../components/EnquiryForm.astro';
+import EnquiryBand from '../components/EnquiryBand.astro';
 import { alts } from '../lib/photos';
 import { facts } from '../lib/facts';
-import { base, pdfHref, abnUrl, licenceUrl, btnPrimary, btnOutline, eyebrow, eyebrowDark, email } from '../lib/links';
-import hero from '../assets/plant-excavation-three-pipes.jpg';
-import p1 from '../assets/project-site-wide.jpg';
-import p2 from '../assets/project-tank-wall-risers.jpg';
-import ex22 from '../assets/gen-col-excavator-22t.jpg';
+import { base, pdfHref, abnUrl, licenceUrl, btnAccent, btnGhost, eyebrow, eyebrowMuted, email } from '../lib/links';
+import hero from '../assets/gen-hero-excavator-navy.jpg';
 import ex5 from '../assets/gen-col-excavator-5t.jpg';
+import butt from '../assets/gen-butt-fusion-navy.jpg';
 import ef from '../assets/gen-col-electrofusion.jpg';
-import water from '../assets/project-stainless-vertical.jpg';
-import storm from '../assets/project-stormwater-pit.jpg';
-import trench from '../assets/plant-kobelco-trench.jpg';
-import manhole from '../assets/project-manhole-crane-sky.jpg';
-import plant from '../assets/project-plant-pump-pipework.jpg';
-import vac from '../assets/project-valves-pit-above.jpg';
+import flange from '../assets/gen-col-flanged-joint.jpg';
+import site from '../assets/project-site-wide.jpg';
 import w1 from '../assets/project-circular-tank-risers.jpg';
 import w2 from '../assets/dicl-pipe-crane-sling.jpg';
-import w3 from '../assets/project-above-ground-main-bush.jpg';
-import w4 from '../assets/weld-electrofusion-coupler.jpg';
-import w5 from '../assets/plant-kobelco-elbow.jpg';
-import w6 from '../assets/project-main-on-piers.jpg';
-const scopes = [
-  ['Water supply', water, 'project-stainless-vertical.jpg'], ['Sewage', null, ''], ['Stormwater', storm, 'project-stormwater-pit.jpg'], ['Gas', null, ''],
-  ['Deep trenching', trench, 'plant-kobelco-trench.jpg'], ['Manhole installations', manhole, 'project-manhole-crane-sky.jpg'], ['Treatment plant piping', plant, 'project-plant-pump-pipework.jpg'], ['Vac operations', vac, 'project-valves-pit-above.jpg'],
-];
-const work = [[w1,'project-circular-tank-risers.jpg'],[w2,'dicl-pipe-crane-sling.jpg'],[w3,'project-above-ground-main-bush.jpg'],[w4,'weld-electrofusion-coupler.jpg'],[w5,'plant-kobelco-elbow.jpg'],[w6,'project-main-on-piers.jpg']];
-const c22 = [
-  { x: 65, y: 44, label: '22-tonne excavator', sub: 'Wet or dry hire', side: 'right' },
-  { x: 56, y: 18, label: 'Cab', sub: 'Our operator on wet hire, yours on dry', side: 'right' },
-  { x: 40, y: 22, label: 'Boom and dipper', side: 'above' },
-  { x: 22, y: 60, label: 'Bucket', sub: 'Deep trenching', side: 'below' },
-  { x: 70, y: 83, label: 'Undercarriage and tracks', side: 'below' },
+import w3 from '../assets/plant-kobelco-trench.jpg';
+const heroCallouts = [
+  { x: 14, y: 70, label: 'Bucket', sub: 'Deep trenching', side: 'below' },
+  { x: 36, y: 25, label: 'Boom and dipper', side: 'above' },
+  { x: 66, y: 32, label: 'Cab', sub: 'Our operator on wet hire, yours on dry', side: 'above' },
+  { x: 83, y: 42, label: '22-tonne excavator', sub: 'Wet or dry hire', side: 'right' },
+  { x: 72, y: 76, label: 'Undercarriage and tracks', side: 'below' },
 ];
 const c5 = [
   { x: 76, y: 30, label: '5-tonne excavator', sub: 'Wet or dry hire', side: 'below' },
@@ -48,180 +32,175 @@ const c5 = [
   { x: 62, y: 20, label: 'Cab', sub: 'Our operator on wet hire, yours on dry', side: 'above' },
   { x: 73, y: 77, label: 'Undercarriage and tracks', side: 'below' },
 ];
+const cButt = [
+  { x: 10, y: 52, label: 'PE 100 pipe', side: 'below' },
+  { x: 34, y: 30, label: 'Clamp carriage', side: 'above' },
+  { x: 54, y: 48, label: 'Heater plate', side: 'below' },
+  { x: 64, y: 28, label: 'Facing tool', side: 'above' },
+  { x: 68, y: 74, label: 'Hydraulic unit', side: 'below' },
+  { x: 90, y: 40, label: 'Butt welding', sub: 'Certified', side: 'above' },
+];
 const cef = [
   { x: 18, y: 18, label: 'PE 100 pipe', side: 'below' },
   { x: 42, y: 38, label: 'Electrofusion coupler', sub: 'Heating coil fuses pipe to coupler', side: 'below' },
   { x: 55, y: 26, label: 'Terminal pins', side: 'right' },
   { x: 64, y: 58, label: 'Alignment clamp', side: 'right' },
-  { x: 90, y: 88, label: 'Certified', sub: 'Electrofusion and Butt Welding', side: 'left' },
+  { x: 90, y: 88, label: 'Electrofusion', sub: 'Certified', side: 'left' },
+];
+const cfl = [
+  { x: 24, y: 39, label: 'DICL flanged pipe', side: 'below' },
+  { x: 38, y: 44, label: 'Gasket', side: 'below' },
+  { x: 50, y: 20, label: 'Gate valve', side: 'right' },
+  { x: 27, y: 12, label: 'Bolts and nuts', side: 'right' },
+  { x: 78, y: 62, label: 'Flanged spigot', side: 'below' },
 ];
 const record = [
   ['Company', facts.legal],
   ['ABN', `${facts.abn}, registered ${facts.abnRegistered}`, abnUrl, 'Check on the ABN register'],
-  ['Licence numbers', facts.licences.join(' and '), licenceUrl, 'Search the NSW Fair Trading public register'],
+  ['Licence numbers', facts.licences.join(' and '), licenceUrl, 'NSW Fair Trading public register'],
   ['Certifications', facts.certs.join(', ')],
   ['Crew', facts.crew],
-  ['Plant', '22-tonne excavator and 5-tonne excavator, wet or dry hire'],
   ['Based', facts.base],
-  ['Email', email],
 ];
+const work = [[site,'project-site-wide.jpg'],[w1,'project-circular-tank-risers.jpg'],[w2,'dicl-pipe-crane-sling.jpg'],[w3,'plant-kobelco-trench.jpg']];
 ---
 <Base title="Civil plumbing contractor, Illawarra | Murphy's Plumbing Services" description="Illawarra civil plumbing contractor for builders. Licensed, PE 100 certified, own excavators for wet or dry hire. Water, sewer, stormwater and gas pipework.">
-  <Rail slot="header" current="dossier" />
+  <Header slot="header" />
 
-  <section data-section="hero" aria-labelledby="hero-h1" class="relative bg-primary text-ground">
-    <Picture src={hero} widths={[768, 1200, 1800, 2400]} formats={['avif', 'webp']} sizes="(min-width: 1024px) 75vw, 100vw" loading="eager" fetchpriority="high" alt={alts['plant-excavation-three-pipes.jpg']} pictureAttributes={{ class: 'block' }} class="w-full h-[52vh] lg:h-[88vh] object-cover object-[50%_40%]" />
-    <div class="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/30 to-transparent" aria-hidden="true"></div>
-    <div class="absolute inset-x-0 bottom-0 px-5 lg:px-12 pb-6 lg:pb-12 grid gap-4 lg:gap-6 lg:grid-cols-12 lg:items-end">
-      <div class="lg:col-span-8">
-        <p class={eyebrowDark}>Civil and industrial plumbing contractor, Illawarra</p>
-        <h1 id="hero-h1" class="mt-3 font-display text-[2.1rem] leading-[1.02] sm:text-5xl xl:text-6xl max-w-3xl">Large-scale civil pipework for water, sewage, stormwater and gas.</h1>
+  <section data-section="hero" aria-labelledby="hero-h1" class="relative bg-ground text-ink overflow-hidden">
+    <div class="absolute inset-0 glow" aria-hidden="true"></div>
+    <div class="relative mx-auto max-w-[96rem] px-5 lg:px-10 pt-28 lg:pt-36 pb-10 lg:pb-16">
+      <div class="text-center max-w-4xl mx-auto">
+        <p class={eyebrow}>Civil and industrial plumbing contractor, Illawarra</p>
+        <h1 id="hero-h1" class="mt-5 font-display text-[2.5rem] leading-[1.02] sm:text-6xl lg:text-7xl">Large-scale civil pipework for water, sewage, stormwater and gas.</h1>
+        <p class="mt-6 text-lg text-muted max-w-2xl mx-auto">Our own excavators, our own PE 100 welding, our own licensed crew. Based in the Illawarra, with recent Sydney Water infrastructure works.</p>
+        <div class="mt-8 flex flex-wrap justify-center items-center gap-5">
+          <a href={`${base}/contact/#enquiry`} class={btnAccent}>Send a project enquiry</a>
+          <a href={pdfHref} class={btnGhost}>Capability statement (PDF)</a>
+        </div>
       </div>
-      <div class="lg:col-span-4 flex flex-wrap items-center gap-4">
-        <a href="#enquiry" class="inline-flex items-center bg-ground text-ink font-medium tracking-[0.02em] px-6 py-3.5 hover:bg-secondary">Send a project enquiry</a>
-        <a href={pdfHref} class="underline underline-offset-4 text-ground">Capability statement (PDF)</a>
+      <div class="mt-10 lg:mt-14 mx-auto max-w-6xl">
+        <Exploded src={hero} eager alt="Exploded-view render of a teal 22-tonne tracked excavator on navy: bucket, boom and dipper, cab, engine house, slew ring and undercarriage separated" callouts={heroCallouts} sizes="(min-width: 1024px) 72rem, 100vw" />
+      </div>
+    </div>
+    <dl class="relative border-t border-b rule bg-ground/60 backdrop-blur">
+      <div class="mx-auto max-w-[96rem] px-5 lg:px-10 grid sm:grid-cols-2 lg:grid-cols-4 divide-y sm:divide-y-0 lg:divide-x divide-line">
+        <div class="py-5 lg:px-8 first:lg:pl-0"><dt class={eyebrowMuted}>Plant</dt><dd class="mt-1 font-display text-lg">22 t and 5 t excavators, wet or dry hire</dd></div>
+        <div class="py-5 lg:px-8"><dt class={eyebrowMuted}>Certified</dt><dd class="mt-1 font-display text-lg">PE 100, Electrofusion, Butt Welding, Vac Operations</dd></div>
+        <div class="py-5 lg:px-8"><dt class={eyebrowMuted}>Licence numbers</dt><dd class="mt-1 font-display text-lg">{facts.licences.join(' and ')}</dd></div>
+        <div class="py-5 lg:px-8"><dt class={eyebrowMuted}>ABN</dt><dd class="mt-1 font-display text-lg">{facts.abn}</dd></div>
+      </div>
+    </dl>
+  </section>
+
+  <section id="plant" data-section="plant" aria-labelledby="plant-h2" class="bg-ground text-ink">
+    <div class="mx-auto max-w-[96rem] px-5 lg:px-10 py-20 lg:py-28 grid gap-12 lg:grid-cols-12 lg:items-center">
+      <div class="lg:col-span-5">
+        <p class={eyebrow}>Plant, wet or dry hire</p>
+        <h2 id="plant-h2" class="mt-4 font-display text-4xl lg:text-6xl leading-[1.02]">The machinery for all the civil plumbing works, large and small.</h2>
+        <p class="mt-6 text-muted">Our fleet includes a 22-tonne and a 5-tonne excavator, available for wet or dry hire, giving us the capability to manage even the most demanding projects efficiently. The crew includes licensed plumbers, pipe layers and excavator operators, so the machine and the pipework come from the one contractor.</p>
+        <div class="mt-8 border-t border-ink/30">
+          <PriceList sectionClass="" titleClass="sr-only" itemClass="flex items-baseline justify-between gap-4 py-4 border-b rule" nameClass="font-display text-2xl [&>span]:hidden" priceClass="font-medium text-[11px] uppercase tracking-[0.2em] text-accent" noteClass="" />
+        </div>
+        <dl class="mt-6 grid sm:grid-cols-2 gap-6 text-sm">
+          <div><dt class="font-display text-xl text-ink">Wet hire</dt><dd class="mt-1 text-muted">The machine comes with one of our operators. Our operators are part of the plumbing crew.</dd></div>
+          <div><dt class="font-display text-xl text-ink">Dry hire</dt><dd class="mt-1 text-muted">The machine on its own, for your operator and your program.</dd></div>
+        </dl>
+      </div>
+      <div class="lg:col-span-7">
+        <Exploded src={ex5} alt="Exploded-view render of a teal 5-tonne mini excavator, parts separated" callouts={c5} sizes="(min-width: 1024px) 55vw, 100vw" />
       </div>
     </div>
   </section>
 
-  <Chapter id="overview" n="01" title="A licensed civil plumbing subcontractor with its own plant, its own welding and its own crew." lead={facts.recent}>
-    <div class="grid gap-10 lg:grid-cols-12">
-      <div class="lg:col-span-7 columns-1 md:columns-2 gap-10 text-ink/80 [&>p]:mb-4">
-        <p>Murphy's Plumbing Services specialises in civil and industrial plumbing for complex infrastructure projects. With expertise in materials like PE 100 polyethylene, Ductile Iron Cement Lines (DICL), stainless steel press fit, copper press fit, PVC, and concrete, we deliver durable solutions tailored to every project.</p>
-        <p>From water supply to stormwater systems, our experienced team ensures quality and reliability, even in challenging environments requiring precise trenching and navigation around existing services.</p>
-        <p>Murphy's Plumbing Services is an industrial plumbing company committed to delivering high-quality, large-scale plumbing solutions for civil infrastructure projects. With a skilled team including licensed plumbers and excavator operators, we offer unmatched expertise in water, sewage, gas, and stormwater systems.</p>
-        <p>Our fleet includes a 22-tonne and a 5-tonne excavator available for wet or dry hire, ensuring we have the tools and experience to tackle even the most complex projects.</p>
+  <section id="welding" data-section="welding" aria-labelledby="weld-h2" class="bg-primary text-ink border-t rule">
+    <div class="mx-auto max-w-[96rem] px-5 lg:px-10 py-20 lg:py-28">
+      <div class="grid gap-6 lg:grid-cols-12 lg:items-end">
+        <div class="lg:col-span-8">
+          <p class={eyebrow}>PE 100 welding</p>
+          <h2 id="weld-h2" class="mt-4 font-display text-4xl lg:text-6xl leading-[1.02]">Butt welding and electrofusion, certified. Steel and DICL installations.</h2>
+        </div>
+        <p class="lg:col-span-4 text-muted">We adhere to the highest industry standards, with certifications in PE 100 installations, Electrofusion, Butt Welding, and Vac Operations. Our licensed team ensures that every project meets strict safety and quality requirements.</p>
       </div>
-      <dl class="lg:col-span-5 border-t border-ink self-start">
-        {facts.packages.map((p) => (
-          <div class="py-4 border-b rule"><dt class="font-display text-2xl">{p.name}</dt><dd class="mt-1 text-sm text-ink/75">{p.what}</dd></div>
-        ))}
-      </dl>
+      <div class="mt-12">
+        <p class={eyebrowMuted}>Butt fusion machine</p>
+        <Exploded src={butt} alt="Exploded-view render of a hydraulic butt fusion welding machine on black PE 100 pipe: clamp carriage, heater plate, facing tool and hydraulic unit separated" callouts={cButt} class="mt-3" sizes="(min-width: 1024px) 90vw, 100vw" />
+      </div>
+      <div class="mt-12 grid gap-10 lg:grid-cols-2">
+        <div>
+          <p class={eyebrowMuted}>PE 100 electrofusion joint</p>
+          <Exploded src={ef} alt="Exploded-view render of an electrofusion joint: black PE 100 pipe with blue stripes, coupler with copper heating coil, terminal pins and alignment clamp" callouts={cef} class="mt-3" sizes="(min-width: 1024px) 45vw, 100vw" />
+        </div>
+        <div>
+          <p class={eyebrowMuted}>DICL flanged joint with gate valve</p>
+          <Exploded src={flange} alt="Exploded-view render of a blue ductile iron flanged joint with a gate valve, gasket, bolts and nuts separated" callouts={cfl} class="mt-3" sizes="(min-width: 1024px) 45vw, 100vw" />
+        </div>
+      </div>
     </div>
-  </Chapter>
-  <Plate src={p1} file="project-site-wide.jpg" />
+  </section>
 
-  <Chapter id="registration" n="02" title="On the record." lead="The details a builder checks before engaging a subcontractor, with the public registers linked so you can verify them yourself." class="bg-secondary">
-    <div class="grid gap-10 lg:grid-cols-12">
-      <table class="lg:col-span-8 w-full border-t border-ink table-fixed">
+  <section id="capability" data-section="capability" aria-labelledby="cap-h2" class="bg-ground text-ink border-t rule">
+    <div class="mx-auto max-w-[96rem] px-5 lg:px-10 py-20 lg:py-28">
+      <p class={eyebrow}>Capability</p>
+      <h2 id="cap-h2" class="mt-4 font-display text-4xl lg:text-6xl leading-[1.02] max-w-4xl">Water, sewage, stormwater and gas. Deep trenching to treatment plant piping.</h2>
+      <div class="mt-12 grid gap-10 lg:grid-cols-12">
+        <ul class="lg:col-span-6 border-t border-ink/30">
+          {facts.scopes.map((s) => <li class="py-4 border-b rule font-display text-3xl lg:text-4xl leading-none">{s}</li>)}
+          <li class="py-4 border-b rule font-display text-3xl lg:text-4xl leading-none">Vac operations <span class="font-body text-xs uppercase tracking-[0.2em] text-accent align-middle ml-3">certified</span></li>
+        </ul>
+        <div class="lg:col-span-3">
+          <p class={`${eyebrowMuted} border-b border-ink/30 pb-3`}>Materials</p>
+          <ul>{facts.materials.map((m) => <li class="py-3 border-b rule text-muted">{m}</li>)}</ul>
+        </div>
+        <div class="lg:col-span-3">
+          <p class={`${eyebrowMuted} border-b border-ink/30 pb-3`}>Installations and certifications</p>
+          <ul>{facts.installs.map((m) => <li class="py-3 border-b rule text-muted">{m}</li>)}{facts.certs.map((c) => <li class="py-3 border-b rule text-muted flex justify-between gap-3"><span>{c}</span><span class="text-[11px] uppercase tracking-[0.2em] text-accent">certified</span></li>)}</ul>
+          <p class="mt-6 text-sm text-muted">We provide specialised solutions for civil infrastructure, focusing on water, sewage, stormwater, and gas systems. From deep trenching and manhole installations to treatment plant piping, our expertise ensures every project is handled with precision and efficiency.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="registration" data-section="registration" aria-labelledby="reg-h2" class="bg-primary text-ink border-t rule">
+    <div class="mx-auto max-w-[96rem] px-5 lg:px-10 py-20 lg:py-28 grid gap-12 lg:grid-cols-12">
+      <div class="lg:col-span-5">
+        <p class={eyebrow}>On the record</p>
+        <h2 id="reg-h2" class="mt-4 font-display text-4xl lg:text-6xl leading-[1.02]">Registered, licensed, certified.</h2>
+        <p class="mt-6 text-muted">The details a builder checks before engaging a subcontractor, with the public registers linked so you can verify them yourself.</p>
+        <a href={pdfHref} class={`mt-8 ${btnGhost}`}>Capability statement (PDF)</a>
+      </div>
+      <table class="lg:col-span-7 w-full border-t border-ink/30 self-start table-fixed">
         <tbody>
           {record.map(([k, v, href, label]) => (
             <tr class="border-b rule align-baseline">
-              <th scope="row" class="py-3.5 pr-4 text-left font-medium uppercase tracking-[0.2em] text-[11px] text-ink/60 w-[34%]">{k}</th>
-              <td class="py-3.5 break-words">{v}{href && <a href={href} target="_blank" rel="noreferrer" class="block text-sm underline underline-offset-4 text-ink/60 hover:text-ink">{label}</a>}</td>
+              <th scope="row" class="py-4 pr-4 text-left font-medium uppercase tracking-[0.2em] text-[11px] text-muted w-[34%]">{k}</th>
+              <td class="py-4 break-words font-display text-lg">{v}{href && <a href={href} target="_blank" rel="noreferrer" class="block font-body text-sm text-accent underline underline-offset-4">{label}</a>}</td>
             </tr>
           ))}
         </tbody>
       </table>
-      <div class="lg:col-span-4">
-        <div class="bg-primary text-ground p-6">
-          <p class={eyebrowDark}>Capability statement</p>
-          <p class="mt-2 text-ground/80">Two A4 pages with the same facts as this dossier, for your subcontractor register.</p>
-          <a href={pdfHref} class="mt-4 inline-flex bg-ground text-ink font-medium px-5 py-3 hover:bg-secondary">Capability statement (PDF)</a>
-        </div>
-      </div>
     </div>
-  </Chapter>
-  <Plate src={p2} file="project-tank-wall-risers.jpg" />
+  </section>
 
-  <Chapter id="capability" n="03" title="Water, sewage, stormwater and gas. Deep trenching to treatment plant piping." lead="We provide specialised solutions for civil infrastructure, focusing on water, sewage, stormwater, and gas systems. From deep trenching and manhole installations to treatment plant piping, our expertise ensures every project is handled with precision and efficiency.">
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-x-4 gap-y-6">
-      {scopes.map(([n, src, f]) =>
-        src ? (
+  <section data-section="work" aria-labelledby="work-h2" class="bg-ground text-ink border-t rule">
+    <div class="mx-auto max-w-[96rem] px-5 lg:px-10 py-20 lg:py-28">
+      <div class="grid gap-6 lg:grid-cols-12 lg:items-end">
+        <div class="lg:col-span-8">
+          <p class={eyebrow}>Recent work</p>
+          <h2 id="work-h2" class="mt-4 font-display text-4xl lg:text-6xl leading-[1.02]">Sydney Water infrastructure works, and the civil plumbing jobs in between.</h2>
+        </div>
+        <a href={`${base}/projects/`} class={`lg:col-span-4 lg:justify-self-end ${btnGhost}`}>All project photographs</a>
+      </div>
+      <div class="mt-12 grid grid-cols-2 lg:grid-cols-4 gap-3">
+        {work.map(([src, f]) => (
           <figure>
-            <Picture src={src} widths={[480, 800]} formats={['avif', 'webp']} sizes="(min-width: 768px) 20vw, 50vw" alt={alts[f]} loading="lazy" pictureAttributes={{ class: 'block' }} class="w-full aspect-[4/3] object-cover" />
-            <figcaption class="mt-2 font-display text-xl leading-tight">{n}</figcaption>
+            <Picture src={src} widths={[480, 800]} formats={['avif', 'webp']} sizes="(min-width: 1024px) 25vw, 50vw" alt={alts[f]} loading="lazy" pictureAttributes={{ class: 'block' }} class="w-full aspect-[4/5] object-cover" />
+            <figcaption class="mt-2 text-xs text-muted">{alts[f]}</figcaption>
           </figure>
-        ) : (
-          <div class="bg-primary text-ground aspect-[4/3] p-4 flex items-end"><span class="font-display text-xl leading-tight">{n}</span></div>
-        )
-      )}
-    </div>
-    <div class="mt-12 grid gap-10 lg:grid-cols-12">
-      <div class="lg:col-span-4">
-        <p class={`${eyebrow} border-b border-ink pb-3`}>Materials</p>
-        <ul>{facts.materials.map((m) => <li class="py-3 border-b rule">{m}</li>)}</ul>
-      </div>
-      <div class="lg:col-span-4">
-        <p class={`${eyebrow} border-b border-ink pb-3`}>Installations</p>
-        <ul>{facts.installs.map((m) => <li class="py-3 border-b rule">{m}</li>)}</ul>
-      </div>
-      <div class="lg:col-span-4">
-        <p class={`${eyebrow} border-b border-ink pb-3`}>Certifications held</p>
-        <ul>{facts.certs.map((c) => <li class="py-3 border-b rule">{c}</li>)}</ul>
-        <p class="mt-5 text-sm text-ink/70">We adhere to the highest industry standards, with certifications in PE 100 installations, Electrofusion, Butt Welding, and Vac Operations. Our licensed team ensures that every project meets strict safety and quality requirements.</p>
+        ))}
       </div>
     </div>
-    <div class="mt-10 bg-primary text-ground p-5 lg:p-10">
-      <p class={eyebrowDark}>PE 100 electrofusion joint</p>
-      <Exploded src={ef} alt="Exploded-view render of an electrofusion joint: black PE 100 pipe with blue stripes, coupler with copper heating coil, terminal pins and alignment clamp" callouts={cef} class="mt-3" sizes="(min-width: 1024px) 70vw, 100vw" />
-    </div>
-  </Chapter>
-
-  <Chapter id="plant" n="04" title="The machinery for all the civil plumbing works, large and small." lead="Our fleet includes a 22-tonne and a 5-tonne excavator, available for wet or dry hire, giving us the capability to manage even the most demanding projects efficiently." class="bg-secondary">
-    <div class="grid gap-4 lg:grid-cols-2">
-      <div class="bg-primary text-ground p-5 lg:p-8">
-        <p class={eyebrowDark}>22-tonne excavator</p>
-        <Exploded src={ex22} alt="Exploded-view render of a teal 22-tonne tracked excavator: bucket, boom and dipper, cab, engine house, slew ring and undercarriage separated" callouts={c22} class="mt-3" sizes="(min-width: 1024px) 36vw, 100vw" />
-      </div>
-      <div class="bg-primary text-ground p-5 lg:p-8">
-        <p class={eyebrowDark}>5-tonne excavator</p>
-        <Exploded src={ex5} alt="Exploded-view render of a teal 5-tonne mini excavator with dozer blade and rubber tracks, parts separated" callouts={c5} class="mt-3" sizes="(min-width: 1024px) 36vw, 100vw" />
-      </div>
-    </div>
-    <div class="mt-10 grid gap-10 lg:grid-cols-12">
-      <div class="lg:col-span-5">
-        <p class={eyebrow}>Plant for hire</p>
-        <div class="mt-3 border-t border-ink">
-          <PriceList sectionClass="" titleClass="sr-only" itemClass="flex items-baseline justify-between gap-4 py-3.5 border-b rule" nameClass="font-display text-2xl [&>span]:hidden" priceClass="font-medium text-[11px] uppercase tracking-[0.2em] text-ink/60" noteClass="" />
-        </div>
-      </div>
-      <dl class="lg:col-span-7 border-t border-ink">
-        <div class="py-4 border-b rule grid sm:grid-cols-[10rem_1fr] gap-2"><dt class="font-display text-2xl">Wet hire</dt><dd class="text-ink/75">The machine comes with one of our operators. Our operators are part of the plumbing crew.</dd></div>
-        <div class="py-4 border-b rule grid sm:grid-cols-[10rem_1fr] gap-2"><dt class="font-display text-2xl">Dry hire</dt><dd class="text-ink/75">The machine on its own, for your operator and your program.</dd></div>
-        <div class="py-4 border-b rule grid sm:grid-cols-[10rem_1fr] gap-2"><dt class="font-display text-2xl">With the pipework</dt><dd class="text-ink/75">The crew includes licensed plumbers, pipe layers and excavator operators, so the machine and the pipework come from the one contractor.</dd></div>
-      </dl>
-    </div>
-  </Chapter>
-
-  <Chapter id="projects" n="05" title="Sydney Water infrastructure works, and the civil plumbing jobs in between." lead="Take a look at our work showcasing the scale and precision of our industrial and civil plumbing projects. These images demonstrate the expertise, materials, and techniques we apply.">
-    <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-      {work.map(([src, f]) => (
-        <figure>
-          <Picture src={src} widths={[480, 800, 1200]} formats={['avif', 'webp']} sizes="(min-width: 768px) 25vw, 50vw" alt={alts[f]} loading="lazy" pictureAttributes={{ class: 'block' }} class="w-full aspect-[4/5] object-cover" />
-          <figcaption class="mt-2 text-xs text-ink/60">{alts[f]}</figcaption>
-        </figure>
-      ))}
-    </div>
-    <a href={`${base}/projects/`} class={`mt-10 ${btnOutline}`}>All project photographs</a>
-  </Chapter>
-
-  <Chapter id="enquiry" n="06" title="Ready to start your next infrastructure project?" lead="Send through the scope, the materials and the program, or email us directly. Tender and estimating enquiries welcome." class="bg-secondary">
-    <div class="grid gap-10 lg:grid-cols-12">
-      <div class="lg:col-span-4">
-        <a href={`mailto:${email}`} class="font-display text-xl underline underline-offset-4 break-all">{email}</a>
-        <p class="mt-4 text-sm text-ink/60">Based in the Illawarra, NSW 2530.</p>
-      </div>
-      <div class="lg:col-span-8">
-        <EnquiryForm kind="quote" site="Murphy's Plumbing Services" submitLabel="Send project enquiry"
-          successText="Thanks, we have your enquiry and will come back to you by email."
-          class="grid gap-4 sm:grid-cols-2"
-          inputClass="w-full border border-ink/30 bg-ground px-3 py-2.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
-          buttonClass="bg-primary text-ground font-medium tracking-[0.02em] px-6 py-3.5 hover:bg-ink"
-          fields={[
-            { name: 'name', label: 'Your name', required: true },
-            { name: 'company', label: 'Company or head contractor' },
-            { name: 'email', label: 'Email', type: 'email', required: true },
-            { name: 'phone', label: 'Phone', type: 'tel' },
-            { name: 'project', label: 'Project and location' },
-            { name: 'program', label: 'Tender close or start date' },
-            { name: 'scope', label: 'Scope, materials and plant needed', type: 'textarea', required: true },
-          ]} />
-      </div>
-    </div>
-  </Chapter>
+  </section>
+  <EnquiryBand compact />
   <Footer slot="footer" />
 </Base>
-<style is:global>
-  [data-enquiry-form] > div:has(textarea), [data-enquiry-form] > div:last-child { grid-column: 1 / -1; }
-</style>

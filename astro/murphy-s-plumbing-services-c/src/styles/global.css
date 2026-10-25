@@ -5,24 +5,17 @@
 @layer base {
   html { scroll-behavior: smooth; }
   @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation: none !important; transition: none !important; } }
-  body { font-feature-settings: "kern", "liga"; }
-  :focus-visible { outline: 2px solid theme('colors.primary'); outline-offset: 2px; }
-  img { max-width: 100%; height: auto; }
-}
-
-@layer base {
-  body { font-weight: 300; }
+  body { font-feature-settings: "kern", "liga"; font-weight: 300; }
   h1, h2, h3, h4 { font-weight: 400; }
   strong { font-weight: 500; }
+  :focus-visible { outline: 2px solid theme('colors.accent'); outline-offset: 3px; }
+  img { max-width: 100%; height: auto; }
+  ::selection { background: theme('colors.accent'); color: theme('colors.ground'); }
 }
-
 @layer components {
-  .drawing { mix-blend-mode: lighten; }
-  .hairline { border-color: rgb(250 250 250 / 0.18); }
-  .hairline-dark { border-color: rgb(0 0 0 / 0.18); }
-  .rule { border-color: #DCDCDC; }
+  .rule { border-color: theme('colors.line'); }
+  .hairline { border-color: rgb(242 244 246 / 0.14); }
+  .hairline-dark { border-color: rgb(13 17 23 / 0.2); }
+  .glow { background: radial-gradient(60% 50% at 50% 55%, rgb(43 196 180 / 0.14), transparent 70%); }
 }
-@media print {
-  header, footer, [data-tideloc-bar], .no-print { display: none !important; }
-  main { padding: 0 !important; }
-}
+@media print { header, footer, [data-tideloc-bar], .no-print { display: none !important; } }
