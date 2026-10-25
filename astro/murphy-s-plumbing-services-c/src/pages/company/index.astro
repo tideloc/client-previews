@@ -49,12 +49,12 @@ const docs = [
         <p class="mt-5 text-ink/75">The company details a builder checks before engaging a subcontractor, with the public registers linked so you can verify them yourself.</p>
         <a href={pdfHref} class={`mt-6 ${btnOutline}`}>Capability statement (PDF)</a>
       </div>
-      <table class="lg:col-span-7 w-full border-t border-ink self-start">
+      <table class="lg:col-span-7 w-full border-t border-ink self-start table-fixed">
         <tbody>
           {docs.map(([k, v, href, label]) => (
             <tr class="border-b rule align-baseline">
               <th scope="row" class="py-3.5 pr-4 text-left font-medium uppercase tracking-[0.2em] text-[11px] text-ink/60 w-[32%]">{k}</th>
-              <td class="py-3.5">{v}{href && <a href={href} target="_blank" rel="noreferrer" class="block text-sm underline underline-offset-4 text-ink/60 hover:text-ink">{label}</a>}</td>
+              <td class="py-3.5 break-words">{v}{href && <a href={href} target="_blank" rel="noreferrer" class="block text-sm underline underline-offset-4 text-ink/60 hover:text-ink">{label}</a>}</td>
             </tr>
           ))}
         </tbody>

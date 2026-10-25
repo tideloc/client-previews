@@ -19,6 +19,7 @@ import trench from '../../assets/project-trench-bedding.jpg';
 import manhole from '../../assets/project-manhole-riser-worker.jpg';
 import plant from '../../assets/project-stainless-plant.jpg';
 import rig from '../../assets/weld-butt-rig-channel.jpg';
+import vac from '../../assets/project-valves-pit-above.jpg';
 const scopePhotos = [
   { n: 'Water supply', d: 'Water supply pipework and treatment plant piping', img: water, f: 'project-stainless-vertical.jpg' },
   { n: 'Sewage', d: 'Large-scale sewage pipework', img: sewer, f: 'project-trench-pipe-shoring.jpg' },
@@ -32,14 +33,14 @@ const efCallouts = [
   { x: 18, y: 18, label: 'PE 100 pipe', side: 'below' },
   { x: 42, y: 38, label: 'Electrofusion coupler', sub: 'Heating coil fuses pipe to coupler', side: 'below' },
   { x: 55, y: 26, label: 'Terminal pins', side: 'right' },
-  { x: 62, y: 61, label: 'Alignment clamp', side: 'right' },
-  { x: 84, y: 75, label: 'Certified', sub: 'Electrofusion and Butt Welding', side: 'above' },
+  { x: 62, y: 61, label: 'Alignment clamp', side: 'below' },
+  { x: 84, y: 78, label: 'Certified', sub: 'Electrofusion and Butt Welding', side: 'left' },
 ];
 const flCallouts = [
   { x: 24, y: 39, label: 'DICL flanged pipe', side: 'below' },
   { x: 38, y: 44, label: 'Gasket', side: 'below' },
   { x: 50, y: 20, label: 'Gate valve', sub: 'Steel and DICL installations', side: 'right' },
-  { x: 22, y: 14, label: 'Bolts and nuts', side: 'above' },
+  { x: 24, y: 24, label: 'Bolts and nuts', side: 'left' },
   { x: 78, y: 62, label: 'Flanged spigot', side: 'below' },
 ];
 ---
@@ -64,8 +65,9 @@ const flCallouts = [
             <figcaption class="mt-3"><span class="block font-display text-2xl leading-tight">{s.n}</span><span class="block mt-1 text-sm text-ink/70">{s.d}</span></figcaption>
           </figure>
         ))}
-        <figure class="border border-ink p-5 flex flex-col justify-end">
-          <span class="block font-display text-2xl leading-tight">Vac operations</span><span class="block mt-1 text-sm text-ink/70">Certified non-destructive excavation around existing services</span>
+        <figure>
+          <Picture src={vac} widths={[480, 800]} formats={['avif', 'webp']} sizes="(min-width: 768px) 25vw, 50vw" alt={alts['project-valves-pit-above.jpg']} loading="lazy" pictureAttributes={{ class: 'block' }} class="w-full aspect-[4/3] object-cover" />
+          <figcaption class="mt-3"><span class="block font-display text-2xl leading-tight">Vac operations</span><span class="block mt-1 text-sm text-ink/70">Certified</span></figcaption>
         </figure>
       </div>
     </div>
