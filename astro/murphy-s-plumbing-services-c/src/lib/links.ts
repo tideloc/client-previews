@@ -1,12 +1,18 @@
 export const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+export const chapters = [
+  { n: '01', label: 'Overview', href: `${base}/#overview` },
+  { n: '02', label: 'Registration', href: `${base}/#registration` },
+  { n: '03', label: 'Capability', href: `${base}/#capability` },
+  { n: '04', label: 'Plant', href: `${base}/#plant` },
+  { n: '05', label: 'Projects', href: `${base}/#projects` },
+  { n: '06', label: 'Enquiry', href: `${base}/#enquiry` },
+];
 export const nav = [
-  { label: 'Capability', href: `${base}/capability/` },
-  { label: 'Plant hire', href: `${base}/plant-hire/` },
+  { label: 'Dossier', href: `${base}/` },
   { label: 'Projects', href: `${base}/projects/` },
-  { label: 'Company', href: `${base}/company/` },
   { label: 'Contact', href: `${base}/contact/` },
 ];
-export const enquiryHref = `${base}/contact/#enquiry`;
+export const enquiryHref = `${base}/#enquiry`;
 export const pdfHref = `${base}/murphys-plumbing-services-capability-statement.pdf`;
 export const email = 'info@murphysplumbingservices.com.au';
 export const abnUrl = 'https://abr.business.gov.au/ABN/View?abn=24101951759';

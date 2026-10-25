@@ -5,7 +5,7 @@ const { heading = 'Ready to start your next infrastructure project?', compact = 
 ---
 {compact ? (
   <section data-section="enquiry-cta" aria-labelledby="enq-h2" class="bg-ground border-t rule">
-    <div class="mx-auto max-w-[88rem] px-5 lg:px-10 py-14 lg:py-16 flex flex-wrap items-end justify-between gap-8">
+    <div class="px-5 lg:px-12 py-14 lg:py-16 flex flex-wrap items-end justify-between gap-8">
       <div class="max-w-2xl">
         <p class={eyebrow}>Project enquiry</p>
         <h2 id="enq-h2" class="mt-3 font-display text-3xl lg:text-4xl leading-tight">{heading}</h2>
@@ -18,7 +18,7 @@ const { heading = 'Ready to start your next infrastructure project?', compact = 
   </section>
 ) : (
   <section data-section="enquiry" id="enquiry" aria-labelledby="enq-h2" class="bg-ground border-t-8 border-primary">
-    <div class="mx-auto max-w-[88rem] px-5 lg:px-10 py-16 lg:py-24 grid gap-10 lg:grid-cols-12">
+    <div class="px-5 lg:px-12 py-16 lg:py-24 grid gap-10 lg:grid-cols-12">
       <div class="lg:col-span-5">
         <p class={eyebrow}>Project enquiry</p>
         <h2 id="enq-h2" class="mt-3 font-display text-4xl lg:text-5xl leading-tight">{heading}</h2>

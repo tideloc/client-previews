@@ -1,43 +1,27 @@
 ---
-import ContactDetails from './tl/ContactDetails.astro';
-import { base, nav, enquiryHref, pdfHref, abnUrl, licenceUrl } from '../lib/links';
+import { base, nav, pdfHref, abnUrl, licenceUrl } from '../lib/links';
 import { facts } from '../lib/facts';
 const year = new Date().getFullYear();
 ---
-<footer class="bg-primary text-ground">
-  <div class="mx-auto max-w-[88rem] px-5 lg:px-10 py-14 grid gap-10 md:grid-cols-12">
-    <div class="md:col-span-4">
-      <p class="font-display uppercase tracking-[0.22em] text-sm">Murphys Plumbing Services</p>
-      <p class="mt-4 max-w-sm text-ground/80">Specialising in large-scale pipework for water, sewage, storm water, and gas projects.</p>
-      <p class="mt-3 text-ground/80">Based in the Illawarra (NSW 2530). Recent projects include Sydney Water infrastructure works.</p>
-      <a href={pdfHref} class="mt-5 inline-block underline underline-offset-4">Capability statement (PDF)</a>
+<footer class="bg-ground border-t border-ink">
+  <div class="px-5 lg:px-12 py-10 grid gap-8 md:grid-cols-12 text-sm">
+    <div class="md:col-span-5">
+      <p class="font-display uppercase tracking-[0.22em] text-[12px]">Murphys Plumbing Services</p>
+      <p class="mt-3 text-ink/70 max-w-sm">Specialising in large-scale pipework for water, sewage, storm water, and gas projects. Based in the Illawarra (NSW 2530). Recent projects include Sydney Water infrastructure works.</p>
     </div>
     <div class="md:col-span-3">
-      <p class="font-medium uppercase tracking-[0.22em] text-[11px] text-ground/60">Contact</p>
-      <ContactDetails class="not-italic mt-3 space-y-1" linkClass="underline underline-offset-4 break-all" />
-      <a href={enquiryHref} class="mt-5 inline-block bg-ground text-ink font-medium tracking-[0.02em] px-5 py-3">Send a project enquiry</a>
-    </div>
-    <div class="md:col-span-2">
-      <p class="font-medium uppercase tracking-[0.22em] text-[11px] text-ground/60">Pages</p>
-      <ul class="mt-3 space-y-1">
-        <li><a href={`${base}/`} class="hover:underline">Home</a></li>
-        {nav.map((n) => <li><a href={n.href} class="hover:underline">{n.label}</a></li>)}
+      <ul class="space-y-1">
+        <li><a href={`${base}/`} class="hover:underline">Dossier</a></li>
+        {nav.slice(1).map((n) => <li><a href={n.href} class="hover:underline">{n.label}</a></li>)}
+        <li><a href={pdfHref} class="hover:underline">Capability statement (PDF)</a></li>
+        <li><a href="mailto:info@murphysplumbingservices.com.au" class="hover:underline break-all">info@murphysplumbingservices.com.au</a></li>
       </ul>
     </div>
-    <div class="md:col-span-3">
-      <p class="font-medium uppercase tracking-[0.22em] text-[11px] text-ground/60">Registration</p>
-      <ul class="mt-3 space-y-1 text-ground/90">
-        <li>{facts.legal}</li>
-        <li>ABN {facts.abn} <a href={abnUrl} target="_blank" rel="noreferrer" class="underline underline-offset-4 text-ground/70">check</a></li>
-        <li>Licence {facts.licences[0]}</li>
-        <li>Licence {facts.licences[1]} <a href={licenceUrl} target="_blank" rel="noreferrer" class="underline underline-offset-4 text-ground/70">NSW register</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="border-t border-ground/15">
-    <div class="mx-auto max-w-[88rem] px-5 lg:px-10 py-5 text-sm text-ground/60 flex flex-wrap justify-between gap-2">
-      <span>&copy; {year} {facts.legal}</span>
-      <span>Civil and industrial plumbing for infrastructure projects</span>
+    <div class="md:col-span-4 text-ink/70">
+      <p>{facts.legal}</p>
+      <p>ABN {facts.abn} <a href={abnUrl} target="_blank" rel="noreferrer" class="underline underline-offset-4">check</a></p>
+      <p>Licence {facts.licences[0]}, Licence {facts.licences[1]} <a href={licenceUrl} target="_blank" rel="noreferrer" class="underline underline-offset-4">NSW register</a></p>
+      <p class="mt-3">&copy; {year} {facts.legal}</p>
     </div>
   </div>
 </footer>

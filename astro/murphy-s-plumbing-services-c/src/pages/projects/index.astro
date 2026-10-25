@@ -1,7 +1,7 @@
 ---
 import { Picture } from 'astro:assets';
 import Base from '../../layouts/Base.astro';
-import Header from '../../components/Header.astro';
+import Rail from '../../components/Rail.astro';
 import Footer from '../../components/Footer.astro';
 import EnquiryBand from '../../components/EnquiryBand.astro';
 import { alts, fileName } from '../../lib/photos';
@@ -12,9 +12,9 @@ const photos = Object.entries(all)
   .map(([p, m]) => ({ src: m.default, alt: alts[fileName(p)] ?? '', landscape: m.default.width > m.default.height }));
 ---
 <Base title="Projects | Murphy's Plumbing Services" description="Photos from Murphy's Plumbing Services civil plumbing projects: Sydney Water infrastructure works, treatment plant piping, manholes and trenching.">
-  <Header slot="header" />
+  <Rail slot="header" current="projects" />
   <section data-section="projects-lead" aria-labelledby="pr-h1" class="bg-secondary">
-    <div class="mx-auto max-w-[88rem] px-5 lg:px-10 pt-14 lg:pt-20 pb-12 grid gap-8 lg:grid-cols-12 lg:items-start">
+    <div class="px-5 lg:px-12 pt-14 lg:pt-20 pb-12 grid gap-8 lg:grid-cols-12 lg:items-start">
       <div class="lg:col-span-8">
         <p class={eyebrow}>Projects</p>
         <h1 id="pr-h1" class="mt-5 font-display text-5xl lg:text-7xl leading-[1]">Our work across infrastructure projects.</h1>
@@ -26,7 +26,7 @@ const photos = Object.entries(all)
     </div>
   </section>
   <section data-section="gallery" aria-label="Project photographs" class="bg-ground border-t rule">
-    <div class="mx-auto max-w-[88rem] px-5 lg:px-10 py-14 lg:py-20 grid grid-cols-2 md:grid-cols-4 gap-4">
+    <div class="px-5 lg:px-12 py-14 lg:py-20 grid grid-cols-2 md:grid-cols-4 gap-4">
       {photos.map((p) => (
         <figure class={`${p.landscape ? 'col-span-2' : 'col-span-1'}`}>
           <Picture src={p.src} widths={[480, 800, 1200]} formats={['avif', 'webp']} sizes={p.landscape ? '(min-width: 768px) 50vw, 100vw' : '(min-width: 768px) 25vw, 50vw'} alt={p.alt} loading="lazy" pictureAttributes={{ class: 'block' }} class={`w-full object-cover ${p.landscape ? 'aspect-[3/2]' : 'aspect-[3/4]'}`} />

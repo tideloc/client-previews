@@ -53,12 +53,14 @@ const palette = '#000000,#1C1C1C,#DCDCDC,#FAFAFA,#FFFFFF'; // "#hex,#hex,..." fr
   </head>
   <body class="min-h-screen bg-ground text-ink font-body antialiased">
     <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:bg-ground focus:px-3 focus:py-2">Skip to content</a>
-    <Announcement class="bg-primary text-ground text-sm text-center px-4 py-2" />
+    <Announcement class="bg-primary text-ground text-sm text-center px-4 py-2 lg:pl-[19rem] xl:pl-[21rem]" />
     <slot name="header" />
-    <main id="main">
-      <slot />
-    </main>
-    <slot name="footer" />
+    <div class="lg:pl-[19rem] xl:pl-[21rem]">
+      <main id="main">
+        <slot />
+      </main>
+      <slot name="footer" />
+    </div>
     <TidelocBar />
     <script is:inline defer src={`${base}/tl-live.js`}></script>
   </body>
