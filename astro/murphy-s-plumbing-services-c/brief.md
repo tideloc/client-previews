@@ -17,7 +17,7 @@ See Option B's brief: Squarespace source, monochrome theme, Khula / Poppins, ver
 - Logo: MP monogram as header mark and favicon.
 
 ## Layout, in two lines
-Six pages plus a print page: home (split hero, verification band with ABN and licence register links, three engagement packages, capability matrix, labelled exploded 22 t render in an ink panel, work mosaic, builder enquiry form), capability, plant hire, projects, company ("On the record" table), contact. The capability statement PDF (two A4 pages, 641 KB) is generated from the same facts module and linked from the hero, footer and company page.
+Seven pages on navy with a teal accent: home (centred claim, spec strip, services with the pipework photo, welding led by the butt fusion render, plant with the exploded 22 t excavator, credentials table with register links, four-photo work strip, full enquiry form) plus Services, Welding, Plant, Credentials, Projects and Contact pages that carry the full cut of each section under a shared page lead. The capability statement PDF is generated from the same facts module and linked from the hero, credentials and footer.
 
 ## Imagery
 36 first-party photos. 4 colourised exploded renders generated with Gemini (gen-col-excavator-22t, gen-col-excavator-5t, gen-col-electrofusion, gen-col-flanged-joint; backgrounds keyed to #1C1C1C, used only inside ink panels) with HTML callout labels. Two earlier hairline line drawings remain in src/assets but are no longer placed. No stock.

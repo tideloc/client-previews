@@ -1,0 +1,12 @@
+---
+import { facts } from '../lib/facts';
+import { eyebrowMuted } from '../lib/links';
+---
+<dl class="border-t border-b rule bg-ground/60 backdrop-blur">
+  <div class="mx-auto max-w-[96rem] px-5 lg:px-10 grid sm:grid-cols-2 lg:grid-cols-4 divide-y sm:divide-y-0 lg:divide-x divide-line">
+    <div class="py-5 lg:px-8 first:lg:pl-0"><dt class={eyebrowMuted}>Plant</dt><dd class="mt-1 font-display text-lg">22 t and 5 t excavators, wet or dry hire</dd></div>
+    <div class="py-5 lg:px-8"><dt class={eyebrowMuted}>Certified</dt><dd class="mt-1 font-display text-lg">{facts.certs.join(', ')}</dd></div>
+    <div class="py-5 lg:px-8"><dt class={eyebrowMuted}>Licence numbers</dt><dd class="mt-1 font-display text-lg">{facts.licences.join(' and ')}</dd></div>
+    <div class="py-5 lg:px-8"><dt class={eyebrowMuted}>ABN</dt><dd class="mt-1 font-display text-lg">{facts.abn}</dd></div>
+  </div>
+</dl>

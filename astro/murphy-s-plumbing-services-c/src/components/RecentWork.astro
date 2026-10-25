@@ -1,0 +1,24 @@
+---
+import { Picture } from 'astro:assets';
+import { alts } from '../lib/photos';
+import { base, btnGhost, eyebrow } from '../lib/links';
+import site from '../assets/project-site-wide.jpg';
+import w1 from '../assets/project-circular-tank-risers.jpg';
+import w2 from '../assets/dicl-pipe-crane-sling.jpg';
+import w3 from '../assets/plant-kobelco-trench.jpg';
+const work = [[site,'project-site-wide.jpg'],[w1,'project-circular-tank-risers.jpg'],[w2,'dicl-pipe-crane-sling.jpg'],[w3,'plant-kobelco-trench.jpg']];
+---
+<section data-section="work" aria-labelledby="work-h2" class="bg-ground text-ink border-t rule">
+  <div class="mx-auto max-w-[96rem] px-5 lg:px-10 py-16 lg:py-24">
+    <div class="grid gap-6 lg:grid-cols-12 lg:items-end">
+      <div class="lg:col-span-8">
+        <p class={eyebrow}>Recent work</p>
+        <h2 id="work-h2" class="mt-3 font-display text-3xl lg:text-5xl leading-[1.05]">Recent infrastructure projects, large and small.</h2>
+      </div>
+      <a href={`${base}/projects/`} class={`lg:col-span-4 lg:justify-self-end ${btnGhost}`}>All project photographs</a>
+    </div>
+    <div class="mt-10 grid grid-cols-2 lg:grid-cols-4 gap-3">
+      {work.map(([src, f]) => <Picture src={src} widths={[480, 800]} formats={['avif', 'webp']} sizes="(min-width: 1024px) 25vw, 50vw" alt={alts[f]} loading="eager" pictureAttributes={{ class: 'block' }} class="w-full aspect-[4/5] object-cover" />)}
+    </div>
+  </div>
+</section>
