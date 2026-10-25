@@ -5,14 +5,14 @@ import b from '../assets/project-plant-pump-pipework.jpg';
 import { alts } from '../lib/photos';
 import { eyebrow } from '../lib/links';
 const scopes = [
-  ['Water supply', 'Water supply pipework and treatment plant piping'],
-  ['Sewage', 'Large-scale sewage pipework'],
-  ['Stormwater', 'Stormwater systems'],
-  ['Gas', 'Gas systems for civil infrastructure'],
-  ['Deep trenching', 'Precise trenching and navigation around existing services'],
-  ['Manhole installations', 'Manhole installations on civil infrastructure projects'],
-  ['Treatment plant piping', 'Specialised piping inside treatment plants'],
-  ['Vac operations', 'Certified Vac Operations'],
+  ['Water supply', 'Water mains and treatment plant piping'],
+  ['Sewage', ''],
+  ['Stormwater', ''],
+  ['Gas', ''],
+  ['Deep trenching', 'Navigation around existing services, with our own excavators'],
+  ['Manhole installations', ''],
+  ['Treatment plant piping', ''],
+  ['Vac operations', 'Certified'],
 ];
 const materials = ['PE 100 polyethylene', 'Ductile Iron Cement Lined (DICL)', 'Steel', 'Stainless steel press fit', 'Copper press fit', 'PVC', 'Concrete'];
 ---
@@ -20,12 +20,12 @@ const materials = ['PE 100 polyethylene', 'Ductile Iron Cement Lined (DICL)', 'S
   <div class="mx-auto max-w-[88rem] px-5 lg:px-10 py-20 lg:py-28 grid gap-14 lg:grid-cols-12">
     <div class="lg:col-span-7">
       <p class={eyebrow}>What we install</p>
-      <h2 id="idx-h2" class="mt-4 font-display font-light text-4xl lg:text-6xl leading-[1.05] max-w-2xl">Water, sewage, stormwater and gas. Deep trenching to treatment plant piping.</h2>
+      <h2 id="idx-h2" class="mt-4 font-display text-4xl lg:text-6xl leading-[1.05] max-w-2xl">Water, sewage, stormwater and gas. Deep trenching to treatment plant piping.</h2>
       <ol class="mt-12 border-t hairline">
         {scopes.map(([name, detail]) => (
-          <li class="reveal grid sm:grid-cols-[1fr_1fr] gap-x-8 gap-y-1 py-5 border-b hairline items-baseline">
-            <h3 class="font-display font-light text-3xl lg:text-4xl leading-none">{name}</h3>
-            <p class="text-accent">{detail}</p>
+          <li class="grid sm:grid-cols-[1fr_1fr] gap-x-8 gap-y-1 py-3.5 border-b hairline items-baseline">
+            <h3 class="font-display text-2xl lg:text-3xl leading-none">{name}</h3>
+            {detail && <p class="text-accent text-sm">{detail}</p>}
           </li>
         ))}
       </ol>

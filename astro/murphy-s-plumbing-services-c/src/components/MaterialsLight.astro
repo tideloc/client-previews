@@ -1,6 +1,7 @@
 ---
 import { Picture } from 'astro:assets';
-import drawing from '../assets/gen-exploded-flanged-joint.jpg';
+import Exploded from './Exploded.astro';
+import ef from '../assets/gen-col-electrofusion.jpg';
 import weld from '../assets/weld-electrofusion-coupler.jpg';
 import { alts } from '../lib/photos';
 const materials = [
@@ -11,33 +12,43 @@ const materials = [
   ['Concrete', 'Concrete pipework'],
 ];
 const certs = ['PE 100 installations', 'Electrofusion', 'Butt Welding', 'Vac Operations'];
+const callouts = [
+  { x: 14, y: 18, label: 'PE 100 pipe', side: 'below' },
+  { x: 42, y: 38, label: 'Electrofusion coupler', sub: 'Heating coil fuses pipe to coupler', side: 'left' },
+  { x: 55, y: 26, label: 'Terminal pins', side: 'right' },
+  { x: 62, y: 61, label: 'Alignment clamp', side: 'right' },
+  { x: 84, y: 75, label: 'Certified', sub: 'Electrofusion and Butt Welding', side: 'above' },
+];
 ---
-<section data-section="materials" aria-labelledby="mat-h2" class="relative bg-ink text-ground overflow-hidden">
-  <div class="relative mx-auto max-w-[88rem] px-5 lg:px-10 py-20 lg:py-28 grid gap-12 lg:grid-cols-12">
-    <div class="lg:col-span-6">
-      <p class="font-medium uppercase tracking-[0.28em] text-[11px] text-ground/60">Materials and certifications</p>
-      <h2 id="mat-h2" class="mt-4 font-display font-light text-4xl lg:text-6xl leading-[1.05]">PE 100, DICL, steel, press fit, PVC and concrete. Welded and installed by a certified crew.</h2>
-      <p class="mt-6 text-ground/75 max-w-xl">We stand out for our expertise in handling diverse pipe materials. This flexibility ensures we can adapt to the specific needs of every job, delivering durable and reliable results every time.</p>
-      <dl class="mt-10 border-t hairline-dark">
-        {materials.map(([m, d]) => (
-          <div class="reveal grid sm:grid-cols-[1fr_1fr] gap-x-8 py-4 border-b hairline-dark items-baseline">
-            <dt class="font-display text-2xl leading-tight">{m}</dt>
-            <dd class="text-ground/70">{d}</dd>
-          </div>
-        ))}
-      </dl>
+<section data-section="materials" aria-labelledby="mat-h2" class="bg-ink text-ground">
+  <div class="mx-auto max-w-[88rem] px-5 lg:px-10 py-20 lg:py-28">
+    <div class="bg-ground text-ink p-5 lg:p-10">
+      <p class="font-medium uppercase tracking-[0.28em] text-[11px] text-accent">PE 100 electrofusion joint</p>
+      <Exploded src={ef} alt="Exploded-view render of an electrofusion joint: black PE 100 pipe with blue stripes, coupler with copper heating coil, terminal pins and alignment clamp" callouts={callouts} class="mt-4" sizes="(min-width: 1024px) 80vw, 100vw" />
     </div>
-    <div class="lg:col-span-5 lg:col-start-8">
-      <Picture src={drawing} widths={[768, 1376]} formats={['avif', 'webp']} sizes="(min-width: 1024px) 40vw, 100vw" loading="lazy"
-        alt="Exploded-view line drawing of a flanged pipe joint: two flanges, the gasket ring and the bolts separated"
-        pictureAttributes={{ class: 'block drawing-inv reveal' }} class="w-full aspect-[16/9] object-cover" />
-      <Picture src={weld} widths={[480, 800, 1200]} formats={['avif', 'webp']} sizes="(min-width: 1024px) 30vw, 100vw" alt={alts['weld-electrofusion-coupler.jpg']} loading="lazy" pictureAttributes={{ class: 'block reveal mt-4' }} class="w-full aspect-[16/10] object-cover" />
-      <div class="mt-4 border hairline-dark">
-        <p class="px-5 py-3 border-b hairline-dark font-medium uppercase tracking-[0.28em] text-[11px] text-ground/60">Certifications held</p>
-        <ul class="px-5 grid grid-cols-2 gap-x-4">
-          {certs.map((c) => <li class="py-2.5 font-display text-lg">{c}</li>)}
-        </ul>
+    <div class="mt-14 grid gap-12 lg:grid-cols-12 lg:items-end">
+      <div class="lg:col-span-6">
+        <p class="font-medium uppercase tracking-[0.28em] text-[11px] text-ground/60">Materials and certifications</p>
+        <h2 id="mat-h2" class="mt-4 font-display text-4xl lg:text-6xl leading-[1.05]">PE 100, DICL, steel, press fit, PVC and concrete. Welded and installed by a certified crew.</h2>
+        <p class="mt-6 text-ground/75 max-w-xl">We stand out for our expertise in handling diverse pipe materials. This flexibility ensures we can adapt to the specific needs of every job, delivering durable and reliable results every time.</p>
+      </div>
+      <div class="lg:col-span-5 lg:col-start-8">
+        <div class="border hairline-dark">
+          <p class="px-5 py-3 border-b hairline-dark font-medium uppercase tracking-[0.28em] text-[11px] text-ground/60">Certifications held</p>
+          <ul class="px-5 grid grid-cols-2 gap-x-4">
+            {certs.map((c) => <li class="py-2.5 font-display text-lg">{c}</li>)}
+          </ul>
+        </div>
       </div>
     </div>
+    <dl class="mt-14 grid gap-x-10 lg:grid-cols-2 border-t hairline-dark">
+      {materials.map(([m, d]) => (
+        <div class="grid sm:grid-cols-[1fr_1fr] gap-x-6 py-4 border-b hairline-dark items-baseline">
+          <dt class="font-display text-2xl leading-tight">{m}</dt>
+          <dd class="text-ground/70">{d}</dd>
+        </div>
+      ))}
+    </dl>
+    <Picture src={weld} widths={[640, 1024, 1600]} formats={['avif', 'webp']} sizes="100vw" alt={alts['weld-electrofusion-coupler.jpg']} loading="lazy" pictureAttributes={{ class: 'block mt-10' }} class="w-full aspect-[21/9] object-cover" />
   </div>
 </section>

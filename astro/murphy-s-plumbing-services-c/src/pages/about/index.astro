@@ -20,7 +20,7 @@ const band = [{ src: b1, file: 'project-wrapped-pipes.jpg' }, { src: b2, file: '
     <div class="mx-auto max-w-[88rem] px-5 lg:px-10 pt-14 lg:pt-24 pb-16 grid gap-12 lg:grid-cols-12">
       <div class="lg:col-span-6">
         <p class={eyebrow}>About</p>
-        <h1 id="ab-h1" class="mt-5 font-display font-light text-5xl lg:text-7xl leading-[1]">Industrial and civil plumbing, with the equipment to match.</h1>
+        <h1 id="ab-h1" class="mt-5 font-display text-5xl lg:text-7xl leading-[1]">Industrial and civil plumbing, with the equipment to match.</h1>
         <p class="mt-7 text-accent">Murphy's Plumbing Services is a trusted name in industrial and civil plumbing, delivering reliable and high-quality solutions for complex infrastructure projects. With a skilled team of licensed plumbers, pipe layers, and excavator operators, we specialise in large-scale water, sewage, stormwater, and gas systems.</p>
         <p class="mt-4 text-accent">Our commitment to excellence is backed by years of experience and the equipment to match. From deep trenching to precise pipe installations, we take pride in tackling challenging projects with professionalism and precision.</p>
       </div>
@@ -35,10 +35,10 @@ const band = [{ src: b1, file: 'project-wrapped-pipes.jpg' }, { src: b2, file: '
     <div class="mx-auto max-w-[88rem] px-5 lg:px-10 py-20 lg:py-24 grid gap-10 lg:grid-cols-12">
       <div class="lg:col-span-5">
         <p class="font-medium uppercase tracking-[0.28em] text-[11px] text-ground/60">Certifications and accreditations</p>
-        <h2 id="ce-h2" class="mt-4 font-display font-light text-4xl lg:text-5xl leading-[1.05]">We're proud to hold key certifications that reflect our dedication to quality and expertise.</h2>
+        <h2 id="ce-h2" class="mt-4 font-display text-4xl lg:text-5xl leading-[1.05]">We're proud to hold key certifications that reflect our dedication to quality and expertise.</h2>
       </div>
       <ul class="lg:col-span-6 lg:col-start-7 border-t hairline-dark">
-        {certs.map((c) => <li class="reveal py-5 border-b hairline-dark font-display font-light text-3xl lg:text-4xl">{c}</li>)}
+        {certs.map((c) => <li class="py-5 border-b hairline-dark font-display text-3xl lg:text-4xl">{c}</li>)}
       </ul>
     </div>
   </section>
@@ -47,7 +47,7 @@ const band = [{ src: b1, file: 'project-wrapped-pipes.jpg' }, { src: b2, file: '
     <div class="mx-auto max-w-[88rem] px-5 lg:px-10 py-20 lg:py-24 grid gap-10 lg:grid-cols-12">
       <div class="lg:col-span-5">
         <p class={eyebrow}>What sets us apart</p>
-        <h2 id="ap-h2" class="mt-4 font-display font-light text-4xl lg:text-5xl leading-[1.05]">Diverse pipe materials, and our own excavators.</h2>
+        <h2 id="ap-h2" class="mt-4 font-display text-4xl lg:text-5xl leading-[1.05]">Diverse pipe materials, and our own excavators.</h2>
       </div>
       <div class="lg:col-span-6 lg:col-start-7 text-accent space-y-4 text-lg">
         <p>We stand out for our expertise in handling diverse pipe materials, including PE 100 polyethylene, Ductile Iron Cement Lines (DICL), stainless steel press fit, concrete, and PVC. This flexibility ensures we can adapt to the specific needs of every job, delivering durable and reliable results every time.</p>
@@ -56,7 +56,7 @@ const band = [{ src: b1, file: 'project-wrapped-pipes.jpg' }, { src: b2, file: '
     </div>
     <div class="mx-auto max-w-[88rem] px-5 lg:px-10 pb-20 grid grid-cols-1 sm:grid-cols-3 gap-4">
       {band.map((p) => (
-        <Picture src={p.src} widths={[480, 800, 1200]} formats={['avif', 'webp']} sizes="(min-width: 640px) 33vw, 100vw" alt={alts[p.file]} loading="lazy" pictureAttributes={{ class: 'block reveal' }} class="w-full aspect-[4/5] object-cover" />
+        <Picture src={p.src} widths={[480, 800, 1200]} formats={['avif', 'webp']} sizes="(min-width: 640px) 33vw, 100vw" alt={alts[p.file]} loading="lazy" pictureAttributes={{ class: 'block' }} class="w-full aspect-[4/5] object-cover" />
       ))}
     </div>
   </section>

@@ -1,27 +1,29 @@
 ---
-import { Picture } from 'astro:assets';
-import drawing from '../assets/gen-hero-electrofusion.jpg';
+import Exploded from './Exploded.astro';
 import SpecLedger from './SpecLedger.astro';
+import ex22 from '../assets/gen-col-excavator-22t.jpg';
 import { enquiryHref, base, btnFilled, eyebrow } from '../lib/links';
+const callouts = [
+  { x: 65, y: 44, label: '22-tonne excavator', sub: 'Wet or dry hire', side: 'right' },
+  { x: 56, y: 18, label: 'Cab', sub: 'Our operator on wet hire, yours on dry', side: 'right' },
+  { x: 40, y: 22, label: 'Boom and dipper', side: 'left' },
+  { x: 22, y: 60, label: 'Bucket', sub: 'Deep trenching around existing services', side: 'left' },
+  { x: 70, y: 83, label: 'Undercarriage and tracks', side: 'right' },
+];
 ---
 <section data-section="hero" aria-labelledby="hero-h1" class="relative bg-ground text-ink overflow-hidden">
-  <div class="relative lg:min-h-[78vh]">
-    <Picture src={drawing} widths={[768, 1376]} formats={['avif', 'webp']} sizes="(min-width: 1024px) 62vw, 100vw" loading="eager" fetchpriority="high"
-      alt="Exploded-view line drawing of an electrofusion coupler joint on a polyethylene pipe, with the welding clamp above"
-      pictureAttributes={{ class: 'block lg:absolute lg:inset-y-0 lg:left-[38%] lg:right-0 drawing' }} class="w-full h-auto lg:h-full object-cover object-[50%_50%]" />
-    <div class="hidden lg:block absolute inset-y-0 left-[38%] w-[22%] bg-gradient-to-r from-ground to-transparent" aria-hidden="true"></div>
-    <div class="relative mx-auto max-w-[88rem] px-5 lg:px-10 pt-10 pb-12 lg:pt-28 lg:pb-20 lg:min-h-[78vh] flex flex-col justify-between gap-10">
-      <div class="lg:max-w-[52%]">
-        <p class={eyebrow}>Civil and industrial plumbing contractor, Illawarra</p>
-        <h1 id="hero-h1" class="mt-5 font-display font-light text-[2.7rem] leading-[0.98] sm:text-6xl lg:text-7xl xl:text-[6.4rem]">Large-scale civil pipework for water, sewage, stormwater and gas.</h1>
+  <div class="mx-auto max-w-[88rem] px-5 lg:px-10 pt-10 pb-12 lg:pt-20 lg:pb-16 grid gap-10 lg:grid-cols-12 lg:items-center">
+    <div class="lg:col-span-5 lg:pr-6">
+      <p class={eyebrow}>Civil and industrial plumbing contractor, Illawarra</p>
+      <h1 id="hero-h1" class="mt-5 font-display text-[2.7rem] leading-[0.98] sm:text-6xl lg:text-6xl xl:text-7xl">Large-scale civil pipework for water, sewage, stormwater and gas.</h1>
+      <p class="mt-7 text-lg text-accent max-w-md">Our own excavators, our own PE 100 welding, our own licensed crew. Based in the Illawarra, with recent Sydney Water infrastructure works.</p>
+      <div class="mt-8 flex flex-wrap items-center gap-6">
+        <a href={enquiryHref} class={btnFilled}>Send a project enquiry</a>
+        <a href={`${base}/plant-hire/`} class="underline underline-offset-[6px] decoration-ink/40 hover:decoration-ink">Plant hire</a>
       </div>
-      <div class="lg:max-w-[40%]">
-        <p class="text-lg text-accent">Our own excavators, our own PE 100 welding, our own licensed crew. Based in the Illawarra, with recent Sydney Water infrastructure works.</p>
-        <div class="mt-7 flex flex-wrap items-center gap-6">
-          <a href={enquiryHref} class={btnFilled}>Send a project enquiry</a>
-          <a href={`${base}/plant-hire/`} class="underline underline-offset-[6px] decoration-ink/40 hover:decoration-ink">Plant hire</a>
-        </div>
-      </div>
+    </div>
+    <div class="lg:col-span-7">
+      <Exploded src={ex22} eager alt="Exploded-view render of a teal 22-tonne tracked excavator: bucket, boom and dipper, cab, engine house, slew ring and undercarriage separated" callouts={callouts} sizes="(min-width: 1024px) 58vw, 100vw" />
     </div>
   </div>
   <SpecLedger />

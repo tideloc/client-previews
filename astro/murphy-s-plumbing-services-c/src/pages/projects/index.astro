@@ -17,7 +17,7 @@ const photos = Object.entries(all)
     <div class="mx-auto max-w-[88rem] px-5 lg:px-10 pt-14 lg:pt-24 pb-12 grid gap-8 lg:grid-cols-12 lg:items-start">
       <div class="lg:col-span-8">
         <p class={eyebrow}>Projects</p>
-        <h1 id="pr-h1" class="mt-5 font-display font-light text-5xl lg:text-7xl leading-[1]">Our work across infrastructure projects.</h1>
+        <h1 id="pr-h1" class="mt-5 font-display text-5xl lg:text-7xl leading-[1]">Our work across infrastructure projects.</h1>
       </div>
       <div class="lg:col-span-4 lg:pt-12 text-accent">
         <p>Recent projects include Sydney Water infrastructure works alongside small and medium civil plumbing jobs for builders and contractors.</p>
@@ -28,7 +28,7 @@ const photos = Object.entries(all)
   <section data-section="gallery" aria-label="Project photographs" class="bg-primary text-ink border-t hairline">
     <div class="mx-auto max-w-[88rem] px-5 lg:px-10 py-14 lg:py-20 grid grid-cols-2 md:grid-cols-4 gap-4">
       {photos.map((p) => (
-        <figure class={`reveal ${p.landscape ? 'col-span-2' : 'col-span-1'}`}>
+        <figure class={`${p.landscape ? 'col-span-2' : 'col-span-1'}`}>
           <Picture src={p.src} widths={[480, 800, 1200]} formats={['avif', 'webp']} sizes={p.landscape ? '(min-width: 768px) 50vw, 100vw' : '(min-width: 768px) 25vw, 50vw'} alt={p.alt} loading="lazy" pictureAttributes={{ class: 'block' }} class={`w-full object-cover ${p.landscape ? 'aspect-[3/2]' : 'aspect-[3/4]'}`} />
           <figcaption class="mt-2 mb-4 font-medium uppercase tracking-[0.18em] text-[10px] text-accent/80">{p.alt}</figcaption>
         </figure>

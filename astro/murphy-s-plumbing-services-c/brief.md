@@ -17,10 +17,10 @@ See Option B's brief: Squarespace source, monochrome theme, Khula / Poppins, ver
 - Logo: MP monogram, inverted to white on the dark header.
 
 ## Layout, in two lines
-Six pages on a dark ground. Home: exploded electrofusion joint as the hero stage with a hairline spec plate (plant list, portal-editable, plus certifications), a scope ledger with a sticky photo column, the exploded excavator stage with 22 t / 5 t plates, an inverted off-white materials section with the flanged-joint drawing, a six-image editorial spread, and the registration table beside the enquiry form.
+Six pages on a dark ground. Home: claim left, colourised exploded 22 t excavator with callout labels right, then a full-width spec ledger (plant list, portal-editable, certifications, base), a compact scope ledger with a sticky photo column, the exploded 5 t excavator with 22 t / 5 t plates, an inverted off-white materials section led by the exploded electrofusion joint, a six-image editorial spread, and the registration table beside the enquiry form. Plant-hire leads with the labelled 22 t render; services carries the labelled DICL flanged joint.
 
 ## Imagery
-36 first-party photos (same library as Option B). 5 generated with Gemini (styled to: fine white hairline engineering line art on charcoal, patent-drawing exploded views, no labels, matched to the MP monogram), listed: gen-hero-electrofusion.jpg, gen-exploded-flanged-joint.jpg, gen-exploded-excavator.jpg, gen-exploded-manhole.jpg, gen-exploded-pressfit.jpg. Backgrounds levelled to true black so they blend into the ground. No stock.
+36 first-party photos (same library as Option B). 6 generated with Gemini: 4 colourised exploded-view renders (gen-col-excavator-22t.jpg, gen-col-excavator-5t.jpg, gen-col-electrofusion.jpg, gen-col-flanged-joint.jpg; photoreal, Kobelco teal, black PE with blue stripe, blue DICL; backgrounds keyed to #1C1C1C) carrying HTML callout labels (22-tonne excavator / wet or dry hire, cab, boom and dipper, bucket, tracks; coupler, terminal pins, clamp; flange, gasket, gate valve, bolts), and 2 white hairline line drawings (gen-hero-electrofusion.jpg, gen-exploded-manhole.jpg). No stock.
 
 ## Questions for Blake / the client
 Same eight as Option B (phone, address, Sydney Water project names, fleet detail, contact name, socials, insurances, plant-card wording). Plus:

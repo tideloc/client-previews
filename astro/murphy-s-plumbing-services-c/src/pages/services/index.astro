@@ -6,7 +6,15 @@ import Footer from '../../components/Footer.astro';
 import EnquiryBand from '../../components/EnquiryBand.astro';
 import { alts } from '../../lib/photos';
 import manholeDrawing from '../../assets/gen-exploded-manhole.jpg';
-import pressDrawing from '../../assets/gen-exploded-pressfit.jpg';
+import Exploded from '../../components/Exploded.astro';
+import flange from '../../assets/gen-col-flanged-joint.jpg';
+const flangeCallouts = [
+  { x: 24, y: 39, label: 'DICL flanged pipe', side: 'below' },
+  { x: 38, y: 44, label: 'Gasket', side: 'below' },
+  { x: 50, y: 20, label: 'Gate valve', sub: 'Steel and DICL installations', side: 'right' },
+  { x: 22, y: 14, label: 'Bolts and nuts', side: 'left' },
+  { x: 78, y: 62, label: 'Flanged spigot', side: 'right' },
+];
 import water from '../../assets/project-stainless-vertical.jpg';
 import sewer from '../../assets/project-trench-pipe-shoring.jpg';
 import storm from '../../assets/project-stormwater-pit.jpg';
@@ -22,19 +30,19 @@ import concrete from '../../assets/project-pink-pipe-manhole.jpg';
 import { eyebrow } from '../../lib/links';
 const scopes = [
   { name: 'Water supply', text: 'Water supply pipework and treatment plant piping.', img: water, file: 'project-stainless-vertical.jpg' },
-  { name: 'Sewage', text: 'Large-scale sewage pipework for civil infrastructure projects.', img: sewer, file: 'project-trench-pipe-shoring.jpg' },
-  { name: 'Stormwater', text: 'Stormwater systems for civil infrastructure projects.', img: storm, file: 'project-stormwater-pit.jpg' },
-  { name: 'Gas', text: 'Gas systems for civil and industrial projects.', img: gas, file: 'project-pe-gravel-bedding.jpg' },
+  { name: 'Sewage', text: '', img: sewer, file: 'project-trench-pipe-shoring.jpg' },
+  { name: 'Stormwater', text: '', img: storm, file: 'project-stormwater-pit.jpg' },
+  { name: 'Gas', text: '', img: gas, file: 'project-pe-gravel-bedding.jpg' },
   { name: 'Deep trenching', text: 'Precise trenching and navigation around existing services, with our own 22-tonne and 5-tonne excavators.', img: trench, file: 'project-trench-bedding.jpg' },
-  { name: 'Manhole installations', text: 'Manhole installations on civil infrastructure projects.', img: manhole, file: 'project-manhole-riser-worker.jpg' },
-  { name: 'Treatment plant piping', text: 'Specialised piping inside treatment plants.', img: plant, file: 'project-stainless-plant.jpg' },
+  { name: 'Manhole installations', text: '', img: manhole, file: 'project-manhole-riser-worker.jpg' },
+  { name: 'Treatment plant piping', text: '', img: plant, file: 'project-stainless-plant.jpg' },
 ];
 const materials = [
   { name: 'PE 100 polyethylene', text: 'Electrofusion and butt welding, certified.', img: pe, file: 'weld-pe-pipe-trench.jpg' },
   { name: 'Ductile Iron Cement Lined (DICL) and steel', text: 'Steel and DICL installations.', img: dicl, file: 'dicl-pipe-crane-sling.jpg' },
   { name: 'Stainless steel and copper press fit', text: 'Press fit installations.', img: press, file: 'project-press-fit-plant.jpg' },
-  { name: 'PVC', text: 'PVC pipework.', img: pvc, file: 'project-pvc-valves-trench.jpg' },
-  { name: 'Concrete', text: 'Concrete pipework.', img: concrete, file: 'project-pink-pipe-manhole.jpg' },
+  { name: 'PVC', text: '', img: pvc, file: 'project-pvc-valves-trench.jpg' },
+  { name: 'Concrete', text: '', img: concrete, file: 'project-pink-pipe-manhole.jpg' },
 ];
 const certs = ['PE 100 installations', 'Electrofusion', 'Butt Welding', 'Vac Operations'];
 ---
@@ -43,11 +51,11 @@ const certs = ['PE 100 installations', 'Electrofusion', 'Butt Welding', 'Vac Ope
   <section data-section="services-lead" aria-labelledby="sv-h1" class="relative bg-ground text-ink overflow-hidden">
     <Picture src={manholeDrawing} widths={[640, 928]} formats={['avif', 'webp']} sizes="(min-width: 1024px) 40vw, 100vw" loading="eager" fetchpriority="high"
       alt="Exploded-view line drawing of a precast concrete manhole: base, riser rings, taper and cover separated vertically"
-      pictureAttributes={{ class: 'absolute right-0 top-0 h-full lg:w-[42%] drawing opacity-30 lg:opacity-100' }} class="w-full h-full object-contain object-[50%_50%] lg:object-[100%_50%]" />
-    <div class="relative mx-auto max-w-[88rem] px-5 lg:px-10 pt-14 lg:pt-24 pb-16 lg:pb-24 lg:min-h-[70vh] grid lg:grid-cols-12 items-end">
+      pictureAttributes={{ class: 'block lg:absolute lg:right-0 lg:top-0 lg:h-full lg:w-[42%] drawing' }} class="w-full h-auto max-h-[60vh] lg:max-h-none lg:h-full object-contain object-[50%_50%] lg:object-[100%_50%]" />
+    <div class="relative mx-auto max-w-[88rem] px-5 lg:px-10 pt-10 lg:pt-24 pb-16 lg:pb-24 lg:min-h-[70vh] grid lg:grid-cols-12 items-end">
       <div class="lg:col-span-7">
         <p class={eyebrow}>Services</p>
-        <h1 id="sv-h1" class="mt-5 font-display font-light text-5xl lg:text-7xl leading-[1] max-w-3xl">Civil and industrial plumbing for complex infrastructure projects.</h1>
+        <h1 id="sv-h1" class="mt-5 font-display text-5xl lg:text-7xl leading-[1] max-w-3xl">Civil and industrial plumbing for complex infrastructure projects.</h1>
         <p class="mt-7 text-lg text-accent max-w-2xl">We provide specialised solutions for civil infrastructure, focusing on water, sewage, stormwater, and gas systems. From deep trenching and manhole installations to treatment plant piping, our expertise ensures every project is handled with precision and efficiency.</p>
       </div>
     </div>
@@ -58,39 +66,40 @@ const certs = ['PE 100 installations', 'Electrofusion', 'Butt Welding', 'Vac Ope
       <h2 id="sc-h2" class={`${eyebrow} border-b hairline pb-4`}>Scopes</h2>
       <ul>
         {scopes.map((s) => (
-          <li class="reveal py-8 border-b hairline grid gap-6 md:grid-cols-12 md:items-center">
-            <h3 class="md:col-span-4 font-display font-light text-3xl lg:text-5xl leading-none">{s.name}</h3>
-            <p class="md:col-span-5 text-accent">{s.text}</p>
-            <Picture src={s.img} widths={[480, 800]} formats={['avif', 'webp']} sizes="(min-width: 768px) 25vw, 100vw" alt={alts[s.file]} loading="lazy" pictureAttributes={{ class: 'md:col-span-3 block' }} class="w-full aspect-[4/3] object-cover" />
+          <li class="py-4 border-b hairline grid gap-4 md:grid-cols-12 md:items-center">
+            <h3 class="md:col-span-5 font-display text-2xl lg:text-4xl leading-none">{s.name}</h3>
+            <p class="md:col-span-5 text-accent text-sm">{s.text}</p>
+            <Picture src={s.img} widths={[480, 800]} formats={['avif', 'webp']} sizes="(min-width: 768px) 16vw, 100vw" alt={alts[s.file]} loading="lazy" pictureAttributes={{ class: 'md:col-span-2 block' }} class="w-full aspect-[3/2] object-cover" />
           </li>
         ))}
       </ul>
     </div>
   </section>
 
-  <section data-section="materials" aria-labelledby="mat-h2" class="relative bg-ink text-ground overflow-hidden">
+  <section data-section="materials" aria-labelledby="mat-h2" class="bg-ink text-ground">
     <div class="relative mx-auto max-w-[88rem] px-5 lg:px-10 py-20 lg:py-28">
       <div class="grid gap-8 lg:grid-cols-12 lg:items-start">
         <div class="lg:col-span-7">
           <p class="font-medium uppercase tracking-[0.28em] text-[11px] text-ground/60">Materials</p>
-          <h2 id="mat-h2" class="mt-4 font-display font-light text-4xl lg:text-6xl leading-[1.05]">PE 100, DICL, steel, stainless and copper press fit, PVC and concrete.</h2>
+          <h2 id="mat-h2" class="mt-4 font-display text-4xl lg:text-6xl leading-[1.05]">PE 100, DICL, steel, stainless and copper press fit, PVC and concrete.</h2>
           <p class="mt-6 text-ground/75 max-w-2xl">We stand out for our expertise in handling diverse pipe materials. This flexibility ensures we can adapt to the specific needs of every job, delivering durable and reliable results every time.</p>
         </div>
         <div class="lg:col-span-4 lg:col-start-9">
-          <Picture src={pressDrawing} widths={[640, 1024]} formats={['avif', 'webp']} sizes="(min-width: 1024px) 30vw, 100vw" loading="lazy"
-            alt="Exploded-view line drawing of a stainless press-fit joint: pipe ends, fitting and seal ring separated inside the jaw outline"
-            pictureAttributes={{ class: 'block drawing-inv reveal mb-6' }} class="w-full aspect-square object-cover" />
           <p class="font-medium uppercase tracking-[0.28em] text-[11px] text-ground/60 border-b hairline-dark pb-2">Certifications held</p>
           <ul>
             {certs.map((c) => <li class="py-2 border-b hairline-dark font-display text-lg">{c}</li>)}
           </ul>
         </div>
       </div>
+      <div class="mt-14 bg-ground text-ink p-5 lg:p-10">
+        <p class="font-medium uppercase tracking-[0.28em] text-[11px] text-accent">DICL flanged joint with gate valve</p>
+        <Exploded src={flange} alt="Exploded-view render of a blue ductile iron flanged joint with a gate valve, gasket, bolts and nuts separated" callouts={flangeCallouts} class="mt-4" sizes="(min-width: 1024px) 80vw, 100vw" />
+      </div>
       <div class="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
         {materials.map((m) => (
           <figure class="reveal">
             <Picture src={m.img} widths={[480, 800]} formats={['avif', 'webp']} sizes="(min-width: 1024px) 20vw, (min-width: 640px) 50vw, 100vw" alt={alts[m.file]} loading="lazy" pictureAttributes={{ class: 'block' }} class="w-full aspect-[4/5] object-cover" />
-            <figcaption class="mt-3"><span class="block font-display text-xl leading-tight">{m.name}</span><span class="block mt-1 text-sm text-ground/70">{m.text}</span></figcaption>
+            <figcaption class="mt-3"><span class="block font-display text-xl leading-tight">{m.name}</span>{m.text && <span class="block mt-1 text-sm text-ground/70">{m.text}</span>}</figcaption>
           </figure>
         ))}
       </div>

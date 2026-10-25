@@ -1,0 +1,61 @@
+---
+/** Exploded-view stage: a generated colour render in a fixed-aspect box with HTML callouts.
+ *  Callout coordinates are percentages of the image box, so they track the render at any size.
+ *  Below md the callouts render as a list under the image instead. */
+import { Picture } from 'astro:assets';
+interface Callout { x: number; y: number; label: string; sub?: string; side?: 'left' | 'right' | 'above' | 'below' }
+interface Props { src: ImageMetadata; alt: string; callouts: Callout[]; eager?: boolean; sizes?: string; class?: string; listClass?: string; dark?: boolean }
+const { src, alt, callouts, eager = false, sizes = '(min-width: 1024px) 60vw, 100vw', class: cls = '', listClass = '', dark = true } = Astro.props;
+const ratio = `${src.width} / ${src.height}`;
+const ink = dark ? 'text-ink' : 'text-ground';
+const line = dark ? 'bg-ink/50' : 'bg-ground/50';
+const dot = dark ? 'bg-ink ring-ink/30' : 'bg-ground ring-ground/30';
+const subCls = dark ? 'text-accent' : 'text-ground/60';
+---
+<figure class={`relative ${cls}`} style={`aspect-ratio: ${ratio}`}>
+  <Picture src={src} widths={[768, 1376]} formats={['avif', 'webp']} sizes={sizes} loading={eager ? 'eager' : 'lazy'} fetchpriority={eager ? 'high' : undefined}
+    alt={alt} pictureAttributes={{ class: 'absolute inset-0' }} class="w-full h-full object-contain" />
+  <ul class="hidden md:block absolute inset-0 list-none m-0 p-0" aria-hidden="true">
+    {callouts.map((c) => {
+      const side = c.side ?? (c.x < 50 ? 'left' : 'right');
+      const pos = `left:${c.x}%; top:${c.y}%;`;
+      return (
+        <li class="absolute" style={pos}>
+          <span class={`absolute -translate-x-1/2 -translate-y-1/2 w-2.5 h-2.5 rounded-full ${dot} ring-4`}></span>
+          {side === 'left' && (
+            <span class="absolute right-2 top-0 -translate-y-1/2 flex items-center">
+              <span class={`block ${ink} text-right whitespace-nowrap pr-3`}><span class="block font-medium uppercase tracking-[0.2em] text-[11px]">{c.label}</span>{c.sub && <span class={`block text-[11px] ${subCls}`}>{c.sub}</span>}</span>
+              <span class={`block h-px w-10 ${line}`}></span>
+            </span>
+          )}
+          {side === 'right' && (
+            <span class="absolute left-2 top-0 -translate-y-1/2 flex items-center">
+              <span class={`block h-px w-10 ${line}`}></span>
+              <span class={`block ${ink} whitespace-nowrap pl-3`}><span class="block font-medium uppercase tracking-[0.2em] text-[11px]">{c.label}</span>{c.sub && <span class={`block text-[11px] ${subCls}`}>{c.sub}</span>}</span>
+            </span>
+          )}
+          {side === 'above' && (
+            <span class="absolute left-0 bottom-2 -translate-x-1/2 flex flex-col items-center">
+              <span class={`block ${ink} text-center whitespace-nowrap pb-2`}><span class="block font-medium uppercase tracking-[0.2em] text-[11px]">{c.label}</span>{c.sub && <span class={`block text-[11px] ${subCls}`}>{c.sub}</span>}</span>
+              <span class={`block w-px h-8 ${line}`}></span>
+            </span>
+          )}
+          {side === 'below' && (
+            <span class="absolute left-0 top-2 -translate-x-1/2 flex flex-col items-center">
+              <span class={`block w-px h-8 ${line}`}></span>
+              <span class={`block ${ink} text-center whitespace-nowrap pt-2`}><span class="block font-medium uppercase tracking-[0.2em] text-[11px]">{c.label}</span>{c.sub && <span class={`block text-[11px] ${subCls}`}>{c.sub}</span>}</span>
+            </span>
+          )}
+        </li>
+      );
+    })}
+  </ul>
+</figure>
+<ol class={`md:hidden mt-4 border-t ${dark ? 'hairline' : 'hairline-dark'} ${listClass}`}>
+  {callouts.map((c) => (
+    <li class={`py-2.5 border-b ${dark ? 'hairline' : 'hairline-dark'} flex items-baseline justify-between gap-4`}>
+      <span class="font-medium uppercase tracking-[0.2em] text-[11px]">{c.label}</span>
+      {c.sub && <span class={`text-sm ${subCls} text-right`}>{c.sub}</span>}
+    </li>
+  ))}
+</ol>
