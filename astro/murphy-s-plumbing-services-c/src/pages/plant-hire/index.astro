@@ -4,89 +4,86 @@ import Base from '../../layouts/Base.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import EnquiryBand from '../../components/EnquiryBand.astro';
+import Exploded from '../../components/Exploded.astro';
 import PriceList from '../../components/tl/PriceList.astro';
 import { alts } from '../../lib/photos';
-import Exploded from '../../components/Exploded.astro';
+import { enquiryHref, btnPrimary, eyebrow, eyebrowDark } from '../../lib/links';
 import ex22 from '../../assets/gen-col-excavator-22t.jpg';
-const heroCallouts = [
-  { x: 65, y: 44, label: '22-tonne excavator', sub: 'Wet or dry hire', side: 'right' },
-  { x: 56, y: 18, label: 'Cab', sub: 'Our operator on wet hire, yours on dry', side: 'right' },
-  { x: 40, y: 22, label: 'Boom and dipper', side: 'left' },
-  { x: 22, y: 60, label: 'Bucket', sub: 'Deep trenching around existing services', side: 'left' },
-  { x: 70, y: 83, label: 'Undercarriage and tracks', side: 'right' },
-];
+import ex5 from '../../assets/gen-col-excavator-5t.jpg';
 import g1 from '../../assets/plant-excavation-three-pipes.jpg';
 import g2 from '../../assets/plant-kobelco-reinforced-pit.jpg';
 import g3 from '../../assets/plant-valve-lift.jpg';
 import g4 from '../../assets/plant-kobelco-fence.jpg';
-import g5 from '../../assets/project-benched-excavation.jpg';
-import g6 from '../../assets/project-crane-riser.jpg';
-import { enquiryHref, btnFilled, eyebrow } from '../../lib/links';
-const photos = [
-  { src: g1, file: 'plant-excavation-three-pipes.jpg' }, { src: g2, file: 'plant-kobelco-reinforced-pit.jpg' }, { src: g3, file: 'plant-valve-lift.jpg' },
-  { src: g4, file: 'plant-kobelco-fence.jpg' }, { src: g5, file: 'project-benched-excavation.jpg' }, { src: g6, file: 'project-crane-riser.jpg' },
+import g5 from '../../assets/plant-kobelco-elbow.jpg';
+import g6 from '../../assets/plant-kobelco-pit.jpg';
+const c22 = [
+  { x: 65, y: 44, label: '22-tonne excavator', sub: 'Wet or dry hire', side: 'right' },
+  { x: 56, y: 18, label: 'Cab', sub: 'Our operator on wet hire, yours on dry', side: 'right' },
+  { x: 40, y: 22, label: 'Boom and dipper', side: 'above' },
+  { x: 22, y: 60, label: 'Bucket', sub: 'Deep trenching', side: 'below' },
+  { x: 70, y: 83, label: 'Undercarriage and tracks', side: 'below' },
 ];
+const c5 = [
+  { x: 62, y: 22, label: '5-tonne excavator', sub: 'Wet or dry hire', side: 'right' },
+  { x: 31, y: 30, label: 'Boom and dipper', side: 'above' },
+  { x: 30, y: 73, label: 'Bucket', side: 'below' },
+  { x: 46, y: 81, label: 'Dozer blade', side: 'below' },
+  { x: 73, y: 77, label: 'Rubber tracks', side: 'right' },
+];
+const photos = [[g1,'plant-excavation-three-pipes.jpg'],[g2,'plant-kobelco-reinforced-pit.jpg'],[g3,'plant-valve-lift.jpg'],[g4,'plant-kobelco-fence.jpg'],[g5,'plant-kobelco-elbow.jpg'],[g6,'plant-kobelco-pit.jpg']];
 ---
 <Base title="Excavator wet and dry hire | Murphy's Plumbing Services" description="22-tonne and 5-tonne excavators for wet or dry hire on civil plumbing works, from an Illawarra-based crew of licensed plumbers and excavator operators.">
   <Header slot="header" />
-  <section data-section="plant-lead" aria-labelledby="ph-h1" class="bg-ground text-ink">
-    <div class="mx-auto max-w-[88rem] px-5 lg:px-10 pt-10 pb-12 lg:pt-20 lg:pb-16 grid gap-10 lg:grid-cols-12 lg:items-center">
-      <div class="lg:col-span-5 lg:pr-6">
-        <p class={eyebrow}>Plant hire</p>
-        <h1 id="ph-h1" class="mt-5 font-display text-5xl lg:text-6xl xl:text-7xl leading-[0.98]">22-tonne and 5-tonne excavators, wet or dry hire.</h1>
-        <p class="mt-7 text-lg text-accent max-w-md">Large and small machines for all the civil plumbing works, run by excavator operators who are part of a licensed plumbing crew.</p>
-        <a href={enquiryHref} class={`mt-8 ${btnFilled}`}>Send a project enquiry</a>
-      </div>
+  <section data-section="plant-lead" aria-labelledby="ph-h1" class="bg-secondary">
+    <div class="mx-auto max-w-[88rem] px-5 lg:px-10 pt-14 lg:pt-20 pb-10 grid gap-8 lg:grid-cols-12 lg:items-end">
       <div class="lg:col-span-7">
-        <Exploded src={ex22} eager alt="Exploded-view render of a teal 22-tonne tracked excavator: bucket, boom and dipper, cab, engine house, slew ring and undercarriage separated" callouts={heroCallouts} sizes="(min-width: 1024px) 58vw, 100vw" />
+        <p class={eyebrow}>Plant hire</p>
+        <h1 id="ph-h1" class="mt-4 font-display text-5xl lg:text-7xl leading-[1.02]">22-tonne and 5-tonne excavators, wet or dry hire.</h1>
+      </div>
+      <div class="lg:col-span-5">
+        <p class="text-lg text-ink/75">Large and small machines for all the civil plumbing works, run by excavator operators who are part of a licensed plumbing crew.</p>
+        <a href={enquiryHref} class={`mt-6 ${btnPrimary}`}>Send a project enquiry</a>
       </div>
     </div>
   </section>
-
-  <section data-section="fleet" aria-labelledby="fleet-h2" class="bg-ground text-ink border-t hairline">
-    <div class="mx-auto max-w-[88rem] px-5 lg:px-10 py-20 lg:py-28 grid gap-14 lg:grid-cols-12">
-      <div class="lg:col-span-5">
-        <p class={eyebrow}>The fleet</p>
-        <h2 id="fleet-h2" class="mt-4 font-display text-4xl lg:text-6xl leading-[1.05]">Large and small, one crew.</h2>
-        <p class="mt-6 text-accent">Our fleet includes a 22-tonne and a 5-tonne excavator, available for wet or dry hire, giving us the capability to manage even the most demanding projects efficiently.</p>
-        <div class="mt-10 border hairline">
-          <div class="px-6 py-4 border-b hairline flex items-baseline justify-between"><p class={eyebrow}>Plant for hire</p><p class={eyebrow}>Wet or dry</p></div>
-          <div class="px-6">
-            <PriceList sectionClass="" titleClass="sr-only" itemClass="grid grid-cols-[1fr_auto] gap-x-4 py-5 border-b hairline last:border-0" nameClass="font-display text-3xl leading-none [&>span]:hidden" priceClass="font-medium text-xs uppercase tracking-[0.2em] text-accent pt-2" noteClass="" />
-          </div>
+  <section data-section="fleet" aria-labelledby="fl-h2" class="bg-secondary">
+    <div class="mx-auto max-w-[88rem] px-5 lg:px-10 pb-16 lg:pb-24">
+      <h2 id="fl-h2" class="sr-only">The fleet</h2>
+      <div class="grid gap-4 lg:grid-cols-2">
+        <div class="bg-primary text-ground p-5 lg:p-8">
+          <p class={eyebrowDark}>22-tonne excavator</p>
+          <Exploded src={ex22} eager alt="Exploded-view render of a teal 22-tonne tracked excavator: bucket, boom and dipper, cab, engine house, slew ring and undercarriage separated" callouts={c22} class="mt-3" sizes="(min-width: 1024px) 45vw, 100vw" />
+        </div>
+        <div class="bg-primary text-ground p-5 lg:p-8">
+          <p class={eyebrowDark}>5-tonne excavator</p>
+          <Exploded src={ex5} alt="Exploded-view render of a teal 5-tonne mini excavator with dozer blade and rubber tracks, parts separated" callouts={c5} class="mt-3" sizes="(min-width: 1024px) 45vw, 100vw" />
         </div>
       </div>
-      <div class="lg:col-span-6 lg:col-start-7">
-        <dl class="border-t hairline">
-          <div class="py-7 border-b hairline grid sm:grid-cols-[11rem_1fr] gap-2">
-            <dt class="font-display text-2xl">Wet hire</dt>
-            <dd class="text-accent">The machine comes with one of our operators. Our operators are part of the plumbing crew.</dd>
+      <div class="mt-12 grid gap-10 lg:grid-cols-12">
+        <div class="lg:col-span-5">
+          <p class={eyebrow}>Plant for hire</p>
+          <div class="mt-3 border-t border-ink">
+            <PriceList sectionClass="" titleClass="sr-only" itemClass="flex items-baseline justify-between gap-4 py-4 border-b rule" nameClass="font-display text-2xl [&>span]:hidden" priceClass="font-medium text-[11px] uppercase tracking-[0.2em] text-ink/60" noteClass="" />
           </div>
-          <div class="py-7 border-b hairline grid sm:grid-cols-[11rem_1fr] gap-2">
-            <dt class="font-display text-2xl">Dry hire</dt>
-            <dd class="text-accent">The machine on its own, for your operator and your program.</dd>
-          </div>
-          <div class="py-7 border-b hairline grid sm:grid-cols-[11rem_1fr] gap-2">
-            <dt class="font-display text-2xl">Vac operations</dt>
-            <dd class="text-accent">We hold Vac Operations certification, alongside PE 100 installations, Electrofusion and Butt Welding.</dd>
-          </div>
-          <div class="py-7 border-b hairline grid sm:grid-cols-[11rem_1fr] gap-2">
-            <dt class="font-display text-2xl">With the pipework</dt>
-            <dd class="text-accent">From deep trenching and manhole installations to treatment plant piping, the same crew can dig and lay.</dd>
-          </div>
+          <p class="mt-5 text-ink/75">Our fleet includes a 22-tonne and a 5-tonne excavator, available for wet or dry hire, giving us the capability to manage even the most demanding projects efficiently.</p>
+        </div>
+        <dl class="lg:col-span-6 lg:col-start-7 border-t border-ink">
+          <div class="py-5 border-b rule grid sm:grid-cols-[10rem_1fr] gap-2"><dt class="font-display text-2xl">Wet hire</dt><dd class="text-ink/75">The machine comes with one of our operators. Our operators are part of the plumbing crew.</dd></div>
+          <div class="py-5 border-b rule grid sm:grid-cols-[10rem_1fr] gap-2"><dt class="font-display text-2xl">Dry hire</dt><dd class="text-ink/75">The machine on its own, for your operator and your program.</dd></div>
+          <div class="py-5 border-b rule grid sm:grid-cols-[10rem_1fr] gap-2"><dt class="font-display text-2xl">Vac operations</dt><dd class="text-ink/75">We hold Vac Operations certification, alongside PE 100 installations, Electrofusion and Butt Welding.</dd></div>
+          <div class="py-5 border-b rule grid sm:grid-cols-[10rem_1fr] gap-2"><dt class="font-display text-2xl">With the pipework</dt><dd class="text-ink/75">From deep trenching and manhole installations to treatment plant piping, the same crew can dig and lay.</dd></div>
         </dl>
       </div>
     </div>
   </section>
-
-  <section data-section="plant-photos" aria-labelledby="pp-h2" class="bg-primary text-ink border-t hairline">
-    <div class="mx-auto max-w-[88rem] px-5 lg:px-10 py-20 lg:py-28">
-      <h2 id="pp-h2" class="font-display text-3xl lg:text-5xl">The excavators at work</h2>
-      <div class="mt-10 grid grid-cols-2 lg:grid-cols-3 gap-4">
-        {photos.map((p) => (
-          <figure class="reveal">
-            <Picture src={p.src} widths={[480, 800, 1200]} formats={['avif', 'webp']} sizes="(min-width: 1024px) 33vw, 50vw" alt={alts[p.file]} loading="lazy" pictureAttributes={{ class: 'block' }} class="w-full aspect-[4/5] object-cover" />
-            <figcaption class="mt-2 font-medium uppercase tracking-[0.2em] text-[11px] text-accent">{alts[p.file]}</figcaption>
+  <section data-section="plant-photos" aria-labelledby="pp-h2" class="bg-ground border-t rule">
+    <div class="mx-auto max-w-[88rem] px-5 lg:px-10 py-16 lg:py-24">
+      <h2 id="pp-h2" class="font-display text-3xl lg:text-4xl">The excavators at work</h2>
+      <div class="mt-8 grid grid-cols-2 lg:grid-cols-3 gap-3">
+        {photos.map(([src, f]) => (
+          <figure>
+            <Picture src={src} widths={[480, 800, 1200]} formats={['avif', 'webp']} sizes="(min-width: 1024px) 33vw, 50vw" alt={alts[f]} loading="lazy" pictureAttributes={{ class: 'block' }} class="w-full aspect-[4/5] object-cover" />
+            <figcaption class="mt-1.5 text-xs text-ink/60">{alts[f]}</figcaption>
           </figure>
         ))}
       </div>

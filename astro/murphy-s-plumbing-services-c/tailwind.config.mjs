@@ -1,14 +1,14 @@
 /** @type {import('tailwindcss').Config} */
-// Every value here comes from brand.json. Premium option: the brand's dark accent is the ground, the off-white is the ink.
+// Every value here comes from brand.json. Do not add colours the brand does not own.
 export default {
   content: ['./src/**/*.{astro,html,js,ts,md}'],
   theme: {
     extend: {
       colors: {
-        primary:   '#000000',
+        primary:   '#1C1C1C',
         secondary: '#FFFFFF',
-        ground:    '#1C1C1C',
-        ink:       '#FAFAFA',
+        ground:    '#FAFAFA',
+        ink:       '#000000',
         accent:    '#DCDCDC',
       },
       fontFamily: {

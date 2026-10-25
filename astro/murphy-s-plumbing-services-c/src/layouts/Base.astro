@@ -11,7 +11,7 @@ import Announcement from '../components/tl/Announcement.astro';
 import TidelocBar from '../components/TidelocBar.astro';
 import { siteContent } from '../lib/site';
 import { getImage } from 'astro:assets';
-import defaultOg from '../assets/gen-hero-electrofusion.jpg'; // hero photo file name from the rationale
+import defaultOg from "../assets/project-site-wide.jpg";
 
 interface Props {
   title: string;
@@ -35,7 +35,7 @@ const palette = '#000000,#1C1C1C,#DCDCDC,#FAFAFA,#FFFFFF'; // "#hex,#hex,..." fr
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
-    <meta name="theme-color" content="#1C1C1C" />
+    <meta name="theme-color" content="#FAFAFA" />
     <meta name="tl-palette" content={palette} />
     <link rel="icon" href={`${base}/favicon.png`} type="image/png" />
     <meta property="og:type" content="website" />
@@ -53,7 +53,7 @@ const palette = '#000000,#1C1C1C,#DCDCDC,#FAFAFA,#FFFFFF'; // "#hex,#hex,..." fr
   </head>
   <body class="min-h-screen bg-ground text-ink font-body antialiased">
     <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:bg-ground focus:px-3 focus:py-2">Skip to content</a>
-    <Announcement class="bg-ink text-ground text-sm text-center px-4 py-2" />
+    <Announcement class="bg-primary text-ground text-sm text-center px-4 py-2" />
     <slot name="header" />
     <main id="main">
       <slot />

@@ -3,27 +3,27 @@ import { Image } from 'astro:assets';
 import mark from '../assets/mark.png';
 import { base, nav, enquiryHref } from '../lib/links';
 ---
-<header class="bg-ground text-ink border-b hairline">
-  <div class="mx-auto max-w-[88rem] px-5 lg:px-10 py-4 flex items-center justify-between gap-6">
+<header class="bg-secondary border-b rule">
+  <div class="mx-auto max-w-[88rem] px-5 lg:px-10 py-3 flex items-center justify-between gap-6">
     <a href={`${base}/`} class="flex items-center gap-3">
-      <Image src={mark} alt="Murphy's Plumbing Services MP monogram" width="40" height="40" loading="eager" class="w-10 h-10 invert" />
-      <span class="font-display uppercase tracking-[0.3em] text-[12px] sm:text-[13px] leading-tight">Murphys<br class="sm:hidden" /> Plumbing Services</span>
+      <Image src={mark} alt="Murphy's Plumbing Services MP monogram" width="44" height="44" loading="eager" class="w-11 h-11" />
+      <span class="font-display uppercase tracking-[0.22em] text-[13px] sm:text-sm leading-tight text-ink">Murphys<br class="sm:hidden" /> Plumbing Services</span>
     </a>
     <nav aria-label="Main" class="hidden lg:block">
-      <ul class="flex items-center gap-9 text-sm">
-        {nav.map((n) => <li><a href={n.href} class="text-accent hover:text-ink transition-colors">{n.label}</a></li>)}
-        <li><a href={enquiryHref} class="inline-block bg-ink text-ground font-medium tracking-[0.02em] px-5 py-2.5 hover:bg-secondary">Send a project enquiry</a></li>
+      <ul class="flex items-center gap-8 text-sm">
+        {nav.map((n) => <li><a href={n.href} class="hover:underline underline-offset-4">{n.label}</a></li>)}
+        <li><a href={enquiryHref} class="inline-block bg-primary text-ground font-medium tracking-[0.02em] px-5 py-2.5 hover:bg-ink">Send a project enquiry</a></li>
       </ul>
     </nav>
     <div class="lg:hidden flex items-center gap-3">
-      <a href={enquiryHref} class="hidden sm:inline-block bg-ink text-ground font-medium text-sm px-4 py-2.5">Project enquiry</a>
-      <button type="button" class="border hairline px-3 py-2 text-sm font-medium" aria-expanded="false" aria-controls="mobile-nav" id="nav-toggle">Menu</button>
+      <a href={enquiryHref} class="hidden sm:inline-block bg-primary text-ground font-medium text-sm px-4 py-2.5">Project enquiry</a>
+      <button type="button" class="border border-ink px-3 py-2 text-sm font-medium" aria-expanded="false" aria-controls="mobile-nav" id="nav-toggle">Menu</button>
     </div>
   </div>
-  <nav aria-label="Main" id="mobile-nav" hidden class="lg:hidden border-t hairline bg-ground">
+  <nav aria-label="Main" id="mobile-nav" hidden class="lg:hidden border-t rule bg-secondary">
     <ul>
-      {nav.map((n) => <li class="border-b hairline"><a href={n.href} class="block px-5 py-4">{n.label}</a></li>)}
-      <li><a href={enquiryHref} class="block px-5 py-4 bg-ink text-ground font-medium">Send a project enquiry</a></li>
+      {nav.map((n) => <li class="border-b rule"><a href={n.href} class="block px-5 py-4">{n.label}</a></li>)}
+      <li><a href={enquiryHref} class="block px-5 py-4 bg-primary text-ground font-medium">Send a project enquiry</a></li>
     </ul>
   </nav>
 </header>

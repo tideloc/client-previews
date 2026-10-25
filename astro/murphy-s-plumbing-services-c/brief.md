@@ -3,28 +3,29 @@
 2026-10-25 · lead 27979 · skill tideloc-site-build · preview https://staging.tideloc.com.au/cold/murphy-s-plumbing-services/v3/ · CRM Option C row 3365
 
 ## Who this is for
-Same business as Option B (v2): Murphy's Plumbing Services Pty Ltd, Illawarra civil and industrial plumbing contractor, pitched at builders and civil contractors. Blake's brief for this option (25 Oct 2026): keep v1 as is, make a super premium second version with exploded-view / breakdown imagery in the hero.
+Same business as Option B (v2). Blake's brief for this option (25 Oct 2026, after rejecting a dark premium cut): the highest quality site for this industry, aligned to builders, because a builder's first look is to check he is a legitimate plumber.
 
 ## What the site has to make happen
-Same outcome: a project enquiry (scope, materials, program). Primary CTA "Send a project enquiry". Secondary: plant hire.
+Let a builder or estimator confirm in one screen that this is a registered, licensed, certified civil plumbing subcontractor with its own plant, then send a project enquiry. Primary CTA "Send a project enquiry". Secondary: download the capability statement PDF for the subcontractor register.
 
 ## Verified live on 2026-10-23 (unchanged)
 See Option B's brief: Squarespace source, monochrome theme, Khula / Poppins, verbatim copy, ABN 24101951759, licences 521S and 142861C, email only, 39 first-party photos. No crew headcount anywhere (Blake, 23 Oct).
 
 ## Brand tokens (sources)
-- Same five brand hexes as Option B. This option uses the brand's dark accent #1C1C1C as the page ground with the off-white #FAFAFA as text, #000000 for the deepest panels, #DCDCDC for eyebrows; two sections invert to off-white ground. No colour outside the palette.
-- Type: Khula 300 for the giant claims and tonnage (the logo wordmark's hairline weight), Khula 400 section heads, Poppins 300 body, Poppins 500 buttons. Eyebrows tracked 0.28em like the logo's wordmark.
-- Logo: MP monogram, inverted to white on the dark header.
+- Same five brand hexes as Option B, light ground: #FAFAFA ground, #FFF hero and matrix, #000 ink, #1C1C1C verification band, plant panel, map band and footer, #DCDCDC rules. Colour comes from the photographs and renders.
+- Type: Khula 400 headings, Poppins 300 body, Poppins 500 buttons and tracked-caps eyebrows.
+- Logo: MP monogram as header mark and favicon.
 
 ## Layout, in two lines
-Six pages on a dark ground. Home: claim left, colourised exploded 22 t excavator with callout labels right, then a full-width spec ledger (plant list, portal-editable, certifications, base), a compact scope ledger with a sticky photo column, the exploded 5 t excavator with 22 t / 5 t plates, an inverted off-white materials section led by the exploded electrofusion joint, a six-image editorial spread, and the registration table beside the enquiry form. Plant-hire leads with the labelled 22 t render; services carries the labelled DICL flanged joint.
+Six pages plus a print page: home (split hero, verification band with ABN and licence register links, three engagement packages, capability matrix, labelled exploded 22 t render in an ink panel, work mosaic, builder enquiry form), capability, plant hire, projects, company ("On the record" table), contact. The capability statement PDF (two A4 pages, 641 KB) is generated from the same facts module and linked from the hero, footer and company page.
 
 ## Imagery
-36 first-party photos (same library as Option B). 6 generated with Gemini: 4 colourised exploded-view renders (gen-col-excavator-22t.jpg, gen-col-excavator-5t.jpg, gen-col-electrofusion.jpg, gen-col-flanged-joint.jpg; photoreal, Kobelco teal, black PE with blue stripe, blue DICL; backgrounds keyed to #1C1C1C) carrying HTML callout labels (22-tonne excavator / wet or dry hire, cab, boom and dipper, bucket, tracks; coupler, terminal pins, clamp; flange, gasket, gate valve, bolts), and 2 white hairline line drawings (gen-hero-electrofusion.jpg, gen-exploded-manhole.jpg). No stock.
+36 first-party photos. 4 colourised exploded renders generated with Gemini (gen-col-excavator-22t, gen-col-excavator-5t, gen-col-electrofusion, gen-col-flanged-joint; backgrounds keyed to #1C1C1C, used only inside ink panels) with HTML callout labels. Two earlier hairline line drawings remain in src/assets but are no longer placed. No stock.
 
 ## Questions for Blake / the client
 Same eight as Option B (phone, address, Sydney Water project names, fleet detail, contact name, socials, insurances, plant-card wording). Plus:
-9. The drawings are generic exploded views, not of his exact plant or fittings. If he wants them exact, we need the excavator model and the coupler / flange standards he uses.
+9. The renders are generic machines and fittings, not his exact plant. If he wants them exact, we need the excavator models and the fitting standards he uses.
+10. Licence 521S: confirm which register it belongs to (the NSW Fair Trading link is a search page, not a direct record). Insurances and any Sydney Water listed-provider status, if he wants them on the record table and the PDF.
 
 ## Known issues
 - Independent QC verdict for this option: see the end of review-v3.md in the workdir (deployed on Blake's standing "stage it" instruction while QC ran).

@@ -1,0 +1,92 @@
+---
+/** Print-first page rendered to PDF by scripts/pdf.mjs. Same facts as the site, nothing extra. */
+import { Image } from 'astro:assets';
+import mark from '../../assets/mark.png';
+import hero from '../../assets/plant-kobelco-trench.jpg';
+import w1 from '../../assets/project-circular-tank-risers.jpg';
+import w2 from '../../assets/weld-electrofusion-coupler.jpg';
+import w3 from '../../assets/dicl-pipe-crane-sling.jpg';
+import { facts } from '../../lib/facts';
+import { alts } from '../../lib/photos';
+const year = new Date().getFullYear();
+---
+<!doctype html>
+<html lang="en-AU">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex" />
+  <title>Capability statement | Murphy's Plumbing Services</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Khula:wght@400;600&family=Poppins:wght@300;400;500&display=swap" />
+  <style>
+    @page { size: A4; margin: 0; }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; background: #fff; color: #000; font-family: Poppins, system-ui, sans-serif; font-weight: 300; font-size: 10.5pt; line-height: 1.45; }
+    .page { width: 210mm; height: 297mm; padding: 14mm 16mm; page-break-after: always; position: relative; overflow: hidden; }
+    .page:last-child { page-break-after: auto; }
+    h1, h2, h3 { font-family: Khula, sans-serif; font-weight: 400; margin: 0; line-height: 1.1; }
+    .eyebrow { font-weight: 500; text-transform: uppercase; letter-spacing: .22em; font-size: 7.5pt; color: #555; }
+    .band { background: #1C1C1C; color: #FAFAFA; padding: 6mm 16mm; margin: 0 -16mm; display: grid; grid-template-columns: repeat(4, 1fr); gap: 6mm; }
+    .band .eyebrow { color: #bbb; }
+    .band div p { margin: 1mm 0 0; font-family: Khula, sans-serif; font-size: 11pt; }
+    .band div small { display: block; color: #aaa; font-size: 7.5pt; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { text-align: left; vertical-align: top; padding: 2.2mm 0; border-bottom: 1px solid #DCDCDC; }
+    th { font-weight: 500; font-family: Khula, sans-serif; font-size: 11pt; width: 38%; }
+    .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 8mm; }
+    .cols3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6mm; }
+    ul { margin: 0; padding: 0; list-style: none; }
+    li { padding: 1.6mm 0; border-bottom: 1px solid #DCDCDC; }
+    img.photo { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .foot { position: absolute; left: 16mm; right: 16mm; bottom: 10mm; font-size: 7.5pt; color: #666; display: flex; justify-content: space-between; border-top: 1px solid #DCDCDC; padding-top: 2mm; }
+    a { color: inherit; }
+  </style>
+</head>
+<body>
+  <section class="page">
+    <div style="display:flex; align-items:center; gap:4mm;">
+      <Image src={mark} alt="" width="48" height="48" style="width:12mm;height:12mm" />
+      <div><div style="font-family:Khula; text-transform:uppercase; letter-spacing:.22em; font-size:10pt;">Murphys Plumbing Services</div><div class="eyebrow">Capability statement · {year}</div></div>
+    </div>
+    <div style="margin-top:6mm; height:58mm;"><Image src={hero} alt={alts['plant-kobelco-trench.jpg']} width="1000" height="667" format="jpg" quality={70} class="photo" /></div>
+    <h1 style="font-size:22pt; margin-top:6mm; max-width:150mm;">Large-scale civil pipework for water, sewage, stormwater and gas.</h1>
+    <p style="margin:3mm 0 0; max-width:160mm; font-size:9.5pt;">Murphy's Plumbing Services specialises in civil and industrial plumbing for complex infrastructure projects. With expertise in materials like PE 100 polyethylene, Ductile Iron Cement Lines (DICL), stainless steel press fit, copper press fit, PVC, and concrete, we deliver durable solutions tailored to every project. {facts.recent}</p>
+    <div class="band" style="margin-top:6mm;">
+      <div><span class="eyebrow">Company</span><p>{facts.legal}</p><small>ABN registered {facts.abnRegistered}</small></div>
+      <div><span class="eyebrow">ABN</span><p>{facts.abn}</p><small>abr.business.gov.au</small></div>
+      <div><span class="eyebrow">Licence numbers</span><p>{facts.licences.join(' and ')}</p><small>NSW Fair Trading register</small></div>
+      <div><span class="eyebrow">Based</span><p>{facts.base}</p><small>info@murphysplumbingservices.com.au</small></div>
+    </div>
+    <div class="eyebrow" style="margin-top:5mm;">How builders engage us</div>
+    <table style="margin-top:2mm;">{facts.packages.map((p) => <tr><th>{p.name}</th><td style="font-size:9.5pt">{p.what}</td></tr>)}</table>
+    <div class="foot"><span>Murphy's Plumbing Services Pty Ltd · ABN {facts.abn}</span><span>murphysplumbingservices.com.au · page 1 of 2</span></div>
+  </section>
+  <section class="page">
+    <div class="eyebrow">Capability</div>
+    <h2 style="font-size:20pt; margin-top:2mm;">Scopes, materials, installations and certifications.</h2>
+    <div class="cols3" style="margin-top:6mm;">
+      <div><div class="eyebrow" style="border-bottom:1px solid #000; padding-bottom:1.5mm;">Scopes</div><ul>{facts.scopes.map((s) => <li>{s}</li>)}<li>Vac operations (certified)</li></ul></div>
+      <div><div class="eyebrow" style="border-bottom:1px solid #000; padding-bottom:1.5mm;">Materials</div><ul>{facts.materials.map((m) => <li>{m}</li>)}</ul></div>
+      <div><div class="eyebrow" style="border-bottom:1px solid #000; padding-bottom:1.5mm;">Installations and certifications</div><ul>{facts.installs.map((m) => <li>{m}</li>)}{facts.certs.map((c) => <li>{c} (certified)</li>)}</ul></div>
+    </div>
+    <div class="cols" style="margin-top:8mm;">
+      <div>
+        <div class="eyebrow">Plant, wet or dry hire</div>
+        <table style="margin-top:2mm;">{facts.plant.map((p) => <tr><th>{p.name}</th><td>{p.hire}</td></tr>)}<tr><th>Crew</th><td>{facts.crew}</td></tr></table>
+        <div class="eyebrow" style="margin-top:6mm;">Verify</div>
+        <table style="margin-top:2mm;"><tr><th>ABN register</th><td>abr.business.gov.au, ABN {facts.abn}</td></tr><tr><th>NSW Fair Trading</th><td>Public register of trades, licence numbers {facts.licences.join(' and ')}</td></tr></table>
+      </div>
+      <div class="cols" style="grid-template-columns:1fr 1fr; gap:3mm; align-content:start;">
+        <div style="height:48mm;"><Image src={w1} alt={alts['project-circular-tank-risers.jpg']} width="700" height="525" format="jpg" quality={70} class="photo" /></div>
+        <div style="height:48mm;"><Image src={w2} alt={alts['weld-electrofusion-coupler.jpg']} width="700" height="525" format="jpg" quality={70} class="photo" /></div>
+        <div style="height:48mm; grid-column:1 / -1;"><Image src={w3} alt={alts['dicl-pipe-crane-sling.jpg']} width="1000" height="500" format="jpg" quality={70} class="photo" /></div>
+        <p style="grid-column:1 / -1; margin:0; font-size:8pt; color:#666;">Site photographs from recent projects, including Sydney Water infrastructure works.</p>
+      </div>
+    </div>
+    <div class="eyebrow" style="margin-top:8mm;">Enquiries</div>
+    <p style="margin:2mm 0 0;">Send the scope, the materials and the program to <strong style="font-weight:500">info@murphysplumbingservices.com.au</strong>, or use the enquiry form at murphysplumbingservices.com.au.</p>
+    <div class="foot"><span>Murphy's Plumbing Services Pty Ltd · Licence {facts.licences[0]} · Licence {facts.licences[1]}</span><span>page 2 of 2</span></div>
+  </section>
+</body>
+</html>

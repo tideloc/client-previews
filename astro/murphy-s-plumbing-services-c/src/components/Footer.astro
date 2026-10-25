@@ -1,40 +1,42 @@
 ---
 import ContactDetails from './tl/ContactDetails.astro';
-import { base, nav, enquiryHref } from '../lib/links';
+import { base, nav, enquiryHref, pdfHref, abnUrl, licenceUrl } from '../lib/links';
+import { facts } from '../lib/facts';
 const year = new Date().getFullYear();
 ---
-<footer class="bg-primary text-ink">
-  <div class="mx-auto max-w-[88rem] px-5 lg:px-10 py-16 grid gap-12 md:grid-cols-12">
-    <div class="md:col-span-5">
-      <p class="font-display uppercase tracking-[0.3em] text-[13px]">Murphys Plumbing Services</p>
-      <p class="mt-5 max-w-sm text-accent">Specialising in large-scale pipework for water, sewage, storm water, and gas projects.</p>
-      <p class="mt-4 text-accent">Based in the Illawarra (NSW 2530). Working on Sydney Water infrastructure and civil projects.</p>
+<footer class="bg-primary text-ground">
+  <div class="mx-auto max-w-[88rem] px-5 lg:px-10 py-14 grid gap-10 md:grid-cols-12">
+    <div class="md:col-span-4">
+      <p class="font-display uppercase tracking-[0.22em] text-sm">Murphys Plumbing Services</p>
+      <p class="mt-4 max-w-sm text-ground/80">Specialising in large-scale pipework for water, sewage, storm water, and gas projects.</p>
+      <p class="mt-3 text-ground/80">Based in the Illawarra (NSW 2530). Recent projects include Sydney Water infrastructure works.</p>
+      <a href={pdfHref} class="mt-5 inline-block underline underline-offset-4">Capability statement (PDF)</a>
     </div>
     <div class="md:col-span-3">
-      <p class="font-medium uppercase tracking-[0.28em] text-[11px] text-accent/70">Contact</p>
-      <ContactDetails class="not-italic mt-3 space-y-1" linkClass="underline underline-offset-4 decoration-ink/40 hover:decoration-ink break-all" />
-      <a href={enquiryHref} class="mt-6 inline-block border border-ink px-5 py-3 font-medium hover:bg-ink hover:text-ground transition-colors">Send a project enquiry</a>
+      <p class="font-medium uppercase tracking-[0.22em] text-[11px] text-ground/60">Contact</p>
+      <ContactDetails class="not-italic mt-3 space-y-1" linkClass="underline underline-offset-4 break-all" />
+      <a href={enquiryHref} class="mt-5 inline-block bg-ground text-ink font-medium tracking-[0.02em] px-5 py-3">Send a project enquiry</a>
     </div>
     <div class="md:col-span-2">
-      <p class="font-medium uppercase tracking-[0.28em] text-[11px] text-accent/70">Pages</p>
+      <p class="font-medium uppercase tracking-[0.22em] text-[11px] text-ground/60">Pages</p>
       <ul class="mt-3 space-y-1">
         <li><a href={`${base}/`} class="hover:underline">Home</a></li>
         {nav.map((n) => <li><a href={n.href} class="hover:underline">{n.label}</a></li>)}
       </ul>
     </div>
-    <div class="md:col-span-2">
-      <p class="font-medium uppercase tracking-[0.28em] text-[11px] text-accent/70">Registration</p>
-      <ul class="mt-3 space-y-1 text-accent">
-        <li>ABN 24 101 951 759</li>
-        <li>Licence 521S</li>
-        <li>Licence 142861C</li>
-        <li>Murphy's Plumbing Services Pty Ltd</li>
+    <div class="md:col-span-3">
+      <p class="font-medium uppercase tracking-[0.22em] text-[11px] text-ground/60">Registration</p>
+      <ul class="mt-3 space-y-1 text-ground/90">
+        <li>{facts.legal}</li>
+        <li>ABN {facts.abn} <a href={abnUrl} target="_blank" rel="noreferrer" class="underline underline-offset-4 text-ground/70">check</a></li>
+        <li>Licence {facts.licences[0]}</li>
+        <li>Licence {facts.licences[1]} <a href={licenceUrl} target="_blank" rel="noreferrer" class="underline underline-offset-4 text-ground/70">NSW register</a></li>
       </ul>
     </div>
   </div>
-  <div class="border-t hairline">
-    <div class="mx-auto max-w-[88rem] px-5 lg:px-10 py-5 text-sm text-accent/70 flex flex-wrap justify-between gap-2">
-      <span>&copy; {year} Murphy's Plumbing Services Pty Ltd</span>
+  <div class="border-t border-ground/15">
+    <div class="mx-auto max-w-[88rem] px-5 lg:px-10 py-5 text-sm text-ground/60 flex flex-wrap justify-between gap-2">
+      <span>&copy; {year} {facts.legal}</span>
       <span>Civil and industrial plumbing for infrastructure projects</span>
     </div>
   </div>

@@ -2,20 +2,22 @@
 import Base from '../layouts/Base.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import HeroDrawing from '../components/HeroDrawing.astro';
-import ScopeIndex from '../components/ScopeIndex.astro';
-import PlantStage from '../components/PlantStage.astro';
-import MaterialsLight from '../components/MaterialsLight.astro';
-import WorkSpread from '../components/WorkSpread.astro';
+import Hero from '../components/Hero.astro';
+import VerifyBand from '../components/VerifyBand.astro';
+import Packages from '../components/Packages.astro';
+import CapabilityMatrix from '../components/CapabilityMatrix.astro';
+import PlantPanel from '../components/PlantPanel.astro';
+import RecentWork from '../components/RecentWork.astro';
 import EnquiryBand from '../components/EnquiryBand.astro';
 ---
-<Base title="Civil plumbing contractor, Illawarra | Murphy's Plumbing Services" description="Illawarra civil plumbing contractor. Large-scale water, sewer, stormwater and gas pipework, PE 100 welding and excavators for wet or dry hire.">
+<Base title="Civil plumbing contractor, Illawarra | Murphy's Plumbing Services" description="Illawarra civil plumbing contractor for builders. Licensed, PE 100 certified, own excavators for wet or dry hire. Water, sewer, stormwater and gas pipework.">
   <Header slot="header" />
-  <HeroDrawing />
-  <ScopeIndex />
-  <PlantStage />
-  <MaterialsLight />
-  <WorkSpread />
-  <EnquiryBand record />
+  <Hero />
+  <VerifyBand />
+  <Packages />
+  <CapabilityMatrix />
+  <PlantPanel />
+  <RecentWork />
+  <EnquiryBand />
   <Footer slot="footer" />
 </Base>
