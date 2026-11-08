@@ -13,5 +13,6 @@ sed -i '' "s#^Sitemap: .*#Sitemap: $SITE/sitemap-index.xml#" dist/robots.txt
 if [ "${1:-}" != "--no-deploy" ]; then
   CLOUDFLARE_ACCOUNT_ID=92ace353bdf27fc1335449186dc25f5e \
   CLOUDFLARE_API_TOKEN=$(cat ~/.config/tideloc/cloudflare-pages-token) \
-  source ~/.nvm/nvm.sh && nvm use 24 >/dev/null && npx wrangler pages deploy dist --project-name "$PROJECT" --branch main --commit-dirty=true
+  set +u; source ~/.nvm/nvm.sh; nvm use 24 >/dev/null; set -u  # nvm.sh trips set -u
+  npx wrangler pages deploy dist --project-name "$PROJECT" --branch main --commit-dirty=true
 fi
