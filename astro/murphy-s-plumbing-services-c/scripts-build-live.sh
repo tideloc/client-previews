@@ -7,7 +7,7 @@ set -euo pipefail
 cd "$(dirname "$0")"
 SITE=https://murphysplumbingservices.com.au
 PROJECT=murphys-plumbing-services
-npx astro build --site "$SITE" --base /
+PUBLIC_LIVE=1 npx astro build --site "$SITE" --base /
 # robots.txt is shared with staging; point its sitemap at the live domain.
 sed -i '' "s#^Sitemap: .*#Sitemap: $SITE/sitemap-index.xml#" dist/robots.txt
 if [ "${1:-}" != "--no-deploy" ]; then

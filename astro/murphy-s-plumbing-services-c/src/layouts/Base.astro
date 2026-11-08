@@ -59,7 +59,9 @@ const palette = '#0D1117,#141B24,#F2F4F6,#2BC4B4,#8B95A1,#243040'; // "#hex,#hex
       <slot />
     </main>
     <slot name="footer" />
-    <TidelocBar />
+    {import.meta.env.PUBLIC_LIVE !== '1' && (
+  <TidelocBar />
+)}
     <script is:inline defer src={`${base}/tl-live.js`}></script>
   </body>
 </html>
