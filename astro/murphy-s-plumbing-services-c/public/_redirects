@@ -1,0 +1,5 @@
+# Old Squarespace URLs (indexed before the Nov 2026 move) -> new pages
+/home            /              301
+/about           /credentials/  301
+/contact-us      /contact/      301
+/cart            /              301
